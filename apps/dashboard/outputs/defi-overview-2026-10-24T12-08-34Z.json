@@ -1,0 +1,9 @@
+{
+  "type": "Stat",
+  "props": {
+    "label": "BTC",
+    "value": "$80,524",
+    "delta": "−1.30%",
+    "trend": "down"
+  }
+}
