@@ -21,6 +21,34 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 - **Robinhood Chain (4663) 不需要 key。** `rpc.mainnet.chain.robinhood.com` 免密钥即可 `eth_getLogs` 宽区间；GeckoTerminal (`networks/robinhood`) 和 CoinGecko 都能报价。别浪费回合找端点。
 - **监控盲区：Path C 只读 ERC-20 logs，看不到 native ETH。** Robinhood 无 key 时 `onchain-monitor` 走 Path C，因此"staging 钱包被充 gas"这类触发器永远不会响，需要额外跑 `eth_getBalance` 轮询。
 
+## 假零与断层
+
+### `eth_getLogs` 返回 `result: null` 不是"零日志"，是端点拒绝
+
+窗口 1001 块（超出 Tenderly 1000 块上限）时，RPC 回 `{"error":{"code":-32602,...}}`，**没有 `result` 字段**。
+若 `jq` 只写 `.result | length`，`null|length` 得到 `0` —— 与"该窗口真无事件"**完全同形**。
+
+2026-10-24 price-alert 首轮就踩了：扫深池 Swap 得 `n:0`，差点报"这一小时池子没成交"；改用 ≤1000 块窗口 + 强制先查 `.error` 后，同一时段实际有 **23 笔 Swap**。
+
+**纪律**：`jq` 取日志数永远写成
+```jq
+{err:(.error.message//null), n:(if .result then (.result|length) else "NULL" end)}
+```
+看到 `NULL` 或 `err` 一律重试/缩窗，**不准当 0**。这条是 MEMORY 里"never trust a zero-log window"在**客户端侧**的对应物 —— 之前的假零都怀疑端点或 topic，这次错在自己的解析。
+
+### 「最近一小时」要按时间戳取，不能按 head−1800 块
+
+Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，实际落点是 **100 分钟前**，算出的 h1 与 DexScreener 对不上。
+**做法**：二分查找使 `block.timestamp <= head.ts - 3600` 的最大块，并**打印两端时间戳**确认恰好 3600s。
+
+### 解码 Swap 要拿储备差自证，别只信方向
+
+把窗口内全部 Swap 的 `amountIn/amountOut` 加总，与首尾 `getReserves()` 差对账：
+- DEUS 腿应**逐 wei 相等**（它是被转移的资产）；
+- 报价腿（VIRTUAL/ETH）会差一个**手续费**，残差/输入应等于池子费率。
+
+2026-10-24 实测：DEUS 差 **0.0000**、VIRTUAL 残差 **1.0089%** = Aerodrome classic 费率 → 解码器正确。若两腿都对不上，说明 token0/token1 读反或 topic 拿错。**这是比"看着像买"更硬的验证。**
+
 ## 过滤器设计
 
 - **carrier / 领域过滤器必须按簇配，不能全局一套。** 2026-10-24 `arxiv-radar` 实测：一套链上 carrier（`blockchain` / `token` / `validator` …）套在「具身/机器人数据」词上，**90 天窗 20 篇全被丢，20 篇一个链上词都不含**；而少数「幸存」的反而靠同形异义（`token`=GAP tokens、`validator`=validator-passed 环境、`network`=agentic robot network）混进来。**真货全丢、噪声全进 —— 方向是反的。** 症状表现成「零命中」，跟「话题死」无法区分。改法：按词分域给 carrier（`CARRIER_BY_TERM`），90 天窗幸存 0 → 21、ZK 零噪声。**判据：过滤器丢掉的样本要全量抽检，不能只看幸存者 —— 只看幸存者会得到「过滤器工作正常」的完全错误结论。**
