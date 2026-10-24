@@ -1,17 +1,11 @@
 {
   "skill": "price-alert",
-  "last_analyzed": "2026-10-24T15:17:16Z",
+  "last_analyzed": "2026-10-24T16:15:50Z",
   "quality_score": 4,
-  "assessment": "四道门槛均未触发的正常轮次，结论明确且有完整原始来源（池地址、tx hash、块号、topic0、escrow 对账差 0 wei）；亮点是新增「套利腿 vs 留存腿」的买盘归因判据和对 xDEUS #1396 扳机的持续跟踪，符合「看完就能决定」；扣分在正文偏长且 7d 供应窗口自认标签陈旧未重测，另有若干逐笔数字无法在报告内自证。",
+  "assessment": "Strong, source-backed scan: 0 gates triggered is a legitimate completed run, with raw venue/tx/escrow data and unusually self-consistent internal arithmetic (pool x·y, threshold deltas, 35.4× all check out) plus useful methodology corrections; marked down only because it is long against the 'no long text' preference and one comparison is mislabeled — the $0.041 buy of 6.74M DEUS / $114.7k is ~66× the single 101,983-DEUS block trade (~$1.7k), not 66× the stated 24h volume of $26.2k (which would be ~4.4×).",
   "flags": [],
   "avg_score": 4.27,
   "history": [
-    {
-      "date": "2026-10-23",
-      "score": 4,
-      "ts": "2026-10-23T03:03:10Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-23",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-10-24",
       "score": 4,
       "ts": "2026-10-24T15:17:16Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 4,
+      "ts": "2026-10-24T16:15:50Z",
       "harness": "claude"
     }
   ]
