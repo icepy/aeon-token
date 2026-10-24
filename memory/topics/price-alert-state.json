@@ -17,54 +17,54 @@
       "first_seen_below_at": "2026-10-21T10:00:00Z",
       "hit_at": null,
       "announced_at": null,
-      "last_checked_price": 0.0176183
+      "last_checked_price": 0.01762822
     },
     "0.025": {
       "side": "above",
       "first_seen_below_at": "2026-10-21T10:00:00Z",
       "hit_at": null,
       "announced_at": null,
-      "last_checked_price": 0.0176183
+      "last_checked_price": 0.01762822
     },
     "0.032": {
       "side": "above",
       "first_seen_below_at": "2026-10-21T10:00:00Z",
       "hit_at": null,
       "announced_at": null,
-      "last_checked_price": 0.0176183
+      "last_checked_price": 0.01762822
     },
     "0.041": {
       "side": "above",
       "first_seen_below_at": "2026-10-21T10:00:00Z",
       "hit_at": null,
       "announced_at": null,
-      "last_checked_price": 0.0176183
+      "last_checked_price": 0.01762822
     }
   },
   "last_price": {
-    "price_usd": 0.0176183,
-    "h1_pct": 0.166,
-    "h24_pct": 0.13,
-    "pool": "aerodrome classic (Solidly) DEUS/VIRTUAL — deepest, liq $667,319",
+    "price_usd": 0.01762822460676965,
+    "h1_pct": -0.107,
+    "h24_pct": 0.166,
+    "pool": "aerodrome classic (Solidly) DEUS/VIRTUAL — deepest, liq $667,350",
     "pool_address": "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa",
-    "liquidity_usd": 667319.08,
+    "liquidity_usd": 667350.55,
     "pool_url": "https://dexscreener.com/base/0x3e97c5ec8c73e7d566aca606472141a9b9a8c1fa",
-    "observed_at": "2026-10-24T11:38:39Z",
-    "head_block": 53026252,
-    "head_ts": "2026-10-24T11:37:31Z",
+    "observed_at": "2026-10-24T12:02:07Z",
+    "head_block": 53026990,
+    "head_ts": "2026-10-24T12:02:07Z",
     "h1_source": "measured on-chain, block-pinned to exactly 3600s",
-    "h1_note": "1h window pinned by timestamp binary search: blk 53024452 -> 53026252 (2026-10-24T11:37:31Z), delta exactly 3600s at 2.0 s/block. Deepest pool reserves VIRTUAL 526,949.5383 -> 527,320.3462, DEUS 18,897,831.3862 -> 18,884,542.5680. Ratio VIRTUAL/DEUS 0.02788413 -> 0.02792338 = +0.141%. USD leg moved VIRTUAL $0.630951 (ETH/USD $2,363.62 from WETH/USDC V3 0xd0b53D92, token0=WETH orientation verified). Net USD mark +0.166%.",
+    "h1_note": "1h window pinned by timestamp binary search: blk 53025190 (11:02:07Z) -> 53026990 (12:02:07Z), delta exactly 3600s. Deepest pool reserves VIRTUAL 527,320.3462 -> 527,564.4385, DEUS 18,884,542.5680 -> 18,875,805.1113. Ratio VIRTUAL/DEUS 0.02792338 -> 0.02794924 = +0.093%. BUT the USD leg fell: ETH/USD $2,367.49 -> $2,362.77 (-0.199%) and VIRTUAL $0.631982 -> $0.630723. Net USD mark -0.107%. Ratio up, USD down — TELL 18 corollary: state which denominator you measured.",
     "mark_source": "deepest-pool reserves x on-chain VIRTUAL/USD (VIRTUAL/WETH Solidly leg x ETH/USD V3 leg)",
-    "mark_note": "Deepest pool 0x3E97c5EC token0=VIRTUAL(0x0b3e3284) token1=DEUS(0x940a319b) — orientation re-confirmed by eth_call this run (TELL 18), so mark = ratio x VIRTUAL price, never the ratio read as dollars. Result $0.01761830. Independent cross-check: three DEUS/USDC V3 venues measured on chain (sqrtPriceX96 INVERTED since token0=USDC 6dp): 0x58dBa34e $0.01757362, 0x1B2f3f5C $0.01751881, 0x75bc1495 $0.01746856 -> median $0.01751881. Deepest-pool mark sits +0.57% above that median, same order as prior runs. DexScreener prints $0.01766 on this pool, -0.24% vs measured. Dust uniswap pool $0.01851 (liq $1.30) excluded.",
+    "mark_note": "Deepest pool 0x3E97c5EC token0=VIRTUAL(0x0b3e3284) token1=DEUS(0x940a319b), re-confirmed by eth_call this run, so mark = ratio x VIRTUAL price. Result $0.01762822. Independent cross-check: three DEUS/USDC V3 venues measured on chain (sqrtPriceX96 INVERTED since token0=USDC 6dp): 0x58dBa34e $0.01757292, 0x1B2f3f5C $0.01757665, 0x75bc1495 $0.01750076 -> median $0.01757292. Deepest-pool mark sits +0.31% above that median (tighter than the +0.57% of the prior run). DexScreener prints $0.01767 on this pool, +0.24% vs measured. Dust uniswap pool $0.01851 (liq $1.30) excluded.",
     "gate_distances_pct": {
-      "0.012": -31.89,
-      "0.025": 41.9,
-      "0.032": 81.63,
-      "0.041": 132.71
+      "0.012": -31.93,
+      "0.025": 41.82,
+      "0.032": 81.53,
+      "0.041": 132.58
     },
-    "ath_distance_pct": 290.28
+    "ath_distance_pct": 290.06
   },
-  "last_run_at": "2026-10-24T11:38:39Z",
+  "last_run_at": "2026-10-24T12:02:07Z",
   "supply_watch": {
     "claim_contract": "0x5cbf5dfaa5336ce0456e24217e7911365100879a",
     "claim_symbol": "DEUS (CLAIM vesting/distributor vault)",
@@ -126,16 +126,16 @@
     "xdeus_supply_note": "xDEUS totalSupply 0x18160ddd: 1724 at -24h (0x3284782) -> 1727 pre-burn (0x328c61b) -> 1726 immediately post-burn (0x328c61c, the NFT #1492 burn removed exactly 1) -> 1727 now (0x328f042). So one NEW xDEUS position was minted shortly after this burn. Net 24h change is +3 NFTs, i.e. staking is still net ADDITIVE despite the record exit. Do not describe this event as an exodus."
   },
   "escrow_snapshot": {
-    "balance_deus": 29103661.674664,
-    "prior_balance_deus": 29108661.674663614,
-    "change_deus": -5000.0,
-    "change_pct": -0.0172,
-    "balance_24h_ago": 29407291.88770671,
-    "change_24h_deus": -303630.2130430937,
-    "change_24h_pct": -1.0324,
-    "five_pct_line_deus": 1455433.08,
-    "observed_at": "2026-10-24T11:38:39Z",
-    "note": "Unchanged to the wei since the 09:13Z snapshot: 29,103,661.674664 DEUS. 24h -304,562 DEUS (-1.036%) vs the 1,470,411 DEUS 5%/day line = 0.21x. No unstake pressure. xDEUS totalSupply 1726, same as last run.",
+    "balance_deus": 29103661.674663614,
+    "prior_balance_deus": 29103661.674664,
+    "change_deus": 0.0,
+    "change_pct": 0.0,
+    "balance_24h_ago": 29408223.9,
+    "change_24h_deus": -304562.23,
+    "change_24h_pct": -1.036,
+    "five_pct_line_deus": 1455183.08,
+    "observed_at": "2026-10-24T12:02:07Z",
+    "note": "Unchanged to the wei for a third consecutive run: 29,103,661.674664 DEUS. 24h -304,562 DEUS (-1.036%) vs the 1,455,183 DEUS 5%/day line = 0.21x. No unstake pressure. The only burn in the last 6h is still the #425 5,000 DEUS release at 08:16:23Z.",
     "latest_burn": {
       "wallet": "0xcae798c0c6958df8299df4f13726da433b8ba7ba",
       "xdeus_nft_id": 425,
@@ -148,29 +148,29 @@
     }
   },
   "claim_snapshot": {
-    "balance_deus": 340080317.630885,
-    "prior_balance_deus": 340081346.429216,
+    "balance_deus": 339984948.3047177,
+    "prior_balance_deus": 340080317.630885,
     "change_deus": -1028.8,
-    "net_out_24h_deus": 193977.054729,
-    "pct_of_supply": 38.81,
-    "daily_drip_pct_of_balance": 0.057,
-    "observed_at": "2026-10-24T09:13:27Z",
-    "note": "MEASURED 24h (block-pinned, blocks 52978730 -> 53021930, exactly 24.00h): -193,977 DEUS = ~$3,424/day at $0.017654. Second consecutive run confirming the drip is BELOW the 30d band of 283k-350k/day. Two independent full-day measurements now agree, so this is no longer a single-window artifact - the emission rate has genuinely slowed versus the 30d average. Still worth noting, not an alert."
+    "net_out_24h_deus": 243789.32,
+    "pct_of_supply": 38.8,
+    "daily_drip_pct_of_balance": 0.072,
+    "observed_at": "2026-10-24T12:02:07Z",
+    "note": "Fresh block-pinned 24h window (52983790 -> 53026990, exactly 24.00h): -243,789 DEUS = ~$4,297/day at $0.017628. Third consecutive measurement BELOW the 30d band of 283k-350k/day, so the slowdown is now confirmed across three independent full-day windows rather than one artifact."
   },
   "xdeus_supply": {
     "total_supply": 1726,
-    "prior": 1727,
-    "change_24h": 1,
-    "observed_at": "2026-10-24T11:38:39Z",
-    "note": "1726 now vs 1725 24h ago = +1 NFT. Staking is STILL net additive over the day despite two burns in 24h (#1492 releasing 319,562 and #425 releasing 5,000). Three new positions were minted to offset two exits. Not an exodus - the same read as the prior run, now confirmed over a second full day."
+    "prior": 1726,
+    "change_24h": 0,
+    "observed_at": "2026-10-24T12:02:07Z",
+    "note": "1726 now vs 1726 exactly 24h ago = 0 net change. Staking is FLAT over the day for the first time in the record: two burns (#1492 releasing 319,562 and #425 releasing 5,000) were exactly offset by two new mints. Neither an exodus nor an influx."
   },
   "deus_total_supply": {
-    "total_supply": 876190274.819517,
-    "prior": 876190001.500193,
-    "change": 273.32,
-    "change_24h": -19692.665234923363,
-    "observed_at": "2026-10-24T09:13:27Z",
-    "note": "24h supply change is -19,693 DEUS, measured block-pinned over exactly 24.00h. The event counts reconcile it: 9 mints totalling 26,886.79 vs 7 burns totalling 46,579.45 = -19,692.67. So the day is genuinely net DEFLATIONARY, and now the mechanism is accounted for rather than assumed. This still CONTRADICTS the standing 7d read of net +65,381 inflation - two days of deficit would be needed to flip a 7d window, so do NOT overwrite the 7d ledger off one day. Record both; treat the regime as unsettled until a 7d window is re-measured."
+    "total_supply": 876171197.731231,
+    "prior": 876190274.819517,
+    "change": -19077.09,
+    "change_24h": -38769.75,
+    "observed_at": "2026-10-24T12:02:07Z",
+    "note": "24h supply change -38,770 DEUS, block-pinned over exactly 24.00h (52983790 -> 53026990). That is the SECOND consecutive day of net DEFLATION (-19,693 for the prior window, -38,770 for this one), so the standing 7d read of +65,381 net INFLATION is now stale by two days and must be re-measured over a fresh 7d window before it is cited again. Do not flip the regime label off two days either — record both."
   },
   "post_dump_absorption": {
     "block": 53023409,
@@ -182,8 +182,8 @@
     "note": "A 29,298 DEUS sell moved the pool mark only -0.227% and it snapped back in the very next block. Liquidity $667,670 absorbs this size. Do NOT describe this as a price event."
   },
   "holder_check": {
-    "observed_at": "2026-10-24T11:38:39Z",
-    "note": "Fifth consecutive run unchanged to the wei, re-verified by balanceOf this run at blk 53026252: 0x7f6aba75 = 335,249.4994; 0x6a45ca8b = 70,034.1403; 0xf0a04b07 (the 250k incumbent trimmer) = 250,000.1252 — none distributed into today's tape. 0xbb0f7533 DEUS balance exactly 0.0 and STILL holds xDEUS #1396: balanceOf(NFT)=1 and tokenOfOwnerByIndex(owner,0)=1396 this run. Trigger has NOT fired.",
+    "observed_at": "2026-10-24T12:02:07Z",
+    "note": "Sixth consecutive run unchanged to the wei, re-verified by balanceOf at blk 53026990: 0x7f6aba75 = 335,249.4994; 0x6a45ca8b = 70,034.1403; 0xf0a04b07 (250k incumbent trimmer) = 250,000.1252; 0xcae798c0 (the 5,000 unstake) = 5,000.0 — none distributed into today's tape. 0xbb0f7533 DEUS balance exactly 0.0 and STILL holds xDEUS #1396: balanceOf(NFT)=1 and tokenOfOwnerByIndex(owner,0)=1396 this run. Trigger has NOT fired.",
     "buyers": [
       {
         "addr": "0x7f6aba7563cb5d31980d440337d3d1a6e3db58f3",
@@ -235,18 +235,18 @@
     "read": "ONE large seller (50,167) against 37 small buyers (median 774 DEUS, total 34,753). Net result is +15,414 DEUS INTO the pool, i.e. the seller out-supplied the buyers by 1.4x and the mark still rose +0.355% in VIRTUAL terms. That combination is important: the ratio rose, so the buyers were paying up even while being out-supplied - but the pool is absorbing DEUS, which is the direction that eventually pressures price. Watch whether the 37-buyer cohort is the same handful of addresses recycling (that would be wash/arb) or genuinely distinct payers. The first hour only had 1 seller, so this is not yet a cascade."
   },
   "deepest_pool_activity": {
-    "window": "2026-10-24T11:37:31Z minus 1h (blk 53024452 -> 53026252)",
-    "swap_events": 2,
+    "window": "2026-10-24T12:02:07Z minus 1h (blk 53025190 -> 53026990)",
+    "swap_events": 1,
     "family": "Solidly (Aerodrome classic) — Swap topic0 0xb3e27736…, Sync topic0 0xcf2aa508…f982149848a",
     "buy_tx_count": 1,
-    "buy_deus_out": 13513.23,
-    "sell_tx_count": 1,
-    "sell_deus_in": 226.68,
-    "net_deus_out_of_pool": -13286.55,
-    "last_event": "10:47:19Z (blk 53024746)",
-    "minutes_quiet_at_run": 46.1,
-    "query_note": "Two swaps only in the hour, and NONE in the newest 1000-block window — so the address-only scan returns 0 there. That is a real quiet tape this run, re-measured from scratch (TELL 17: never inherit a dormancy claim). Control: the real Sync topic0 returns 2 logs in blk 53024572-53025572 while a mistyped topic0 and a bogus 0x01*32 topic0 both return 0 in that SAME window — filter discrimination proven before any number was trusted.",
-    "observed_at": "2026-10-24T11:38:39Z"
+    "buy_deus_out": 8737.46,
+    "sell_tx_count": 0,
+    "sell_deus_in": 0.0,
+    "net_deus_out_of_pool": 8737.46,
+    "last_event": "11:43:29Z (blk 53026431)",
+    "minutes_quiet_at_run": 18.6,
+    "query_note": "ONE swap in the whole hour, a single 8,737 DEUS buy out of the pool at 11:43:29Z — $154 of notional. That matches the reserve delta exactly (DEUS 18,884,542.5680 -> 18,875,805.1113 = -8,737.46), so the reserve move IS the swap, with no second print hidden. No sells at all in the hour. Filter discrimination re-proven this run in window 53025800-53026800: real Swap -> 1 log, real Sync -> 1 log, Swap topic0 mistyped by one character -> 0, bogus 0x01*32 -> 0.",
+    "observed_at": "2026-10-24T12:02:07Z"
   },
   "live_venues_1h": {
     "note": "On-chain measured this run (not taken from DexScreener). All three are Uniswap-V3-style (Swap topic0 0xc42079f9..., token0=USDC 6dp, token1=DEUS 18dp - so the sqrtPriceX96 mark must be INVERTED to get USD per DEUS). Topic0 histogram confirmed the family on 0x58dBa34e (61/61 V3 Swap in the last 900 blocks) and 0x75bc1495 (1/1) before any measurement was trusted.",

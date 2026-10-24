@@ -1,17 +1,11 @@
 {
   "skill": "price-alert",
-  "last_analyzed": "2026-10-24T11:40:08Z",
+  "last_analyzed": "2026-10-24T12:06:45Z",
   "quality_score": 4,
-  "assessment": "No-trigger run with substantive, numerically self-consistent on-chain verification (timestamp-bisected 1h window, three-pool cross-check, negative-control filter test) and correct silence per strategy; docked one point because all source addresses are 8-hex-char prefixes rather than full contracts, weakening the hard 'raw source / 合约地址' requirement, and the report is longer than the 'not long-winded' norm.",
+  "assessment": "数据详实、来源可核（真实 topic0/selector/合约地址）、四道 gate 未触发时正确保持静默并给出前瞻扳机，符合「只在触发时推送」；扣分因通篇三处重复同一组数字，与策略「避免长文、看完就能决定」相悖，且部分 7d 口径自认陈旧仍需重测。",
   "flags": [],
-  "avg_score": 4.23,
+  "avg_score": 4.2,
   "history": [
-    {
-      "date": "2026-10-22",
-      "score": 5,
-      "ts": "2026-10-22T23:02:46Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-23",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-10-24",
       "score": 4,
       "ts": "2026-10-24T11:40:08Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 4,
+      "ts": "2026-10-24T12:06:45Z",
       "harness": "claude"
     }
   ]
