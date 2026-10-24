@@ -1,0 +1,349 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "$NOTE — CONSOLIDATING",
+        "description": "token-movers · Chain robinhood (4663)"
+      },
+      "children": [
+        "main"
+      ]
+    },
+    "main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "alertNote",
+        "leadText",
+        "statsGrid",
+        "sep1",
+        "hDetails",
+        "detail1",
+        "detail2",
+        "detail3",
+        "whaleTable",
+        "detail4",
+        "detail5",
+        "sep2",
+        "hTrigger",
+        "triggerText",
+        "walletTable",
+        "triggerTotals",
+        "sep3",
+        "hMeta",
+        "contractText",
+        "sourceText",
+        "linkPool"
+      ]
+    },
+    "alertNote": {
+      "type": "Alert",
+      "props": {
+        "title": "NOTE CONSOLIDATING",
+        "message": "+10.5% 但量仅 0.69x · 上膛三钱包仍未动",
+        "type": "info"
+      }
+    },
+    "leadText": {
+      "type": "Text",
+      "props": {
+        "text": "价格 24h +10.5%，但量只有 7 日均值的 0.69× —— 涨幅没被成交量确认，够不上 BREAKOUT。",
+        "variant": "lead"
+      }
+    },
+    "statsGrid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "sm"
+      },
+      "children": [
+        "statPrice",
+        "statLiq",
+        "statVol",
+        "statBuySell",
+        "statWhale",
+        "statFDV",
+        "stat7d",
+        "stat30d"
+      ]
+    },
+    "statPrice": {
+      "type": "Stat",
+      "props": {
+        "label": "现价",
+        "value": "$0.04424",
+        "delta": "+10.5% 24h",
+        "trend": "up"
+      }
+    },
+    "statLiq": {
+      "type": "Stat",
+      "props": {
+        "label": "流动性",
+        "value": "$424.8K",
+        "delta": "+5.7%",
+        "trend": "up"
+      }
+    },
+    "statVol": {
+      "type": "Stat",
+      "props": {
+        "label": "24h 量",
+        "value": "$146.2K",
+        "delta": "0.69× 7d",
+        "trend": "down"
+      }
+    },
+    "statBuySell": {
+      "type": "Stat",
+      "props": {
+        "label": "买/卖",
+        "value": "728 / 884",
+        "delta": "ratio 0.82（昨 0.87）",
+        "trend": "down"
+      }
+    },
+    "statWhale": {
+      "type": "Stat",
+      "props": {
+        "label": "鲸鱼单（≥$1k）",
+        "value": "2 笔",
+        "delta": "全是卖",
+        "trend": "down"
+      }
+    },
+    "statFDV": {
+      "type": "Stat",
+      "props": {
+        "label": "FDV",
+        "value": "$2.65M",
+        "trend": "neutral"
+      }
+    },
+    "stat7d": {
+      "type": "Stat",
+      "props": {
+        "label": "7d",
+        "value": "−27.6%",
+        "trend": "down"
+      }
+    },
+    "stat30d": {
+      "type": "Stat",
+      "props": {
+        "label": "30d",
+        "value": "−62.9%",
+        "trend": "down"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hDetails": {
+      "type": "Heading",
+      "props": {
+        "text": "关键细节",
+        "level": "h3"
+      }
+    },
+    "detail1": {
+      "type": "Text",
+      "props": {
+        "text": "06:00Z 单根小时线 +13.1%、量 $21.3K（前后小时的约 10 倍），之后 5 小时没回吐 → 真成交非插针。",
+        "variant": "body"
+      }
+    },
+    "detail2": {
+      "type": "Text",
+      "props": {
+        "text": "但最后一小时在回吐：h1 −3.72%。两笔鲸鱼卖单都在局部高位卖出并换成原生 ETH：",
+        "variant": "body"
+      }
+    },
+    "detail3": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "时间",
+          "数量",
+          "价值",
+          "价格"
+        ],
+        "rows": [
+          [
+            "11:08Z",
+            "29,470 NOTE",
+            "$1,316",
+            "$0.044669"
+          ],
+          [
+            "10:49Z",
+            "28,637 NOTE",
+            "$1,297",
+            "$0.045301"
+          ]
+        ]
+      }
+    },
+    "whaleTable": {
+      "type": "Text",
+      "props": {
+        "text": "合计仅当日量 1.8%，高位减仓不是派发。",
+        "variant": "caption"
+      }
+    },
+    "detail4": {
+      "type": "Text",
+      "props": {
+        "text": "流动性在补不在撤：$401.8K → $424.8K。",
+        "variant": "body"
+      }
+    },
+    "detail5": {
+      "type": "Text",
+      "props": {
+        "text": "$0.0438 修复上沿已翻上去（现价 +1.0%），两天来第一次。地板 $0.0349 距现价 −21.1%。",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hTrigger": {
+      "type": "Heading",
+      "props": {
+        "text": "扳机仍未扣（本轮链上实测）",
+        "level": "h3"
+      }
+    },
+    "triggerText": {
+      "type": "Text",
+      "props": {
+        "text": "480,000 NOTE 三把上膛钱包 —— 余额逐位未变、ETH 全 0、nonce 全 0、code 全 0x：",
+        "variant": "body"
+      }
+    },
+    "walletTable": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "钱包",
+          "地址",
+          "NOTE 余额",
+          "ETH",
+          "nonce",
+          "code"
+        ],
+        "rows": [
+          [
+            "上膛7",
+            "0x33b7181e",
+            "240,000",
+            "0",
+            "0",
+            "0x"
+          ],
+          [
+            "上膛6",
+            "0x3a9039c7",
+            "150,000",
+            "0",
+            "0",
+            "0x"
+          ],
+          [
+            "上膛5",
+            "0x572bb527",
+            "90,000",
+            "0",
+            "0",
+            "0x"
+          ]
+        ]
+      }
+    },
+    "triggerTotals": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "sm"
+      },
+      "children": [
+        "statTotalNote",
+        "statTotalUSD",
+        "progPoolShare"
+      ]
+    },
+    "statTotalNote": {
+      "type": "Stat",
+      "props": {
+        "label": "合计",
+        "value": "480,000 NOTE",
+        "trend": "neutral"
+      }
+    },
+    "statTotalUSD": {
+      "type": "Stat",
+      "props": {
+        "label": "折合",
+        "value": "≈ $21,236",
+        "trend": "neutral"
+      }
+    },
+    "progPoolShare": {
+      "type": "Progress",
+      "props": {
+        "value": 14.5,
+        "max": 100,
+        "label": "占单日池量 14.5%"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hMeta": {
+      "type": "Heading",
+      "props": {
+        "text": "合约与来源",
+        "level": "h3"
+      }
+    },
+    "contractText": {
+      "type": "Text",
+      "props": {
+        "text": "扳机是「第一笔 ETH 入账」，不是价格 —— 今天这波没让它们动。合约 0xc4f730335Fb9e439ca5552f7b52B8E638c4245B0 · Chain robinhood (4663)",
+        "variant": "body"
+      }
+    },
+    "sourceText": {
+      "type": "Text",
+      "props": {
+        "text": "来源：GeckoTerminal（池 0x378b1023…f9f91）+ DexScreener（价差 1.08%）+ Robinhood RPC 直读余额",
+        "variant": "caption"
+      }
+    },
+    "linkPool": {
+      "type": "Link",
+      "props": {
+        "label": "GeckoTerminal — 池 0x378b1023…f9f91",
+        "href": "https://www.geckoterminal.com/robinhood/pools/0x378b102395b2c4f9a9ebe650b5b501d0810c60126f886107d8812ca7ff7f9f91"
+      }
+    }
+  }
+}

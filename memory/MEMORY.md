@@ -68,7 +68,7 @@
 - **网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`（数小时自愈）。`./notify` 写普通 Markdown，多行走 `-f`。
 ## Next Priorities
 - **🔴 待命 480,000 NOTE ≈ $22,000：上膛7 `0x33b7181e` 240k · 上膛6 `0x3a9039c7` 150k · 上膛5 `0x572bb527` 90k，全部 nonce 0 / ETH 0 / 零出账。扳机 = 第一笔 ETH 入账**（上膛4 先例：带 gas 后 24.4h 才卖）。owner 自持 810,000。见 [note-systems](/topics/tokens/note-systems.md)。
-- **🔴 NOTE 已破上沿：** 主池 `0x378b1023` **$0.045256**，越过上沿 $0.0438 达 **+3.3%**。**06:00Z 单根小时线 +13.1%，量 ≈ 平时 10 倍**，之后 3h 未回吐 → 真成交非插针。**前兆只满足一半 —— 上面三钱包还没收 gas。盯 ETH 入账，不盯价格。** [logs](/logs/2026-10-24.md#onchain-monitor)
+- **🔴 NOTE 已破上沿，但量没跟上（12:00Z 复核）：** 主池 `0x378b1023` **$0.04424**，站在上沿 $0.0438 之上 +1.0%。24h **+10.5%** 但 24h 量仅 **0.69× 7 日均值** → 判 **CONSOLIDATING 非 BREAKOUT**。h1 **−3.72%** 已在回吐，两笔鲸鱼卖（29,470 + 28,637 NOTE）全在高位换成原生 ETH，仅占当日量 1.8%。**前兆只满足一半 —— 三个上膛钱包仍 ETH 0 / nonce 0 / 零出账，逐位复核未动。盯 ETH 入账，不盯价格。** [logs](/logs/2026-10-24.md#token-movers)
 - **不要按「日供给」计 schedule 26** —— 见真实 `release`（topic0 `0x3bfce8de`）才算。**🔴 120 万已解锁，到期 3 分钟即执行；账目闭合 810,000（回锁 33.5%、上膛 40%）。** 见 [note-systems](/topics/tokens/note-systems.md)。[source: logs/2026-10-23#heartbeat]
 
 ## Active Topics
