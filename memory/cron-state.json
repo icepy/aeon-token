@@ -70,5 +70,9 @@
     "consecutive_failures": 0,
     "success_rate": 1,
     "last_quality_score": 3
+  },
+  "arxiv-radar": {
+    "last_dispatch": "2026-10-24T08:15:43Z",
+    "last_status": "dispatched"
   }
 }
