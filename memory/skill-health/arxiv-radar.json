@@ -1,12 +1,12 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-24T10:23:33Z",
-  "quality_score": 3,
-  "assessment": "Substantive and honest zero-result report with a real diagnosed bug, verification numbers, and a PR link, but it pushes a long dev-log that no trigger justified, against the operator's 'don't ping me unless triggered' and 'no long posts' rules, and its '0 new papers' conclusion rests on an index stalled at 10-22.",
+  "last_analyzed": "2026-10-24T11:12:54Z",
+  "quality_score": 2,
+  "assessment": "Well-structured self-auditing report with actionable fixes (carrier wordlist PR, seen.json seeding warning), but the core deliverable — 22 paper titles, one-line summaries, IDs and a 'Base 23,000 V3 trades' claim — reads as invented and cannot be verified from any cited source; polish outruns verifiability.",
   "flags": [
-    "stale_data"
+    "unverifiable_claim"
   ],
-  "avg_score": 3.5,
+  "avg_score": 3.29,
   "history": [
     {
       "date": "2026-10-24",
@@ -42,6 +42,12 @@
       "date": "2026-10-24",
       "score": 3,
       "ts": "2026-10-24T10:23:33Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 2,
+      "ts": "2026-10-24T11:12:54Z",
       "harness": "claude"
     }
   ]
