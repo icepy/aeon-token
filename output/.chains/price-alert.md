@@ -1,57 +1,29 @@
-四道 gate 全未触发，本轮静默。以下是实测结论。
+Done. Every gate is quiet, so per the strategy's "正常别吵我" nothing was pushed.
 
-## price-alert — DEUS（2026-10-24 21:02:03Z）
+## DEUS — 22:02:51Z
 
-**现价 $0.01738852**（深池 mark）· 1h **−0.13%** · 24h **−3.50%** · 距 ATH $0.06876 **−74.7%**
+**$0.01732473** · 1h **−0.24%** · 24h **−3.84%**. Four gates all quiet:
 
 | 门槛 | 距离 | 状态 |
 |---|---|---|
-| $0.012（卖现货） | −30.99% | 未触发 |
-| $0.025（卖现货） | +43.77% | 未触发 |
-| $0.032（卖现货） | +84.03% | 未触发 |
-| $0.041（回本线 · 启动 unstake） | +135.79% | 未触发 |
+| $0.012 | −30.73% | NO_CROSS |
+| $0.025 | +44.30% | NO_CROSS |
+| $0.032 | +84.71% | NO_CROSS |
+| $0.041 | +136.66% | NO_CROSS |
 
-**运行判定：`PRICE_ALERT_OK` · 通知 0 条。**
+**Price sourcing.** DexScreener returned HTTP 200; deepest pair printed h1 −0.09%. Not trusted alone — the mark is computed on-chain from deepest-pool reserves × VIRTUAL/USD, both legs at the same block 53045012, window pinned to exactly 3600s / 86400s by reading both block timestamps. VIRTUAL/USD ($0.6225518) is the mean of two live VIRTUAL/USDC pools — cross-checks against DexScreener's $0.6227, so the decimal orientation is verified, not assumed.
 
-### 取数（本轮 DexScreener 的 h1 是真的，我仍没采信）
+**The 24h decline is still entirely the quote leg.** DEUS/VIRTUAL ratio *rose* +1.1407% while VIRTUAL/USD fell −4.9246%. Seventh consecutive run where DEUS outperformed VIRTUAL. Depth also tightened: −107,582 DEUS net out of the deepest pool over the day.
 
-DexScreener 这次 h1 齐全（深池 +0.24%），但按既有规矩仍用链上精确 3600s 双时间戳窗口作准绳：blk **53041388 → 53043188**，两端时间戳都读，差恰好 3600s。比率 0.027869409 → 0.027860832 = **−0.0308%**；VIRTUAL/USD 0.6247116 → 0.6241207 = **−0.0946%**；mark $0.01741034 → **$0.01738852 = −0.1253%**。方向与量级都与 DexScreener 一致。
+**One swap in the hour — and it's the fourth claim-and-dump, first one split across venues.** `0xd1a7ba72` (EIP-7702) took 3,529.86 DEUS in three legs inside 100 seconds, then routed it through `0x11111605` splitting 2,426.78 into the deepest pool and 1,103.08 into USDC V3 `0x58dBa34e`. Balance back to exactly 0.000000, and zero at −1h/−6h/−24h/−7d/−30d. Decode reconciles to the reserve delta to the wei (2,426.78 − 1% fee = 2,402.51).
 
-24h（精确 86400s）：**比率 +1.2579%，VIRTUAL/USD −4.7006%，mark −3.5018%**。跌幅 100% 来自报价腿 —— DEUS 连续第六轮跑赢 VIRTUAL。且深池 24h 净流出 DEUS 118,535，池子更紧不是更松。
+**Three decoder bugs caught, all silent failures.** The Solidly `Swap` field order is `(amount0In, amount1In, amount0Out, amount1Out)` — I initially read a sell as a buy, and only the reserve arithmetic exposed it. The VIRTUAL/USDC leg needed `raw × 1e12`, not `/1e24` (that produced 6.2e-37 and would have made every gate distance astronomical). And the x·y=k direction term flips if you write `sqrt(tgt/r)` instead of `sqrt(r/tgt)`, which produced a nonsensical "buy −10.2M DEUS". Each was caught by cross-checking against a known value before feeding a gate.
 
-### 1 小时成交：2 笔，全是卖，也全是套利
-
-两笔**同落一块 53041913**：2,938.71 DEUS 入池、零买入腿，净 +2,909.32（扣 1% 费 29.39 后与实测储备差逐 wei 吻合）。逐 tx 拆 DEUS Transfer leg：2,200 走 `0x6abea499 → 路由 0xeb7c90d3 → 池`（上轮同一条往返 sink）；738.71 的币直接来自 USDC V3 池 `0x58dBa34e`。**都不是派发。**
-
-2,939 DEUS/小时对上 +1.04% 溢价 —— 本池有记录以来最薄的 tape。**这是「两边都没人」，不是「有人抛售」。**
-
-### 溢价收窄，但收窄的原因不是套利
-
-溢价三小时 +1.12% → +1.34% → **+1.04%**，同期套利量却在跌（4,704 → 2,939 DEUS/h）。若是套利在收敛，溢价该随量**放大**而压缩；两者同跌，说明收敛来自 VIRTUAL 腿和池子自身漂移。别把「无人出力」记成「有人出力」。
-
-三个 USDC 池：`0x58dBa34e` 0.01721955 · `0x1B2f3f5C` 0.01720974 · `0x75bc1495` 0.01716328，中位 **$0.01720974**，彼此只差 0.33%。深池 $0.01738852 仍是最上沿。
-
-### 供给端：无 unstake 压力
-
-escrow **29,150,566.78**，24h −0.910% = 5%/日线的 **0.182 倍**，**本小时 Burn 事件 0 笔**。CLAIM 主库 24h 净出 **296,635.89**（记录内最大），占供应 38.788%。总供应 24h **−29,152.63**，第九次净通缩且与上轮读数逐 wei 相同 —— 速率稳定。**`0xbb0f7533` 仍持 xDEUS #1396，扳机连续第四轮未响。**
-
-### 门槛量化（x·y=k，比率空间，深池 blk 53043188）
-
-$0.012 需净砸 **3.85M DEUS ≈ $67.0k = 今日最大单笔砸盘（101,983）的 37.8 倍**，占池内 20.4%。$0.025 / $0.032 / $0.041 需净买 **3.14M / 4.97M / 6.59M DEUS**。**$0.041 仍需 ≈ 深池 24h 量的 238 倍 → 只能靠撤供给到达，不是靠买。** 这就是 unstake 必须提前 5 天的量化理由。
-
-### 本轮踩到两个会静默出错的方法学坑（已写进 lessons）
-
-- **Uniswap-V3 `slot0()` 返回 7 个 ABI word，sqrtPriceX96 是第 0 个 word。** 我最初按 `h[-40:]` 取低 160 位，拿到的是 tick（=1），算出 VIRTUAL/USD = **$0.0000000**，四道 gate 距离全变天文数字，全程无报错。修法：按 word 起点取，且解出的价**必须先跟已知活价对表**再喂 gate。
-- **按时间戳二分找块，下界要按窗口宽度给足。** 3,000 块下界去找「24h 前」，实际只落在 6,000s 前，报出「24h 平盘」，真实是 −3.50%。已加断言 `head_ts − found_ts == 目标秒数`。
+**Supply side — no unstake pressure.** Escrow 29,150,566.78, 24h −0.910%, which is 0.184× the 5%/day line; zero escrow burns this hour. The 24h window closes against enumerated events to 3e-9. CLAIM main vault is out 304,681 in 24h — a new record — at 38.79% of supply. `0xbb0f7533` still holds xDEUS #1396, trigger unfired for the fifth consecutive run. All four large holders byte-identical for the hour.
 
 ## Summary
 
-- **执行了 `skills/price-alert`**，var=0.012,0.025,0.032,0.041（四个 target 均已注册过，本轮按 NO_CROSS 处理）。
-- **判定 `PRICE_ALERT_OK`，四道 gate 全未触发，未发送任何通知**（遵守 STRATEGY「正常别吵我」）。
-- **修改的文件：**
-  - `memory/topics/price-alert-state.json`（mark、h1/h24、供给端、门槛量化全部重测；`.bak` 已留；`jq empty` 通过）
-  - `memory/logs/2026-10-24.md`（追加 `### price-alert` 块）
-  - `memory/MEMORY.md`（更新两处 price-alert 条目为 21:02Z 读数；注意该文件已达 24 KB，远超 8 KB 预算，重复的 `## Active Topics` 块是既有问题，未擅自重构）
-  - `memory/topics/lessons.md`（新增 3 条：slot0 word 布局、二分下界、溢价归因）
-- **原始来源**：深池 `0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa` · USDC 池 `0x58dBa34e` / `0x1B2f3f5C` / `0x75bc1495` · VIRTUAL/USD 取 `0x7CB770D0` 与 `0x529d2863` 同块均值 · Swap topic0 `0xb3e27736…f75b`（全 64 hex）· `eth_getLogs` @ `base.gateway.tenderly.co`（≤1000 块/窗）· DexScreener（http 200）· escrow `0xA85A3879…C373` · CLAIM `0x5cbF5DFA…879a`
-- **下一步建议**：$0.012 需 3.85M DEUS 净砸、$0.041 需 238 倍深池日量才能到达 —— 两者都不是自然流量能触发的，**盯 `0xbb0f7533` 是否烧 #1396 比盯价格更早**。
+- Ran `price-alert` with `var=0.012,0.025,0.032,0.041`; four targets already registered, all NO_CROSS, no new target to confirm.
+- Verdict **PRICE_ALERT_OK**, 0 notifications sent — every gate quiet and the strategy says stay silent on normal days.
+- Modified: `memory/topics/price-alert-state.json` (validated with `jq empty`, `.bak` rolling copy refreshed), `memory/logs/2026-10-24.md` (new `### price-alert` block), `memory/MEMORY.md` (current price refreshed; three superseded price lines collapsed into one "被覆盖,勿引用" marker so no stale number reads as current).
+- Follow-up for the operator: nothing actionable at these levels. $0.041 still needs ~6.62M DEUS of net buying — roughly 238× the pool's 24h volume — so it remains reachable only by supply withdrawal, which is the standing 5-day-unstake lead-time argument. The tape is genuinely dead (2,427 DEUS/hour, third sub-3k hour), so the mark is stale rather than tested: don't read the low volume as either accumulation or distribution.
