@@ -116,8 +116,14 @@ CARRIER_BASE = ["deployed", "deployment", "mainnet", "testnet", "protocol",
 CARRIER_ROBOT = ["robotic", "robot", "manipulation", "teleoperation", "simulation",
                  "simulator", "dataset", "datasets", "real-world", "embodied",
                  "sensor", "egocentric", "demonstration", "vla"]
-# 交易/MEV 域：市场微观结构，链上词常常不出现
-CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher"]
+# 交易/MEV 域：市场微观结构，链上词常常不出现。
+# 追加 ledger 系：MEV 论文常写 "distributed ledger" / "block creator"，
+# 全篇不出现 blockchain/token/validator —— 实测 90d 漏掉 2608.13271（可验证延迟防 MEV）。
+# 该组 8 词在 AMM+MEV 两词 90d 内只多捞 1 篇（即上面那篇），零噪声。
+CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher",
+                  "ledger", "ledgers", "block creator", "block builder",
+                  "block proposer", "transaction ordering", "on-chain",
+                  "state transition"]
 
 # 词 → carrier 组。未列出的词走 CARRIER_BASE。
 CARRIER_BY_TERM = {
