@@ -49,9 +49,40 @@
 - **两个方向性钱包都不跟** —— `0x259f962e` nonce 135、`0xa2f42a10` nonce 4，各是一 clip 不是一波。
 - **宏观快照**：[market-context](/topics/market-context.md)。10-23：chop，F&G 50。
 - [Note Systems (NOTE)](topics/tokens/note-systems.md) — 解锁-回锁-上膛时间线、per-schedule 量级。
+- **DeFiLlama `/v2/chains` 无 `change_1d`/`change_7d`** —— 用 `/v2/historicalChainTvl/{chain}` 自算。**CoinGecko `/global` 的 24h mcap 也不可信**，用 `/coins/markets` 加权重算。**百分比过滤要配绝对额地板**。
+- **钱包型 watch 不能用 `eth_getLogs{address:<EOA>}`** —— EOA 不发事件，永久返回 0。要在**代币合约**上做 topic 过滤。
+- **24h 涨跌幅别用日线首尾收盘价算** —— `ohlcv_list[0]` 是未走完的当日 K 线。[lessons](/topics/lessons.md#price-feeds)
+- **xDEUS is ERC-721** —— `decimals()` reverts，`tokenId` 在 `topics[3]`；topic0 同哈希，无需改配置。
+- **扫 timelock 别只扫「最近几天」。** RH ~34k 块/小时，48h 排程跨 ~160 万块；要扫全部事件就省略 `topics`。[lessons](/topics/lessons.md#扫-timelock窗口与-topics-两个坑)
+- **Never trust a zero-log window** —— 报「平静」前重查已知活跃窗口 + `eth_call` 余额。**假零四件套：RPC 429（返空数组不报错）、`mainnet.base.org` 整批 revert、topic0 只给 4 字节、RH UA 403。**
+- **`eth_getCode` = `0x` 才是普通 EOA；`0xef0100…` 是 EIP-7702 智能账户**，带 nonce 与 gas 的成熟钱包，别当新号。
+- **上膛钱包的扳机是「第一笔 ETH 入账」**，比 nonce 更早；**claim 制 vesting 的「日释放」要看 scheduleId**，同合约不同 schedule 量级差百倍。
+- **买单真伪只认一条：终点地址余额升高且留住。** 新钱要 −1h/−6h/−24h/−7d/−30d `balanceOf` 全 0。[lessons](/topics/lessons.md#price-feeds)
+- **RH 4663 免 key**，24k 块窗口可扫（Base Tenderly 只有 1000 块）。端点与陷阱表见 [base-rpc-access](/topics/base-rpc-access.md)。
+- **缺 `h1` ≠ 平静。** 按 0 处理会让 gate 显 QUIET 但实际**未测量**；state 存 `null`。**API 报 v1h=0 也别信 —— 拿池子 Swap log 验。**
+- **判「池子安静」前先按地址扫一遍出 topic0 直方图** —— 家族不匹配会静默出假零（V3 `0xc42079f9…` vs Solidly `0xb3e27736…`）。**控制块高从 tx receipt 取。**[lessons](/topics/lessons.md#price-feeds)
+- **`balanceOf` 的 calldata 地址要左补零**，右补零静默返回 0；余额为 0 时先用已知非零地址做对照。
+- **view 调用 revert 先怀疑 selector，别怪 RPC。** `isOperationReady`=`0x13bc9f20`、`getTimestamp`=`0xd45c4435`；opId 取 `CallScheduled` 的 **topics[1]**。
+- **网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`（数小时自愈）。`./notify` 写普通 Markdown，多行走 `-f`。
+## Next Priorities
+- **🔴 待命 480,000 NOTE ≈ $22,000：上膛7 `0x33b7181e` 240k · 上膛6 `0x3a9039c7` 150k · 上膛5 `0x572bb527` 90k，全部 nonce 0 / ETH 0 / 零出账。扳机 = 第一笔 ETH 入账**（上膛4 先例：带 gas 后 24.4h 才卖）。owner 自持 810,000。见 [note-systems](/topics/tokens/note-systems.md)。
+- **🔴 NOTE 已破上沿：** 主池 `0x378b1023` **$0.045256**，越过上沿 $0.0438 达 **+3.3%**。**06:00Z 单根小时线 +13.1%，量 ≈ 平时 10 倍**，之后 3h 未回吐 → 真成交非插针。**前兆只满足一半 —— 上面三钱包还没收 gas。盯 ETH 入账，不盯价格。** [logs](/logs/2026-10-24.md#onchain-monitor)
+- **不要按「日供给」计 schedule 26** —— 见真实 `release`（topic0 `0x3bfce8de`）才算。**🔴 120 万已解锁，到期 3 分钟即执行；账目闭合 810,000（回锁 33.5%、上膛 40%）。** 见 [note-systems](/topics/tokens/note-systems.md)。[source: logs/2026-10-23#heartbeat]
+
+## Active Topics
+- `price-alert` DEUS **$0.017918**（10-24 08:12Z，活跃 DEUS/USDC 池中位数），1h **−0.04% 实测**。门槛未触及：$0.012 −33.0% · $0.025 +39.5% · $0.032 +78.6% · $0.041 +128.8%。见 [state](/topics/price-alert-state.json)。
+- **🔴 最深池 `0x3E97c5EC`：08:05Z 的「死」是真的（205 分钟零事件），但 08:38:25Z 起复活。** **池子死/活有保质期，每轮重测，不继承上轮结论。** 另：**算 mark 前先读 `token0()`** —— 该池 token0 是 VIRTUAL 不是 DEUS，直接 `reserve0/reserve1` 得 36.34（真值 0.02795）。[logs](/logs/2026-10-24.md#onchain-monitor)
+- **🔴 史上最大砸盘已被全额买回：** `0x7f6aba75`（纯新钱）买 **335,249**、`0x6a45ca8b` 买 **70,034**，均留存；池内 DEUS 净少 **105,836**，**方向是吸筹**。[source: logs/2026-10-24#price-alert]
+- **xDEUS 退出两笔，差 64 倍：** ①`0xbb0f7533` 烧 **#1492** 释放 319,562 DEUS，75 分钟后全砸；**仍持 #1396 = 下次扳机（10-24 未烧）**。②08:16Z 烧 **#425** 释放 **5,000** → `0xcae798c0`，**未卖（零转出）**。#425 是老仓（回溯 12 时点：持 >1.2M 块≈30 天），与「押进去就赎」不同 → **unstake ≠ 砸盘**。**$0.012 需净砸 ~4.36M**。[logs](/logs/2026-10-24.md#onchain-monitor)
+- **买盘 9 条判据见 [lessons](/topics/lessons.md#price-feeds)** —— 单池「N 买 / 0 卖」常是同秒双池套利的一半- **新钱 cohort：** `0x3fd51604` 加至 7,735；`0x1184de98` 持 46,195 未卖。老鲸 `0x09b383a6` 已全额回补。[deus-buyers](/topics/deus-buyers.md)
+- **🔴 DEUS 7d 净增发 +65,381**（37 mint / 201,698 对 18 burn / 136,317）；24h −19,693 不覆盖 7d 口径。铸币 `0x2cca08ae`。[deus-escrow](/topics/deus-escrow.md)
+- **Escrow `0xA85A…C373` 29,103,662**（24h −303,630 = −1.03%），5%/日 线 1,470,365 → **0.21 倍**，无 unstake 压力。占供应 3.32%。
+- **两个方向性钱包都不跟** —— `0x259f962e` nonce 135、`0xa2f42a10` nonce 4，各是一 clip 不是一波。[deus-buyers](/topics/deus-buyers.md)
+- **宏观**：[market-context](/topics/market-context.md)。10-23 chop，F&G 50
+- [Note Systems (NOTE)](topics/tokens/note-systems.md) — RH 4663 全量笔记：解锁-回锁-上膛时间线、per-schedule 量级。
 
 ## Reference
-- [deus-escrow](/topics/deus-escrow.md) · [deus-buyers](/topics/deus-buyers.md) · [market-context](/topics/market-context.md) · [base-rpc-access](/topics/base-rpc-access.md) · [ops-plumbing](/topics/ops-plumbing.md) · [price-alert-state](/topics/price-alert-state.json) · [index](/topics/index.md)
+- [deus-escrow](/topics/deus-escrow.md) · [deus-buyers](/topics/deus-buyers.md) · [market-context](/topics/market-context.md) · [base-rpc-access](/topics/base-rpc-access.md) · [ops-plumbing](/topics/ops-plumbing.md) · [price-alert-state](/topics/price-alert-state.json)
 
 ## 监控清单（memory/on-chain-watches.yml）
 当前 5 个：DEUS escrow · xDEUS · NOTE timelock · NOTE owner EOA · NOTE vesting 0xfdd9。Base $200/$250；NOTE $500。timelock 不加 `event_topics`。已摘：`NOTE` 本体、staging `0x69bb`。见 [ops-plumbing](/topics/ops-plumbing.md)。**新增 watch 必须在 `on-chain-state.json` 同步建条目并把 `last_block` 设成当前块**，否则首次运行重放历史。

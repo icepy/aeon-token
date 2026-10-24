@@ -1,12 +1,10 @@
 {
   "skill": "onchain-monitor",
-  "last_analyzed": "2026-10-23T21:29:42Z",
-  "quality_score": 2,
-  "assessment": "中文报告结构清晰、带数据与来源，但整篇在讲 NOTE/Robinhood 链的「上膛钱包」，完全没对上策略里的 DEUS/xDEUS 触发阈值（$0.025/$0.032/$0.041、1h ±20%）、5 天冷却提前量与「不追加新现金」这条北极星；同时钱包/tx/池地址普遍截断成 8 位、区块号与成交额无法回查，与「必须带原始来源」冲突，篇幅也偏长，违背「看完就能决定、不要长文」。",
-  "flags": [
-    "unverifiable_claim"
-  ],
-  "avg_score": 3.44,
+  "last_analyzed": "2026-10-24T09:24:02Z",
+  "quality_score": 4,
+  "assessment": "Substantive, well-sourced onchain report in Simplified Chinese with concrete prices, tx hashes, block numbers, addresses, and explicit control-window verification; aligns with the preset-threshold/actionable-reminder strategy, though it omits DEUS spot price vs. the $0.041/$0.025/$0.032 triggers and runs longer than the 'decide-at-a-glance' push target.",
+  "flags": [],
+  "avg_score": 3.5,
   "history": [
     {
       "date": "2026-10-21",
@@ -60,6 +58,12 @@
       "date": "2026-10-23",
       "score": 2,
       "ts": "2026-10-23T21:29:42Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 4,
+      "ts": "2026-10-24T09:24:02Z",
       "harness": "claude"
     }
   ]

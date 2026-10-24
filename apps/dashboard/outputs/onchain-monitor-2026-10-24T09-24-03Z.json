@@ -1,0 +1,319 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "⚠️ 链上预警 — 2026-10-24",
+        "description": "onchain-monitor skill output"
+      },
+      "children": [
+        "tldr",
+        "sep1",
+        "note-heading",
+        "note-stats",
+        "note-price-text",
+        "note-line-text",
+        "note-rule-text",
+        "wallets-heading",
+        "wallets-text",
+        "w1",
+        "w2",
+        "w3",
+        "action-text",
+        "sep2",
+        "deus-heading",
+        "deus-event",
+        "deus-key-text",
+        "deus-nosell",
+        "deus-scale",
+        "deus-escrow",
+        "deus-supply",
+        "deus-trigger",
+        "sep3",
+        "other-heading",
+        "timelock-text",
+        "owner-text",
+        "vesting-text",
+        "sep4",
+        "sources-heading",
+        "src-1",
+        "src-2",
+        "src-3",
+        "src-4"
+      ]
+    },
+    "tldr": {
+      "type": "Text",
+      "props": {
+        "text": "TL;DR：NOTE 突破区间上沿（$0.04526 vs 预设 $0.0438），且三个上膛钱包仍无 gas；DEUS 出现 #1492 之后第一笔 unstake，但只有 5,000 枚且没卖。",
+        "variant": "lead"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "note-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "🔴 NOTE 破上沿 — 砸盘前兆条件已满足一半",
+        "level": "h3"
+      }
+    },
+    "note-stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-price",
+        "stat-24h",
+        "stat-6h"
+      ]
+    },
+    "stat-price": {
+      "type": "Stat",
+      "props": {
+        "label": "NOTE 主池 0x378b1023 现价",
+        "value": "$0.04526"
+      }
+    },
+    "stat-24h": {
+      "type": "Stat",
+      "props": {
+        "label": "24h",
+        "value": "+12.1%",
+        "delta": "+12.1%",
+        "trend": "up"
+      }
+    },
+    "stat-6h": {
+      "type": "Stat",
+      "props": {
+        "label": "6h",
+        "value": "+14.2%",
+        "delta": "+14.2%",
+        "trend": "up"
+      }
+    },
+    "note-price-text": {
+      "type": "Text",
+      "props": {
+        "text": "你记的上沿是 $0.0438，已越过 +3.3%。",
+        "variant": "body"
+      }
+    },
+    "note-line-text": {
+      "type": "Text",
+      "props": {
+        "text": "06:00Z 一根小时线干上去的：0.040237 → 0.045492（+13.1%），该小时量 $21,324 ≈ 平时 10 倍。之后 3 小时横在 0.0452–0.0456，没有回吐 —— 是真成交，不是插针。",
+        "variant": "body"
+      }
+    },
+    "note-rule-text": {
+      "type": "Alert",
+      "props": {
+        "title": "前兆规则进度",
+        "message": "你的前兆规则是「触上沿 + 某上膛钱包突然收 gas」，现在只满足前一半。",
+        "type": "warning"
+      }
+    },
+    "wallets-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "上膛钱包状态",
+        "level": "h4"
+      }
+    },
+    "wallets-text": {
+      "type": "Text",
+      "props": {
+        "text": "三个上膛钱包全部仍无 gas、nonce 0、零出账，480,000 NOTE 原地未动：",
+        "variant": "body"
+      }
+    },
+    "w1": {
+      "type": "Stat",
+      "props": {
+        "label": "上膛7 0x33b7181e",
+        "value": "240,000 NOTE",
+        "delta": "nonce 0 · ETH 0",
+        "trend": "neutral"
+      }
+    },
+    "w2": {
+      "type": "Stat",
+      "props": {
+        "label": "上膛6 0x3a9039c7",
+        "value": "150,000 NOTE",
+        "delta": "nonce 0 · ETH 0",
+        "trend": "neutral"
+      }
+    },
+    "w3": {
+      "type": "Stat",
+      "props": {
+        "label": "上膛5 0x572bb527",
+        "value": "90,000 NOTE",
+        "delta": "nonce 0 · ETH 0",
+        "trend": "neutral"
+      }
+    },
+    "action-text": {
+      "type": "Alert",
+      "props": {
+        "title": "动作建议",
+        "message": "什么都不做是对的。盯的是「哪一笔 ETH 先打进去」。上膛4 的先例：有 gas 后 24.4h 才卖。",
+        "type": "info"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "deus-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "🟡 DEUS 出现 #1492 后第一笔 unstake —— 但性质完全不同",
+        "level": "h3"
+      }
+    },
+    "deus-event": {
+      "type": "Text",
+      "props": {
+        "text": "08:16:23Z（blk 53020218，tx 0x51d2eff4）escrow burn 掉 xDEUS #425，释放 5,000.000000 DEUS 给 0xcae798c0。同笔另有 mint 记录外的 4 条 log，selector 走的是 escrow 提款路径。",
+        "variant": "body"
+      }
+    },
+    "deus-key-text": {
+      "type": "Text",
+      "props": {
+        "text": "关键区别：#425 是老仓，不是新押再赎。ownerOf(425) 回溯 12 个时点 —— 该地址持仓 >1.2M 块（约 30 天），4–6 天前才押进 escrow。#1492 那个是「押进去没多久就跑」，这个是长仓到期离场。",
+        "variant": "body"
+      }
+    },
+    "deus-nosell": {
+      "type": "Text",
+      "props": {
+        "text": "而且它没卖。收到 5,000 后至今零笔 DEUS 转出（53020218→53021569 双向扫完，0 条），余额仍是 5,000.000。unstake ≠ 砸盘，这次连卖都没开始。",
+        "variant": "body"
+      }
+    },
+    "deus-scale": {
+      "type": "Stat",
+      "props": {
+        "label": "规模差 64 倍",
+        "value": "5,000 vs 319,562",
+        "delta": "#425 vs #1492",
+        "trend": "neutral"
+      }
+    },
+    "deus-escrow": {
+      "type": "Stat",
+      "props": {
+        "label": "escrow 当前",
+        "value": "29,103,661.67",
+        "delta": "−303,630（−1.03%）",
+        "trend": "down"
+      }
+    },
+    "deus-supply": {
+      "type": "Text",
+      "props": {
+        "text": "对 5%/日 的 1,470,365 只有 0.21 倍 —— 无 unstake 压力。xDEUS 供应 1727，净持平（1 burn #425 / 1 mint #2477）。",
+        "variant": "body"
+      }
+    },
+    "deus-trigger": {
+      "type": "Alert",
+      "props": {
+        "title": "真正的下一笔砸盘扳机没动",
+        "message": "0xbb0f7533 的 #1396 仍然没烧。",
+        "type": "warning"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "other-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "其他 watch",
+        "level": "h3"
+      }
+    },
+    "timelock-text": {
+      "type": "Text",
+      "props": {
+        "text": "NOTE timelock：12.6 小时零事件（17 个窗口全空）。1.2M 解锁已于 10-23 10:00:35Z 执行完毕，之后没有新提案排队。余额 14,054,442.02 未变。",
+        "variant": "body"
+      }
+    },
+    "owner-text": {
+      "type": "Text",
+      "props": {
+        "text": "NOTE owner EOA：零动作。nonce 374、余额 810,000.00、ETH 0.01397066 全部未变。没有重新上膛，也没有继续分发。",
+        "variant": "body"
+      }
+    },
+    "vesting-text": {
+      "type": "Text",
+      "props": {
+        "text": "NOTE vesting：一笔常规领取 3,865.5556 → 0xbd0719c4（21:43:07Z，0x37bdc99b，tx.from = 受益人本人，nonce 64）。不是 owner 提款，收款地址已清零。",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sources-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "数据源",
+        "level": "h3"
+      }
+    },
+    "src-1": {
+      "type": "Text",
+      "props": {
+        "text": "Base：base.gateway.tenderly.co（DEUS/xDEUS topic 过滤，1,000 块窗口，63 calls，0 错误）",
+        "variant": "caption"
+      }
+    },
+    "src-2": {
+      "type": "Text",
+      "props": {
+        "text": "Robinhood：rpc.mainnet.chain.robinhood.com（24,000 块窗口，全部 watch，0 错误）",
+        "variant": "caption"
+      }
+    },
+    "src-3": {
+      "type": "Text",
+      "props": {
+        "text": "价格：GeckoTerminal / DexScreener；NOTE 主池 0x378b102395…7f9f91（Uniswap v4，NOTE/WETH 1%），DEUS 池 0x3E97c5EC…C1Fa（Aerodrome classic）",
+        "variant": "caption"
+      }
+    },
+    "src-4": {
+      "type": "Alert",
+      "props": {
+        "title": "控制窗口全部通过",
+        "message": "零日志不是过滤器坏了：escrow-out @53003804 → 1 条 · owner-out @95869960 → 1 条 · timelock @95856030-40 → 1 条 · vesting 窗口有事件",
+        "type": "success"
+      }
+    }
+  }
+}

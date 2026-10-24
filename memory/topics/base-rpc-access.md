@@ -7,7 +7,7 @@ tags:
   - rpc
   - runbook
 resource: https://base.gateway.tenderly.co
-timestamp: 2026-10-22T21:05:00Z
+timestamp: 2026-10-24T09:35:00Z
 ---
 
 # Base RPC access from this runner
@@ -107,3 +107,42 @@ See [DEUS escrow watch](/topics/deus-escrow.md) for what these watchers are for.
 # Citations
 
 - Base RPC endpoint list + public-access range limit observed live from `https://base.gateway.tenderly.co`, 2026-10-21.
+
+## ⚠️ 2026-10-24：三个会静默毁掉一轮扫描的坑
+
+均在本轮 `onchain-monitor` 实测，每一种都长得像「链上平静」。
+
+### 1. Robinhood RPC 对 urllib 默认 User-Agent 返 403
+
+```
+HTTP Error 403: Forbidden
+```
+
+`curl` 同一 URL 立刻 200。**判定**：JSON-RPC 层没回错误体，是 HTTP 层被 WAF 拒 —— 扫描脚本若只捕获异常字符串，会把它记成「该窗口无事件」。**处置**：显式带 `User-Agent: curl/8.5.0`（或任意非 `Python-urllib/x.y`）。
+
+```python
+urllib.request.Request(url, data=body, headers={
+    'Content-Type': 'application/json',
+    'User-Agent': 'curl/8.5.0',
+})
+```
+
+这轮因此浪费约 40 分钟、17 个窗口全假空，直到对已知活跃块做 control 才暴露。
+
+### 2. Robinhood 公共 RPC 不支持历史 `eth_call`
+
+```
+historical state 3b8fa680... is not available
+```
+
+只有 `'latest'` 能读。**后果**：不能靠回查旧块 `balanceOf` 验证余额变化，历史余额必须由 **log 差额**推（本轮的 vesting 余额就是这么算的：`old − sum(out) + sum(in)`）。Base 的 Tenderly 网关则**支持**任意历史块 `eth_call`（本轮用 12 个时点回溯 `ownerOf` 证明一个 NFT 的持仓时长），两条链的能力不对称，别互推。
+
+### 3. Uniswap v4 的 `pairAddress` 是 poolId，不是合约地址
+
+DexScreener / GeckoTerminal 对 v4 池返回的 `pairAddress` 是 **32 字节的 poolId**（如 NOTE 主池 `0x378b1023…7f9f91`）。把它当合约 `eth_call`，`token0()` / `token1()` / `getReserves()` / `slot0()` / `liquidity()` / `fee()` **全部返回 `0x`**，看起来像池子不存在。
+
+**处置**：v4 池的价格/储备走聚合器（GeckoTerminal pool 端点，或 DexScreener token 端点），或直接读 PoolManager（`0x8366a39c…e40951`）的 `extsload`。**判据：六个标准 getter 全返 `0x` 而代币确实在成交 → 先怀疑是 v4，别怀疑代币死了。**
+
+## Long scans must checkpoint
+
+A single enumeration over ~400k blocks at 24k/window will be killed by the harness timeout with **zero output** if it only writes at the end. Write the progress file after every window (`json.dump` to `.tmp` then `os.replace`) and resume from a cursor — this run survived two kills that way.
