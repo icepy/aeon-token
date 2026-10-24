@@ -1,8 +1,8 @@
 name: register-skill
 
-# You write skills/<slug>/SKILL.md (and its one glyph line). This workflow does
-# everything else a new skill needs — catalogs, icons, eyebrowlock, the
-# README/docs mirrors — and commits the result back to the same branch.
+# You write skills/<slug>/SKILL.md. This workflow does everything else a new
+# skill needs — catalogs, icons, eyebrowlock, the README/docs mirrors — and
+# commits the result back to the same branch.
 
 on:
   push:
@@ -23,11 +23,27 @@ concurrency:
 jobs:
   register:
     runs-on: ubuntu-24.04
+    env:
+      EYEBROW_VERSION: 0.5.6          # must match ci-skill-integrity.yml
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: ${{ github.ref_name }}
-          fetch-depth: 0            # bin/generate-skills-json 用 git log --follow 取 sha
+          fetch-depth: 0              # bin/generate-skills-json uses git log --follow
+
+      - name: Seed a glyph for any new skill
+        run: |
+          node -e '
+            const fs = require("fs");
+            const f = "catalog/skill-icons.json";
+            const icons = JSON.parse(fs.readFileSync(f, "utf8"));
+            const slugs = fs.readdirSync("skills", { withFileTypes: true })
+              .filter((d) => d.isDirectory()).map((d) => d.name);
+            const fallback = "<path d=\x27M5 3h9l5 5v13H5z\x27/><path d=\x27M14 3v5h5\x27/><path d=\x27M8 12h7\x27/><path d=\x27M8 16h5\x27/>";
+            let n = 0;
+            for (const s of slugs) if (!icons[s]) { icons[s] = fallback; n++; }
+            if (n) { fs.writeFileSync(f, JSON.stringify(icons, null, 4) + "\n"); console.log("seeded " + n + " glyph(s)"); }
+          '
 
       - name: Regenerate catalogs + icons
         run: |
@@ -38,12 +54,20 @@ jobs:
       - name: Sync README/docs mirrors
         run: node .github/scripts/sync-doc-mirrors.mjs
 
-      - name: Refresh the eyebrow lockfile
+      # Direct asset download, not install.sh: the installer resolves the latest
+      # release over api.github.com, which 403s on a shared runner IP.
+      - name: Install eyebrow (pinned + checksum-verified)
         run: |
-          curl -fsSL https://raw.githubusercontent.com/alexverify/eyebrow/main/install.sh | sh
-          export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
-          command -v eyebrow || { echo '::error::eyebrow not on PATH'; find "$HOME" -maxdepth 4 -name eyebrow -type f; exit 1; }
-          eyebrow scan --path . --lockfile eyebrowlock.json
+          base="https://github.com/alexverify/eyebrow/releases/download/v${EYEBROW_VERSION}"
+          curl -fsSL -o /tmp/eb.tar.gz     "${base}/eyebrow_${EYEBROW_VERSION}_linux_amd64.tar.gz"
+          curl -fsSL -o /tmp/checksums.txt "${base}/checksums.txt"
+          ( cd /tmp && grep "eyebrow_${EYEBROW_VERSION}_linux_amd64.tar.gz" checksums.txt | sha256sum -c - )
+          mkdir -p /tmp/eb && tar -xzf /tmp/eb.tar.gz -C /tmp/eb
+          sudo install -m 755 "$(find /tmp/eb -maxdepth 2 -type f -name 'eyebrow*' ! -name '*.tar.gz' | head -1)" /usr/local/bin/eyebrow
+          eyebrow --version
+
+      - name: Refresh the eyebrow lockfile
+        run: eyebrow scan --path . --lockfile eyebrowlock.json
 
       - name: Verify before committing
         run: |
