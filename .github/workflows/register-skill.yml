@@ -58,12 +58,15 @@ jobs:
       # release over api.github.com, which 403s on a shared runner IP.
       - name: Install eyebrow (pinned + checksum-verified)
         run: |
+          asset="eyebrow_${EYEBROW_VERSION}_linux_amd64.tar.gz"
           base="https://github.com/alexverify/eyebrow/releases/download/v${EYEBROW_VERSION}"
-          curl -fsSL -o /tmp/eb.tar.gz     "${base}/eyebrow_${EYEBROW_VERSION}_linux_amd64.tar.gz"
-          curl -fsSL -o /tmp/checksums.txt "${base}/checksums.txt"
-          ( cd /tmp && grep "eyebrow_${EYEBROW_VERSION}_linux_amd64.tar.gz" checksums.txt | sha256sum -c - )
-          mkdir -p /tmp/eb && tar -xzf /tmp/eb.tar.gz -C /tmp/eb
-          sudo install -m 755 "$(find /tmp/eb -maxdepth 2 -type f -name 'eyebrow*' ! -name '*.tar.gz' | head -1)" /usr/local/bin/eyebrow
+          curl -fsSL -o "/tmp/${asset}"      "${base}/${asset}"
+          curl -fsSL -o /tmp/checksums.txt   "${base}/checksums.txt"
+          ( cd /tmp && grep -F "${asset}" checksums.txt | sha256sum -c - )
+          mkdir -p /tmp/eb && tar -xzf "/tmp/${asset}" -C /tmp/eb
+          bin="$(find /tmp/eb -maxdepth 2 -type f -name 'eyebrow*' ! -name '*.tar.gz' | head -1)"
+          [ -n "$bin" ] || { echo '::error::eyebrow binary not found in the tarball'; find /tmp/eb -maxdepth 2; exit 1; }
+          sudo install -m 755 "$bin" /usr/local/bin/eyebrow
           eyebrow --version
 
       - name: Refresh the eyebrow lockfile
