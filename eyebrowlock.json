@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-24T10:26:30.748559301Z",
+  "generatedAt": "2026-10-24T11:20:27.55279486Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -196,10 +196,10 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "44730891c0a15f3ef42e8c4978c66fe573ebda7d4972126af46fe2f438b873e3"
+          "hash": "4a68ee60cc2a907c55e0e8518720357656a64b030ecd45c2069384c9301ed530"
         }
       ],
-      "contentHash": "sha256-57150d1029cce27b337c1430d66dcf802ce0eeda7af072b176659d8b005fa369",
+      "contentHash": "sha256-4093431c7fe8f33913b95060b97e41a89d2aec4c596f840f129e7cb37a2ae124",
       "discoveredFrom": "skills/arxiv-radar/SKILL.md"
     },
     {
