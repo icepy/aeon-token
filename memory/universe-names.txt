@@ -1,4 +1,6 @@
-# 有辨识度的写法优先 —— "Pearl"/"NOTE" 是普通英文词
+# 机制/链名优先 —— 项目名在 arXiv 里多半不存在
 Pearl Blockchain
-XMAQUINA
-NOTE
+Note Systems
+Robinhood Chain
+S-DAMM
+USDG

@@ -10,7 +10,7 @@ ids = """
 2610.23547 2610.25347 2610.27530
 """.split()
 stamp = datetime.date.today().isoformat()
-json.dump({k: stamp for i in ids for k in (i, i + "v1")},
-          open("memory/arxiv-seen.json", "w"), ensure_ascii=False, indent=1)
+json.dump({i: stamp for i in ids}, open("memory/arxiv-seen.json", "w"),
+          ensure_ascii=False, indent=1)
 print(len(ids), "ids seeded")
 PY
