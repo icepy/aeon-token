@@ -1,0 +1,30 @@
+import json, datetime, os
+
+SEEN = "memory/arxiv-seen.json"
+ids = """
+2607.24172 2607.28226 2607.28884 2608.02580 2608.02664 2608.02917 2608.05011 2608.07167
+2608.09055 2608.09087 2608.12849 2608.13434 2608.15276 2608.17070 2608.21416 2608.21935
+2608.28529 2608.30083 2608.30289 2609.00340 2609.03474 2609.03680 2609.05580 2609.07135
+2609.07963 2609.10149 2609.16705 2609.17380 2609.18650 2609.19353 2609.20069 2609.21627
+2609.22285 2609.27424 2609.28361 2609.28699 2609.35339 2609.36437 2609.37963 2610.01995
+2610.02334 2610.04301 2610.05062 2610.06306 2610.08258 2610.13051 2610.15556
+2610.22508 2610.23547 2610.25347 2610.27530 2610.30595
+""".split()
+
+stamp = datetime.date.today().isoformat()
+
+existing = {}
+if os.path.exists(SEEN):
+    try:
+        existing = json.load(open(SEEN, encoding="utf-8"))
+        if not isinstance(existing, dict):
+            existing = {}
+    except Exception:
+        existing = {}
+
+merged = {k.split("v")[0]: v for k, v in existing.items()}
+for i in ids:
+    merged.setdefault(i.split("v")[0], stamp)
+
+json.dump(merged, open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+print("seeded", len(merged), "ids ->", SEEN)

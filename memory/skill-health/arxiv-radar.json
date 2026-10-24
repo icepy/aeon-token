@@ -1,7 +1,10 @@
 {
-  "assessment": "扎实的 dry-run 报告：给出具体 arXiv ID、论文标题、计数与代码级 bug 定位，结论（零新信号、三词全废、加 ti:\"EIP-1559\"）可复跑验证且可执行；扣分在于对北极星（DEUS 回本/触发时机）几乎无直接贡献，且篇幅偏长，与「看完就能决定、正常别吵我」的偏好有摩擦。",
-  "avg_score": 3.75,
+  "skill": "arxiv-radar",
+  "last_analyzed": "2026-10-24T09:51:55Z",
+  "quality_score": 3,
+  "assessment": "Solid dry-run scan: 20 terms, source cited (arXiv API endpoint + query), honest bug-fix disclosure (corrupted seen.json / cross-term dedup) and index-delay caveat. But paper IDs/authors/abstract claims are not independently verifiable, and the report has little bearing on the DEUS north-star or price-trigger priorities, while running long against the 'no long text' rule — adequate, not decisive.",
   "flags": [],
+  "avg_score": 3.6,
   "history": [
     {
       "date": "2026-10-24",
@@ -26,9 +29,12 @@
       "score": 4,
       "ts": "2026-10-24T09:29:24Z",
       "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 3,
+      "ts": "2026-10-24T09:51:55Z",
+      "harness": "claude"
     }
-  ],
-  "last_analyzed": "2026-10-24T09:29:24Z",
-  "quality_score": 4,
-  "skill": "arxiv-radar"
+  ]
 }

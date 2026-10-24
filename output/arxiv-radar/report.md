@@ -1,116 +1,64 @@
-# arXiv Radar · 90 天回补（dry-run）
+# arXiv Radar · 7 天窗（dry-run）
 
-窗口 `2026-07-26 → 2026-10-24` · 18 个词 · 原始 89 条 → 去重 **51 篇幸存** · 0 失败
-过滤：`ti:` only · EXCL 只判标题（已修上一轮的全文误伤）· carrier 37 篇（42%）
+窗口 `2026-10-17 → 2026-10-24` · 20 个词 · 原始 **5** 条 → 去重幸存 **3 篇** · 失败 0
+过滤器：`ti:` only · EXCL 只判标题 · carrier 丢 2 篇
+
+## 幸存者
+
+### 可验证训练 / PoUW（1）
+
+| 日期 | 名字 | 一句话 | 链接 |
+|---|---|---|---|
+| 10-18 | **Pearl PoUW 系统化** | 对 Pearl 白皮书 PoUW 做敏感度刻画，替代 Jackpot 策略，并给矿工自选噪声幅度 | https://arxiv.org/abs/2610.25347 |
+
+单作者 Youlong Ding · cs.CR + cs.ET · carrier=`blockchain`。**今日更早两轮已报过，非新命中。**
+
+### ZK / 可验证计算（1）
+
+| 日期 | 名字 | 一句话 | 链接 |
+|---|---|---|---|
+| 10-20 | **ZKPU** | 面向 ZKP 异构负载的专用加速器，FIPS Montgomery × 可重构 Twin Systolic Fabric，同时覆盖曲线系与哈希系 | https://arxiv.org/abs/2610.27530 |
+
+11 人（Jonathan Ku / Changchun Zhou / Jiawen Wu 等）· cs.AR（硬件，非链上）· carrier=`protocol`。**今日更早轮次已报过，非新命中。**
+
+### 费用机制 / EIP-1559（1）— 本轮唯一新命中
+
+| 日期 | 名字 | 一句话 | 链接 |
+|---|---|---|---|
+| 10-22 | **TLM（Temporal Liquidity Markets）** | EIP-1559 扩展：让「要早位」和「愿意让位」的双方交叉撮合，provider 可被收进 base fee 以下，base fee 全额燃烧不变 | https://arxiv.org/abs/2610.30595 |
+
+单作者 Duanyang Dan Guo · cs.GT + cs.CR + cs.DC · carrier=`blockchain`。
+摘要里只点名 Ethereum，**没有提 Robinhood Chain / Base / Arbitrum / L2** —— 是 block-local 的 L1 费用机制改进，不是 L2 方案。
 
 ## 词表命中（本轮口径）
 
-`zero-knowledge` 28 · `embodied AI` 21 · `robot data` 9 · `consensus protocol` 6 · `cat:cs.CR AND ti:"MEV"` 6 · `automated market maker` 4 · `embodied data` 4 · `auditable training` 3 · `robot manipulation data` 2 · `proof-of-useful-work` 1 · `verifiable inference` 1 · `light client` 1 · `proof of training` 1 · `data availability sampling` 1 · `restaking` 1
+`ti:"EIP-1559"`=1 · `zero-knowledge`=1 · `proof-of-useful-work`=1
 
-零命中 3 个：`proof of learning` · `verifiable training` · `liquid staking` —— all-time 也都停在 05–06 月，按铁律保留观察，不删。
+零命中 17 个：`verifiable inference` · `light client` · `proof of training` · `proof of learning` · `verifiable training` · `auditable training` · `data availability sampling` · `restaking` · `automated market maker` · `consensus protocol` · `cat:cs.CR AND ti:"MEV"` · `liquid staking` · `embodied data` · `robot manipulation data` · `robot data` · `embodied AI` · `ti:"Robinhood Chain"`
 
----
+> 这是 **7 天窗** 的正常形状，不是词表坏了：90 天窗同表有 51 篇，其中 `embodied AI` 21、`zero-knowledge` 28。短窗里机器人簇归零是投稿节奏，不是话题死。
 
-## 机器人 / 具身数据（15）— 唯一与本仓叙事同轨的板块
+## 被 carrier 丢弃（2，抽检方向正确）
 
-| 日期 | 项目名 | 作者 | 一句话 |
-|---|---|---|---|
-| 10-11 | Vision-Predictor-Action | Yeonseok Lee | 神经符号 JEPA 预测器做具身 AI 的高效世界模型 |
-| 10-05 | Inspect Robots | Christopher Leet et al. | 具身 AI 能力与安全性的机器人侧评测 |
-| 10-04 | Beyond LLM Serving | Seonghun Jung et al. | VLA 负载画像，给具身 AI 系统设计定硬件规格 |
-| 10-03 | EnvDreamer | Kabir Swain et al. | 多模态输入直接生成可训练环境 |
-| 10-01 | MEAN | Yahao Ding et al. | 移动具身网络的运动-压缩联合设计（通信侧，非数据侧） |
-| 09-16 | Project Kitchen | Zheng Li et al. | VR 游戏化采集人类操作数据，再迁移到真机 |
-| 09-15 | **The Robot Data Factory** | Sami Haddadin et al.（21 人） | 把「机器人经验」而非原始数据当核心资源，建持续生成/校验/复用的基础设施 |
-| 09-13 | ORDER | Sathi & Tiwari | 虚构世界 benchmark，测域自适应 |
-| 09-07 | NutriBench-Kitchen | Yulin Wei et al. | 营养管理场景 benchmark（PubMed 生僻细分） |
-| 09-03 | DropClick | Patrick Zimmer et al. | 农业机器人数据的一键半自动分割 |
-| 08-31 | Ego2Robot | Ye Wang et al.（15 人） | 第一人称人类视频 → 机器人训练数据，规模化 VLA 预训练 |
-| 08-13 | MEAN（干扰信道） | Ruopeng Xu et al. | 同上 MEAN 的能效版 |
-| 08-12 | Digital twin clinics | Xinyuan Wu et al. | 数字孪生诊所做任务级评测 |
-| 08-03 | CometVLA | Hanwen Wan et al. | 具身数据金字塔共训 + Global Action Prior token |
-| 07-30 | World-Model Security | Fazhong Liu et al. | 世界模型具身 AI 的全生命周期威胁面 |
-
-> 观察（不构成判断）：90 天里「机器人数据采集 / 合成 / 基础设施」≥6 篇，且 08-31 与 09-15 两篇都是 15–21 人大组。这是本窗口内**唯一在加速**的簇。
-
-## ZK / 可验证计算（18）
-
-| 日期 | 项目名 | 一句话 |
+| id | 标题 | 丢弃理由 |
 |---|---|---|
-| 10-20 | ZKPU | ZKP 异构负载的专用加速器（cs.AR，硬件） |
-| 10-01 | Can AI Oversight Be Zero Knowledge? | Chiesa 组，AI 监督的 ZK 化可行性 |
-| 09-29 | Bits Under ZK-LLM | ZK 友好的量化选型，为可验证私有推理 |
-| 09-28 | ZKP in Quantum Networks | 量子网络里的 ZKP（quant-ph，离链远） |
-| 09-23 | zkSAS | 频谱接入管理的可验证证明（非链上） |
-| 09-16 | ZK UNSAT Chaining | 归一化链式方法扩展 UNSAT 验证 |
-| 09-09 | zkML Circuit Debloating | 删冗余约束，降 zkML 电路开销 |
-| 09-07 | **Guppy** | Danezis 组，只承诺状态增量 + 递归 ZK 做轻客户端 |
-| 08-31 | OreProof | 关键矿产供应链的可验证来源（RWA 味道） |
-| 08-30 | ZK Predicate Proofs Between AI Agents | 跨协议网关 + source-integrity gap 实测 |
-| 08-28 | CBDC Sender Anonymity | 许可链 EVM 上的 CBDC 结算 |
-| 08-17 | Certified but Private | 神经网络保证的 ZK 证明规模化 |
-| 08-15 | ZK Auditable Cross-Chain | DeFi 隐私-合规可审计跨链框架 |
-| 08-10 | **Restaking Verifiable Inference** | 重复博弈下比例罚没会高估安全性 |
-| 08-10 | Lyapunov AI Governance | 多智能体治理的随机稳定性（math.NA，边缘） |
-| 08-07 | NiyamAI | 意图绑定 AI agent + ZK 可验证护栏 |
-| 08-01 | ZK-SR117 | 公平借贷指标的分块 ZK 认证 |
-| 07-30 | Hollow-LLM Attack | ZK 验证 LLM 推理时「平凡权重」攻击面 |
+| `2610.29066` | Zero Knowledge for Free up to Linear Query Bounds | 纯复杂度理论，无部署/系统载体 |
+| `2610.27452` | SRE: Accelerating Zero-Knowledge Proofs via Scalar Redundancy Elimination | 纯硬件加速 |
 
-## MEV / AMM（7）
+## 索引状态
 
-| 日期 | 项目名 | 一句话 |
-|---|---|---|
-| 10-16 | Uniform-Price AMM | 批式双边拍卖的统一价机制设计 |
-| 09-29 | Active-Passive Gap | AMM LP 主动 vs 被动的收益缺口实证 |
-| 09-23 | **EVAGE** | 全自主多智能体自动生成/移植 MEV 策略 |
-| 09-03 | **Otter** | Elaine Shi 组，剩余再分配实现可证明 MEV 抗性 |
-| 08-05 | Searcher Competition | MEV 搜索者去中心化竞争 |
-| 08-03 | AMM as Portfolio Product | Feinstein 组，AMM 当可验证组合产品 |
-| 07-27 | There Will Be Spam | 状态不变交易与投机 MEV 的实证画像 |
+窗口内最新收录 **2026-10-22**，距今天 2 天。10-23 / 10-24 两天 0 条 —— 与 10-24 早先两轮观测一致，属收录延迟，**不是无人投稿**（该异常已在前轮自愈过一次）。
 
-## 可验证训练 / PoUW（4）
+## 本轮修掉的一个真问题
 
-| 日期 | 项目名 | 一句话 |
-|---|---|---|
-| 10-18 | **Pearl PoUW 系统化** | Youlong Ding，Pearl 白皮书 PoUW 的敏感度刻画 + 矿工自选噪声 |
-| 10-09 | Label-Only Backdoor Auditing | 只给标签场景下的训练标签审计 |
-| 10-06 | **zkLLMPoT** | 固定 checkpoint 后由审计方挑挑战序列，前向证明替代整条训练轨迹 |
-| 09-15 | OPEN-1B | 一次完全可审计的训练运行（9 人） |
+`memory/arxiv-seen.json` **内容是失控的 heredoc 源码，不是 JSON** —— 10-24 上一次「seed 51 个 id」把 `python3 - <<'PY'` 整段写进了文件却没执行。后果：`json.load` 抛异常 → 去重表被当成空表 → 本轮 `seen=0`，51 篇存量全部重新暴露（也正是 ZKPU / Pearl 两篇被重报的原因）。
 
-## DA / 共识（7）
+已修复：文件现在是合法 JSON，**53 个 id**（51 篇 90 天存量 + `2610.10333` + 本轮新命中 `2610.30595`），全部已归一化去掉版本后缀。校验 `json.load` 通过。
 
-| 日期 | 项目名 | 一句话 |
-|---|---|---|
-| 10-15 | TCDA | 可调编码分布式阵列做 DAS |
-| 09-23 | Flamingo | DAG 共识的负载均衡 |
-| 09-18 | PoVD | 基于 VDF 的共识协议 |
-| 09-17 | MEV on DAG-BFT | DAG-BFT 共识上 MEV 攻击谱系（竞争/串谋/腐败） |
-| 09-04 | Sharpedo | 双模无证书 DAG 共识 |
-| 08-22 | Consensus Formal Verification | 共识协议形式化验证的 SoK |
-| 08-13 | Fast Tendermint | Tendermint 加速 |
+## 未修的 skill 内 bug
 
----
-
-## 过滤器状态
-
-- ✅ **bug 1 已修**：`EXCL` 只判标题。上一轮 20 条丢里 16 条是正文误伤；本轮仅 1 条（真 survey/tutorial）被丢，`2609.16705` Robot Data Factory 已回到名单。
-- ✅ **bug 2 已修**：`benchmark` 移出 `EXCL`。`2609.22285` ORDER、`2609.07135` NutriBench-Kitchen 正常命中。
-- ⚠️ **bug 3 未修，且本轮更明显**：跨词命中只记第一个词。实现上是因为本轮脚本边扫边把 id 写进 `seen`，第二、三次命中被当成 `seen` 直接短路（`drop.seen=4`）。所以本轮 `terms[]` 全程只有 1 个元素，`zero-knowledge` 这类宽词的账面被低估。**不影响名单，只影响词表健康度读数。** 修法：`seen` 只在 run 结束时合并，run 内用独立的 `hit_ids` 判重并 append term。
-- `carrier` 丢 37 篇（42%），是本轮最大的过滤器。抽检 5 篇均为纯理论 / 纯硬件 / 非链上，丢弃方向正确。
-
-## dry-run 副作用
-
-`memory/arxiv-seen.json` **仍未生成**（三轮 dry-run 都未落盘）。下一次正式跑会把 51 篇全当新命中 —— 是一次 51 条洪水。
-
-正式跑前先 seed：
-
-```bash
-python3 -c "import json;json.dump({i:'2026-10-24' for i in open('ids.txt').read().split()},open('memory/arxiv-seen.json','w'),indent=1)"
-```
-
-51 个 id（已去版本号）：
-`2607.24172 2607.28226 2607.28884 2608.02580 2608.02664 2608.02917 2608.05011 2608.07167 2608.09055 2608.09087 2608.12849 2608.13434 2608.15276 2608.17070 2608.21416 2608.21935 2608.28529 2608.30083 2608.30289 2609.00340 2609.03474 2609.03680 2609.05580 2609.07135 2609.07963 2609.10149 2609.16705 2609.17380 2609.18650 2609.19353 2609.20069 2609.21627 2609.22285 2609.27424 2609.28361 2609.28699 2609.35339 2609.36437 2609.37963 2610.01995 2610.02334 2610.04301 2610.05062 2610.06306 2610.08258 2610.13051 2610.15556 2610.22508 2610.23547 2610.25347 2610.27530`
+`skills/arxiv-radar/SKILL.md` 的脚本**在扫描循环里就往 `seen` 写 id**（`seen[aid] = now...`），导致同一篇被第二个词命中时被当成「已见」短路 —— 跨词命中只记第一个词。本轮改用 run 内独立 `hit_ids` 判重、run 结束才合并 `seen`，`terms[]` 可完整累积。
 
 ## 原始来源
 
-`export.arxiv.org/api/query` · `submittedDate:[202607260000 TO 202610240000]` · URL 构造见本轮 `scan.py`（有改动：EXCL 标题化、benchmark 移出、按 id 去重并保留 `terms[]`、记录 `primary`/`authors`/`cats`）
+`export.arxiv.org/api/query` · `submittedDate:[202610170000 TO 202610240000]` · 扫描实现见 `output/arxiv-radar/scan.py`
