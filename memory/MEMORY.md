@@ -16,6 +16,7 @@
 > 详情见 [lessons.md](/topics/lessons.md)。这里是每条一行。
 
 **取数形状**
+- **过滤器丢掉的样本要全量抽检，不能只看幸存者。** `arxiv-radar` 的 carrier 是一套链上词，套在「具身/机器人」簇上时 90 天窗 **20 篇全丢、20 篇一个链上词都不含**，而幸存的靠同形异义（token=GAP tokens、validator=validator-passed）混入 —— **真货全丢、噪声全进**，症状表现成「零命中」。已按词分域修（PR #7，幸存 0→21）。**同一个放宽动作在不同域效果相反**：机器人域是纠错，ZK 域是引噪。详见 [lessons](/topics/lessons.md#过滤器设计)。
 - **DeFiLlama `/v2/chains` 无 `change_1d`/`change_7d`** —— 用 `/v2/historicalChainTvl/{chain}` 自算。**CoinGecko `/global` 的 24h mcap 也不可信**，用 `/coins/markets` 重算。**百分比过滤器要配绝对额地板**。
 - **钱包型 watch 不能用 `eth_getLogs{address:<EOA>}`** —— EOA 不发事件，永久返回 0。要在**代币合约**上做 topic 过滤。
 - **24h 涨跌幅别用日线首尾收盘价算** —— `ohlcv_list[0]` 是未走完的当日 K 线，暴涨次日读数是窗口效应。详见 [lessons](/topics/lessons.md#price-feeds)。

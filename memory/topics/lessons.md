@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-24T00:40:00Z
+timestamp: 2026-10-24T10:20:00Z
 ---
 
 # Lessons learned — archive
@@ -20,6 +20,11 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 - **owner 自有余额与 timelock 是两条独立供给。** 别只盯 unlock 排程：NOTE owner EOA 不等 10-23 解锁就自行转出了 24 万。
 - **Robinhood Chain (4663) 不需要 key。** `rpc.mainnet.chain.robinhood.com` 免密钥即可 `eth_getLogs` 宽区间；GeckoTerminal (`networks/robinhood`) 和 CoinGecko 都能报价。别浪费回合找端点。
 - **监控盲区：Path C 只读 ERC-20 logs，看不到 native ETH。** Robinhood 无 key 时 `onchain-monitor` 走 Path C，因此"staging 钱包被充 gas"这类触发器永远不会响，需要额外跑 `eth_getBalance` 轮询。
+
+## 过滤器设计
+
+- **carrier / 领域过滤器必须按簇配，不能全局一套。** 2026-10-24 `arxiv-radar` 实测：一套链上 carrier（`blockchain` / `token` / `validator` …）套在「具身/机器人数据」词上，**90 天窗 20 篇全被丢，20 篇一个链上词都不含**；而少数「幸存」的反而靠同形异义（`token`=GAP tokens、`validator`=validator-passed 环境、`network`=agentic robot network）混进来。**真货全丢、噪声全进 —— 方向是反的。** 症状表现成「零命中」，跟「话题死」无法区分。改法：按词分域给 carrier（`CARRIER_BY_TERM`），90 天窗幸存 0 → 21、ZK 零噪声。**判据：过滤器丢掉的样本要全量抽检，不能只看幸存者 —— 只看幸存者会得到「过滤器工作正常」的完全错误结论。**
+- **小众域的过滤器不要"顺手放宽"。** 同一次里试过给 ZK 域加 `proof`/`circuit`/`prover`，会把纯复杂度理论、ZK Proofs of Quantumness、点加硬件加速等 8 条理论/硬件论文捞回来。**同一个放宽动作，在机器人域是纠错、在 ZK 域是引噪** —— 必须逐域验精度，不能统一推。
 
 ## 行情取数形状（DeFiLlama / CoinGecko）
 
