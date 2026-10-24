@@ -79,10 +79,18 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 
 - **第 8 条判据：`0x1184de98` / `0x3fd5` 是四天来第一批真外部新钱**，在 −1h/−6h/−24h/−7d/−30d 余额全 0。次日复核：`0x3fd51604` 19:24:01Z 又买 $45.77（nonce 290→291，余额 5,225 → 7,735），是新钱里第一个回头加仓的；`0x1184de98` 未再动（nonce 920、持 46,195 未卖）。**一加一持，结构偏建设性但量级仍小（$4.6 万）—— 这是"加仓才算数"的正面样本。**[source: logs/2026-10-23#price-alert]
 
+## arXiv 检索（arxiv-radar）
+
+- **`submittedDate` 窗口是对的，但索引滞后 1–2 天，最新两天恒为 0 条。** 2026-10-24 实测：`cat:cs.CR` 单日总数 10-20 **48** → 10-21 **38** → 10-22 **30** → 10-23 **0** → 10-24 **0**，API 最新收录停在 `2026-10-22T17:59Z`。**这是「还没入库」，不是「没人投稿」** —— 每日窗口扫描看到末两天 0 命中属正常，别据此判断话题降温或词表失效。
+- **周窗口命中数很低是常态，不是词表坏了。** 18 个词 × 7 天只捞到 4 篇原始命中（幸存 2）。逐词核过：`ti:"restaking"` 全时段最新一篇是 **2026-08-10**，`ti:"zero-knowledge"` 全时段 312 篇但 7 天内仅 3 篇。**判词表是否还有效，要看 all-time 最新发布日期，别看窗口内计数。**
+- **`ti:` 引号短语与裸词等价，不会更严。** `ti:"restaking"` 与 `ti:restaking` 都返回 8 条；区别在 `abs:` 才是松散匹配（`abs:"MEV"` 撞兆电子伏特）。skill 里「只用 `ti:`、写长短语」的规则成立，但别指望引号能提高精度。
+- **查 API 要 `id_list=` 拿单篇详情**（`.../api/query?id_list=2610.27530`），比翻 `search_query` 结果稳。
+
 # Citations
 
 - `memory/logs/2026-10-21#onchain-monitor`, `#telegram-reply`, `#heartbeat-brief`, `#price-alert`
 - `memory/logs/2026-10-22#price-alert`（21:01Z / 22:02Z / 23:01Z 三源对比）
 - `memory/logs/2026-10-23#price-alert`（11:06Z 单笔方向性买盘 → 12:02Z 复核实证两笔跟进买盘为聚合器套利；15:05Z 第二个方向性钱包 `0x259f962e…` + 笔数/美元额反向 + 7702 识别；19:09Z Slipstream topic0 坑 + 多 horizon 余额判新钱 + 1inch 路由终点判据；20:05Z 单池 37 买 / 0 卖 实为同秒双池套利 + 供给口径改为净增发；17:01Z–21:16Z 两个方向性钱包冻结、h1 缺失 ≠ 平静）
+- `memory/logs/2026-10-24#arxiv-radar`（arXiv 索引滞后 1–2 天、周窗口低命中是常态、`ti:` 引号与裸词等价）
 - `memory/logs/2026-10-23#onchain-monitor`（21:24Z 上膛4 扣扳机清仓 + 第七个上膛钱包 24 万 + 待命重算 48 万）
 - `memory/logs/2026-10-23#heartbeat`（RH 429 返回空结果而非错误；selector `isOperationReady`/`getTimestamp` 修正）

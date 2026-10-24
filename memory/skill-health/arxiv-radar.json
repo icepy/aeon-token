@@ -1,0 +1,16 @@
+{
+  "skill": "arxiv-radar",
+  "last_analyzed": "2026-10-24T08:20:08Z",
+  "quality_score": 3,
+  "assessment": "Chinese dry-run report is substantive and decision-oriented (correctly concludes neither paper is a new tradable target, so no push), and the arXiv index-lag finding is a genuinely useful operational insight — but it runs long against the 'avoid 长文' preference and contains internal inconsistencies (states 12 zero-hit words then lists 16; says restaking has been quiet '四个月' while citing a 2026-08-10 paper), and the paper specifics are asserted without any verification step.",
+  "flags": [],
+  "avg_score": 3,
+  "history": [
+    {
+      "date": "2026-10-24",
+      "score": 3,
+      "ts": "2026-10-24T08:20:08Z",
+      "harness": "claude"
+    }
+  ]
+}
