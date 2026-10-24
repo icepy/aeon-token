@@ -3,36 +3,28 @@ import json, urllib.request, sys
 RPC = "https://base.gateway.tenderly.co"
 POOL = "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa"
 
-
 def rpc(method, params):
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
-    req = urllib.request.Request(RPC, data=body, headers={
-        "Content-Type": "application/json", "User-Agent": "curl/8.5.0"})
-    return json.load(urllib.request.urlopen(req, timeout=45))
+    req = urllib.request.Request(RPC, data=body, headers={"content-type": "application/json"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.loads(r.read())
 
+def call(to, data, block):
+    return rpc("eth_call", [{"to": to, "data": data}, block])["result"]
 
-def call(data, blk):
-    r = rpc("eth_call", [{"to": POOL, "data": data}, blk])
-    return r.get("result"), (r.get("error") or {}).get("message")
+head = int(rpc("eth_blockNumber", [])["result"], 16)
+print("head", head)
 
+POOL_PY = POOL
+for offset in (0, 1800):
+    blk = hex(head - offset)
+    res = call(POOL, "0x0902f1ac", blk)  # getReserves()
+    raw = res[2:]
+    r0 = int(raw[0:64], 16)
+    r1 = int(raw[64:128], 16)
+    ts = int(raw[128:192], 16)
+    print(f"block {int(blk,16)} ts {ts} reserve0 {r0/1e18:.6f} reserve1 {r1/1e18:.6f} ratio {(r0/1e18)/(r1/1e18):.8f}")
 
-def main():
-    b = int(rpc("eth_blockNumber", [])["result"], 16)
-    print("latest_block", b)
-
-    for sel, name in [("0x0dfe1681", "token0"), ("0xd21220a7", "token1"),
-                      ("0x0902f1ac", "getReserves")]:
-        res, err = call(sel, hex(b))
-        print(name, res, err or "")
-
-    # reserves one hour back (~1800 blocks at 2s)
-    for back in (1500, 1800, 2100):
-        res, err = call("0x0902f1ac", hex(b - back))
-        print("reserves_minus_%d_blocks" % back, res, err or "")
-
-    # block timestamp to confirm block time
-    blk = rpc("eth_getBlockByNumber", [hex(b), False])["result"]
-    print("block_timestamp", int(blk["timestamp"], 16))
-
-
-main()
+# token0 / token1 orientation
+print("token0", call(POOL, "0x0dfe1681", hex(head)))
+print("token1", call(POOL, "0xd21220a7", hex(head)))

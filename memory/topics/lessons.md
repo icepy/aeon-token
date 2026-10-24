@@ -82,6 +82,10 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 - **`slot0`/`globalState`/`fee`/`liquidity` 全部 revert 的池子不是 Slipstream，是 Solidly。** 探 `getReserves()`（`0x0902f1ac`）与 `stable()`（`0x22be3de1`）：最深池返回 `[528123.83, 18855811.85, 1792816783]` 且 `stable=0`（volatile）。**Solidly volatile 池的储备比值才是正确 mark**——CL 池才要用 sqrtPriceX96。第 69 条把最深池叫「Slipstream」是标签错误（topic0 描述是对的）。
 - **eth_getLogs 的日志索引能回看至少 25,000 块**（2026-10-24 08:00Z 实测：−1000 / −5000 / −17000 / −25000 各窗口 DEUS Transfer 分别 192 / 169 / 218 / 172 条，全部正常）。所以「老窗口扫出 0」不能归因于端点保留期——先怀疑过滤器和块高。
 
+- **🔴 过滤器本身要做「判别力测试」，否则零命中可能只是过滤器坏了。** 2026-10-24 11:37Z 用**故意敲错一个字符**的 Sync topic0（`…d44a2abdf50e…` 而非 `…d44a2abf8d328…`）去扫一个**已知含 2 条真 Sync** 的窗口，返回 **0 条**；换真 topic0 同窗口返回 **2 条**；换全 `0x01*32` 假 topic0 返回 **0 条**。**三者可区分 → 这个端点不会把错过滤器静默返回成「有日志」。** 只有在做一次这种负对照之后，才能相信任何「零命中」。方法：挑一个**已知有事件**的窗口，同时打「真 topic0 / 故意错 1 字符的 topic0 / 全假 topic0」三条，期望 `N / 0 / 0`。若「错 1 字符」也返回 N，说明端点根本没按 topic 过滤，此时所有 topic 过滤结果全部作废。
+- **公共 Tenderly 端点的 `eth_call` 必须显式带第二个参数（block tag），省略会报 `-32602 invalid params`，而不是默认 latest。** `{"to":…,"data":…}` 两字段的 `eth_call` 在本机直接失败；加 `"latest"` 或块高才正常。这和标准 JSON-RPC 的行为不同，容易误判成「合约 revert」。**同一端点 `eth_getLogs` 硬限 1000 块，1800 块窗口必拒、不截断**（第 69 条已记，本轮再次踩到）。
+- **地址大小写混写会静默变成 `-32602`，不是「地址不存在」。** `0x940A319B…`（checksum 大小写）传给本机 RPC 报 invalid params，全小写才通。calldata 里的参数地址也要 `.rjust(64,"0")` 左补零后用全小写。
+
 - **第 8 条判据：`0x1184de98` / `0x3fd5` 是四天来第一批真外部新钱**，在 −1h/−6h/−24h/−7d/−30d 余额全 0。次日复核：`0x3fd51604` 19:24:01Z 又买 $45.77（nonce 290→291，余额 5,225 → 7,735），是新钱里第一个回头加仓的；`0x1184de98` 未再动（nonce 920、持 46,195 未卖）。**一加一持，结构偏建设性但量级仍小（$4.6 万）—— 这是"加仓才算数"的正面样本。**[source: logs/2026-10-23#price-alert]
 
 ## arXiv 检索（arxiv-radar）

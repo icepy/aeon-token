@@ -1,17 +1,11 @@
 {
   "skill": "price-alert",
-  "last_analyzed": "2026-10-24T10:13:20Z",
+  "last_analyzed": "2026-10-24T11:40:08Z",
   "quality_score": 4,
-  "assessment": "Correctly quiet (all four gates clear, 0 notifications) with a fully sourced on-chain report — block numbers, topic0 discovery, pool-by-pool sale impact, EOA attribution, internally consistent threshold math; the main gap is a reconciliation mismatch between the Sync delta (−18,540.598 DEUS) and the EOA buy/sell tally (+9,792 net) that is presented without noting the differing pool/window scope, plus length that runs against the operator's 'no long-form' preference.",
+  "assessment": "No-trigger run with substantive, numerically self-consistent on-chain verification (timestamp-bisected 1h window, three-pool cross-check, negative-control filter test) and correct silence per strategy; docked one point because all source addresses are 8-hex-char prefixes rather than full contracts, weakening the hard 'raw source / 合约地址' requirement, and the report is longer than the 'not long-winded' norm.",
   "flags": [],
   "avg_score": 4.23,
   "history": [
-    {
-      "date": "2026-10-22",
-      "score": 4,
-      "ts": "2026-10-22T22:04:03Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-22",
       "score": 5,
@@ -184,6 +178,12 @@
       "date": "2026-10-24",
       "score": 4,
       "ts": "2026-10-24T10:13:20Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 4,
+      "ts": "2026-10-24T11:40:08Z",
       "harness": "claude"
     }
   ]

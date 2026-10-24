@@ -1,82 +1,93 @@
-import json, urllib.request
+import json, urllib.request, time
+from decimal import Decimal, getcontext
+getcontext().prec = 60
 
 RPC = "https://base.gateway.tenderly.co"
-POOL = "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa"
+DEEP = "0x3e97c5ec8c73e7d566aca606472141a9b9a8c1fa"
+VIRT_ETH_SOLIDLY = "0x21594b992f68495dd28d605834b58889d0a727c7"
+WETH_USDC_V3 = "0xd0b53D9277642d899DF5C87A3966A349A798F224"
 VIRTUAL = "0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b"
-DEUS = "0x940A319B75861014A220D9c6c144d108552B089B"
-VUSDC_POOL = "0x529d2863"  # truncated guard; real address set below
-
+DEUS = "0x940a319b75861014a220d9c6c144d108552b089b"
 
 def rpc(method, params):
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
-    req = urllib.request.Request(RPC, data=body, headers={
-        "Content-Type": "application/json", "User-Agent": "curl/8.5.0"})
-    return json.load(urllib.request.urlopen(req, timeout=45))
+    req = urllib.request.Request(RPC, data=body, headers={"content-type": "application/json"})
+    for attempt, back in enumerate([1, 2, 4, 8]):
+        try:
+            with urllib.request.urlopen(req, timeout=40) as r:
+                out = json.loads(r.read())
+            if "error" in out:
+                raise RuntimeError(out["error"])
+            return out["result"]
+        except Exception:
+            if attempt == 3:
+                raise
+            time.sleep(back)
 
+def call(to, data, blk=None):
+    return rpc("eth_call", [{"to": to, "data": data}, hex(blk) if blk else "latest"])
 
-def call(to, data, blk="latest"):
-    r = rpc("eth_call", [{"to": to, "data": data}, blk])
-    return r.get("result"), (r.get("error") or {}).get("message")
-
-
-def dec(hexstr):
-    return int(hexstr, 16) if hexstr and hexstr != "0x" else 0
-
-
-def wallet(addr, calldata):
-    out, err = call(addr, calldata)
-    if err or not out:
-        return None
-    return dec(out)
-
-
-def main():
-    b = int(rpc("eth_blockNumber", [])["result"], 16)
-    now_ts = int(rpc("eth_getBlockByNumber", [hex(b), False])["result"]["timestamp"], 16)
-
-    # ---- reserves now + 1h ago ----
-    def reserves(blk):
-        out, _ = call(POOL, "0x0902f1ac", blk)
-        raw = out[2:]
-        return dec("0x" + raw[0:64]), dec("0x" + raw[64:128])
-
-    r0, r1 = reserves(hex(b))
-    # find block ~3600s back by walking
-    lo, hi = b - 3000, b
-    target = now_ts - 3600
-    blk_1h = None
-    while lo <= hi:
-        mid = (lo + hi) // 2
-        ts = int(rpc("eth_getBlockByNumber", [hex(mid), False])["result"]["timestamp"], 16)
-        if ts <= target:
-            blk_1h = mid
-            lo = mid + 1
+def blk_at(target_ts):
+    head = int(rpc("eth_blockNumber", []), 16)
+    lo, hi = head - 40000, head
+    while lo < hi:
+        m = (lo + hi) // 2
+        if int(rpc("eth_getBlockByNumber", [hex(m), False])["timestamp"], 16) < target_ts:
+            lo = m + 1
         else:
-            hi = mid - 1
-    p0, p1 = reserves(hex(blk_1h))
-    ts_1h = int(rpc("eth_getBlockByNumber", [hex(blk_1h), False])["result"]["timestamp"], 16)
+            hi = m
+    return lo
 
-    # VIRTUAL is token0 (18 dec), DEUS token1 (18 dec)
-    ratio_now = r0 / r1
-    ratio_1h = p0 / p1
-    print("block_now", b, "ts", now_ts)
-    print("block_1h", blk_1h, "ts", ts_1h, "delta_s", now_ts - ts_1h)
-    print("VIRTUAL_reserve_now", r0 / 1e18, "DEUS_reserve_now", r1 / 1e18)
-    print("VIRTUAL_reserve_1h", p0 / 1e18, "DEUS_reserve_1h", p1 / 1e18)
-    print("ratio_now %.8f ratio_1h %.8f  chg %% %.4f" % (ratio_now, ratio_1h, (ratio_now / ratio_1h - 1) * 100))
+head = int(rpc("eth_blockNumber", []), 16)
+head_ts = int(rpc("eth_getBlockByNumber", [hex(head), False])["timestamp"], 16)
+blk1h = blk_at(head_ts - 3600)
 
-    # ---- VIRTUAL price via its deepest USDC pool ----
-    ds = json.load(open("/tmp/ds.json"))
-    pairs = [x for x in ds.get("pairs", []) if x.get("chainId") == "base"]
-    print("deepest_pair_priceUsd", pairs[0].get("priceUsd"), "priceNative", pairs[0].get("priceNative"))
+def v3_price(pool, blk, dec0, dec1, base_is_t0):
+    sp = int(call(pool, "0x3850c7bd", blk)[2:][0:64], 16)
+    p = (Decimal(sp) / Decimal(2**96)) ** 2
+    human = p * Decimal(10) ** (dec0 - dec1)   # token1 per token0
+    return human if base_is_t0 else 1 / human
 
-    # USDC-quoted DEUS venues
-    usdc = [x for x in pairs if x["quoteToken"]["symbol"] == "USDC"]
-    prices = sorted(float(x["priceUsd"]) for x in usdc if x.get("priceUsd"))
-    med = prices[len(prices) // 2] if prices else None
-    print("usdc_venue_prices", prices, "median", med)
+# WETH/USDC: check orientation
+t0 = call(WETH_USDC_V3, "0x0dfe1681", head)
+t1 = call(WETH_USDC_V3, "0xd21220a7", head)
+weth_is_t0 = "4200000000000000000000000000000000000006" in t0.lower()
+dec0, dec1 = (18, 6) if weth_is_t0 else (6, 18)
+eth_usd = v3_price(WETH_USDC_V3, head, dec0, dec1, weth_is_t0)
+print(f"WETH/USDC pool token0={t0[-40:]} token1={t1[-40:]}  weth_is_t0={weth_is_t0}")
+print(f"ETH/USD = ${float(eth_usd):,.2f}")
 
-    print("implied_from_ratio_at_ds_native", pairs[0].get("priceUsd"))
+def virt_eth(blk):
+    r = call(VIRT_ETH_SOLIDLY, "0x0902f1ac", blk)[2:]
+    r0 = int(r[0:64], 16); r1 = int(r[64:128], 16)
+    vt0 = call(VIRT_ETH_SOLIDLY, "0x0dfe1681", blk)
+    virt_first = VIRTUAL[2:].lower() in vt0.lower()
+    return Decimal(r1) / Decimal(r0) if virt_first else Decimal(r0) / Decimal(r1)
 
+ve_now = virt_eth(head); ve_1h = virt_eth(blk1h)
+v_usd_now = ve_now * eth_usd
+print(f"VIRTUAL = {float(ve_now):.8f} ETH = ${float(v_usd_now):.6f}")
 
-main()
+def reserves(pool, blk):
+    r = call(pool, "0x0902f1ac", blk)[2:]
+    return int(r[0:64], 16) / 1e18, int(r[64:128], 16) / 1e18
+
+v_now, d_now = reserves(DEEP, head)
+v_1h, d_1h = reserves(DEEP, blk1h)
+mark_now = Decimal(v_now) / Decimal(d_now) * v_usd_now
+mark_1h = Decimal(v_1h) / Decimal(d_1h) * (ve_1h * eth_usd)
+print(f"\nDEEPEST POOL (VIRTUAL-quoted) mark: ${float(mark_1h):.8f} -> ${float(mark_now):.8f}  = {float((mark_now/mark_1h-1)*100):+.3f}% in 1h")
+print(f"   ratio {v_1h/d_1h:.8f} -> {v_now/d_now:.8f}")
+
+print("\n--- gate distances from deepest-pool mark ---")
+m = float(mark_now)
+for t in (0.012, 0.025, 0.032, 0.041):
+    print(f"  {t}: {(t/m-1)*100:+.2f}%")
+print(f"\nATH $0.06876 -> {(0.06876/m-1)*100:+.2f}%")
+
+json.dump({"head": head, "head_ts": head_ts, "blk1h": blk1h,
+           "eth_usd": float(eth_usd), "virtual_usd": float(v_usd_now),
+           "mark_now": float(mark_now), "mark_1h": float(mark_1h),
+           "ratio_now": v_now/d_now, "ratio_1h": v_1h/d_1h,
+           "reserves_now": [v_now, d_now], "reserves_1h": [v_1h, d_1h]},
+          open("/home/runner/work/aeon-token/aeon-token/output/price-alert/final.json", "w"), indent=1)

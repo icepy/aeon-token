@@ -64,6 +64,7 @@
 - **判「池子安静」前先按地址扫一遍出 topic0 直方图** —— 家族不匹配会静默出假零（V3 `0xc42079f9…` vs Solidly `0xb3e27736…`）。**控制块高从 tx receipt 取。**[lessons](/topics/lessons.md#price-feeds)
 - **`balanceOf` 的 calldata 地址要左补零**，右补零静默返回 0；余额为 0 时先用已知非零地址做对照。
 - **view 调用 revert 先怀疑 selector，别怪 RPC。** `isOperationReady`=`0x13bc9f20`、`getTimestamp`=`0xd45c4435`；opId 取 `CallScheduled` 的 **topics[1]**。
+- **`eth_getLogs` 的过滤器要做判别力测试** —— 同一已知含真事件的窗口里，真 topic0 必须返回真日志、**故意错 1 个字符的 topic0 必须返回 0**。二者不可区分 = 端点有问题，此时任何「零命中」都不可信。**本机 RPC 的 `eth_call` 必须显式带 block tag（`latest` 也要写），省略报 `-32602`**；公共 `eth_getLogs` 硬限 1000 块。详见 [lessons](/topics/lessons.md#price-feeds)。
 - **网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`（数小时自愈）。`./notify` 写普通 Markdown，多行走 `-f`。
 ## Next Priorities
 - **🔴 待命 480,000 NOTE ≈ $22,000：上膛7 `0x33b7181e` 240k · 上膛6 `0x3a9039c7` 150k · 上膛5 `0x572bb527` 90k，全部 nonce 0 / ETH 0 / 零出账。扳机 = 第一笔 ETH 入账**（上膛4 先例：带 gas 后 24.4h 才卖）。owner 自持 810,000。见 [note-systems](/topics/tokens/note-systems.md)。
@@ -71,7 +72,7 @@
 - **不要按「日供给」计 schedule 26** —— 见真实 `release`（topic0 `0x3bfce8de`）才算。**🔴 120 万已解锁，到期 3 分钟即执行；账目闭合 810,000（回锁 33.5%、上膛 40%）。** 见 [note-systems](/topics/tokens/note-systems.md)。[source: logs/2026-10-23#heartbeat]
 
 ## Active Topics
-- `price-alert` DEUS **$0.01773**（10-24 10:02Z，最深池换算；USDC 池中位 $0.01762），1h **−0.76% 实测**，24h **+0.60%**。门槛未触及：$0.012 −32.3% · $0.025 +41.0% · $0.032 +80.5% · $0.041 +131.3%。见 [state](/topics/price-alert-state.json)。
+- `price-alert` DEUS **$0.01761830**（10-24 11:37Z，最深池换算；USDC 池中位 $0.01751881），1h **+0.17% 实测**，24h **+0.13%**。四道 gate 全未触发。门槛未触及：$0.012 −31.9% · $0.025 +41.9% · $0.032 +81.6% · $0.041 +132.7%。见 [state](/topics/price-alert-state.json)。
 - **🔴 `0x1184de98` 清仓 46,195 DEUS —— 但换成了 SLC（+73%/24h），不是现金。** 10-23 18:11 买入、10-24 10:02 全卖，**持有 15h51m、账面持平**（$823→$818）。同一个「新钱 cohort 不卖」的旧结论，这一颗已破，但方式是**轮动不是离场**。拆 4 个池出：最深池 29,298 + USDC 池 16,897。[logs](/logs/2026-10-24.md#price-alert)
 - **29,298 DEUS 砸盘只打出 −0.227%，下一块就回来** —— 深池 $667k 全吸收。**这体量不是价格事件。** 该小时 6 个 EOA 里 5 个只买不卖。[state](/topics/price-alert-state.json)
 - **买盘 9 条判据见 [lessons](/topics/lessons.md#price-feeds)** — 单池「N 买 / 0 卖」常是同秒双池套利的一半。**`topics[1]` 不是买方** —— 该池一小时 5 个 sender 全是路由合约，归因必须读 `tx.from`。**Solidly Swap topic0 = `0xb3e27736…`，不是 UniV2 `0xd78ad95f…`**，拿错 topic 会报出和「池子死了」一模一样的假零。[logs](/logs/2026-10-24.md#price-alert)

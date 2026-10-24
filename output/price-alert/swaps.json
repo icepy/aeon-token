@@ -1,1 +1,15 @@
-{"id":1,"jsonrpc":"2.0","error":{"code":-32602,"message":"invalid params","data":"Block range too large for public access: maximum 1000 blocks. Try with this block range [0x328e826, 0x328ec0e], or use an access key for larger ranges."}}
+{
+ "head": 53026122,
+ "start": 53024322,
+ "swaps": 2,
+ "syncs": 0,
+ "buys": 1,
+ "sells": 1,
+ "deus_bought": 13513.231400853338,
+ "deus_sold": 226.68006151699643,
+ "hist": {
+  "0x112c256902bf554b6ed882d2936687aaeb4225e8cd5b51303c90ca6cf43a8602": 2,
+  "0xcf2aa50876cdfbb541206f89af0ee78d44a2abf8d328e37fa4917f982149848a": 2,
+  "0xb3e2773606abfd36b5bd91394b3a54d1398336c65005baf7bf7a05efeffaf75b": 2
+ }
+}
