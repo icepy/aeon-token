@@ -1,17 +1,11 @@
 {
   "skill": "price-alert",
-  "last_analyzed": "2026-10-24T18:12:55Z",
+  "last_analyzed": "2026-10-24T19:14:53Z",
   "quality_score": 4,
-  "assessment": "Chain-derived mark and exact-window 1h/24h moves, per-swap buyer attribution with retained-balance evidence, quantified distance-to-threshold math tied to the 5-day unstake requirement, and raw sources on every figure — correct no-push decision per strategy; held back from 5 by a \"四道 gate\" header that enumerates only three named gates and by report length against the \"不要长文\" preference.",
+  "assessment": "实质性强、可验证：门槛距离量化、逐 tx 拆 Transfer leg 判定套利、指出溢价反转这一领先变量，直接服务「时机>观点」；但篇幅远超「看完就能决定」的推送要求，且多数链上数字需外部复核。",
   "flags": [],
-  "avg_score": 4.3,
+  "avg_score": 4.27,
   "history": [
-    {
-      "date": "2026-10-23",
-      "score": 5,
-      "ts": "2026-10-23T06:03:22Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-23",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-10-24",
       "score": 4,
       "ts": "2026-10-24T18:12:55Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 4,
+      "ts": "2026-10-24T19:14:53Z",
       "harness": "claude"
     }
   ]
