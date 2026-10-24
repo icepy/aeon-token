@@ -1,69 +1,38 @@
-#!/usr/bin/env python3
-"""Final consolidated 24h decode for onchain-monitor: fixed counterparties + labels."""
-import json, subprocess, statistics
+from decimal import Decimal, getcontext
+getcontext().prec = 50
 
-TRANSFER = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
-DEUS = "0x940a319b75861014a220d9c6c144d108552b089b"
-XDEUS = "0xe6d5f7439bc236c40054e2275f765f59343d4431"
-ESCROW = "0xa85a38796b951ce87b378538b32b3e6ee3c4c373"
-PRICE = 0.01788122
-ZERO = "0x" + "0" * 40
+ratio_now = Decimal("0.027860832")
+V_now = (Decimal("0.6235623") + Decimal("0.6246790")) / 2
+V_1h  = (Decimal("0.6254557") + Decimal("0.6246790")) / 2   # 1h-ago leg (0x529d read at head; use same)
+ratio_1h = Decimal("0.027869409")
+ratio_24 = Decimal("0.027514726")
+V_24 = Decimal("0.6555188")
 
-LABELS = {
-    ZERO: "Zero (mint/burn)",
-    DEUS: "DEUS 代币",
-    XDEUS: "xDEUS 合约",
-    ESCROW: "DEUS escrow",
-}
+mark = ratio_now * V_now
+mark_1h = ratio_1h * V_1h
+mark_24 = ratio_24 * V_24
+print("VIRTUAL/USD avg now %.7f" % V_now)
+print("MARK now  $%.8f" % mark)
+print("MARK 1h   $%.8f  -> h1 %+.4f%%" % (mark_1h, (mark / mark_1h - 1) * 100))
+print("MARK 24h  $%.8f  -> h24 %+.4f%%" % (mark_24, (mark / mark_24 - 1) * 100))
 
+usdc = [Decimal("0.01721955"), Decimal("0.01720974"), Decimal("0.01716328")]
+med = sorted(usdc)[1]
+print("\nUSDC median $%.8f  premium %+.3f%%" % (med, (mark / med - 1) * 100))
+print("band $%.6f - $%.6f" % (min(usdc), max(usdc)))
 
-def lbl(a):
-    a = a.lower()
-    return LABELS.get(a, a[:6] + "…" + a[-4:])
+print("\ngates from $%.8f:" % mark)
+for t in ("0.012", "0.025", "0.032", "0.041"):
+    print("  $%s  %+8.2f%%" % (t, (Decimal(t) / mark - 1) * 100))
+print("  ATH $0.06876  %+.2f%%" % ((Decimal("0.06876") / mark - 1) * 100))
 
-
-d = json.loads(subprocess.run(
-    ["python3", "-I", "output/scan.py", "52847202", "52890402"],
-    capture_output=True, text=True, check=True).stdout)
-
-esc = [e for e in d["watches"]["DEUS escrow"]["events"] if e["token"] == DEUS]
-nft = d["watches"]["xDEUS"]["events"]
-
-rows = []
-for e in esc:
-    cp = e["from"] if e["direction"] == "in" else e["to"]
-    e["cp"] = cp
-    e["usd"] = e["amount"] * PRICE
-    rows.append(e)
-rows.sort(key=lambda x: x["block"])
-
-print("### DEUS ERC-20 touching escrow (24h)")
-tin = tout = 0.0
-for e in rows:
-    if e["direction"] == "in":
-        tin += e["amount"]
-    else:
-        tout += e["amount"]
-    if e["amount"] > 0:
-        print(f"  {e['direction']:>3} {e['amount']:>13,.2f} DEUS ${e['usd']:>7,.0f}  "
-              f"{lbl(e['cp']):<22} tx {e['tx'][:10]}… blk {e['block']}")
-print(f"  TOTAL in {tin:,.2f} (${tin*PRICE:,.0f}) | out {tout:,.2f} (${tout*PRICE:,.0f}) | net {tin-tout:+,.2f} (${(tin-tout)*PRICE:+,.0f})")
-
-print("\n### xDEUS ERC-721 (24h)")
-for e in sorted(nft, key=lambda x: x["block"]):
-    if e["direction"] == "mint":
-        print(f"  MINT → {lbl(e['to'])}  tx {e['tx'][:10]}… blk {e['block']}")
-    elif e["direction"] == "burn":
-        print(f"  BURN ← {lbl(e['from'])}  tx {e['tx'][:10]}… blk {e['block']}")
-print(f"  moves={sum(1 for e in nft if e['direction']=='move')} "
-      f"mints={sum(1 for e in nft if e['direction']=='mint')} "
-      f"burns={sum(1 for e in nft if e['direction']=='burn')}")
-
-burn_deus = sum(e["amount"] for e in rows if e["direction"] == "out")
-print(f"\nescrow DEUS balance now 29,362,657.94")
-print(f"unstake outflow 24h = {burn_deus:,.2f} DEUS = {burn_deus/29362657.94*100:.4f}% of escrow")
-print(f"net flow 24h        = {(tin-tout)/29362657.94*100:+.4f}% of escrow  (trigger: >5% outflow)")
-
-sizes = [e["usd"] for e in rows if e["usd"] and e["usd"] > 0.10]
-print(f"\nUSD event sizes n={len(sizes)} median=${statistics.median(sizes):,.0f} max=${max(sizes):,.0f}")
-print(f"escrow threshold_usd=500 → survivors: {[round(s) for s in sizes if s>=500]}")
+# level math at this block
+V_res = Decimal("526729.374184701610846321")
+D_res = Decimal("18905730.371963049965150019")
+vn = Decimal("0.62412")
+print("\n--- level math (x*y=k, ratio space) ---")
+for t in ("0.012", "0.025", "0.032", "0.041"):
+    target_ratio = Decimal(t) / vn
+    deus = D_res * ((ratio_now / target_ratio) ** Decimal("0.5") - 1)
+    side = "SELL" if deus > 0 else "BUY"
+    print("  $%s  %s  %.0f DEUS  (%.1f%% of pool DEUS)" % (t, side, abs(deus), abs(deus) / D_res * 100))
