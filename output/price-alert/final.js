@@ -1,58 +1,38 @@
-const RPC = "https://base.gateway.tenderly.co";
-const DEUS = "0x940A319B75861014A220D9c6c144d108552B089B";
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const hex = (n) => "0x" + n.toString(16);
-const pad = (a) => a.toLowerCase().replace(/^0x/, "").padStart(64, "0");
-
-async function rpc(method, params, tries = 6) {
-  for (let i = 0; i < tries; i++) {
-    try {
-      const r = await fetch(RPC, {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
-      });
-      const j = await r.json();
-      if (j.error) {
-        if (/rate limit|exceeded|429/i.test(j.error.message)) { await sleep(2000 * (i + 1)); continue; }
-        return { err: j.error.message };
-      }
-      return { ok: j.result };
-    } catch (e) { await sleep(2000 * (i + 1)); }
-  }
-  return { err: "retries-exhausted" };
+const rNow = 0.027869408549920902, rH1 = 0.027883145675288927, rH24 = 0.027514725530409536;
+const vNow = (0.62545573 + 0.62396753) / 2;
+const vH1 = (0.62297054 + 0.62247334) / 2;
+const vH24 = (0.65219417 + 0.65308951) / 2;
+const mNow = rNow * vNow, mH1 = rH1 * vH1, mH24 = rH24 * vH24;
+const pct = (a, b) => +(((a / b) - 1) * 100).toFixed(3);
+const usdc = [0.01720375177219008, 0.017180625783704998, 0.017163279611217008].sort((a, b) => a - b);
+const out = {
+  virtual_usd: { now: +vNow.toFixed(8), h1: +vH1.toFixed(8), h24: +vH24.toFixed(8) },
+  mark_now: +mNow.toFixed(8),
+  mark_1h_ago: +mH1.toFixed(8),
+  mark_24h_ago: +mH24.toFixed(8),
+  h1_pct: pct(mNow, mH1),
+  h24_pct: pct(mNow, mH24),
+  ratio_1h_pct: pct(rNow, rH1),
+  ratio_24h_pct: pct(rNow, rH24),
+  usdc_median: +usdc[1].toFixed(8),
+  usdc_range: [+usdc[0].toFixed(8), +usdc[2].toFixed(8)],
+  dexscreener: 0.01724,
+  band_low: +Math.min(usdc[0], mNow).toFixed(8),
+  band_high: +Math.max(usdc[2], mNow).toFixed(8),
+  premium_vs_usdc_median_pct: pct(mNow, usdc[1]),
+  ath_distance_pct: pct(mNow, 0.06876),
+};
+out.gates = [0.012, 0.025, 0.032, 0.041].map((t) => ({
+  target: t,
+  distance_pct: +(((t / mNow) - 1) * 100).toFixed(2),
+  crossed: t <= 0.012 ? mNow <= t : mNow >= t,
+}));
+// levels in ratio space using vNow
+const V = 526810.442689199, D = 18902821.05361343;
+for (const t of [0.012, 0.025, 0.032, 0.041]) {
+  const rT = t / vNow;
+  const k = Math.sqrt(rNow / rT);
+  const dNeed = Math.abs(D * k - D);
+  out['level_' + t] = { deus_needed: Math.round(dNeed), usd: Math.round(dNeed * mNow) };
 }
-
-const blocks = [52994876, 52995672, 52996499];
-for (const b of blocks) {
-  const r = await rpc("eth_getBlockByNumber", [hex(b), false]);
-  console.log("blk", b, "->", r.ok ? new Date(parseInt(r.ok.timestamp, 16) * 1000).toISOString() : r.err);
-  await sleep(500);
-}
-
-console.log("\n-- pool DEUS inventory (balanceOf DEUS held by pool) --");
-const pools = [
-  ["0x3E97 VIRTUAL", "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa"],
-  ["0x58dB USDC", "0x58dBa34e6ee6eb76Ef71A6ca0f18871CAE817D3b"],
-  ["0x1B2f USDC", "0x1B2f3f5C1B6037101FDD3EC14649E0d3F98fA642"],
-];
-for (const [label, p] of pools) {
-  const r = await rpc("eth_call", [{ to: DEUS, data: "0x70a08231" + pad(p) }, "latest"]);
-  console.log(label, r.ok ? (Number(BigInt(r.ok)) / 1e18).toFixed(6) : "ERR " + r.err);
-  await sleep(600);
-}
-
-console.log("\n-- escrow at head / -6h / -24h --");
-const headRes = await rpc("eth_blockNumber", []);
-const head = parseInt(headRes.ok, 16);
-for (const [tag, off] of [["now", 0], ["-6h", 10800], ["-24h", 43200]]) {
-  const r = await rpc("eth_call", [{ to: DEUS, data: "0x70a08231" + pad("0xA85A38796B951CE87B378538b32B3E6Ee3C4C373") }, hex(head - off)]);
-  console.log(tag, r.ok ? (Number(BigInt(r.ok)) / 1e18).toFixed(6) : "ERR " + r.err);
-  await sleep(600);
-}
-
-console.log("\n-- new wallet 0x3fd5 balance at buy block -1 and now --");
-for (const blk of [52995671, head]) {
-  const r = await rpc("eth_call", [{ to: DEUS, data: "0x70a08231" + pad("0x3fd516041851011f38a0e9367b9e67e2eefd9a96") }, hex(blk)]);
-  console.log("blk", blk, r.ok ? (Number(BigInt(r.ok)) / 1e18).toFixed(6) : "ERR " + r.err);
-  await sleep(600);
-}
+console.log(JSON.stringify(out, null, 2));
