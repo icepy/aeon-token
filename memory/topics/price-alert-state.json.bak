@@ -38,23 +38,29 @@
     }
   },
   "last_price": {
-    "price_usd": 0.01765355,
-    "h1_pct": 0.355,
-    "h24_pct": 6.186,
-    "pool": "aerodrome classic (Solidly) DEUS/VIRTUAL — deepest, liq $674,647",
+    "price_usd": 0.01773,
+    "h1_pct": -0.76,
+    "h24_pct": 0.6,
+    "pool": "aerodrome classic (Solidly) DEUS/VIRTUAL — deepest, liq $667,670",
     "pool_address": "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa",
-    "liquidity_usd": 674647.25,
-    "volume_24h_usd": 41747.0,
-    "volume_1h_usd": 1442.61,
-    "txns_1h": "38 swaps on deepest pool — REVIVED at 08:38:25Z after 238.7 min of silence",
+    "liquidity_usd": 667669.97,
+    "volume_24h_usd": 30043.48,
+    "volume_1h_usd": 936.65,
+    "txns_1h": "15 buys / 0 sells on deepest pool (DexScreener h1)",
     "pool_url": "https://dexscreener.com/base/0x3e97c5ec8c73e7d566aca606472141a9b9a8c1fa",
-    "observed_at": "2026-10-24T09:13:27Z",
-    "h1_source": "decoded-from-pool-swap-logs (deepest pool, Solidly Swap+Sync)",
-    "h1_note": "DexScreener reported h1=-1.23% on the deepest pair this run (not null, unlike the previous three runs). Independently verified on-chain: 38 Solidly Swap events over blocks 53020879-53021648, all inside the trailing hour. VIRTUAL/DEUS reserve ratio 0.02786549 -> 0.02796430 = +0.355%. DexScreener's -1.23% disagrees in SIGN with the on-chain ratio; the difference is the VIRTUAL/USD leg moving (VIRTUAL -0.64% on the hour), so the USD mark rose while the DEUS/VIRTUAL ratio also rose. Both are far from the 20% gate. The three USDC-quoted venues printed 1h -0.289% / 0.000% / -0.265% (mean -0.185%). No venue anywhere near 20%; h1 IS MEASURED this run.",
-    "mark_source": "live USDC venues (primary) + deepest-pool reserves converted via on-chain VIRTUAL/USDC",
-    "mark_note": "PRIMARY on-chain marks at 09:04-09:05Z: USDC pools 0x58dBa34e $0.017835, 0x1B2f3f5C $0.017872, 0x75bc1495 $0.017954 -> median $0.017872. CROSS-CHECK deepest pool: reserves VIRTUAL 527,706.49 / DEUS 18,870,723.94 = 0.02796430 VIRTUAL/DEUS; converted at VIRTUAL $0.6312889 (on-chain sqrtPriceX96 of VIRTUAL/USDC uni pool 0x529d2863, liq $756k) = $0.01765355, i.e. -1.22% vs the USDC-venue median. Spread between deepest-pool and live-venue marks is ~1.2%, same order as prior runs. Both are ~$0.0177-0.0179, far from every gate. NOTE ON ORIENTATION: the deepest pool is VIRTUAL(token0)/DEUS(token1), so the reserve ratio is VIRTUAL per DEUS - to get USD you MUST multiply by the VIRTUAL price, not read the ratio as dollars (an earlier probe this run produced 5.5e25 by skipping the inversion; do not repeat)."
+    "observed_at": "2026-10-24T10:02:19Z",
+    "h1_source": "measured — pool reserve ratio + VIRTUAL/USD leg, cross-checked vs DexScreener h1=-0.76%",
+    "h1_note": "h1 IS MEASURED this run (not null). Deepest pool reserves at blk 53,021,596 (09:02:19Z) VIRTUAL 527,596.678 / DEUS 18,874,651.672 -> ratio 0.02795266; at blk 53,023,396 (10:02:19Z) VIRTUAL 529,062.421 / DEUS 18,822,360.326 -> 0.02810819 VIRTUAL/DEUS = +0.556% in DEUS/VIRTUAL terms. The VIRTUAL leg fell ~1.3% over the same hour, so the USD mark nets to -0.76% — identical to DexScreener's deepest-pair h1. Both far from the 20% gate. Three live USDC venues printed h1 -1.05% / -1.50% / -2.12% (median venue -1.50%). No venue anywhere near +/-20%.",
+    "mark_source": "deepest-pool reserves converted via on-chain VIRTUAL/USD + live USDC venues",
+    "mark_note": "Deepest pool 0x3E97c5EC: token0 = VIRTUAL (0x0b3e3284), token1 = DEUS (0x940a319b) — orientation confirmed by eth_call this run, so USD mark = ratio x VIRTUAL price, never the ratio read as dollars. Ratio 0.02810819 x VIRTUAL $0.6309 (deepest VIRTUAL/WETH, liq $3.29M) = $0.017733. Cross-check: USDC venues 0x58dBa34e $0.01770 / 0x1B2f3f5C $0.01762 / 0x75bc1495 $0.01762 -> median $0.01762. Deepest-pool mark sits +0.6% above the USDC median, same order as prior runs. Dust uniswap pool at $0.01851 (liq $1.30) excluded.",
+    "gate_distances_pct": {
+      "0.012": -32.32,
+      "0.025": 41.01,
+      "0.032": 80.49,
+      "0.041": 131.27
+    }
   },
-  "last_run_at": "2026-10-24T09:13:27Z",
+  "last_run_at": "2026-10-24T10:02:19Z",
   "supply_watch": {
     "claim_contract": "0x5cbf5dfaa5336ce0456e24217e7911365100879a",
     "claim_symbol": "DEUS (CLAIM vesting/distributor vault)",
@@ -118,7 +124,7 @@
   "escrow_snapshot": {
     "balance_deus": 29103661.674664,
     "prior_balance_deus": 29108661.674663614,
-    "change_deus": -5000.000000,
+    "change_deus": -5000.0,
     "change_pct": -0.0172,
     "balance_24h_ago": 29407291.88770671,
     "change_24h_deus": -303630.2130430937,
@@ -140,7 +146,7 @@
   "claim_snapshot": {
     "balance_deus": 340080317.630885,
     "prior_balance_deus": 340081346.429216,
-    "change_deus": -1028.80,
+    "change_deus": -1028.8,
     "net_out_24h_deus": 193977.054729,
     "pct_of_supply": 38.81,
     "daily_drip_pct_of_balance": 0.057,

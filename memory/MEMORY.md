@@ -43,7 +43,7 @@
 - **🔴 `0xbb0f7533` 烧 xDEUS #1492 释放 319,562 DEUS，75 分钟后全砸。仍持 #1396 = 下次扳机（09:13Z 未烧）。** CLAIM 占 38.8% 供应。**$0.012 需净砸 ~4.36M**。
 - **新增 5,000 DEUS unstake 未卖：** `0xcae798c0` 烧 xDEUS #425 得 5,000 DEUS，**零转出、全额仍持**。**unstake 不是价格事件，卖出才是**。
 - **买盘 9 条判据见 [lessons](/topics/lessons.md#price-feeds)** —— 单池「N 买 / 0 卖」常是同秒双池套利的一半。
-- **新钱 cohort：** `0x3fd51604` 加至 7,735；`0x1184de98` 持 46,195 未卖。老鲸 `0x09b383a6` 已回补。见 [deus-buyers](/topics/deus-buyers.md)。
+- **新钱 cohort：** `0x3fd51604` 加至 7,735；**`0x1184de98` 已于 10-24 10:02 全部清仓（换 SLC）**。老鲸 `0x09b383a6` 已回补。见 [deus-buyers](/topics/deus-buyers.md)。
 - **🔴 DEUS 7d 净增发 +65,381**；24h **−19,693 已对账闭合**（9 mint 对 7 burn），单日不覆盖 7d。见 [deus-escrow](/topics/deus-escrow.md)。
 - Escrow **29,103,662**（24h −1.03%），离 5%/日 ≈1.46M 差 **4.8×** —— 无 unstake 压力。xDEUS 1726（24h +1）。CLAIM 24h 净出 194k。
 - **两个方向性钱包都不跟** —— `0x259f962e` nonce 135、`0xa2f42a10` nonce 4，各是一 clip 不是一波。
@@ -70,11 +70,13 @@
 - **不要按「日供给」计 schedule 26** —— 见真实 `release`（topic0 `0x3bfce8de`）才算。**🔴 120 万已解锁，到期 3 分钟即执行；账目闭合 810,000（回锁 33.5%、上膛 40%）。** 见 [note-systems](/topics/tokens/note-systems.md)。[source: logs/2026-10-23#heartbeat]
 
 ## Active Topics
-- `price-alert` DEUS **$0.017918**（10-24 08:12Z，活跃 DEUS/USDC 池中位数），1h **−0.04% 实测**。门槛未触及：$0.012 −33.0% · $0.025 +39.5% · $0.032 +78.6% · $0.041 +128.8%。见 [state](/topics/price-alert-state.json)。
+- `price-alert` DEUS **$0.01773**（10-24 10:02Z，最深池换算；USDC 池中位 $0.01762），1h **−0.76% 实测**，24h **+0.60%**。门槛未触及：$0.012 −32.3% · $0.025 +41.0% · $0.032 +80.5% · $0.041 +131.3%。见 [state](/topics/price-alert-state.json)。
+- **🔴 `0x1184de98` 清仓 46,195 DEUS —— 但换成了 SLC（+73%/24h），不是现金。** 10-23 18:11 买入、10-24 10:02 全卖，**持有 15h51m、账面持平**（$823→$818）。同一个「新钱 cohort 不卖」的旧结论，这一颗已破，但方式是**轮动不是离场**。拆 4 个池出：最深池 29,298 + USDC 池 16,897。[logs](/logs/2026-10-24.md#price-alert)
+- **29,298 DEUS 砸盘只打出 −0.227%，下一块就回来** —— 深池 $667k 全吸收。**这体量不是价格事件。** 该小时 6 个 EOA 里 5 个只买不卖。[state](/topics/price-alert-state.json)
+- **买盘 9 条判据见 [lessons](/topics/lessons.md#price-feeds)** — 单池「N 买 / 0 卖」常是同秒双池套利的一半。**`topics[1]` 不是买方** —— 该池一小时 5 个 sender 全是路由合约，归因必须读 `tx.from`。**Solidly Swap topic0 = `0xb3e27736…`，不是 UniV2 `0xd78ad95f…`**，拿错 topic 会报出和「池子死了」一模一样的假零。[logs](/logs/2026-10-24.md#price-alert)
 - **🔴 最深池 `0x3E97c5EC`：08:05Z 的「死」是真的（205 分钟零事件），但 08:38:25Z 起复活。** **池子死/活有保质期，每轮重测，不继承上轮结论。** 另：**算 mark 前先读 `token0()`** —— 该池 token0 是 VIRTUAL 不是 DEUS，直接 `reserve0/reserve1` 得 36.34（真值 0.02795）。[logs](/logs/2026-10-24.md#onchain-monitor)
 - **🔴 史上最大砸盘已被全额买回：** `0x7f6aba75`（纯新钱）买 **335,249**、`0x6a45ca8b` 买 **70,034**，均留存；池内 DEUS 净少 **105,836**，**方向是吸筹**。[source: logs/2026-10-24#price-alert]
 - **xDEUS 退出两笔，差 64 倍：** ①`0xbb0f7533` 烧 **#1492** 释放 319,562 DEUS，75 分钟后全砸；**仍持 #1396 = 下次扳机（10-24 未烧）**。②08:16Z 烧 **#425** 释放 **5,000** → `0xcae798c0`，**未卖（零转出）**。#425 是老仓（回溯 12 时点：持 >1.2M 块≈30 天），与「押进去就赎」不同 → **unstake ≠ 砸盘**。**$0.012 需净砸 ~4.36M**。[logs](/logs/2026-10-24.md#onchain-monitor)
-- **买盘 9 条判据见 [lessons](/topics/lessons.md#price-feeds)** —— 单池「N 买 / 0 卖」常是同秒双池套利的一半- **新钱 cohort：** `0x3fd51604` 加至 7,735；`0x1184de98` 持 46,195 未卖。老鲸 `0x09b383a6` 已全额回补。[deus-buyers](/topics/deus-buyers.md)
 - **🔴 DEUS 7d 净增发 +65,381**（37 mint / 201,698 对 18 burn / 136,317）；24h −19,693 不覆盖 7d 口径。铸币 `0x2cca08ae`。[deus-escrow](/topics/deus-escrow.md)
 - **Escrow `0xA85A…C373` 29,103,662**（24h −303,630 = −1.03%），5%/日 线 1,470,365 → **0.21 倍**，无 unstake 压力。占供应 3.32%。
 - **两个方向性钱包都不跟** —— `0x259f962e` nonce 135、`0xa2f42a10` nonce 4，各是一 clip 不是一波。[deus-buyers](/topics/deus-buyers.md)
