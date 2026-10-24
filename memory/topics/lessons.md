@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-24T18:01:31Z
+timestamp: 2026-10-24T21:10:00Z
 ---
 
 # Lessons learned — archive
@@ -112,6 +112,9 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 
 - **🔴 过滤器本身要做「判别力测试」，否则零命中可能只是过滤器坏了。** 2026-10-24 11:37Z 用**故意敲错一个字符**的 Sync topic0（`…d44a2abdf50e…` 而非 `…d44a2abf8d328…`）去扫一个**已知含 2 条真 Sync** 的窗口，返回 **0 条**；换真 topic0 同窗口返回 **2 条**；换全 `0x01*32` 假 topic0 返回 **0 条**。**三者可区分 → 这个端点不会把错过滤器静默返回成「有日志」。** 只有在做一次这种负对照之后，才能相信任何「零命中」。方法：挑一个**已知有事件**的窗口，同时打「真 topic0 / 故意错 1 字符的 topic0 / 全假 topic0」三条，期望 `N / 0 / 0`。若「错 1 字符」也返回 N，说明端点根本没按 topic 过滤，此时所有 topic 过滤结果全部作废。
 - **公共 Tenderly 端点的 `eth_call` 必须显式带第二个参数（block tag），省略会报 `-32602 invalid params`，而不是默认 latest。** `{"to":…,"data":…}` 两字段的 `eth_call` 在本机直接失败；加 `"latest"` 或块高才正常。这和标准 JSON-RPC 的行为不同，容易误判成「合约 revert」。**同一端点 `eth_getLogs` 硬限 1000 块，1800 块窗口必拒、不截断**（第 69 条已记，本轮再次踩到）。
+- **🔴 两条链的历史 `eth_call` 能力不对称，别互推。** 2026-10-24 21:0xZ：**Robinhood 公共 RPC 不支持历史 `eth_call`**（`{"code":-32000,"message":"historical state … is not available"}`，只有 `latest`），而 **Base 的 Tenderly 网关支持任意历史块**（同一轮用 blk 53,000,125 读 24h 前的 `balanceOf` 成功）。后果：RH 的 24h 余额差额**只能走 log 双向扫描求和**（进/出各扫一遍），不能图省事打 block-pinned `balanceOf`。**判据：`eth_call` 带历史块返回 `historical state … not available` = 端点不支持，换 log 差额法，不是「合约有问题」。**
+- **🔴 无 ABI 时解 calldata：靠「uint 词位置 + 事件 data 对齐」双向验证。** 2026-10-24 的 owner `0x091e7db9` 在 4byte **完全无收录**（`text_signature=createVestingSchedule` 返回 53 个变体，无一个匹配），`blockscout` API 又被 Cloudflare 挡死。解法：把 input 切成 32 字节词逐个按 uint / address / ascii 解释，同时把**同一 tx 里合约自己发出的事件的 `data`** 切出来对照 —— 事件的 6 个词与 input 的 `w1–w6` 逐位对齐（`amount / start / cliff / 0 / duration / 1`），beneficiary 在 `w0` 和 `topics[2]` 两处互相印证。**对齐成功才敢定名。** 顺带证实：`ScheduleCreated` topic0 `0x8cd818b1…` 的 sid 在 `topics[1]`，不是 `data`。
+- **🔴 「owner 转账 = 砸盘」是错的默认假设 —— 先看终点是不是自己的合约。** 2026-10-24 20:23Z NOTE owner 首次动仓，180,000 NOTE 转给 vesting 合约，看起来像「开始派发」。实际是 `createVestingSchedule`，30 天线性、cliff 5000。**三步排除法**：①查 `tx.to` 是不是自家协议合约（是 → 先怀疑是排程不是卖出）；②解 calldata 看是不是 create/approve 类；③查受益人有没有卖出史（该受益人 3,200 万块零转出）。**真正的信号要往「释放速率 ÷ 日成交量」上算**，不是看单笔金额大小 —— 18 万看似巨大，实为 $256/天、占日量 0.25%。
 - **地址大小写混写会静默变成 `-32602`，不是「地址不存在」。** `0x940A319B…`（checksum 大小写）传给本机 RPC 报 invalid params，全小写才通。calldata 里的参数地址也要 `.rjust(64,"0")` 左补零后用全小写。
 
 - **🔴 Solidly Swap 的 data 字序是 `amount0In, amount1In, amount0Out, amount1Out` —— 按 Uniswap V2 的 `(a0In, a1Out, a1In, a0Out)` 解会把买卖完全读反。** 2026-10-24 18:01Z 首版用 V2 字序解 13 笔 Solidly Swap，得到「净 +20,700 DEUS 流入池」，而同一小时储备实测是 **−60,565 流出**，**符号相反**。改字序后（`a1in`=卖入、`a1out`=买出）与储备差吻合到 0.3%（残差为手续费与块内跨段）。**判据：任何 Swap 解码器上线前，先用「同窗口储备差」做符号对照 —— 对不上就是字序错了，不是市场反常。** 储备差是独立测量，永远可以否决解码器。

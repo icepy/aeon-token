@@ -3,7 +3,7 @@ title: Note Systems (NOTE)
 description: Note Systems NOTE 代币 —— Robinhood Chain (4663) 上的结构化票据协议治理/激励代币，合约、供应、持仓与解锁排程
 tags: [robinhood-chain, token, unlock, note-systems]
 resource: https://note.systems/
-timestamp: 2026-10-23T21:24:00Z
+timestamp: 2026-10-24T21:10:00Z
 ---
 
 # Note Systems (NOTE)
@@ -586,6 +586,59 @@ NOTE `$0.03991` · 1h −0.78% · 6h +0.77% · **24h −14.53%** · 流动性 $4
 **RH 公共 RPC 的 429 返回的是空结果，不是错误。** 扫描 owner 交易时连续得到 `found: []`，一度据此判断"窗口内无 owner 交易"；实际响应体是 `{"code":429,"message":"Rate Limit Hit, limit will reset in 60 seconds"}`，被脚本的 `.catch()` / `Promise.all` 静默吞掉。改用单笔 `eth_getLogs` topic 过滤 + 2 秒退避重试后，立刻拿到真实的 2 笔出账。
 
 → **在公共 RPC 上，"零结果"必须带 control 验活或重试确认，否则就是把限流读成静默。** 这是「Never trust a zero-log window」的又一个实例。并发扫描时尤其危险：`eth_getBlockByNumber` 逐块扫 9000 块必然触发。
+
+## 🔴 2026-10-24T20:23:22Z：owner 首次主动动仓 —— 180,000 NOTE 进 schedule #27（30 天线性）
+
+**这是整个 watch 历史里 owner EOA 第一次转账。** 在此之前它只有「领 vesting + 上膛到新钱包」两种动作，从未动过自己的余额。
+
+| 项 | 值 |
+|---|---|
+| tx | `0x376b62630bda9ab3d84a2c6305f04a3edb14620335404723da7a6110f6fc96fb` |
+| block | 97,036,621（RH 4663） |
+| 时间 | 2026-10-24T20:23:22Z |
+| selector | `0x091e7db9`（**4byte 无收录**，手动解码） |
+| 函数 | `createVestingSchedule` |
+| 受益人 | `0x32ac99bf97537ce8b181fc60bf91ba6900f6c40b` |
+| 金额 | **180,000.000000 NOTE** |
+| start | `1792873401` = 2026-10-24T20:23:21Z |
+| duration | `2592000` = **30 天线性** |
+| cliff | `5000` |
+| schedule id | **#27**（`ScheduleCreated` topic0 `0x8cd818b1…92af5`，sid 在 `topics[1]`） |
+
+**calldata 7 个 uint 词的解位**（无 ABI 时的通用手法）：
+`w0`=beneficiary(address) · `w1`=amount · `w2`=start · `w3`=cliff · `w4`=0 · `w5`=duration · `w6`=1
+与事件 `data` 的 6 个词逐位对齐验证（事件少了 beneficiary，它进了 `topics[2]`）—— **对齐成功才敢下结论**。
+
+**前序动作：** nonce 374 = `approve(vesting, 180,000)` tx `0x8339c10e…` blk 97,036,596；nonce 375 = 本次 create。**两笔构成完整意图，不是误操作。** owner nonce 374 → **376**。
+
+### 为什么判定「不是砸盘」
+
+1. **释放速率**：6,000 NOTE/天 ≈ **$256/天**。主池 24h 量 $102,753 → 占 **0.25%**。
+2. **受益人不卖**：`0x32ac99bf` 是**老受益人**，往期 4 笔 vesting 入账 81,948.19 + 14,013.31 + 9,863.56 + 4,200.44 = **110,025.51**，加今日 9,974.49 = **120,000.00，逐 wei 闭合**。**3,200 万块（≈35 天）全窗口零 NOTE 转出**（1,084 calls / 0 errs）。
+3. **砸盘存量未动**：owner 剩 630,000，三个上膛钱包 480,000 分毫未动（nonce 0 / ETH 0）。
+
+### ⚠️ 真正的信号：供给侧斜率
+
+| schedule | 数量 | 期限 | 日释放 |
+|---|---|---|---|
+| #25 | 600,000 | 30 天 | 20,000/天 |
+| #26 | 401,682.04 | 28.69 天 | 14,000/天 |
+| #27 | 180,000 | 30 天 | 6,000/天 |
+| **合计** | — | — | **~40,000/天** |
+
+**~$1,704/天 = 主池日成交量的 1.66%。** 关键差别：这**不需要 owner 做任何决策**，市场自己会持续接住这批供给。性质从「一次性砸盘风险」变成「持续小额派发」—— 砸盘扳机仍只在上膛钱包手上。
+
+### 同日 other events（本轮 watch 窗口）
+
+- **timelock**：12h 零事件，ANY topic，18/18 窗口。余额 14,054,442.020047 未变。
+- **vesting 三笔 Release**：sid7 6,337.40 → `0x274ce9da`（10:04:54Z）、sid22 9,974.49 → `0x32ac99bf`（18:42:42Z）。**`tx.from` = 受益人本人**，常规 claim，非 owner 提款。余额 1,776,028.866829 → **1,939,716.978969**，算术逐 wei 闭合（+180,000 − 6,337.397119 − 9,974.490741）。
+- **价格**：主池 `0x378b1023` **$0.042599**，liq $410,435，h1 −4.40% / h24 −3.37%，24h 量 $102,753。**$0.0438 上沿破而复失（现价 −2.7%），高点 $0.04657 回吐 −8.5%。** 10-24 12:00Z 判的「CONSOLIDATING 非 BREAKOUT」成立。
+
+## 取数踩坑（2026-10-24T21:0xZ）
+
+1. **RH 公共 RPC 不支持历史 `eth_call`**：`{"code":-32000,"message":"historical state … is not available"}`。只有 `latest` 能读。**24h 余额差额必须走 log 双向扫描**（进/出各扫一遍求和），不能用 block-pinned `balanceOf`。**Base 的 Tenderly 网关则支持任意历史块 `eth_call`** —— 两条链能力不对称，别互推。
+2. **`robinhoodchain.blockscout.com` 的 API 被 Cloudflare 「Just a moment」挡死**，拿 ABI 只能链上手动解 calldata（见上）。
+3. **4byte directory 对 `0x091e7db9` 无收录**，`text_signature=createVestingSchedule` 返回 53 个变体但都不含此签名 —— **不能靠 4byte 命名，只能靠参数结构 + 事件 data 对齐**。
 
 # Citations
 
