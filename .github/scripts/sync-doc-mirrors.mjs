@@ -12,6 +12,8 @@ const packs = JSON.parse(readFileSync(resolve(ROOT, 'catalog/packs.json'), 'utf8
 const total = packs.total_skills
 const maxPack = Math.max(0, ...packs.packs.map((p) => p.skills.length))
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+// packs.json stores each skill as {slug,...}; tolerate a bare string too.
+const slugOf = (s) => (typeof s === 'string' ? s : s?.slug)
 
 const FILES = [
   '.github/README.md',
@@ -41,7 +43,7 @@ if (existsSync(sp)) {
   let t = before
   for (const pack of packs.packs) {
     const name = esc(pack.name), key = esc(pack.key)
-    const slugs = pack.skills
+    const slugs = pack.skills.map(slugOf).filter(Boolean)
       .map((s) => existsSync(resolve(ROOT, 'docs/assets/skill-icons', `${s}.svg`))
         ? `<img src="assets/skill-icons/${s}.svg" width="14" height="14" align="top" alt=""> \`${s}\``
         : `\`${s}\``)
