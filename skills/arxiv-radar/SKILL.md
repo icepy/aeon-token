@@ -106,9 +106,28 @@ if os.path.exists(NAMES_FILE):
     known = [l.strip() for l in open(NAMES_FILE, encoding="utf-8")
              if l.strip() and not l.startswith("#")]
 
-CARRIER = ["deployed", "deployment", "mainnet", "testnet", "protocol",
-           "production", "open-source", "released", "blockchain", "network",
-           "token", "incentive", "marketplace", "validator", "miner"]
+# carrier 必须按词分域 —— 一组链上词会把「具身/机器人」整簇误杀。
+# 实证（90d）：20 篇 `embodied AI` / `robot data` 论文一个链上 carrier 都不含，
+# 而少数「幸存」的靠的是同形异义（token=GAP tokens、validator=validator-passed 环境）。
+CARRIER_BASE = ["deployed", "deployment", "mainnet", "testnet", "protocol",
+                "production", "open-source", "released", "blockchain", "network",
+                "token", "incentive", "marketplace", "validator", "miner"]
+# 机器人/具身数据域：数据采集、合成、仿真、遥操作 —— 与 XMAQUINA 叙事同轨
+CARRIER_ROBOT = ["robotic", "robot", "manipulation", "teleoperation", "simulation",
+                 "simulator", "dataset", "datasets", "real-world", "embodied",
+                 "sensor", "egocentric", "demonstration", "vla"]
+# 交易/MEV 域：市场微观结构，链上词常常不出现
+CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher"]
+
+# 词 → carrier 组。未列出的词走 CARRIER_BASE。
+CARRIER_BY_TERM = {
+    "embodied data": CARRIER_ROBOT,
+    "robot manipulation data": CARRIER_ROBOT,
+    "robot data": CARRIER_ROBOT,
+    "embodied AI": CARRIER_ROBOT,
+    "automated market maker": CARRIER_BASE + CARRIER_MARKET,
+    'cat:cs.CR AND ti:"MEV"': CARRIER_BASE + CARRIER_MARKET,
+}
 # 只对 title 判，且只留这两个：benchmark 是论文自称，不该丢
 EXCL = ["survey", "tutorial"]
 STOP = set("""a an the on of in for with from and or to at by as is are was were
@@ -147,8 +166,12 @@ def guess_name(title, summ, known):
 
 out, raw, newest = [], 0, ""
 drop = {"seen": 0, "excl": 0, "carrier": 0, "fail": 0}
+hit_ids = {}          # run 内判重；不要直接写 seen，否则跨词命中只记第一个词
+per_term = {}
 
 for term in TERMS:
+    # 每个词用自己域的 carrier，未列出的走 BASE
+    carrier = CARRIER_BY_TERM.get(term, CARRIER_BASE)
     # 已经是完整查询的直接用；否则套 ti:。names 模式额外加领域限缩。
     if term.startswith(("cat:", "ti:", "abs:", "all:")):
         q = term
@@ -184,16 +207,23 @@ for term in TERMS:
         if aid in seen:
             drop["seen"] += 1
             continue
+        if aid in hit_ids:
+            # 同一篇被第二个词命中：补记词，不重复收录
+            hit_ids[aid]["terms"].append(term)
+            drop["seen"] += 1
+            continue
         if any(x in title.lower() for x in EXCL):
             drop["excl"] += 1
             continue
-        if not any(c in blob for c in CARRIER):
+        if not any(c in blob for c in carrier):
             drop["carrier"] += 1
             continue
-        out.append({"term": term, "name": guess_name(title, summ, known), "title": title,
-                    "published": pub, "link": f"https://arxiv.org/abs/{aid}",
-                    "carrier": next(c for c in CARRIER if c in blob)})
-        seen[aid] = now.strftime("%Y-%m-%d")
+        rec = {"term": term, "terms": [term], "name": guess_name(title, summ, known),
+               "title": title, "published": pub, "link": f"https://arxiv.org/abs/{aid}",
+               "carrier": next(c for c in carrier if c in blob)}
+        out.append(rec)
+        hit_ids[aid] = rec
+        per_term[term] = per_term.get(term, 0) + 1
     time.sleep(3)
 
 out.sort(key=lambda c: c["published"], reverse=True)
@@ -202,11 +232,16 @@ print(f"扫 {len(TERMS)} 词 | 原始 {raw} | 幸存 {len(out)} | "
       f"carrier={drop['carrier']} fail={drop['fail']}", file=sys.stderr)
 print(f"窗口内最新收录日期: {newest or '(无)'}  ← 比今天早 3 天以上即索引滞后，不是零命中",
       file=sys.stderr)
+print("词表命中: " + " · ".join(f"{k}={v}" for k, v in
+      sorted(per_term.items(), key=lambda x: -x[1])), file=sys.stderr)
 for c in out[:25]:
-    print(f"  {c['published']} [{c['term']}] {c['title'][:85]}", file=sys.stderr)
+    print(f"  {c['published']} [{'+'.join(c['terms'])}] {c['title'][:85]}", file=sys.stderr)
 
-if not DRY and out:
-    json.dump(dict(list(seen.items())[-2000:]),
+# 只有真正入账的命中才 merge 进 seen，且 run 结束才写 —— 否则跨词命中会被短路
+if not DRY and hit_ids:
+    merged = {k: now.strftime("%Y-%m-%d") for k in hit_ids}
+    merged.update(seen)
+    json.dump(dict(list(merged.items())[-2000:]),
               open(SEEN, "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
 print(json.dumps(out, ensure_ascii=False, indent=1))
