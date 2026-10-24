@@ -1,0 +1,27 @@
+{
+ "label": "recent_33min",
+ "from": 53018773,
+ "to": 53019772,
+ "pools": {
+  "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa": {
+   "name": "deepest DEUS/VIRTUAL (aerodrome slipstream)",
+   "count": 0,
+   "logs": []
+  },
+  "0x58dBa34e6ee6eb76Ef71A6ca0f18871CAE817D3b": {
+   "name": "DEUS pool 2 (aerodrome)",
+   "count": 0,
+   "logs": []
+  },
+  "0x1B2f3f5C1B6037101FDD3EC14649E0d3F98fA642": {
+   "name": "DEUS pool 3 (aero)",
+   "count": 0,
+   "logs": []
+  },
+  "0x75bc14950Ab093cBd1f80BbbDf458596939180A3": {
+   "name": "DEUS pool 4 (aerodrome)",
+   "count": 0,
+   "logs": []
+  }
+ }
+}
