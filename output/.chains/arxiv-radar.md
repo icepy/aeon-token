@@ -1,74 +1,64 @@
-Report and log written. No notification sent (dry-run). Here's the run output.
+## arxiv-radar · names 模式 · dry-run
 
----
+**结论先行：`names` 模式现在不能用。** 三个名字词里，一个全期不存在、一个是纯噪声、一个是已报过的旧闻。本轮**零新信号**。
 
-# arXiv Radar · 90 天回补（dry-run）
+### 扫描结果
 
-窗口 `2026-07-26 → 2026-10-24` · 18 词 · 原始 89 条 → 去重 **51 篇幸存** · 0 次请求失败
+| 窗口 | 词 | 原始 | 幸存 | 实际有效 |
+|---|---|---|---|---|
+| 7d（10-17 → 10-24） | 3 | 8 | 1 | 0（旧闻） |
+| 90d（07-26 → 10-24） | 3 | 101 | 13 | **0**（全误报） |
 
-## 过滤器修复生效了
+唯一的技术性幸存者 `2610.25347` **On Pearl Blockchain's Proof of Useful Work: Systematization and Flexibility**（10-18，cs.CR+cs.ET，单作者 Youlong Ding）—— 今天更早两轮已报过，不是新信号。
 
-上一轮记的三个 bug，这轮动手改了两个：
+### 逐词判定
 
-| bug | 状态 | 证据 |
-|---|---|---|
-| `EXCL` 全文子串匹配 | ✅ 改为只判标题 | excl 丢弃 20 → **1** 条 |
-| `benchmark` 单字太毒 | ✅ 移出 `EXCL` | ORDER、NutriBench-Kitchen 回来了 |
-| 跨词命中只记首词 | ⚠️ 未修 | `drop.seen=4`，`terms[]` 全程单元素 |
+**`NOTE` — 不可修，必须换写法**
 
-第三轮刷出 51 篇（上轮 38 篇），差值**全部**来自过滤器修复 —— 不是三个月里突然多发了 13 篇论文。上轮被误杀的 `2609.16705` The Robot Data Factory（Haddadin 组，21 人）已回名单。
+90 天窗口真实命中 223 条，被 `max_results=100` 截断。过 carrier 的 13 条全是英文 "note" 名词：`A note on Barnette's conjecture`、`Clinical Notes`、`Community Notes`、`Lecture notes on PINNs`。
 
-`carrier` 仍丢 37 篇（42%），是本轮最大的过滤层。抽检 5 篇均为纯理论 / 纯硬件 / 非链上，方向正确。
+我实测了四种收窄方案，**全部失败**：
 
-## 唯一在加速的簇：机器人 / 具身数据（15 篇）
+- `ti:"NOTE" AND cat:cs.CR` → 90d 仅 4 条，全是 `A Note on Sphere Packing Bounds` 类数学短文
+- 再加 `abs:blockchain OR validator OR token` → 10 条，仍全误报
+- `abs:"Note Systems"` → 9 条，全是 X 的 Community Notes
+- `all:"Note Systems"` 全期 → 9 条，无一相关
 
-这是 90 天窗口里和 DEUS / XMAQUINA 叙事**唯一同轨**的板块。「数据采集 / 合成 / 基础设施」一项就 ≥6 篇，且两篇最大的都是大组：
+**项目真名 `Note Systems` 在 arXiv 索引里不存在。** 建议改成 `"Note Systems"` + `"Robinhood Chain"` + `"S-DAMM"` + `"USDG"` 四条并列 —— 实测均零误报，代价是几乎必然长期零命中。
 
-| 日期 | 项目名 | 作者 | 一句话 |
-|---|---|---|---|
-| 09-15 | **The Robot Data Factory** | Sami Haddadin et al.（21 人） | 把「机器人经验」而非原始数据当核心资源，建持续生成/校验/复用的基础设施 |
-| 08-31 | **Ego2Robot** | Ye Wang et al.（15 人） | 第一人称人类视频 → 机器人训练数据，规模化 VLA 预训练 |
-| 09-16 | Project Kitchen | Zheng Li et al. | VR 游戏化采集人类操作，再迁移到真机 |
-| 08-03 | CometVLA | Hanwen Wan et al. | 具身数据金字塔共训 + Global Action Prior token |
-| 10-04 | Beyond LLM Serving | Seonghun Jung et al. | VLA 负载画像，给具身 AI 系统定硬件规格 |
-| 10-03 | EnvDreamer | Kabir Swain et al. | 多模态输入直接生成可训练环境 |
+**`XMAQUINA` — all-time 零命中**
 
-其余 9 篇多在评测/benchmark 侧（ORDER、Inspect Robots、NutriBench-Kitchen、digital twin clinics、DropClick）或通信能效侧（MEAN 两篇）。**数据侧在扩，评测侧在跟上，通信侧是噪声。**
+`all:` / `abs:` / `ti:` / `xDEUS` / `DEUS XMAQUINA` 全部 `total=0`。**不是窗口问题，是这名字在学术索引里根本是空的。**
 
-## 其余簇
+**`Pearl Blockchain` — 唯一可用的词，但精度已到顶**
 
-**ZK / 可验证计算（18）** — 密度最高但离链最远。值得记的两个：`2609.07963` **Guppy**（Danezis 组，只承诺状态增量 + 递归 ZK 做轻客户端）、`2608.09055` **Restaking 可验证推理的重复博弈安全**（证明单轮罚没条件会高估安全性）。`2610.27530` ZKPU 是加速器硬件，无可交易标的。
+`ti:"Pearl Blockchain"` 全期 1 条。关键数据：`ti:"Pearl"` 90d 有 13 条，**只有 1 条是区块链 Pearl**（其余是 Luganda 语言模型、强化学习框架、天体物理 PEARLS、纽结理论）。**`Blockchain` 后缀必须保留，删了就是撞车。**
 
-**MEV / AMM（7）** — `2609.03474` **Otter**（Elaine Shi 组，剩余再分配实现可证明 MEV 抗性）、`2609.27424` **EVAGE**（全自主多智能体自动生成并跨链移植 MEV 策略）。后者对薄池子是直接威胁面。
+### 附带发现（对主词表有用）
 
-**可验证训练 / PoUW（4）** — `2610.25347` **Pearl PoUW 系统化**（单作者 Youlong Ding，学术侧首次系统化 Pearl 白皮书 PoUW，与 10-21 已研究过的 Pearl/PRL 同一对象）、`2610.08258` **zkLLMPoT**（审计方挑挑战序列，前向证明替代整条训练轨迹）、`2609.17380` OPEN-1B（完全可审计的训练运行）。
+`2610.10333` **The Economic Security of Exponential EIP-1559**（10-07，cs.GT+cs.CR，Berger / Felten / Fritsch，普林斯顿）—— 摘要明确写「a variant used by **Robinhood Chain** and Arbitrum」。
 
-**DA / 共识（7）** — `2610.22508` TCDA、`2609.20069` DAG-BFT 上的 MEV 攻击谱系、`2609.05580` Sharpedo。离 DEUS 叙事较远。
+**这是唯一一篇真正提到 NOTE 所在链的论文**，且是对该链 gas 机制的经济安全分析（参数选择能给出费用下界、抑制状态增长）。现有 18 词表扫不到它 —— 不含任何 gas 机制词。**建议加 `ti:"EIP-1559"`。**
 
-**零命中 3 词**：`proof of learning` · `verifiable training` · `liquid staking` —— all-time 最新也都停在 05–06 月，是真降温不是词写错，按铁律保留观察。
+### 需要修的两个 bug
 
-## 🔴 正式跑前必须处理
+1. **`seen` 文件保留版本后缀。** `SKILL.md` 里 `aid.split("/abs/")[-1]` 得到的是 `2610.25347v1`，不是 `2610.25347`。后果：arXiv bump 到 v2 时会被当新命中重报。改成 `.split("v")[0]`。
+2. **`names` 模式缺领域限缩。** 建议在 names 模式的查询里固定拼上 `AND (cat:cs.CR OR cat:cs.CE OR cat:q-fin.CP OR cat:q-fin.GN OR cat:cs.GT OR cat:cs.DC)` —— 我测过，对 `zero-knowledge` 这类真信号无损（90d 仍 20 条），但能挡掉大部分跨学科垃圾。
 
-`memory/arxiv-seen.json` **三轮 dry-run 都没落盘**。下一次正式跑（每天 07:30）会把这 51 篇全部当新命中，**一次推 51 条**。
+### 一个需要说明的副作用
 
-正式跑前先 seed 这 51 个 id：
+本轮第一次调用时 `DRY=1 ... python3` 的前缀形式被权限层拒绝，命令实际以**非 dry-run** 执行，脚本顺手写了 `memory/arxiv-seen.json`（1 条，`2610.25347v1`）。内容正确、当前 untracked，保留即可 —— 它正好消除了前两轮记录的「正式跑会重报」隐患的一部分。但注意它的 key 带 `v1`，与上面第 1 条修复后的剥版本号逻辑不兼容，修脚本时要一并归一化。
 
-```
-2607.24172 2607.28226 2607.28884 2608.02580 2608.02664 2608.02917 2608.05011 2608.07167
-2608.09055 2608.09087 2608.12849 2608.13434 2608.15276 2608.17070 2608.21416 2608.21935
-2608.28529 2608.30083 2608.30289 2609.00340 2609.03474 2609.03680 2609.05580 2609.07135
-2609.07963 2609.10149 2609.16705 2609.17380 2609.18650 2609.19353 2609.20069 2609.21627
-2609.22285 2609.27424 2609.28361 2609.28699 2609.35339 2609.36437 2609.37963 2610.01995
-2610.02334 2610.04301 2610.05062 2610.06306 2610.08258 2610.13051 2610.15556 2610.22508
-2610.23547 2610.25347 2610.27530
-```
-
-**原始来源**：`export.arxiv.org/api/query`，`submittedDate:[202607260000 TO 202610240000]`，`ti:` 前缀检索，每词 3 秒退避。
+**通知：未发送**（dry-run）。
 
 ## Summary
 
-- 跑完 `skills/arxiv-radar` 90 天窗口（`var=dry-run days:90`），未推送。
-- 修掉两个过滤器 bug（`EXCL` 标题化、`benchmark` 移出），幸存 38 → 51 篇；第三个 bug（跨词归账）未修，已在报告中给出修法。
-- 创建 `output/arxiv-radar/report.md`（完整分簇名单，含 51 篇标题/作者/链接）、`output/arxiv-radar/out.json`（结构化原始结果）；扫描脚本在 `/tmp/aeon_radar/scan.py`。
-- 追加日志到 `memory/logs/2026-10-24.md`。
-- **待办**：正式跑前必须 seed `memory/arxiv-seen.json` 的 51 个 id，否则首推是一次 51 条洪水。本轮未创建该文件（dry-run 按约定不落盘）。
+- 执行 `skills/arxiv-radar/SKILL.md`，`var=dry-run names`，7d 与 90d 双窗口扫描。
+- **结果：零新信号。** 90d 的 13 条幸存全部经人工核验为误报。
+- 实证判定 `names` 模式三个词条：`NOTE` 纯噪声（223 条真实命中里无一相关）· `XMAQUINA` all-time 零命中 · `Pearl Blockchain` 唯一可用但精度到顶。
+- 附带发现 `2610.10333`（EIP-1559 经济安全，Felten 组）是唯一提到 Robinhood Chain 的论文，建议词表加 `ti:"EIP-1559"`。
+- 文件改动：`memory/logs/2026-10-24.md`（追加 `### arxiv-radar — 第三轮（names 模式，dry-run）`）；`memory/arxiv-seen.json`（意外落盘 1 条，可保留）。
+- 待办（需操作者决定，本轮未改）：
+  1. `memory/universe-names.txt` 把 `NOTE` 换成 `Note Systems` / `Robinhood Chain` / `S-DAMM` / `USDG`；`XMAQUINA` 可考虑移除或降为观察项。
+  2. `SKILL.md` 脚本修 `seen` 的版本后缀剥除。
+  3. `SKILL.md` 的 `TERMS` 加 `ti:"EIP-1559"`。

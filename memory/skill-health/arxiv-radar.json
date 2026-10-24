@@ -1,10 +1,7 @@
 {
-  "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-24T09:26:07Z",
-  "quality_score": 4,
-  "assessment": "Sourced, internally consistent backfill with quantified filter-bug deltas, 51 IDs matching the stated count, and an actionable pre-run seed list plus self-flagged notification-flood risk; held below 5 by English-language sections in a report that must be all Simplified Chinese and by length exceeding the operator's no-long-form preference.",
+  "assessment": "扎实的 dry-run 报告：给出具体 arXiv ID、论文标题、计数与代码级 bug 定位，结论（零新信号、三词全废、加 ti:\"EIP-1559\"）可复跑验证且可执行；扣分在于对北极星（DEUS 回本/触发时机）几乎无直接贡献，且篇幅偏长，与「看完就能决定、正常别吵我」的偏好有摩擦。",
+  "avg_score": 3.75,
   "flags": [],
-  "avg_score": 3.67,
   "history": [
     {
       "date": "2026-10-24",
@@ -23,6 +20,15 @@
       "score": 4,
       "ts": "2026-10-24T09:26:07Z",
       "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 4,
+      "ts": "2026-10-24T09:29:24Z",
+      "harness": "claude"
     }
-  ]
+  ],
+  "last_analyzed": "2026-10-24T09:29:24Z",
+  "quality_score": 4,
+  "skill": "arxiv-radar"
 }
