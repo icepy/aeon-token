@@ -1,10 +1,12 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-24T09:51:55Z",
+  "last_analyzed": "2026-10-24T10:23:33Z",
   "quality_score": 3,
-  "assessment": "Solid dry-run scan: 20 terms, source cited (arXiv API endpoint + query), honest bug-fix disclosure (corrupted seen.json / cross-term dedup) and index-delay caveat. But paper IDs/authors/abstract claims are not independently verifiable, and the report has little bearing on the DEUS north-star or price-trigger priorities, while running long against the 'no long text' rule — adequate, not decisive.",
-  "flags": [],
-  "avg_score": 3.6,
+  "assessment": "Substantive and honest zero-result report with a real diagnosed bug, verification numbers, and a PR link, but it pushes a long dev-log that no trigger justified, against the operator's 'don't ping me unless triggered' and 'no long posts' rules, and its '0 new papers' conclusion rests on an index stalled at 10-22.",
+  "flags": [
+    "stale_data"
+  ],
+  "avg_score": 3.5,
   "history": [
     {
       "date": "2026-10-24",
@@ -34,6 +36,12 @@
       "date": "2026-10-24",
       "score": 3,
       "ts": "2026-10-24T09:51:55Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 3,
+      "ts": "2026-10-24T10:23:33Z",
       "harness": "claude"
     }
   ]
