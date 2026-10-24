@@ -1,44 +1,43 @@
-🚨 🔴 NOTE 解锁后 owner 又上膛 15 万 · 待命合计 29 万
+## Heartbeat · 环境巡检 (mode: ambient)
 
-## 🔴 NOTE：owner 解锁后又上膛 150,000
+**判定：🟢 OK — 无事需上报，未推送。**
 
-**09:57:36Z 解锁刚执行完，owner 在 10:25:06Z 就把 150,000 NOTE 打进一个全新空钱包。**
+### P0 · 失败与卡死
 
-- 新钱包 `0x3a9039c7…119f35e`：**ETH 0 / nonce 0 / 持 150,000 / 零出账**
-- 与 10-22（10万、5万）、10-23 09:50Z（9万）**完全同构** —— 都是先给币、后充 gas
-- **扳机仍是「第一笔 ETH 入账」**，不是转账本身。无 gas 就卖不了。
-- ≈$5,948，是 24h 量 $575,180 的 1.0%
-## 但 owner 这一轮不是单纯在备货
+| Skill | 上次运行 | 状态 | 成功率 | 连续失败 |
+|---|---|---|---|---|
+| price-alert | 10-24 07:10Z | ✅ | 90% (55/61) | 0 |
+| memory-flush | 10-24 00:19Z | ✅ | 67% (4/6) | 0 |
+| onchain-monitor | 10-23 21:30Z | ✅ | 69% (9/13) | 0 |
+| token-movers | 10-23 13:10Z | ✅ | 100% (2/2) | 0 |
+| defi-overview | 10-23 12:16Z | ✅ | 100% (1/1) | 0 |
+| heartbeat | 10-23 10:38Z | ✅ | 78% (7/9) | 0 |
 
-10:00:35Z 解锁拿到 1,200,000 之后，owner 做了三件事：
+六个 cron skill 全部在各自调度区间内有过 success。无 `last_status: failed`，无 `dispatched` >45min 的卡死项（heartbeat 自身在飞条目按自引用规则排除），无 `consecutive_failures ≥ 3`，无 chronic（`success_rate < 0.5` 且 `total_runs ≥ 5`）。Self-check：heartbeat 距上次 success 21.4h，在 36h 线内 —— 它的 78% 是 10-21 网关故障的两笔，不是技能本身的问题。
 
-1. **10:15:50Z 把 401,682 NOTE 重新锁回 vesting**（schedule id 26，selector `0x091e7db9`，start 10-22T18:33:25Z，period 2,478,952s ≈ 28.7 天）—— 注意用的是**上一轮的 start 时间**，等于把已解锁的额度重新变成 claim 制配额。受益人写的是 `0x2807de7a`（历史遗留地址，余额 0、nonce 0、从未动过）。
-2. **10:25:06Z 转 150,000 到新空钱包**（上膛）。
-3. 余额 1,481,682 → **930,000**，nonce 370→373。
+### P3 · 调度缺口
 
-**判读：** 1.2M 解锁里约 55 万已处置 —— 40.2 万回锁 vesting + 15 万上膛，owner 手上留 **930,000 ≈ $36,875**。回锁那 401,682 若是真线性释放，每天约 14,000 NOTE ≈ 日量 2.4%。**但这是 calldata 推算：schedule 25 当初也被同样推算成"每天 2 万"，后来证实是 claim 制、不 claim 就不流。在观察到真实 `release` 事件前，不把它计成供给压力。**
+- `token-movers` / `defi-overview` 已于 10-23 12:00Z 首跑 —— **昨日状态页的 `not yet run` 已消解**。
+- `unlock-monitor` 仍 `not yet run`，属正常：cron 是**周一 10:00Z**，首个时隙 2026-10-26，仍在首个调度窗口内。
+- 三个 `workflow_dispatch` skill（`investigation-report` / `tx-explain` / `sc-audit`）无 cron 区间可缺席。
 
-## 待命供给合计
+### P1/P2
 
-| 钱包 | NOTE | 状态 |
-|---|---|---|
-| 上膛5 `0x572bb527`（09:50Z） | 90,000 | ETH 0 / nonce 0 |
-| 上膛6 `0x3a9039c7`（10:25Z） | 150,000 | ETH 0 / nonce 0 |
-| 上膛4 `0xe4bf6f7e`（10-22） | 50,000 | **有 gas** / nonce 0 |
-| **合计** | **290,000** | ≈$11,499 |
+- **无 open PR**（`gh pr list` 返回 `[]`）。
+- GitHub 三个 open issue 全是 10-21 网关故障留下的机器健康线程（#3 `health: price-alert`、#4 `health: onchain-monitor`、#5 `health: memory-flush`），**无 label、无 critical/high，三个底层 skill 此后均已成功**。不计入 findings，也不翻红页面。
+- MEMORY.md 无过期待跟进标记。
 
-owner 自持 930,000 ≈ $36,875。
+### 状态页
 
-## 市场：还没动
+重写 `docs/status.md`：**🟢 OK**，6 个已跑 skill 按时间倒序，`unlock-monitor` 与三个 on-demand 列 `not yet run` 并注明原因；Open issues 段按 `memory/issues/INDEX.md`（无 open 行）如实写「No open issues」，正文另行说明 GitHub 上那三条未关闭线程及其不影响判决的依据。
 
-- NOTE **$0.03965** · h1 **+10.7%** · h6 +0.17% · 24h −12.46% · 流动性 $404,001 · 24h 量 $571,002
-- 上膛动作后 PoolManager 只进 22,250 NOTE（10 笔）—— 是既有碎单，不是这批 29 万
-- **09:30Z 那笔 $15,166 是 `0xd692e8e0` 的套利来回**（09:29:47 卖 $15,072 → 09:30:27 买 $15,166，同一钱包 40 秒对冲），不是方向性买盘
-- DEUS **$0.01734** · h1 −0.25% · 24h −2.52% · 流动性 $673,982。四门槛未触及：$0.012 −30.8% · $0.025 +44.2% · $0.032 +84.5% · $0.041 +136.4%
+Token pulse 取 `output/articles/token-report-2026-10-23.md`：**NOTE $0.04002 / 24h −2.1% / liq $401.8K / vol 24h $550.6K / FDV $2.41M**，verdict `CONSOLIDATING`。该报告为 10-23 数据，距生成时刻约 20h，未满 24h 故照常渲染 —— **明日同一时隙将超 24h，届时须按 staleness 规则改为「No recent token data」，不得再把这两天的数字挂上去。**
 
-## 下一步
+## Summary
 
-盯 **`0x3a9039c7` 的 ETH 由 0 变正**（比盯 nonce 更早），和 `0x572bb527` 同样。任一钱包开始动，第一次扫描是 **21:00Z**——距离现在约 10.5 小时。
-
----
-来源：RH RPC `rpc.mainnet.chain.robinhood.com`（`eth_getLogs` topic 过滤 + `eth_call balanceOf`）· GeckoTerminal NOTE/WETH 池 `0x378b102395b2c4f9…9f91` · DexScreener DEUS
+- 分支：`ambient`（`${var}` 为空，走 LIVE 调度路径）
+- 检查：P0 六项全绿 · P1 无 PR、3 条低危机器 issue · P2 无跟进项 · P3 无真实缺口
+- 修改文件：`docs/status.md`（整体重写，verdict 🟢 OK）、`memory/logs/2026-10-24.md`（追加 `### heartbeat` 条目）
+- 通知：**未发送** —— 无 finding 需上报，符合「正常别吵我」
+- 结论：`HEARTBEAT_OK · STATUS_PAGE=OK`
+- 跟进动作：无。唯一提醒已写进日志 —— 10-24 报告缺失，明日 heartbeat 运行时 token-report 数据将超 24h，需走 staleness 分支。
