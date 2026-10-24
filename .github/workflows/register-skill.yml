@@ -1,0 +1,65 @@
+name: register-skill
+
+# You write skills/<slug>/SKILL.md (and its one glyph line). This workflow does
+# everything else a new skill needs — catalogs, icons, eyebrowlock, the
+# README/docs mirrors — and commits the result back to the same branch.
+
+on:
+  push:
+    paths:
+      - 'skills/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: register-skill-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  register:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Regenerate catalogs + icons
+        run: |
+          ./bin/generate-skills-json
+          ./bin/generate-packs-json
+          node bin/generate-skill-icons
+
+      - name: Sync README/docs mirrors
+        run: node .github/scripts/sync-doc-mirrors.mjs
+
+      - name: Refresh the eyebrow lockfile
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/alexverify/eyebrow/main/install.sh | sh
+          export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+          eyebrow scan --path . --lockfile eyebrowlock.json
+
+      - name: Verify before committing
+        run: |
+          node scripts/validate-readme-catalog.mjs
+          node scripts/validate-config.js
+
+      - name: Commit + push
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- catalog eyebrowlock.json docs apps/dashboard/lib/skill-icons.data.ts .github/README.md
+          git diff --cached --quiet && { echo 'nothing to register'; exit 0; }
+          git commit -m 'chore(catalog): register new skill(s)'
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
+
+      - name: Re-run the gates on the new commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for wf in ci-skills-json ci-packs-json ci-skill-category ci-readme-catalog ci-skill-integrity ci-tests; do
+            gh workflow run "$wf.yml" --ref "${GITHUB_REF_NAME}" || true
+          done
