@@ -1,64 +1,70 @@
-# arXiv Radar · 7 天窗（dry-run）
+# arXiv Radar — 90 天回补（dry-run）
 
-窗口 `2026-10-17 → 2026-10-24` · 20 个词 · 原始 **5** 条 → 去重幸存 **3 篇** · 失败 0
-过滤器：`ti:` only · EXCL 只判标题 · carrier 丢 2 篇
+**窗口** `2026-07-26 → 2026-10-24` · 20 词 · 原始 91 · 幸存 **22** · 失败 0
+`carrier` 丢 11 · `excl` 丢 1 · `seen` 命中 57
 
-## 幸存者
+> 索引滞后：窗口内最新收录 **2026-10-22**。按日计数 `cs.CR` 10-21=38 / 10-22=30 / **10-23=0 / 10-24=0**，`cs.RO` 同形（70 / 57 / 0 / 0）—— 全局收录延迟，不是无人投稿。
 
-### 可验证训练 / PoUW（1）
+---
 
-| 日期 | 名字 | 一句话 | 链接 |
-|---|---|---|---|
-| 10-18 | **Pearl PoUW 系统化** | 对 Pearl 白皮书 PoUW 做敏感度刻画，替代 Jackpot 策略，并给矿工自选噪声幅度 | https://arxiv.org/abs/2610.25347 |
+## 机器人 / 具身数据（20 篇）
 
-单作者 Youlong Ding · cs.CR + cs.ET · carrier=`blockchain`。**今日更早两轮已报过，非新命中。**
-
-### ZK / 可验证计算（1）
+与 DEUS / XMAQUINA 叙事同轨的唯一板块。其中「数据采集 / 合成 / 仿真基础设施」占 11 篇。
 
 | 日期 | 名字 | 一句话 | 链接 |
 |---|---|---|---|
-| 10-20 | **ZKPU** | 面向 ZKP 异构负载的专用加速器，FIPS Montgomery × 可重构 Twin Systolic Fabric，同时覆盖曲线系与哈希系 | https://arxiv.org/abs/2610.27530 |
+| 10-08 | StereoEngine | 不用立体相机也能合成双目双臂机器人数据 | https://arxiv.org/abs/2610.12734 |
+| 10-06 | EmbodiedSmith | 仿真里的递归自我改进飞轮，用来扩具身数据 | https://arxiv.org/abs/2610.07969 |
+| 10-01 | NEEDLEWORK | 离线重写机器人数据，把不可用轨迹局部缝合 | https://arxiv.org/abs/2610.02339 |
+| 09-28 | SkillWeaver | agentic 探索替代遥操作，规模化生成机器人数据 | https://arxiv.org/abs/2609.36171 |
+| 09-23 | Listening and Mirroring | 言语调谐与行为模仿如何影响具身 AI 的社交感知 | https://arxiv.org/abs/2609.27246 |
+| 09-22 | PhyVisGen | 物理与视觉双高保真的操作数据生成（软夹爪） | https://arxiv.org/abs/2609.25653 |
+| 09-21 | ARSTAG | 一张 RGB + 一句自然语言 → 任务专属 Real2Sim2Real | https://arxiv.org/abs/2609.24563 |
+| 09-21 | Uranus | 面向具身 AI 的下一代仿真基础设施，数据驱动自回归扩散 | https://arxiv.org/abs/2609.24815 |
+| 09-20 | Identity Continuity | 长期具身 AI 关系中的身份连续性 | https://arxiv.org/abs/2609.23356 |
+| 09-16 | UMI-Bridge | 人类与机器人操作数据的动作锚定潜空间对齐 | https://arxiv.org/abs/2609.18232 |
+| 09-13 | OJOx | 建筑场景具身 AI 的规格条件化演示 | https://arxiv.org/abs/2609.22289 |
+| 09-10 | Organizational Principles | 用人类组织理论编排具身 AI 多智能体 | https://arxiv.org/abs/2609.11737 |
+| 09-05 | IM-ENGINE | 用图像编辑生成具身数据 | https://arxiv.org/abs/2609.06279 |
+| 08-28 | When Robots Mishear Us | 语音识别错误如何让具身 AI 执行危险指令 | https://arxiv.org/abs/2608.28518 |
+| 08-22 | GuardianBench | 固定场景、只换指令的潜在情境风险基准 | https://arxiv.org/abs/2608.21928 |
+| 08-19 | Vision-Language Models for Egocentric Video | 第一视角视频的 VLM 能力盘点 | https://arxiv.org/abs/2608.18671 |
+| 08-15 | GUIDER | 遥操作操作中无目标人类意图推理的实测评估 | https://arxiv.org/abs/2608.15446 |
+| 08-05 | Deltoris | 位级稀疏 + 推测推理，让 VLA 在边缘实时跑 | https://arxiv.org/abs/2608.04428 |
+| 07-30 | ACE-Data-0 | 以人为中心的环境采集作为具身数据引擎（16 人） | https://arxiv.org/abs/2607.28625 |
+| 07-30 | Policy-Level Recursive Self-Improvement | 临界性世界模型指导场景采集的策略级自改进 | https://arxiv.org/abs/2607.28251 |
 
-11 人（Jonathan Ku / Changchun Zhou / Jiawen Wu 等）· cs.AR（硬件，非链上）· carrier=`protocol`。**今日更早轮次已报过，非新命中。**
-
-### 费用机制 / EIP-1559（1）— 本轮唯一新命中
+## MEV / AMM（2 篇）
 
 | 日期 | 名字 | 一句话 | 链接 |
 |---|---|---|---|
-| 10-22 | **TLM（Temporal Liquidity Markets）** | EIP-1559 扩展：让「要早位」和「愿意让位」的双方交叉撮合，provider 可被收进 base fee 以下，base fee 全额燃烧不变 | https://arxiv.org/abs/2610.30595 |
+| 09-15 | When AI Agents Meet MEV | AI agent 当搜索者的跨链套利，用 Base 23,000 笔 V3 成交实证 | https://arxiv.org/abs/2609.17897 |
+| 08-13 | Slow and Steady | 可验证延迟防 MEV：拜占庭与博弈两类正结果 + 负界 | https://arxiv.org/abs/2608.13271 |
 
-单作者 Duanyang Dan Guo · cs.GT + cs.CR + cs.DC · carrier=`blockchain`。
-摘要里只点名 Ethereum，**没有提 Robinhood Chain / Base / Arbitrum / L2** —— 是 block-local 的 L1 费用机制改进，不是 L2 方案。
+---
 
-## 词表命中（本轮口径）
+## 本轮的两件实事
 
-`ti:"EIP-1559"`=1 · `zero-knowledge`=1 · `proof-of-useful-work`=1
+### 1. carrier 又漏了一篇 —— 已修
 
-零命中 17 个：`verifiable inference` · `light client` · `proof of training` · `proof of learning` · `verifiable training` · `auditable training` · `data availability sampling` · `restaking` · `automated market maker` · `consensus protocol` · `cat:cs.CR AND ti:"MEV"` · `liquid staking` · `embodied data` · `robot manipulation data` · `robot data` · `embodied AI` · `ti:"Robinhood Chain"`
+`2608.13271` Slow and Steady 是正经 MEV 防御论文，但全篇只写 **"distributed ledger" / "block creator"**，不出现 `blockchain` / `token` / `validator` / `deploy`。原 `CARRIER_MARKET` 六个词（arbitrage/swap/liquidity/order flow/searcher）一个都不含 → 被静默丢弃。
 
-> 这是 **7 天窗** 的正常形状，不是词表坏了：90 天窗同表有 51 篇，其中 `embodied AI` 21、`zero-knowledge` 28。短窗里机器人簇归零是投稿节奏，不是话题死。
+- **实证范围**：`amk` + `MEV` + `consensus protocol` + `restaking` 四词 90 天窗，追加 8 个 ledger 系词后**只多捞 1 篇（就是它），零噪声**。
+- **改法**（已在 `skills/arxiv-radar/SKILL.md`）：`CARRIER_MARKET` 追加 `ledger` / `ledgers` / `block creator` / `block builder` / `block proposer` / `transaction ordering` / `on-chain` / `state transition`。
+- **效果**：幸存 21 → **22**，carrier 丢弃 12 → **11**。ZK 域未动（放宽会引噪，前轮已验证）。
 
-## 被 carrier 丢弃（2，抽检方向正确）
+### 2. 🔴 `arxiv-seen.json` 缺 90 天机器人存量 —— 下次正式 90d 跑会一次推 22 条
 
-| id | 标题 | 丢弃理由 |
-|---|---|---|
-| `2610.29066` | Zero Knowledge for Free up to Linear Query Bounds | 纯复杂度理论，无部署/系统载体 |
-| `2610.27452` | SRE: Accelerating Zero-Knowledge Proofs via Scalar Redundancy Elimination | 纯硬件加速 |
+`memory/arxiv-seen.json` 现有 53 个 id，全部是**修 carrier 之前**那批 ZK / 理论论文。第五轮正式跑用的是 **7 天窗**，`hit_ids` 为空，写盘分支跳过 —— **carrier 修好后新解锁的 21 篇机器人论文因此从未落盘**。
 
-## 索引状态
+- 验证：21 篇 survivor **无一**在 `seen` 里（逐个 `in seen` 检查，命中 0）。
+- 后果：任何未来的 `days:90` 正式跑都会把这 22 篇当新命中重新推送一次。
+- **建议**：正式 90 天跑之前，先用本报告的 22 个 id seed `memory/arxiv-seen.json`（dry-run 不写盘，故本轮未落）。
 
-窗口内最新收录 **2026-10-22**，距今天 2 天。10-23 / 10-24 两天 0 条 —— 与 10-24 早先两轮观测一致，属收录延迟，**不是无人投稿**（该异常已在前轮自愈过一次）。
+### 过滤器健康度
 
-## 本轮修掉的一个真问题
+- `excl` 仅丢 1 篇，且正确：`2610.14038` "From bits to atoms: A survey of cross-layer safety in Embodied AI" —— 真综述。
+- `2608.18671` 标题不含 survey/tutorial 但读起来像综述，下一轮可核 arXiv `comment` 字段确认。
+- 零命中 15 词：`proof-of-useful-work`、`verifiable inference`、`light client`、`proof of training`、`proof of learning`、`verifiable training`、`auditable training`、`data availability sampling`、`restaking`、`consensus protocol`、`liquid staking`、`automated market maker`、`zero-knowledge`、`ti:"EIP-1559"`、`ti:"Robinhood Chain"`。按铁律「零命中不等于废词」**保留不删** —— 90 天窗下 `restaking` 全期仍有 1 篇（`2608.09055`），已在此前轮次处理过。
 
-`memory/arxiv-seen.json` **内容是失控的 heredoc 源码，不是 JSON** —— 10-24 上一次「seed 51 个 id」把 `python3 - <<'PY'` 整段写进了文件却没执行。后果：`json.load` 抛异常 → 去重表被当成空表 → 本轮 `seen=0`，51 篇存量全部重新暴露（也正是 ZKPU / Pearl 两篇被重报的原因）。
-
-已修复：文件现在是合法 JSON，**53 个 id**（51 篇 90 天存量 + `2610.10333` + 本轮新命中 `2610.30595`），全部已归一化去掉版本后缀。校验 `json.load` 通过。
-
-## 未修的 skill 内 bug
-
-`skills/arxiv-radar/SKILL.md` 的脚本**在扫描循环里就往 `seen` 写 id**（`seen[aid] = now...`），导致同一篇被第二个词命中时被当成「已见」短路 —— 跨词命中只记第一个词。本轮改用 run 内独立 `hit_ids` 判重、run 结束才合并 `seen`，`terms[]` 可完整累积。
-
-## 原始来源
-
-`export.arxiv.org/api/query` · `submittedDate:[202610170000 TO 202610240000]` · 扫描实现见 `output/arxiv-radar/scan.py`
+**通知：未发送**（dry-run，且按策略只有正式跑才推）。
