@@ -8,6 +8,8 @@ on:
   push:
     paths:
       - 'skills/**'
+      - '.github/scripts/sync-doc-mirrors.mjs'
+      - '.github/workflows/register-skill.yml'
   workflow_dispatch:
 
 permissions:
@@ -25,11 +27,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: ${{ github.ref_name }}
+          fetch-depth: 0            # bin/generate-skills-json 用 git log --follow 取 sha
 
       - name: Regenerate catalogs + icons
         run: |
-          ./bin/generate-skills-json
-          ./bin/generate-packs-json
+          bash bin/generate-skills-json
+          bash bin/generate-packs-json
           node bin/generate-skill-icons
 
       - name: Sync README/docs mirrors
@@ -39,6 +42,7 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/alexverify/eyebrow/main/install.sh | sh
           export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+          command -v eyebrow || { echo '::error::eyebrow not on PATH'; find "$HOME" -maxdepth 4 -name eyebrow -type f; exit 1; }
           eyebrow scan --path . --lockfile eyebrowlock.json
 
       - name: Verify before committing
@@ -54,7 +58,7 @@ jobs:
           git diff --cached --quiet && { echo 'nothing to register'; exit 0; }
           git commit -m 'chore(catalog): register new skill(s)'
           git pull --rebase origin "${GITHUB_REF_NAME}"
-          git push
+          git push origin "HEAD:refs/heads/${GITHUB_REF_NAME}"
 
       - name: Re-run the gates on the new commit
         env:
