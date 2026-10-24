@@ -28,7 +28,7 @@ metadata:
 - **只用 `ti:`。** arXiv 的 `abs:` 是松散匹配（`abs:"MEV"` 会命中兆电子伏特）。绕不开时用 `cat:` 约束整条查询。
 - **写长短语，不写单词。** 单词必然撞别的学科（MEV / SNARK / liquidation 都是这么死的）。多词**必须带引号**：`ti:foo bar` 会被解析成 `ti:foo AND bar`，后面的词掉成全字段搜索。
 - **不做判断，不复述内容。** 只给名字 + 一句话 + 链接。
-- **零命中不等于废词。** 可能是太前沿，也可能是没人写进标题——留观察，别删。
+- **零命中不等于废词。** 可能是太前沿，也可能是没人写进标题——留观察，别删。**判断一个词死没死看 `raw_term`（原始命中），别看 `per_term`** —— 后者只统计本轮新收，把存量全 seed 进 `seen` 之后会假性归零。
 
 ## Config
 
@@ -116,14 +116,8 @@ CARRIER_BASE = ["deployed", "deployment", "mainnet", "testnet", "protocol",
 CARRIER_ROBOT = ["robotic", "robot", "manipulation", "teleoperation", "simulation",
                  "simulator", "dataset", "datasets", "real-world", "embodied",
                  "sensor", "egocentric", "demonstration", "vla"]
-# 交易/MEV 域：市场微观结构，链上词常常不出现。
-# 追加 ledger 系：MEV 论文常写 "distributed ledger" / "block creator"，
-# 全篇不出现 blockchain/token/validator —— 实测 90d 漏掉 2608.13271（可验证延迟防 MEV）。
-# 该组 8 词在 AMM+MEV 两词 90d 内只多捞 1 篇（即上面那篇），零噪声。
-CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher",
-                  "ledger", "ledgers", "block creator", "block builder",
-                  "block proposer", "transaction ordering", "on-chain",
-                  "state transition"]
+# 交易/MEV 域：市场微观结构，链上词常常不出现
+CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher"]
 
 # 词 → carrier 组。未列出的词走 CARRIER_BASE。
 CARRIER_BY_TERM = {
@@ -173,7 +167,8 @@ def guess_name(title, summ, known):
 out, raw, newest = [], 0, ""
 drop = {"seen": 0, "excl": 0, "carrier": 0, "fail": 0}
 hit_ids = {}          # run 内判重；不要直接写 seen，否则跨词命中只记第一个词
-per_term = {}
+per_term = {}         # 本轮新收
+raw_term = {}         # 原始命中（含已被 seen 挡掉的）—— 判断词死没死看这个
 
 for term in TERMS:
     # 每个词用自己域的 carrier，未列出的走 BASE
@@ -202,6 +197,7 @@ for term in TERMS:
 
     for e in root.findall("a:entry", NS):
         raw += 1
+        raw_term[term] = raw_term.get(term, 0) + 1
         # 去掉版本后缀：v2 不该被当新命中重报
         aid = e.find("a:id", NS).text.split("/abs/")[-1].split("v")[0]
         title = " ".join(e.find("a:title", NS).text.split())
@@ -238,8 +234,9 @@ print(f"扫 {len(TERMS)} 词 | 原始 {raw} | 幸存 {len(out)} | "
       f"carrier={drop['carrier']} fail={drop['fail']}", file=sys.stderr)
 print(f"窗口内最新收录日期: {newest or '(无)'}  ← 比今天早 3 天以上即索引滞后，不是零命中",
       file=sys.stderr)
-print("词表命中: " + " · ".join(f"{k}={v}" for k, v in
-      sorted(per_term.items(), key=lambda x: -x[1])), file=sys.stderr)
+print("词表原始/新收: " + " · ".join(
+      f"{k}={v}/{per_term.get(k, 0)}" for k, v in
+      sorted(raw_term.items(), key=lambda x: -x[1])), file=sys.stderr)
 for c in out[:25]:
     print(f"  {c['published']} [{'+'.join(c['terms'])}] {c['title'][:85]}", file=sys.stderr)
 
