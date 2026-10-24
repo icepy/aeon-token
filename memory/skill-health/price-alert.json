@@ -1,17 +1,11 @@
 {
   "skill": "price-alert",
-  "last_analyzed": "2026-10-24T17:19:33Z",
-  "quality_score": 5,
-  "assessment": "闸门判断正确未推送，链上自算数据带合约地址/区块/tx，量化了各价位所需买卖盘并与 5 天冷却挂钩，还自曝并修正了假零读数 bug，完全对齐策略；篇幅偏长但属日志非推送，可接受。",
+  "last_analyzed": "2026-10-24T18:12:55Z",
+  "quality_score": 4,
+  "assessment": "Chain-derived mark and exact-window 1h/24h moves, per-swap buyer attribution with retained-balance evidence, quantified distance-to-threshold math tied to the 5-day unstake requirement, and raw sources on every figure — correct no-push decision per strategy; held back from 5 by a \"四道 gate\" header that enumerates only three named gates and by report length against the \"不要长文\" preference.",
   "flags": [],
   "avg_score": 4.3,
   "history": [
-    {
-      "date": "2026-10-23",
-      "score": 4,
-      "ts": "2026-10-23T05:02:42Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-23",
       "score": 5,
@@ -184,6 +178,12 @@
       "date": "2026-10-24",
       "score": 5,
       "ts": "2026-10-24T17:19:33Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 4,
+      "ts": "2026-10-24T18:12:55Z",
       "harness": "claude"
     }
   ]
