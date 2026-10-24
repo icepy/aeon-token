@@ -1,15 +1,21 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-24T08:20:08Z",
-  "quality_score": 3,
-  "assessment": "Chinese dry-run report is substantive and decision-oriented (correctly concludes neither paper is a new tradable target, so no push), and the arXiv index-lag finding is a genuinely useful operational insight — but it runs long against the 'avoid 长文' preference and contains internal inconsistencies (states 12 zero-hit words then lists 16; says restaking has been quiet '四个月' while citing a 2026-08-10 paper), and the paper specifics are asserted without any verification step.",
+  "last_analyzed": "2026-10-24T08:38:29Z",
+  "quality_score": 4,
+  "assessment": "Substantive 90-day backfill: 38 papers organized into clusters with concrete arXiv IDs, plus a line-level diagnosis of three filter defects (EXCL substring matching) backed by named false-kills and a clear pre-push fix list (seed arxiv-seen.json). Verifiable and actionable, but long-form contrary to the operator's 'no long text / read-and-decide' preference, and only the robotics/embodied-AI cluster ties to the DEUS/XMAQUINA thesis — most of the ZK/consensus/MEV content is off-strategy.",
   "flags": [],
-  "avg_score": 3,
+  "avg_score": 3.5,
   "history": [
     {
       "date": "2026-10-24",
       "score": 3,
       "ts": "2026-10-24T08:20:08Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-24",
+      "score": 4,
+      "ts": "2026-10-24T08:38:29Z",
       "harness": "claude"
     }
   ]

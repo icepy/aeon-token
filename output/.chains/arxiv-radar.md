@@ -1,67 +1,96 @@
-扫描完成。以下是本次运行结果。
+90 天回补已跑完。**通知未发（dry-run）**，以下是全部结果。
 
----
+# arXiv Radar · 90 天回补
 
-# arXiv Radar · 2026-10-24 · dry-run
+**窗口 07-26 → 10-24 · 18 词 · 原始 89 条 → 去重 85 篇 → 幸存 38 篇。**
+上一轮 7 天窗只有 4 条原始命中，这轮把 3 个月存量一次拉齐。
 
-**窗口** 2026-10-17 → 10-24（7 天）· **词表** 18 个 · **原始命中** 4 篇 · **幸存** 2 篇
+先说一个**必须先修的东西**：这轮跑出来的 38 篇，有一半的可信度问题不在词表，在过滤器代码。
 
-## 幸存者
+## 🔴 过滤器缺陷（三处，已定位到行）
 
-### 1. ZKPU — `2610.27530`（10-20，cs.AR）
-**ZKPU: Zero-Knowledge Processing Unit for Heterogeneous Workloads**
-面向 ZKP 异构负载的专用加速器，用 FIPS Montgomery 乘法配可重构 Twin Systolic Fabric，一套 datapath 同时覆盖曲线系（大素数域）与哈希系（64-bit 原生域）两类协议。
-作者：Jonathan Ku、Yiran Chen、Hai Li 等（Duke / 首尔大方向）。
-命中词 `zero-knowledge`，carrier=`protocol`。
-**定性：硬件加速，不是链上项目，无可交易标的。** 若关心 ZK 算力成本曲线值得留一眼，否则纯噪音。
-https://arxiv.org/abs/2610.27530
+**1. `EXCL` 是全文子串匹配，不是标题匹配。** 代码里 `if any(x in blob for x in EXCL)`，`blob` = title + summary。于是 `surveyed`、`benchmarks`、`benchmarking`、「as a benchmark」全被当成综述过滤掉。**20 条 excl 丢弃里 16 条是正文误伤。**
 
-### 2. Pearl PoUW 系统化 — `2610.25347`（10-18，cs.CR + cs.ET）
-**On Pearl Blockchain's Proof of Useful Work: Systematization and Flexibility**
-对 Pearl 白皮书的 PoUW 做敏感度刻画，作为 Jackpot 策略的替代方案，并给出验证敏感度条件的有效算法；副产品是一个更灵活的方案 —— 每个矿工可自选噪声幅度，在计算精度与挖矿效率之间自行权衡。
-单作者：Youlong Ding。
-命中词 `proof-of-useful-work`，carrier=`blockchain`。
-**定性：与 10-21 已研究过的 Pearl (PRL) 是同一个对象，不是新项目。** 意义在于"首次有学术侧把它的 PoUW 机制系统化"——对一个还在早期的 L1 来说，是机制被外部审视的第一个信号，不是基本面变化。
-https://arxiv.org/abs/2610.25347
+实证误杀（都是该进名单的）：
+- `2608.09055` Repeated-Game Security for Restaking-Based Verifiable Inference — 被 `surveyed` 命中
+- `2610.08258` zkLLMPoT: Zero-Knowledge Proof of Training — 被 `benchmarks` 命中
+- `2609.16705` The Robot Data Factory（Haddadin 等 21 人）— 被 `benchmarking` 命中
+- `2608.05011` Decentralized Searcher Competition in MEV Markets — 被名词「as a benchmark」命中
 
-## 被过滤器丢弃的 2 篇（丢弃正确）
+**改法：`EXCL` 只对 title 判。** 幸存者 38 → **49（+11）**。
 
-- `Zero Knowledge for Free up to Linear Query Bounds…`（10-21）— 纯复杂度理论，无 carrier。
-- `SRE: Accelerating Zero-Knowledge Proofs via Scalar Redundancy Elimination`（10-20）— 纯硬件加速，无 carrier。
+**2. `benchmark` 这个字本身太毒。** 即使改成标题匹配，论文标题里的 `benchmark` 多半是「我们提出一个 benchmark」——那是个正经项目，不是要过滤的综述。建议 `EXCL` 收窄为 `survey` + `tutorial`。
 
-## 运行中发现的两个坑（已写入 lessons）
+**3. 跨词命中只记第一个词。** `2609.07963` 同时中 `light client` 和 `zero-knowledge`，只归给先到的 `light client`，导致宽词账面偏低。不影响名单，影响词表健康度判断。
 
-**1. arXiv 索引滞后 1–2 天，最新两天恒为 0 条。**
-实测 `cat:cs.CR` 单日总数：10-20 **48** → 10-21 **38** → 10-22 **30** → 10-23 **0** → 10-24 **0**。API 最新收录停在 `2026-10-22T17:59Z`。**这是"还没入库"，不是"没人投稿"。** 每天 7:30 的常规跑会永远看不到当天和昨天的论文 —— 如果某天报"零命中"，先确认是不是这个原因，别急着改词表。
+> 索引滞后不用再报了：上一轮记的「10-23/10-24 两天 0 条」本轮复核为 **cs.CR 30 条**，已自愈。
 
-**2. 周窗口低命中是常态，不是词表坏了。**
-18 个词 × 7 天只捞到 4 篇，第一眼像词表失效。逐词核过后确认相反：`ti:"restaking"` 全时段最新一篇是 **2026-08-10**，`ti:"zero-knowledge"` 全时段 312 篇但 7 天内仅 3 篇。**判断词表是否还有效要看 all-time 最新发布日期，不是窗口内计数。**
+## 名单（38 篇，按簇）
 
-顺带验证了一条 skill 里的写法：`ti:"restaking"` 与 `ti:restaking` 返回完全相同的 8 条 —— 引号短语在 `ti:` 上不提高精度，真正有区别的是 `abs:` 的松散匹配。规则成立，但别指望长短语能靠引号变准。
+### 零知识 · 16 篇（最大簇）
+- **ZKPU** — ZKP 异构负载的专用加速器，曲线系 + 哈希系双覆盖 `2610.27530`
+- **Can AI Oversight Be Zero Knowledge?** — Chiesa 组，验证 AI 输出不泄露输入 `2610.01995`
+- **Bits Under ZK-LLM** — 面向 ZK 电路友好的 LLM 量化 `2609.36437`
+- **Zero Knowledge Proofs in Quantum Networks** — 量子网络下的 ZKP 构造 `2609.35339`
+- **zkSAS** — 频谱接入管理的可验证分配 `2609.28699`
+- **Sound Debloating** — ZKML 电路里冗余约束的可靠裁剪 `2609.10149`
+- **Guppy** — Danezis / Sonnino 等，递归 ZKP 做轻客户端，验证者只签状态增量 `2609.07963`
+- **OreProof** — 关键矿产供应链的可验证溯源（HICSS-60） `2609.00340`
+- **ZK Predicate Proofs Between AI Agents** — agent 间跨协议断言证明网关 `2608.30083`
+- **Relaxed Sender Anonymity for CBDC** — 许可链 EVM 上的 CBDC 行间结算 `2608.28529`
+- **Certified but Private** — 神经网络鲁棒性/公平性保证的 ZK 证明 `2608.17070`
+- **Balancing Privacy and Compliance in DeFi** — 跨链可审计 ZK 框架 `2608.15276`
+- **NiyamAI** — 带 ZK 可验证护栏的 intent-bound agent `2608.07167`
+- **ZK-SR117** — 聚合公平借贷指标的 ZK 证明 `2608.02664`
+- **Hollow-LLM Attack** — ZK 验证 LLM 推理的伪权重攻击面 `2607.28884`
+- **Joint Lyapunov Certificates** — 多 agent 生成式 AI 治理的 ZK 证明 `2608.09087`
 
-## 词表观察（不删，留观）
+### 机器人 / Embodied AI · 8 篇 + 1 误杀 ← **唯一与 DEUS 同轨的板块**
+- **Robot Data Factory**（误杀，`2609.16705`）— Haddadin 等 21 人，主张核心资源是「机器人经验」而非原始数据
+- **Vision-Predictor-Action** — 用 JEPA 预测器替代 token-by-token 解码 `2610.15556`
+- **Beyond LLM Serving** — VLA 工作负载刻画，按时限设计端侧推理 `2610.05062`
+- **Inspect Robots** — 开源具身能力/安全评测框架 `2610.06306`
+- **MEAN** — 移动具身网络的移动量 + 压缩比联合设计 `2610.02334`
+- **From Gameplay to Policy** — 游戏化无机器人交互采数据 `2609.18650`
+- **Ego2Robot** — 第一人称人类视频合成机器人数据 `2608.02580`
+- **Operational digital twin clinics** — 数字孪生诊所做具身评测 `2608.21416`
+- **DropClick** — 农业机器人的一键分割标注 `2609.03680`
 
-12 个词 7 天内 0 标题命中：`verifiable inference` · `light client` · `proof of training` · `proof of learning` · `verifiable training` · `auditable training` · `data availability sampling` · `restaking` · `automated market maker` · `consensus protocol` · `cat:cs.CR AND ti:"MEV"` · `liquid staking` · `embodied data` · `robot manipulation data` · `robot data` · `embodied AI`。
+### 共识 · 6 篇
+- **Flamingo** — DAG 共识的负载均衡 `2609.28361`
+- **Sharpedo** — 双模无证书 DAG 共识（UCL 硕士论文，Jovanovic / Sonnino 指导）`2609.05580`
+- **PoVD** — 基于 VDF 的轻量共识 `2609.21627`
+- **MEV Attacks on DAG-Based BFT** — 提议者排序裁量权的攻击谱系 `2609.20069`
+- **SoK: Formal Verification of Consensus** — `2608.21935`
+- **Fast Tendermint** — `2608.13434`
 
-按铁律「零命中不等于废词」全部保留。但值得注意的对比：**`zero-knowledge` 是唯一持续有产出的词**，其余要么是话题降温（restaking 四个月无新作），要么是学界根本不把项目名写进标题（embodied 系列）。后者可能是词写得不对，而不是话题没有 —— 下次可以试试 `embodied dataset` / `robot learning deployment` 这类更接近论文实际措辞的形状。
+### MEV / AMM · 4 篇
+- **EVAGE** — 多 agent 全自动 MEV 策略生成 `2609.27424`
+- **Otter** — 剩余再分配实现可证抗 MEV 的批量 AMM `2609.03474`
+- **Mandate without Managers** — 把 AMM 当可验证组合产品（Balancer G3M）`2608.02917`
+- **There Will Be Spam** — 状态不变交易与投机性 MEV `2607.24172`
 
-## 一个待办
+### 可验证训练 · 2 篇
+- **OPEN-1B** — 首个「完全可审计」训练跑，逐位可复现 `2609.17380`
+- **Auditing Training Labels** — label-only 后门下的训练标签审计 `2610.13051`
 
-本次是 dry-run，**没有写 `memory/arxiv-seen.json`**。下一次正式跑会把这 2 篇当新命中再报一次。下次正式跑前先写入这两个 id 即可去重：
-`2610.27530v1`、`2610.25347v1`。
+### 单篇
+- **Pearl PoUW 系统化** `2610.25347` — 与 10-21 已研究的 Pearl (PRL) 同一对象，非新项目
+- **TCDA** `2610.22508` — 可调编码分布式数组做 DAS
 
----
+## 词表观察
+
+`proof of learning`（all-time 13，最新 05-22）、`verifiable training`（9，06-12）、`liquid staking`（9，05-01）——90 天 0 命中，all-time 也停在几个月前。**真降温，不是词写错**，按铁律保留。
+
+## 下一轮正式跑前必须先做一件事
+
+`memory/arxiv-seen.json` **仍不存在**（这次也是 dry-run）。正式跑若不先落这 38 个 id，第一次推送会是一次 38 条的洪水。建议先补写 id 再发。
 
 ## Summary
 
-- **扫描**：arXiv API，`ti:` 前缀 + 7 天 `submittedDate` 窗口，18 个词表，串行限速 3s。
-- **结果**：4 篇原始命中 → 2 篇幸存（ZKPU 硬件加速；Pearl PoUW 系统化）。均为**已知对象的延伸，无新项目**，因此没推送（同时 dry-run 也跳过 notify）。
-- **修改文件**：
-  - `memory/logs/2026-10-24.md` — 新增 `### arxiv-radar` 条目（dry-run 下由我自写，因为未走 notify）。
-  - `memory/topics/lessons.md` — 新增 `## arXiv 检索（arxiv-radar）` 四条经验 + Citations 一条。
-  - `output/.arxiv-radar/radar.py` — 本次使用的扫描脚本（自 skill 内嵌版本改：`var`/`days` 改为 argv 解析，规避隐式 env 传递问题）。
-- **未做**：未写 `memory/arxiv-seen.json`（dry-run）；未发通知。
-- **后续动作**：
-  1. 下次正式跑前补写两个 arxiv id 到 seen 文件，避免重复报。
-  2. 考虑给扫描脚本加一条"窗口末端 N 天命中数"自检 —— 若连续为 0，在输出里标注"索引滞后"，而非静默报零。
-  3. `embodied *` 系列四个词可试着换成更接近论文措辞的形状，但先别删。
+- **扫描**：18 词 × 90 天窗口，85 篇去重后幸存 38 篇，按 7 个簇分好。
+- **发现三处过滤器缺陷**，第一处（`EXCL` 全文匹配）实证误杀 16 篇，含 4 篇明确该进名单的；修复后幸存 38 → 49。
+- **最重要的一条内容发现**：机器人/Embodied AI 是本轮唯一和 DEUS/XMAQUINA 叙事同轨的板块（8 篇 + 1 篇被误杀），且其中 Robot Data Factory 恰好是被过滤器错杀的那篇。
+- **修改文件**：`memory/logs/2026-10-24.md`（追加本轮记录）。未写 `memory/arxiv-seen.json`（dry-run）。
+- **通知**：未发送（dry-run）。
+- **后续动作**：① 改 `skills/arxiv-radar/SKILL.md` 的 `EXCL` 为标题匹配并收窄字表；② 正式跑前先落 38 个 id 到 `arxiv-seen.json`，避免首推洪水。
