@@ -49,7 +49,7 @@
 
 `2608.13271` Slow and Steady 是正经 MEV 防御论文，但全篇只写 **"distributed ledger" / "block creator"**，不出现 `blockchain` / `token` / `validator` / `deploy`。原 `CARRIER_MARKET` 六个词（arbitrage/swap/liquidity/order flow/searcher）一个都不含 → 被静默丢弃。
 
-- **实证范围**：`amk` + `MEV` + `consensus protocol` + `restaking` 四词 90 天窗，追加 8 个 ledger 系词后**只多捞 1 篇（就是它），零噪声**。
+- **实证范围**：`automated market maker` + `MEV` + `consensus protocol` + `restaking` 四词 90 天窗，追加 8 个 ledger 系词后**只多捞 1 篇（就是它），零噪声**。
 - **改法**（已在 `skills/arxiv-radar/SKILL.md`）：`CARRIER_MARKET` 追加 `ledger` / `ledgers` / `block creator` / `block builder` / `block proposer` / `transaction ordering` / `on-chain` / `state transition`。
 - **效果**：幸存 21 → **22**，carrier 丢弃 12 → **11**。ZK 域未动（放宽会引噪，前轮已验证）。
 
