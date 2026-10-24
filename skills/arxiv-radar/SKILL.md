@@ -43,12 +43,18 @@ metadata:
 ## Steps
 
 ### 1. 解析 var
-`dry-run` → `DRY=1`；`days:N` → `DAYS=N`；`names` → 读 `memory/universe-names.txt` 当词表；其余当 domain 过滤。
+
+DRY=""; DAYS=7; NAMES=""
+# 按空格拆 ${var}，逐个 token：
+#   dry-run → DRY=1
+#   names   → NAMES=1
+#   days:N  → DAYS=N
+export DRY DAYS NAMES
 
 ### 2. 扫描
 
 ```bash
-export DRY=$DRY DAYS=$DAYS
+export DRY=$DRY DAYS=$DAYS NAMES=$NAMES
 python3 - <<'PY' > /tmp/radar.json 2>/tmp/radar.log
 import json, os, re, sys, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
@@ -76,10 +82,15 @@ embodied AI
 zero-knowledge
 """.strip().split("\n") if t.strip()]
 
+# names 模式：拿已知项目名反查（var: names）
+if os.environ.get("NAMES") == "1":
+    TERMS = [l.strip() for l in open("memory/universe-names.txt", encoding="utf-8")
+             if l.strip() and not l.startswith("#")]
+
 CARRIER = ["deployed", "deployment", "mainnet", "testnet", "protocol",
            "production", "open-source", "released", "blockchain", "network",
            "token", "incentive", "marketplace", "validator", "miner"]
-EXCL = ["survey", "tutorial", "benchmark"]
+EXCL = ["survey", "tutorial"]
 STOP = set("""a an the on of in for with from and or to at by as is are was were
 towards toward via using based scalable efficient large language model models
 learning deep neural network networks system systems new novel study analysis
@@ -138,7 +149,7 @@ for term in TERMS:
         if aid in seen:
             drop["seen"] += 1
             continue
-        if any(x in blob for x in EXCL):
+        if any(x in title.lower() for x in EXCL):
             drop["excl"] += 1
             continue
         if not any(c in blob for c in CARRIER):
