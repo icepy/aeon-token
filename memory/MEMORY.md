@@ -16,6 +16,46 @@
 - **⚠️ NOTE 上沿破而复失（10-24 21:01Z）：** 主池 `0x378b1023` **$0.042599**，liq $410,435，h1 −4.40% / h24 −3.37%，24h 量 $102,753。$0.0438 防守失败回落 −2.7%，高点 $0.04657 回吐 −8.5%。**盯 ETH 入账，不盯价格。**[source: logs/2026-10-24#onchain-monitor]
 - **⚠️ NOTE 供给侧斜率变了：** 180,000 进 **schedule #27**（30 天线性）。#25 20k + #26 14k + #27 6k ≈ **40,000 NOTE/天 ≈ $1,704/天 = 日量 1.66%**，无需 owner 决策 —— 「持续派发」不是「砸盘」。见 [note-systems](/topics/tokens/note-systems.md)。[source: logs/2026-10-24#onchain-monitor]
 - **DEUS 四道 gate 全未触发：** $0.012 −30.73% · $0.025 +44.30% · $0.032 +84.71% · $0.041 +136.66%。**$0.041 需净买 6.6M DEUS ≈ 深池 24h 量的 238 倍 → 只能靠撤供给到达。这就是 unstake 必须提前 5 天的量化理由。**[source: logs/2026-10-24#price-alert]
+## Active Topics
+- `price-alert` DEUS **$0.01731465**（10-25 00:01:41Z 深池 mark；VIRTUAL/USD 两池同块均值 $0.6282311），1h **−0.23%**，24h **−3.40%**。四道 gate 全未触发：$0.012 −30.69% · $0.025 +44.39% · $0.032 +84.81% · $0.041 +136.79%。见 [state](/topics/price-alert-state.json)。
+- **🔴 本小时单向砸盘 92,548.73 DEUS、10 卖 0 买 —— 但 mark 只跌 0.23%。** 卖方是 18 天的 `0x8cd54fbd` 全清 55.1k、老鲸 `0x09b383a6` 减 0.28%（仍持 2.16M）、`0x96949fd5` 一周获利 5.8k、`0x49a782c2` 减 5.9k（仍持 34.2k）。**四个大持有者逐 wei 未动 —— 卖压来自小仓位不是鲸鱼。**
+- **⚠️ Escrow 首次净流入：24h +51,905.10（+0.178%），逐 wei 闭合（−5,000 burn + 56,905 三笔 stake）。** 对 5%/日线仅 **0.036 倍**，质押压力实际为零。总供应 24h **−12,857.94**，通缩明显减速。**`0xbb0f7533` 仍持 #1396，连续第六轮未烧。**
+- **🔴 第四次 claim-and-dump，且首次跨两场所拆分：** `0xd1a7ba72`（EIP-7702）100 秒内收 3,529.86 三腿（分发器 + CLAIM 代理 + `0x0ae95bd7`），走 `0x11111605` 拆 **2,426.78 进深池 + 1,103.08 进 USDC `0x58dBa34e`**，余额逐 wei 归零。**单池卖单计数会低估单一操作者的供给 —— 归因必须按 `tx.from` 汇总同 tx 全部场所。**
+- **🔴 本小时 tape 翻回单向卖出：10 卖 0 买、92,548.73 DEUS 进池（上轮 2,427，38×）—— 但 mark 只跌 0.23%。** 方向性卖家 86,539.48（93.5%）按 `tx.from` 归因：18 天的 `0x8cd54fbd` 全清 55.1k、`0x4e1e354f` 经 4337 全出 13.8k（两笔都 −30d 或 −1h..−7d 逐 wei 不动）、老鲸 `0x09b383a6` 减 0.28%（仍持 2.16M）、`0x96949fd5` 一周获利 5.8k。**四个大持有者逐 wei 未动 —— 卖压来自小/老仓位，不是鲸鱼。溢价第五小时继续收窄 +0.94% → +0.61%，仍是分母在动。**
+- **四个大持有者连续两小时逐 wei 未动：** 335,249.499443 · 70,034.140337 · 250,000.125225 · 284,371.457830。**92.5k 卖压全来自更小的仓位 —— 存量巨鲸无主动砸盘。**
+- **🔴 最深池 `0x3E97c5EC` 08:38:25Z 复活（静默 238.7 分钟）。** 上轮「已死 205 分钟」当时正确，26 分钟后失效 —— **「池子已死」有效期只有一轮**。复活首小时 37 买（合计 34,753）对 1 卖 **50,167 DEUS**，净 +15,414 流入池；卖方 `0xf0a04b07`（**EIP-7702**）仍持 250,000，减仓非清仓，**存量主动砸盘**。**成交恢复 ≠ 买盘回来**。
+- **🔴 修正：「整市场停摆」是假结论** —— 三个次级池是 **V3 型**（此前用 Solidly 主题扫出假零）；最深池是 **Aerodrome classic、不是 Slipstream**。
+- **🔴 史上最大砸盘已被全额买回：** `0x7f6aba75`（纯新钱）买 335,249、`0x6a45ca8b` 买 70,034，均留存；池内 DEUS 净少 105,836。**方向是吸筹**，09:13Z 第四次复核逐位未变。
+- **🔴 `0xbb0f7533` 烧 xDEUS #1492 释放 319,562 DEUS，75 分钟后全砸。仍持 #1396 = 下次扳机（22:02Z 复核仍未烧，连续第五轮）。** CLAIM 占 38.79% 供应。**$0.012 需净砸 ~3.81M**。
+- **新增 5,000 DEUS unstake 未卖：** `0xcae798c0` 烧 xDEUS #425 得 5,000 DEUS，**零转出、全额仍持**。**unstake 不是价格事件，卖出才是**。
+- **买盘 9 条判据见 [lessons](/topics/lessons.md#price-feeds)** —— 单池「N 买 / 0 卖」常是同秒双池套利的一半。
+- **新钱 cohort：** `0x3fd51604` 加至 7,735；**`0x1184de98` 已于 10-24 10:02 全部清仓（换 SLC）**。老鲸 `0x09b383a6` 已回补。见 [deus-buyers](/topics/deus-buyers.md)。
+- **🔴 DEUS 7d 净增发 +65,381 已陈旧**；**连续四天净通缩：−19,693 → −38,770 → −38,770 → −38,770**（block-pinned 24.00h）。四天不覆盖 7d，重测前别再引 +65,381。见 [deus-escrow](/topics/deus-escrow.md)。
+- Escrow **29,150,566.78**（24h **−267,657 = −0.910%**，逐 wei 第四次闭合；本小时 Burn 0 笔），对 5%/日线 ≈1.46M 仅 **0.184 倍** —— 无 unstake 压力。xDEUS **1728**（24h +1）。CLAIM 24h 净出 **304,681（记录内最大）**。
+- **两个方向性钱包都不跟** —— `0x259f962e` nonce 135、`0xa2f42a10` nonce 4，各是一 clip 不是一波。
+- **宏观快照**：[market-context](/topics/market-context.md)。10-23：chop，F&G 50。
+- [Note Systems (NOTE)](topics/tokens/note-systems.md) — 解锁-回锁-上膛时间线、per-schedule 量级。
+- **DeFiLlama `/v2/chains` 无 `change_1d`/`change_7d`** —— 用 `/v2/historicalChainTvl/{chain}` 自算。**CoinGecko `/global` 的 24h mcap 也不可信**，用 `/coins/markets` 加权重算。**百分比过滤要配绝对额地板**。
+- **钱包型 watch 不能用 `eth_getLogs{address:<EOA>}`** —— EOA 不发事件，永久返回 0。要在**代币合约**上做 topic 过滤。
+- **24h 涨跌幅别用日线首尾收盘价算** —— `ohlcv_list[0]` 是未走完的当日 K 线。[lessons](/topics/lessons.md#price-feeds)
+- **xDEUS is ERC-721** —— `decimals()` reverts，`tokenId` 在 `topics[3]`；topic0 同哈希，无需改配置。
+- **扫 timelock 别只扫「最近几天」。** RH ~34k 块/小时，48h 排程跨 ~160 万块；要扫全部事件就省略 `topics`。[lessons](/topics/lessons.md#扫-timelock窗口与-topics-两个坑)
+- **Never trust a zero-log window** —— 报「平静」前重查已知活跃窗口 + `eth_call` 余额。**假零四件套：RPC 429（返空数组不报错）、`mainnet.base.org` 整批 revert、topic0 只给 4 字节、RH UA 403。**
+- **`eth_getCode` = `0x` 才是普通 EOA；`0xef0100…` 是 EIP-7702 智能账户**，带 nonce 与 gas 的成熟钱包，别当新号。
+- **上膛钱包的扳机是「第一笔 ETH 入账」**，比 nonce 更早；**claim 制 vesting 的「日释放」要看 scheduleId**，同合约不同 schedule 量级差百倍。
+- **买单真伪只认一条：终点地址余额升高且留住。** 新钱要 −1h/−6h/−24h/−7d/−30d `balanceOf` 全 0。[lessons](/topics/lessons.md#price-feeds)
+- **RH 4663 免 key**，24k 块窗口可扫（Base Tenderly 只有 1000 块）。端点与陷阱表见 [base-rpc-access](/topics/base-rpc-access.md)。
+- **缺 `h1` ≠ 平静。** 按 0 处理会让 gate 显 QUIET 但实际**未测量**；state 存 `null`。**API 报 v1h=0 也别信 —— 拿池子 Swap log 验。**
+- **判「池子安静」前先按地址扫一遍出 topic0 直方图** —— 家族不匹配会静默出假零（V3 `0xc42079f9…` vs Solidly `0xb3e27736…`）。**控制块高从 tx receipt 取。**[lessons](/topics/lessons.md#price-feeds)
+- **`balanceOf` 的 calldata 地址要左补零**，右补零静默返回 0；余额为 0 时先用已知非零地址做对照。
+- **view 调用 revert 先怀疑 selector，别怪 RPC。** `isOperationReady`=`0x13bc9f20`、`getTimestamp`=`0xd45c4435`；opId 取 `CallScheduled` 的 **topics[1]**。
+- **`eth_getLogs` 的过滤器要做判别力测试** —— 同一已知含真事件的窗口里，真 topic0 必须返回真日志、**故意错 1 个字符的 topic0 必须返回 0**。二者不可区分 = 端点有问题，此时任何「零命中」都不可信。**本机 RPC 的 `eth_call` 必须显式带 block tag（`latest` 也要写），省略报 `-32602`**；公共 `eth_getLogs` 硬限 1000 块。详见 [lessons](/topics/lessons.md#price-feeds)。
+- **网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`（数小时自愈）。`./notify` 写普通 Markdown，多行走 `-f`。
+## Next Priorities
+- **🔴 待命 480,000 NOTE ≈ $20,400，三钱包 nonce 0 / ETH 0 / 零出账：** 上膛7 `0x33b7181ed1540a83281ca053df49ac32019e8731` 240k · 上膛6 `0x3a9039c7069382594f779d95db6686007119f35e` 150k · 上膛5 `0x572bb5272603889f5742e8b8ab2f1d4c6851a93e` 90k。**扳机 = 第一笔 ETH 入账**（上膛4 先例：带 gas 后 24.4h 才卖）。owner 自持 630,000。
+- **🔴 NOTE 上沿破而复失（10-24 21:01Z）：** 主池 `0x378b1023` **$0.042599**，liq $410,435，h1 −4.40% / h24 −3.37%，24h 量 $102,753。**$0.0438 防守失败，回落 −2.7%；高点 $0.04657 已回吐 −8.5%。** 12:00Z 判的「CONSOLIDATING 非 BREAKOUT」成立。**盯 ETH 入账，不盯价格。**
+- **⚠️ NOTE 供给侧斜率变了：** owner 首次动仓，180,000 进 **schedule #27**（30 天线性）。**#25 20k + #26 14k + #27 6k = ~40,000 NOTE/天 ≈ $1,704/天 = 日量 1.66%**，且无需 owner 决策 —— **「持续派发」不是「砸盘」**。详见 [note-systems](/topics/tokens/note-systems.md)。
+- **DEUS 四道 gate 全未触发：** $0.012 −30.69% · $0.025 +44.39% · $0.032 +84.81% · $0.041 +136.79%。**$0.041 需净买 6.66M DEUS ≈ 深池 24h 量的 240 倍 → 只能靠撤供给到达。这就是 unstake 必须提前 5 天的量化理由。**
 
 ## Active Topics
 - **DEUS 现价 $0.01732473**（10-24 22:02:51Z 深池 mark；USDC 三池中位 $0.017173），1h −0.24%，24h −3.84%。跌幅第七轮全部来自报价腿（VIRTUAL/USD −4.92%），DEUS 跑赢 VIRTUAL。见 [state](/topics/price-alert-state.json)。

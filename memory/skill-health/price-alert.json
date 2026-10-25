@@ -1,17 +1,11 @@
 {
   "skill": "price-alert",
-  "last_analyzed": "2026-10-24T22:13:16Z",
-  "quality_score": 3,
-  "assessment": "Substantively strong: gate distances check out arithmetically, the 24h decomposition (DEUS/VIRTUAL +1.14% × VIRTUAL/USD −4.92% ≈ −3.84%) is self-consistent, and staying silent on a quiet tape matches the strategy. But it violates the explicit 输出语言 rule (all reports/notify bodies must be Simplified Chinese) and is far longer than the '看完就能决定' mandate, so it under-serves the operator despite good data hygiene.",
+  "last_analyzed": "2026-10-25T00:14:15Z",
+  "quality_score": 4,
+  "assessment": "链上取数、门槛距离、卖家归因与供给侧反转齐备，比率/涨跌幅算术自洽（0.0275609466×0.6282311=0.0173146；h1 −0.96%×+0.74%→−0.23%；h24 −0.87%×−2.55%→−3.40%），全中文、带合约地址与块号，四道 gate 未触发即不推送符合策略；扣分在于报告偏长、开头运维叙述（误删 output/ 已恢复）与行情结论混排，削弱了'看完就能决定'的一眼可读性。",
   "flags": [],
   "avg_score": 4.23,
   "history": [
-    {
-      "date": "2026-10-23",
-      "score": 4,
-      "ts": "2026-10-23T10:05:58Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-23",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-10-24",
       "score": 3,
       "ts": "2026-10-24T22:13:16Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-25",
+      "score": 4,
+      "ts": "2026-10-25T00:14:15Z",
       "harness": "claude"
     }
   ]

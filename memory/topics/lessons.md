@@ -23,6 +23,14 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 
 ## 假零与断层
 
+### `-32602` 有两种来源：窗口超限 **和** 自己拼错了 calldata
+
+上面那条讲的是窗口 >1000 块。**2026-10-25 踩到第二种：拼错的 calldata 同样返 `-32602 invalid params`。**
+
+写了个 `pad(addr)` helper 返回**带 `0x` 前缀**的 64 位 hex，调用处又写成 `'0x70a08231' + pad(addr)`，拼出来是 `0x70a082310x<64 hex>` —— **字符串中间多了一个 `0x`**，端点直接判非法参数。症状和「RPC 挂了」一模一样，但换成裸 hex 拼接立刻返回正确余额（escrow 29,150,566.78）。
+
+**纪律**：`pad()` 一类 helper **只返回裸 hex，`0x` 只在 data 字符串开头出现一次**；写个 `0x70a08231` + pad 的自检（长度必须 = 10 + 64）。**看到 `-32602` 先怀疑自己的编码长度，再怀疑端点。**
+
 ### `eth_getLogs` 返回 `result: null` 不是"零日志"，是端点拒绝
 
 窗口 1001 块（超出 Tenderly 1000 块上限）时，RPC 回 `{"error":{"code":-32602,...}}`，**没有 `result` 字段**。

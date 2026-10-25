@@ -1,29 +1,45 @@
-Done. Every gate is quiet, so per the strategy's "正常别吵我" nothing was pushed.
+已恢复 —— `output/` 里跟踪的文件全部还原，只剩我这轮该改的 memory 文件。
 
-## DEUS — 22:02:51Z
+## 本轮结论
 
-**$0.01732473** · 1h **−0.24%** · 24h **−3.84%**. Four gates all quiet:
+**DEUS $0.01731465 · 1h −0.23% · 24h −3.40% · 四道 gate 全静音，未推送。**
 
-| 门槛 | 距离 | 状态 |
+### 取数（全链上，不只信 DexScreener）
+深池 `0x3E97c5EC`（Aerodrome classic，token0=VIRTUAL）储备 blk 53048577：VIRTUAL **523,886.9302** / DEUS **19,008,306.8555** → 比率 0.0275609466 × VIRTUAL/USD **$0.6282311**（`0x7CB770D0` 与 `0x529d2863` 同块均值）= **$0.0173146**。
+
+- h1 精确 3600 秒：比率 **−0.96%**、VIRTUAL/USD **+0.74%** → mark 仅 −0.23%
+- h24 精确 86400 秒：比率 −0.87% + VIRTUAL/USD −2.55% → **−3.40%**（两条腿这次同向下跌，前几轮一直是 DEUS 跑赢报价腿）
+
+### 本小时真正的信号：单向砸盘 92,548.73 DEUS、10 卖 0 买
+上轮 2,427 → 本轮 92,549，**38 倍**，是 15:53Z 那笔 101,983 跨五池砸盘后最重的单边供给。但 **mark 只跌 0.23%** —— 92.5k 被池子吃掉不到 0.25%，盘口仍深。
+
+按 `tx.from` 归因，方向性卖家 86,539.48（93.5%）：
+| 卖家 | DEUS | 性质 |
 |---|---|---|
-| $0.012 | −30.73% | NO_CROSS |
-| $0.025 | +44.30% | NO_CROSS |
-| $0.032 | +84.71% | NO_CROSS |
-| $0.041 | +136.66% | NO_CROSS |
+| `0x8cd54fbd` | 55,114.94 | EIP-7702，18 天仓位一次清空，零留存 |
+| `0x4e1e354f` | 13,782.83 | 经 ERC-4337 userop，存量全出 |
+| `0x09b383a6` | 5,969.40 | 老鲸减 0.28%，仍持 2,164,800 |
+| `0x96949fd5` | 5,805.93 | 两笔同额 8 秒间隔，一周获利了结 |
 
-**Price sourcing.** DexScreener returned HTTP 200; deepest pair printed h1 −0.09%. Not trusted alone — the mark is computed on-chain from deepest-pool reserves × VIRTUAL/USD, both legs at the same block 53045012, window pinned to exactly 3600s / 86400s by reading both block timestamps. VIRTUAL/USD ($0.6225518) is the mean of two live VIRTUAL/USDC pools — cross-checks against DexScreener's $0.6227, so the decimal orientation is verified, not assumed.
+**四个大持有者逐 wei 未动**（335,249.499443 · 70,034.140337 · 250,000.125225 · 284,371.457830）—— 卖压来自小/老仓位，**不是鲸鱼出手**。
 
-**The 24h decline is still entirely the quote leg.** DEUS/VIRTUAL ratio *rose* +1.1407% while VIRTUAL/USD fell −4.9246%. Seventh consecutive run where DEUS outperformed VIRTUAL. Depth also tightened: −107,582 DEUS net out of the deepest pool over the day.
+### 供给侧反转（本轮最值得记的变化）
+- **Escrow 首次净流入：24h +51,905.10（+0.178%）**，逐 wei 闭合（−5,000 burn + 56,905 三笔 stake，差 1.4e-9）。对 5%/日线仅 **0.036 倍** —— 质押压力实际为零。
+- 总供应 24h **−12,857.94**，仍是净通缩但比前三轮的 −29,152 明显减速。
+- 溢价第五小时继续收窄 **+0.94% → +0.61%** —— 在成交切换成单向砸盘的同时收窄，再次印证：收敛是分母在动，不是套利者出力。
+- `0xbb0f7533` 仍持 xDEUS #1396，**连续第六轮扳机未响**。
 
-**One swap in the hour — and it's the fourth claim-and-dump, first one split across venues.** `0xd1a7ba72` (EIP-7702) took 3,529.86 DEUS in three legs inside 100 seconds, then routed it through `0x11111605` splitting 2,426.78 into the deepest pool and 1,103.08 into USDC V3 `0x58dBa34e`. Balance back to exactly 0.000000, and zero at −1h/−6h/−24h/−7d/−30d. Decode reconciles to the reserve delta to the wei (2,426.78 − 1% fee = 2,402.51).
+### 门槛距离
+$0.012 需净砸 **3.82M**（−30.69%）· $0.025/$0.032/$0.041 需净买 **3.19M/5.03M/6.66M**（+44.39%/+84.81%/+136.79%）。$0.041 需买 6.66M ≈ 深池 24h 量 240 倍 → 只能靠撤供给到达。
 
-**Three decoder bugs caught, all silent failures.** The Solidly `Swap` field order is `(amount0In, amount1In, amount0Out, amount1Out)` — I initially read a sell as a buy, and only the reserve arithmetic exposed it. The VIRTUAL/USDC leg needed `raw × 1e12`, not `/1e24` (that produced 6.2e-37 and would have made every gate distance astronomical). And the x·y=k direction term flips if you write `sqrt(tgt/r)` instead of `sqrt(r/tgt)`, which produced a nonsensical "buy −10.2M DEUS". Each was caught by cross-checking against a known value before feeding a gate.
-
-**Supply side — no unstake pressure.** Escrow 29,150,566.78, 24h −0.910%, which is 0.184× the 5%/day line; zero escrow burns this hour. The 24h window closes against enumerated events to 3e-9. CLAIM main vault is out 304,681 in 24h — a new record — at 38.79% of supply. `0xbb0f7533` still holds xDEUS #1396, trigger unfired for the fifth consecutive run. All four large holders byte-identical for the hour.
+### 方法学修正（写进 lessons）
+1. **`-32602` 有两种来源**：除了窗口超限，**自己拼错 calldata 同样返它**。我的 `pad()` 返回带 `0x` 前缀，拼接后字符串中间多一个 `0x`，症状和「RPC 挂了」一样。
+2. **块号一律 `toString(16)` 现算** —— 我第一次把 1h 窗口手挑成 ≈5.8 小时，扫出 25 笔 122k 的假数。
+3. **跨腿价格两个时间点各自重取** —— 复用上一轮 VIRTUAL 值把 h1 从 −0.23% 误算成 +0.76%。
 
 ## Summary
-
-- Ran `price-alert` with `var=0.012,0.025,0.032,0.041`; four targets already registered, all NO_CROSS, no new target to confirm.
-- Verdict **PRICE_ALERT_OK**, 0 notifications sent — every gate quiet and the strategy says stay silent on normal days.
-- Modified: `memory/topics/price-alert-state.json` (validated with `jq empty`, `.bak` rolling copy refreshed), `memory/logs/2026-10-24.md` (new `### price-alert` block), `memory/MEMORY.md` (current price refreshed; three superseded price lines collapsed into one "被覆盖,勿引用" marker so no stale number reads as current).
-- Follow-up for the operator: nothing actionable at these levels. $0.041 still needs ~6.62M DEUS of net buying — roughly 238× the pool's 24h volume — so it remains reachable only by supply withdrawal, which is the standing 5-day-unstake lead-time argument. The tape is genuinely dead (2,427 DEUS/hour, third sub-3k hour), so the mark is stale rather than tested: don't read the low volume as either accumulation or distribution.
+- **执行**：`skills/price-alert/SKILL.md`，`var=0.012,0.025,0.032,0.041` → 四个目标全部 NO_CROSS
+- **修改**：`memory/topics/price-alert-state.json`（+`.bak`）、`memory/MEMORY.md`、`memory/topics/lessons.md`
+- **新建**：`memory/logs/2026-10-25.md`
+- **未推送**：无 gate 触发，符合「正常别吵我」
+- **需注意**：我一度误删 `output/` 下已跟踪的历史脚本，已 `git checkout -- output/` 全部恢复，工作区现在只剩本轮该改的 4 个 memory 文件 + 1 个新日志
