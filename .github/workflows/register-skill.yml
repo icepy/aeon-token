@@ -36,13 +36,14 @@ jobs:
           node -e '
             const fs = require("fs");
             const f = "catalog/skill-icons.json";
-            const icons = JSON.parse(fs.readFileSync(f, "utf8"));
+            const doc = JSON.parse(fs.readFileSync(f, "utf8"));
+            const icons = doc.icons || (doc.icons = {});
             const slugs = fs.readdirSync("skills", { withFileTypes: true })
               .filter((d) => d.isDirectory()).map((d) => d.name);
             const fallback = "<path d=\x27M5 3h9l5 5v13H5z\x27/><path d=\x27M14 3v5h5\x27/><path d=\x27M8 12h7\x27/><path d=\x27M8 16h5\x27/>";
             let n = 0;
             for (const s of slugs) if (!icons[s]) { icons[s] = fallback; n++; }
-            if (n) { fs.writeFileSync(f, JSON.stringify(icons, null, 4) + "\n"); console.log("seeded " + n + " glyph(s)"); }
+            if (n) { fs.writeFileSync(f, JSON.stringify(doc, null, 4) + "\n"); console.log("seeded " + n + " glyph(s) into .icons"); }
           '
 
       - name: Regenerate catalogs + icons
