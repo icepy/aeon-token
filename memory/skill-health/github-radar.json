@@ -1,10 +1,10 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-25T06:42:43Z",
+  "last_analyzed": "2026-10-25T07:17:09Z",
   "quality_score": 4,
-  "assessment": "Internal arithmetic checks out (174/178=97.8%, 138+38+1+1=178, 76/174=43.7%), gives concrete named repos and an actionable testable rule (measure total_count + overlap before swapping terms), plus an honest limitations section — but it is long versus the operator's 'short, decide-on-sight' preference and a few specifics (50-minute prior run, per-repo commit counts) are not independently checkable from the output itself.",
+  "assessment": "Substantive, self-critical round-9 report with quantified defect analysis (3.85x sampling underestimate, 74% of report-level hits from star-sorted tail) and concrete JEPA leads, but lacks explicit data-source references (API queries/URLs) and is long-form where the strategy asks for decide-at-a-glance output.",
   "flags": [],
-  "avg_score": 3.38,
+  "avg_score": 3.44,
   "history": [
     {
       "date": "2026-10-25",
@@ -52,6 +52,12 @@
       "date": "2026-10-25",
       "score": 4,
       "ts": "2026-10-25T06:42:43Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-25",
+      "score": 4,
+      "ts": "2026-10-25T07:17:09Z",
       "harness": "claude"
     }
   ]

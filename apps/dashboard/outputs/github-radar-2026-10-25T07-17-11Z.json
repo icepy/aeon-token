@@ -1,0 +1,340 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar 第九轮 · 报告级 77，但真正新增只有 26",
+        "description": "报告级 77 / 真正新增 26"
+      },
+      "children": [
+        "h-report",
+        "t-dupes",
+        "sep1",
+        "h-stats",
+        "grid-stats",
+        "sep2",
+        "h-signal",
+        "t-signal",
+        "t-signal2",
+        "grid-repos",
+        "sep3",
+        "alert-reading",
+        "sep4",
+        "h-defects",
+        "alert-d1",
+        "alert-d2",
+        "sep5",
+        "h-crypto",
+        "alert-crypto",
+        "sep6",
+        "h-class",
+        "grid-class",
+        "t-cov",
+        "t-limits"
+      ]
+    },
+    "h-report": {
+      "type": "Heading",
+      "props": {
+        "text": "先说要紧的：本轮 72% 是重复",
+        "level": "h2"
+      }
+    },
+    "t-dupes": {
+      "type": "Text",
+      "props": {
+        "text": "第八轮跑的是 dry-run，seen 没落盘，所以同一批仓又被捞了一遍。与 out8.json 求差后：",
+        "variant": "body"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-stats": {
+      "type": "Heading",
+      "props": {
+        "text": "求差结果",
+        "level": "h3"
+      }
+    },
+    "grid-stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "md"
+      },
+      "children": [
+        "stat-survive",
+        "stat-verified",
+        "stat-report",
+        "stat-new"
+      ]
+    },
+    "stat-survive": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "234"
+      }
+    },
+    "stat-verified": {
+      "type": "Stat",
+      "props": {
+        "label": "全量核验",
+        "value": "230/234",
+        "delta": "98.3%"
+      }
+    },
+    "stat-report": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "77"
+      }
+    },
+    "stat-new": {
+      "type": "Stat",
+      "props": {
+        "label": "真正新增",
+        "value": "26",
+        "delta": "其中 7d 仍在写 11"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-signal": {
+      "type": "Heading",
+      "props": {
+        "text": "真正的新信号：jepa 一支，commit 最狠、star 全无",
+        "level": "h2"
+      }
+    },
+    "t-signal": {
+      "type": "Text",
+      "props": {
+        "text": "新增的 65 个仓全部是 jepa、全部 ★0、0 个 ★≥3。但报告级 26 个、活跃 11 个全在里面，且全轮冠亚军都在：",
+        "variant": "body"
+      }
+    },
+    "t-signal2": {
+      "type": "Text",
+      "props": {
+        "text": "",
+        "variant": "muted"
+      }
+    },
+    "grid-repos": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-1",
+        "sl-2",
+        "sl-3",
+        "sl-4",
+        "sl-5",
+        "sl-6",
+        "sl-7"
+      ]
+    },
+    "sl-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "sahiltolani30/learn-a-world — 30d≥100 / 7d≥100 — 自博弈循环学潜空间世界模型",
+        "source": "github",
+        "href": "https://github.com/sahiltolani30/learn-a-world"
+      }
+    },
+    "sl-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "500mhzClub/Go2-JEPA-Navigation — 30d≥100 / 7d=52 — Unitree Go2 上 JEPA 表征是否真能导航",
+        "source": "github",
+        "href": "https://github.com/500mhzClub/Go2-JEPA-Navigation"
+      }
+    },
+    "sl-3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "c-tustin/JEPA-Identifiability-Predictive-Subspaces — 28/28 — Kempner Institute，JEPA 可辨识性",
+        "source": "github",
+        "href": "https://github.com/c-tustin/JEPA-Identifiability-Predictive-Subspaces"
+      }
+    },
+    "sl-4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "hellobs/microwm — 28/28 — 无人机视频玩具级 JEPA，无解码器 + linear probe",
+        "source": "github",
+        "href": "https://github.com/hellobs/microwm"
+      }
+    },
+    "sl-5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "aviadarn/lepokeyellow — 26/26 — JEPA + 潜空间 CEM 规划打 Pokemon",
+        "source": "github",
+        "href": "https://github.com/aviadarn/lepokeyellow"
+      }
+    },
+    "sl-6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "arsh-6626/latent-render-compare-pose — 23/21 — JEPA 塞进 LiePose SE(3) 扩散",
+        "source": "github",
+        "href": "https://github.com/arsh-6626/latent-render-compare-pose"
+      }
+    },
+    "sl-7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ItsKaiwenDu/V-JEPA-Robust-Overfitting — 21/18 — V-JEPA 2 对抗微调鲁棒过拟合",
+        "source": "github",
+        "href": "https://github.com/ItsKaiwenDu/V-JEPA-Robust-Overfitting"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "alert-reading": {
+      "type": "Alert",
+      "props": {
+        "title": "读法",
+        "message": "star 与 commits 在这一支是反相关的。第八轮「jepa 必须留缩写」成立，但由此推「jepa 只剩噪音」不成立。要跟 JEPA 这条线，只能按 commits 看，按 star 全会漏掉。",
+        "type": "info"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-defects": {
+      "type": "Heading",
+      "props": {
+        "text": "两个框架缺陷（已记入 topic）",
+        "level": "h2"
+      }
+    },
+    "alert-d1": {
+      "type": "Alert",
+      "props": {
+        "title": "抽样核验低估 3.85×",
+        "message": "PER_TERM_CAP=25 按 star 排序，只核了 76/234。补全后报告级 20→77，其中 74% 来自被 star 排序丢掉的部分，而那一部分 stars>=5 是 0 个。star 排序把整个 ★0 长尾切掉了。",
+        "type": "warning"
+      }
+    },
+    "alert-d2": {
+      "type": "Alert",
+      "props": {
+        "title": "pages 规则只丢 <300KB，反向失效",
+        "message": "304MB 的 le-wam/le-wam.github.io 仍被当代码仓，9 个大静态站进了报告级。「体量小」这个条件在巨型静态站上不成立。",
+        "type": "warning"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-crypto": {
+      "type": "Heading",
+      "props": {
+        "text": "加密侧",
+        "level": "h2"
+      }
+    },
+    "alert-crypto": {
+      "type": "Alert",
+      "props": {
+        "title": "加密侧无新增",
+        "message": "6 个词全部饱和（raw>0 / new=0），第五次证明是采尽不是没有。本轮加密侧无新增。",
+        "type": "info"
+      }
+    },
+    "sep6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-class": {
+      "type": "Heading",
+      "props": {
+        "text": "四分类与覆盖率",
+        "level": "h2"
+      }
+    },
+    "grid-class": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "md"
+      },
+      "children": [
+        "stat-fail",
+        "stat-zero",
+        "stat-seen",
+        "stat-added"
+      ]
+    },
+    "stat-fail": {
+      "type": "Stat",
+      "props": {
+        "label": "查询失败",
+        "value": "0"
+      }
+    },
+    "stat-zero": {
+      "type": "Stat",
+      "props": {
+        "label": "真零",
+        "value": "0"
+      }
+    },
+    "stat-seen": {
+      "type": "Stat",
+      "props": {
+        "label": "全已见(饱和)",
+        "value": "14"
+      }
+    },
+    "stat-added": {
+      "type": "Stat",
+      "props": {
+        "label": "有新增",
+        "value": "4"
+      }
+    },
+    "t-cov": {
+      "type": "Text",
+      "props": {
+        "text": "覆盖率 18 词全部 >50%，绝对数可引用。",
+        "variant": "body"
+      }
+    },
+    "t-limits": {
+      "type": "Text",
+      "props": {
+        "text": "限制：爆完即停 46/77 = 59.7%，30d 零提交 68/230 = 29.6%，报告级里 9 个是页形态。",
+        "variant": "caption"
+      }
+    }
+  }
+}

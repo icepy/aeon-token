@@ -1,14 +1,52 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 七轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、缩写污染、agent 指纹）
+description: github-radar 九轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、seen 基线有效性）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-25T06:45:00Z
+timestamp: 2026-10-25T07:05:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。八轮（2026-10-25）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。九轮（2026-10-25）实证。
+
+## 第九轮（2026-10-25 07:00Z）—— 抽样低估 3.85×，且切掉的正好是 ★0 域
+
+`scan.py` 的 `PER_TERM_CAP = 25` 按 star 排序取样，本轮只核了 **76/234 (32.5%)**。补全到 **230/234 (98.3%)** 后：
+
+| 指标 | 抽样（76 仓） | 全量（230 仓） | 倍数 |
+|---|---|---|---|
+| 报告级 | 20 | **77** | **3.85×** |
+| 其中 7d 活跃 | 11 | **31** | 2.8× |
+| 报告级里来自「被抽样丢掉」的 | — | **57/77 = 74%** | — |
+| 7d 活跃里来自「被抽样丢掉」的 | — | **25/31 = 81%** | — |
+
+**被丢掉的 159 个里 `stars >= 5` 有 0 个。** 即 star 排序把整个 ★0 长尾一刀切掉，而报告级和活跃度的四分之三都藏在里面。这是第七轮判据 8（「按 star 分配核验预算会饿死 star 天然低的整个域」）的**第三次复现，第一次量化**。
+
+**判据：核验预算永不按 star 分配。** core quota 5,000/h 与 search 是独立池，200 仓全量只需 ~90 秒。**`PER_TERM_CAP` 存在的唯一理由是省时间，而它一次的代价是把 74% 的报告级藏起来 —— 直接删掉这个 cap，改用全量 + `CHK_CAP` 兜底。**
+
+## 第九轮 —— `seen` 基线的有效性 = 「上一次**非 dry-run**」的幸存集
+
+本轮与 `out8.json` 快照求差：重叠 **169/234 = 72.2%**，真正新增 **65**。而 `seen` 文件显示「新增 238 条」，看起来全是新的 —— **第八轮跑的是 dry-run（`DRY=1` 时 `scan.py` 不写 seen），178 个幸存者一个都没落盘。**
+
+**判据：报「新增 N」前必须与上一轮**快照**求差，不能只看 `seen` 增量。** `seen` 只反映「历史上非 dry-run 跑过什么」，dry-run 轮次的发现会全部重复回捞。**这也是「同一天跑 9 轮」这类密集重跑的主要噪音源 —— 前一轮若是 dry-run，下一轮的有效新增要除以 ~3.6。**
+
+## 第九轮 —— `jepa`：★0 但 commit 最狠，star 与 commits 反相关
+
+真正新增的 65 个**全部**是 `jepa` 词、**全部 ★0**、0 个 ★≥3，但 **26 个报告级、11 个 7d 活跃**，且全轮冠亚军都在这一支：
+
+- `sahiltolani30/learn-a-world` **30d≥100 / 7d≥100**（自博弈学潜空间世界模型）
+- `500mhzClub/Go2-JEPA-Navigation` **30d≥100 / 7d=52**（Go2 上 JEPA 表征是否真能导航）
+
+**第八轮的「jepa 换全称损失 94.6%，缩写才是生态写法」成立；但由此推出「jepa 只剩噪音」不成立。** 恰恰相反：它是本轮 commit 密度最高的一支。**star 在这支上完全失效 —— 要跟 JEPA 线只能按 commits 排，按 star 会全部漏掉。** 补充第八轮的结论：`jepa` 该留，但应与 `vision language action` 分开排序/展示，因为它靠 star 永远浮不上来。
+
+## 第九轮 —— `pages` 规则「体量小」条件在巨型静态站上反向失效
+
+第八轮判据 16 定为「名字像页 **+** 体量小」，本轮 19 个页形态幸存、**9 个进报告级**，最大 **304,228KB**：
+
+`le-wam/le-wam.github.io` **297MB** · `liujiting123/morphact-website` 99MB · `DILL-VLA/dill-vla.github.io` 74MB · `PhyLatent/phylatent.github.io` 27MB · `4AxiomRobotics/Axiom0-page` 19MB · `rkdrn79/AnisoWM-page` 11MB。
+
+**「体量小」在静态站上是反向的 —— 论文项目页往往带大图和视频，越大越是页。** 正确判据：**名字/后缀像页 → 单条件成立即丢**（`PAGE_SUFFIX` 已覆盖 `.github.io`/`-page`/`-site`/`-website`），或改用「根目录无 `src/`/`contracts/`/`crates/` 且 `language ∈ {HTML,CSS,JavaScript,TypeScript}`」。**别再用 size 做页形态的正向判据。**
 
 ## 第八轮（2026-10-25 06:45Z）—— 词表改全称，vla 成功 / jepa 惨败
 
@@ -104,6 +142,7 @@ timestamp: 2026-10-25T06:45:00Z
 
 # Citations
 
+- 第九轮快照 `output/ghradar/out9full.json`（234 幸存 / 3,461 原始）· `audit.log` · 全量核验 `full9.py`（230/234）· 候选重建 `cards9.py` · 对照第八轮 `out8.json`（178 幸存，dry-run 未落 seen）· 词表口径 `terms9.py` → `terms9.json`
 - 第八轮快照 `output/ghradar/out8.json`（178 幸存 / 2,817 原始）· `audit8.log` · 全量核验 `verify8.py`（174/178 = 97.8%）· 词表口径 `terms8.json` · 分析 `an8.py` / `deep8.py` / `tree8.py` · 加密侧复核 `cry8.py` → `cry8.json`
 - 第七轮快照 `output/ghradar/out7.json`（332 新增 / 3,441 原始）· `audit7.log` · 全量核验 `full7.json`（1,251）+ `full7b.json`（332）· 污染量化 `contam7.py` · 词表饱和 `terms7.py` → `terms7.json` · 汇总 `all7.py` / `an7.py` / `final7.py`
 - 第六轮快照 `output/ghradar/out6.json`（1,251 幸存 / 2,427 原始）· `audit6.log`

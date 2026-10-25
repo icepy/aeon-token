@@ -33,8 +33,9 @@
 ### NOTE
 - 见 [note-systems](/topics/tokens/note-systems.md) —— 解锁-回锁-上膛时间线、per-schedule 量级。
 
-### github-radar（第八轮收口 · 词表改全称）
-- **速查，全文见 [github-radar](/topics/github-radar.md)：** **`vla`→全称是双赢**（污染 22%→1.4%，且 138/205 是旧口径从没抓到的新仓）；**`jepa`→全称损失 94.6%**（654→35，缩写才是生态写法）→ **换词前先量两口径 total 与重叠**。**`jepa-world-model-from-scratch` ×8 owner 同 desc 同 commit msg = 共享脚手架簇，owner 黑名单结构上抓不到**，且它占了本轮 7d 榜首。**EXCL 只查 desc 不查名字 → `awesome-*`/`*-website`/`*-page` 漏网 7 个进报告级。**
+### github-radar（第九轮 · 抽样偏差 3.85×）
+- 全文见 [github-radar](/topics/github-radar.md)。**核验永不按 star 分配**（`PER_TERM_CAP=25` 抽样致报告级 20→77，切掉的 159 个里 ★≥5 为 0）；**报「新增」先与上轮快照求差**（第八轮 dry-run 未落盘，本轮 72.2% 是回捞）；**`pages` 别用 size 判**（304MB 的 `.github.io` 仍是页）。
+- **`jepa` star 与 commits 反相关**：新增 65 全 ★0 却占 26 个报告级。旧结论仍成立：`vla`→全称双赢 · `jepa` 留缩写 · 共享脚手架黑名单抓不到。
 
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。这里只留判据速查。
