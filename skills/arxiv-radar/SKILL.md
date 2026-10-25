@@ -90,6 +90,12 @@ robot manipulation data
 robot data
 embodied AI
 zero-knowledge
+# ── 机器人数据基础设施（2026-10-25 新增）：旧 4 词只认「embodied AI / robot data」，
+#    对同期标题含 data 的机器人论文召回 0/88。这 4 条带 cat:cs.RO 约束，实测精度 23/27。
+ti:"data engine" AND cat:cs.RO
+ti:"human data" AND cat:cs.RO
+ti:"egocentric" AND cat:cs.RO
+ti:"data generation" AND cat:cs.RO
 # ── 持仓依赖的机制（持仓是 NOTE / DEUS / PEARL）──
 ti:"EIP-1559"
 ti:"Robinhood Chain"
@@ -125,6 +131,10 @@ CARRIER_BY_TERM = {
     "robot manipulation data": CARRIER_ROBOT,
     "robot data": CARRIER_ROBOT,
     "embodied AI": CARRIER_ROBOT,
+    'ti:"data engine" AND cat:cs.RO': CARRIER_ROBOT,
+    'ti:"human data" AND cat:cs.RO': CARRIER_ROBOT,
+    'ti:"egocentric" AND cat:cs.RO': CARRIER_ROBOT,
+    'ti:"data generation" AND cat:cs.RO': CARRIER_ROBOT,
     "automated market maker": CARRIER_BASE + CARRIER_MARKET,
     'cat:cs.CR AND ti:"MEV"': CARRIER_BASE + CARRIER_MARKET,
 }
