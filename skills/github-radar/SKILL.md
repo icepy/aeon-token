@@ -36,7 +36,7 @@ metadata:
 ## 铁律
 
 - **star 地板是反向的。** 新建仓库必然 ★0–2。默认 `min:0`。
-- **star 测「发布时的传播」，commits 测「现在还有人在写」。判真伪只看 commits。** 实证：`Zero-WAM` ★439 四轮零提交 · `code-world-model` ★543 / 0 提交 · `PrismWAM` ★48 / 10 提交。
+- **star 测「发布时的传播」，commits 测「现在还有人在写」。判真伪只看 commits。** 实证：`Zero-WAM` ★439 五轮零提交 · `code-world-model` ★543 / 0 提交 · `PrismWAM` ★48 / 10 提交。
 - **核验对象不能按创建时间取前 N**，长窗口下那批全是 ★0 噪声。按 star 分桶。
 - **限速要重试，不能放弃。** 放弃会静默降级到未认证（10/min），把活仓标成空仓。**429（限速）和 409（真空仓）必须分开。**
 - **description 越像论文，越要查 commits。**
@@ -45,7 +45,8 @@ metadata:
 - **覆盖率必须报。** <50% 的词绝对数不可引用（`vla` 7.9% / `world model` 21.4% / `jepa` 44.3%）。总覆盖率 32.1% 已到顶。
 - **缩写必然脏，用全称。**
 - **`template` / `demo` / `sniper` = 练手仓库或农场。**
-- **`.github.io` 和同名单仓 = 项目页/列表页**，不是代码仓。
+- **项目页/列表页要「名字像页 + 体量小」两个条件同时成立才丢。** 只看名字会误杀真代码仓（实证 4 个，含 `UniWAM` ★135）。
+- **每条丢弃规则都要能被审计。** 丢掉的样本要列出来 —— 只看幸存者会得出「过滤器正常」的错误结论。
 - **农场只认黑名单。** 「owner 有 3 个仓」只是**候选**，不是判决 —— 实证误杀过 `rzc156/dreamforge` ★130/21 提交、`Roboparty/P-BFM` ★95、`NEBULIS-Lab/D-JEPA` ★32/68 提交。
 - **报「零命中」必须分开写：查询失败 / 真零命中 / 未核验。**
 - **零命中不等于废词。**
@@ -221,6 +222,7 @@ out, raw = [], 0
 drop = {"seen": 0, "excl": 0, "archived": 0, "short_desc": 0, "carrier": 0,
         "pages": 0, "farm": 0, "fail": 0}
 hit, qfail, cov, per_term = {}, [], {}, {}
+page_dropped = []          # 被 pages 规则丢掉的，进审计备查
 
 for term in TERMS:
     total, got, failed = 0, 0, False
@@ -245,8 +247,16 @@ for term in TERMS:
                 hit[rid]["terms"].append(term); drop["seen"] += 1; continue
             if it.get("archived"):
                 drop["archived"] += 1; continue
-            if short.endswith(".github.io") or short.lower() == owner.lower():
-                drop["pages"] += 1; continue     # 项目页 / 列表页
+            # 项目页 / 列表页：名字像页**且**体量小才算。
+            # 实证：只看名字会误杀 —— 21 个被丢的里 4 个是真代码仓
+            # （UniWAM 3.3MB/c30=20、DexTacWAM 3.0MB/c30=26、
+            #   两个 .github.io 站点仓 75MB / 594MB）。
+            size_kb = it.get("size", 0)
+            if ((short.endswith(".github.io") or short.lower() == owner.lower())
+                    and size_kb < 300):
+                drop["pages"] += 1
+                page_dropped.append((rid, size_kb))
+                continue
             desc = (it.get("description") or "").strip()
             if len(desc) < 25:
                 drop["short_desc"] += 1; continue
@@ -262,6 +272,7 @@ for term in TERMS:
                         "stars": it.get("stargazers_count", 0),
                         "created": (it.get("created_at") or "")[:10],
                         "topics": it.get("topics", [])[:6],
+                        "size_kb": size_kb,
                         "desc": " ".join(desc.split())[:140]})
             hit[rid] = out[-1]
         time.sleep(3 if GH else 8)
@@ -323,6 +334,10 @@ if qfail:
 zero = [k for k, v in per_term.items() if v == 0 and k not in qfail]
 if zero:
     L.append("⚠️ 真零命中: " + " · ".join(zero))
+if page_dropped:
+    L.append("ℹ️ 被 pages 规则丢弃 %d 个（可审计，体量<300KB）: %s"
+             % (len(page_dropped),
+                " · ".join("%s(%dKB)" % p for p in page_dropped[:15])))
 uv = [c["repo"] for c in todo if c.get("unverified")]
 if uv:
     L.append("⚠️ 未核验（限速，勿当空仓）%d 个: %s" % (len(uv), " · ".join(uv[:15])))
@@ -337,8 +352,9 @@ if cand:
     L.append("ℹ️ 候选农场（owner≥3，需人工判，非判决）: " +
              " · ".join("%s=%d" % kv for kv in cand.items()))
 for c in rep[:25]:
-    L.append("  %s [%s] %s ★%d commits30d=%d"
-             % (c["created"], c["term"], c["repo"], c["stars"], c["commits_30d"]))
+    L.append("  %s [%s] %s ★%d commits30d=%d size=%dKB"
+             % (c["created"], c["term"], c["repo"], c["stars"],
+                c["commits_30d"], c["size_kb"]))
 open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
 print("\n".join(L))
 
