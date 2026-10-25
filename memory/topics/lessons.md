@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-25T05:01:35Z
+timestamp: 2026-10-25T08:09:17Z
 ---
 
 # Lessons learned — archive
@@ -36,6 +36,20 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 **纪律：一条「流出」要成为「卖压」，必须满足全部三条** —— ① 接收方不是发行方自己的合约；② 该接收方的余额**下降**（不是收了就存着）；③ 终点落在某个池子或最终卖出者手上（不是又进了质押）。**只看第一跳的总额，会把内部搬家读成洪水。**
 
 **快速的重复核验**：对导管群做 `now` 与 `−86400s` 的 `balanceOf` 差。余额**上升** = 在仓库里堆着；余额**下降快于其派发** = 真在往外倒。
+
+### 「连续多轮读数不变」不是「没变化」，是「没落在观察窗里」
+
+**2026-10-25 08:09Z。** `totalSupply` 连续五轮读到同一个数字（−12,373.69 报了两天），于是写下「通缩彻底走平」。本轮建 9 点时间序列后真相是：**07:09Z 之前逐 wei 不变，07:11:49Z 单块跳 +85,828.91**，是史上最大单次增发（前记录 14,413）。**「同一个数字反复出现」在 mint/burn 型变量上只能证明观察点之间没有事件，不能证明没有事件。**
+
+**纪律：任何增量型链上变量（`totalSupply`、`balanceOf`、导管余额）要下「走平/通缩」判断，先取 ≥3 个跨度不同的点（15m / 1h / 6h / 24h / 48h）看形状；单点重复一律只写「本轮未见变化」。** 区块时间戳必须断言（本轮 24h 窗口第一次搜索下界太窄，落回 80,000s 而不是 86,400s，−2.65% 是错的口径，修正后 −3.80%）。
+
+**配套判据**：mint 事件用 `Transfer(from=0x0)` 抓，burn 用 `Transfer(to=0x0)`，且必须跑判别力控制（故意改 1 字符 topic0 应回 0）。本轮控制真 171 / 假 0，证明那 171 条里确实包含这笔。
+
+### 大额 mint 看收款地址的 nonce 与铸前余额，别看金额
+
+**2026-10-25：** 85,829 DEUS 拆给 8 个地址，第一反应是「8 个新钱包在接盘」。查 `eth_getTransactionCount` 后全部 **nonce = 1**，且 8 个地址**铸币前都已有余额**（合计 313,140）；滚动余额 384,051(−30d) → 327,370(−7d) → 398,969(now)。真相相反：**一群存量 dormant 地址，卖了一个月之后被重新充弹。**
+
+**判据：`nonce == 0` 或铸前 `balanceOf == 0` 才是新钱；否则先当作存量地址的仓位调整。** 而且「刚收到」不等于「要卖」—— **8 个地址至今一笔未转出**。分发 ≠ 抛售，和上一条「流出 ≠ 卖出」是同一个病。
 
 ### API 的 `h1 = null` 不能被读成 0，也不能被读成「平静」
 
@@ -203,6 +217,7 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 
 # Citations
 
+- `memory/logs/2026-10-25#price-alert`（08:09Z **单块 +85,828.91 增发推翻「通缩走平」**；8 个 nonce=1 的 dormant EOA 被重新充弹、零流出 = 分发≠抛售；exact 86400s 窗口要断言区块时间戳；Aerodrome classic 的 Swap topic0 是 `0xb3e27736…` 不是 UniV2 的 `0xd78ad95f…`）
 - `memory/logs/2026-10-25#price-alert`（05:01Z **流出≠卖压：CLAIM 338k 里 97.8% 只是内部搬家**；`h1=null` 用 `blockTimestampLast` + 储备逐 wei 自证；24h 分解的池内腿与引腿是复利不是加法；地址靠记忆补零=假零）
 - `memory/logs/2026-10-21#onchain-monitor`, `#telegram-reply`, `#heartbeat-brief`, `#price-alert`
 - `memory/logs/2026-10-22#price-alert`（21:01Z / 22:02Z / 23:01Z 三源对比）

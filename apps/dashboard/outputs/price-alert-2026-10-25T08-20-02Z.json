@@ -1,0 +1,381 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "price-alert — DEUS 85,829 单笔增发（史上最大）"
+      },
+      "children": [
+        "alert1",
+        "h1",
+        "t1",
+        "t2",
+        "tbl",
+        "sep1",
+        "h2",
+        "bulletStack",
+        "sep2",
+        "h3",
+        "grid1",
+        "t3",
+        "sep3",
+        "h4",
+        "t4",
+        "t5",
+        "sep4",
+        "h5",
+        "st3",
+        "t7",
+        "grid2",
+        "t8",
+        "t9",
+        "sep5",
+        "h6",
+        "t10",
+        "sep6",
+        "t11"
+      ]
+    },
+    "alert1": {
+      "type": "Alert",
+      "props": {
+        "type": "warning",
+        "title": "⚠️ DEUS — 85,829 单笔增发（史上最大）",
+        "message": "史上最大单次增发，供给框架要换"
+      }
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "DEUS — 史上最大单次增发，供给框架要换",
+        "level": "h2"
+      }
+    },
+    "t1": {
+      "type": "Text",
+      "props": {
+        "text": "85,828.91 DEUS 一次性铸出（07:11:49Z，blk 53,061,481，铸币合约 0x2cca08ae）。是此前最大单次增发 14,413 的 6.0 倍。",
+        "variant": "body"
+      }
+    },
+    "t2": {
+      "type": "Text",
+      "props": {
+        "text": "4.5 分钟内全额拆给 8 个 EOA，逐 wei 闭合，首跳地址只剩 98.09。",
+        "variant": "body"
+      }
+    },
+    "tbl": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "收款",
+          "收到",
+          "铸前余额",
+          "现在"
+        ],
+        "rows": [
+          [
+            "0x5318d687",
+            "14,621.91",
+            "64,430.06",
+            "79,051.97"
+          ],
+          [
+            "0x393f8acc",
+            "12,951.38",
+            "46,449.34",
+            "59,400.72"
+          ],
+          [
+            "0x3d1aa83e",
+            "12,694.08",
+            "30,369.10",
+            "43,063.18"
+          ],
+          [
+            "0xfb422428",
+            "11,926.29",
+            "43,252.18",
+            "55,178.47"
+          ],
+          [
+            "0xd50de171",
+            "10,459.29",
+            "23,573.50",
+            "34,032.79"
+          ],
+          [
+            "0x4af20629",
+            "8,612.18",
+            "42,768.35",
+            "51,380.53"
+          ],
+          [
+            "0x9be2134e",
+            "7,593.33",
+            "56,963.21",
+            "64,556.54"
+          ],
+          [
+            "0x380ce63e",
+            "6,970.44",
+            "5,334.50",
+            "12,304.94"
+          ],
+          [
+            "合计",
+            "85,828.91",
+            "313,140.24",
+            "398,969.15"
+          ]
+        ]
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h2": {
+      "type": "Heading",
+      "props": {
+        "text": "这是补给，不是抛售",
+        "level": "h3"
+      }
+    },
+    "bulletStack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "s1": {
+      "type": "Text",
+      "props": {
+        "text": "8 个地址 nonce 全为 1，铸前都已有余额 → 不是新钱包，是一组 dormant 存量地址。",
+        "variant": "body"
+      }
+    },
+    "s2": {
+      "type": "Text",
+      "props": {
+        "text": "滚动余额 384,051(−30d) → 327,370(−7d) → 398,969(现在)：卖了近一个月的组，刚被重新充弹。",
+        "variant": "body"
+      }
+    },
+    "s3": {
+      "type": "Text",
+      "props": {
+        "text": "8 个地址至今一笔未转出。零流出。",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h3": {
+      "type": "Heading",
+      "props": {
+        "text": "若真砸下来",
+        "level": "h3"
+      }
+    },
+    "grid1": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "st1",
+        "st2"
+      ]
+    },
+    "st1": {
+      "type": "Stat",
+      "props": {
+        "label": "单铸币量 85.8k → mark",
+        "value": "−0.90%",
+        "delta": "换出 $1,462",
+        "trend": "down"
+      }
+    },
+    "st2": {
+      "type": "Stat",
+      "props": {
+        "label": "全体 399k → mark",
+        "value": "−4.08%",
+        "delta": "换出 $6,685",
+        "trend": "down"
+      }
+    },
+    "t3": {
+      "type": "Text",
+      "props": {
+        "text": "都够不到任何 gate，所以不构成提前 unstake 的理由。",
+        "variant": "body"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h4": {
+      "type": "Heading",
+      "props": {
+        "text": "「净通缩已走平」作废",
+        "level": "h3"
+      }
+    },
+    "t4": {
+      "type": "Text",
+      "props": {
+        "text": "totalSupply 连续 12h 逐 wei 不变，然后单块跳 +85,828.91。24h 口径从 −12,373.69 改为 +73,181.90（增发）。",
+        "variant": "body"
+      }
+    },
+    "t5": {
+      "type": "Text",
+      "props": {
+        "text": "前几轮“连续第五次拿到同一个数字”是 mint 没落进观察窗的假象，不是通缩。",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h5": {
+      "type": "Heading",
+      "props": {
+        "text": "价格与 gate（四道全静）",
+        "level": "h3"
+      }
+    },
+    "st3": {
+      "type": "Stat",
+      "props": {
+        "label": "mark（比值 0.0276698249 × VIRTUAL $0.6182951）",
+        "value": "$0.01710812",
+        "delta": "1h +0.13% / 24h −3.80%",
+        "trend": "down"
+      }
+    },
+    "t7": {
+      "type": "Text",
+      "props": {
+        "text": "1h 全部来自 VIRTUAL 引腿，比值腿 +6.0e-8% 未动。",
+        "variant": "body"
+      }
+    },
+    "grid2": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "st4",
+        "st5",
+        "st6",
+        "st7"
+      ]
+    },
+    "st4": {
+      "type": "Stat",
+      "props": {
+        "label": "$0.012",
+        "value": "−29.86%",
+        "trend": "down"
+      }
+    },
+    "st5": {
+      "type": "Stat",
+      "props": {
+        "label": "$0.025",
+        "value": "+46.13%",
+        "trend": "up"
+      }
+    },
+    "st6": {
+      "type": "Stat",
+      "props": {
+        "label": "$0.032",
+        "value": "+87.05%",
+        "trend": "up"
+      }
+    },
+    "st7": {
+      "type": "Stat",
+      "props": {
+        "label": "$0.041",
+        "value": "+139.65%",
+        "trend": "up"
+      }
+    },
+    "t8": {
+      "type": "Text",
+      "props": {
+        "text": "$0.041 要吃掉深池 DEUS 储备 35.4%、实付 $177,880（24h 量的 12.8×）→ 仍是“一个块跳过去”。",
+        "variant": "body"
+      }
+    },
+    "t9": {
+      "type": "Text",
+      "props": {
+        "text": "0xbb0f7533 仍持 xDEUS #1396，约 2.9 天未烧 → 5 天冷 clock 至今没启动。",
+        "variant": "body"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h6": {
+      "type": "Heading",
+      "props": {
+        "text": "下一步只盯一件事",
+        "level": "h3"
+      }
+    },
+    "t10": {
+      "type": "Text",
+      "props": {
+        "text": "这 8 个地址的第一个转出。转出即 −0.9%（单笔）到 −4.1%（全体）的单块事件。mint 本身不用再追。",
+        "variant": "lead"
+      }
+    },
+    "sep6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "t11": {
+      "type": "Text",
+      "props": {
+        "text": "[source: base.gateway.tenderly.co · eth_getLogs DEUS Transfer(from=0x0) blk 53061405–53062305 + 8 收款地址逐个查 · tx 0xa83d52f2 · totalSupply 九点序列 · 深池 0x3E97c5EC eth_call 0x0902f1ac blk 53063272 / ts 差 3,600 与 86,400 双断言 · DISC 真171/假0]",
+        "variant": "caption"
+      }
+    }
+  }
+}

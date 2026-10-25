@@ -1,89 +1,61 @@
 import json, urllib.request, datetime
-from collections import Counter
 
 RPC = "https://base.gateway.tenderly.co"
 POOL = "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa"
-SOLIDLY_SWAP = "0xb3e2773606abfd36b5bd91394b3a54d1398336c65005baf7bf7a05efeffaf75b"
-
+SWAP = "0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822"
+_id = [900]
 
 def rpc(method, params):
-    body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
-    req = urllib.request.Request(RPC, data=body, headers={
-        "Content-Type": "application/json", "User-Agent": "curl/8.5.0"})
-    return json.load(urllib.request.urlopen(req, timeout=45))
+    _id[0] += 1
+    body = json.dumps({"jsonrpc": "2.0", "id": _id[0], "method": method, "params": params}).encode()
+    req = urllib.request.Request(RPC, data=body, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=40) as r:
+        j = json.loads(r.read())
+    if "error" in j:
+        raise RuntimeError(j["error"])
+    return j["result"]
 
+def ts(n):
+    return int(rpc("eth_getBlockByNumber", [hex(n), False])["timestamp"], 16)
 
-def get_logs(lo, hi):
-    out = rpc("eth_getLogs", [{"address": POOL, "fromBlock": hex(lo), "toBlock": hex(hi),
-                               "topics": [SOLIDLY_SWAP]}])
-    if "error" in out:
-        raise RuntimeError(json.dumps(out["error"])[:300])
-    return out["result"]
-
-
-def utc(ts):
-    return datetime.datetime.fromtimestamp(ts, datetime.timezone.utc).strftime("%H:%M:%SZ")
-
-
-def main():
-    b = int(rpc("eth_blockNumber", [])["result"], 16)
-    now_ts = int(rpc("eth_getBlockByNumber", [hex(b), False])["result"]["timestamp"], 16)
-    lo, hi = b - 3000, b
-    target = now_ts - 3600
-    b1 = None
-    while lo <= hi:
-        mid = (lo + hi) // 2
-        ts = int(rpc("eth_getBlockByNumber", [hex(mid), False])["result"]["timestamp"], 16)
-        if ts <= target:
-            b1, lo = mid, mid + 1
+def find(target):
+    lo, hi = 53040000, int(rpc("eth_blockNumber", []), 16)
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if ts(mid) <= target:
+            lo = mid
         else:
             hi = mid - 1
+    return lo
 
-    logs, start = [], b1
-    while start <= b:
-        end = min(start + 999, b)
-        logs.extend(get_logs(start, end))
-        start = end + 1
+# window around the 07:14:01Z blockTimestampLast
+t = 1792912441
+start = find(t - 2400)
+end = find(t + 600)
+logs = []
+b = start
+while b <= end:
+    e = min(b + 999, end)
+    logs.extend(rpc("eth_getLogs", [{"address": POOL, "fromBlock": hex(b), "toBlock": hex(e), "topics": [SWAP]}]))
+    b = e + 1
 
-    ts_cache = {}
-    rows = []
-    for lg in logs:
-        d = lg["data"][2:]
-        w = [d[i:i + 64] for i in range(0, len(d), 64)]
-        if len(w) < 4:
-            continue
-        a0in, a1in, a0out, a1out = (int(x, 16) for x in w[:4])
-        blk = int(lg["blockNumber"], 16)
-        if blk not in ts_cache:
-            ts_cache[blk] = int(rpc("eth_getBlockByNumber", [hex(blk), False])["result"]["timestamp"], 16)
-        rows.append({
-            "ts": ts_cache[blk], "blk": blk, "tx": lg["transactionHash"],
-            "sender": "0x" + lg["topics"][1][-40:],
-            "deus_in": a1in / 1e18, "deus_out": a1out / 1e18,
-            "virt_in": a0in / 1e18, "virt_out": a0out / 1e18,
-        })
+rows = []
+for lg in logs:
+    d = lg["data"][2:]
+    a0in, a1in = int(d[0:64], 16) / 1e18, int(d[64:128], 16) / 1e18
+    a0out, a1out = int(d[128:192], 16) / 1e18, int(d[192:256], 16) / 1e18
+    rows.append({"blk": int(lg["blockNumber"], 16),
+                 "iso": datetime.datetime.fromtimestamp(ts(int(lg["blockNumber"], 16)), datetime.UTC).strftime("%H:%M:%SZ"),
+                 "virtual_in": round(a0in, 8), "deus_in": round(a1in, 6),
+                 "virtual_out": round(a0out, 8), "deus_out": round(a1out, 6),
+                 "side": "BUY" if a1out > 0 else "SELL",
+                 "deus": round(a1out - a1in, 6), "tx": lg["transactionHash"]})
 
-    print("window", b1, "->", b, " swaps", len(rows))
-    buys = [r for r in rows if r["deus_out"] > 0]
-    sells = [r for r in rows if r["deus_in"] > 0]
-    print("buys %d  sum_deus_out %.3f" % (len(buys), sum(r["deus_out"] for r in buys)))
-    print("sells %d  sum_deus_in %.3f" % (len(sells), sum(r["deus_in"] for r in sells)))
-    print("net_deus_into_pool %.3f" % (sum(r["deus_in"] for r in sells) - sum(r["deus_out"] for r in buys)))
+# control on a block range known to contain a swap
+ctl_true = rpc("eth_getLogs", [{"address": POOL, "fromBlock": hex(start), "toBlock": hex(min(start + 999, end)), "topics": [SWAP]}])
+bad = SWAP[:-1] + ("1" if SWAP[-1] != "1" else "2")
+ctl_false = rpc("eth_getLogs", [{"address": POOL, "fromBlock": hex(start), "toBlock": hex(min(start + 999, end)), "topics": [bad]}])
 
-    print("\nlargest 6:")
-    for r in sorted(rows, key=lambda x: -(x["deus_in"] + x["deus_out"]))[:6]:
-        print("  %s blk %d  DEUS in %.3f / out %.3f  %s" % (utc(r["ts"]), r["blk"], r["deus_in"], r["deus_out"], r["sender"]))
-
-    rs = sorted(rows, key=lambda x: x["ts"])
-    if len(rs) > 1:
-        gaps = [rs[i + 1]["ts"] - rs[i]["ts"] for i in range(len(rs) - 1)]
-        print("\nfirst %s  last %s" % (utc(rs[0]["ts"]), utc(rs[-1]["ts"])))
-        print("max_gap_s", max(gaps), "median_gap_s", sorted(gaps)[len(gaps) // 2])
-
-    senders = Counter(r["sender"] for r in rows)
-    print("\nunique_senders", len(senders))
-    for s_, n in senders.most_common(5):
-        print(" ", s_, n)
-
-
-main()
+print(json.dumps({"window": [start, end], "n": len(rows), "rows": rows,
+                  "ctl_true": len(ctl_true), "ctl_false": len(ctl_false),
+                  "now_iso": datetime.datetime.fromtimestamp(ts(int(rpc("eth_blockNumber", []), 16)), datetime.UTC).strftime("%FT%TZ")}, indent=1))

@@ -8,7 +8,7 @@ tags:
   - runbook
   - onchain
 resource: https://basescan.org/address/0xA85A38796B951CE87B378538b32B3E6Ee3C4C373
-timestamp: 2026-10-25T05:01:35Z
+timestamp: 2026-10-25T08:09:17Z
 ---
 
 # DEUS / xDEUS watch addresses
@@ -191,6 +191,43 @@ not a passive contract.
 
 **Implication for the strategy:** dilution is a slow headwind against the $0.041 break-even line.
 Don't claim "deflationary" from a single unchanged read. [source: logs/2026-10-23#price-alert]
+
+### 2026-10-25 08:09Z — 85,829 mint, the largest single mint on record, fanned out to 8 dormant EOAs
+
+The 14,413 print above is no longer the record. **Block 53,061,481 (07:11:49Z)**: mint contract
+`0x2cca08ae69e0c44b18a57ab2a87644234daebae4`, selector `0xcfc32570`, called by
+`0x7ddb0773e979cd36ef0dc8b6e594a6ebc876e654`, minted **85,828.91 DEUS** (6.0× the prior record) to
+`0x42a1647e8a77f8325a7c7bf06096cda477915d39` (EIP-7702, code `0xef0100…`). Tx
+`0xa83d52f2e9d045ba52355e8b250243635aaa25c0e4a06fc4c91e22026804d68e`.
+
+**It was fanned out within 4.5 minutes.** Nine `Transfer` txs between 07:14:35Z and 07:16:13Z split
+the full 85,828.91 to eight plain EOAs, closing to the wei; the first hop kept only **98.09**.
+
+| Recipient | minted in | balance before | balance now |
+|---|---|---|---|
+| `0x5318d687` | 14,621.91 | 64,430.06 | 79,051.97 |
+| `0x393f8acc` | 12,951.38 | 46,449.34 | 59,400.72 |
+| `0x3d1aa83e` | 12,694.08 | 30,369.10 | 43,063.18 |
+| `0xfb422428` | 11,926.29 | 43,252.18 | 55,178.47 |
+| `0xd50de171` | 10,459.29 | 23,573.50 | 34,032.79 |
+| `0x4af20629` | 8,612.18 | 42,768.35 | 51,380.53 |
+| `0x9be2134e` | 7,593.33 | 56,963.21 | 64,556.54 |
+| `0x380ce63e` | 6,970.44 | 5,334.50 | 12,304.94 |
+| **total** | **85,828.91** | **313,140.24** | **398,969.15** |
+
+**Read the addresses, not the size.** All eight have `nonce == 1` and all eight already held DEUS
+before the mint (313,140 combined) — these are **dormant incumbents being topped up, not new
+wallets**. The cohort's rolling balance: 384,051 at −30d → 327,370 at −7d → 398,969 now. It was
+**net selling for a month and has just been re-armed**. As of 08:09Z **not one of the eight has
+moved a single wei out** — this is supply being staged, not a dump in progress.
+
+**What it does and does not change.** If all 398,969 hit the deepest pool at once the constant-product
+mark goes **−4.08%** ($6,685 out); the mint tranche alone is **−0.90%**. Neither reaches any gate,
+and zero of it has moved yet — so it does **not** justify pre-emptive unstake. What it kills is the
+"deflationary" framing: `totalSupply` sat byte-identical for 12 straight hours and then jumped
+**+85,828.91 in a single block**. Repeated "unchanged" reads were the mint missing the observation
+window, never the absence of a mint. Watch the eight addresses for the first outflow — that is the
+trigger, not the mint itself. [source: logs/2026-10-25#price-alert]
 
 ## The 338k/day "drip" is mostly internal plumbing — 2026-10-25
 

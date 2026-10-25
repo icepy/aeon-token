@@ -1,70 +1,61 @@
-import json, urllib.request, time, collections
+import json, urllib.request, datetime
 
 RPC = "https://base.gateway.tenderly.co"
-DEEP = "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa"
-SWAP = "0xb3e2773606abfd36b5bd91394b3a54d1398336c65005baf7bf7a05efeffaf75b"
-SYNC = "0xcf2aa50876cdfbb541206f89af0ee78d44a2abdf50e9722b7ff3d2de2b0d2f2c"
+POOL = "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa"
+SWAP = "0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822"
+_id = [500]
 
 def rpc(method, params):
-    body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
-    req = urllib.request.Request(RPC, data=body, headers={"content-type": "application/json"})
-    for attempt, back in enumerate([1, 2, 4, 8]):
-        try:
-            with urllib.request.urlopen(req, timeout=40) as r:
-                out = json.loads(r.read())
-            if "error" in out:
-                raise RuntimeError(out["error"])
-            return out["result"]
-        except Exception as e:
-            if attempt == 3:
-                raise
-            time.sleep(back)
+    _id[0] += 1
+    body = json.dumps({"jsonrpc": "2.0", "id": _id[0], "method": method, "params": params}).encode()
+    req = urllib.request.Request(RPC, data=body, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=40) as r:
+        j = json.loads(r.read())
+    if "error" in j:
+        raise RuntimeError(j["error"])
+    return j["result"]
 
 head = int(rpc("eth_blockNumber", []), 16)
 start = head - 1800
-print("head", head, "window", start, "->", head)
 
-# topic0 histogram by address only, over the first 1000-block window (family check)
-hist = collections.Counter()
-for lo in range(start, head + 1, 1000):
-    hi = min(lo + 999, head)
-    for lg in rpc("eth_getLogs", [{"address": DEEP, "fromBlock": hex(lo), "toBlock": hex(hi)}]):
-        hist[lg["topics"][0]] += 1
-print("topic0 histogram (all logs):")
-for t, n in hist.most_common():
-    print(f"  {t} {n}")
+logs = []
+step = 999
+b = start
+while b <= head:
+    e = min(b + step - 1, head)
+    part = rpc("eth_getLogs", [{"address": POOL, "fromBlock": hex(b), "toBlock": hex(e), "topics": [SWAP]}])
+    logs.extend(part)
+    b = e + 1
 
-swaps = []
-syncs = []
-for lo in range(start, head + 1, 1000):
-    hi = min(lo + 999, head)
-    for lg in rpc("eth_getLogs", [{"address": DEEP, "fromBlock": hex(lo), "toBlock": hex(hi), "topics": [SWAP]}]):
-        swaps.append(lg)
-    for lg in rpc("eth_getLogs", [{"address": DEEP, "fromBlock": hex(lo), "toBlock": hex(hi), "topics": [SYNC]}]):
-        syncs.append(lg)
+# discrimination control: corrupt topic0 last char
+bad = SWAP[:-1] + ("1" if SWAP[-1] != "1" else "2")
+ctrl = rpc("eth_getLogs", [{"address": POOL, "fromBlock": hex(head - 999), "toBlock": hex(head), "topics": [bad]}])
+ctrl_ok = rpc("eth_getLogs", [{"address": POOL, "fromBlock": hex(head - 999), "toBlock": hex(head), "topics": [SWAP]}])
 
-print(f"\nSwap events: {len(swaps)}   Sync events: {len(syncs)}")
-if swaps:
-    print("first swap blk", int(swaps[0]["blockNumber"], 16), swaps[0]["transactionHash"])
-    print("last  swap blk", int(swaps[-1]["blockNumber"], 16), swaps[-1]["transactionHash"])
+ts_cache = {}
+def bts(n):
+    if n not in ts_cache:
+        ts_cache[n] = int(rpc("eth_getBlockByNumber", [hex(n), False])["timestamp"], 16)
+    return ts_cache[n]
 
-# decode Solidly Swap: data = amount0In, amount1In, amount0Out, amount1Out (4 words)
-# token0 = VIRTUAL, token1 = DEUS
-buys = sells = 0
-deus_bought = deus_sold = 0.0
-for lg in swaps:
-    w = lg["data"][2:]
-    a0in, a1in, a0out, a1out = (int(w[i:i+64], 16) for i in range(0, 256, 64))
-    if a1out > 0:            # DEUS out of pool = buy
-        buys += 1
-        deus_bought += a1out / 1e18
-    if a1in > 0:             # DEUS into pool = sell
-        sells += 1
-        deus_sold += a1in / 1e18
-print(f"buys {buys} ({deus_bought:,.2f} DEUS)   sells {sells} ({deus_sold:,.2f} DEUS)")
-print(f"net DEUS into pool: {deus_sold - deus_bought:+,.2f}")
+sv = []
+for lg in logs:
+    d = lg["data"][2:]
+    a0in = int(d[0:64], 16); a1in = int(d[64:128], 16)
+    a0out = int(d[128:192], 16); a1out = int(d[192:256], 16)
+    # token0 = VIRTUAL, token1 = DEUS
+    dv = (a0in - a0out) / 1e18   # + means VIRTUAL into pool = DEUS bought
+    dd = (a1in - a1out) / 1e18   # + means DEUS into pool = DEUS sold
+    sv.append({"blk": int(lg["blockNumber"], 16), "tx": lg["transactionHash"],
+               "ts": bts(int(lg["blockNumber"], 16)),
+               "virtual_delta": dv, "deus_delta": dd,
+               "side": "BUY_DEUS" if dv > 0 else "SELL_DEUS"})
 
-json.dump({"head": head, "start": start, "swaps": len(swaps), "syncs": len(syncs),
-           "buys": buys, "sells": sells, "deus_bought": deus_bought, "deus_sold": deus_sold,
-           "hist": dict(hist)},
-          open("/home/runner/work/aeon-token/aeon-token/output/price-alert/swaps.json", "w"), indent=1)
+sv.sort(key=lambda x: x["blk"])
+tot_buy = sum(s["deus_delta"] for s in sv if s["deus_delta"] > 0)
+tot_sell = sum(-s["deus_delta"] for s in sv if s["deus_delta"] < 0)
+print(json.dumps({"head": head, "window": [start, head], "n_swaps": len(sv),
+                  "control_hits": len(ctrl), "control_true": len(ctrl_ok),
+                  "deus_bought_by_pool": tot_buy, "deus_sold_by_pool": tot_sell,
+                  "net_deus_into_pool": tot_buy - tot_sell,
+                  "swaps": [{"blk": s["blk"], "iso": datetime.datetime.fromtimestamp(s["ts"], datetime.UTC).isoformat(), "side": s["side"], "deus": round(s["deus_delta"], 6), "virtual": round(s["virtual_delta"], 6), "tx": s["tx"]} for s in sv[-15:]]}, indent=1))
