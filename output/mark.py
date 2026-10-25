@@ -1,16 +1,29 @@
-mark = 0.028008543545418863
+import json, sys
+from decimal import Decimal, getcontext
+sys.path.insert(0, "output")
+from rpc import call
 
-# VIRTUAL USD from the deepest constant-product VIRTUAL/WETH pool (0x21594b99)
-eth_usd = 2379.18          # deepest Base WETH/USDC (uniswap, $156M liq)
-vpw = 2586540.2899607173 / 701.2514943100613
-v_deep = eth_usd / vpw
+getcontext().prec = 40
+POOL = "0x3E97c5EC8c73e7d566aCA606472141a9b9a8C1Fa"
+VUSDC = "0x529d2863a1521d0b57db028168fdE2E97120017C"
 
-print(f"VIRTUAL per WETH {vpw:.2f} -> VIRTUAL USD {v_deep:.6f}")
-print("cross-check at API prints:")
-for v in (v_deep, 0.6389, 0.6392, 0.6402, 0.6404, 0.6454):
-    print(f"  VIRTUAL {v:.4f} -> DEUS ${mark*v:.8f}")
+def reserves(blk):
+    r = call("eth_call", [{"to": POOL, "data": "0x0902f1ac"}, hex(blk)])[2:]
+    return (int(r[0:64], 16), int(r[64:128], 16), int(r[128:192], 16))
 
-cur = mark * 0.6402
-print(f"\nCUR (VIRTUAL 0.6402) = {cur:.8f}")
-for t in (0.012, 0.025, 0.032, 0.041, 0.06876):
-    print(f"  target {t}: {(t/cur-1)*100:+.2f}%")
+def virtual_usd(blk):
+    w = call("eth_call", [{"to": VUSDC, "data": "0x3850c7bd"}, hex(blk)])[2:]
+    sq = int(w[0:64], 16)
+    return Decimal(sq) ** 2 / Decimal(2) ** 192 * Decimal(10) ** 12
+
+def mark(blk):
+    r0, r1, ts_last = reserves(blk)
+    v = Decimal(r0) / Decimal(10) ** 18
+    d = Decimal(r1) / Decimal(10) ** 18
+    p = virtual_usd(blk)
+    return {"blk": blk, "virtual": float(v), "deus": float(d),
+            "ratio": float(v / d), "virtual_usd": float(p),
+            "mark_usd": float(v / d * p), "pool_ts_last": ts_last}
+
+for lbl, blk in (("head", 53061213), ("h1", 53059413), ("h24", 53018013)):
+    print(lbl, json.dumps(mark(blk)))
