@@ -15,6 +15,8 @@
 **已上线的发现层通道：**
 - `arxiv-radar` ✅ 每天 07:30 UTC · 20 机制词 · 已修两轮 carrier 误杀
 - `github-radar` ✅ 手动跑为主 · 18 词 · 第八/九轮在打磨过滤器
+  - `SKILL.md` 三处修复（核验改全量 / 站点仓按后缀丢 / 审计加核验覆盖率）已推 main `bbd6e84`
+  - `-showcase` 后缀补丁已推 main `228ff6f` · `register-skill` 已自动收尾
 
 **监控层：** price-alert · onchain-monitor · token-movers · defi-overview ·
 unlock-monitor · heartbeat · memory-flush —— 全部在跑。
@@ -24,10 +26,16 @@ unlock-monitor · heartbeat · memory-flush —— 全部在跑。
 
 **已排未启：** `narrative-convergence`（交叉验证层，见下）。
 
+**⚠️ 网关故障（10-25 上午）：** `hivemindos` 无额度 ——
+`403 All target providers failed` / `timeout`，price-alert · onchain-monitor ·
+github-radar 全栽在上面（`memory/cron-state.json`）。**不是 skill 回归。**
+判据：`num_turns:1` + 0 tool calls + `api_error_status`。跑任何 skill 前先确认网关能通。
+
 ## 立即待办（按顺序）
 
-1. **push 最新的 `skills/github-radar/SKILL.md`**（核验改全量 + 站点仓按后缀丢 + 审计加核验覆盖率）
-2. **跑一次正式 `days:60`**（去掉 `dry-run`）—— 落 seen、发通知
+1. ~~push 最新的 `skills/github-radar/SKILL.md`~~ ✅ 已完成（`bbd6e84` + `228ff6f`，register-skill 已收尾）
+2. **先 `dry-run days:60`** 看 `output/ghradar/audit.log`（只看三行：`pages=` 有没有吃到站点仓 ·
+   `核验 N/N (100.0%) · 模式 全量` · `覆盖率 <50%`）；确认后再跑正式 `days:60`（去掉 `dry-run`）—— 落 seen、发通知，最多 30 条
 3. **启用 `narrative-convergence`**，同时新建 `memory/topics/signal-categories.md`
    （要把 `discovery` 那一行加上，否则自建通道落 other，跨类别分拿不到）
 4. 观察一周，看它报的「收敛」是不是真信号
