@@ -1,37 +1,34 @@
-扫 18 词 × 3 窗 | 原始 2427 | 幸存 1438 | 报告级 96
-丢弃 seen=132 excl=142 archived=1 short_desc=530 carrier=184 farm=0 fail=0
-核验 250 个（★>=5 全部 + 最新补齐，上限 250）| 空仓 0 · 未验成 0 · 限速重试 0
-词表命中: world model=238 · robot manipulation=224 · teleoperation=223 · vla=148 · sim-to-real=127 · jepa=113 · egocentric=107 · sim2real=92 · world action model=84 · robot dataset=32 · proof of useful work=12 · embodied data=10 · intent-based=10 · verifiable inference=6 · data availability=5 · restaking=4 · maximal extractable value=2 · robotics data engine=1
-⚠️ 覆盖率 <50%（绝对数不可引用）: world model=21.4% · vla=7.9% · jepa=44.3%
-⚠️ 疑似仓库农场（待入黑名单）: rzc156=3 · Roboparty=3 · NEBULIS-Lab=3 · muhamuttaqien=4 · sraentertainment17-code=3 · YucongDuan=4 · SajjadPSavoji=4 · OpenMakerProjects=10 · liaohello=3 · origin-data-lab=4 · maxamin=3
-⚠️ 30 天零提交（star 在骗人）: buaacyw/code-world-model · robbyant-research/Zero-WAM · Gen-Verse/JEPA-Anything · Phyzicalorg/Phyzical_org · ASIG-X/JEPLO · shengshu-ai/Motus2 · scy-v/VLA-Precision · RCL-Robotics/Awesome-World-Action-Models · penpenzh/pocketvla · 3587jjh/HuRo · AetherLabsAI/CausalWM · xiaojunlan/care · GaTech-RL2/EgoWAM · xiyuanyang45/WMRL · Fenon-Robotics/egodup · luomi777/Exo2Ego · bingaochen/Astra-on-RoboMME · SaberOnGo/open-microduck · robot-hint/HINT · UMass-Embodied-AGI/SyncWorld · hustvl/MotionVLA · griffinlabs-ai/alpha-s · nagara214/GIM-World · lunarlab-gatech/PhysCoRe · smthemex/ComfyUI_SolarWM_H3 · adamhung60/ModAR-code · umfieldrobotics/SurfSLAM_Stereo · manifoldai-research/CAER.code · penpenzh/pocketwam · Daniel-rmc/ManiLoop · hesd10/astra-robot-sim2real · Cyberyyc/HoloMotion-Spatial-Robot-Teleoperation · AbdelStark/lejudge-jev-jepa · zsibot/gawm · psrobotics/smp_deploy · LivingFutureLab/HappyWorldBench · j1s4nn/wmdrift · Agents2AgentsAI/vla-edge · alphaparkinc/genpark-realtime-interactive-world-model-neural-simulator-skill · sutiankang/aster · OpenWAM-Official/OpenWAM-Official.github.io · alphaparkinc/genpark-joint-embedding-predictive-world-representation-skill · JiuTian-VL/ProWAM · 5h4d0wn1k/n5-vlan-hop · MiYanDoris/ZETA · CAN-Lee/DeformSmith · godhandcrash/go2-pace-sim2real · flyfaerss/RAPolicy · starVLA/starVLA-WBC · robocurve/stationerybench · buaacyw/cwm · MADAO-00/engineering-cybernetics-skill · KangenJ/Nebulaw-OntologyPilot · EthanLiang99/MetaWAM · Joeland4/awesome-ego-data
+扫 18 词 × 3 窗 | 原始 2427 | 幸存 1207 | 报告级 89
+丢弃 seen=115 excl=141 archived=1 short_desc=516 carrier=354 pages=79 farm=14 fail=0
+核验 250（★>=5 全部 + 最新补齐，上限 250）
+黑名单载入 3 个 owner
+词表命中: robot manipulation=215 · teleoperation=210 · vla=142 · jepa=119 · sim-to-real=118 · egocentric=99 · sim2real=89 · world action model=72 · world model=65 · robot dataset=32 · proof of useful work=12 · embodied data=10 · intent-based=8 · verifiable inference=6 · data availability=4 · restaking=3 · maximal extractable value=2 · robotics data engine=1
+⚠️ 覆盖率 <50%（绝对数不可引用）: world model=21.4% · vla=7.9% · jepa=44.2%
+⚠️ 30 天零提交（star 在骗人）: robbyant-research/Zero-WAM · Gen-Verse/JEPA-Anything · Phyzicalorg/Phyzical_org · shengshu-ai/Motus2 · ASIG-X/JEPLO · scy-v/VLA-Precision · RCL-Robotics/Awesome-World-Action-Models · penpenzh/pocketvla · 3587jjh/HuRo · AetherLabsAI/CausalWM · xiaojunlan/care · GaTech-RL2/EgoWAM · Fenon-Robotics/egodup · luomi777/Exo2Ego · bingaochen/Astra-on-RoboMME · SaberOnGo/open-microduck · robot-hint/HINT · hustvl/MotionVLA · griffinlabs-ai/alpha-s · adamhung60/ModAR-code · umfieldrobotics/SurfSLAM_Stereo · manifoldai-research/CAER.code · penpenzh/pocketwam · Daniel-rmc/ManiLoop · hesd10/astra-robot-sim2real · Cyberyyc/HoloMotion-Spatial-Robot-Teleoperation · zsibot/gawm · AbdelStark/lejudge-jev-jepa · psrobotics/smp_deploy · LivingFutureLab/HappyWorldBench · Agents2AgentsAI/vla-edge · sutiankang/aster · alphaparkinc/genpark-joint-embedding-predictive-world-representation-skill · JiuTian-VL/ProWAM · 5h4d0wn1k/n5-vlan-hop · MiYanDoris/ZETA · CAN-Lee/DeformSmith · godhandcrash/go2-pace-sim2real · flyfaerss/RAPolicy · starVLA/starVLA-WBC · robocurve/stationerybench · MADAO-00/engineering-cybernetics-skill · EthanLiang99/MetaWAM · Joeland4/awesome-ego-data · MasakiAllwardt/adajepa-so101
+⚠️ 空仓（409，只有 description）: thijswelling/Imitation_Learning_Camera
+ℹ️ 候选农场（owner≥3，需人工判，非判决）: rzc156=3 · Roboparty=3 · NEBULIS-Lab=3 · muhamuttaqien=4 · sraentertainment17-code=3 · SajjadPSavoji=4 · liaohello=3 · origin-data-lab=4
   2026-08-28 [vla] rokbenko/quackd ★276 commits30d=100
   2026-09-23 [world model] ABC12345anouys/EvoBot ★128 commits30d=100
   2026-10-04 [world model] OpenInterpretability/ekbasis ★19 commits30d=100
-  2026-09-16 [world model] kaarelkaarelson/lingbot-world-v2-realtime ★16 commits30d=100
-  2026-10-12 [world model] pengqianhan/campus-world-model ★9 commits30d=100
   2026-09-02 [vla] futakw/Awesome-Physical-AI-Safety ★7 commits30d=100
+  2026-10-22 [world model] cooperwooley/diamond-cs2-v2 ★1 commits30d=100
   2026-10-10 [proof of useful work] vearl-verified-compute/vearl ★22 commits30d=83
-  2026-10-08 [world model] clipspark/multiworldbench ★60 commits30d=60
-  2026-09-14 [world model] TencentARC/WorldCrafter ★537 commits30d=53
-  2026-09-14 [world model] acse-yl222/physics-grounded-4d-world-model-framework ★5 commits30d=53
   2026-10-07 [robot dataset] video-db/RoboPeek ★13 commits30d=48
   2026-10-01 [world model] cvlab-kaist/ME-World ★24 commits30d=37
-  2026-09-30 [world model] GimpelZhang/Cosmos-Dreams-AlpaSim ★7 commits30d=36
   2026-10-14 [teleoperation] QinnyuLan/SONIC_unitree_h2 ★38 commits30d=35
   2026-10-13 [robot manipulation] Iunacy/HAND ★5 commits30d=35
   2026-10-02 [robot manipulation] ShuhongLL/RawVLA ★94 commits30d=32
-  2026-09-29 [world model] galilai-group/AnyGoal ★17 commits30d=31
-  2026-08-26 [world action model] OpenMOSS/EasyWAM ★381 commits30d=30
+  2026-08-26 [world action model] OpenMOSS/EasyWAM ★382 commits30d=30
+  2026-10-21 [vla] dundysm/occlubench ★1 commits30d=30
   2026-10-07 [vla] Dicomsky/StairVLA ★5 commits30d=29
-  2026-10-08 [world model] Gen-Verse/RSI-Anything ★827 commits30d=26
+  2026-10-21 [jepa] andywang0321/toy-jepa ★0 commits30d=27
   2026-09-12 [sim2real] Pseudo-Lab/Sim2Real-Walking-Robot ★6 commits30d=25
-  2026-09-25 [world action model] dextacwam/DexTacWAM ★24 commits30d=24
   2026-09-04 [world action model] LogosIntelligenceLab/TacPAC ★19 commits30d=22
   2026-10-19 [vla] ZJU-OmniAI/VLA-Rolling ★13 commits30d=22
-  2026-09-30 [world action model] UniWAM/UniWAM ★135 commits30d=20
+  2026-10-12 [world model] rzc156/dreamforge ★130 commits30d=21
+  2026-10-19 [robot manipulation] LogosIntelligenceLab/TIDE ★2 commits30d=20
   2026-08-27 [vla] OpenBMB/SimpleNav ★137 commits30d=18
   2026-10-07 [world model] ASGuard-UCI/safedrive-vla ★29 commits30d=18
   2026-10-09 [world model] WorldOracle-benchmark/WorldOracle ★20 commits30d=18
-  2026-10-09 [world model] bilemond/JANUS ★7 commits30d=18
+  2026-10-24 [sim2real] liaohello/GigaWorld-Policy-Sim2Real ★0 commits30d=18
   2026-09-27 [world action model] cunhaozhu/AquaWAM ★35 commits30d=17

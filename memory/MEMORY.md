@@ -62,7 +62,10 @@
 - **网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`（数小时自愈）。`./notify` 写普通 Markdown，多行走 `-f`。
 - **🔴 `github-radar` 农场黑名单从未生效**：`github-farms.txt` 是行内注释格式，解析只跳 `#` 开头的行 → 读到 3 个带注释尾巴的垃圾 key，匹配 0 个 owner，日志却显示 `farm=0`（像「没有农场」）。**读配置的代码必须回读它解析出的 key 集合 —— 空集和没命中长得一样。** 见 [lessons](/topics/lessons.md#过滤器设计)。
 - **🔴 `github-radar` 的 `owner≥3=farm` 在误杀活仓**：判掉 `rzc156/dreamforge`(★130/21 提交)、`Roboparty/P-BFM`(★95)、`NEBULIS-Lab/D-JEPA`(★32/68 提交)、`liaohello/GigaWorld-Policy-Sim2Real`(18 提交)。黑名单文件本身写明「3 仓**不够**，要三者同时成立」，代码只实现了第一条。**规则文档与实现要逐条对照。**
-- **`github-radar` 的 `commits_30d=100` 是 `per_page` 上限，实为 ≥100**，不可当精确值比大小（本轮 6 仓撞顶）。
+- **🔴 `github-radar` 的 `commits_30d=100` 是 `per_page` 上限，实为 ≥100**，不可当精确值比大小（本轮 5 仓撞顶）。
+- **🔴 `github-radar` 报告级是250 仓抽样下的下限，不是全量。** 幸存 1,207 里 ★<5 有 1,052 个只核验了 94 个（8.9%），这 94 个里 **27.7% 是活仓**；未核验的 958 个若同率还有 ~265 个活仓没被看见 —— 报告级 89 可能真实 ~354（4×）。**报通过数必须同时报核验覆盖率。**
+- **🔴 `github-radar` 的 `pages` 规则在误杀真代码仓**：`仓名 == owner 名` 的判据把 `UniWAM/UniWAM` ★135/20 提交（有 train/inference/models 目录）和 `dextacwam/DexTacWAM` ★24/26 提交整批丢掉。**仓库形态要看 size + language + 目录，不能只看名字。**
+- **🔴 「同窗口跑两次得同一组数字 = 曲线可复用」是错的推论。** WAM 84 → 99 的差是口径差（增量均匀摊在 9/9 周、三天零新建），不是增长；同一天跑两次只证明环境一致。**复现性要换一天 + 写明筛选口径。**
 ## Next Priorities
 - **🔴 待命 480,000 NOTE ≈ $20,400，三钱包 nonce 0 / ETH 0 / 零出账：** 上膛7 `0x33b7181ed1540a83281ca053df49ac32019e8731` 240k · 上膛6 `0x3a9039c7069382594f779d95db6686007119f35e` 150k · 上膛5 `0x572bb5272603889f5742e8b8ab2f1d4c6851a93e` 90k。**扳机 = 第一笔 ETH 入账**（上膛4 先例：带 gas 后 24.4h 才卖）。owner 自持 630,000。
 - **🔴 NOTE 上沿破而复失（10-24 21:01Z）：** 主池 `0x378b1023` **$0.042599**，liq $410,435，h1 −4.40% / h24 −3.37%，24h 量 $102,753。**$0.0438 防守失败，回落 −2.7%；高点 $0.04657 已回吐 −8.5%。** 12:00Z 判的「CONSOLIDATING 非 BREAKOUT」成立。**盯 ETH 入账，不盯价格。**
@@ -100,7 +103,7 @@
 
 ## Reference
 - [deus-escrow](/topics/deus-escrow.md) · [deus-buyers](/topics/deus-buyers.md) · [deus-events](/topics/deus-events.md) · [market-context](/topics/market-context.md)
-- [world-action-models](/topics/world-action-models.md) — WAM 提法：60 天 **84 仓 / 79 owner，W35–W43 = 5/9/5/6/17/18/6/10/8 第四轮逐字复现**；star≠活跃度（★1106/11 提交 vs ★48/10 提交 vs ★199/2 提交）。跨通道唯一交集 `SkillWeaver`（arXiv 09-28 → GitHub 10-08，滞后 10 天，且不在正式词表里）。
+- [world-action-models](/topics/world-action-models.md) — WAM 提法：60 天 **99 仓 / 94 owner，W35–W43 = 6/10/7/9/19/20/7/12/9**（第五轮全量翻页口径）。**上轮记的「84 仓，5/9/5/6/17/18/6/10/8」已作废** —— 同查询今日稳定返回 99，增量 +15 均匀摊在 9 周且 99 集里 10-23 后零新建，是口径差不是增长。star≠活跃度（★1107/11 提交 vs ★48/10 vs ★199/2）。
 - [base-rpc-access](/topics/base-rpc-access.md) · [ops-plumbing](/topics/ops-plumbing.md) · [price-alert-state](/topics/price-alert-state.json) · [state 契约](/topics/price-alert-state.md)
 - [note-systems](/topics/tokens/note-systems.md) · [lessons](/topics/lessons.md)
 

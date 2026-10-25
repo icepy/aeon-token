@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-25T03:40:00Z
+timestamp: 2026-10-25T04:40:00Z
 ---
 
 # Lessons learned — archive
@@ -67,6 +67,10 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **🔴 黑名单文件带行内注释 = 黑名单完全失效，而且日志会显示 farm=0（看起来像"本轮没有农场"）。** 2026-10-25 第四轮实测：`memory/github-farms.txt` 写成 `maxamin              # 3 仓全建 10-23…`，而 `scan.py` 的解析是 `{l.strip().lower() for l in open(...) if l.strip() and not l.startswith("#")}` —— **只跳过以 `#` 开头的行，不剥行内注释**。结果解析出 3 个 key：`"maxamin              # 3 仓全建..."`、`"nirholas             # 60 天建 100 个仓..."`、`"openmakerprojects    # 10 个仓全是..."`，**没有一个能匹配真实 owner，命中 0 个仓**。三轮都还在讨论 `maxamin` 该不该进黑名单，其实进了也从来没生效。**判据：任何"读取黑名单 / 白名单 / 配置"的代码，必须回读它解析出的 key 集合本身，不能只看"过滤后没有命中"——空集和没命中长得一模一样。改法：`l.split("#")[0].strip()`。**
 - **🔴 「owner ≥3 仓 = 农场」这条硬规则会误杀正经研究组，而且和黑名单文件里写死的判据自相矛盾。** 2026-10-25 实测：`farm_hit` 判掉 4 个 30 天 ≥5 提交的活仓 —— `rzc156/dreamforge`（★130 / 21 提交 / 建 10-12）、`liaohello/GigaWorld-Policy-Sim2Real`（18 提交）、`Roboparty/P-BFM`（★95 / 745MB / 10 提交）、`NEBULIS-Lab/D-JEPA`（★32 / 66MB / 68 提交）。**这四个都是单一大工程 + 两个小附属仓的结构，正是研究组的常态。** `github-farms.txt` 开头明写「只是一个 owner 有 3+ 个仓**不够** —— 要三者同时成立（结构同质 + 跨赛道 + 提交极少）」，但 `scan.py` 只实现了第一条。**判据：规则文档和代码实现要逐条对照；"≥N 就判"这种单阈值规则，等于把文档里的另外两条判据静默丢掉。**
 - **「报告级」的排序键本身会制造一个假的量级错觉：`commits_30d` 撞 `per_page=100` 上限。** 本轮 `rokbenko/quackd`、`OpenInterpretability/ekbasis`、`kaarelkaarelson/lingbot-world-v2-realtime` 等 6 个仓全部显示 `100`，实际是 **≥100**。**任何分页计数都必须显式标注是下限**，否则"100 提交"会被下游当成精确值去比大小。
+- **🔴 扫描器「低 star 仓只按创建最新核验」= 报告级被低估约 4 倍，而审计日志显示"核验完成"。** 2026-10-25 第五轮实测：幸存 1,207 里 **★<5 有 1,052 个，`CHK_CAP=250` 只核验了 94 个（8.9%）**；这 94 个里 **26 个（27.7%）是 ≥5 提交的活仓**。未核验的 958 个若同率，**还有约 265 个活仓从未被看见 —— 报告级 89 可能真实是 ~354**。**这是上界不是点估计**（已核验的 94 个全是 10 月新建、中位 10-22；未核验中位 09-24，新仓天然更容易还在写代码）。**判据：任何"核验预算 < 候选集"的流程，「通过数」都只是下限，必须同时报出核验覆盖率；只报通过数等于把被跳过的样本静默当成"不通过"。**
+- **🔴 用「仓库名 == owner 名」判列表页，会整批误杀正经代码仓。** 2026-10-25 第五轮实测：`scan.py` 的 `short.lower() == owner.lower()` 把 **`UniWAM/UniWAM` ★135 / 20 提交 / 3.3MB Python**（根目录有 `train/ inference/ models/ configs/ scripts/`）当"列表页"丢掉，`dextacwam/DexTacWAM` ★24 / 26 提交同样被丢。21 个被 pages 族规则丢弃的仓里 **4 个是真代码仓且 ≥5 提交/30d**。**判据：仓库形态要看 `size` + `language` + 目录内容，不能只看名字 —— 研究组的官方实现仓经常就叫 `Owner/Project` 或 `Owner/Project.github.io`（后者可能塞了 594MB 的 CSS/JS 资源）。**
+- **🔴 「同一窗口两次跑出同一组数字 = 曲线可复用」这个推论是错的。** 2026-10-25 `github-radar` 第三、四轮都得到 WAM「84 仓 / 79 owner，逐周 5/9/5/6/17/18/6/10/8」，据此写成"可复用"。第五轮同一条查询稳定返回 **99**，且 **99 集里最新创建时间是 10-22（三天零新建）、增量 +15 均匀摊在 9/9 周（最大 +3）** —— **两小时不可能有机增长 15 个仓，这是口径差**。穷举所有单条/组合属性过滤器（github.io / selfname / pageword / shortdesc / nodesc / ★>=1..3）后确认：**没有任何一种能同时复现 84 这个总数和那条逐周曲线**。**判据：复现性要"换一天 + 写明筛选口径"才算，同一天内跑两次只证明环境一致。**
+- **🔴 多词命中只记首个 term，会把一个簇的计数系统性做低。** `scan.py` 里 `hit[rid]["terms"].append(term)` 但 `per_term` 只按 `c["term"]`（首个词）统计，所以 `SmolWAM` / `AffordanceWAM` / `Skel-WAM` / `TrajWAM` / `so101-vla-wam` / `MT-WAM` 6 个 WAM 仓全被归到 `robot manipulation`。**要数某个簇，必须用全量翻页而不是 `per_term`；`per_term` 只适合看"哪个词贡献了多少首次命中"。**
 
 ## 行情取数形状（DeFiLlama / CoinGecko）
 
