@@ -35,24 +35,25 @@ metadata:
 
 ## 铁律
 
-- **采样必须按「簇」保证覆盖，不能只按 star 分桶。** 低星簇会被系统性漏掉 —— 实证：加密侧 35 仓里 34 个 ★0–2，连续六轮被误判为「空」。
-- **star 地板是反向的。** 新建仓库必然 ★0–2。默认 `min:0`。
+- **`per_term == 0` 必须分四类，不能只报「真零」。** 有 seen 基线后，**饱和词会全部读成 0** —— 实证 12 个词被误标真零，逐词单查全部非空（`data availability` 60 天 total 126）。四类：查询失败 / 真零 / **全已见（饱和）** / 有新增。**「饱和」和「查不到」是完全不同的处置：前者留着，后者才谈删词。**
+- **采样必须按「簇」保证覆盖，不能只按 star 分桶。** 实证：加密侧 35 仓里 34 个 ★0–2，连续六轮被误判为「空」。**核验宁可全量**（core 配额 5,000/h，与 search 独立池，1,231 仓 119 秒）。
+- **缩写必然脏 —— 所以词表里不要放缩写。** 实证：`vla` 撞 VLAN/Vlad（污染 22%），`jepa` 撞 jepang/Jepara（14.5%）。带缩写就必须配 `NEG_BY_TERM`。
+- **star 地板是反向的。** 默认 `min:0`。
 - **star 测「发布时的传播」，commits 测「现在还有人在写」。判真伪只看 commits。**
-- **30 天提交高 ≠ 现在在写。** 必须同时看近 7 天。实证：加密侧 18 个 ≥5 提交的仓里 **10 个近 7 天零提交**（爆完即停）。
-- **核验对象不能按创建时间取前 N**，长窗口下那批全是 ★0 噪声。
-- **限速要重试，不能放弃。** 放弃会静默降级到未认证（10/min），把活仓标成空仓。**429（限速）和 409（真空仓）必须分开。gh 掉线必须在审计里显形。**
+- **30 天提交高 ≠ 现在在写。** 必须同时看近 7 天 —— 实证全量核验下 **222/402（55.2%）爆完即停**。
+- **高提交数 ≠ 代码仓。** `dehype` 30d=100 是论文排行站、`diamond-cs2-v2` 100/100 是课程项目、`yifanliu-ai.github.io` 是个人主页。**必须看根目录形态 / language 字段。**
+- **`commits=100` 是 `per_page` 上限，不是真值** —— 必须标成 `≥100`。
+- **限速要重试，不能放弃。** **429（限速）和 409（真空仓）必须分开。gh 掉线必须在审计里显形。**
 - **description 越像论文，越要查 commits。**
 - **只匹配 `in:name,description`，不要 readme。**
 - **脏词必须配 carrier**（`world model` 已严重外溢）。判据是 carrier **之后**的精度。
 - **覆盖率必须报。** <50% 的词绝对数不可引用。
-- **缩写必然脏，用全称。**
 - **`template` / `demo` / `sniper` = 练手仓库或农场。**
-- **项目页/列表页要「名字像页 + 体量小」两个条件同时成立才丢。**
+- **项目页/列表页要「名字像页 + 体量小」两个条件同时成立才丢。** 别用 language 豁免 —— 静态站常被标 HTML/JS，会反向泄露。
 - **每条丢弃规则都要能被审计。**
 - **农场只认黑名单。** 「owner 有 3 个仓」只是**候选**。
-- **根目录有 `AGENTS.md` / `CLAUDE.md` / `.clinerules` = 单人 + agent 一次性搭完**（加密侧 56% vs 机器人侧 10%），不是长期工程团队。提交作者里出现 `openhands-agent` 之类同此判。
-- **报「零命中」必须分开写：查询失败 / 真零命中 / 未核验。**
-- **零命中不等于废词。**
+- **根目录有 `AGENTS.md` / `CLAUDE.md` / `.clinerules` = 单人 + agent 一次性搭完**，不是长期工程团队。
+- **报「零命中」必须分开写：查询失败 / 真零 / 全已见 / 未核验。**
 - **不做判断。** 只给仓库 + 一句话 + 链接 + star + 30 天 / 7 天提交数。
 
 ## Config
@@ -66,7 +67,7 @@ metadata:
 - `memory/github-candidates.md` — 只写报告级
 - `output/ghradar/` — `out.json` · `audit.log`
 - `memory/logs/${today}.md` — 每次一条
-- 通知：只在报告级 > 0 时发
+- 通知：只在报告级 > 0 时发，**最多 `NOTIFY_TOP` 条**
 
 ## Steps
 
@@ -104,10 +105,11 @@ DRY  = os.environ.get("DRY") == "1"
 DAYS = int(os.environ.get("DAYS") or 30)
 MIN  = int(os.environ.get("MIN") or 0)
 CHK  = int(os.environ.get("CHK") or 5)
-CHK_CAP = 600          # 核验总上限
-PER_TERM_CAP = 25      # 每个词保证核验这么多（不看星数）—— 防低星簇失明
+CHK_CAP = 2000         # 核验上限（≈全量；core 配额独立于 search，很快）
+PER_TERM_CAP = 25      # 超上限时每词保底，防低星簇失明
 REPORT_COMMITS = 5
-MAXPAGE = 2            # 每个窗口最多翻 2 页（search per_page 上限 100）
+NOTIFY_TOP = 30
+MAXPAGE = 2
 
 TERMS = [t.strip() for t in """
 # ── AI / 机器人（主战场）──
@@ -132,7 +134,14 @@ intent-based
 maximal extractable value
 """.strip().split("\n") if t.strip() and not t.strip().startswith("#")]
 
-# 脏词必须配 carrier。判据是 carrier **之后**的精度。
+# 缩写词的子串污染：命中词撞到完全无关的同形串 → 直接否掉。
+# 铁律「缩写必然脏」，所以词表里带缩写就必须在这里兜。
+NEG_BY_TERM = {
+    "vla": ["vlan", "vlad", "vladimir", "vladislav", "vladoss"],
+    "jepa": ["jepang", "jepara", "jepan"],
+}
+
+# 脏词必须配 carrier（须与本行词同现才算命中）。判据是 carrier **之后**的精度。
 CARRIER_BY_TERM = {
     "world model": ["embodied", "robot", "vla", "manipulation", "sim2real",
                     "sim-to-real", "teleop", "egocentric", "action", "policy",
@@ -148,7 +157,7 @@ EXCL = ["awesome", "tutorial", "course", "survey", "cheatsheet", "roadmap",
         "template", "boilerplate", "starter", "example", "demo", "playground",
         "sniper", "sandwich", "airdrop", "faucet", "scaffold"]
 
-# 黑名单：**剥掉行内注释**（否则 "name  # 说明" 整串当 key，匹配 0 个）
+# 黑名单：剥掉行内注释（否则 "name  # 说明" 整串当 key，匹配 0 个）
 farms = set()
 if os.path.exists(FARMS):
     for l in open(FARMS, encoding="utf-8"):
@@ -173,7 +182,7 @@ WINS = ["%s..%s" % ((now - timedelta(days=step * (i + 1))).strftime("%Y-%m-%d"),
 GH = True
 gh_lost = [False]
 def gh_get(path):
-    """返回 (data, err)。err=None 成功；'HTTP 409' 之类用于区分真空仓与限速。"""
+    """返回 (data, err)。err=None 成功；'HTTP 409' 用于区分真空仓与限速。"""
     global GH
     last = ""
     if GH:
@@ -221,16 +230,20 @@ def commits_since(rid, days):
     data, err = gh_get("repos/%s/commits?%s" % (rid, qs))
     if data is None:
         return None, ("empty" if err and "409" in err else "unverified")
-    return (len(data) if isinstance(data, list) else None), "ok"
+    n = len(data) if isinstance(data, list) else None
+    return n, "ok"
 
 out, raw = [], 0
 drop = {"seen": 0, "excl": 0, "archived": 0, "short_desc": 0, "carrier": 0,
-        "pages": 0, "farm": 0, "fail": 0}
-hit, qfail, cov, per_term = {}, [], {}, {}
-page_dropped = []
+        "neg": 0, "pages": 0, "farm": 0, "fail": 0}
+hit, qfail, cov = {}, [], {}
+raw_term, new_term = {}, {}      # 返回条数（含已见） / 本轮新收
+page_dropped, neg_dropped = [], []
 
 for term in TERMS:
     total, got, failed = 0, 0, False
+    raw_term[term] = 0; new_term[term] = 0
+    neg = NEG_BY_TERM.get(term, [])
     for w in WINS:
         q = '"%s" in:name,description created:%s fork:false stars:>=%d' % (
             term, w, MIN)
@@ -242,7 +255,7 @@ for term in TERMS:
             if page == 1:
                 total += res.get("total_count", 0)
             items = res.get("items", [])
-            got += len(items)
+            got += len(items); raw_term[term] += len(items)
             for it in items:
                 raw += 1
                 rid = it["full_name"]
@@ -254,8 +267,12 @@ for term in TERMS:
                     hit[rid]["terms"].append(term); drop["seen"] += 1; continue
                 if it.get("archived"):
                     drop["archived"] += 1; continue
-                # 项目页 / 列表页：名字像页**且**体量小才算。
+                # 缩写子串污染：名字或描述里出现否定词 → 丢
+                lowall = (rid + " " + (it.get("description") or "")).lower()
+                if neg and any(x in lowall for x in neg):
+                    drop["neg"] += 1; neg_dropped.append(rid); continue
                 size_kb = it.get("size", 0)
+                # 项目页 / 列表页：名字像页**且**体量小才算（别用 language 豁免）
                 if ((short.endswith(".github.io")
                      or short.lower() == owner.lower()) and size_kb < 300):
                     drop["pages"] += 1
@@ -276,20 +293,19 @@ for term in TERMS:
                             "created": (it.get("created_at") or "")[:10],
                             "topics": it.get("topics", [])[:6],
                             "size_kb": size_kb,
+                            "language": it.get("language"),
                             "desc": " ".join(desc.split())[:140]})
-                hit[rid] = out[-1]
+                hit[rid] = out[-1]; new_term[term] += 1
             time.sleep(3 if GH else 8)
             if len(items) < 100:
                 break
     if failed and not got:
         qfail.append(term)
-    per_term[term] = len([c for c in out if c["term"] == term])
     if total:
         cov[term] = round(100.0 * got / total, 1)
 
-# ── 核验采样：按词分层，不是只按 star ──
-# 只按 star 分桶会在低星簇上失明：实证加密侧 35 仓里 34 个 ★0–2，
-# 全部落在 cap 之外 → 连续六轮误判「加密侧为空」。
+# ── 核验：全量（core 配额独立于 search，很快）──
+# 超上限时按词保底，防低星簇失明。
 pick = {}
 for c in out:
     if c["stars"] >= CHK:
@@ -305,21 +321,24 @@ todo = list(pick.values())[:CHK_CAP]
 
 for c in todo:
     n30, st = commits_since(c["repo"], 30)
-    if st == "ok":
-        c["commits_30d"] = n30
-        if n30 == 0:
-            c["stale"] = True
-    elif st == "empty":
-        c["maybe_empty"] = True
-    else:
-        c["unverified"] = True
-        continue
-    if not c.get("stale"):
-        n7, st7 = commits_since(c["repo"], 7)
-        if st7 == "ok":
-            c["commits_7d"] = n7
-            if n7 == 0:
-                c["burst_only"] = True      # 30d 有量但近 7 天已停
+    if st == "empty":
+        c["maybe_empty"] = True; continue
+    if st != "ok":
+        c["unverified"] = True; continue
+    c["commits_30d"] = n30
+    if n30 >= 100:
+        c["commits_30d_ge"] = True      # per_page 撞顶，是下限
+    if n30 == 0:
+        c["stale"] = True; continue
+    n7, st7 = commits_since(c["repo"], 7)
+    if st7 == "ok":
+        c["commits_7d"] = n7
+        if n7 >= 100:
+            c["commits_7d_ge"] = True
+        if n7 == 0:
+            c["burst_only"] = True
+    if not c.get("language"):
+        c["no_lang"] = True             # 疑似非代码仓（排行站 / 课程项目 / 主页）
 
 owner_n = Counter(c["owner"] for c in out)
 for c in out:
@@ -336,59 +355,77 @@ rep = sorted([c for c in out if reportable(c)],
 os.makedirs(OUTD, exist_ok=True)
 json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
-L = ["扫 %d 词 × %d 窗（每窗最多 %d 页）| 原始 %d | 幸存 %d | 报告级 %d"
+def fmt(c):
+    return "%s ★%d 30d=%s%s 7d=%s" % (
+        c["repo"], c["stars"],
+        "≥100" if c.get("commits_30d_ge") else c.get("commits_30d"),
+        " [爆完即停]" if c.get("burst_only") else "",
+        "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"))
+
+# ── per_term==0 四分类：查询失败 / 真零 / 全已见（饱和） / 有新增 ──
+failed_t = list(qfail)
+truly_zero = [t for t in TERMS if t not in qfail and raw_term.get(t, 0) == 0]
+saturated  = [t for t in TERMS if raw_term.get(t, 0) > 0 and new_term.get(t, 0) == 0]
+with_new   = [t for t in TERMS if new_term.get(t, 0) > 0]
+
+L = ["扫 %d 词 × %d 窗 × %d 页 | 原始 %d | 幸存 %d | 报告级 %d"
      % (len(TERMS), NWIN, MAXPAGE, raw, len(out), len(rep)),
-     "丢弃 seen=%d excl=%d archived=%d short_desc=%d carrier=%d pages=%d "
-     "farm=%d fail=%d" % (drop["seen"], drop["excl"], drop["archived"],
-                          drop["short_desc"], drop["carrier"], drop["pages"],
-                          drop["farm"], drop["fail"]),
-     "核验 %d（★>=%d 全部 + 每词保证 %d 个，上限 %d）"
-     % (len(todo), CHK, PER_TERM_CAP, CHK_CAP),
-     "黑名单载入 %d 个 owner" % len(farms),
-     "词表命中: " + " · ".join("%s=%d" % (k, v) for k, v in
-                              sorted(per_term.items(), key=lambda x: -x[1]))]
+     "丢弃 seen=%d excl=%d archived=%d short_desc=%d carrier=%d neg=%d "
+     "pages=%d farm=%d fail=%d" % (drop["seen"], drop["excl"], drop["archived"],
+                                   drop["short_desc"], drop["carrier"],
+                                   drop["neg"], drop["pages"], drop["farm"],
+                                   drop["fail"]),
+     "核验 %d（上限 %d）· 黑名单载入 %d 个 owner" % (len(todo), CHK_CAP, len(farms)),
+     "词表四分类 —— 查询失败 %d / 真零 %d / 全已见(饱和) %d / 有新增 %d"
+     % (len(failed_t), len(truly_zero), len(saturated), len(with_new))]
+if failed_t:
+    L.append("⚠️ 查询失败（不是零命中）: " + " · ".join(failed_t))
+if truly_zero:
+    L.append("⚠️ 真零命中（total=0，可考虑删词）: " + " · ".join(truly_zero))
+if saturated:
+    L.append("ℹ️ 全已见（饱和，**别删**）: " + " · ".join(
+        "%s(raw=%d)" % (t, raw_term[t]) for t in saturated))
+L.append("词表返回/新收: " + " · ".join(
+    "%s=%d/%d" % (t, raw_term.get(t, 0), new_term.get(t, 0)) for t in
+    sorted(TERMS, key=lambda x: -raw_term.get(x, 0))))
 if gh_lost[0]:
-    L.append("⚠️ gh 认证已丢失，降级未认证（8s 退避）—— 检查是否限速，"
-             "本轮核验完整性存疑")
+    L.append("⚠️ gh 认证已丢失，降级未认证 —— 本轮完整性存疑")
 low = {k: v for k, v in cov.items() if v < 50}
 if low:
     L.append("⚠️ 覆盖率 <50%%（绝对数不可引用）: " +
              " · ".join("%s=%.1f%%" % kv for kv in low.items()))
-if qfail:
-    L.append("⚠️ 查询失败（不是零命中）: " + " · ".join(qfail))
-zero = [k for k, v in per_term.items() if v == 0 and k not in qfail]
-if zero:
-    L.append("⚠️ 真零命中: " + " · ".join(zero))
+if neg_dropped:
+    L.append("ℹ️ 被 NEG 规则丢弃 %d 个（缩写同形污染）: %s"
+             % (len(neg_dropped), " · ".join(neg_dropped[:12])))
 if page_dropped:
-    L.append("ℹ️ 被 pages 规则丢弃 %d 个（可审计，体量<300KB）: %s"
-             % (len(page_dropped),
-                " · ".join("%s(%dKB)" % p for p in page_dropped[:15])))
-# 逐词核验数：暴露两侧完整度不对称
+    L.append("ℹ️ 被 pages 规则丢弃 %d 个（体量<300KB）: %s"
+             % (len(page_dropped), " · ".join("%s(%dKB)" % p for p in page_dropped[:12])))
 vt = Counter(c["term"] for c in todo)
-L.append("逐词核验数: " + " · ".join("%s=%d/%d" % (k, vt.get(k, 0), v)
-                                     for k, v in sorted(per_term.items(),
-                                                        key=lambda x: -x[1])))
+L.append("逐词核验数: " + " · ".join("%s=%d" % (k, vt.get(k, 0)) for k in
+                                     sorted(TERMS, key=lambda x: -vt.get(x, 0))))
 uv = [c["repo"] for c in todo if c.get("unverified")]
 if uv:
-    L.append("⚠️ 未核验（限速，勿当空仓）%d 个: %s" % (len(uv), " · ".join(uv[:15])))
+    L.append("⚠️ 未核验（限速，勿当空仓）%d: %s" % (len(uv), " · ".join(uv[:12])))
 stale = [c["repo"] for c in todo if c.get("stale")]
 if stale:
-    L.append("⚠️ 30 天零提交（star 在骗人）: " + " · ".join(stale))
+    L.append("⚠️ 30 天零提交（star 在骗人）%d: %s" % (len(stale), " · ".join(stale[:15])))
 burst = [c["repo"] for c in todo if c.get("burst_only")]
 if burst:
-    L.append("⚠️ 30d 有量但近 7 天已停（爆完即停）%d 个: %s"
+    L.append("⚠️ 爆完即停（30d 有量 / 7d 归零）%d: %s"
              % (len(burst), " · ".join(burst[:15])))
+nol = [c["repo"] for c in todo if c.get("no_lang")]
+if nol:
+    L.append("⚠️ 无 language 字段（疑似非代码仓）%d: %s"
+             % (len(nol), " · ".join(nol[:12])))
 empty = [c["repo"] for c in todo if c.get("maybe_empty")]
 if empty:
-    L.append("⚠️ 空仓（409，只有 description）: " + " · ".join(empty))
+    L.append("⚠️ 空仓（409）: " + " · ".join(empty))
 cand = {o: n for o, n in owner_n.items() if n >= 3}
 if cand:
-    L.append("ℹ️ 候选农场（owner≥3，需人工判，非判决）: " +
+    L.append("ℹ️ 候选农场（owner≥3，需人工判）: " +
              " · ".join("%s=%d" % kv for kv in cand.items()))
 for c in rep[:25]:
-    L.append("  %s [%s] %s ★%d 30d=%d 7d=%d size=%dKB"
-             % (c["created"], c["term"], c["repo"], c["stars"],
-                c["commits_30d"], c.get("commits_7d", -1), c["size_kb"]))
+    L.append("  " + fmt(c))
 open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
 print("\n".join(L))
 
@@ -396,20 +433,21 @@ if not DRY and hit:
     stamp = now.strftime("%Y-%m-%d")
     merged = {k: stamp for k in hit}
     merged.update(seen)
-    json.dump(dict(list(merged.items())[-6000:]),
+    json.dump(dict(list(merged.items())[-8000:]),
               open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     with open(CARDS, "a", encoding="utf-8") as f:
         f.write("\n## %s · github-radar（报告级 %d）\n" % (stamp, len(rep)))
         for c in rep:
-            tag = " [爆完即停]" if c.get("burst_only") else ""
-            f.write("- [%s](%s) ★%d · 30d=%d 7d=%d%s · `%s` · %s\n"
-                    % (c["repo"], c["url"], c["stars"], c["commits_30d"],
-                       c.get("commits_7d", -1), tag, c["term"],
-                       c["desc"][:100]))
+            f.write("- [%s](%s) ★%d · 30d=%s 7d=%s%s · `%s` · %s\n"
+                    % (c["repo"], c["url"], c["stars"],
+                       "≥100" if c.get("commits_30d_ge") else c["commits_30d"],
+                       "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"),
+                       " [爆完即停]" if c.get("burst_only") else "",
+                       c["term"], c["desc"][:100]))
 ```
 
 ### 3. 输出
 
-- `memory/logs/${today}.md` 追加一节，**分开写**：查询失败 / 真零 / 未核验 / 覆盖率低 / 核验结果 / 爆完即停
-- 通知只发**报告级**，按 7 天提交数排序，每条给仓库 + 一句话 + 链接 + star + 30d/7d 提交数
+- `memory/logs/${today}.md` 追加一节，**四分类必须分开写**
+- 通知只发**报告级前 `NOTIFY_TOP` 条**，按 7 天提交数排序，每条给仓库 + 一句话 + 链接 + star + 30d/7d
 - 报告级为 0 时不发通知
