@@ -1,10 +1,10 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-25T02:14:59Z",
+  "last_analyzed": "2026-10-25T02:51:02Z",
   "quality_score": 4,
-  "assessment": "Substantive, self-critical scan: 51 authenticated queries, 0 failures, raw repo/star/commit evidence, and unusually honest coverage disclosure (32.1% overall, 7.9% for `vla`) plus corrections of two empty repos and two bot farms; well-structured and actionable, but long (against the 'short push' priority) and only indirectly tied to the DEUS north-star.",
+  "assessment": "Substantive, well-sourced scan with concrete repo-level data (stars/commits/coverage/noise rates) and a genuinely insightful self-audit finding (default commit-check only samples ★0 repos); clear raw sources and 4 actionable follow-ups, though it runs long and is only loosely tied to the DEUS-timing north star rather than the position's price triggers.",
   "flags": [],
-  "avg_score": 3.5,
+  "avg_score": 3.67,
   "history": [
     {
       "date": "2026-10-25",
@@ -16,6 +16,12 @@
       "date": "2026-10-25",
       "score": 4,
       "ts": "2026-10-25T02:14:59Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-25",
+      "score": 4,
+      "ts": "2026-10-25T02:51:02Z",
       "harness": "claude"
     }
   ]

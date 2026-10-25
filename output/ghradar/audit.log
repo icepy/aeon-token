@@ -1,0 +1,29 @@
+扫 17 词 × 3 窗 | 原始 2425 | 幸存 1437 | 丢弃 seen=132 excl=142 archived=1 short_desc=529 carrier=184 fail=0
+词表原始命中: world model=238 · robot manipulation=224 · teleoperation=223 · vla=148 · sim-to-real=127 · jepa=114 · egocentric=106 · sim2real=92 · world action model=84 · robot dataset=32 · proof of useful work=12 · embodied data=10 · intent-based=10 · verifiable inference=6 · data availability=5 · restaking=4 · maximal extractable value=2
+⚠️ 覆盖率 <50%（绝对数不可引用）: world model=21.4% · vla=7.9% · jepa=44.3%
+⚠️ 疑似仓库农场: liaohello=3 · origin-data-lab=3 · maxamin=3 · muhamuttaqien=4 · NEBULIS-Lab=3 · sraentertainment17-code=3 · rzc156=3 · OpenMakerProjects=10 · Roboparty=3 · YucongDuan=4 · SajjadPSavoji=4
+  2026-10-24 [robot manipulation] youseefahmed794/ros2-manipulation-grasping ★0 commits30d=2
+  2026-10-24 [robot manipulation] sriashlesha/Physical_ai_project ★0 commits30d=1
+  2026-10-24 [robot manipulation] AhmedGaberAG/Franka-Panda ★0 commits30d=7
+  2026-10-24 [robot manipulation] IslamTurki01/Robotic_Arm ★0 commits30d=3
+  2026-10-24 [teleoperation] MARDIO1/fpga-hand-teleoperation ★0 commits30d=1
+  2026-10-24 [teleoperation] STRRDEW/gesture-control ★0 commits30d=1
+  2026-10-24 [teleoperation] RoboDrop/robo_swap_101 ★0 commits30d=3
+  2026-10-24 [teleoperation] roniejosephv-star/t2-bots-teleop ★0 commits30d=11
+  2026-10-24 [teleoperation] liaohello/lelab ★0 commits30d=1 FARM
+  2026-10-24 [sim2real] youseefahmed794/sim2real-robot-rl ★0 commits30d=3
+  2026-10-24 [sim2real] liaohello/GigaWorld-Policy-Sim2Real ★0 commits30d=18 FARM
+  2026-10-24 [sim2real] binary-core-llc/so101-sim2real-drift ★0 commits30d=1
+  2026-10-24 [sim-to-real] AliOzcelik/sungur-track ★0 commits30d=1
+  2026-10-24 [sim-to-real] Chloe-Jinlei/genesis-teddy-dressing ★0 commits30d=2
+  2026-10-24 [sim-to-real] dzp181/embodied-ai-algorithm-expert ★0 commits30d=2
+  2026-10-24 [world model] RoboX2020/gtm-world-model ★1 commits30d=1
+  2026-10-24 [world model] mode1223345/SuperMimic-perceptive ★1 commits30d=4
+  2026-10-24 [world model] Alchedata/supermimic-locomujoco ★1 commits30d=1
+  2026-10-24 [jepa] abinkhai/kartu-jepang ★0 commits30d=1
+  2026-10-24 [egocentric] origin-data-lab/egocentric-keystep-annotation ★0 commits30d=2 FARM
+  2026-10-23 [embodied data] 91CHD/embodied-data-lab ★0 commits30d=16
+  2026-10-23 [robot manipulation] 7henghhhy/robotic-inference-optimization ★0 commits30d=1
+  2026-10-23 [robot manipulation] Percent-F1re/franka-panda-manipulation ★0 commits30d=4
+  2026-10-23 [robot manipulation] sathwik-github/project-root-rover ★0 commits30d=1
+  2026-10-23 [teleoperation] Gamma-Robot/NEXUS ★4 commits30d=8

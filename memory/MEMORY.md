@@ -94,6 +94,7 @@
 
 ## Reference
 - [deus-escrow](/topics/deus-escrow.md) · [deus-buyers](/topics/deus-buyers.md) · [deus-events](/topics/deus-events.md) · [market-context](/topics/market-context.md)
+- [world-action-models](/topics/world-action-models.md) — WAM 提法：60 天 84 仓 / 79 owner，W39–W40 会议双峰后回落至 6–10，未归零；star≠活跃度（★1106/11 提交 vs ★48/10 提交）。跨通道唯一交集 `SkillWeaver`（arXiv 09-28 → GitHub 10-08，滞后 10 天）。
 - [base-rpc-access](/topics/base-rpc-access.md) · [ops-plumbing](/topics/ops-plumbing.md) · [price-alert-state](/topics/price-alert-state.json) · [state 契约](/topics/price-alert-state.md)
 - [note-systems](/topics/tokens/note-systems.md) · [lessons](/topics/lessons.md)
 
