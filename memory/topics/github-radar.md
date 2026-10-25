@@ -1,9 +1,9 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 六轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、核验覆盖率、agent 指纹）
+description: github-radar 七轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、缩写污染、agent 指纹）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-25T04:55:00Z
+timestamp: 2026-10-25T05:55:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -17,9 +17,47 @@ timestamp: 2026-10-25T04:55:00Z
 3. **`pages` 规则误杀真代码仓（第五轮）** — `short.lower() == owner.lower()` 把 `UniWAM/UniWAM` ★135/20（有 `train/ inference/ models/`）、`dextacwam/DexTacWAM` ★24/26 当列表页丢掉。改法：加 `not language` 条件。**第六轮回归：两仓幸存，pages 丢弃 79 → 15（全是 0–47KB 无语言同名仓）。**
 4. **`terms` 多词命中只记首个（第五轮）** — `SmolWAM`/`AffordanceWAM`/`Skel-WAM`/`TrajWAM`/`so101-vla-wam`/`MT-WAM` 6 个 WAM 仓被归到 `robot manipulation`。**第六轮回归：多词命中 67 仓，`world action model` 扫描口径 72 → 95。**
 
-## 未修复（第六轮新发现）
+## 未修复（第六轮新发现，第七轮已修）
 
-5. **🔴 单个 409 空仓打掉整个认证态。** `gh_get` 的降级条件是 `r.returncode != 0`，而 `repos/{r}/commits` 对空仓返回 **409「Git Repository is empty」** 也满足它 → `GH = False`，后续全部走未认证 urllib（60/h）。**铁律写着「429 与 409 必须分开」，代码只在返回值里分了（`"empty" if "409" in err`），降级判断里没分。** 改法：`break` 前先判 error 文本含 `409`/`empty`，是则直接返回不降级。第六轮 409 出现在第 ~240 个，实际影响 0；**长窗口下若早出现会静默把后面全标 unverified。**
+5. **✅ 已修：单个 409 空仓打掉整个认证态。** `gh_get` 的降级条件是 `r.returncode != 0`，而 `repos/{r}/commits` 对空仓返回 **409「Git Repository is empty」** 也满足它 → `GH = False`，后续全部走未认证 urllib（60/h）。**铁律写着「429 与 409 必须分开」，代码只在返回值里分了，降级判断里没分。** 第七轮改法：`break` 前先判 error 文本含 `409`/`empty`，是则直接返回不降级。**回归通过：本轮 27 个 409 空仓全部正确分类为 `empty`，`GH` 全程未降级，核验 0 失败。**
+
+## 第七轮新发现（2026-10-25 05:55Z）
+
+### 13. 🔴 报告级 89 是 4.5× 低估 —— 全量核验后是 402
+
+连续六轮都写「报告级 89（250 仓抽样下的下限）」。**第七轮用 core quota（5,000/h，与 search 独立池）全量核验 1,251 仓，119 秒完成**：
+
+| 指标 | 抽样（250 仓） | 全量（1,231 仓） |
+|---|---|---|
+| ≥5 提交/30d | 89 | **402 (32.7%)** |
+| ≥1 提交/7d | 未测 | **318 (25.8%)** |
+| 30d 零提交 | 45 | **420 (34.1%)** |
+| 爆完即停 | 20/51 | **222/402 (55.2%)** |
+
+**抽样偏差量化：第六轮已验的 281 个里 38.4% ≥5 提交；未验的 950 个里 30.9%。** 偏差真实但不巨大 —— 上轮担心的「新仓天然更活跃导致外推失真」被证伪。**教训：当 core quota 有 5,000/h 而幸存集只有 ~1,600 时，「抽样」没有任何理由，直接全量。**
+
+### 14. 🔴 「真零命中」把「全已见」误判成废词 —— 会直接误导删词
+
+`per_term[term]` 只数**新幸存者**。有 seen 基线后，命中的仓若全部已见 → `per_term=0` → 审计打「⚠️ 真零命中」。**第七轮报了 12 个「真零」词，逐词单查 60 天 total_count 后全部非空**：`data availability` **126**、`intent-based` **116**、`egocentric` **141**、`sim-to-real` **166**、`world action model` **99**、`robot dataset` 41、`embodied data` 18、`proof of useful work` 13、`verifiable inference` 7、`restaking` 6、`maximal extractable value` 2、`robotics data engine` 1。
+
+**分类必须四类：A 查询失败 / B 真零命中（total=0）/ C 全已见（total>0 但新=0）/ 有新增。** 「本轮无新增」= **窗口已采尽**，不代表词废。**这推翻前六轮反复出现的「这 4 个加密词该删或换 topic 路由」—— 它们是饱和，不是查不到。**
+
+### 15. 🔴 缩写词子串污染 —— 铁律写着「缩写必然脏」，但词表里就有 `vla` / `jepa`
+
+加深到第 2 页后长尾污染全浮出（第七轮新增集）：
+
+- **`vla` 撞 VLAN（网络工程）与 Vlad（斯拉夫名）：污染 20/91 = 22.0%。** 典型：`valdissor1990-ui/vladossVPN`（★0 但 **30d=100 / 7d=100**，纯 Android VPN 客户端 —— 单仓就能霸榜）、`vedangkolte238-pixel/VLAN-InterVLAN-Routing`、`ondra-jakub/VlakoveCedule`（捷克语列车时刻表）。存量集 21/145 = 14.5%。
+- **`jepa` 撞印尼语 `jepang`（日本）与城市 `Jepara`：污染 16/110 = 14.5%。** 典型：`Agung-laksono/centra-cargo-jepara`（30d=28/7d=28，家具货运站）、`kharinsaflaura/kuis-kotoba-jepang-{1,2,3,4}`（日语测验，**同一 owner 7 仓**）。存量集 13/120 = 10.8%。
+- **剔污染后合并报告级 515 → 495**，其中 7d 活跃 **216**。
+- **判据：缩写词必须配 carrier（像 `world model` 那样）或改用全称。`vla` 用 `"vision language action"`，`jepa` 用 `"joint embedding predictive"`。** 本轮未改词表（保持与前六轮可比），但这是下一次必改项。
+
+### 16. ⚠️ `pages` 加 `not language` 带进反向泄露（第七轮引入）
+
+第六轮的修法是「`short==owner` 且 `size<300KB` 且 **无 language** 才丢」，结果 `*.github.io` 里 **<300KB 但有 language** 的仓被放行（GitHub 会把静态站标成 HTML/JS/CSS），两批共 **6 个漏网**（`vladimirsk1234.github.io` 0KB HTML、`focal-vla.github.io` 0KB HTML 等）。影响小（0 个进报告级），但方向错了。**正确判据：名字像页 + 体量小，两个条件，`language` 不该做豁免。**
+
+### 17. 🟢 加密侧「空」第三次被推翻，这次是全量
+
+33 个加密幸存仓**全部核验**：≥5 提交 **19 个（57.6%）**、clean 且 7d 活跃 **9 个（27.3%）**。**加密侧的提交率（57.6%）反而高于机器人侧（32.6%）** —— 但其中 10 个是「爆完即停」。`vearl-verified-compute/vearl` ★22 Rust **七轮连续**仍在写（7d=25）。
 
 ## 判据（比 star 更硬的几条）
 
@@ -36,7 +74,8 @@ timestamp: 2026-10-25T04:55:00Z
 
 # Citations
 
-- 快照 `output/ghradar/out6.json`（1,251 幸存 / 2,427 原始）· `audit6.log`
+- 第七轮快照 `output/ghradar/out7.json`（332 新增 / 3,441 原始）· `audit7.log` · 全量核验 `full7.json`（1,251）+ `full7b.json`（332）· 污染量化 `contam7.py` · 词表饱和 `terms7.py` → `terms7.json` · 汇总 `all7.py` / `an7.py` / `final7.py`
+- 第六轮快照 `output/ghradar/out6.json`（1,251 幸存 / 2,427 原始）· `audit6.log`
 - 加密侧补齐核验 `output/ghradar/cry_verify6.py` · 7 天衰减 `decay6.py` / `robact6.py` · agent 指纹 `agentfile6.py` · 目录树 `tree6.py`
 - WAM 全量翻页 `output/ghradar/wam6.py`（99 仓）· [world-action-models](/topics/world-action-models.md)
-- 详细日志 `memory/logs/2026-10-25.md#github-radar（第六轮`
+- 详细日志 `memory/logs/2026-10-25.md#github-radar（第七轮`

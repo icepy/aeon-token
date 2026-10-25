@@ -1,9 +1,9 @@
 ---
 title: World Action Models (WAM)
-description: WAM 作为具身智能的新提法 —— GitHub 代码侧的按周收敛曲线、工程化分裂、以及 star 与 commits 的背离（第五轮起口径改为全量翻页 99 仓，第六轮换轮次复现成功）
+description: WAM 作为具身智能的新提法 —— GitHub 代码侧的按周收敛曲线、工程化分裂、以及 star 与 commits 的背离（第五轮起口径改为全量翻页 99 仓，第七轮完成全量活跃度核验）
 tags: [robotics, embodied-ai, world-model, wam, discovery, github-radar]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-25T04:37:30Z
+timestamp: 2026-10-25T06:00:00Z
 ---
 
 # World Action Models (WAM)
@@ -34,17 +34,21 @@ XMAQUINA / DEUS 押的是机器人叙事。**同一个词在 arxiv 与 GitHub �
 
 ## star 与 commits 的背离（这一簇最实用的判据）
 
-| 仓库 | ★ | 30d 提交 | 性质 |
-|---|---|---|---|
-| `OpenWAM-Official/OpenWAM` | 1106 | 11 | 论文官方实现，star 是传播度 |
-| `TencentARC/WorldCrafter` | 537 | 53 | 少数 star 与提交同高的 |
-| `robbyant-research/Zero-WAM` | 439 | **0** | 已死，连续两轮确认 |
-| `OpenMOSS/EasyWAM` | 381 | 30 | 真在维护 |
-| `black-forest-labs/flux-action` | 199 | 2 | 7B 开放权重，发完即停 |
-| `UniWAM/UniWAM` | 135 | 20 | |
-| `THUSI-Lab/PrismWAM` | 48 | **10** | ★48 提交数是 ★1106 的一半以上 |
+| 仓库 | ★ | 30d 提交 | 7d 提交 | 性质 |
+|---|---|---|---|---|
+| `OpenWAM-Official/OpenWAM` | 1107 | 11 | 2 | 论文官方实现，star 是传播度 |
+| `OpenMOSS/EasyWAM` | 382 | 30 | **0** | 爆完即停 |
+| `UniWAM/UniWAM` | 135 | 20 | **0** | 爆完即停 |
+| `LeapLabTHU/Simple-WAM` | 88 | 7 | **0** | 爆完即停 |
+| `THUSI-Lab/PrismWAM` | 48 | 10 | **10** | ★ 与提交同高，仍在写 |
+| `OpenPhoenix-Team/Phoenix-MWA` | 28 | 14 | **14** | 新仓里最活跃的 WAM 实现 |
+| `TencentARC/WorldCrafter` | 537 | 53 | — | 少数 star 与提交同高的 |
 
-**结论：star 测「发布时的传播」，commits 测「现在还有人写」。★1106 的提交数不到 ★48 的两倍 —— 头部 star 顺序不是工程活跃度顺序。**
+**🔴 第七轮全量核验结论：** 95 仓（命中 `world action model` 的全部幸存者）里 **≥5 提交/30d 只有 36 个（37.9%）**，**近 7 天仍活跃 30 个（31.6%）**，**30d 零提交 27 个（28.4%）**。**★≥10 的 13 个报告级仓里 9 个近 7 天零提交** —— `EasyWAM` ★382、`UniWAM` ★135、`Simple-WAM` ★88、`EVO-WAM` ★50、`AquaWAM` ★35、`DexTacWAM` ★24、`PatchWAM` ★19 全部 7d=0。**star 在这一簇里几乎是纯传播度指标，与「还在写」无关。**
+
+其余留档：`robbyant-research/Zero-WAM` ★439 **30d 零提交**（连续六轮确认已死，`pushed` 停 09-15）· `black-forest-labs/flux-action` ★199 / 2 提交（7B 开放权重，发完即停）· `TencentARC/WorldCrafter` ★537 / 53（少数 star 与提交同高）。
+
+**结论：star 测「发布时的传播」，commits 测「现在还有人写」。★1106 的提交数不到 ★48 的一半 —— 头部 star 顺序不是工程活跃度顺序。**
 
 ## 第四轮复核（2026-10-25 03:40Z）— 其数字已被第五轮推翻
 
@@ -114,7 +118,8 @@ name 含 WAM 的 10 月新仓 19 个，其中 8 个 ★0（符合「新建仓必
 
 # Citations
 
-- **第五轮（现行）** — GitHub Search API `"world action model" in:name,description created:>=2026-08-26 fork:false`，**全量翻页 99 仓**，快照 `output/ghradar/wam5.json`；脚本 `output/ghradar/wam5.py`；口径复现测试 `output/ghradar/variants5.py` / `output/ghradar/fit84b_5.py`
+- **第七轮（全量核验）** — 幸存集中命中 `world action model` 的 **95 仓全部核验**：**≥5 提交/30d 36 · 近 7 天仍活跃 30 · 爆完即停 18 · 30d 零提交 27**。快照 `output/ghradar/full7.json` + `full7b.json`，脚本 `all7.py`。**这是本簇第一次全量（而非抽样）活跃度，可直接引用。**
+- **第五轮（现行口径）** — GitHub Search API `"world action model" in:name,description created:>=2026-08-26 fork:false`，**全量翻页 99 仓**，快照 `output/ghradar/wam5.json`；脚本 `output/ghradar/wam5.py`；口径复现测试 `output/ghradar/variants5.py` / `output/ghradar/fit84b_5.py`
 - 第四轮（数字已作废，留档）— 17 词 × 3 窗快照 `output/ghradar/out.json`（1,438 条）；提交核验 250 仓，0 空仓 / 0 未验成；`per_page=100` 上限，故 100 实为 ≥100
 - 提交核验（第五轮）— `gh api repos/{owner}/{repo}/commits?since=2026-09-25T00:00:00Z&per_page=100`（249 仓）
 - 原始仓库 — https://github.com/OpenWAM-Official/OpenWAM · https://github.com/THUSI-Lab/PrismWAM · https://github.com/iitimii/SmolWAM · https://github.com/NVIDIA/Flora · https://github.com/UniWAM/UniWAM

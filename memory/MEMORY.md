@@ -34,8 +34,8 @@
 ### NOTE
 - 见 [note-systems](/topics/tokens/note-systems.md) —— 解锁-回锁-上膛时间线、per-schedule 量级。
 
-### github-radar（第六轮已收口）
-- **判据速查，全文见 [github-radar](/topics/github-radar.md)：** 30d 提交 ≠ 现在还在写（机器人侧 ≥10 提交的 51 仓里 20 个 7d=0）；根目录 `AGENTS.md`/`CLAUDE.md` = 「单人 + agent」指纹（加密 10/18 vs 机器人 2/21）；按 star 分配核验预算会饿死低 star 域。**未修：单个 409 空仓会把 `GH` 全局置 False**，长窗口下静默把后面全标 unverified。
+### github-radar（第七轮收口 · 全量核验）
+- **速查，全文见 [github-radar](/topics/github-radar.md)：** 30d 提交 ≠ 还在写；`AGENTS.md`/`CLAUDE.md` = 单人+agent 指纹；**报告级全量 402 不是 89（4.5× 低估）**；**55.2% 爆完即停**；**`vla`/`jepa` 污染 22%/14.5%**；**`per_term=0` 把「全已见」误标「真零」。**
 
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。这里只留判据速查。
@@ -47,6 +47,7 @@
 - **`eth_getCode`=`0x` 才是 EOA；`0xef0100…` 是 EIP-7702。** 地址左补零且全小写。**view revert 先怀疑 selector。**
 - **门槛数学先核对分子分母同单位**（曾把 DEUS 数量除以美元金额，424 倍 vs 真值 8.2 倍）；**24h 涨跌幅别用 `ohlcv_list[0]`**。
 - **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`。
+- **有 seen 基线后「0 新增」≠「废词」** —— 逐词单查 total_count 才分得清「窗口饱和」与「查询打不中」。
 
 ## Reference
 - [deus-orderflow](/topics/deus-orderflow.md) · [deus-escrow](/topics/deus-escrow.md) · [deus-buyers](/topics/deus-buyers.md) · [deus-events](/topics/deus-events.md) · [market-context](/topics/market-context.md)

@@ -1,0 +1,5840 @@
+[
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "sumitrajapure1308/Mind-contact-plus-plus",
+  "owner": "sumitrajapure1308",
+  "url": "https://github.com/sumitrajapure1308/Mind-contact-plus-plus",
+  "stars": 0,
+  "created": "2026-09-25",
+  "pushed": "2026-09-27",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 35398,
+  "desc": "MIND-Contact is a causal diagnosis and minimum-intervention framework for contact-rich robotic manipulation. It identifies the physical caus",
+  "commits_30d": 2,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "rmbench-anonymous/RMBench-Anonymous",
+  "owner": "rmbench-anonymous",
+  "url": "https://github.com/rmbench-anonymous/RMBench-Anonymous",
+  "stars": 0,
+  "created": "2026-09-16",
+  "pushed": "2026-09-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 2149,
+  "desc": "Anonymous Released Codebase for \"RMBench: Memory-Dependent Robotic Manipulation Benchmark with Insights into Policy Design\" | This is an ano",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "megazron/cleanbench-eval",
+  "owner": "megazron",
+  "url": "https://github.com/megazron/cleanbench-eval",
+  "stars": 0,
+  "created": "2026-09-16",
+  "pushed": "2026-09-17",
+  "lang": "Python",
+  "topics": [
+   "benchmark",
+   "embodiment",
+   "evaluation",
+   "manipulation",
+   "python",
+   "reproducibility"
+  ],
+  "size_kb": 1121,
+  "desc": "Contamination-controlled, embodiment-tagged evaluation harness for robot manipulation policies: hashed task suites with dev/test/holdout spl",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "afallenxp/EZcalib",
+  "owner": "afallenxp",
+  "url": "https://github.com/afallenxp/EZcalib",
+  "stars": 0,
+  "created": "2026-09-17",
+  "pushed": "2026-09-17",
+  "lang": "",
+  "topics": [],
+  "size_kb": 1,
+  "desc": "Simple and reliable hand-eye calibration tool for robotic manipulation. 简单可靠的机器人手眼标定工具。基于 OpenCV 和 easy_handeye 封装，提供自动化质检、多传感器时间对齐和 LeRobot",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "MAR-Quadrupede/mar-dashboard",
+  "owner": "MAR-Quadrupede",
+  "url": "https://github.com/MAR-Quadrupede/mar-dashboard",
+  "stars": 0,
+  "created": "2026-10-14",
+  "pushed": "2026-10-22",
+  "lang": "TypeScript",
+  "topics": [],
+  "size_kb": 81,
+  "desc": "Next.js 14 web teleoperation dashboard with real-time video streaming, 2D LiDAR radar & E-Stop"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "TJchao/FR3-Episode-Qc",
+  "owner": "TJchao",
+  "url": "https://github.com/TJchao/FR3-Episode-Qc",
+  "stars": 0,
+  "created": "2026-10-21",
+  "pushed": "2026-10-23",
+  "lang": "Python",
+  "topics": [
+   "data-quality",
+   "docker",
+   "duckdb",
+   "fastapi",
+   "parquet",
+   "pytest"
+  ],
+  "size_kb": 47,
+  "desc": "Lightweight episode quality checks & analytics for robot-learning data, extracted from a Franka Research3 teleoperation pipeline"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "cwseon27/hybrid_teleop",
+  "owner": "cwseon27",
+  "url": "https://github.com/cwseon27/hybrid_teleop",
+  "stars": 0,
+  "created": "2026-10-14",
+  "pushed": "2026-10-14",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 63354,
+  "desc": "IGRIS-C hybrid teleoperation with VR, leader arms, wrist-camera hand tracking, and HMD/exoskeleton control."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "cfahlgren1/pivot",
+  "owner": "cfahlgren1",
+  "url": "https://github.com/cfahlgren1/pivot",
+  "stars": 0,
+  "created": "2026-10-16",
+  "pushed": "2026-10-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 14099,
+  "desc": "Set up SO-101 robot arms one step at a time, from plugging in to teleoperation."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "IDK-U-Yet/r1-a7-autonomous-checkout",
+  "owner": "IDK-U-Yet",
+  "url": "https://github.com/IDK-U-Yet/r1-a7-autonomous-checkout",
+  "stars": 0,
+  "created": "2026-10-09",
+  "pushed": "2026-10-09",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 41869,
+  "desc": "Unitree R1-A7 dual-arm robotic checkout research: pi0.5, teleoperation, dataset tools, DAgger and RTC"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "ShashankJangid/Unitree_G1",
+  "owner": "ShashankJangid",
+  "url": "https://github.com/ShashankJangid/Unitree_G1",
+  "stars": 0,
+  "created": "2026-10-12",
+  "pushed": "2026-10-21",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 102001,
+  "desc": "Comprehensive simulation, Cartesian teleoperation, motion recording, and hardware deployment framework for the Unitree G1 humanoid robot."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Muheezabiola/pipeline-inspection-rover",
+  "owner": "Muheezabiola",
+  "url": "https://github.com/Muheezabiola/pipeline-inspection-rover",
+  "stars": 0,
+  "created": "2026-10-12",
+  "pushed": "2026-10-12",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 10,
+  "desc": "A semi-autonomous, Raspberry Pi-controlled mechatronic rover featuring ultrasonic obstacle avoidance and web-based teleoperation."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Euler-Rodrigues-Lab/dual_kinova3_teleop",
+  "owner": "Euler-Rodrigues-Lab",
+  "url": "https://github.com/Euler-Rodrigues-Lab/dual_kinova3_teleop",
+  "stars": 0,
+  "created": "2026-10-16",
+  "pushed": "2026-10-17",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 14929,
+  "desc": "Dual Kinova Gen3 teleoperation and replay with Robotiq or Psyonic hands, Rust retargeting and SEW safety filtering"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "davidcreate777/robotic-hand-mirror",
+  "owner": "davidcreate777",
+  "url": "https://github.com/davidcreate777/robotic-hand-mirror",
+  "stars": 0,
+  "created": "2026-10-20",
+  "pushed": "2026-10-20",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 8,
+  "desc": "Vision-based robotic hand teleoperation system mirroring human finger gestures onto Arduino servo motors via serial communication."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "HansomeWang2154/pi05-so101-washstand",
+  "owner": "HansomeWang2154",
+  "url": "https://github.com/HansomeWang2154/pi05-so101-washstand",
+  "stars": 0,
+  "created": "2026-10-17",
+  "pushed": "2026-10-18",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 6733,
+  "desc": "SO101 dual-camera teleoperation and real-data pipeline for LeRobot pi05_base; real hardware validation in progress."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "muayad-chalabi/aprilfold",
+  "owner": "muayad-chalabi",
+  "url": "https://github.com/muayad-chalabi/aprilfold",
+  "stars": 0,
+  "created": "2026-10-19",
+  "pushed": "2026-10-20",
+  "lang": "Python",
+  "topics": [
+   "3d-printing",
+   "apriltag",
+   "aruco",
+   "fiducial-markers",
+   "pose-estimation",
+   "robotics"
+  ],
+  "size_kb": 119172,
+  "desc": "Foldable single-color AprilTag/ArUco cubes and printed robot twins for vision-only teleoperation (based on aprilcube)"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "raazankit/6dof-robotic-arm",
+  "owner": "raazankit",
+  "url": "https://github.com/raazankit/6dof-robotic-arm",
+  "stars": 0,
+  "created": "2026-10-23",
+  "pushed": "2026-10-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 26,
+  "desc": "Real-time 6-DOF robotic arm teleoperation via MediaPipe hand-tracking, ESP32/PCA9685 hardware control, and kinematic simulation."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Mariam-Gahlan/pioneer3dx-ros2-coppeliasim",
+  "owner": "Mariam-Gahlan",
+  "url": "https://github.com/Mariam-Gahlan/pioneer3dx-ros2-coppeliasim",
+  "stars": 0,
+  "created": "2026-10-15",
+  "pushed": "2026-10-20",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1398,
+  "desc": "Keyboard teleoperation and real-time ultrasonic visualization for a Pioneer 3-DX in CoppeliaSim using ROS 2 Jazzy"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "awd1779/TacGELLO",
+  "owner": "awd1779",
+  "url": "https://github.com/awd1779/TacGELLO",
+  "stars": 0,
+  "created": "2026-10-13",
+  "pushed": "2026-10-13",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 657,
+  "desc": "TacGELLO: Tactile Contact Feedback for a 3D-Printed Teleoperation Leader (arXiv:2610.05583). Built on GELLO and AnySkin."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Zaniyar/quest-isaac-teleop",
+  "owner": "Zaniyar",
+  "url": "https://github.com/Zaniyar/quest-isaac-teleop",
+  "stars": 0,
+  "created": "2026-10-18",
+  "pushed": "2026-10-18",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 1174,
+  "desc": "Robotics meets XR — réalité suisse GmbH. Quest WebXR teleoperation adapters for your own Isaac Sim / Unitree G1 instance."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "MrTonyIT/dexdenso-teleop",
+  "owner": "MrTonyIT",
+  "url": "https://github.com/MrTonyIT/dexdenso-teleop",
+  "stars": 0,
+  "created": "2026-10-08",
+  "pushed": "2026-10-08",
+  "lang": "Python",
+  "topics": [
+   "computer-vision",
+   "denso",
+   "digital-twin",
+   "inverse-kinematics",
+   "isaac-sim",
+   "mediapipe"
+  ],
+  "size_kb": 5758,
+  "desc": "High-Precision Zero-Latency 6-DOF Vision Teleoperation & Digital Twin Framework for DENSO Industrial Robotics and NVIDIA Isaac Sim"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "BluePinetree/Teach-a-Bot-Lab",
+  "owner": "BluePinetree",
+  "url": "https://github.com/BluePinetree/Teach-a-Bot-Lab",
+  "stars": 0,
+  "created": "2026-10-21",
+  "pushed": "2026-10-21",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 2372,
+  "desc": "Joy-Con teleoperation of a simulated ALOHA 2 robot, live imitation learning vs an RL baseline, for lab visits"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Charles8279/piper-robotics-learning",
+  "owner": "Charles8279",
+  "url": "https://github.com/Charles8279/piper-robotics-learning",
+  "stars": 0,
+  "created": "2026-10-15",
+  "pushed": "2026-10-15",
+  "lang": "",
+  "topics": [],
+  "size_kb": 2,
+  "desc": "Learning notes and practical projects for the AgileX Piper robotic arm, including trajectory recording, playback, and Xbox controller teleop"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "xdongmiao/pico-piper-teleop",
+  "owner": "xdongmiao",
+  "url": "https://github.com/xdongmiao/pico-piper-teleop",
+  "stars": 0,
+  "created": "2026-10-19",
+  "pushed": "2026-10-21",
+  "lang": "Python",
+  "topics": [
+   "agilex",
+   "data-collection",
+   "lerobot",
+   "pico-vr",
+   "piper",
+   "robotics"
+  ],
+  "size_kb": 61832,
+  "desc": "Pico VR teleoperation and LeRobot data capture for dual AgileX PiPER arms, with ROS 2 bridge and Streamlit console."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Beecheer/rysen-hand-follow",
+  "owner": "Beecheer",
+  "url": "https://github.com/Beecheer/rysen-hand-follow",
+  "stars": 0,
+  "created": "2026-10-22",
+  "pushed": "2026-10-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 2959,
+  "desc": "Windows hand tracking and teleoperation for the Rysen Apex Hand with WiLoR, MediaPipe, Intel RealSense D435, calibration, and SDK control."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "KhaledAbuMustafa/panda-hand-teleop",
+  "owner": "KhaledAbuMustafa",
+  "url": "https://github.com/KhaledAbuMustafa/panda-hand-teleop",
+  "stars": 0,
+  "created": "2026-10-09",
+  "pushed": "2026-10-09",
+  "lang": "Python",
+  "topics": [
+   "computer-vision",
+   "franka-panda",
+   "gazebo",
+   "hand-tracking",
+   "lab-automation",
+   "mediapipe"
+  ],
+  "size_kb": 441,
+  "desc": "Webcam hand-tracking teleoperation of a Franka Panda arm in Gazebo for lab automation: ROS 2 Jazzy, MoveIt Servo, MediaPipe"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "yourself-q/tuushin",
+  "owner": "yourself-q",
+  "url": "https://github.com/yourself-q/tuushin",
+  "stars": 0,
+  "created": "2026-10-14",
+  "pushed": "2026-10-16",
+  "lang": "C++",
+  "topics": [],
+  "size_kb": 1560,
+  "desc": "Open C++ stack for haptic teleoperation over the ordinary internet: time-domain passivity control, UDP transport, path measurement and repla"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Euler-Rodrigues-Lab/XRT-Client",
+  "owner": "Euler-Rodrigues-Lab",
+  "url": "https://github.com/Euler-Rodrigues-Lab/XRT-Client",
+  "stars": 0,
+  "created": "2026-10-12",
+  "pushed": "2026-10-16",
+  "lang": "C#",
+  "topics": [],
+  "size_kb": 4021,
+  "desc": "Unity VR robot teleoperation client for Meta Quest 3: streams upper-body pose over WebRTC, FPV stereo / webcam video, haptics."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "PhaiXD/ur3e-vr-bridge",
+  "owner": "PhaiXD",
+  "url": "https://github.com/PhaiXD/ur3e-vr-bridge",
+  "stars": 0,
+  "created": "2026-10-16",
+  "pushed": "2026-10-25",
+  "lang": "C#",
+  "topics": [],
+  "size_kb": 19676,
+  "desc": "Python middleware connecting VR, haptic gloves, and a UR Robot via RTDE for real-time teleoperation in remote chemistry experiments."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "ApurvK032/visual-teleop",
+  "owner": "ApurvK032",
+  "url": "https://github.com/ApurvK032/visual-teleop",
+  "stars": 0,
+  "created": "2026-10-06",
+  "pushed": "2026-10-06",
+  "lang": "C++",
+  "topics": [],
+  "size_kb": 2969,
+  "desc": "Camera-only teleoperation: a 3D-printed leader arm tracked from RGB-D cameras with DLR M3T drives a Trossen WidowX AI"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "davidcreate777/dobot-magician-teletwin",
+  "owner": "davidcreate777",
+  "url": "https://github.com/davidcreate777/dobot-magician-teletwin",
+  "stars": 0,
+  "created": "2026-10-20",
+  "pushed": "2026-10-20",
+  "lang": "C",
+  "topics": [],
+  "size_kb": 13218,
+  "desc": "Real-time CV hand tracking teleoperation and digital twin bridge for Dobot Magician robotic arm using MediaPipe and UDP socket control."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Cirocirotondo/bimanual-dg5fs",
+  "owner": "Cirocirotondo",
+  "url": "https://github.com/Cirocirotondo/bimanual-dg5fs",
+  "stars": 0,
+  "created": "2026-10-12",
+  "pushed": "2026-10-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 14238,
+  "desc": "Repository that contains all the teleoperation (in simulation) and training environment for the bimanual setup made of 2 UR5e and 2 Hands"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Juxi-Technology/so-arm101-amazinghand",
+  "owner": "Juxi-Technology",
+  "url": "https://github.com/Juxi-Technology/so-arm101-amazinghand",
+  "stars": 0,
+  "created": "2026-10-08",
+  "pushed": "2026-10-13",
+  "lang": "Python",
+  "topics": [
+   "amazinghand",
+   "dexterous-hand",
+   "embodied-ai",
+   "juxi-technology",
+   "juxitechnology",
+   "lerobot"
+  ],
+  "size_kb": 3516,
+  "desc": "SO-ARM101 6-DOF arm with the AmazingHand 8-DOF dexterous hand on LeRobot - teleoperation, calibration, data collection and imitation-learnin"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "punitipatel03/kuka-iiwa-joint-control-pybullet",
+  "owner": "punitipatel03",
+  "url": "https://github.com/punitipatel03/kuka-iiwa-joint-control-pybullet",
+  "stars": 0,
+  "created": "2026-10-07",
+  "pushed": "2026-10-07",
+  "lang": "Python",
+  "topics": [
+   "kuka",
+   "pybullet",
+   "python",
+   "robot-arm",
+   "robotics",
+   "simulation"
+  ],
+  "size_kb": 2,
+  "desc": "Real-time keyboard teleoperation of a 6-joint KUKA iiwa robot arm in PyBullet with position control and live joint-angle display"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "rabbunimerugumala/ros2-differential-drive-robot",
+  "owner": "rabbunimerugumala",
+  "url": "https://github.com/rabbunimerugumala/ros2-differential-drive-robot",
+  "stars": 0,
+  "created": "2026-10-23",
+  "pushed": "2026-10-23",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "A ROS 2 Jazzy differential-drive mobile robot project featuring Gazebo Harmonic simulation, keyboard teleoperation, URDF modeling, odometry,"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "create41/create41.github.io",
+  "owner": "create41",
+  "url": "https://github.com/create41/create41.github.io",
+  "stars": 0,
+  "created": "2026-10-12",
+  "pushed": "2026-10-17",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 2624,
+  "desc": "Deploy SONIC policies on Agibot A3 humanoid robots with RKNN acceleration, including real-robot teleoperation, MuJoCo validation, and intera"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "tejo2one/bbai64_web_interface",
+  "owner": "tejo2one",
+  "url": "https://github.com/tejo2one/bbai64_web_interface",
+  "stars": 0,
+  "created": "2026-10-11",
+  "pushed": "2026-10-11",
+  "lang": "C++",
+  "topics": [],
+  "size_kb": 217,
+  "desc": "High-performance C++17 teleoperation server, tear-free framebuffer robot face engine, V4L2 video streamer, and kinetic web HUD for BeagleBon"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "vidyadharkannan/ros2-robotized-tele-echography",
+  "owner": "vidyadharkannan",
+  "url": "https://github.com/vidyadharkannan/ros2-robotized-tele-echography",
+  "stars": 0,
+  "created": "2026-10-06",
+  "pushed": "2026-10-06",
+  "lang": "",
+  "topics": [],
+  "size_kb": 449,
+  "desc": "ROS 2-based bilateral teleoperation of a Franka Panda using a Haption Virtuose 6D haptic interface with Cartesian impedance control and forc"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Avode/handdepth-teleop",
+  "owner": "Avode",
+  "url": "https://github.com/Avode/handdepth-teleop",
+  "stars": 0,
+  "created": "2026-10-08",
+  "pushed": "2026-10-08",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 16340,
+  "desc": "iPhone TrueDepth to AgiBot G2 teleoperation in MuJoCo: Ubuntu RGB-D fusion, torso-relative limb control, occlusion handling and regression t"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation",
+   "teleoperation"
+  ],
+  "repo": "emb-ai/FURRY",
+  "owner": "emb-ai",
+  "url": "https://github.com/emb-ai/FURRY",
+  "stars": 0,
+  "created": "2026-10-05",
+  "pushed": "2026-10-20",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 12424,
+  "desc": "full-body under-controlled robot retargeting, yo (use Meta Quest 3 for full-body teleoperation of humanoid in MuJoCo with minimal extra sens"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "kerolinux/Vr-robot-teleop",
+  "owner": "kerolinux",
+  "url": "https://github.com/kerolinux/Vr-robot-teleop",
+  "stars": 0,
+  "created": "2026-10-17",
+  "pushed": "2026-10-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 559,
+  "desc": "Real-time Meta Quest 2 hand-tracking teleoperation and imitation-learning data collection for a 6-DOF robot arm (ROS 2, MoveIt 2, Gazebo)"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "steppenwolvening/dual-fr3-vla-platform",
+  "owner": "steppenwolvening",
+  "url": "https://github.com/steppenwolvening/dual-fr3-vla-platform",
+  "stars": 0,
+  "created": "2026-10-22",
+  "pushed": "2026-10-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 227,
+  "desc": "Research platform for dual Franka Research 3 robots, integrating VR teleoperation, MuJoCo/Isaac Lab simulation, LeRobot data collection, and"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "mazhugich-labs/ddbot",
+  "owner": "mazhugich-labs",
+  "url": "https://github.com/mazhugich-labs/ddbot",
+  "stars": 0,
+  "created": "2026-10-10",
+  "pushed": "2026-10-10",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 72995,
+  "desc": "Generic Differential Drive Robot DDBOT with URDF. Includes URDF description, Gazebo sensors and controller plugins setup, robot_localization"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "nananaooo/quality-conditioned-trajectory-generation",
+  "owner": "nananaooo",
+  "url": "https://github.com/nananaooo/quality-conditioned-trajectory-generation",
+  "stars": 0,
+  "created": "2026-10-11",
+  "pushed": "2026-10-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1205,
+  "desc": "Code for training a quality-conditioned flow-matching generator of robot joint-trajectory chunks on full teleoperation data, and comparing i"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "RileyMarek/Moonbase-Orchestrator-Public-Showcase-",
+  "owner": "RileyMarek",
+  "url": "https://github.com/RileyMarek/Moonbase-Orchestrator-Public-Showcase-",
+  "stars": 0,
+  "created": "2026-10-18",
+  "pushed": "2026-10-19",
+  "lang": "TypeScript",
+  "topics": [],
+  "size_kb": 4810,
+  "desc": "High-performance spatial digital twin & fleet orchestration console for humanoid and mobile robotics. Real-time WebGL teleoperation, ROS 2 F"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Yihan1993/SO-101-robotics-learning-journey",
+  "owner": "Yihan1993",
+  "url": "https://github.com/Yihan1993/SO-101-robotics-learning-journey",
+  "stars": 0,
+  "created": "2026-10-09",
+  "pushed": "2026-10-09",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "A hands-on robotics learning project documenting the complete SO-101 journey: hardware assembly, camera setup, teleoperation, dataset collec"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "sxngt/fairino-fr3-tools",
+  "owner": "sxngt",
+  "url": "https://github.com/sxngt/fairino-fr3-tools",
+  "stars": 0,
+  "created": "2026-10-16",
+  "pushed": "2026-10-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 210,
+  "desc": "Unofficial tools for the FAIRINO FR3 cobot: limited servo streaming, safety monitor, ROS 2 driver with MoveIt action, offline kinematics, AG"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "youniquestar/astari-selah",
+  "owner": "youniquestar",
+  "url": "https://github.com/youniquestar/astari-selah",
+  "stars": 0,
+  "created": "2026-10-13",
+  "pushed": "2026-10-13",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 3530,
+  "desc": "Dual-mode 5-DOF industrial robotic arm combining OpenCV tabletop sorting, low-latency ESP-NOW gesture teleoperation with haptic feedback, an"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "ArturoRios01/esp32-autonomous-robot",
+  "owner": "ArturoRios01",
+  "url": "https://github.com/ArturoRios01/esp32-autonomous-robot",
+  "stars": 0,
+  "created": "2026-10-06",
+  "pushed": "2026-10-06",
+  "lang": "C++",
+  "topics": [],
+  "size_kb": 1153,
+  "desc": "Autonomous differential drive robot built from scratch. Features custom PID control, odometry, micro-ROS integration, \"Follow the Carrot\" na"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "keelo12345/ker-exoskeleton-replica",
+  "owner": "keelo12345",
+  "url": "https://github.com/keelo12345/ker-exoskeleton-replica",
+  "stars": 0,
+  "created": "2026-10-13",
+  "pushed": "2026-10-13",
+  "lang": "C++",
+  "topics": [],
+  "size_kb": 747,
+  "desc": "OpenArm KER teleoperation exoskeleton replica: modified encoder firmware (standalone-reply mode, bench diagnostic), redesigned structural pa"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "KirkEHaskell/delta-robot-act-vs-diffusion",
+  "owner": "KirkEHaskell",
+  "url": "https://github.com/KirkEHaskell/delta-robot-act-vs-diffusion",
+  "stars": 0,
+  "created": "2026-10-07",
+  "pushed": "2026-10-07",
+  "lang": "Python",
+  "topics": [
+   "action-chunking-transformer",
+   "delta-robot",
+   "diffusion-policy",
+   "imitation-learning",
+   "lerobot",
+   "open-hardware"
+  ],
+  "size_kb": 23338,
+  "desc": "Study on physical delta robot teleoperation tested with ACT and Diffusion policies. Open models (LeRobot), CAD, firmware, dataset, and paper"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "El-Modmer-Mekawy/pioneer-ros2-coppeliasim",
+  "owner": "El-Modmer-Mekawy",
+  "url": "https://github.com/El-Modmer-Mekawy/pioneer-ros2-coppeliasim",
+  "stars": 0,
+  "created": "2026-10-15",
+  "pushed": "2026-10-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1666,
+  "desc": "A complete ROS 2 Jazzy and CoppeliaSim integration project featuring keyboard teleoperation (/cmd_vel) and real-time multi-sensor ultrasonic"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Jhosebac/Dextereous-Hand-RH56DFX-UDI",
+  "owner": "Jhosebac",
+  "url": "https://github.com/Jhosebac/Dextereous-Hand-RH56DFX-UDI",
+  "stars": 0,
+  "created": "2026-10-09",
+  "pushed": "2026-10-23",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 145,
+  "desc": "In this repository, you'll find all the documentation related to the development of a project whose main objective the teleoperation of the "
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "ROS2-AMR-Manipulation-Course/trailobot_ros",
+  "owner": "ROS2-AMR-Manipulation-Course",
+  "url": "https://github.com/ROS2-AMR-Manipulation-Course/trailobot_ros",
+  "stars": 0,
+  "created": "2026-10-13",
+  "pushed": "2026-10-13",
+  "lang": "",
+  "topics": [],
+  "size_kb": 9,
+  "desc": "Modular ROS 2 framework for developing, simulating, and deploying the Trailobot differential-drive AMR. Integrates Gazebo, PS4 teleoperation"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation",
+   "teleoperation"
+  ],
+  "repo": "debugAyo/surgisense_py",
+  "owner": "debugAyo",
+  "url": "https://github.com/debugAyo/surgisense_py",
+  "stars": 0,
+  "created": "2026-10-05",
+  "pushed": "2026-10-05",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 6,
+  "desc": "A real-time safety critical framework for robotic surgical teleoperation using ROS 2 Jazzy. Implements digital low-pass filtering for human "
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "zero-labsco/flutter_rtc_link",
+  "owner": "zero-labsco",
+  "url": "https://github.com/zero-labsco/flutter_rtc_link",
+  "stars": 0,
+  "created": "2026-10-22",
+  "pushed": "2026-10-23",
+  "lang": "Dart",
+  "topics": [
+   "android-ios",
+   "bluetooth-low-energy",
+   "dart",
+   "device-provisioning",
+   "esp32",
+   "flutter"
+  ],
+  "size_kb": 976,
+  "desc": "Real-time audio/video (WebRTC/WHIP/WHEP + LiveKit) and IoT device management for Flutter: publish, subscribe, clarity switching, live relay,"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "liaohello/uniRobotPlatform",
+  "owner": "liaohello",
+  "url": "https://github.com/liaohello/uniRobotPlatform",
+  "stars": 0,
+  "created": "2026-10-21",
+  "pushed": "2026-10-23",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 78566,
+  "desc": "A MuJoCo-based embodied AI simulation and 3D interaction data collection platform with LiDAR/SLAM navigation, RGB-D perception, robotic arm "
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "jeakun2/quest-ur5e-teleop",
+  "owner": "jeakun2",
+  "url": "https://github.com/jeakun2/quest-ur5e-teleop",
+  "stars": 0,
+  "created": "2026-10-21",
+  "pushed": "2026-10-23",
+  "lang": "Python",
+  "topics": [
+   "augmented-reality",
+   "isaac-sim",
+   "meta-quest-3",
+   "robotics",
+   "teleoperation",
+   "universal-robots"
+  ],
+  "size_kb": 896,
+  "desc": "Meta Quest 3 -> UR5e teleoperation over WebXR: one bridge for Isaac Sim 4.2 (UR5e + Robotiq 2F-85, RMPflow), URSim and a real UR5e (ur_rtde)"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "lorenzovadacca/ROS-interfacing-publisher-subscriber-messaging-kinematics-control",
+  "owner": "lorenzovadacca",
+  "url": "https://github.com/lorenzovadacca/ROS-interfacing-publisher-subscriber-messaging-kinematics-control",
+  "stars": 0,
+  "created": "2026-10-18",
+  "pushed": "2026-10-18",
+  "lang": "MATLAB",
+  "topics": [],
+  "size_kb": 15782,
+  "desc": "A hands-on MATLAB project exploring ROS 1 fundamentals: node initialization, master orchestration, custom pub/sub topics, and service-client"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "akshar27/flightdeck",
+  "owner": "akshar27",
+  "url": "https://github.com/akshar27/flightdeck",
+  "stars": 0,
+  "created": "2026-09-22",
+  "pushed": "2026-09-22",
+  "lang": "Go",
+  "topics": [],
+  "size_kb": 853,
+  "desc": "Robot fleet control plane -- telemetry, mission dispatch, WebRTC teleoperation, real-time dashboard (Go + React + Python sim)"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Leocia/Zekeeparm",
+  "owner": "Leocia",
+  "url": "https://github.com/Leocia/Zekeeparm",
+  "stars": 0,
+  "created": "2026-09-30",
+  "pushed": "2026-10-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 6590,
+  "desc": "ZekeepArm six-axis robot runtime workspace: ROS 2, MoveIt, vision grasping, teaching, joystick and LeRobot teleoperation"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Luis-Lundgren/kinerelay-teleop",
+  "owner": "Luis-Lundgren",
+  "url": "https://github.com/Luis-Lundgren/kinerelay-teleop",
+  "stars": 0,
+  "created": "2026-09-24",
+  "pushed": "2026-09-28",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 5382,
+  "desc": "KineRelay Teleop — Open-source XR robot teleoperation, digital twin simulation, dataset recording, and embodied AI infrastructure."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "ugurakar0/esp32-self-balancing-robot",
+  "owner": "ugurakar0",
+  "url": "https://github.com/ugurakar0/esp32-self-balancing-robot",
+  "stars": 0,
+  "created": "2026-09-19",
+  "pushed": "2026-09-19",
+  "lang": "C++",
+  "topics": [
+   "arduino-ide",
+   "bluetooth",
+   "embedded-systems",
+   "esp32",
+   "kicad",
+   "kicad-schematics"
+  ],
+  "size_kb": 42636,
+  "desc": "Two-wheeled inverted pendulum self-balancing robot with discrete PID control, IMU complementary filter, and Bluetooth teleoperation."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "klikith70-boop/mecanum-wheel-omnidirectional-robot",
+  "owner": "klikith70-boop",
+  "url": "https://github.com/klikith70-boop/mecanum-wheel-omnidirectional-robot",
+  "stars": 0,
+  "created": "2026-10-02",
+  "pushed": "2026-10-02",
+  "lang": "C++",
+  "topics": [
+   "arduino",
+   "embedded-c",
+   "hc-05",
+   "kinematics",
+   "l293d",
+   "l293d-motor-driver"
+  ],
+  "size_kb": 2,
+  "desc": "4-wheel omnidirectional mobile platform with holonomic motion control, Bluetooth wireless teleoperation, and independent vector drive kinema"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Paulin-NIYOBYOSE/robodesk",
+  "owner": "Paulin-NIYOBYOSE",
+  "url": "https://github.com/Paulin-NIYOBYOSE/robodesk",
+  "stars": 0,
+  "created": "2026-10-02",
+  "pushed": "2026-10-02",
+  "lang": "TypeScript",
+  "topics": [],
+  "size_kb": 8022,
+  "desc": "RoboDesk : An internal tool that replaces the spreadsheet used to track dataset requests for robot teleoperation data."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "TonyRuan/microduck-imx6ull",
+  "owner": "TonyRuan",
+  "url": "https://github.com/TonyRuan/microduck-imx6ull",
+  "stars": 0,
+  "created": "2026-09-18",
+  "pushed": "2026-10-22",
+  "lang": "Rust",
+  "topics": [],
+  "size_kb": 2714,
+  "desc": "Microduck i.MX6ULL gait-control experiments, MuJoCo hardware-in-the-loop, and compact Mac keyboard teleoperation GUI"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "physical-hardware-intelligence/robo_mimic",
+  "owner": "physical-hardware-intelligence",
+  "url": "https://github.com/physical-hardware-intelligence/robo_mimic",
+  "stars": 0,
+  "created": "2026-09-18",
+  "pushed": "2026-09-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 5134,
+  "desc": "Webcam hand-pose teleoperation for the SO-101 arm. One RGB camera, no depth sensor, no markers."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Accarie/Teleset-app",
+  "owner": "Accarie",
+  "url": "https://github.com/Accarie/Teleset-app",
+  "stars": 0,
+  "created": "2026-10-02",
+  "pushed": "2026-10-02",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 126,
+  "desc": "Internal platform for robot teleoperation dataset requests: clients request episodes, operators assign and deliver them. FastAPI, PostgreSQL"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "physical-hardware-intelligence/phi-studio",
+  "owner": "physical-hardware-intelligence",
+  "url": "https://github.com/physical-hardware-intelligence/phi-studio",
+  "stars": 0,
+  "created": "2026-10-04",
+  "pushed": "2026-10-17",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 14025,
+  "desc": "Local web app for SO-101 arms: setup, calibration, teleoperation, recording, training, Hugging Face models, policies and evals."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "4waiz/SpotVR",
+  "owner": "4waiz",
+  "url": "https://github.com/4waiz/SpotVR",
+  "stars": 0,
+  "created": "2026-09-22",
+  "pushed": "2026-09-30",
+  "lang": "Python",
+  "topics": [
+   "boston-dynamics",
+   "meta-quest",
+   "openxr",
+   "python",
+   "robotics",
+   "spot-sdk"
+  ],
+  "size_kb": 294,
+  "desc": "VR teleoperation of a Boston Dynamics Spot from a Meta Quest 2 through a safety-gated Python bridge"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "oreUV/Bimanual-VLA-Dual-SO-101-Sim",
+  "owner": "oreUV",
+  "url": "https://github.com/oreUV/Bimanual-VLA-Dual-SO-101-Sim",
+  "stars": 0,
+  "created": "2026-09-16",
+  "pushed": "2026-09-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 25896,
+  "desc": "A custom MuJoCo simulation environment for dual LeRobot SO-101 arms, interactive dining props, and planar mobile base teleoperation."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "sgyliu8/LeRobot",
+  "owner": "sgyliu8",
+  "url": "https://github.com/sgyliu8/LeRobot",
+  "stars": 0,
+  "created": "2026-09-17",
+  "pushed": "2026-10-13",
+  "lang": "Python",
+  "topics": [
+   "imitation-learning",
+   "lelab",
+   "lerobot",
+   "physical-ai",
+   "robotics",
+   "so101"
+  ],
+  "size_kb": 7226,
+  "desc": "Windows-local SO-ARM101 lab using pinned LeLab and LeRobot for teleoperation, dual-camera Dataset v3 capture, audit, and ACT workflows."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "ChenLing2345/so101-piper-teleop",
+  "owner": "ChenLing2345",
+  "url": "https://github.com/ChenLing2345/so101-piper-teleop",
+  "stars": 0,
+  "created": "2026-09-24",
+  "pushed": "2026-09-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 70,
+  "desc": "SO-101 → AgileX PiPER local teleoperation over USB serial and SocketCAN, with gripper control, calibrated wrist mapping, diagnostics and off"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "jiangmingxuan234-alt/xsens-sonic-teleop-ros2",
+  "owner": "jiangmingxuan234-alt",
+  "url": "https://github.com/jiangmingxuan234-alt/xsens-sonic-teleop-ros2",
+  "stars": 0,
+  "created": "2026-09-21",
+  "pushed": "2026-09-21",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 413927,
+  "desc": "ROS 2 integration for Xsens MVN motion-capture streaming and SONIC teleoperation, including UDP/MXTP02 decoding, retargeting, safety states,"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "lakshman-maker/ROS2-Multimodal-Teleop",
+  "owner": "lakshman-maker",
+  "url": "https://github.com/lakshman-maker/ROS2-Multimodal-Teleop",
+  "stars": 0,
+  "created": "2026-09-27",
+  "pushed": "2026-09-27",
+  "lang": "Python",
+  "topics": [
+   "computer-vision",
+   "gazebo",
+   "mediapipe",
+   "opencv",
+   "python",
+   "robotics"
+  ],
+  "size_kb": 19,
+  "desc": "A multimodal ROS 2 teleoperation controller using OpenCV and MediaPipe to drive a simulated Gazebo robot via real-time eye and hand tracking"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Krishnavamsi88/robo-dog-ros2-gazebo",
+  "owner": "Krishnavamsi88",
+  "url": "https://github.com/Krishnavamsi88/robo-dog-ros2-gazebo",
+  "stars": 0,
+  "created": "2026-10-01",
+  "pushed": "2026-10-06",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 2324,
+  "desc": "Quadruped Robo Dog simulation developed using ROS 2 Jazzy, Gazebo Sim and RViz with joint control, keyboard teleoperation and a custom simul"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "oguzissik/create3-ros2-autonomy-stack",
+  "owner": "oguzissik",
+  "url": "https://github.com/oguzissik/create3-ros2-autonomy-stack",
+  "stars": 0,
+  "created": "2026-09-22",
+  "pushed": "2026-09-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 25,
+  "desc": "ROS 2 Humble autonomy stack for iRobot Create 3 with RPLIDAR SLAM, AMCL localization, Nav2 navigation, joystick teleoperation, ArUco percept"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "ArIwt2026/ar-cloth-folding-real-hardware",
+  "owner": "ArIwt2026",
+  "url": "https://github.com/ArIwt2026/ar-cloth-folding-real-hardware",
+  "stars": 0,
+  "created": "2026-09-25",
+  "pushed": "2026-09-25",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 6514,
+  "desc": "Real-hardware cloth-folding system developed by AR, using Franka Panda and KUKA iiwa robotic arms with WSG50 grippers, camera integration, h"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Pacifique5/Dataset-Request-Desk",
+  "owner": "Pacifique5",
+  "url": "https://github.com/Pacifique5/Dataset-Request-Desk",
+  "stars": 0,
+  "created": "2026-09-29",
+  "pushed": "2026-10-01",
+  "lang": "Python",
+  "topics": [
+   "alembic",
+   "docker",
+   "docker-compose",
+   "fastapi",
+   "github-actions",
+   "nextjs"
+  ],
+  "size_kb": 282,
+  "desc": "Internal platform for a robotics data company: clients request teleoperation episode datasets, operators fulfil them, clients accept or reje"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "k211/DOBOT-NSL",
+  "owner": "k211",
+  "url": "https://github.com/k211/DOBOT-NSL",
+  "stars": 0,
+  "created": "2026-10-04",
+  "pushed": "2026-10-05",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 13812,
+  "desc": "Haptic teleoperation of a Dobot Magician E6 with a PS5 controller for ultrasound scanning. ROS 2 Humble + MoveIt Servo on Linux, plus a ROS-"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "tarang-tj/tycho",
+  "owner": "tarang-tj",
+  "url": "https://github.com/tarang-tj/tycho",
+  "stars": 0,
+  "created": "2026-09-24",
+  "pushed": "2026-10-07",
+  "lang": "JavaScript",
+  "topics": [
+   "autonomy",
+   "browser-game",
+   "mars",
+   "moon",
+   "nasa-data",
+   "rover"
+  ],
+  "size_kb": 24152,
+  "desc": "Browser-based rover teleoperation simulator on real lunar and Martian elevation data, with the real signal delay and a Monte Carlo dry run o"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "franciszekM-tech/esp32-lerobot-arm",
+  "owner": "franciszekM-tech",
+  "url": "https://github.com/franciszekM-tech/esp32-lerobot-arm",
+  "stars": 0,
+  "created": "2026-09-30",
+  "pushed": "2026-09-30",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 8758,
+  "desc": "3D-printed 5-servo ESP32 robot arm that learned to pick up a block and drop it into a container, trained with imitation learning (LeRobot AC"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Titan2ver/turtlebot3-autonomous-navigation",
+  "owner": "Titan2ver",
+  "url": "https://github.com/Titan2ver/turtlebot3-autonomous-navigation",
+  "stars": 0,
+  "created": "2026-09-28",
+  "pushed": "2026-09-28",
+  "lang": "C++",
+  "topics": [],
+  "size_kb": 19,
+  "desc": "ROS package (C++) for TurtleBot3 control and autonomous navigation: keyboard teleoperation, PID/P control from odometry, go-to-goal via a RO"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "techforge26039/MineSafe_Titan_26039",
+  "owner": "techforge26039",
+  "url": "https://github.com/techforge26039/MineSafe_Titan_26039",
+  "stars": 0,
+  "created": "2026-09-28",
+  "pushed": "2026-09-28",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 87,
+  "desc": "⛏️ Introducing MineSafe Titan — An advanced AI & IoT platform for underground coal mine safety! Features real-time ESP32 multi-sensor teleme"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "katherine-e-jackson/ROS-4WD-Robot",
+  "owner": "katherine-e-jackson",
+  "url": "https://github.com/katherine-e-jackson/ROS-4WD-Robot",
+  "stars": 0,
+  "created": "2026-09-23",
+  "pushed": "2026-10-21",
+  "lang": "CMake",
+  "topics": [],
+  "size_kb": 39163,
+  "desc": "A 4-wheel-drive autonomous mobile robot that bridges high-level ROS 2 velocity commands with embedded hardware over Wi-Fi using micro-ROS. B"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "DonciLi/unitree-go2",
+  "owner": "DonciLi",
+  "url": "https://github.com/DonciLi/unitree-go2",
+  "stars": 0,
+  "created": "2026-09-28",
+  "pushed": "2026-10-16",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "ROS 2 packages for Unitree Go2 state integration, visualization, keyboard teleoperation, velocity bridging, and reactive point-cloud obstacl"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "ivanrulik/act-lab",
+  "owner": "ivanrulik",
+  "url": "https://github.com/ivanrulik/act-lab",
+  "stars": 0,
+  "created": "2026-08-29",
+  "pushed": "2026-10-18",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 6825,
+  "desc": "Container-first workspace for learning ACT robot imitation policies with MuJoCo, webcam teleoperation, MCAP, and LeRobot",
+  "commits_30d": 41,
+  "commits_7d": 1
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "yzh423/factory-dataset",
+  "owner": "yzh423",
+  "url": "https://github.com/yzh423/factory-dataset",
+  "stars": 0,
+  "created": "2026-09-07",
+  "pushed": "2026-09-08",
+  "lang": "Python",
+  "topics": [
+   "dataset",
+   "dual-arm",
+   "imitation-learning",
+   "lerobot",
+   "multimodal-dataset",
+   "robot-manipulation"
+  ],
+  "size_kb": 553,
+  "desc": "Public multimodal factory manipulation dataset with task videos, UMI episodes, and YUBI dual-arm teleoperation recordings",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "redEddie/manipulation-stack",
+  "owner": "redEddie",
+  "url": "https://github.com/redEddie/manipulation-stack",
+  "stars": 0,
+  "created": "2026-09-07",
+  "pushed": "2026-10-17",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 8384,
+  "desc": "Teleoperation, scene-based data collection, and VLA policy deployment for a manipulation station (Franka FR3 + GELLO)",
+  "commits_30d": 10,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Rongxuan-Zhou/frlink",
+  "owner": "Rongxuan-Zhou",
+  "url": "https://github.com/Rongxuan-Zhou/frlink",
+  "stars": 0,
+  "created": "2026-09-08",
+  "pushed": "2026-09-08",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 356,
+  "desc": "Franka FR3 over a link: dedicated real-time host + client package for Quest teleoperation and episode recording",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "C1TRuSovo831/dex-robotics-skills",
+  "owner": "C1TRuSovo831",
+  "url": "https://github.com/C1TRuSovo831/dex-robotics-skills",
+  "stars": 0,
+  "created": "2026-09-04",
+  "pushed": "2026-10-12",
+  "lang": "",
+  "topics": [],
+  "size_kb": 43,
+  "desc": "Codex skills for dexterous-hand retargeting, constrained teleoperation IK, impedance kp/kd tuning, and HIL evidence review.",
+  "commits_30d": 1,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "mbashandy389-eng/Vision-Contol-of-Precision-Robots",
+  "owner": "mbashandy389-eng",
+  "url": "https://github.com/mbashandy389-eng/Vision-Contol-of-Precision-Robots",
+  "stars": 0,
+  "created": "2026-09-04",
+  "pushed": "2026-09-04",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "Vision-based teleoperation of a Meca500 robot using a multi-marker AprilTag stylus and Intel RealSense camera",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "haomingyi/fairino-fr5-teleop-sim",
+  "owner": "haomingyi",
+  "url": "https://github.com/haomingyi/fairino-fr5-teleop-sim",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-10-09",
+  "lang": "Python",
+  "topics": [
+   "dexterous-hand",
+   "ethercat",
+   "fairino",
+   "fr5",
+   "mujoco",
+   "quest3"
+  ],
+  "size_kb": 25699,
+  "desc": "Portable, safety-gated Meta Quest 3 teleoperation simulation for a FAIRINO FR5 arm and IH01 dexterous hand.",
+  "commits_30d": 2,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "mythicane/bluerov2-episode-annotation-tool",
+  "owner": "mythicane",
+  "url": "https://github.com/mythicane/bluerov2-episode-annotation-tool",
+  "stars": 0,
+  "created": "2026-08-27",
+  "pushed": "2026-08-27",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 33,
+  "desc": "Video-based success/fail/invalid annotator for LeRobot-format BlueROV2 episode datasets, meant to be used alongside bluerov2-teleoperation.",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "OnoFumiya/ros2_web_teleop",
+  "owner": "OnoFumiya",
+  "url": "https://github.com/OnoFumiya/ros2_web_teleop",
+  "stars": 0,
+  "created": "2026-09-13",
+  "pushed": "2026-09-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 5649,
+  "desc": "A ROS 2 web-based teleoperation package for controlling robots from a smartphone via a virtual joystick and WebSocket."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Aadil12m/better_teleop_joy",
+  "owner": "Aadil12m",
+  "url": "https://github.com/Aadil12m/better_teleop_joy",
+  "stars": 0,
+  "created": "2026-08-29",
+  "pushed": "2026-08-29",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 11,
+  "desc": "A robust, feature-rich ROS 2 joystick teleoperation package engineered for both differential drive and holonomic (omnidirectional / mecanum)",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Daksh-Jauhari/gesture-arm-car",
+  "owner": "Daksh-Jauhari",
+  "url": "https://github.com/Daksh-Jauhari/gesture-arm-car",
+  "stars": 0,
+  "created": "2026-09-09",
+  "pushed": "2026-09-09",
+  "lang": "Python",
+  "topics": [
+   "arduino",
+   "computer-vision",
+   "human-robot-interaction",
+   "mediapipe",
+   "opencv",
+   "robotics"
+  ],
+  "size_kb": 878,
+  "desc": "Continuous gesture teleoperation for a LAFVIN 4WD robot arm car — MediaPipe hand tracking, configurable zone/pose bindings, Bluetooth to Ard",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "sharonxu-Alohamini/Alohamini-site",
+  "owner": "sharonxu-Alohamini",
+  "url": "https://github.com/sharonxu-Alohamini/Alohamini-site",
+  "stars": 0,
+  "created": "2026-09-14",
+  "pushed": "2026-09-14",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 14651,
+  "desc": "Open-source, low-cost embodied AI platform for Robot Learning, dual-arm manipulation, teleoperation, data collection and real-world deployme"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "SeongminJaden/openarm-bimanual-setup",
+  "owner": "SeongminJaden",
+  "url": "https://github.com/SeongminJaden/openarm-bimanual-setup",
+  "stars": 0,
+  "created": "2026-08-26",
+  "pushed": "2026-09-23",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 737,
+  "desc": "OpenArm v1.0 bimanual: RealSense cameras in URDF (CAD-accurate), both_arms MoveIt group, and leader-follower teleoperation on ROS 2 Humble",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Aaronchenlee/openteleop",
+  "owner": "Aaronchenlee",
+  "url": "https://github.com/Aaronchenlee/openteleop",
+  "stars": 0,
+  "created": "2026-09-01",
+  "pushed": "2026-09-01",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 79,
+  "desc": "Production-grade open-source teleoperation framework (Apache-2.0): six-channel ZMQ/WebRTC transport, L1-L4 safety, SyncBuffer, retargeting, ",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "aurichardcastle/galbot-motion-studio",
+  "owner": "aurichardcastle",
+  "url": "https://github.com/aurichardcastle/galbot-motion-studio",
+  "stars": 0,
+  "created": "2026-08-27",
+  "pushed": "2026-08-29",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 32449,
+  "desc": "Webcam-only teleoperation of a simulated Galbot G1. Monocular RGB in, 19 joint commands out, behind a fail-closed safety supervisor. Simulat",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "MikaGunn/TurtleBot3-ROS2-Humble-Navigation-Manipulation",
+  "owner": "MikaGunn",
+  "url": "https://github.com/MikaGunn/TurtleBot3-ROS2-Humble-Navigation-Manipulation",
+  "stars": 0,
+  "created": "2026-09-07",
+  "pushed": "2026-09-07",
+  "lang": "Shell",
+  "topics": [],
+  "size_kb": 16,
+  "desc": "ROS 2 Humble TurtleBot3 workspace setup for simulation, teleoperation, SLAM/navigation and manipulator integration using Gazebo, Nav2, Carto",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Sahethyan/remote_helper",
+  "owner": "Sahethyan",
+  "url": "https://github.com/Sahethyan/remote_helper",
+  "stars": 0,
+  "created": "2026-08-28",
+  "pushed": "2026-08-28",
+  "lang": "C++",
+  "topics": [],
+  "size_kb": 39712,
+  "desc": "A dual-microcontroller differential drive rover with a 4-DOF robotic arm, built for remote teleoperation over Wi-Fi and optional autonomous ",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Lvn-7/distributed_piper_teleop-ubuntu-win",
+  "owner": "Lvn-7",
+  "url": "https://github.com/Lvn-7/distributed_piper_teleop-ubuntu-win",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-09-03",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 6718,
+  "desc": "Cross-platform Piper robot teleoperation system for Ubuntu and Windows, supporting low-latency CAN communication, master-slave control, came",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "mhassan102/operator-robot-teleop-ros2",
+  "owner": "mhassan102",
+  "url": "https://github.com/mhassan102/operator-robot-teleop-ros2",
+  "stars": 0,
+  "created": "2026-09-02",
+  "pushed": "2026-10-14",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1009,
+  "desc": "ROS 2 proof of concept for remote 6-DOF arm teleoperation: operator and robot containers, Gazebo sim, exploring DDS/Zenoh and MoveIt Servo f",
+  "commits_30d": 30,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "hyhang07/gopigo3-edgeai-robot",
+  "owner": "hyhang07",
+  "url": "https://github.com/hyhang07/gopigo3-edgeai-robot",
+  "stars": 0,
+  "created": "2026-09-09",
+  "pushed": "2026-09-10",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 18198,
+  "desc": "Edge AI robotics teleoperation platform on Raspberry Pi 4 & GoPiGo3. Features YOLOv8 TFLite detection, a 6-thread concurrent architecture, u",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Deepika-tak/teers_ros2_emotion_control",
+  "owner": "Deepika-tak",
+  "url": "https://github.com/Deepika-tak/teers_ros2_emotion_control",
+  "stars": 0,
+  "created": "2026-09-04",
+  "pushed": "2026-09-04",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 447,
+  "desc": "Edge-native affective human-robot interaction system using MediaPipe 3D face tracking, Echo State Networks (ESN), and ROS 2 Jazzy velocity t",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "1NYAME-E/voice-controlled-mecanum-robot",
+  "owner": "1NYAME-E",
+  "url": "https://github.com/1NYAME-E/voice-controlled-mecanum-robot",
+  "stars": 0,
+  "created": "2026-09-04",
+  "pushed": "2026-09-04",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 7685,
+  "desc": "OS 2-based voice teleoperation pipeline for an AgileX Limo robot. Integrates Faster-Whisper speech-to-text, NLP intent classification, and n",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "FERBIN12/surgical-robotics-isaac-sim",
+  "owner": "FERBIN12",
+  "url": "https://github.com/FERBIN12/surgical-robotics-isaac-sim",
+  "stars": 0,
+  "created": "2026-09-12",
+  "pushed": "2026-09-22",
+  "lang": "Python",
+  "topics": [
+   "inverse-kinematics",
+   "isaac-sim",
+   "medical-robotics",
+   "nvidia-omniverse",
+   "physx",
+   "reproducible-research"
+  ],
+  "size_kb": 597,
+  "desc": "Laparoscopic arm simulation in NVIDIA Isaac Sim: RCM constraint solving, DLS IK near singularities, teleoperation, deformable tissue contact",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "sca7r/chaya-Humanoid-teleop",
+  "owner": "sca7r",
+  "url": "https://github.com/sca7r/chaya-Humanoid-teleop",
+  "stars": 0,
+  "created": "2026-08-30",
+  "pushed": "2026-08-31",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 232,
+  "desc": "Vision-based teleoperation of bimanual humanoid robot arms using a single webcam. Supports real-time body and hand tracking, analytic IK, ge",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "RobotsAndAryan/AEGIS_SWARM_ROBOTS",
+  "owner": "RobotsAndAryan",
+  "url": "https://github.com/RobotsAndAryan/AEGIS_SWARM_ROBOTS",
+  "stars": 0,
+  "created": "2026-09-13",
+  "pushed": "2026-10-05",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 12,
+  "desc": "A distributed ROS 2 and NVIDIA Isaac Sim pipeline for scalable drone autonomy. Bypassing hardware R&D costs via OpenXR teleoperation, synthe"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "VandanaxxNxx190499/Telepresence_robot_APP",
+  "owner": "VandanaxxNxx190499",
+  "url": "https://github.com/VandanaxxNxx190499/Telepresence_robot_APP",
+  "stars": 0,
+  "created": "2026-08-27",
+  "pushed": "2026-08-27",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 24199,
+  "desc": "Developed a web-based telepresence robot dashboard using React, Vite, WebRTC, and ESP8266. Implemented separate operator and viewer interfac",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Pratzz14/differential-drive-ros2",
+  "owner": "Pratzz14",
+  "url": "https://github.com/Pratzz14/differential-drive-ros2",
+  "stars": 0,
+  "created": "2026-09-08",
+  "pushed": "2026-09-10",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 618,
+  "desc": "A six-link differential-drive robot for Ubuntu 24.04, ROS 2 Jazzy, and Gazebo Harmonic. The repository includes the Fusion CAD source, STL m",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Varsh24-hash/articubot_one",
+  "owner": "Varsh24-hash",
+  "url": "https://github.com/Varsh24-hash/articubot_one",
+  "stars": 0,
+  "created": "2026-09-08",
+  "pushed": "2026-09-09",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 11,
+  "desc": "A low-cost autonomous mobile robot built with ROS 2, Raspberry Pi, Arduino, LiDAR, camera, and differential-drive motors. The project covers",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "zxinyu-robot/terrain-carry-rl",
+  "owner": "zxinyu-robot",
+  "url": "https://github.com/zxinyu-robot/terrain-carry-rl",
+  "stars": 0,
+  "created": "2026-10-12",
+  "pushed": "2026-10-12",
+  "lang": "Python",
+  "topics": [
+   "knowledge-distillation",
+   "manipulation",
+   "quadruped",
+   "reinforcement-learning",
+   "robotics",
+   "sim2real"
+  ],
+  "size_kb": 27,
+  "desc": "Tightly coupled Go2 + Piper whole-body RL: transfer learning, privileged distillation, and Sim2Real infrastructure",
+  "commits_30d": 2,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Shushant17711/hamiltonian-world-models",
+  "owner": "Shushant17711",
+  "url": "https://github.com/Shushant17711/hamiltonian-world-models",
+  "stars": 0,
+  "created": "2026-10-09",
+  "pushed": "2026-10-09",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 743,
+  "desc": "Action-conditioned Hamiltonian world models: pre-registered test of structure vs loss for energy conservation, OOD generalisation and contro",
+  "commits_30d": 38,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "PraxisOG/avatar-world-model",
+  "owner": "PraxisOG",
+  "url": "https://github.com/PraxisOG/avatar-world-model",
+  "stars": 0,
+  "created": "2026-10-20",
+  "pushed": "2026-10-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 5991,
+  "desc": "Avatar-based paired-view world model pipeline for robot learning: sim teleop data, external->internal view translation, model-based RL",
+  "commits_30d": 26,
+  "commits_7d": 26
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "LamShiuChing/gui-world-model",
+  "owner": "LamShiuChing",
+  "url": "https://github.com/LamShiuChing/gui-world-model",
+  "stars": 0,
+  "created": "2026-10-13",
+  "pushed": "2026-10-13",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 3039,
+  "desc": "A small model that learns how software works by predicting the next screen after an action, then acts by imagining first. Early side project",
+  "commits_30d": 2,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "guohongbin-git/agv-world-model",
+  "owner": "guohongbin-git",
+  "url": "https://github.com/guohongbin-git/agv-world-model",
+  "stars": 0,
+  "created": "2026-10-11",
+  "pushed": "2026-10-15",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 168434,
+  "desc": "Agentic world model for warehouse AGV: MuJoCo physics + SQLite transactional world state + LLM agent with physical-evidence-gated commits",
+  "commits_30d": 100,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Benjamindaoson/InterventionalWorldModels",
+  "owner": "Benjamindaoson",
+  "url": "https://github.com/Benjamindaoson/InterventionalWorldModels",
+  "stars": 0,
+  "created": "2026-10-11",
+  "pushed": "2026-10-15",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 234,
+  "desc": "Learning action-conditioned visual world models from sparse physical interventions, with a focus on counterfactual dynamics, action-sufficie",
+  "commits_30d": 19,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "PragyanR/Learning-World-Models-for-a-pendulum-and-Planning-with-the-world-model",
+  "owner": "PragyanR",
+  "url": "https://github.com/PragyanR/Learning-World-Models-for-a-pendulum-and-Planning-with-the-world-model",
+  "stars": 0,
+  "created": "2026-10-10",
+  "pushed": "2026-10-11",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 513,
+  "desc": "For this project I will be using Gymnasium’s pendulum environment and I will write a neural network that takes in the current state and acti",
+  "commits_30d": 3,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Alexander-wu/FutureWorlds",
+  "owner": "Alexander-wu",
+  "url": "https://github.com/Alexander-wu/FutureWorlds",
+  "stars": 1,
+  "created": "2026-09-24",
+  "pushed": "2026-09-25",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 32644,
+  "desc": "FutureWorlds: Learning Robotic World Models from Alternative Futures. Code, reproduction workflows, and project website.",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "modaxiansheng/KineWorld",
+  "owner": "modaxiansheng",
+  "url": "https://github.com/modaxiansheng/KineWorld",
+  "stars": 1,
+  "created": "2026-09-25",
+  "pushed": "2026-10-05",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 22391,
+  "desc": "KineWorld: Action-Induced Transport Fields for Embodied World Modeling. Source code, project website, figures, video samples, and public res",
+  "commits_30d": 7,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Quan2630345594/DriveGaussianWorld",
+  "owner": "Quan2630345594",
+  "url": "https://github.com/Quan2630345594/DriveGaussianWorld",
+  "stars": 1,
+  "created": "2026-09-25",
+  "pushed": "2026-10-21",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 517,
+  "desc": "DriveGaussianWorld combines DGGT-based 3D scene reconstruction with action-conditioned world modeling to predict future driving scenes and e",
+  "commits_30d": 10,
+  "commits_7d": 5
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "tashmurra/zebulon-lang",
+  "owner": "tashmurra",
+  "url": "https://github.com/tashmurra/zebulon-lang",
+  "stars": 1,
+  "created": "2026-09-21",
+  "pushed": "2026-10-14",
+  "lang": "Rust",
+  "topics": [],
+  "size_kb": 605,
+  "desc": "Zebulon is a world-modelling language drawing from TADS 3 and adv3lite, with a Rust compiler and embeddable runtime. It compiles to native c",
+  "commits_30d": 3,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "hyesoo0411/world-model",
+  "owner": "hyesoo0411",
+  "url": "https://github.com/hyesoo0411/world-model",
+  "stars": 0,
+  "created": "2026-10-03",
+  "pushed": "2026-10-12",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 382358,
+  "desc": "A2World background perturbation sensitivity: robot flow analysis, normalized metrics, and interactive visualizations",
+  "commits_30d": 26,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "anthonystachowitz-wq/misty-world-model",
+  "owner": "anthonystachowitz-wq",
+  "url": "https://github.com/anthonystachowitz-wq/misty-world-model",
+  "stars": 0,
+  "created": "2026-09-18",
+  "pushed": "2026-09-23",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 14,
+  "desc": "JEPA-style world model running on a real Misty II robot",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "otavio-rb/world-model-arm",
+  "owner": "otavio-rb",
+  "url": "https://github.com/otavio-rb/world-model-arm",
+  "stars": 0,
+  "created": "2026-10-03",
+  "pushed": "2026-10-03",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 122092,
+  "desc": "SAC vs DreamerV3 (world model) no controle de bracos roboticos - eficiencia amostral. TCC (em andamento).",
+  "commits_30d": 7,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "ATaylorAerospace/hyperbolic-world-model",
+  "owner": "ATaylorAerospace",
+  "url": "https://github.com/ATaylorAerospace/hyperbolic-world-model",
+  "stars": 0,
+  "created": "2026-09-12",
+  "pushed": "2026-10-04",
+  "lang": "Python",
+  "topics": [
+   "geometric-deep-learning",
+   "hyperbolic-geometry",
+   "jepa",
+   "long-horizon-planning",
+   "poincare-ball",
+   "reinforcement-learning"
+  ],
+  "size_kb": 1114,
+  "desc": "Controlled evaluation of hyperbolic latent spaces in action-conditioned world models, with matched Euclidean, Poincaré, and Lorentz predicto",
+  "commits_30d": 2,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Austin-152/world-models-research",
+  "owner": "Austin-152",
+  "url": "https://github.com/Austin-152/world-models-research",
+  "stars": 0,
+  "created": "2026-09-01",
+  "pushed": "2026-09-04",
+  "lang": "",
+  "topics": [],
+  "size_kb": 2384,
+  "desc": "Research notes on world models, VLA, memory, and embodied AI. A personal collection of paper summaries, technical references, and implementa",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Shiva-Yadav-767092/omniguard-world-model",
+  "owner": "Shiva-Yadav-767092",
+  "url": "https://github.com/Shiva-Yadav-767092/omniguard-world-model",
+  "stars": 0,
+  "created": "2026-08-26",
+  "pushed": "2026-08-26",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 115,
+  "desc": "OmniGuard — an AI-powered cyber-physical operational intelligence platform that connects security events, physical infrastructure, human con",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "vivek-v-ingle/Oswi-world-model-control",
+  "owner": "vivek-v-ingle",
+  "url": "https://github.com/vivek-v-ingle/Oswi-world-model-control",
+  "stars": 0,
+  "created": "2026-09-02",
+  "pushed": "2026-09-26",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 24793,
+  "desc": "One-Shot Visual Imitation using World-Model-Guided Trajectory Generation (NeurIPS 2025) deployed on Fairino FR10 Robot.",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "2747179309/DreamGuardian-Go",
+  "owner": "2747179309",
+  "url": "https://github.com/2747179309/DreamGuardian-Go",
+  "stars": 1,
+  "created": "2026-10-10",
+  "pushed": "2026-10-10",
+  "lang": "C",
+  "topics": [],
+  "size_kb": 148018,
+  "desc": "DreamGuardian mvp的升级版！添加了Jetson orin nx的算力模块并训练睡眠状态检测模型和梦魇模型，加入so-arm101机械臂并利用自己的VLA模型帮助用户拿取床上用品！The upgraded version of DreamGuardian MVP! "
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Eswara143/VLA",
+  "owner": "Eswara143",
+  "url": "https://github.com/Eswara143/VLA",
+  "stars": 0,
+  "created": "2026-10-08",
+  "pushed": "2026-10-08",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 54,
+  "desc": "It is used for storing the datasets of VLA for G1 Humanoid"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ShreyasKhobragade/vla",
+  "owner": "ShreyasKhobragade",
+  "url": "https://github.com/ShreyasKhobragade/vla",
+  "stars": 0,
+  "created": "2026-10-15",
+  "pushed": "2026-10-15",
+  "lang": "Python",
+  "topics": [
+   "act",
+   "franka",
+   "imitation-learning",
+   "lerobot",
+   "mujoco",
+   "robotics"
+  ],
+  "size_kb": 98885,
+  "desc": "ACT vs SmolVLA imitation learning on simulated Franka pick-cube (LeRobot + gym_hil)"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "unstun/vla",
+  "owner": "unstun",
+  "url": "https://github.com/unstun/vla",
+  "stars": 0,
+  "created": "2026-10-17",
+  "pushed": "2026-10-23",
+  "lang": "C++",
+  "topics": [],
+  "size_kb": 3663143,
+  "desc": "Lite3 autonomous navigation and vision-language-action research: source, experiments, and reproducible evidence"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "chenqaq123/LingBot-VLA",
+  "owner": "chenqaq123",
+  "url": "https://github.com/chenqaq123/LingBot-VLA",
+  "stars": 0,
+  "created": "2026-10-17",
+  "pushed": "2026-10-17",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 98249,
+  "desc": "lingbot-vla post trianing"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "pratik-ingle/VLA-Retrieve-refine",
+  "owner": "pratik-ingle",
+  "url": "https://github.com/pratik-ingle/VLA-Retrieve-refine",
+  "stars": 0,
+  "created": "2026-10-14",
+  "pushed": "2026-10-15",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 3842,
+  "desc": "Verified VLA actions at the cost of a single plain VLA call"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "donghaozheng1/VLA-Data-Collection-Platform",
+  "owner": "donghaozheng1",
+  "url": "https://github.com/donghaozheng1/VLA-Data-Collection-Platform",
+  "stars": 0,
+  "created": "2026-10-19",
+  "pushed": "2026-10-19",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 6310,
+  "desc": "VLA Data Collection Platform"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Vlaria-dev/TrackerVlaria",
+  "owner": "Vlaria-dev",
+  "url": "https://github.com/Vlaria-dev/TrackerVlaria",
+  "stars": 0,
+  "created": "2026-10-15",
+  "pushed": "2026-10-15",
+  "lang": "",
+  "topics": [],
+  "size_kb": 13,
+  "desc": "Tracker business plan roti vla"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Vlaria-dev/TrackerVlariaa",
+  "owner": "Vlaria-dev",
+  "url": "https://github.com/Vlaria-dev/TrackerVlariaa",
+  "stars": 0,
+  "created": "2026-10-15",
+  "pushed": "2026-10-23",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 86,
+  "desc": "Tracker business plan roti vla"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "HBK-08/Robbyant",
+  "owner": "HBK-08",
+  "url": "https://github.com/HBK-08/Robbyant",
+  "stars": 0,
+  "created": "2026-10-13",
+  "pushed": "2026-10-14",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 96,
+  "desc": "For 2026 LingBot-VLA Competition"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "LennoxWei/Aegis-VLA",
+  "owner": "LennoxWei",
+  "url": "https://github.com/LennoxWei/Aegis-VLA",
+  "stars": 0,
+  "created": "2026-10-20",
+  "pushed": "2026-10-20",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "official code for Aegis-VLA"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Skywardbeta/ROVI",
+  "owner": "Skywardbeta",
+  "url": "https://github.com/Skywardbeta/ROVI",
+  "stars": 0,
+  "created": "2026-10-20",
+  "pushed": "2026-10-21",
+  "lang": "C++",
+  "topics": [],
+  "size_kb": 363,
+  "desc": "Multi-Robot VLA Inference Scheduler"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "7wick-rm/Lerobot_Hackathon_2026",
+  "owner": "7wick-rm",
+  "url": "https://github.com/7wick-rm/Lerobot_Hackathon_2026",
+  "stars": 0,
+  "created": "2026-10-20",
+  "pushed": "2026-10-20",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 15510,
+  "desc": "Workspace for doing VLA stuff"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "bszhang-byte/OmniForge",
+  "owner": "bszhang-byte",
+  "url": "https://github.com/bszhang-byte/OmniForge",
+  "stars": 0,
+  "created": "2026-10-06",
+  "pushed": "2026-10-06",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 87,
+  "desc": "A platform for VLA training"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ksyint/VLAQuantShift",
+  "owner": "ksyint",
+  "url": "https://github.com/ksyint/VLAQuantShift",
+  "stars": 0,
+  "created": "2026-10-16",
+  "pushed": "2026-10-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 19955,
+  "desc": "Paired quantization-by-distribution-shift evaluation extending VLAQuantBench; research protocol and reproducible tooling"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Mrzhouxf/vla-perf",
+  "owner": "Mrzhouxf",
+  "url": "https://github.com/Mrzhouxf/vla-perf",
+  "stars": 0,
+  "created": "2026-10-24",
+  "pushed": "2026-10-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 2080,
+  "desc": "VLA performance modeling and local optimization prototypes; source snapshot based on NVlabs/vla-perf"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ondra-jakub/VlakoveCedule",
+  "owner": "ondra-jakub",
+  "url": "https://github.com/ondra-jakub/VlakoveCedule",
+  "stars": 0,
+  "created": "2026-10-21",
+  "pushed": "2026-10-22",
+  "lang": "C#",
+  "topics": [],
+  "size_kb": 314,
+  "desc": "zobrazení obsahu nádražních cedulí"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "KseniaShaveko/VladRoad",
+  "owner": "KseniaShaveko",
+  "url": "https://github.com/KseniaShaveko/VladRoad",
+  "stars": 0,
+  "created": "2026-10-08",
+  "pushed": "2026-10-21",
+  "lang": "CSS",
+  "topics": [],
+  "size_kb": 16512,
+  "desc": "Tourist site for the city of Vladivostok"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "valdissor1990-ui/vladossVPN",
+  "owner": "valdissor1990-ui",
+  "url": "https://github.com/valdissor1990-ui/vladossVPN",
+  "stars": 0,
+  "created": "2026-10-14",
+  "pushed": "2026-10-25",
+  "lang": "Kotlin",
+  "topics": [],
+  "size_kb": 1374,
+  "desc": "Production-ready Android VPN-клиент на VLESS + XHTTP + Reality с умным автовыбором серверов."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "uagmap/VlanAutoTunnel",
+  "owner": "uagmap",
+  "url": "https://github.com/uagmap/VlanAutoTunnel",
+  "stars": 0,
+  "created": "2026-10-15",
+  "pushed": "2026-10-15",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 112,
+  "desc": "A CLI tool that logs into mixed-vendor switches, traces a client port up to its gateway, and creates or tags a VLAN on each hop."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "KNETUK/vlan51-comments",
+  "owner": "KNETUK",
+  "url": "https://github.com/KNETUK/vlan51-comments",
+  "stars": 0,
+  "created": "2026-10-14",
+  "pushed": "2026-10-14",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "Comments for the vlan51.com website"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ucudduf6-cyber/VladislavRozhentsevInfo",
+  "owner": "ucudduf6-cyber",
+  "url": "https://github.com/ucudduf6-cyber/VladislavRozhentsevInfo",
+  "stars": 0,
+  "created": "2026-10-16",
+  "pushed": "2026-10-16",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 18,
+  "desc": "Information by Vladislav Rozhentsev"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "aabhimittal/CHRONOS",
+  "owner": "aabhimittal",
+  "url": "https://github.com/aabhimittal/CHRONOS",
+  "stars": 0,
+  "created": "2026-10-06",
+  "pushed": "2026-10-07",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 192,
+  "desc": "deadline-aware serving for VLA policies"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "vladimirsk1234/vladimirsk1234.github.io",
+  "owner": "vladimirsk1234",
+  "url": "https://github.com/vladimirsk1234/vladimirsk1234.github.io",
+  "stars": 0,
+  "created": "2026-10-09",
+  "pushed": "2026-10-09",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "app-ads.txt for iMg2Gcode"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "amaalik/check_vlan190.py",
+  "owner": "amaalik",
+  "url": "https://github.com/amaalik/check_vlan190.py",
+  "stars": 0,
+  "created": "2026-10-13",
+  "pushed": "2026-10-13",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 6,
+  "desc": "check_vlan190.py - SSH into a range of switches, list their VLANs, and report which switches do NOT have a given VLAN (default: 190)"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Vladislav352/vladislav352.github.io",
+  "owner": "Vladislav352",
+  "url": "https://github.com/Vladislav352/vladislav352.github.io",
+  "stars": 0,
+  "created": "2026-10-22",
+  "pushed": "2026-10-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 591,
+  "desc": "Витрина проектов: страницы, живые демо, общий стиль"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "vedangkolte238-pixel/VLAN-InterVLAN-Routing",
+  "owner": "vedangkolte238-pixel",
+  "url": "https://github.com/vedangkolte238-pixel/VLAN-InterVLAN-Routing",
+  "stars": 0,
+  "created": "2026-10-20",
+  "pushed": "2026-10-20",
+  "lang": "",
+  "topics": [],
+  "size_kb": 1606,
+  "desc": "Create and configure VLANs for different departments."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "vlaaaad48/vlaaaad48.github.io",
+  "owner": "vlaaaad48",
+  "url": "https://github.com/vlaaaad48/vlaaaad48.github.io",
+  "stars": 0,
+  "created": "2026-10-20",
+  "pushed": "2026-10-20",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 6994,
+  "desc": "Портфолио Анны Шумилиной — Learning & Talent Development Manager"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Vladi2504/Vladi2504.github.io",
+  "owner": "Vladi2504",
+  "url": "https://github.com/Vladi2504/Vladi2504.github.io",
+  "stars": 0,
+  "created": "2026-10-14",
+  "pushed": "2026-10-14",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 90,
+  "desc": "This is my website, it is incomplete"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Steven-Wang-120/AstrBotVLA-tests",
+  "owner": "Steven-Wang-120",
+  "url": "https://github.com/Steven-Wang-120/AstrBotVLA-tests",
+  "stars": 1,
+  "created": "2026-10-02",
+  "pushed": "2026-10-07",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 257,
+  "desc": "Independent system, ROS and evaluation validation for AstrBotEX and A.E.B; development acceptance kit"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "almahfujmahi/vlan_based_office_network",
+  "owner": "almahfujmahi",
+  "url": "https://github.com/almahfujmahi/vlan_based_office_network",
+  "stars": 1,
+  "created": "2026-09-22",
+  "pushed": "2026-09-22",
+  "lang": "",
+  "topics": [],
+  "size_kb": 50,
+  "desc": "A VLAN based office network designed and simulated using Cisco Packet Tracer."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "git-nabo/vlan-config-utility-95",
+  "owner": "git-nabo",
+  "url": "https://github.com/git-nabo/vlan-config-utility-95",
+  "stars": 1,
+  "created": "2026-10-02",
+  "pushed": "2026-10-03",
+  "lang": "C#",
+  "topics": [
+   "administration",
+   "administrative-units",
+   "c",
+   "networking",
+   "sysadmin",
+   "sysadmin-tool"
+  ],
+  "size_kb": 175,
+  "desc": "VLAN Configuration Utility 95 is a small Windows administration tool for inspecting network adapters, configuring IEEE 802.1Q VLAN IDs where"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "deepak-vij/vla-flow-matching-vs-autoregressive",
+  "owner": "deepak-vij",
+  "url": "https://github.com/deepak-vij/vla-flow-matching-vs-autoregressive",
+  "stars": 1,
+  "created": "2026-09-22",
+  "pushed": "2026-09-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 424,
+  "desc": "Laptop-sized toy experiments: flow-matching (pi0/pi0.5-style) vs autoregressive (RT-2/OpenVLA-style) robot action heads"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "sohyun-l/SelfCompensatingVLA_project_page",
+  "owner": "sohyun-l",
+  "url": "https://github.com/sohyun-l/SelfCompensatingVLA_project_page",
+  "stars": 1,
+  "created": "2026-09-30",
+  "pushed": "2026-09-30",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 17836,
+  "desc": "Project page: Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "AliRaza-734/CCNA-Inter-VLAN-Networking-Project",
+  "owner": "AliRaza-734",
+  "url": "https://github.com/AliRaza-734/CCNA-Inter-VLAN-Networking-Project",
+  "stars": 1,
+  "created": "2026-10-01",
+  "pushed": "2026-10-01",
+  "lang": "",
+  "topics": [],
+  "size_kb": 60,
+  "desc": "It gives hands-on practice in VLAN configuration, routing, and troubleshooting, making it a useful foundation for networking learners."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "yr99032536-hue/go2-vla-hazard-avoidance",
+  "owner": "yr99032536-hue",
+  "url": "https://github.com/yr99032536-hue/go2-vla-hazard-avoidance",
+  "stars": 1,
+  "created": "2026-09-17",
+  "pushed": "2026-09-17",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 337,
+  "desc": "Go2 + SO-Arm SmolVLA 능동 위험 회피 실험",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "mvanelle-cyber/GNS3-Network-VLAN-Segmentation",
+  "owner": "mvanelle-cyber",
+  "url": "https://github.com/mvanelle-cyber/GNS3-Network-VLAN-Segmentation",
+  "stars": 1,
+  "created": "2026-10-01",
+  "pushed": "2026-10-16",
+  "lang": "",
+  "topics": [],
+  "size_kb": 9,
+  "desc": "Architecture de commutation et sécurité réseau sous GNS3 : Isolation de trafic inter-services par VLANs."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "aletonfdg/Qwen-Drive-Kinematic-Planner",
+  "owner": "aletonfdg",
+  "url": "https://github.com/aletonfdg/Qwen-Drive-Kinematic-Planner",
+  "stars": 1,
+  "created": "2026-09-22",
+  "pushed": "2026-09-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 35938,
+  "desc": "An end-to-end Vision-Language-Action (VLA) trajectory planning model for autonomous driving."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "johyeongseob/hacktoberfest-2026",
+  "owner": "johyeongseob",
+  "url": "https://github.com/johyeongseob/hacktoberfest-2026",
+  "stars": 1,
+  "created": "2026-10-03",
+  "pushed": "2026-10-25",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 31544,
+  "desc": "Hacktoberfest 2026 projects and experiments focused on open-weight AI, VLA, and Physical AI."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "AAH20/physical-ai-governor",
+  "owner": "AAH20",
+  "url": "https://github.com/AAH20/physical-ai-governor",
+  "stars": 1,
+  "created": "2026-09-19",
+  "pushed": "2026-10-03",
+  "lang": "Python",
+  "topics": [
+   "black-box-telemetry",
+   "control-barrier-functions",
+   "drone-fleet-governance",
+   "eu-ai-act-annex-iii",
+   "faa-part-89",
+   "humanoid-robotics"
+  ],
+  "size_kb": 301,
+  "desc": "Physical AI governance testbed for robot and VLA action authorization, synthetic replay, and incident evidence.",
+  "commits_30d": 6,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "pgq18/PressB",
+  "owner": "pgq18",
+  "url": "https://github.com/pgq18/PressB",
+  "stars": 1,
+  "created": "2026-09-30",
+  "pushed": "2026-10-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 15649,
+  "desc": "PiPER simulation, dual-camera LeRobot dataset collection, replay and VLA policy evaluation in Isaac Sim."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "NamelessCrew/FreeBar",
+  "owner": "NamelessCrew",
+  "url": "https://github.com/NamelessCrew/FreeBar",
+  "stars": 1,
+  "created": "2026-09-19",
+  "pushed": "2026-09-19",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 21109,
+  "desc": "Official implementation of CoRL 2026 paper :Barrier-Constrained Guidance For Real-time Asynchronous VLA Execution",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ketle-man/ComfyUI-LiveChatStream",
+  "owner": "ketle-man",
+  "url": "https://github.com/ketle-man/ComfyUI-LiveChatStream",
+  "stars": 1,
+  "created": "2026-10-03",
+  "pushed": "2026-10-05",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 3618,
+  "desc": "ComfyUI node: chat with an LLM / VLM / VLA (Ollama) and turn the streaming reply into images"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "tom05919/OrcaBench",
+  "owner": "tom05919",
+  "url": "https://github.com/tom05919/OrcaBench",
+  "stars": 1,
+  "created": "2026-09-29",
+  "pushed": "2026-10-25",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 18232,
+  "desc": "Benchmark that measures the ability of LLMs to orchestrate VLA and other RFMs to complete mid to long horizon tasks."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "goddogman/duvla",
+  "owner": "goddogman",
+  "url": "https://github.com/goddogman/duvla",
+  "stars": 1,
+  "created": "2026-09-21",
+  "pushed": "2026-09-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 316,
+  "desc": "A reproducible Flow-Matching VLA built on frozen Qwen3-VL, achieving 95.3% over 2,000 LIBERO episodes on a single 8GB GPU.",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Dev-EmbodiedAI/Dev-EmbodiedAI.github.io",
+  "owner": "Dev-EmbodiedAI",
+  "url": "https://github.com/Dev-EmbodiedAI/Dev-EmbodiedAI.github.io",
+  "stars": 1,
+  "created": "2026-09-21",
+  "pushed": "2026-09-21",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 25021,
+  "desc": "周苍田的个人简历：具身智能、VLA、世界模型与机器人学习",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "SuperHAS-sama/SO-ARM101-Workstation",
+  "owner": "SuperHAS-sama",
+  "url": "https://github.com/SuperHAS-sama/SO-ARM101-Workstation",
+  "stars": 1,
+  "created": "2026-09-21",
+  "pushed": "2026-09-21",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 206,
+  "desc": "基于So-Arm101机械臂进行VLA学习的相关文档和代码，已经打通ACT,SmolVLA,MyVLA(自己手搓的VLA)的流程，同时准备了一个workstation界面用于管理模型的推理，训练，摄像头index设定，数据集管理，远程服务器连接等功能，适合初学者入门VLA"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla",
+   "vla"
+  ],
+  "repo": "yaotsakpo/talosian",
+  "owner": "yaotsakpo",
+  "url": "https://github.com/yaotsakpo/talosian",
+  "stars": 1,
+  "created": "2026-09-15",
+  "pushed": "2026-09-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 5269,
+  "desc": "Trust layer for bimanual VLA manipulation. Two SO-101 arms set a dinner table in MuJoCo, governed by a gate where a command proposes but onl",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "incheif/Aero",
+  "owner": "incheif",
+  "url": "https://github.com/incheif/Aero",
+  "stars": 1,
+  "created": "2026-09-16",
+  "pushed": "2026-10-18",
+  "lang": "Python",
+  "topics": [
+   "multimodal",
+   "rapier",
+   "rapier3d",
+   "robotics",
+   "robotics-simulation",
+   "ros2"
+  ],
+  "size_kb": 9940,
+  "desc": "AERO is an agentic robotics platform that translates natural-language instructions into robotic actions using Vision-Language-Action (VLA) r",
+  "commits_30d": 68,
+  "commits_7d": 12
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "WXB1870/bindu",
+  "owner": "WXB1870",
+  "url": "https://github.com/WXB1870/bindu",
+  "stars": 1,
+  "created": "2026-09-17",
+  "pushed": "2026-10-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 38273,
+  "desc": "bindu 是一个具身智能机器人控制平台，涵盖 vla 客户端、感知、ik、规划、vr 遥操作、数据采集、建图、导航与自适应插值等功能",
+  "commits_30d": 100,
+  "commits_7d": 100
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla",
+   "vla"
+  ],
+  "repo": "romulo-maciel/VLA",
+  "owner": "romulo-maciel",
+  "url": "https://github.com/romulo-maciel/VLA",
+  "stars": 0,
+  "created": "2026-09-15",
+  "pushed": "2026-09-15",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 21,
+  "desc": "Pipeline próprio de captura, treino e inferência de políticas Vision-Language-Action em ambientes não convencionais"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "physicalbutter233/VLA",
+  "owner": "physicalbutter233",
+  "url": "https://github.com/physicalbutter233/VLA",
+  "stars": 0,
+  "created": "2026-09-16",
+  "pushed": "2026-09-19",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 95389,
+  "desc": "PB's VLA notes, written in obsidian"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "khanhnd61-vr/vla-hub",
+  "owner": "khanhnd61-vr",
+  "url": "https://github.com/khanhnd61-vr/vla-hub",
+  "stars": 0,
+  "created": "2026-09-30",
+  "pushed": "2026-10-24",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 103,
+  "desc": "Benchmark vla.cpp/vla.simd on various device"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "focal-vla/focal-vla.github.io",
+  "owner": "focal-vla",
+  "url": "https://github.com/focal-vla/focal-vla.github.io",
+  "stars": 0,
+  "created": "2026-09-22",
+  "pushed": "2026-09-22",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "FOCAL-VLA project website"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "SuarezPM/MAMBO-VLA",
+  "owner": "SuarezPM",
+  "url": "https://github.com/SuarezPM/MAMBO-VLA",
+  "stars": 0,
+  "created": "2026-09-16",
+  "pushed": "2026-09-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 125498,
+  "desc": "MAMBO-VLA: bimanual VLA dinner-table (ACT-52M, MuJoCo, OpenVINO Intel bench)"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "anonymous-0525/VLA-Fabric",
+  "owner": "anonymous-0525",
+  "url": "https://github.com/anonymous-0525/VLA-Fabric",
+  "stars": 0,
+  "created": "2026-09-23",
+  "pushed": "2026-09-26",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 51668,
+  "desc": "VLA-Fabric: learning coordination between complete VLA agents for multi-arm manipulation"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "khanhnd61-vr/vla-arch",
+  "owner": "khanhnd61-vr",
+  "url": "https://github.com/khanhnd61-vr/vla-arch",
+  "stars": 0,
+  "created": "2026-10-01",
+  "pushed": "2026-10-24",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 226,
+  "desc": "Illustration architecture of VLA models"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "clearlove7kk-arch/VLA_STUDY",
+  "owner": "clearlove7kk-arch",
+  "url": "https://github.com/clearlove7kk-arch/VLA_STUDY",
+  "stars": 0,
+  "created": "2026-09-20",
+  "pushed": "2026-10-10",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 8892,
+  "desc": "MY VLA_STUDY LEARNIG NOTES"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "vlad1337vlad1337-droid/vlad1337vlad1337-droid",
+  "owner": "vlad1337vlad1337-droid",
+  "url": "https://github.com/vlad1337vlad1337-droid/vlad1337vlad1337-droid",
+  "stars": 0,
+  "created": "2026-10-02",
+  "pushed": "2026-10-03",
+  "lang": "",
+  "topics": [
+   "open-source",
+   "self-hosted",
+   "wase"
+  ],
+  "size_kb": 836,
+  "desc": "Wase — practical tools, self-hosted software and open-source projects."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "semin126/VLA2026",
+  "owner": "semin126",
+  "url": "https://github.com/semin126/VLA2026",
+  "stars": 0,
+  "created": "2026-10-01",
+  "pushed": "2026-10-15",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 182,
+  "desc": "대전과학고등학교 2026 심화자율연구 - 계층적 파이프라인을 활용한 물체 접근성 및 공간 제약 기반 운반 행동 선택 VLA 모델 연구"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "vlalikoffc/vlalGram",
+  "owner": "vlalikoffc",
+  "url": "https://github.com/vlalikoffc/vlalGram",
+  "stars": 0,
+  "created": "2026-09-23",
+  "pushed": "2026-09-23",
+  "lang": "",
+  "topics": [],
+  "size_kb": 59915,
+  "desc": "Telegram, but it's created by vlal"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "The-V-Lab/VLabR",
+  "owner": "The-V-Lab",
+  "url": "https://github.com/The-V-Lab/VLabR",
+  "stars": 0,
+  "created": "2026-09-19",
+  "pushed": "2026-10-15",
+  "lang": "R",
+  "topics": [],
+  "size_kb": 344,
+  "desc": "Data cleaning and summary utility functions for R"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "vla-scope/vla-scope.github.io",
+  "owner": "vla-scope",
+  "url": "https://github.com/vla-scope/vla-scope.github.io",
+  "stars": 0,
+  "created": "2026-09-28",
+  "pushed": "2026-09-29",
+  "lang": "",
+  "topics": [],
+  "size_kb": 7103,
+  "desc": "Project website for VLA-Scope"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "divakar597/vlan-intervlan-dhcp-packet-tracer",
+  "owner": "divakar597",
+  "url": "https://github.com/divakar597/vlan-intervlan-dhcp-packet-tracer",
+  "stars": 1,
+  "created": "2026-09-09",
+  "pushed": "2026-09-09",
+  "lang": "",
+  "topics": [],
+  "size_kb": 241,
+  "desc": "Cisco Packet Tracer project implementing VLANs ,DHCP, DHCP Relay, and InterVLAN Routing",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "VIGNESHM-ENGR/CogniBot-Ros2-Vla",
+  "owner": "VIGNESHM-ENGR",
+  "url": "https://github.com/VIGNESHM-ENGR/CogniBot-Ros2-Vla",
+  "stars": 1,
+  "created": "2026-09-13",
+  "pushed": "2026-09-23",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 18838,
+  "desc": "Dockerized ROS 2 Jazzy manipulation stack: MuJoCo SO-101/Panda, MoveIt 2 + mink, local Qwen3-VL agent, LeRobot SmolVLA",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "johnlavin03-star/autolife-hd-dagger",
+  "owner": "johnlavin03-star",
+  "url": "https://github.com/johnlavin03-star/autolife-hd-dagger",
+  "stars": 1,
+  "created": "2026-09-14",
+  "pushed": "2026-09-18",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 474,
+  "desc": "HD-DAgger integration for GR00T N1.7 VLA inference and VR expert takeover",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "AliKooK/VLAN-segmentation-Layer-2-Layer-3-connectivity",
+  "owner": "AliKooK",
+  "url": "https://github.com/AliKooK/VLAN-segmentation-Layer-2-Layer-3-connectivity",
+  "stars": 1,
+  "created": "2026-08-29",
+  "pushed": "2026-08-29",
+  "lang": "",
+  "topics": [],
+  "size_kb": 4,
+  "desc": "Configured VLAN segmentation, Layer 2/Layer 3 connectivity, IP addressing, routing, firewall policies, and NAT. Diagnosed network connectivi",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "nkd-lkz/physical-self-evolution",
+  "owner": "nkd-lkz",
+  "url": "https://github.com/nkd-lkz/physical-self-evolution",
+  "stars": 1,
+  "created": "2026-09-11",
+  "pushed": "2026-10-14",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 9641,
+  "desc": "Living research website for Physical Interaction, Embodied Self-Evolution, VLA, RL, Memory and robot learning experiments.",
+  "commits_30d": 39,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "anhao-zhang/harnessvla-behavior",
+  "owner": "anhao-zhang",
+  "url": "https://github.com/anhao-zhang/harnessvla-behavior",
+  "stars": 1,
+  "created": "2026-08-30",
+  "pushed": "2026-08-30",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 134,
+  "desc": "An agentic VLA framework integrating RPent, HarnessVLA, π0.5, and BEHAVIOR-1K for general-purpose embodied manipulation.",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Laityperfect7/awesome-gaussian-robotics",
+  "owner": "Laityperfect7",
+  "url": "https://github.com/Laityperfect7/awesome-gaussian-robotics",
+  "stars": 1,
+  "created": "2026-08-30",
+  "pushed": "2026-10-01",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 126,
+  "desc": "A verified, queryable atlas for Gaussian Splatting in robotics, embodied AI, SLAM, navigation, manipulation, simulation, and VLA.",
+  "commits_30d": 0,
+  "stale": true,
+  "owner_repos": 3
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ArslanSaeed17/Enterprise-Network-Architecture-From-VLAN-Segmentation-to-Multi-Site-WAN-Infrastructure",
+  "owner": "ArslanSaeed17",
+  "url": "https://github.com/ArslanSaeed17/Enterprise-Network-Architecture-From-VLAN-Segmentation-to-Multi-Site-WAN-Infrastructure",
+  "stars": 1,
+  "created": "2026-09-10",
+  "pushed": "2026-09-10",
+  "lang": "",
+  "topics": [],
+  "size_kb": 942,
+  "desc": "CNA Enterprise Network Lab — Three independent Cisco switching and routing concepts: VLAN segmentation with Spanning Tree loop prevention, r",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Laityperfect7/embodied-lint",
+  "owner": "Laityperfect7",
+  "url": "https://github.com/Laityperfect7/embodied-lint",
+  "stars": 1,
+  "created": "2026-08-29",
+  "pushed": "2026-08-30",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 48,
+  "desc": "Preflight checks for robot episodes before they become VLA model failures — contracts, drift detection, SARIF, and local-only reports.",
+  "commits_30d": 0,
+  "stale": true,
+  "owner_repos": 3
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "BMN-zyb/lelab-goalblocks",
+  "owner": "BMN-zyb",
+  "url": "https://github.com/BMN-zyb/lelab-goalblocks",
+  "stars": 1,
+  "created": "2026-09-07",
+  "pushed": "2026-10-19",
+  "lang": "TypeScript",
+  "topics": [],
+  "size_kb": 6870,
+  "desc": "Goal-conditioned SO-101 data collection and lightweight VLA baseline, built as an unofficial derivative of LeLab and LeRobot.",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Laityperfect7/splat-guard",
+  "owner": "Laityperfect7",
+  "url": "https://github.com/Laityperfect7/splat-guard",
+  "stars": 1,
+  "created": "2026-08-30",
+  "pushed": "2026-08-30",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 48,
+  "desc": "A conservative Gaussian scene memory for embodied robots that keeps unknown space unknown — CPU RGB-D fusion, typed queries, and VLA context",
+  "commits_30d": 0,
+  "stale": true,
+  "owner_repos": 3
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "paul-abhirup/DriveScope",
+  "owner": "paul-abhirup",
+  "url": "https://github.com/paul-abhirup/DriveScope",
+  "stars": 1,
+  "created": "2026-09-14",
+  "pushed": "2026-09-15",
+  "lang": "Python",
+  "topics": [
+   "3d",
+   "3d-models",
+   "vla",
+   "vla-model"
+  ],
+  "size_kb": 1931,
+  "desc": "Building an experiment and evaluation platform for Vision-Language-Action (VLA) foundation models that measures continuous control, reasonin",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "heyiamjj/erasure-is-a-shift-not-a-deletion",
+  "owner": "heyiamjj",
+  "url": "https://github.com/heyiamjj/erasure-is-a-shift-not-a-deletion",
+  "stars": 1,
+  "created": "2026-09-13",
+  "pushed": "2026-09-13",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 436,
+  "desc": "Paper, experiment code, and run logs: Erasure is a Shift, Not a Deletion - Recovering Pretrained Semantics from Behavior-Cloned VLAs at Infe",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "flynnmav/flightvla-guard",
+  "owner": "flynnmav",
+  "url": "https://github.com/flynnmav/flightvla-guard",
+  "stars": 1,
+  "created": "2026-08-28",
+  "pushed": "2026-08-28",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 687,
+  "desc": "Safety gateway + evaluation platform that lets any VLA / VLM / LLM flight agent safely drive PX4 drones — validated action blocks, guard-cor",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Zed-111/embodied-competition-planning",
+  "owner": "Zed-111",
+  "url": "https://github.com/Zed-111/embodied-competition-planning",
+  "stars": 1,
+  "created": "2026-08-31",
+  "pushed": "2026-08-31",
+  "lang": "",
+  "topics": [],
+  "size_kb": 21,
+  "desc": "具身智能仿真赛事运营策划技能 | An opencode skill for planning embodied intelligence simulation competitions (VLA model evaluation, budgets, market benchma",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "zzw-rgb/robot-papers",
+  "owner": "zzw-rgb",
+  "url": "https://github.com/zzw-rgb/robot-papers",
+  "stars": 1,
+  "created": "2026-08-30",
+  "pushed": "2026-08-30",
+  "lang": "TypeScript",
+  "topics": [
+   "codex",
+   "electron",
+   "embodied-ai",
+   "imitation-learning",
+   "obsidian",
+   "paper-management"
+  ],
+  "size_kb": 1973,
+  "desc": "本地优先的具身智能论文阅读器：VLA、模仿学习、世界模型、Obsidian 与 Codex 定时任务。",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ljh-qh/embodied-ai-map",
+  "owner": "ljh-qh",
+  "url": "https://github.com/ljh-qh/embodied-ai-map",
+  "stars": 1,
+  "created": "2026-09-06",
+  "pushed": "2026-10-10",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 288,
+  "desc": "具身智能研究图谱：VLA / 世界模型(WM/WAM) / 触觉交互式论文地图（307 篇，含 2026 顶会录用）",
+  "commits_30d": 3,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "caesar-jojo/vla",
+  "owner": "caesar-jojo",
+  "url": "https://github.com/caesar-jojo/vla",
+  "stars": 0,
+  "created": "2026-08-28",
+  "pushed": "2026-08-28",
+  "lang": "",
+  "topics": [],
+  "size_kb": 195,
+  "desc": "Precision connector insertion with structure-aware VLA and real-world reinforcement learning."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "SJSU-IAS-Project/CASS-VLA",
+  "owner": "SJSU-IAS-Project",
+  "url": "https://github.com/SJSU-IAS-Project/CASS-VLA",
+  "stars": 0,
+  "created": "2026-09-07",
+  "pushed": "2026-10-08",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 88,
+  "desc": "CASS-VLA: Calibrated Active Safety Shielding for Vision-Language-Action Driving Planners"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "salvadorvazquezp73/The-Art-Ark-by-VV",
+  "owner": "salvadorvazquezp73",
+  "url": "https://github.com/salvadorvazquezp73/The-Art-Ark-by-VV",
+  "stars": 0,
+  "created": "2026-09-07",
+  "pushed": "2026-09-07",
+  "lang": "TypeScript",
+  "topics": [],
+  "size_kb": 4086,
+  "desc": "Vlas Vaxas art collection"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "IMML-Lab-EAI/RealMirror",
+  "owner": "IMML-Lab-EAI",
+  "url": "https://github.com/IMML-Lab-EAI/RealMirror",
+  "stars": 0,
+  "created": "2026-08-26",
+  "pushed": "2026-09-22",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 38009,
+  "desc": "To infer VLA trajectories"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "axiboai/axibo_vla_challenge",
+  "owner": "axiboai",
+  "url": "https://github.com/axiboai/axibo_vla_challenge",
+  "stars": 0,
+  "created": "2026-09-08",
+  "pushed": "2026-09-08",
+  "lang": "",
+  "topics": [],
+  "size_kb": 20,
+  "desc": "AXIBO VLA Engineering Challenge"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "bujiaodingdingawa/marlinvla",
+  "owner": "bujiaodingdingawa",
+  "url": "https://github.com/bujiaodingdingawa/marlinvla",
+  "stars": 0,
+  "created": "2026-09-05",
+  "pushed": "2026-09-05",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "Project website for MARLIN-VLA"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "corwinlim/caios-twinhands-intel-vla",
+  "owner": "corwinlim",
+  "url": "https://github.com/corwinlim/caios-twinhands-intel-vla",
+  "stars": 0,
+  "created": "2026-09-14",
+  "pushed": "2026-09-17",
+  "lang": "",
+  "topics": [],
+  "size_kb": 4,
+  "desc": "corwinlim/caios-twinhands-intel-vla"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "shengwenyuan/ur12e-training-infer",
+  "owner": "shengwenyuan",
+  "url": "https://github.com/shengwenyuan/ur12e-training-infer",
+  "stars": 0,
+  "created": "2026-09-11",
+  "pushed": "2026-09-30",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 395,
+  "desc": "vla models for post-training"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "VladfromHQ/VladfromRH",
+  "owner": "VladfromHQ",
+  "url": "https://github.com/VladfromHQ/VladfromRH",
+  "stars": 0,
+  "created": "2026-09-10",
+  "pushed": "2026-09-14",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 29298,
+  "desc": "PLATFORM ❌ VLADFROM ✅ The new platform."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "frozen210/VLA_autonomous_drive",
+  "owner": "frozen210",
+  "url": "https://github.com/frozen210/VLA_autonomous_drive",
+  "stars": 0,
+  "created": "2026-09-03",
+  "pushed": "2026-09-03",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "to learn the technology of VLA"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "vladpet1/vladpet1.github.io",
+  "owner": "vladpet1",
+  "url": "https://github.com/vladpet1/vladpet1.github.io",
+  "stars": 0,
+  "created": "2026-09-10",
+  "pushed": "2026-09-10",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 16544,
+  "desc": "Portfolio of Vladyslav Petrov — UI/UX & Product Designer based in Ireland"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Shryes19/precode-jepa",
+  "owner": "Shryes19",
+  "url": "https://github.com/Shryes19/precode-jepa",
+  "stars": 0,
+  "created": "2026-10-22",
+  "pushed": "2026-10-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 204,
+  "desc": "Execution-derived behaviour representations for code generation using an LLM-JEPA-style training objective."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "indieindie7/skill-jepa",
+  "owner": "indieindie7",
+  "url": "https://github.com/indieindie7/skill-jepa",
+  "stars": 0,
+  "created": "2026-10-22",
+  "pushed": "2026-10-23",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 42,
+  "desc": "JEPA-style latent predictor that routes agent prompts to skills (frozen EmbeddingGemma, numpy prototype)"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "LiuLiShenShe/AgriSA-JEPA",
+  "owner": "LiuLiShenShe",
+  "url": "https://github.com/LiuLiShenShe/AgriSA-JEPA",
+  "stars": 0,
+  "created": "2026-10-18",
+  "pushed": "2026-10-24",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 39817,
+  "desc": "AgriSA-JEPA Stage 1: AgriField-40K data audit, provenance screening, and smoke-validated I-JEPA pretraining"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "ShawnLeung-SII/depstate-jepa",
+  "owner": "ShawnLeung-SII",
+  "url": "https://github.com/ShawnLeung-SII/depstate-jepa",
+  "stars": 0,
+  "created": "2026-10-21",
+  "pushed": "2026-10-22",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 50713,
+  "desc": "DepState-JEPA: Learning Depth-Grounded State Representation for Visual Perception and Manipulation. Project website; code coming soon."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "mahoutei/Lens-JEPA",
+  "owner": "mahoutei",
+  "url": "https://github.com/mahoutei/Lens-JEPA",
+  "stars": 0,
+  "created": "2026-10-21",
+  "pushed": "2026-10-23",
+  "lang": "Python",
+  "topics": [
+   "gravitational-lensing",
+   "jepa",
+   "ml4sci",
+   "pytorch",
+   "self-supervised-learning"
+  ],
+  "size_kb": 293,
+  "desc": "Lens-LeJEPA: geometry-aware self-supervised pretraining for dark-matter substructure in strong gravitational-lensing images."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "thddydgnl/eqm-jepa",
+  "owner": "thddydgnl",
+  "url": "https://github.com/thddydgnl/eqm-jepa",
+  "stars": 0,
+  "created": "2026-10-10",
+  "pushed": "2026-10-10",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 9758,
+  "desc": "Equilibrium Matching for JEPA latent world models (Flow-JEPA fork) - archived negative result: code, raw evaluation records, diagnostics"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "blurryface0906/kepler-jepa",
+  "owner": "blurryface0906",
+  "url": "https://github.com/blurryface0906/kepler-jepa",
+  "stars": 0,
+  "created": "2026-10-14",
+  "pushed": "2026-10-17",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 39645,
+  "desc": "Research on Kepler’s law discovery with JEPA architectures."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "anand-r-m/vjepa-surprise-physics",
+  "owner": "anand-r-m",
+  "url": "https://github.com/anand-r-m/vjepa-surprise-physics",
+  "stars": 0,
+  "created": "2026-10-11",
+  "pushed": "2026-10-12",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 26362,
+  "desc": "Does V-JEPA / V-JEPA 2 latent surprise track physical impossibility? Code and analysis (inference only)"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "LiuLiShenShe/JEPA-phenotype",
+  "owner": "LiuLiShenShe",
+  "url": "https://github.com/LiuLiShenShe/JEPA-phenotype",
+  "stars": 0,
+  "created": "2026-10-11",
+  "pushed": "2026-10-14",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 39773,
+  "desc": "Plant Temporal-JEPA phenotype project: M0 data preparation and quality validation"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "AritraIslamSaswato/Awesome-Medical-JEPA",
+  "owner": "AritraIslamSaswato",
+  "url": "https://github.com/AritraIslamSaswato/Awesome-Medical-JEPA",
+  "stars": 0,
+  "created": "2026-10-10",
+  "pushed": "2026-10-09",
+  "lang": "",
+  "topics": [],
+  "size_kb": 1461,
+  "desc": "Curated list of JEPA (Joint-Embedding Predictive Architecture) papers and code for medicine: medical imaging, ECG/EEG, surgical video, EHR a"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "baudoin-csp/tactile-laplacian-jepa",
+  "owner": "baudoin-csp",
+  "url": "https://github.com/baudoin-csp/tactile-laplacian-jepa",
+  "stars": 0,
+  "created": "2026-10-19",
+  "pushed": "2026-10-24",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 3091,
+  "desc": "Laplacian-based coarse/detail decomposition of ViT patch features for self-supervised tactile representations (JEPA, Sparsh-compatible). Eva"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "giolucasd/islr-jepa-wvc",
+  "owner": "giolucasd",
+  "url": "https://github.com/giolucasd/islr-jepa-wvc",
+  "stars": 0,
+  "created": "2026-10-16",
+  "pushed": "2026-10-21",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 3045,
+  "desc": "Sign Language Recognition with Video Foundation Models: V-JEPA Transfer and Adaptation"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Agung-laksono/centra-cargo-jepara",
+  "owner": "Agung-laksono",
+  "url": "https://github.com/Agung-laksono/centra-cargo-jepara",
+  "stars": 0,
+  "created": "2026-10-21",
+  "pushed": "2026-10-22",
+  "lang": "Vue",
+  "topics": [],
+  "size_kb": 36741,
+  "desc": "untuk ekspedisi furniture Jepara"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "AbstractLogix/jepa-world-models",
+  "owner": "AbstractLogix",
+  "url": "https://github.com/AbstractLogix/jepa-world-models",
+  "stars": 0,
+  "created": "2026-10-15",
+  "pushed": "2026-10-16",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 10692,
+  "desc": "Exploring Joint-Embedding Predictive Architectures (JEPA), latent-space prediction, causal reasoning, and world-model learning through pract"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Weidong-Li-HydroMet/jepa-coarse-graining",
+  "owner": "Weidong-Li-HydroMet",
+  "url": "https://github.com/Weidong-Li-HydroMet/jepa-coarse-graining",
+  "stars": 0,
+  "created": "2026-10-18",
+  "pushed": "2026-10-19",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 2779,
+  "desc": "Coarse-graining turbulent dynamics in space and time with JEPA latents — compared against AE and time-lagged AE baselines on Surface QG."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "ether-btc/dm-jepa-evaluation",
+  "owner": "ether-btc",
+  "url": "https://github.com/ether-btc/dm-jepa-evaluation",
+  "stars": 0,
+  "created": "2026-10-09",
+  "pushed": "2026-10-09",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 46,
+  "desc": "Measured evaluation of DangerLabs DM-JEPA 1.1 on a real-text tool-routing benchmark — REJECT: floor-level accuracy with overconfident errors"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "adept-thu/ActWorld-JEPA",
+  "owner": "adept-thu",
+  "url": "https://github.com/adept-thu/ActWorld-JEPA",
+  "stars": 0,
+  "created": "2026-10-07",
+  "pushed": "2026-10-24",
+  "lang": "Python",
+  "topics": [
+   "autonomous-driving",
+   "jepa",
+   "navsim",
+   "nuscenes",
+   "trajectory-planning",
+   "world-model"
+  ],
+  "size_kb": 21486,
+  "desc": "Action-conditioned JEPA world models and latent planning. Main deployments for NAVSIM v1/v2 and nuScenes."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "henry550xz/jepa-billiards-demo",
+  "owner": "henry550xz",
+  "url": "https://github.com/henry550xz/jepa-billiards-demo",
+  "stars": 0,
+  "created": "2026-10-17",
+  "pushed": "2026-10-17",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 3454,
+  "desc": "Interactive billiards simulator and preliminary image-based world-model diagnostics"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Perry-123h/MambaJEPA-AD",
+  "owner": "Perry-123h",
+  "url": "https://github.com/Perry-123h/MambaJEPA-AD",
+  "stars": 0,
+  "created": "2026-10-19",
+  "pushed": "2026-10-20",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 108704,
+  "desc": "Reproducibility package for MambaJEPA-AD digital payment fraud detection."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "noahsabaj/so101-jepa",
+  "owner": "noahsabaj",
+  "url": "https://github.com/noahsabaj/so101-jepa",
+  "stars": 0,
+  "created": "2026-10-06",
+  "pushed": "2026-10-12",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 8900,
+  "desc": "An SO-101 arm learns to assemble an SO-101 arm with a hierarchical JEPA world model"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "TKJM552/protein-dynamics-jepa",
+  "owner": "TKJM552",
+  "url": "https://github.com/TKJM552/protein-dynamics-jepa",
+  "stars": 0,
+  "created": "2026-10-06",
+  "pushed": "2026-10-06",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 37,
+  "desc": "VJEPA applied to protein MD"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "rajveer43/super-resolution-JEPA",
+  "owner": "rajveer43",
+  "url": "https://github.com/rajveer43/super-resolution-JEPA",
+  "stars": 0,
+  "created": "2026-10-11",
+  "pushed": "2026-10-13",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 65,
+  "desc": "V-JEPA 2-style self-supervised super-resolution for CMS jet images and CaloChallenge showers (ML4Sci GSoC)"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa",
+   "jepa"
+  ],
+  "repo": "daMS2005/jepa-transformer-model",
+  "owner": "daMS2005",
+  "url": "https://github.com/daMS2005/jepa-transformer-model",
+  "stars": 0,
+  "created": "2026-10-05",
+  "pushed": "2026-10-17",
+  "lang": "Python",
+  "topics": [
+   "financial-ml",
+   "jepa",
+   "time-series",
+   "transformer"
+  ],
+  "size_kb": 61,
+  "desc": "Early-stage open-source financial JEPA transformer model"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "KayaD707/jepa-representation-learning",
+  "owner": "KayaD707",
+  "url": "https://github.com/KayaD707/jepa-representation-learning",
+  "stars": 0,
+  "created": "2026-10-22",
+  "pushed": "2026-10-23",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 153,
+  "desc": "Self-supervised representation learning portfolio (I-JEPA, contrastive vs non-contrastive SSL, predictive coding) -- built incrementally, sa"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "pandapool/classification-w-ijepa",
+  "owner": "pandapool",
+  "url": "https://github.com/pandapool/classification-w-ijepa",
+  "stars": 0,
+  "created": "2026-10-07",
+  "pushed": "2026-10-07",
+  "lang": "",
+  "topics": [],
+  "size_kb": 7,
+  "desc": "Using I-JEPA for difficult classification problems"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "arion-a/Iterative-Split-JEPA",
+  "owner": "arion-a",
+  "url": "https://github.com/arion-a/Iterative-Split-JEPA",
+  "stars": 0,
+  "created": "2026-10-12",
+  "pushed": "2026-10-23",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 8240,
+  "desc": "An iteration based extension of split-JEPA mechanism which could be organised hierarchically"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "yousamar/jepa-block-hsic-pusht",
+  "owner": "yousamar",
+  "url": "https://github.com/yousamar/jepa-block-hsic-pusht",
+  "stars": 0,
+  "created": "2026-10-19",
+  "pushed": "2026-10-19",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 79,
+  "desc": "Exploratory JEPA block HSIC on PushT: training, planning, research note and inference models."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "cgznb/breast-mri-vla-jepa",
+  "owner": "cgznb",
+  "url": "https://github.com/cgznb/breast-mri-vla-jepa",
+  "stars": 0,
+  "created": "2026-10-08",
+  "pushed": "2026-10-08",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 199,
+  "desc": "Longitudinal breast MRI pCR prediction and JEPA feature-state learning with fixed and dynamic experiments"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Hutamaa/jepa-parallel-dllm-unmasking",
+  "owner": "Hutamaa",
+  "url": "https://github.com/Hutamaa/jepa-parallel-dllm-unmasking",
+  "stars": 0,
+  "created": "2026-10-18",
+  "pushed": "2026-10-18",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 66,
+  "desc": "Empirical investigation of JEPA-guided parallel unmasking for diffusion language models"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "pranav18june/jepa-supply-chain-prototype",
+  "owner": "pranav18june",
+  "url": "https://github.com/pranav18june/jepa-supply-chain-prototype",
+  "stars": 0,
+  "created": "2026-10-17",
+  "pushed": "2026-10-17",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 3098,
+  "desc": "Action-conditioned world models (JEPA variants vs supervised dynamics) for supply-chain decisions on the ISOMORPH simulator"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "nssrivathsa/drive-jepa-qcom-eval",
+  "owner": "nssrivathsa",
+  "url": "https://github.com/nssrivathsa/drive-jepa-qcom-eval",
+  "stars": 0,
+  "created": "2026-10-10",
+  "pushed": "2026-10-10",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 96357,
+  "desc": "Drive-JEPA Qualcomm Snapdragon 8650 (HTP) Deployment, INT8 Quantization, and KPI Evaluation Pipeline"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "fbdeme/jepa-pfn",
+  "owner": "fbdeme",
+  "url": "https://github.com/fbdeme/jepa-pfn",
+  "stars": 0,
+  "created": "2026-09-22",
+  "pushed": "2026-09-22",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1643,
+  "desc": "Code, configs, results and checkpoints for 'A JEPA Recipe for Tabular Foundation Models'"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "iking919/jepa-recommender",
+  "owner": "iking919",
+  "url": "https://github.com/iking919/jepa-recommender",
+  "stars": 0,
+  "created": "2026-09-22",
+  "pushed": "2026-10-21",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 2139,
+  "desc": "Research project investigating Joint-Embedding Predictive Architectures (JEPA) for sequential recommendation and comparing them against BERT"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "MorganREN/jepa-collapse-research",
+  "owner": "MorganREN",
+  "url": "https://github.com/MorganREN/jepa-collapse-research",
+  "stars": 0,
+  "created": "2026-09-17",
+  "pushed": "2026-09-17",
+  "lang": "",
+  "topics": [],
+  "size_kb": 2,
+  "desc": "Research on the collapse in JEPA"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "deepjepa/DeepJEPA",
+  "owner": "deepjepa",
+  "url": "https://github.com/deepjepa/DeepJEPA",
+  "stars": 0,
+  "created": "2026-09-30",
+  "pushed": "2026-10-06",
+  "lang": "",
+  "topics": [],
+  "size_kb": 1079,
+  "desc": "DeepJEPA: Scaling World Models from Within"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "stevenybuilder/jepa_physics",
+  "owner": "stevenybuilder",
+  "url": "https://github.com/stevenybuilder/jepa_physics",
+  "stars": 0,
+  "created": "2026-09-28",
+  "pushed": "2026-09-29",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 353786,
+  "desc": "Reading and steering motion in V-JEPA 2: layer-wise probing, nullspace erasure and spline steering of direction, speed and acceleration, jud"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "0xAVX/jepa-pfn",
+  "owner": "0xAVX",
+  "url": "https://github.com/0xAVX/jepa-pfn",
+  "stars": 0,
+  "created": "2026-09-21",
+  "pushed": "2026-09-23",
+  "lang": "Python",
+  "topics": [
+   "active-learning",
+   "hackathon",
+   "jepa",
+   "self-supervised-learning",
+   "tabpfn",
+   "tabular-data"
+  ],
+  "size_kb": 1274,
+  "desc": "TabPFN-3.5 guided JEPA: uncertainty curriculum + masks repair naive augmentation; guided selection beats random on hard label allocation"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "abdelkbir1243/driving-perception-lab-final",
+  "owner": "abdelkbir1243",
+  "url": "https://github.com/abdelkbir1243/driving-perception-lab-final",
+  "stars": 0,
+  "created": "2026-09-22",
+  "pushed": "2026-09-23",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 140487,
+  "desc": "Application Streamlit de détection I-JEPA"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "nazrul-99/jepa-spatial-probe",
+  "owner": "nazrul-99",
+  "url": "https://github.com/nazrul-99/jepa-spatial-probe",
+  "stars": 0,
+  "created": "2026-09-19",
+  "pushed": "2026-09-19",
+  "lang": "",
+  "topics": [],
+  "size_kb": 71,
+  "desc": "Decoder-free probe of positional grounding in the I-JEPA predictor: queries a frozen predictor at a masked position and ranks its output aga"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "ieuko/jepa-anything-SIGReg",
+  "owner": "ieuko",
+  "url": "https://github.com/ieuko/jepa-anything-SIGReg",
+  "stars": 0,
+  "created": "2026-09-25",
+  "pushed": "2026-09-25",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1801,
+  "desc": "SIGReg integration and Runpod ablation for JEPA-Anything"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "AbiralShakya/diverse_jepa_pretraining",
+  "owner": "AbiralShakya",
+  "url": "https://github.com/AbiralShakya/diverse_jepa_pretraining",
+  "stars": 0,
+  "created": "2026-09-21",
+  "pushed": "2026-09-21",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "sim diversity + behavior cloning + tpu infra"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "SanjaySrivatsa5172/jepa-anything-studio",
+  "owner": "SanjaySrivatsa5172",
+  "url": "https://github.com/SanjaySrivatsa5172/jepa-anything-studio",
+  "stars": 0,
+  "created": "2026-09-19",
+  "pushed": "2026-09-19",
+  "lang": "TypeScript",
+  "topics": [
+   "grok",
+   "jepa",
+   "opf",
+   "predictive-coding",
+   "world-model"
+  ],
+  "size_kb": 542,
+  "desc": "JEPA-Anything Studio — compile any world into a Joint-Embedding Predictive Architecture with Orthogonal Predictive Factorization"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Aim404/c3-jepa",
+  "owner": "Aim404",
+  "url": "https://github.com/Aim404/c3-jepa",
+  "stars": 0,
+  "created": "2026-09-25",
+  "pushed": "2026-09-27",
+  "lang": "Python",
+  "topics": [
+   "jepa",
+   "object-centric-learning",
+   "pytorch",
+   "robot-learning",
+   "rov",
+   "slot-attention"
+  ],
+  "size_kb": 3234,
+  "desc": "A world model for underwater ROV salvage. It predicts where the object, the gripper and the surrounding scene move next, from several camera"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Paras5Yadav/s-prism-jepa",
+  "owner": "Paras5Yadav",
+  "url": "https://github.com/Paras5Yadav/s-prism-jepa",
+  "stars": 0,
+  "created": "2026-10-02",
+  "pushed": "2026-10-02",
+  "lang": "",
+  "topics": [],
+  "size_kb": 13785,
+  "desc": "Streaming Predictive Reinspection with Intelligent Salience and Memory jepa"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "thermau5/on-jepa-isotropy",
+  "owner": "thermau5",
+  "url": "https://github.com/thermau5/on-jepa-isotropy",
+  "stars": 0,
+  "created": "2026-09-30",
+  "pushed": "2026-09-30",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 54,
+  "desc": "A finite-sample, empirical-risk-minimization (ERM) theory of Joint-Embedding Predictive Architectures (JEPA), and the experiment suite that "
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kishordgupta/jepa-forge-prototype",
+  "owner": "kishordgupta",
+  "url": "https://github.com/kishordgupta/jepa-forge-prototype",
+  "stars": 0,
+  "created": "2026-09-16",
+  "pushed": "2026-09-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 10672,
+  "desc": "Scientific dataset-to-task compiler with leakage checks, JEPA-style GPU pilots, reproducible public and synthetic benchmarks, and an experim"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "StavroK/JEPA_Green_Audit",
+  "owner": "StavroK",
+  "url": "https://github.com/StavroK/JEPA_Green_Audit",
+  "stars": 0,
+  "created": "2026-09-29",
+  "pushed": "2026-10-12",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 2123,
+  "desc": "Self-Supervised Urban Vegetation Monitoring using Joint-Embedding Predictive Architectures"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "lciarame/llm-jepa-moe",
+  "owner": "lciarame",
+  "url": "https://github.com/lciarame/llm-jepa-moe",
+  "stars": 0,
+  "created": "2026-10-02",
+  "pushed": "2026-10-02",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 90,
+  "desc": "Code and experiments for integrating JEPA with Large Language Models and Mixture-of-Experts architectures."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kishordgupta/nuclear-vjepa-twin",
+  "owner": "kishordgupta",
+  "url": "https://github.com/kishordgupta/nuclear-vjepa-twin",
+  "stars": 0,
+  "created": "2026-09-16",
+  "pushed": "2026-09-16",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 19600,
+  "desc": "Research prototype with V-JEPA 1, V-JEPA 2 and V-JEPA 2.1, a dimensionless thermal-loop digital twin, synthetic video/sensors, public benchm"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "EdenBendheim/jepa-embedding-lab",
+  "owner": "EdenBendheim",
+  "url": "https://github.com/EdenBendheim/jepa-embedding-lab",
+  "stars": 0,
+  "created": "2026-09-29",
+  "pushed": "2026-10-25",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1104,
+  "desc": "Reproducible image patches and context-target masks for a compact JEPA representation-learning experiment"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "sidsharma2/euler-jepa-mini",
+  "owner": "sidsharma2",
+  "url": "https://github.com/sidsharma2/euler-jepa-mini",
+  "stars": 0,
+  "created": "2026-09-20",
+  "pushed": "2026-10-13",
+  "lang": "Python",
+  "topics": [
+   "aerospace-engineering",
+   "ml"
+  ],
+  "size_kb": 42269,
+  "desc": "Physics-grounded benchmark auditing joint-embedding predictive architectures (JEPA) against calibrated physics models on nonlinear rotor-dyn"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "ysnjin/Fin-TsJEPA",
+  "owner": "ysnjin",
+  "url": "https://github.com/ysnjin/Fin-TsJEPA",
+  "stars": 0,
+  "created": "2026-09-26",
+  "pushed": "2026-09-28",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 200431,
+  "desc": "Financial JEPA model considering time-series data"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "shubhamgupta407/T-JePa",
+  "owner": "shubhamgupta407",
+  "url": "https://github.com/shubhamgupta407/T-JePa",
+  "stars": 0,
+  "created": "2026-09-17",
+  "pushed": "2026-09-17",
+  "lang": "Python",
+  "topics": [
+   "financial-data",
+   "pytorch",
+   "representation-learning",
+   "self-supervised-learning",
+   "t-jepa",
+   "tabular-data"
+  ],
+  "size_kb": 1275,
+  "desc": "Self-supervised tabular representation learning for financial fraud detection via feature-masking (T-JEPA). Features custom sliding-window a"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "henry550xz/jepa-worldmodel-comparison",
+  "owner": "henry550xz",
+  "url": "https://github.com/henry550xz/jepa-worldmodel-comparison",
+  "stars": 0,
+  "created": "2026-09-16",
+  "pushed": "2026-10-17",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 4045,
+  "desc": "Controlled PushT study of pixel prediction, Gaussian JEPA, and sparse JEPA; attributed LpWM baseline and physical diagnostics"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "deboradum/JEPA-Anything-Chess",
+  "owner": "deboradum",
+  "url": "https://github.com/deboradum/JEPA-Anything-Chess",
+  "stars": 0,
+  "created": "2026-09-26",
+  "pushed": "2026-10-03",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1458,
+  "desc": "JEPA-Anything as a searchless chess engine"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "GeleukSanga/toyota-jepara-content",
+  "owner": "GeleukSanga",
+  "url": "https://github.com/GeleukSanga/toyota-jepara-content",
+  "stars": 0,
+  "created": "2026-09-29",
+  "pushed": "2026-09-29",
+  "lang": "",
+  "topics": [],
+  "size_kb": 33987,
+  "desc": "Konten publik website Toyota Jepara (harga, promo, testimoni, aset). Tanpa kode."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kelvinjou/Learn-JEPA-Architecture",
+  "owner": "kelvinjou",
+  "url": "https://github.com/kelvinjou/Learn-JEPA-Architecture",
+  "stars": 0,
+  "created": "2026-09-28",
+  "pushed": "2026-09-28",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 1556,
+  "desc": "Claude Opus 4.8 generated cirriculum for learning JEPA from scratch"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "OliverZ-dot/ti-jepa-homepage",
+  "owner": "OliverZ-dot",
+  "url": "https://github.com/OliverZ-dot/ti-jepa-homepage",
+  "stars": 0,
+  "created": "2026-09-25",
+  "pushed": "2026-10-03",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 2092,
+  "desc": "Anonymous project page for a double-blind submission."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "McCarryster/i_jepa_from_scratch",
+  "owner": "McCarryster",
+  "url": "https://github.com/McCarryster/i_jepa_from_scratch",
+  "stars": 0,
+  "created": "2026-10-03",
+  "pushed": "2026-10-11",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 26,
+  "desc": "my implementation of I-JEPA 2023 paper"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "LEGENDARYAK/SkyJEPA2D",
+  "owner": "LEGENDARYAK",
+  "url": "https://github.com/LEGENDARYAK/SkyJEPA2D",
+  "stars": 0,
+  "created": "2026-10-04",
+  "pushed": "2026-10-04",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 5484,
+  "desc": "A simplification of the SkyJEPA AI world model, simplified and trained on a Python simulation in 2D. This is a jumping-off point for an even"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "abdelkbir1243/application-de-I-JEPA",
+  "owner": "abdelkbir1243",
+  "url": "https://github.com/abdelkbir1243/application-de-I-JEPA",
+  "stars": 0,
+  "created": "2026-09-22",
+  "pushed": "2026-09-22",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "Détections de usagers dans la scène routière"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "digonto10602/su2qc-jepa",
+  "owner": "digonto10602",
+  "url": "https://github.com/digonto10602/su2qc-jepa",
+  "stars": 0,
+  "created": "2026-10-02",
+  "pushed": "2026-10-25",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 37371,
+  "desc": "Gauge-JEPA-P v2: JEPA world model for SU(2) string breaking on one plaquette with a Krylov-chain hardware carrier (SU2QC)"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "seofernando25/csi5341-vla-jepa",
+  "owner": "seofernando25",
+  "url": "https://github.com/seofernando25/csi5341-vla-jepa",
+  "stars": 0,
+  "created": "2026-09-17",
+  "pushed": "2026-10-10",
+  "lang": "JavaScript",
+  "topics": [
+   "computer-vision",
+   "lerobot",
+   "lfm2",
+   "libero",
+   "robotics",
+   "vla"
+  ],
+  "size_kb": 54287,
+  "desc": "Computer vision class project: LeRobot VLA-JEPA with Qwen3-VL vs LFM2.5-VL on LIBERO"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "moumoubin99/jepa-second-moment-geometry",
+  "owner": "moumoubin99",
+  "url": "https://github.com/moumoubin99/jepa-second-moment-geometry",
+  "stars": 0,
+  "created": "2026-10-05",
+  "pushed": "2026-10-06",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 99820,
+  "desc": "Archived logs and reproducible analyses for a controlled study of Adam second-moment geometry in I-JEPA"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Ghildan797/website-belajar-bahasa-jepang-pemula",
+  "owner": "Ghildan797",
+  "url": "https://github.com/Ghildan797/website-belajar-bahasa-jepang-pemula",
+  "stars": 0,
+  "created": "2026-09-24",
+  "pushed": "2026-09-24",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "website bahasa jepang pemula"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "bigwolfeman/gaussian-jepa-3d-data",
+  "owner": "bigwolfeman",
+  "url": "https://github.com/bigwolfeman/gaussian-jepa-3d-data",
+  "stars": 0,
+  "created": "2026-09-29",
+  "pushed": "2026-09-29",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 3362,
+  "desc": "Verified 3D Gaussian scene data from Kubric MOVi-E, with Hugging Face archive"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "sumeirsoni/sg-jepa-gravity-rollout-factorial",
+  "owner": "sumeirsoni",
+  "url": "https://github.com/sumeirsoni/sg-jepa-gravity-rollout-factorial",
+  "stars": 0,
+  "created": "2026-09-17",
+  "pushed": "2026-09-17",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 2443,
+  "desc": "Factorial experiment separating environmental-variable conditioning from rollout training in SG-JEPA"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "AbhinandanMandal/STELLAR_JEPA_BU1LD",
+  "owner": "AbhinandanMandal",
+  "url": "https://github.com/AbhinandanMandal/STELLAR_JEPA_BU1LD",
+  "stars": 0,
+  "created": "2026-09-19",
+  "pushed": "2026-09-23",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 243,
+  "desc": "Joint Embedding Predictive Architecture for STELLAR (ICML 2026) framework"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "tanghaibao/jepa-world-model-from-scratch",
+  "owner": "tanghaibao",
+  "url": "https://github.com/tanghaibao/jepa-world-model-from-scratch",
+  "stars": 0,
+  "created": "2026-09-27",
+  "pushed": "2026-09-27",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 9,
+  "desc": "Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTorch. An encoder and EMA target learn coll"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "vtnguyen04/jepa-world-model-from-scratch",
+  "owner": "vtnguyen04",
+  "url": "https://github.com/vtnguyen04/jepa-world-model-from-scratch",
+  "stars": 0,
+  "created": "2026-10-05",
+  "pushed": "2026-10-05",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 212,
+  "desc": "Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTorch. An encoder and EMA target learn coll"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "jsaumil/jepa-world-model-from-scratch",
+  "owner": "jsaumil",
+  "url": "https://github.com/jsaumil/jepa-world-model-from-scratch",
+  "stars": 0,
+  "created": "2026-09-23",
+  "pushed": "2026-10-08",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 11,
+  "desc": "Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTorch. An encoder and EMA target learn coll"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "gxli/fractal-rl-action-conditioned-jepa",
+  "owner": "gxli",
+  "url": "https://github.com/gxli/fractal-rl-action-conditioned-jepa",
+  "stars": 0,
+  "created": "2026-09-28",
+  "pushed": "2026-09-28",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 6297,
+  "desc": "SAC and action-conditioned JEPA for continuous control in fractal potential landscapes."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "oguzcura/jepa-identifiability-boundary",
+  "owner": "oguzcura",
+  "url": "https://github.com/oguzcura/jepa-identifiability-boundary",
+  "stars": 0,
+  "created": "2026-09-08",
+  "pushed": "2026-09-10",
+  "lang": "Python",
+  "topics": [
+   "empirical-study",
+   "identifiability",
+   "jepa",
+   "representation-learning",
+   "self-supervised-learning"
+  ],
+  "size_kb": 1111,
+  "desc": "Empirical boundary map of latent identifiability in JEPA models beyond the Gaussian regime (Klindt-LeCun-Balestriero theorem empiricized) — "
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "axolotl-void/Undangan-Pernikahan--Jepang-",
+  "owner": "axolotl-void",
+  "url": "https://github.com/axolotl-void/Undangan-Pernikahan--Jepang-",
+  "stars": 0,
+  "created": "2026-08-26",
+  "pushed": "2026-08-26",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 10606,
+  "desc": "Undangan Digital Dengan Animasi UI/UX Bertema Jepang",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Its-Atharva-Gupta/JEPA-Global-Workspace",
+  "owner": "Its-Atharva-Gupta",
+  "url": "https://github.com/Its-Atharva-Gupta/JEPA-Global-Workspace",
+  "stars": 0,
+  "created": "2026-09-11",
+  "pushed": "2026-09-11",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 2620,
+  "desc": "Empirical study and mechanistic interpretability of Global Workspaces (J-Space) emergence, transfer, and causal steering across LLM scale"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "mojoganteng/belajar-bahasa-jepang",
+  "owner": "mojoganteng",
+  "url": "https://github.com/mojoganteng/belajar-bahasa-jepang",
+  "stars": 0,
+  "created": "2026-09-03",
+  "pushed": "2026-09-03",
+  "lang": "",
+  "topics": [],
+  "size_kb": 8,
+  "desc": "belajar bahasa jepang hiraga katakana kotoba",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kharinsaflaura/Kotoba-jepang-2",
+  "owner": "kharinsaflaura",
+  "url": "https://github.com/kharinsaflaura/Kotoba-jepang-2",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-08-31",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "kuis bahasa jepang 150 soal",
+  "maybe_empty": true,
+  "owner_repos": 7
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Dynamic-LeJEPA/Dynamic-LeJEPA",
+  "owner": "Dynamic-LeJEPA",
+  "url": "https://github.com/Dynamic-LeJEPA/Dynamic-LeJEPA",
+  "stars": 0,
+  "created": "2026-09-08",
+  "pushed": "2026-09-12",
+  "lang": "Python",
+  "topics": [
+   "physical-ai",
+   "vision",
+   "visionmodel",
+   "world-models"
+  ],
+  "size_kb": 623,
+  "desc": "Maximum-Entropy Representations for Sequential Prediction and Latent Planning with Theoretical Guarantees"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kharinsaflaura/kuis-kotoba-jepang-",
+  "owner": "kharinsaflaura",
+  "url": "https://github.com/kharinsaflaura/kuis-kotoba-jepang-",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-08-31",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 9,
+  "desc": "kuis kotoba jepang 200 soal",
+  "commits_30d": 0,
+  "stale": true,
+  "owner_repos": 7
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "tomg291/jepa_for_chaos",
+  "owner": "tomg291",
+  "url": "https://github.com/tomg291/jepa_for_chaos",
+  "stars": 0,
+  "created": "2026-08-26",
+  "pushed": "2026-08-26",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 23825,
+  "desc": "Experimenting with using JEPA to learn chaotic dynamical systems.",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "muhkhaerulrohman-bit/belajar-bahasa-jepang",
+  "owner": "muhkhaerulrohman-bit",
+  "url": "https://github.com/muhkhaerulrohman-bit/belajar-bahasa-jepang",
+  "stars": 0,
+  "created": "2026-09-06",
+  "pushed": "2026-09-06",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 12,
+  "desc": "Website pembelajaran Bahasa Jepang",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Rida-Shahid/JEPA-For-RL",
+  "owner": "Rida-Shahid",
+  "url": "https://github.com/Rida-Shahid/JEPA-For-RL",
+  "stars": 0,
+  "created": "2026-09-10",
+  "pushed": "2026-09-10",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "An implementation of the paper \"JEPA For RL\" ."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "keypaa/minecraft-world-jepa",
+  "owner": "keypaa",
+  "url": "https://github.com/keypaa/minecraft-world-jepa",
+  "stars": 0,
+  "created": "2026-09-11",
+  "pushed": "2026-09-20",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 198,
+  "desc": "Minecraft video world model (AR transformer + SD-VAE) - pre-cleanup snapshot, moving to local RTX PRO 6000"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "aryadians/SahabatJepangIndonesia",
+  "owner": "aryadians",
+  "url": "https://github.com/aryadians/SahabatJepangIndonesia",
+  "stars": 0,
+  "created": "2026-09-02",
+  "pushed": "2026-09-11",
+  "lang": "Blade",
+  "topics": [
+   "cashbook",
+   "erp",
+   "japanese",
+   "laravel",
+   "laravel-framework",
+   "laravel11"
+  ],
+  "size_kb": 2360,
+  "desc": "Sistem ERP Terpadu & Web Portal Resmi LPK serta Sending Organization (SO) Penempatan Kerja Jepang (Tokutei Ginou & Magang). Dilengkapi Multi",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "room101-dev/jepa-ball8x8",
+  "owner": "room101-dev",
+  "url": "https://github.com/room101-dev/jepa-ball8x8",
+  "stars": 0,
+  "created": "2026-08-30",
+  "pushed": "2026-08-30",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 10,
+  "desc": "JEPA LEWM as 8x8 block pong game",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "hengkironi15-dev/ekoteologi-MAN2JEPARA",
+  "owner": "hengkironi15-dev",
+  "url": "https://github.com/hengkironi15-dev/ekoteologi-MAN2JEPARA",
+  "stars": 0,
+  "created": "2026-08-29",
+  "pushed": "2026-08-29",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 46,
+  "desc": "🌿 Ekoteologi MAN 2 Jepara Merawat Alam, Menumbuhkan Iman, Membangun Masa Depan",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kharinsaflaura/kuis-kotoba-jepang-1",
+  "owner": "kharinsaflaura",
+  "url": "https://github.com/kharinsaflaura/kuis-kotoba-jepang-1",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-08-31",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 4,
+  "desc": "kuis kotoba jepang 50 soal",
+  "commits_30d": 0,
+  "stale": true,
+  "owner_repos": 7
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "mkarmann/motion-jepa-project-page",
+  "owner": "mkarmann",
+  "url": "https://github.com/mkarmann/motion-jepa-project-page",
+  "stars": 0,
+  "created": "2026-09-14",
+  "pushed": "2026-09-22",
+  "lang": "JavaScript",
+  "topics": [],
+  "size_kb": 7287,
+  "desc": "Project Page for MotionJEPA"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "vivek-v-ingle/jepa-world-model-control",
+  "owner": "vivek-v-ingle",
+  "url": "https://github.com/vivek-v-ingle/jepa-world-model-control",
+  "stars": 0,
+  "created": "2026-09-01",
+  "pushed": "2026-09-27",
+  "lang": "Python",
+  "topics": [
+   "computer-vision",
+   "imitation-learning",
+   "jepa",
+   "robotics",
+   "world-models"
+  ],
+  "size_kb": 1524,
+  "desc": "One-Shot Visual Imitation Learning & Latent World Model Control for Industrial Robotic Manipulators powered by Joint-Embedding Predictive Ar",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "redhamoulla/jepa-unet-time-series",
+  "owner": "redhamoulla",
+  "url": "https://github.com/redhamoulla/jepa-unet-time-series",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-08-31",
+  "lang": "",
+  "topics": [],
+  "size_kb": 0,
+  "desc": "Python package combining Region-JEPA and a 1D U-Net to detect and segment events in time series, trained and validated on Rossmann, Favorita",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kharinsaflaura/kuis-kotoba-jepang-03",
+  "owner": "kharinsaflaura",
+  "url": "https://github.com/kharinsaflaura/kuis-kotoba-jepang-03",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-08-31",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 9,
+  "desc": "kuis kotoba jepang 170 soal",
+  "commits_30d": 0,
+  "stale": true,
+  "owner_repos": 7
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "sudo-kachponz/Matcha-TTS-TLeJEPA",
+  "owner": "sudo-kachponz",
+  "url": "https://github.com/sudo-kachponz/Matcha-TTS-TLeJEPA",
+  "stars": 0,
+  "created": "2026-09-09",
+  "pushed": "2026-09-09",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 506,
+  "desc": "MatchaTTS with the text encoder replaced by a frozen pretrained TLeJEPA (Order-Aware) encoder"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kharinsaflaura/kuis-kotoba-jepang-3",
+  "owner": "kharinsaflaura",
+  "url": "https://github.com/kharinsaflaura/kuis-kotoba-jepang-3",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-08-31",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 8,
+  "desc": "kuis kotoba jepang 170 soal",
+  "commits_30d": 0,
+  "stale": true,
+  "owner_repos": 7
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "babamitoon-cpu/kamus-kerja-korea-jepang",
+  "owner": "babamitoon-cpu",
+  "url": "https://github.com/babamitoon-cpu/kamus-kerja-korea-jepang",
+  "stars": 0,
+  "created": "2026-09-11",
+  "pushed": "2026-09-11",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 18,
+  "desc": "Kamus digital Indonesia–Korea–Jepang dan latihan soal ujian kerja (EPS-TOPIK & Tokutei Ginou) untuk calon pekerja migran Indonesia."
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kharinsaflaura/kuis-kotoba-jepang-2",
+  "owner": "kharinsaflaura",
+  "url": "https://github.com/kharinsaflaura/kuis-kotoba-jepang-2",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-08-31",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 7,
+  "desc": "kuis kotoba jepang 150 soal",
+  "commits_30d": 0,
+  "stale": true,
+  "owner_repos": 7
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "kharinsaflaura/kuis-kotoba-jepang-4",
+  "owner": "kharinsaflaura",
+  "url": "https://github.com/kharinsaflaura/kuis-kotoba-jepang-4",
+  "stars": 0,
+  "created": "2026-08-31",
+  "pushed": "2026-08-31",
+  "lang": "HTML",
+  "topics": [],
+  "size_kb": 10,
+  "desc": "kuis kotoba jepang 170 soal",
+  "commits_30d": 0,
+  "stale": true,
+  "owner_repos": 7
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "ryanwu4/xtcav-daq2npz",
+  "owner": "ryanwu4",
+  "url": "https://github.com/ryanwu4/xtcav-daq2npz",
+  "stars": 0,
+  "created": "2026-08-28",
+  "pushed": "2026-08-28",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 61,
+  "desc": "convert facet2 daq to npz format for jepa-like files",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Jepa-0/Puckloose-Releases",
+  "owner": "Jepa-0",
+  "url": "https://github.com/Jepa-0/Puckloose-Releases",
+  "stars": 0,
+  "created": "2026-09-13",
+  "pushed": "2026-09-19",
+  "lang": "",
+  "topics": [],
+  "size_kb": 1,
+  "desc": "Puckloose Windows playtest downloads and updates"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "yassine11102003/ijepa-Image-based-Joint-Embedding-Predictive-Architecture-",
+  "owner": "yassine11102003",
+  "url": "https://github.com/yassine11102003/ijepa-Image-based-Joint-Embedding-Predictive-Architecture-",
+  "stars": 0,
+  "created": "2026-09-01",
+  "pushed": "2026-09-01",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 11,
+  "desc": "implementation of I-JEPA (Image-based Joint-Embedding Predictive Architecture) from scratch",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "lnrdchn/qm-wm",
+  "owner": "lnrdchn",
+  "url": "https://github.com/lnrdchn/qm-wm",
+  "stars": 0,
+  "created": "2026-09-02",
+  "pushed": "2026-09-02",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 29,
+  "desc": "JEPA-based world model with quasimetric latent space (Reshaped from pretrained DINO-WM)",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Flashness123/master_thesis",
+  "owner": "Flashness123",
+  "url": "https://github.com/Flashness123/master_thesis",
+  "stars": 0,
+  "created": "2026-09-09",
+  "pushed": "2026-10-24",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1264,
+  "desc": "This master thesis is currently investigating JEPA and its performance on ARC-AGI-3 and other benchmarks. All improvements on the JEPA archi"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "YashNagraj75/pc_predictor",
+  "owner": "YashNagraj75",
+  "url": "https://github.com/YashNagraj75/pc_predictor",
+  "stars": 0,
+  "created": "2026-09-15",
+  "pushed": "2026-10-20",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 67512,
+  "desc": "Predictive coding vs. backprop as the training rule for an I-JEPA-style joint-embedding world model predictor"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "ZephyrFinn/world-models-study",
+  "owner": "ZephyrFinn",
+  "url": "https://github.com/ZephyrFinn/world-models-study",
+  "stars": 0,
+  "created": "2026-09-10",
+  "pushed": "2026-09-10",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 5089,
+  "desc": "Reproducing Dreamer and LeWorldModel (JEPA), and three controlled experiments showing validation loss is a poor proxy for planning ability"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "LiHaoqwq/miniworld",
+  "owner": "LiHaoqwq",
+  "url": "https://github.com/LiHaoqwq/miniworld",
+  "stars": 0,
+  "created": "2026-09-04",
+  "pushed": "2026-09-06",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 224,
+  "desc": "A toy-scale testbed for comparing world-model families: pixel prediction vs RSSM vs JEPA, plus experiments on planning, discrete tokenizatio",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "AwareLiquid/AwareLiquid-World",
+  "owner": "AwareLiquid",
+  "url": "https://github.com/AwareLiquid/AwareLiquid-World",
+  "stars": 0,
+  "created": "2026-09-07",
+  "pushed": "2026-10-07",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 228,
+  "desc": "AwareLiquid World — industrial world-model research line: JEPA-style latent state prediction on the O-series liquid core (audio / sensor / e",
+  "commits_30d": 37,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "ugurercan99/lewm-visual-robustness",
+  "owner": "ugurercan99",
+  "url": "https://github.com/ugurercan99/lewm-visual-robustness",
+  "stars": 0,
+  "created": "2026-09-07",
+  "pushed": "2026-09-07",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1540,
+  "desc": "Semantic-background robustness of frozen pretrained LeWM (JEPA-style world model) checkpoints, evaluated closed-loop on PushT and TwoRoom. M",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "OssamaAzab/Towards-Reasoning-in-Vision-Language-Model",
+  "owner": "OssamaAzab",
+  "url": "https://github.com/OssamaAzab/Towards-Reasoning-in-Vision-Language-Model",
+  "stars": 0,
+  "created": "2026-08-30",
+  "pushed": "2026-08-30",
+  "lang": "Python",
+  "topics": [],
+  "size_kb": 1907,
+  "desc": "Reproducibility code and evaluation artifacts for studying encoder–connector interactions in frozen vision-language models on GQA, comparing",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "MagnyCopper/shuttlecut",
+  "owner": "MagnyCopper",
+  "url": "https://github.com/MagnyCopper/shuttlecut",
+  "stars": 0,
+  "created": "2026-09-05",
+  "pushed": "2026-09-24",
+  "lang": "Python",
+  "topics": [
+   "badminton",
+   "ffmpeg",
+   "pytorch",
+   "temporal-action-localization",
+   "video-highlight",
+   "vjepa"
+  ],
+  "size_kb": 4179,
+  "desc": "Badminton rally auto-clipping: V-JEPA 2 probe, zero-training cross-venue P/R 0.85/0.84 | 羽毛球整场视频→回合合集+精彩集锦",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "AhnafAhmed29/VisioDECT-Self-Supervised-Drone-Detection",
+  "owner": "AhnafAhmed29",
+  "url": "https://github.com/AhnafAhmed29/VisioDECT-Self-Supervised-Drone-Detection",
+  "stars": 0,
+  "created": "2026-09-15",
+  "pushed": "2026-09-24",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 78491,
+  "desc": "Research framework for drone detection on VisioDECT, benchmarking supervised YOLO/RF-DETR models against SimCLR, BYOL, I-JEPA, and DINOv3 se"
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Nusroth/Computer_Vision",
+  "owner": "Nusroth",
+  "url": "https://github.com/Nusroth/Computer_Vision",
+  "stars": 0,
+  "created": "2026-08-30",
+  "pushed": "2026-08-30",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "size_kb": 139239,
+  "desc": "A comprehensive computer vision project for synthetic outdoor waste detection and tracking, comparing YOLOv10, YOLOv12, YOLOv26, and RF-DETR",
+  "commits_30d": 0,
+  "stale": true
+ }
+]
