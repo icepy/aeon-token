@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-25T00:28:59.344135814Z",
+  "generatedAt": "2026-10-25T00:53:12.383207419Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -672,6 +672,55 @@
       ],
       "contentHash": "sha256-54326ce9b9473e6e0aefae1117222d347485c9219e117926f727e000190822ab",
       "discoveredFrom": "skills/token-pick/SKILL.md"
+    },
+    {
+      "id": "4a4d3ea2aea1a0bf",
+      "tool": "aeon",
+      "scope": "project:.",
+      "type": "skill",
+      "name": "github-radar",
+      "source": {
+        "kind": "local",
+        "ref": "skills/github-radar"
+      },
+      "capabilities": {},
+      "files": [
+        {
+          "path": "SKILL.md",
+          "hash": "c8f91952c464d67b07f93660cec1de871b9a44b371c18e850482996227b1074e"
+        }
+      ],
+      "findings": [
+        {
+          "ruleId": "EXEC-PRIMITIVE",
+          "severity": "medium",
+          "owasp": "ASK-03",
+          "file": "SKILL.md",
+          "line": 79,
+          "snippet": "import json, os, subprocess, sys, time, urllib.parse, urllib.request",
+          "explanation": "uses a process-execution primitive"
+        },
+        {
+          "ruleId": "EXEC-PRIMITIVE",
+          "severity": "medium",
+          "owasp": "ASK-03",
+          "file": "SKILL.md",
+          "line": 127,
+          "snippet": "r = subprocess.run(",
+          "explanation": "uses a process-execution primitive"
+        },
+        {
+          "ruleId": "EXEC-PRIMITIVE",
+          "severity": "medium",
+          "owasp": "ASK-03",
+          "file": "SKILL.md",
+          "line": 147,
+          "snippet": "r = subprocess.run([\"gh\", \"api\", \"rate_limit\", \"--jq\", \".resources.search\"],",
+          "explanation": "uses a process-execution primitive"
+        }
+      ],
+      "contentHash": "sha256-51c8c0a313a8d30f8919cc6bc14a349ef3c804c01af0ba3b8882435b471d8406",
+      "discoveredFrom": "skills/github-radar/SKILL.md"
     },
     {
       "id": "4b1417e533d52d24",
