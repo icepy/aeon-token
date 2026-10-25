@@ -1,125 +1,58 @@
-扫描与核验完成。以下是本轮结果。
+扫描、核验、日志都写完了（79 个报告级、两个 skill 缺陷已记录）。现在按 skill 的 `dry-run` 约定：不发通知。产出报告本身。
 
----
+## github-radar · 第四轮（60 天窗 · 首次干净跑）
 
-# GitHub Radar · 60 天窗 · 第三轮
+`var=dry-run days:60` → DRY=1，DAYS=60，MIN=0，CHK=5。18 词 × 3 窗，`in:name,description` only。
 
-**窗口** `2026-08-26 → 2026-10-25` · 17 词 × 3 子窗 · `min:0`（star 地板反向）· `dry-run`（未写 seen / candidates，未发通知）
+**规模**：原始 2,427 → 幸存 1,438（1,324 owner）→ 报告级 96 → **剔除列表页/项目页/语义误中后 79**。
+**四项分开报**（skill 硬要求）：
+- **查询失败：0 词**
+- **真零命中：0 词**
+- **覆盖率 <50%：3 词** — `vla` **7.9%** · `world model` **21.4%** · `jepa` **44.3%**（第三轮钉在同一组数字，窗口化到头了）
+- **核验 250 仓：0 空仓 / 0 未验成 / 0 限速重试**。stale 58 个
 
-**规模：原始 2,425 · 幸存 1,437 · 丢弃** `seen=132` `excl=142` `archived=1` `短描述=529` `carrier=184`
+**⚠️ 中途废弃了一轮**：安装 token 撞搜索限额后 `scan.py` 静默降级到未认证（10/min），把 145 个活仓标成「空仓 409」——包括上一轮确认在提交的 `NVIDIA/Flora`、`video-db/RoboPeek`。重跑并加了退避重试后才是上面这份账。
 
-## 零命中与失败（分开写，这是铁律）
+## 🔴 两个 skill 缺陷（比仓库重要）
 
-- **查询失败 0 词。**
-- **真零命中 0 词。** 17 词全部返回数据 —— 三轮里第一次干净跑（首轮 3 词 403，次轮 0 失败）。
-- **覆盖率 <50% 共 3 词：** `vla` **7.9%**（total 3,808 / 取 300）· `world model` **21.4%**（1,400 / 300）· `jepa` **44.3%**（677 / 300）。**这三个词的绝对数字不可引用。**
-- 总覆盖率 **32.1%**（7,551 / 2,426），与次轮 32.1% 完全一致 —— **窗口化已经到顶，再切窗不会更好。**
+**① 农场黑名单从未生效。** `memory/github-farms.txt` 是行内注释格式，`scan.py` 只跳 `#` 开头的行、不剥行内注释 → 解析出 3 个带注释尾巴的垃圾 key，**匹配 0 个 owner**，审计日志还显示 `farm=0`（看起来像「本轮没有农场」）。前三轮讨论 `maxamin` 该不该进黑名单，其实进了也没用。改法一行：`l.split("#")[0].strip()`。
 
-## 🔴 本轮真正的发现：skill 自带的提交核验打不到高信号仓
+**② `owner≥3 仓 = farm` 在误杀活仓。** 判掉了 4 个真仓：`rzc156/dreamforge` ★130/21 提交 · `Roboparty/P-BFM` ★95/745MB · `NEBULIS-Lab/D-JEPA` ★32/68 提交 · `liaohello/GigaWorld-Policy-Sim2Real` 18 提交。黑名单文件自己写明「3 仓**不够**，要结构同质+跨赛道+提交极少三者同时成立」，代码只实现了第一条。实际农场仍只有 `OpenMakerProjects`。
 
-skill 默认只对「创建时间最新的 25 个」查 30 天提交。60 天窗下这 25 个全部落在 **10-23 / 10-24、全部 ★0** —— 也就是说「判真伪只看 commits」这条铁律在默认实现下**永远碰不到 ★≥10 的那 162 个仓**。审计日志看起来完整（有 `commits30d` 列、有 `stale` 标记），但核验对象全是噪声。
+## 机器人侧（主战场）
 
-补查了 **120 个高信号仓**（10 月新建 ★≥5 的 86 个 + 更早 ★≥50 的 34 个）才拿到可读面：**alive 107 · 30 天零提交 13 · 空仓 0。**
+**最活跃 8 个**（提交数，`100+` 是 `per_page` 上限、实为 ≥100）：
 
-| 已死（star 在骗人） | ★ | 30d 提交 |
-|---|---|---|
-| `buaacyw/code-world-model` | 543 | 0 |
-| `robbyant-research/Zero-WAM` | 439 | 0 |
-| `Gen-Verse/JEPA-Anything` | 371 | 0 |
-| `Phyzicalorg/Phyzical_org` | 273 | 0 |
-| `ASIG-X/JEPLO` | 97 | 0 |
+| 仓库 | ★ | 30d | 建仓 | 一句话 |
+|---|---|---|---|---|
+| `OpenInterpretability/ekbasis` | 19 | 100+ | 10-04 | 给 agent 用的开放 world model，34MB Python |
+| `kaarelkaarelson/lingbot-world-v2-realtime` | 16 | 100+ | 09-16 | 1.3B 世界模型，RTX 5090 上 16 FPS |
+| `clipspark/multiworldbench` | 60 | 60 | 10-08 | 多世界模型基准 |
+| `TencentARC/WorldCrafter` | 537 | 53 | 09-14 | 隐式 3D 记忆的一致性视频世界模型 |
+| `video-db/RoboPeek` | 13 | 48 | 10-07 | 浏览器里读 RLDS/MCAP 机器人数据集 |
+| `cvlab-kaist/ME-World` | 24 | 37 | 10-01 | 多智能体第一视角世界模型 |
+| `QinnyuLan/SONIC_unitree_h2` | 38 | 35 | 10-14 | Unitree H2 真机全身控制 + VR 遥操 |
+| `ShuhongLL/RawVLA` | 94 | 32 | 10-02 | 具身神经 ISP |
 
-`Zero-WAM` **连续第二轮**被记为「★439 但零提交」—— 论文仓发完即停，不是偶发。
+**`world model` 这个词已经严重外溢**：32 个报告级里混进了自动驾驶、GUI agent、游戏、音频（`NoizAI/WorldSonus` ★234）、分子/PDE。**单独出现不再是信号，必须配具身 carrier 才算。**
 
-## 机器人侧 · WAM：star 顺序不是活跃度顺序
+**WAM 簇第四轮逐字复现**：84 仓 / 79 owner，W35–W43 = 5/9/5/6/**17/18**/6/10/8 —— 与第三轮完全一致，这条曲线现在可复用。★ 与提交的背离继续成立：`PrismWAM` ★48/10 提交 vs `flux-action` ★199/**2** 提交；`Zero-WAM` ★439 的 `pushed_at` 仍停在 09-15，四轮零提交。`SkillWeaver`（★5/15 提交）仍是跨通道唯一交集，且仍不在正式词表里。
 
-`world action model` **严格词表 84 仓 / 79 owner**（并上 name 含 wam 则 92 仓 / 87 owner）。**79 个 owner 里只有 5 个有 ≥2 个仓 —— 散点式命名收敛，不是单一项目刷量。**
+## 加密侧（顺带）
 
-按周：W35 5 · W36 9 · W37 5 · W38 6 · **W39 17 · W40 18** · W41 6 · W42 10 · W43 8。**双峰是 CoRL / NeurIPS 投稿期，回落但没归零。**
-
-| 仓库 | ★ | 30d 提交 |
-|---|---|---|
-| `OpenWAM-Official/OpenWAM` | 1106 | 11 |
-| `TencentARC/WorldCrafter` | 537 | 53 |
-| `OpenMOSS/EasyWAM` | 381 | 30 |
-| `black-forest-labs/flux-action` | 199 | 2 |
-| `UniWAM/UniWAM` | 135 | 20 |
-| `THUSI-Lab/PrismWAM` | 48 | 10 |
-
-**★1106 的提交数不到 ★48 的两倍。** star 测发布时的传播，commits 测现在还有人写。
-
-**新形态：WAM 从「论文仓」分裂出「工程仓」。** 10 月新建、name 含 WAM 的 19 个仓里出现三类非论文形态 —— 小型化/边缘端（`iitimii/SmolWAM` ★13 · 0.88B；`S1rlvk/smolwam-robocasa` ★0，desc 自报「zero-shot 0/30」，**诚实报负结果**）、蒸馏加速（`pjliu3/WAM-OPD` ★1）、项目页独立成仓（`Prism-WAM/*.github.io`、`RealtimeWAM/*.github.io`）。
-
-**10 月新建 + 30d 提交 ≥10 的工程仓共 28 个**（已剔 3 个语义误中）。最活跃的几个：
-
-- `OpenInterpretability/ekbasis` ★19 · 100 提交 · 「agent 的动作后果预测」
-- `clipspark/multiworldbench` ★60 · 60 提交
-- `video-db/RoboPeek` ★13 · 48 提交 · RLDS / LeRobot 数据集浏览器
-- `cvlab-kaist/ME-World` ★24 · 37 提交
-- `QinnyuLan/SONIC_unitree_h2` ★38 · 35 提交 · Unitree H2 真机部署
-- `Iunacy/HAND` ★5 · 35 提交 · C++ 整机系统
-- `ShuhongLL/RawVLA` ★94 · 32 提交
-
-## 🟢 跨通道唯一交集：`SkillWeaver`
-
-- arxiv-radar 90 天窗「具身数据引擎」11 篇里有 `SkillWeaver`（**09-28**，arXiv 2609.36171，「agentic 探索替代遥操作量产机器人数据」）
-- 代码侧 `Ada4321/SkillWeaver` ★5 建于 **10-08**，30d **15 提交**，CoRL 2026
-
-**论文 → 代码滞后 10 天。这是三轮里第一次真正抓到本 skill 存在的理由：同一个词在两条通道上依次点亮，那个次序才是信号。**
-
-顺带用 6 个**非官方**探针词查了 arxiv 那条主线的代码对应物（结果单列，不计入词表统计）：
-
-- **`NVIDIA/Flora`** ★11 · 10-20 · NVIDIA GEAR「robotics data engine 开源模型套件」· 30d **11 提交** · Python · 10.6MB
-- **`wellkilo/embodigen`** ★0 · 10-19 · 30d **23 提交** · 17.4MB
-
-**这两个仓在正式词表下完全不可见（不含任何 TERMS 词），只能靠探针捞。** arxiv 那 20 篇里 11 篇是数据引擎，代码侧几乎空白 —— 工程化明显滞后。
-
-## 加密侧 · 第三轮仍是「测量过的空」，噪声率钉死了
-
-6 个小词合计 **39 仓**，★≥10 只有 1 个：**`vearl-verified-compute/vearl` ★22，Rust，30d 78 提交** —— 三轮连续唯一真在写代码的加密仓。
-
-**两个脏词的噪声率：**
-
-| 词 | total_count | 过 carrier | 噪声率 |
-|---|---|---|---|
-| `data availability` | 130 | 5 | **96.2%**（次轮 92%） |
-| `intent-based` | 120 | 10 | **91.7%**（次轮 88%） |
-
-**同一个词连续多轮越测越脏 = 已彻底语义漂移。继续调 carrier 是徒劳，只能删词或换 topic 路由。这个结论三轮未变。**
-
-其余真在写的（提交数 >10，作对照面）：`spark-pearl-miner` 100（Rust，Pearl/PRL 挖矿）· `Ulysse98/prism` 100（Go，PoS+PoUW）· `samooth/zig-zkml` 100（Zig，zkML）· `Dhaiwat10/openinstinct-qwen` 51 · `itzebe/intent-pay` 57（Monad）。
-
-**两个空仓复现：** `UTAustin-SwarmLab/TensorCommitments`、`praxisfun-png/Praxis` 均 `size=0` + commits 409 —— 与次轮逐字一致。
-
-**农场：** `maxamin` 第三轮出现，3 个仓全建于 10-23、size 20–27KB、各 1 提交、跨三个赛道 —— **跨轮稳定复现，判农场成立。** 另 `OpenMakerProjects` 10 · `muhamuttaqien` 4 · `YucongDuan` 4 · `SajjadPSavoji` 4。
-
-## 未验证 / 存疑
-
-- `vla` 7.9% / `world model` 21.4% 覆盖率下，两簇完全没做判断。
-- WAM 工程化分裂只有 3–4 个仓、跨度 2 周，**是趋势还是单点无法区分**。
-- `NVIDIA/Flora` 建仓 5 天、11 提交，太早。
-- 「topic 路由」方案三轮都没实测。
-
----
+**测量过的空，第四轮不变**：39 仓里 ★0 占 34，★≥10 只有 1 个，报告级 1 个 —— `vearl-verified-compute/vearl` ★22 / **83 提交** / Rust / 今天还在推，**四轮连续唯一真在写代码的加密仓**。`data availability` 5 仓、`intent-based` 10 仓，噪声率仍 90%+，维持「删词或换 topic 路由」。
 
 ## Summary
 
-**做了什么**
-- 按 `var=dry-run days:60` 跑完整扫描：17 词 × 3 窗，2,425 条原始 → 1,437 幸存，0 查询失败、0 真零命中。
-- **补上了 skill 默认实现的盲区**：自带 audit 只查创建最新的 25 个（全是 ★0），手工补查 120 个高信号仓 + 加密侧全部 39 个的 30 天提交与 size。
-- 量化了两个脏词的噪声率（96.2% / 91.7%）、逐词覆盖率、WAM 簇按周曲线与 owner 扩散。
-- 跑了 6 个非官方探针词，抓到正式词表不可见的 `NVIDIA/Flora` 与 `embodigen`，并找到跨通道信号 `SkillWeaver`。
+**做了什么**：跑通 github-radar 第四轮 60 天窗扫描；发现并修复首轮被限速污染的假数据；核验 250 仓提交；做农场结构核验（32 仓）与语义误中剔除；查出两个 skill 实现缺陷。
 
-**文件创建 / 修改**
-- `memory/logs/2026-10-25.md` — 追加 `### github-radar（第三轮）` 一节
-- `memory/topics/world-action-models.md` — **新建**，WAM 提法的完整知识条目
-- `memory/topics/lessons.md` — 新增 3 条方法学（抽样不能按结果排序取前 N、覆盖率 32.1% 已到顶、脏词噪声率随轮次上升）
-- `memory/topics/index.md` · `memory/MEMORY.md` — 加索引与指针
-- `output/ghradar/` — `out.json`(1,437 条) · `audit.log` · `highsig.json` · 8 个分析脚本
-- **dry-run 未写** `memory/github-seen.json`（至今不存在）与 `github-candidates.md`，**未发通知**
+**创建/修改**：
+- `memory/logs/2026-10-25.md` — 新增第四轮完整日志
+- `memory/topics/lessons.md` — 4 条新教训（黑名单解析、farm 误杀、per_page 上限）
+- `memory/topics/world-action-models.md` — 第四轮复核节 + 引用更新
+- `memory/MEMORY.md` — 3 条一行教训 + WAM 条目更新
+- `output/ghradar/` — `scan_paced.py`（加固版）、`hygiene2.py`、`farmcheck.py` 等分析脚本
 
-**后续动作（需你决定）**
-1. **是否要改 skill 的核验入口** —— 现在的「创建时间最新 25 个」在长窗口下必然全取到噪声，建议改成按 star 分桶或提交数预筛。这是本轮最有价值的方法学产出。
-2. `data availability` / `intent-based` 连续三轮噪声 90%+，建议删词，不再调 carrier。
-3. `maxamin` 应加入农场黑名单（三轮复现）。
-4. `git status` 里 `AGENTS.md` 是 deleted、`notify` / `notify-jsonrender` / `secretcurl` 是 untracked，都不是本轮产生的，留给你判断。
+**dry-run 遵守**：未写 `github-seen.json`、未写 `github-candidates.md`、**未发通知**。
+
+**需要跟进**：① `scan.py` 的黑名单解析和 `owner≥3` 规则要修（建议开 PR）；② 下轮该跑非 dry-run，否则 seen 永远建不起来、每轮都是「全部新」；③ `vla`/`world model` 覆盖率不解决，这两簇永远只能看形状。

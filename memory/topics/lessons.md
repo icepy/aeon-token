@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-25T00:35:00Z
+timestamp: 2026-10-25T03:40:00Z
 ---
 
 # Lessons learned — archive
@@ -64,6 +64,9 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **「抽样核查」不能按结果排序取前 N。** 2026-10-25 `github-radar` 实测：skill 自带 audit 对「创建时间最新的 25 个」查 30 天提交，60 天窗下这 25 个全部落在最近两天、全部 ★0 —— **铁律「判真伪只看 commits」在默认实现下永远碰不到 ★≥10 的那 162 个仓。** 症状是审计日志看起来完整（有 commits30d 列、有 stale 标记），但核验对象全是噪声。**任何按排序截断的抽样，都要先问「这个排序跟我要判的属性相关吗」；不相关就换个入口（本轮改成 10 月新建 ★≥5 + 更早 ★≥50，共 120 仓）。**
 - **`total_count` 覆盖率连续两轮钉在 32.1% = 窗口化已经到头。** `github-radar` 17 词 × 3 窗，7,551 → 2,426。要真覆盖只能按 `created:` 逐日切片，或换 `sort=updated` 取活跃面。**覆盖率 <50% 的词（本轮 `vla` 7.9% / `world model` 21.4% / `jepa` 44.3%）任何绝对数字都不能引用** —— 这一条已连续两轮成立，不是偶发。
 - **脏词噪声率会随轮次上升，不会自己变好。** `data availability` 130 命中过 carrier 仅 5（**3.8%**，次轮 8%），`intent-based` 120 → 10（**8.3%**，次轮 10%）。**同一个词连续多轮越测越脏 = 该词在平台上已彻底语义漂移**，此时继续调 carrier 是徒劳，只能删词或换 topic 路由。
+- **🔴 黑名单文件带行内注释 = 黑名单完全失效，而且日志会显示 farm=0（看起来像"本轮没有农场"）。** 2026-10-25 第四轮实测：`memory/github-farms.txt` 写成 `maxamin              # 3 仓全建 10-23…`，而 `scan.py` 的解析是 `{l.strip().lower() for l in open(...) if l.strip() and not l.startswith("#")}` —— **只跳过以 `#` 开头的行，不剥行内注释**。结果解析出 3 个 key：`"maxamin              # 3 仓全建..."`、`"nirholas             # 60 天建 100 个仓..."`、`"openmakerprojects    # 10 个仓全是..."`，**没有一个能匹配真实 owner，命中 0 个仓**。三轮都还在讨论 `maxamin` 该不该进黑名单，其实进了也从来没生效。**判据：任何"读取黑名单 / 白名单 / 配置"的代码，必须回读它解析出的 key 集合本身，不能只看"过滤后没有命中"——空集和没命中长得一模一样。改法：`l.split("#")[0].strip()`。**
+- **🔴 「owner ≥3 仓 = 农场」这条硬规则会误杀正经研究组，而且和黑名单文件里写死的判据自相矛盾。** 2026-10-25 实测：`farm_hit` 判掉 4 个 30 天 ≥5 提交的活仓 —— `rzc156/dreamforge`（★130 / 21 提交 / 建 10-12）、`liaohello/GigaWorld-Policy-Sim2Real`（18 提交）、`Roboparty/P-BFM`（★95 / 745MB / 10 提交）、`NEBULIS-Lab/D-JEPA`（★32 / 66MB / 68 提交）。**这四个都是单一大工程 + 两个小附属仓的结构，正是研究组的常态。** `github-farms.txt` 开头明写「只是一个 owner 有 3+ 个仓**不够** —— 要三者同时成立（结构同质 + 跨赛道 + 提交极少）」，但 `scan.py` 只实现了第一条。**判据：规则文档和代码实现要逐条对照；"≥N 就判"这种单阈值规则，等于把文档里的另外两条判据静默丢掉。**
+- **「报告级」的排序键本身会制造一个假的量级错觉：`commits_30d` 撞 `per_page=100` 上限。** 本轮 `rokbenko/quackd`、`OpenInterpretability/ekbasis`、`kaarelkaarelson/lingbot-world-v2-realtime` 等 6 个仓全部显示 `100`，实际是 **≥100**。**任何分页计数都必须显式标注是下限**，否则"100 提交"会被下游当成精确值去比大小。
 
 ## 行情取数形状（DeFiLlama / CoinGecko）
 

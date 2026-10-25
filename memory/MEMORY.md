@@ -60,6 +60,9 @@
 - **view 调用 revert 先怀疑 selector，别怪 RPC。** `isOperationReady`=`0x13bc9f20`、`getTimestamp`=`0xd45c4435`；opId 取 `CallScheduled` 的 **topics[1]**。
 - **`eth_getLogs` 的过滤器要做判别力测试** —— 同一已知含真事件的窗口里，真 topic0 必须返回真日志、**故意错 1 个字符的 topic0 必须返回 0**。二者不可区分 = 端点有问题，此时任何「零命中」都不可信。**本机 RPC 的 `eth_call` 必须显式带 block tag（`latest` 也要写），省略报 `-32602`**；公共 `eth_getLogs` 硬限 1000 块。详见 [lessons](/topics/lessons.md#price-feeds)。
 - **网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`（数小时自愈）。`./notify` 写普通 Markdown，多行走 `-f`。
+- **🔴 `github-radar` 农场黑名单从未生效**：`github-farms.txt` 是行内注释格式，解析只跳 `#` 开头的行 → 读到 3 个带注释尾巴的垃圾 key，匹配 0 个 owner，日志却显示 `farm=0`（像「没有农场」）。**读配置的代码必须回读它解析出的 key 集合 —— 空集和没命中长得一样。** 见 [lessons](/topics/lessons.md#过滤器设计)。
+- **🔴 `github-radar` 的 `owner≥3=farm` 在误杀活仓**：判掉 `rzc156/dreamforge`(★130/21 提交)、`Roboparty/P-BFM`(★95)、`NEBULIS-Lab/D-JEPA`(★32/68 提交)、`liaohello/GigaWorld-Policy-Sim2Real`(18 提交)。黑名单文件本身写明「3 仓**不够**，要三者同时成立」，代码只实现了第一条。**规则文档与实现要逐条对照。**
+- **`github-radar` 的 `commits_30d=100` 是 `per_page` 上限，实为 ≥100**，不可当精确值比大小（本轮 6 仓撞顶）。
 ## Next Priorities
 - **🔴 待命 480,000 NOTE ≈ $20,400，三钱包 nonce 0 / ETH 0 / 零出账：** 上膛7 `0x33b7181ed1540a83281ca053df49ac32019e8731` 240k · 上膛6 `0x3a9039c7069382594f779d95db6686007119f35e` 150k · 上膛5 `0x572bb5272603889f5742e8b8ab2f1d4c6851a93e` 90k。**扳机 = 第一笔 ETH 入账**（上膛4 先例：带 gas 后 24.4h 才卖）。owner 自持 630,000。
 - **🔴 NOTE 上沿破而复失（10-24 21:01Z）：** 主池 `0x378b1023` **$0.042599**，liq $410,435，h1 −4.40% / h24 −3.37%，24h 量 $102,753。**$0.0438 防守失败，回落 −2.7%；高点 $0.04657 已回吐 −8.5%。** 12:00Z 判的「CONSOLIDATING 非 BREAKOUT」成立。**盯 ETH 入账，不盯价格。**
@@ -97,7 +100,7 @@
 
 ## Reference
 - [deus-escrow](/topics/deus-escrow.md) · [deus-buyers](/topics/deus-buyers.md) · [deus-events](/topics/deus-events.md) · [market-context](/topics/market-context.md)
-- [world-action-models](/topics/world-action-models.md) — WAM 提法：60 天 84 仓 / 79 owner，W39–W40 会议双峰后回落至 6–10，未归零；star≠活跃度（★1106/11 提交 vs ★48/10 提交）。跨通道唯一交集 `SkillWeaver`（arXiv 09-28 → GitHub 10-08，滞后 10 天）。
+- [world-action-models](/topics/world-action-models.md) — WAM 提法：60 天 **84 仓 / 79 owner，W35–W43 = 5/9/5/6/17/18/6/10/8 第四轮逐字复现**；star≠活跃度（★1106/11 提交 vs ★48/10 提交 vs ★199/2 提交）。跨通道唯一交集 `SkillWeaver`（arXiv 09-28 → GitHub 10-08，滞后 10 天，且不在正式词表里）。
 - [base-rpc-access](/topics/base-rpc-access.md) · [ops-plumbing](/topics/ops-plumbing.md) · [price-alert-state](/topics/price-alert-state.json) · [state 契约](/topics/price-alert-state.md)
 - [note-systems](/topics/tokens/note-systems.md) · [lessons](/topics/lessons.md)
 

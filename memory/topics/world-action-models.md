@@ -3,7 +3,7 @@ title: World Action Models (WAM)
 description: WAM 作为具身智能的新提法 —— GitHub 代码侧的按周收敛曲线、工程化分裂、以及 star 与 commits 的背离
 tags: [robotics, embodied-ai, world-model, wam, discovery, github-radar]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-25T02:50:00Z
+timestamp: 2026-10-25T03:42:00Z
 ---
 
 # World Action Models (WAM)
@@ -43,6 +43,16 @@ XMAQUINA / DEUS 押的是机器人叙事。**同一个词在 arxiv 与 GitHub �
 
 **结论：star 测「发布时的传播」，commits 测「现在还有人写」。★1106 的提交数不到 ★48 的两倍 —— 头部 star 顺序不是工程活跃度顺序。**
 
+## 第四轮复核（2026-10-25 03:40Z，干净跑：0 失败 / 0 空仓 / 0 限速）
+
+严格词表口径**与第三轮逐字一致**：84 仓 / 79 owner，W35–W43 = 5/9/5/6/**17/18**/6/10/8。**同一窗口、同一筛选器、两次独立跑出同一组数字 —— 这条曲线现在是可复用的，不是一次采样。**
+
+- **10 月新建 29 个（含放宽口径 31），但只有 6 个报告级**（≥5 提交/30d）。**这 6 个不是按 star 排出来的头部** —— `EasyWAM` ★381/30 提交、`DexTacWAM` ★24/24、`TacPAC` ★19/22、`UniWAM` ★135/20、`AquaWAM` ★35/17、`Phoenix-MWA` ★28/14。**10 月新仓普遍还在第 2–4 周，5 次提交的门槛对新仓本身就有观察窗偏差。**
+- **`PrismWAM` 复核：★48 / 30d 10 提交 / pushed 10-23。** 连续三轮同一数值，活仓。对比 `flux-action`（Black Forest Labs，★199，30d **2** 提交，pushed 10-16）—— **★低的比 ★高的活跃 5 倍，这条背离第四轮继续成立。**
+- **本轮无 `Zero-WAM` 复活迹象**：★439，`pushed_at` 仍停在 **2026-09-15**，连续四轮零提交。
+- **`SkillWeaver` 仍是跨通道唯一交集**：`Ada4321/SkillWeaver` ★5 / 30d **15 提交** / pushed 10-11。论文 09-28 → 代码 10-08，滞后 10 天。**注意它不在正式 `TERMS` 里，只有探针词能捞到。**
+
+
 ## 工程化分裂（10 月新建里出现的三种非论文形态）
 
 name 含 WAM 的 10 月新仓 19 个，其中 8 个 ★0（符合「新建仓必然 ★0–2」）。除论文官方实现外：
@@ -74,7 +84,8 @@ name 含 WAM 的 10 月新仓 19 个，其中 8 个 ★0（符合「新建仓必
 
 # Citations
 
-- GitHub Search API — `"world action model" in:name,description created:2026-08-26..2026-10-25 fork:false stars:>=0`，17 词 × 3 窗，快照 `output/ghradar/out.json`（1,437 条）
-- 提交核验 — `gh api repos/{owner}/{repo}/commits?since=2026-09-25`，120 个高信号仓
+- GitHub Search API — `"world action model" in:name,description created:2026-08-26..2026-10-25 fork:false stars:>=0`，17 词 × 3 窗，快照 `output/ghradar/out.json`（1,438 条，第四轮）
+- 提交核验 — `gh api repos/{owner}/{repo}/commits?since=` （第四轮：250 仓核验，0 空仓 / 0 未验成；`per_page=100` 上限，故 100 实为 ≥100）
+- 原始仓库 — https://github.com/OpenWAM-Official/OpenWAM · https://github.com/THUSI-Lab/PrismWAM · https://github.com/iitimii/SmolWAM · https://github.com/NVIDIA/Flora · https://github.com/Ada4321/SkillWeaver
 - 原始仓库 — https://github.com/OpenWAM-Official/OpenWAM · https://github.com/THUSI-Lab/PrismWAM · https://github.com/iitimii/SmolWAM · https://github.com/NVIDIA/Flora · https://github.com/Ada4321/SkillWeaver
 - arXiv — SkillWeaver 2609.36171（经 arxiv-radar 90 天窗命中）

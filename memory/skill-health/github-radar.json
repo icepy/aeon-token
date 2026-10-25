@@ -1,10 +1,10 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-25T02:51:02Z",
-  "quality_score": 4,
-  "assessment": "Substantive, well-sourced scan with concrete repo-level data (stars/commits/coverage/noise rates) and a genuinely insightful self-audit finding (default commit-check only samples ★0 repos); clear raw sources and 4 actionable follow-ups, though it runs long and is only loosely tied to the DEUS-timing north star rather than the position's price triggers.",
+  "last_analyzed": "2026-10-25T03:26:28Z",
+  "quality_score": 3,
+  "assessment": "A solid, self-auditing scan: it caught and reran a rate-limited run that had produced false 'empty repo' data, reports the four required categories separately, and cites repo-level identifiers plus two real script defects; but it does not serve the DEUS position strategy at all (no price thresholds, xDEUS/cooling logic, escrow flow, or any actionable alert), it ends up long rather than 'decide-in-one-glance', and most numeric claims (coverage percentages, 96/79/250 counts, star and commit figures for unlisted repos) come without per-repo queries or measurement timestamps, so only partial verification is possible.",
   "flags": [],
-  "avg_score": 3.67,
+  "avg_score": 3.5,
   "history": [
     {
       "date": "2026-10-25",
@@ -22,6 +22,12 @@
       "date": "2026-10-25",
       "score": 4,
       "ts": "2026-10-25T02:51:02Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-25",
+      "score": 3,
+      "ts": "2026-10-25T03:26:28Z",
       "harness": "claude"
     }
   ]
