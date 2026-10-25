@@ -64,15 +64,15 @@
   },
   "defi-overview": {
     "last_dispatch": "2026-10-25T12:30:45Z",
-    "last_status": "dispatched",
+    "last_status": "failed",
     "last_success": "2026-10-24T12:09:02Z",
-    "total_runs": 3,
+    "total_runs": 4,
     "total_successes": 2,
-    "total_failures": 1,
-    "consecutive_failures": 1,
-    "success_rate": 0.67,
+    "total_failures": 2,
+    "consecutive_failures": 2,
+    "success_rate": 0.5,
     "last_quality_score": 3,
-    "last_failed": "2026-10-25T12:06:48Z",
+    "last_failed": "2026-10-25T12:31:12Z",
     "last_error": "hivemindos: Failed to authenticate. API Error: 403 All target providers failed."
   },
   "arxiv-radar": {
