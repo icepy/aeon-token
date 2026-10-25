@@ -1,0 +1,91 @@
+
+## 2026-10-25 · github-radar（报告级 89）
+- [rokbenko/quackd](https://github.com/rokbenko/quackd) ★276 · 100d提交 · `vla` · One CLI for all your robots. Connect them, command them, and let them work together, each with an LL
+- [ABC12345anouys/EvoBot](https://github.com/ABC12345anouys/EvoBot) ★128 · 100d提交 · `world model/vla` · Agent + reusable skill library for LIBERO manipulation tasks (no RL / VLA / world model; no LLM call
+- [OpenInterpretability/ekbasis](https://github.com/OpenInterpretability/ekbasis) ★19 · 100d提交 · `world model` · Ekbasis: an open world model for agents. What an action will do, before it is done.
+- [futakw/Awesome-Physical-AI-Safety](https://github.com/futakw/Awesome-Physical-AI-Safety) ★7 · 100d提交 · `vla` · An LLM-assisted bibliography of safety, security, robustness, ethical and societal risks, and trustw
+- [cooperwooley/diamond-cs2-v2](https://github.com/cooperwooley/diamond-cs2-v2) ★1 · 100d提交 · `world model` · Action-conditioned DIAMOND world model for CS2 (CS 5404 final project): self-generated paired frame/
+- [vearl-verified-compute/vearl](https://github.com/vearl-verified-compute/vearl) ★22 · 83d提交 · `proof of useful work` · Vearl - verified compute: a proof-of-useful-work chain
+- [video-db/RoboPeek](https://github.com/video-db/RoboPeek) ★13 · 48d提交 · `robot dataset` · Peek inside robotics datasets in the browser, straight from the source files. RLDS and MCAP readers 
+- [cvlab-kaist/ME-World](https://github.com/cvlab-kaist/ME-World) ★24 · 37d提交 · `world model/egocentric` · Official implementation of "Multi-Agent Egocentric World Model with Fine-Grained Embodied Interactio
+- [QinnyuLan/SONIC_unitree_h2](https://github.com/QinnyuLan/SONIC_unitree_h2) ★38 · 35d提交 · `teleoperation` · Official Unitree H2 deployment of TRACE: SONIC whole-body control with motion replay, planning, and 
+- [Iunacy/HAND](https://github.com/Iunacy/HAND) ★5 · 35d提交 · `robot manipulation` · An autonomous robotic manipulation system built with C++, integrating computer vision, motion planni
+- [ShuhongLL/RawVLA](https://github.com/ShuhongLL/RawVLA) ★94 · 32d提交 · `robot manipulation/vla` · RawVLA: Embodied Neural Image Signal Processor For Robotic Manipulation
+- [OpenMOSS/EasyWAM](https://github.com/OpenMOSS/EasyWAM) ★382 · 30d提交 · `world action model` · A unified framework for training, fine-tuning, and evaluating World Action Models
+- [dundysm/occlubench](https://github.com/dundysm/occlubench) ★1 · 30d提交 · `vla` · OccluBench: GPU-native benchmark for VLA robustness to mid-episode physical occlusion (MuJoCo Warp)
+- [Dicomsky/StairVLA](https://github.com/Dicomsky/StairVLA) ★5 · 29d提交 · `vla` · Stage-aware hierarchical action generation for vision-language-action models (StairVLA, arXiv 2610.0
+- [andywang0321/toy-jepa](https://github.com/andywang0321/toy-jepa) ★0 · 27d提交 · `jepa` · Learning JAX, functional programming, and JEPA in one project! AI-guided, handwritten as much as pos
+- [Pseudo-Lab/Sim2Real-Walking-Robot](https://github.com/Pseudo-Lab/Sim2Real-Walking-Robot) ★6 · 25d提交 · `sim2real` · 13기 가장 빠르게 만들어 보는 보행로봇 프로젝트 -가성비 높은 허깅페이스 로봇팔부터 RL, 또는 빠르게 진보하는 RFM 알고리즘을 연구하고 보행로봇에 적용할 것입니다.
+- [dextacwam/DexTacWAM](https://github.com/dextacwam/DexTacWAM) ★24 · 24d提交 · `world action model` · DexTacWAM: A Visuo-Tactile World-Action Model for Dexterous Manipulation
+- [LogosIntelligenceLab/TacPAC](https://github.com/LogosIntelligenceLab/TacPAC) ★19 · 22d提交 · `world action model` · TacPAC: Tactile Prediction and Real-Time Action Correction in World-Action Models for Contact-Rich M
+- [ZJU-OmniAI/VLA-Rolling](https://github.com/ZJU-OmniAI/VLA-Rolling) ★13 · 22d提交 · `vla` · VLA-Rolling: Fewer Denoising Steps, Better Control via Adaptive Action Reuse
+- [rzc156/dreamforge](https://github.com/rzc156/dreamforge) ★130 · 21d提交 · `world model` · Turn world-model imagination into corrective training data for robot policies — a single-GPU, falsif
+- [UniWAM/UniWAM](https://github.com/UniWAM/UniWAM) ★135 · 20d提交 · `world action model` · Official code of UniWAM: Unified World-Action Model
+- [kf953741/kf953741](https://github.com/kf953741/kf953741) ★0 · 20d提交 · `world action model` · Fei Kang @ Skywork AI | World models, embodied intelligence, world action models and model post-trai
+- [OpenBMB/SimpleNav](https://github.com/OpenBMB/SimpleNav) ★137 · 18d提交 · `vla` · SimpleNav: A simple, unified, reproducible, and extensible framework for navigation VLA research.
+- [ASGuard-UCI/safedrive-vla](https://github.com/ASGuard-UCI/safedrive-vla) ★29 · 18d提交 · `world model/vla` · [CoRL 2026] SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End 
+- [WorldOracle-benchmark/WorldOracle](https://github.com/WorldOracle-benchmark/WorldOracle) ★20 · 18d提交 · `world model` · Official implementation for WorldOracle: Benchmarking Action-Conditioned World Models against Real-W
+- [liaohello/GigaWorld-Policy-Sim2Real](https://github.com/liaohello/GigaWorld-Policy-Sim2Real) ★0 · 18d提交 · `sim2real` · Reproduce GigaWorld-Policy 0.5, benchmark action generation and inference latency, fine-tune policie
+- [cunhaozhu/AquaWAM](https://github.com/cunhaozhu/AquaWAM) ★35 · 17d提交 · `world action model` · AquaWAM: A Dynamics-aware World Action Model for Underwater Embodied Agents
+- [91CHD/embodied-data-lab](https://github.com/91CHD/embodied-data-lab) ★0 · 16d提交 · `embodied data` · 具身数据与实验管理平台：LeRobot v3 轨迹回放、质量检查、可恢复任务与实验追溯。Vue3 / FastAPI / PostgreSQL。
+- [KhushiVerma9810/teleoperation-cockpit-poc](https://github.com/KhushiVerma9810/teleoperation-cockpit-poc) ★0 · 16d提交 · `teleoperation` · Teleoperation cockpit App
+- [THUWHY2001/et2-sim2real](https://github.com/THUWHY2001/et2-sim2real) ★0 · 16d提交 · `sim2real` · ET2 J2/J3/J4 joint resistance and sensitivity analysis
+- [khelverskovp/atom-jepa](https://github.com/khelverskovp/atom-jepa) ★12 · 15d提交 · `jepa` · Atom-JEPA: Joint-Embedding Predictive Architecture for 3D Atomistic Systems
+- [OpenPhoenix-Team/Phoenix-MWA](https://github.com/OpenPhoenix-Team/Phoenix-MWA) ★28 · 14d提交 · `world action model` · Phoenix-MWA: Learning Generalizable World–Action Models with Structural and Semantic Representations
+- [TianhengW/PatchWAM](https://github.com/TianhengW/PatchWAM) ★19 · 13d提交 · `world action model` · PatchWAM: An Action Is Worth One Patch. Unified World-Action Modeling.
+- [Mark4551124015/Copper-Policy](https://github.com/Mark4551124015/Copper-Policy) ★11 · 13d提交 · `robot manipulation` · Official Implementation of "Copper-Policy: Focus on the Representation for Robust Robot Manipulation
+- [gwenzhang/OSWAM](https://github.com/gwenzhang/OSWAM) ★6 · 13d提交 · `world action model` · OSWAM: An Effective World Action Model with One-Step Action Generation
+- [ZGCA-HMI-Lab/DiffWAM](https://github.com/ZGCA-HMI-Lab/DiffWAM) ★0 · 13d提交 · `world action model` · DiffWAM: Learning World Action Model from Consecutive Visual Difference
+- [LambdaHumanoid/openlambda](https://github.com/LambdaHumanoid/openlambda) ★29 · 12d提交 · `egocentric` · λ_0: Scaling Open-World Egocentric Human Data for Humanoid Loco-Manipulation
+- [ManfredCh/ai-security-universe](https://github.com/ManfredCh/ai-security-universe) ★22 · 12d提交 · `world model` · Four evidence reviews on AI security: LLMs and agents, image and video generation, embodied loops, w
+- [Tanpig-X/PDE-JEPA](https://github.com/Tanpig-X/PDE-JEPA) ★12 · 12d提交 · `jepa` · Official implementation for: "PDE-JEPA: Predictive Representation Learning of Latent Dynamics modeli
+- [OpenWAM-Official/OpenWAM](https://github.com/OpenWAM-Official/OpenWAM) ★1107 · 11d提交 · `world action model` · Official repository for "OpenWAM: An Open, Modular Exploration Towards Systematic World–Action Model
+- [YanjieZe/agent-real2sim2real](https://github.com/YanjieZe/agent-real2sim2real) ★22 · 11d提交 · `sim-to-real` · Recent papers on agents × real-to-sim-to-real
+- [NVIDIA/Flora](https://github.com/NVIDIA/Flora) ★12 · 11d提交 · `robotics data engine` · The open-source model suite for robotics data engine by NVIDIA GEAR
+- [Di-Zhu123/ActionUNet](https://github.com/Di-Zhu123/ActionUNet) ★7 · 11d提交 · `vla` · Official implementation of “ActionUNet: Improving Robustness of VLA Models with Efficient Multi-scal
+- [ostertagmatthieu-dev/saac-jepa](https://github.com/ostertagmatthieu-dev/saac-jepa) ★5 · 11d提交 · `jepa` · SAAC-JEPA: Schema-Adaptive Action-Conditioned JEPA for cross-machine CNC transfer under partial sens
+- [gulzodanurmetova66-tech/radiation-detector-vlab](https://github.com/gulzodanurmetova66-tech/radiation-detector-vlab) ★1 · 11d提交 · `vla` · Interactive Virtual Laboratory for Gas-Filled Radiation Detectors in Medical Physics Education. Incl
+- [roniejosephv-star/t2-bots-teleop](https://github.com/roniejosephv-star/t2-bots-teleop) ★0 · 11d提交 · `teleoperation` · t2-BOTS Teleop: Community Installation & Flight Guide for SO-101 Robot Arm Teleoperation and Swarms
+- [LuoShaoyinn/mmic-project](https://github.com/LuoShaoyinn/mmic-project) ★0 · 11d提交 · `sim-to-real` · Genesis and Nyx simulation for sim-to-real robotics
+- [Affbhai/Egocentric_Segmentation_updates](https://github.com/Affbhai/Egocentric_Segmentation_updates) ★0 · 11d提交 · `egocentric` · The files holds all the client feedbacks and updates we get on the egocentric segmentation process
+- [Roboparty/P-BFM](https://github.com/Roboparty/P-BFM) ★95 · 10d提交 · `teleoperation` · Perceptive behavioral foundation models for terrain-adaptive humanoid control: motion tracking, goal
+- [Ropedia/ropedia-w0](https://github.com/Ropedia/ropedia-w0) ★82 · 10d提交 · `world model` · Ropedia W0: Scaling Loco-Manipulation World Models across Embodiments with Human Experience
+- [zhuxun132/InJepa](https://github.com/zhuxun132/InJepa) ★50 · 10d提交 · `jepa` · InJepa: Intention First Latent State Planning with Coupled JEPAs for Visual Navigation. Code, Clean1
+- [THUSI-Lab/PrismWAM](https://github.com/THUSI-Lab/PrismWAM) ★48 · 10d提交 · `world action model` · Official implementation of PrismWAM: Decoupling State Representations in World Action Models
+- [robosimstudio/robosimstudio](https://github.com/robosimstudio/robosimstudio) ★230 · 9d提交 · `robot manipulation` · An open interactive toolkit that accelerates human and agentic physics-based Real2Sim of Robot Manip
+- [AetherLabsAI/Video2World](https://github.com/AetherLabsAI/Video2World) ★201 · 9d提交 · `world model` · Benchmarking Coding Agents for Interactive World Modeling from Embodied Videos - Rethinking Embodied
+- [RadixRootMind/Radix-Embodied-Stack](https://github.com/RadixRootMind/Radix-Embodied-Stack) ★81 · 9d提交 · `vla` · Radix Embodied Stack: Universal infrastructure for VLA model quantization, inference, and deployment
+- [cair-vinuni/FoldQuantVLA](https://github.com/cair-vinuni/FoldQuantVLA) ★38 · 9d提交 · `vla` · FoldQuant: offline folding for W4A4 / W8A8 vision-language-action inference on edge GPUs
+- [NEBULIS-Lab/D-JEPA](https://github.com/NEBULIS-Lab/D-JEPA) ★32 · 9d提交 · `jepa` · D-JEPA: A Decision-Aligned Latent World Model
+- [kaichen-z/GEM-4d](https://github.com/kaichen-z/GEM-4d) ★24 · 9d提交 · `robot manipulation/world model` · [ECCV 2026] GEM-4D: Geometry-Enhanced Video World Models for Robot Manipulation
+- [OliverZ-dot/TI-JEPA](https://github.com/OliverZ-dot/TI-JEPA) ★5 · 9d提交 · `jepa` · TI-JEPA: splitting JEPA latents into pose + explicit finite-difference motion, because single-frame 
+- [Awomo-WestlakeDI/Awomo-0.5-page](https://github.com/Awomo-WestlakeDI/Awomo-0.5-page) ★0 · 9d提交 · `world action model` · Project page for Awomo-0.5: World Action Model Pre-trained at Scale.
+- [gentlefress/OMEGA-0](https://github.com/gentlefress/OMEGA-0) ★61 · 8d提交 · `world action model` · The offical code of ω-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipul
+- [fafraob/point-lewm](https://github.com/fafraob/point-lewm) ★16 · 8d提交 · `world model/jepa` · Code base for: Does Latent Planning Survive Point Clouds? Action-Conditioned JEPA World Models for G
+- [ucd-dare/DuoMind](https://github.com/ucd-dare/DuoMind) ★6 · 8d提交 · `robot manipulation` · RoboPoly: a distributed multi-robot manipulation benchmark.
+- [aselimc/jepa.cpp](https://github.com/aselimc/jepa.cpp) ★6 · 8d提交 · `jepa` · The llama.cpp version of JEPA models, allowing fast CPU inference.
+- [alibaba-damo-academy/RynnVLA-Latent](https://github.com/alibaba-damo-academy/RynnVLA-Latent) ★5 · 8d提交 · `robot manipulation/vla` · RynnVLA-Latent: Scaling Robotic Manipulation Foundation Models with 3D-Grounded Latent Actions
+- [Gamma-Robot/NEXUS](https://github.com/Gamma-Robot/NEXUS) ★4 · 8d提交 · `teleoperation` · Official implementation of "NEXUS: Perceptive Whole-Body Control for Terrain-Adaptive Teleoperation"
+- [benchflow-ai/awesome-embodied-agents](https://github.com/benchflow-ai/awesome-embodied-agents) ★1 · 8d提交 · `world model` · A curated, annotated list of agents that act in the physical world: robot harnesses for coding agent
+- [sseven67/force-vla-evaluation](https://github.com/sseven67/force-vla-evaluation) ★0 · 8d提交 · `robot manipulation` · Force and tactile evaluation research atlas for VLA and robotic manipulation.
+- [LeapLabTHU/Simple-WAM](https://github.com/LeapLabTHU/Simple-WAM) ★88 · 7d提交 · `world action model` · Official implementation of "What Makes World Action Models Generalize? An Empirical Study of Test-Ti
+- [cocacola-lab/Recursia](https://github.com/cocacola-lab/Recursia) ★84 · 7d提交 · `robot manipulation` · Recursive self-improvement for robot manipulation, with real-robot experiments and shared executable
+- [HandsomeYun/Mem4Act](https://github.com/HandsomeYun/Mem4Act) ★9 · 7d提交 · `robot manipulation` · Mem4Act: Learning Effective Latent Memory for Long-Horizon Robotic Manipulation
+- [Sarim-MBZUAI/advsim2real](https://github.com/Sarim-MBZUAI/advsim2real) ★6 · 7d提交 · `world model` · AdvSim2Real: Training Web Agents Against Adaptive Prompt Injection in a Web World Model
+- [AhmedGaberAG/Franka-Panda](https://github.com/AhmedGaberAG/Franka-Panda) ★0 · 7d提交 · `robot manipulation` · ROS 2 based Franka Panda robotics framework integrating Gazebo Sim, MoveIt 2, ros2_control, computer
+- [dennydaves146-a11y/Robotics-object-annotation-quality-benchmark](https://github.com/dennydaves146-a11y/Robotics-object-annotation-quality-benchmark) ★0 · 7d提交 · `robot dataset` · A reproducible study of object annotation quality checks for robotics datasets ,by Dennis Muteri
+- [seohongpark/ocbench](https://github.com/seohongpark/ocbench) ★123 · 6d提交 · `robot manipulation` · A controllable benchmark for robotic manipulation
+- [Dbp-dev12/vla-preflight](https://github.com/Dbp-dev12/vla-preflight) ★112 · 6d提交 · `vla` · Local VLA workbench: data diagnostics, reproducible preparation and reference training.
+- [HaoranZhuExplorer/AD-E2E-JEPA](https://github.com/HaoranZhuExplorer/AD-E2E-JEPA) ★69 · 6d提交 · `jepa` · AD-E2E-JEPA: A Joint-Embedding Predictive Architecture For End-to-End Autonomous Driving
+- [Clausy9/EVO-WAM](https://github.com/Clausy9/EVO-WAM) ★50 · 6d提交 · `world action model` · EVO-WAM: Evolving World Action Models through Video-Action Verification. For implementation and expe
+- [ShuaixinHuang/awesome-robotics](https://github.com/ShuaixinHuang/awesome-robotics) ★11 · 6d提交 · `vla` · 🤖 A curated collection of robotics and embodied AI resources, covering VLA models, humanoid robots, 
+- [ssj9596/Atomic-WAM](https://github.com/ssj9596/Atomic-WAM) ★9 · 6d提交 · `world action model` · Atomic-WAM: Execution-Grounded Atomic-Motion Reasoning for World Action Models.
+- [hars-singh/MALMM](https://github.com/hars-singh/MALMM) ★0 · 6d提交 · `robot manipulation` · Multi-Agent Large Language Models for Zero-Shot Robotics Manipulation
+- [CuboiLeo/SuperMimic-Reproduced](https://github.com/CuboiLeo/SuperMimic-Reproduced) ★203 · 5d提交 · `world model` · Reproduction of SuperMimic (arXiv:2610.28480): learned differentiable world model + BPTT policy for 
+- [DexForce/UNITAS](https://github.com/DexForce/UNITAS) ★100 · 5d提交 · `world action model` · Official codebase for Unitas: A 3D-Native World Action Model for Embodied Manipulation
+- [haha-yuki-haha/AUGUstus](https://github.com/haha-yuki-haha/AUGUstus) ★37 · 5d提交 · `vla` · 🚗 AUGUstus: Autonomous Driving VLA Model with Unified Generation and Understanding. 🏋️ 512 H800 GPUs
+- [Madaoer/Oneira](https://github.com/Madaoer/Oneira) ★33 · 5d提交 · `world model` · Official PyTorch implementation of "Oneira: From Open-Ended Generation to Open-World Interaction in 
+- [LEDGER-3D/LEDGER](https://github.com/LEDGER-3D/LEDGER) ★15 · 5d提交 · `egocentric` · Code for Never Look Back: Understanding Persistence in 3D Object Memory from Egocentric Videos
+- [Louis-Robinson-Code/smolVLA_Isaac](https://github.com/Louis-Robinson-Code/smolVLA_Isaac) ★1 · 5d提交 · `vla` · Learning how to input a VLA model (smolVLA) into nvidia isaac to control a SO-100 arm
+- [SpookyGeista/g1-sonic-extensions](https://github.com/SpookyGeista/g1-sonic-extensions) ★0 · 5d提交 · `teleoperation` · VR teleoperation, motion-reference processing, and ZMQ handover extensions for the G1.
+- [strongthenly/sim2real-copilot](https://github.com/strongthenly/sim2real-copilot) ★0 · 5d提交 · `sim2real/sim-to-real` · An AI agent that helps close the sim-to-real gap in drone development, with log diagnosis, simulatio

@@ -1,0 +1,42 @@
+扫 18 词 × 3 窗 | 原始 2427 | 幸存 1251 | 报告级 89
+丢弃 seen=123 excl=142 archived=1 short_desc=523 carrier=358 pages=15 farm=14 fail=0
+核验 250（★>=5 全部 + 最新补齐，上限 250）| 幸存未核验 1001
+黑名单载入 3 个 owner: maxamin · nirholas · openmakerprojects
+词表命中(全 term): robot manipulation=224 · teleoperation=213 · vla=165 · sim-to-real=141 · jepa=124 · egocentric=115 · world action model=95 · sim2real=90 · world model=73 · robot dataset=33 · proof of useful work=12 · embodied data=10 · intent-based=8 · verifiable inference=6 · data availability=4 · restaking=3 · maximal extractable value=2 · robotics data engine=1
+⚠️ 覆盖率 <50%（绝对数不可引用）: world model=21.4%(300/1400) · vla=7.9%(300/3809) · jepa=44.2%(300/678)
+ℹ️ 被 pages 规则丢弃 15 个: aizhiqi-work/aizhiqi-work(1KB,None) · hayfung-hue/hayfung-hue(1KB,None) · vietanh-mechatronics/sim2realgap.github.io(0KB,None) · caesar-jojo/caesar-jojo(1KB,None) · WanruJia/WanruJia(0KB,None) · WanruJia/WanruJia(0KB,None) · houxq8888/houxq8888(5KB,None) · YannVladimir/YannVladimir(2KB,None) · vlaksh26/vlaksh26(44KB,None) · vladyslav-moskalkov/vladyslav-moskalkov(18KB,None) · vladyslav-r-dev/vladyslav-r-dev(17KB,None) · Vladyslav-webDev/Vladyslav-webDev(4KB,None) · strawberry77-1/strawberry77-1(47KB,None) · jepark1207/jepark1207(1KB,None) · jepark1207/jepark1207(1KB,None)
+ℹ️ carrier 丢弃按词: world model=174 · data availability=104 · intent-based=80
+⚠️ 30 天零提交 46 个（star 在骗人）: robbyant-research/Zero-WAM · Gen-Verse/JEPA-Anything · Phyzicalorg/Phyzical_org · shengshu-ai/Motus2 · ASIG-X/JEPLO · scy-v/VLA-Precision · RCL-Robotics/Awesome-World-Action-Models · penpenzh/pocketvla · 3587jjh/HuRo · AetherLabsAI/CausalWM · xiaojunlan/care · GaTech-RL2/EgoWAM · Fenon-Robotics/egodup · luomi777/Exo2Ego · bingaochen/Astra-on-RoboMME · SaberOnGo/open-microduck · robot-hint/HINT · hustvl/MotionVLA · griffinlabs-ai/alpha-s · adamhung60/ModAR-code · umfieldrobotics/SurfSLAM_Stereo · manifoldai-research/CAER.code · penpenzh/pocketwam · Daniel-rmc/ManiLoop · hesd10/astra-robot-sim2real · Cyberyyc/HoloMotion-Spatial-Robot-Teleoperation · zsibot/gawm · AbdelStark/lejudge-jev-jepa · psrobotics/smp_deploy · LivingFutureLab/HappyWorldBench · Agents2AgentsAI/vla-edge · sutiankang/aster · OpenWAM-Official/OpenWAM-Official.github.io · alphaparkinc/genpark-joint-embedding-predictive-world-representation-skill · JiuTian-VL/ProWAM · 5h4d0wn1k/n5-vlan-hop · MiYanDoris/ZETA · CAN-Lee/DeformSmith · godhandcrash/go2-pace-sim2real · flyfaerss/RAPolicy · starVLA/starVLA-WBC · robocurve/stationerybench · MADAO-00/engineering-cybernetics-skill · EthanLiang99/MetaWAM · Joeland4/awesome-ego-data · MasakiAllwardt/adajepa-so101
+⚠️ 空仓（409，只有 description）: thijswelling/Imitation_Learning_Camera
+ℹ️ 候选农场（owner≥3，需人工判，非判决）: rzc156=3 · Roboparty=3 · NEBULIS-Lab=3 · muhamuttaqien=4 · sraentertainment17-code=3 · SajjadPSavoji=4 · liaohello=3 · origin-data-lab=4
+ℹ️ commits_30d=100 是 per_page 上限（实为 ≥100）5 个: rokbenko/quackd · ABC12345anouys/EvoBot · OpenInterpretability/ekbasis · futakw/Awesome-Physical-AI-Safety · cooperwooley/diamond-cs2-v2
+  2026-08-28 [vla] rokbenko/quackd ★276 commits30d=100 size=24848KB lang=Python
+  2026-09-23 [world model/vla] ABC12345anouys/EvoBot ★128 commits30d=100 size=156105KB lang=Python
+  2026-10-04 [world model] OpenInterpretability/ekbasis ★19 commits30d=100 size=34035KB lang=Python
+  2026-09-02 [vla] futakw/Awesome-Physical-AI-Safety ★7 commits30d=100 size=38410KB lang=Python
+  2026-10-22 [world model] cooperwooley/diamond-cs2-v2 ★1 commits30d=100 size=669KB lang=Python
+  2026-10-10 [proof of useful work] vearl-verified-compute/vearl ★22 commits30d=83 size=39643KB lang=Rust
+  2026-10-07 [robot dataset] video-db/RoboPeek ★13 commits30d=48 size=44733KB lang=TypeScript
+  2026-10-01 [world model/egocentric] cvlab-kaist/ME-World ★24 commits30d=37 size=515794KB lang=None
+  2026-10-14 [teleoperation] QinnyuLan/SONIC_unitree_h2 ★38 commits30d=35 size=1552519KB lang=Python
+  2026-10-13 [robot manipulation] Iunacy/HAND ★5 commits30d=35 size=10540KB lang=C++
+  2026-10-02 [robot manipulation/vla] ShuhongLL/RawVLA ★94 commits30d=32 size=333836KB lang=Python
+  2026-08-26 [world action model] OpenMOSS/EasyWAM ★382 commits30d=30 size=3673KB lang=Python
+  2026-10-21 [vla] dundysm/occlubench ★1 commits30d=30 size=2395KB lang=Python
+  2026-10-07 [vla] Dicomsky/StairVLA ★5 commits30d=29 size=62576KB lang=Python
+  2026-10-21 [jepa] andywang0321/toy-jepa ★0 commits30d=27 size=6887KB lang=Python
+  2026-09-12 [sim2real] Pseudo-Lab/Sim2Real-Walking-Robot ★6 commits30d=25 size=280KB lang=None
+  2026-09-25 [world action model] dextacwam/DexTacWAM ★24 commits30d=24 size=3075KB lang=Python
+  2026-09-04 [world action model] LogosIntelligenceLab/TacPAC ★19 commits30d=22 size=41128KB lang=Python
+  2026-10-19 [vla] ZJU-OmniAI/VLA-Rolling ★13 commits30d=22 size=46509KB lang=Python
+  2026-10-12 [world model] rzc156/dreamforge ★130 commits30d=21 size=6213KB lang=Python
+  2026-09-30 [world action model] UniWAM/UniWAM ★135 commits30d=20 size=3300KB lang=Python
+  2026-10-21 [world action model] kf953741/kf953741 ★0 commits30d=20 size=429KB lang=None
+  2026-08-27 [vla] OpenBMB/SimpleNav ★137 commits30d=18 size=44670KB lang=Python
+  2026-10-07 [world model/vla] ASGuard-UCI/safedrive-vla ★29 commits30d=18 size=2320KB lang=Python
+  2026-10-09 [world model] WorldOracle-benchmark/WorldOracle ★20 commits30d=18 size=5848KB lang=Python
+  2026-10-24 [sim2real] liaohello/GigaWorld-Policy-Sim2Real ★0 commits30d=18 size=169KB lang=Python
+  2026-09-27 [world action model] cunhaozhu/AquaWAM ★35 commits30d=17 size=134448KB lang=Python
+  2026-10-23 [embodied data] 91CHD/embodied-data-lab ★0 commits30d=16 size=914KB lang=Python
+  2026-10-21 [teleoperation] KhushiVerma9810/teleoperation-cockpit-poc ★0 commits30d=16 size=295KB lang=TypeScript
+  2026-10-22 [sim2real] THUWHY2001/et2-sim2real ★0 commits30d=16 size=137KB lang=HTML

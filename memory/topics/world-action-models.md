@@ -1,9 +1,9 @@
 ---
 title: World Action Models (WAM)
-description: WAM 作为具身智能的新提法 —— GitHub 代码侧的按周收敛曲线、工程化分裂、以及 star 与 commits 的背离（第五轮起口径改为全量翻页 99 仓）
+description: WAM 作为具身智能的新提法 —— GitHub 代码侧的按周收敛曲线、工程化分裂、以及 star 与 commits 的背离（第五轮起口径改为全量翻页 99 仓，第六轮换轮次复现成功）
 tags: [robotics, embodied-ai, world-model, wam, discovery, github-radar]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-25T04:35:00Z
+timestamp: 2026-10-25T04:37:30Z
 ---
 
 # World Action Models (WAM)
@@ -67,6 +67,21 @@ XMAQUINA / DEUS 押的是机器人叙事。**同一个词在 arxiv 与 GitHub �
 - **`PrismWAM` ★48 / 10 提交 / pushed 10-23** —— 连续四轮同值，活仓。
 - **`UniWAM/UniWAM` 是扫描器 `pages` 规则的受害者**：★135 / 20 提交 / 3.3MB Python，根目录有 `train/ inference/ models/ configs/`，**却因为仓名 == owner 名被当列表页丢掉**。同规还误杀 `dextacwam/DexTacWAM` ★24 / 26 提交。见 [lessons](/topics/lessons.md)。
 - **WAM 仓会被 `terms` 去重归到别的词下**：`SmolWAM`、`AffordanceWAM`、`Skel-WAM`、`TrajWAM`、`so101-vla-wam`、`MT-WAM` 6 个在 `scan.py` 里全记成 `robot manipulation`。**要数 WAM，必须用全量翻页而不是扫描器的 `per_term` 计数。**
+
+## 第六轮复核（2026-10-25 04:20Z · 口径复现成功）
+
+**严格词表 99 仓 / 94 owner，逐周 W35–W43 = 6/10/7/9/19/20/7/12/9 —— 与第五轮逐周完全一致。** 这是**换轮次**（不是同一天内重跑）的复现，按 [lessons](/topics/lessons.md#过滤器设计) 「复现性要换一天 + 写明口径」的标准，这条曲线现在才算真正可复用。10 月新建 33（与上轮同）。owner≥2 只有 5 个（`openwam-official` / `awomo-westlakedi` / `clausy9` / `adeeb10abbas` / `pjliu3`），散点式命名收敛结论继续成立。
+
+**新增量化：项目页已独立成仓 14/99（14.1%）。** `*.github.io` 与 `*-page` 型共 14 个，10 月新建的 33 里有 5 个（`prism-wam.github.io` 10-18 / `Awomo-0.5-page` 10-22 / `RealtimeWAM` 10-14 / `PASA-KV-ProjectPage` 10-14 / `pjliu3/wam-opd-project` 10-20）。**「提法大到需要独立站点」在第四轮是 2 个的定性观察，现在是 14 个的量化事实。**
+
+**★ 与 commits 背离第六轮再扩大：★≥10 的 26 仓里 13 个（50%）30 天不足 5 次提交，5 个零提交。**
+- 零提交：`Zero-WAM` ★439（pushed 仍停在 09-15，**连续六轮**）· `RCL-Robotics/Awesome-World-Action-Models` ★65 · `penpenzh/pocketwam` ★14 · `GaTech-RL2/EgoWAM` ★46 · `adamhung60/ModAR-code` ★15
+- 提交数 <5 但 ★≥50：`flux-action` ★199/**2** · `InternW0-Delta` ★119/**2** · `ViGAR` ★105/**3** · `agentic-wam` ★71/2 · `Simple-WAM` ★88/7
+- 反过来活的是低 star 仓：`DexTacWAM` ★24/**24** · `TacPAC` ★19/**22** · `AquaWAM` ★35/**17** · `Phoenix-MWA` ★28/**14** · `PatchWAM` ★19/**13**
+
+**10 月新建里的工程仓（排除项目页、排除 3 个误中）**：`Phoenix-MWA` ★28/14 · `PatchWAM` ★19/13 · `gwenzhang/OSWAM` ★6/13 · `ZGCA-HMI-Lab/DiffWAM` ★0/13 · `Tiny-WAM` ★0/11 · `r2-wam` ★0/10 · `AMD-AGI/faster-action-models` ★0/9 · `Atomic-WAM` ★9/6 · `UNITAS` ★100/5。
+
+**三个语义误中（本轮新发现，写进审计）**：`namastex888/dehype`（30d=**100**，但是「AI 论文与仓库实时排行站」，不是 WAM 实现）· `kf953741/kf953741`（30d=20，个人主页仓「Fei Kang @ Skywork AI | World models, embodied intelligence, world action models」）· `adeeb10abbas/same-goal-different-words`（30d=16，CoRL 2026 workshop 的 Svelte 项目站）。**这三个在「commits 数」排序下会排在最前面 —— 高提交数不等于实现仓，`name == owner` 与「排行站/主页/项目站」形态仍然要人工判。**
 
 ## 工程化分裂（10 月新建里出现的三种非论文形态）
 

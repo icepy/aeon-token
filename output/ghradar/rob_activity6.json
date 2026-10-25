@@ -1,0 +1,308 @@
+[
+ {
+  "repo": "rokbenko/quackd",
+  "stars": 276,
+  "c30": 100,
+  "c7": 100
+ },
+ {
+  "repo": "ABC12345anouys/EvoBot",
+  "stars": 128,
+  "c30": 100,
+  "c7": 0
+ },
+ {
+  "repo": "OpenInterpretability/ekbasis",
+  "stars": 19,
+  "c30": 100,
+  "c7": 0
+ },
+ {
+  "repo": "futakw/Awesome-Physical-AI-Safety",
+  "stars": 7,
+  "c30": 100,
+  "c7": 30
+ },
+ {
+  "repo": "cooperwooley/diamond-cs2-v2",
+  "stars": 1,
+  "c30": 100,
+  "c7": 100
+ },
+ {
+  "repo": "video-db/RoboPeek",
+  "stars": 13,
+  "c30": 48,
+  "c7": 0
+ },
+ {
+  "repo": "cvlab-kaist/ME-World",
+  "stars": 24,
+  "c30": 37,
+  "c7": 0
+ },
+ {
+  "repo": "QinnyuLan/SONIC_unitree_h2",
+  "stars": 38,
+  "c30": 35,
+  "c7": 0
+ },
+ {
+  "repo": "Iunacy/HAND",
+  "stars": 5,
+  "c30": 35,
+  "c7": 1
+ },
+ {
+  "repo": "ShuhongLL/RawVLA",
+  "stars": 94,
+  "c30": 32,
+  "c7": 0
+ },
+ {
+  "repo": "OpenMOSS/EasyWAM",
+  "stars": 382,
+  "c30": 30,
+  "c7": 0
+ },
+ {
+  "repo": "dundysm/occlubench",
+  "stars": 1,
+  "c30": 30,
+  "c7": 30
+ },
+ {
+  "repo": "Dicomsky/StairVLA",
+  "stars": 5,
+  "c30": 29,
+  "c7": 0
+ },
+ {
+  "repo": "andywang0321/toy-jepa",
+  "stars": 0,
+  "c30": 27,
+  "c7": 27
+ },
+ {
+  "repo": "Pseudo-Lab/Sim2Real-Walking-Robot",
+  "stars": 6,
+  "c30": 25,
+  "c7": 1
+ },
+ {
+  "repo": "dextacwam/DexTacWAM",
+  "stars": 24,
+  "c30": 24,
+  "c7": 0
+ },
+ {
+  "repo": "LogosIntelligenceLab/TacPAC",
+  "stars": 19,
+  "c30": 22,
+  "c7": 3
+ },
+ {
+  "repo": "ZJU-OmniAI/VLA-Rolling",
+  "stars": 13,
+  "c30": 22,
+  "c7": 18
+ },
+ {
+  "repo": "rzc156/dreamforge",
+  "stars": 130,
+  "c30": 21,
+  "c7": 0
+ },
+ {
+  "repo": "UniWAM/UniWAM",
+  "stars": 135,
+  "c30": 20,
+  "c7": 0
+ },
+ {
+  "repo": "kf953741/kf953741",
+  "stars": 0,
+  "c30": 20,
+  "c7": 20
+ },
+ {
+  "repo": "OpenBMB/SimpleNav",
+  "stars": 137,
+  "c30": 18,
+  "c7": 0
+ },
+ {
+  "repo": "ASGuard-UCI/safedrive-vla",
+  "stars": 29,
+  "c30": 18,
+  "c7": 0
+ },
+ {
+  "repo": "WorldOracle-benchmark/WorldOracle",
+  "stars": 20,
+  "c30": 18,
+  "c7": 5
+ },
+ {
+  "repo": "liaohello/GigaWorld-Policy-Sim2Real",
+  "stars": 0,
+  "c30": 18,
+  "c7": 18
+ },
+ {
+  "repo": "cunhaozhu/AquaWAM",
+  "stars": 35,
+  "c30": 17,
+  "c7": 0
+ },
+ {
+  "repo": "91CHD/embodied-data-lab",
+  "stars": 0,
+  "c30": 16,
+  "c7": 16
+ },
+ {
+  "repo": "KhushiVerma9810/teleoperation-cockpit-poc",
+  "stars": 0,
+  "c30": 16,
+  "c7": 2
+ },
+ {
+  "repo": "THUWHY2001/et2-sim2real",
+  "stars": 0,
+  "c30": 16,
+  "c7": 16
+ },
+ {
+  "repo": "khelverskovp/atom-jepa",
+  "stars": 12,
+  "c30": 15,
+  "c7": 0
+ },
+ {
+  "repo": "OpenPhoenix-Team/Phoenix-MWA",
+  "stars": 28,
+  "c30": 14,
+  "c7": 14
+ },
+ {
+  "repo": "TianhengW/PatchWAM",
+  "stars": 19,
+  "c30": 13,
+  "c7": 0
+ },
+ {
+  "repo": "Mark4551124015/Copper-Policy",
+  "stars": 11,
+  "c30": 13,
+  "c7": 0
+ },
+ {
+  "repo": "gwenzhang/OSWAM",
+  "stars": 6,
+  "c30": 13,
+  "c7": 1
+ },
+ {
+  "repo": "ZGCA-HMI-Lab/DiffWAM",
+  "stars": 0,
+  "c30": 13,
+  "c7": 13
+ },
+ {
+  "repo": "LambdaHumanoid/openlambda",
+  "stars": 29,
+  "c30": 12,
+  "c7": 5
+ },
+ {
+  "repo": "ManfredCh/ai-security-universe",
+  "stars": 22,
+  "c30": 12,
+  "c7": 2
+ },
+ {
+  "repo": "Tanpig-X/PDE-JEPA",
+  "stars": 12,
+  "c30": 12,
+  "c7": 0
+ },
+ {
+  "repo": "OpenWAM-Official/OpenWAM",
+  "stars": 1107,
+  "c30": 11,
+  "c7": 2
+ },
+ {
+  "repo": "YanjieZe/agent-real2sim2real",
+  "stars": 22,
+  "c30": 11,
+  "c7": 7
+ },
+ {
+  "repo": "NVIDIA/Flora",
+  "stars": 12,
+  "c30": 11,
+  "c7": 11
+ },
+ {
+  "repo": "Di-Zhu123/ActionUNet",
+  "stars": 7,
+  "c30": 11,
+  "c7": 0
+ },
+ {
+  "repo": "ostertagmatthieu-dev/saac-jepa",
+  "stars": 5,
+  "c30": 11,
+  "c7": 0
+ },
+ {
+  "repo": "gulzodanurmetova66-tech/radiation-detector-vlab",
+  "stars": 1,
+  "c30": 11,
+  "c7": 11
+ },
+ {
+  "repo": "roniejosephv-star/t2-bots-teleop",
+  "stars": 0,
+  "c30": 11,
+  "c7": 11
+ },
+ {
+  "repo": "LuoShaoyinn/mmic-project",
+  "stars": 0,
+  "c30": 11,
+  "c7": 11
+ },
+ {
+  "repo": "Affbhai/Egocentric_Segmentation_updates",
+  "stars": 0,
+  "c30": 11,
+  "c7": 11
+ },
+ {
+  "repo": "Roboparty/P-BFM",
+  "stars": 95,
+  "c30": 10,
+  "c7": 4
+ },
+ {
+  "repo": "Ropedia/ropedia-w0",
+  "stars": 82,
+  "c30": 10,
+  "c7": 9
+ },
+ {
+  "repo": "zhuxun132/InJepa",
+  "stars": 50,
+  "c30": 10,
+  "c7": 3
+ },
+ {
+  "repo": "THUSI-Lab/PrismWAM",
+  "stars": 48,
+  "c30": 10,
+  "c7": 10
+ }
+]
