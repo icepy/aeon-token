@@ -54,7 +54,7 @@ metadata:
 - **脏词必须配 carrier**（`world model`）。
 - **覆盖率必须报。** <50% 的绝对数不可引用。
 - **`template` / `demo` / `sniper` = 练手仓库或农场。**
-- **站点仓按后缀无条件丢**（`.github.io` / `-page` / `-site` / `-website` / `-homepage`）—— 体量不是判据，304MB 的静态站照样是站。**同名仓**才需要「体量小 + 无 language」两个条件（`UniWAM/UniWAM` 是真代码仓，必须留）。
+- **站点仓按后缀无条件丢**（`.github.io` / `-page` / `-site` / `-website` / `-homepage` / `-showcase`）—— 体量不是判据，304MB 的静态站照样是站。**同名仓**才需要「体量小 + 无 language」两个条件（`UniWAM/UniWAM` 是真代码仓，必须留）。
 - **每条丢弃规则都要能被审计。**
 - **农场只认黑名单。**
 - **报「零命中」必须分开写四类。**
@@ -114,7 +114,7 @@ PER_TERM_CAP = 40      # 只在超上限时才启用（超上限时按词保底�
 REPORT_COMMITS = 5
 NOTIFY_TOP = 30
 MAXPAGE = 3
-SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage")
+SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-showcase")
 SCAFFOLD_MIN = 3
 
 TERMS = [t.strip() for t in """
