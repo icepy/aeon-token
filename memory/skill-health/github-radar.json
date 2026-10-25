@@ -1,15 +1,21 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-25T01:15:42Z",
-  "quality_score": 3,
-  "assessment": "Substantive and unusually self-critical (dry-run disclosure, discarded-sample audit, methodology bug writeup), but it is long-form research that never touches the DEUS price/cooling triggers or delivers a decide-in-one-glance alert, so it misses the operator's stated priorities; minor internal inconsistencies (data-availability 126 vs 136) and repo/star figures that can't be checked from the output keep it out of 4-5.",
+  "last_analyzed": "2026-10-25T02:14:59Z",
+  "quality_score": 4,
+  "assessment": "Substantive, self-critical scan: 51 authenticated queries, 0 failures, raw repo/star/commit evidence, and unusually honest coverage disclosure (32.1% overall, 7.9% for `vla`) plus corrections of two empty repos and two bot farms; well-structured and actionable, but long (against the 'short push' priority) and only indirectly tied to the DEUS north-star.",
   "flags": [],
-  "avg_score": 3,
+  "avg_score": 3.5,
   "history": [
     {
       "date": "2026-10-25",
       "score": 3,
       "ts": "2026-10-25T01:15:42Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-25",
+      "score": 4,
+      "ts": "2026-10-25T02:14:59Z",
       "harness": "claude"
     }
   ]

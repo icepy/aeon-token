@@ -1,0 +1,24 @@
+done embodied data            new_in_window=10 total_in_range>=18
+done robot manipulation       new_in_window=224 total_in_range>=297
+done robot dataset            new_in_window=32 total_in_range>=41
+done teleoperation            new_in_window=223 total_in_range>=433
+done sim2real                 new_in_window=92 total_in_range>=171
+done sim-to-real              new_in_window=127 total_in_range>=179
+done world model              new_in_window=238 total_in_range>=1400
+done world action model       new_in_window=84 total_in_range>=102
+done vla                      new_in_window=148 total_in_range>=3807
+done jepa                     new_in_window=115 total_in_range>=677
+done egocentric               new_in_window=106 total_in_range>=146
+done verifiable inference     new_in_window=6 total_in_range>=7
+done proof of useful work     new_in_window=12 total_in_range>=13
+done data availability        new_in_window=106 total_in_range>=130
+done restaking                new_in_window=4 total_in_range>=6
+done intent-based             new_in_window=86 total_in_range>=119
+done maximal extractable value new_in_window=2 total_in_range>=2
+
+scanned 17 terms x 3 windows | raw 2424 | survived 1615 | seen=138 excl=142 archived=1 short_desc=528
+source: gh=51
+new-per-term: world model=238 · robot manipulation=224 · teleoperation=223 · vla=148 · sim-to-real=127 · jepa=115 · egocentric=106 · data availability=106 · sim2real=92 · intent-based=86 · world action model=84 · robot dataset=32 · proof of useful work=12 · embodied data=10 · verifiable inference=6 · restaking=4 · maximal extractable value=2
+TRUNCATED windows (got/total): robot manipulation 2026-10-05..2026-09-15 100/106 | teleoperation 2026-09-15..2026-08-26 100/135 | teleoperation 2026-10-05..2026-09-15 100/132 | teleoperation 2026-10-25..2026-10-05 100/166 | world model 2026-09-15..2026-08-26 100/417 | world model 2026-10-05..2026-09-15 100/486 | world model 2026-10-25..2026-10-05 100/497 | vla 2026-09-15..2026-08-26 100/1147 | vla 2026-10-05..2026-09-15 100/1418 | vla 2026-10-25..2026-10-05 100/1242 | jepa 2026-09-15..2026-08-26 100/173 | jepa 2026-10-05..2026-09-15 100/246 | jepa 2026-10-25..2026-10-05 100/258 | restaking 2026-10-05..2026-09-15 4/5
+FARMS (owner=hits): muhamuttaqien=4 · SajjadPSavoji=4 · sraentertainment17-code=3 · Roboparty=3 · OpenMakerProjects=10 · liaohello=3 · NEBULIS-Lab=3 · YucongDuan=4 · rzc156=3 · origin-data-lab=3 · aritra007-art=4 · maxamin=3
+wrote output/ghradar2.json n=1615
