@@ -117,7 +117,12 @@ CARRIER_ROBOT = ["robotic", "robot", "manipulation", "teleoperation", "simulatio
                  "simulator", "dataset", "datasets", "real-world", "embodied",
                  "sensor", "egocentric", "demonstration", "vla"]
 # 交易/MEV 域：市场微观结构，链上词常常不出现
-CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher"]
+# 追加 ledger 系：MEV 论文常写 "distributed ledger" / "block creator"，
+# 实证 2608.13271（Slow and Steady）全文无一词命中旧 6 词而被静默丢弃。
+CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher",
+                  "ledger", "ledgers", "block creator", "block builder",
+                  "block proposer", "transaction ordering", "on-chain",
+                  "state transition"]
 
 # 词 → carrier 组。未列出的词走 CARRIER_BASE。
 CARRIER_BY_TERM = {
