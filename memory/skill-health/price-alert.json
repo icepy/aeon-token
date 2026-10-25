@@ -1,17 +1,11 @@
 {
   "skill": "price-alert",
-  "last_analyzed": "2026-10-25T03:11:32Z",
+  "last_analyzed": "2026-10-25T04:10:35Z",
   "quality_score": 4,
-  "assessment": "扫描严谨、中文合规、四道 gate 距离与净流量金额内部一致,且主动推翻上轮结论(24h 流向符号翻转、单场所枯竭 vs 端点失效判别对照),策略对齐度高;但「$0.041 ≈ 24h 量的 424 倍」与自身给出的 $13,494.74 日量矛盾(按 $0.01735 折算约 8.5 倍),该推导数字有误,故扣至 4 分。",
+  "assessment": "Correct no-signal behavior (0 pushes, all 4 gates far away), math internally consistent and self-auditing (corrected two prior errors, wei-level escrow reconciliation), raw contract addresses and tx hashes included per hard constraint, Chinese throughout; held back from 5 by heavy length for a no-trigger run against the 'short, decide-on-sight' priority, an unexplained 6,633,336 DEUS figure, and a small split-sum discrepancy (31,744.67 vs 31,741.50).",
   "flags": [],
   "avg_score": 4.27,
   "history": [
-    {
-      "date": "2026-10-23",
-      "score": 4,
-      "ts": "2026-10-23T14:07:57Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-23",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-10-25",
       "score": 4,
       "ts": "2026-10-25T03:11:32Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-25",
+      "score": 4,
+      "ts": "2026-10-25T04:10:35Z",
       "harness": "claude"
     }
   ]
