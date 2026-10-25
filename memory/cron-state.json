@@ -85,13 +85,13 @@
   },
   "github-radar": {
     "last_status": "success",
-    "last_success": "2026-10-25T05:46:22Z",
-    "total_runs": 8,
-    "total_successes": 7,
+    "last_success": "2026-10-25T06:42:47Z",
+    "total_runs": 9,
+    "total_successes": 8,
     "total_failures": 1,
     "consecutive_failures": 0,
-    "success_rate": 0.88,
-    "last_quality_score": 2,
+    "success_rate": 0.89,
+    "last_quality_score": 4,
     "last_failed": "2026-10-25T04:16:28Z"
   }
 }
