@@ -1,75 +1,58 @@
-扫描完成。**本轮 90 天窗零新增**，主要成果是把上一轮记下的去重债务清掉了。
+日志已写好（2 个 heading：主节 + under the hood，符合既有格式）。没有幸存者，所以不推送。
 
 ---
 
-# arXiv Radar — 90 天窗 · `var=days:90`
+# arxiv-radar · 第八轮（2026-10-25）
 
-**窗口** `2026-07-26 → 2026-10-24` · 20 词 · 原始命中 **91** · **幸存 0** · 失败 0
-丢弃分布：`seen` 79 · `carrier` 11 · `excl` 1
+`var=""`（默认 7 天窗）· 20 词 · 原始 5 · **幸存 0** · 失败 0
 
-## 零新增的两个原因，分开说
+## 结论
 
-**1. 22 篇老论文已按计划挡掉，不是丢了。**
-第六轮（同日早前）明确记了一条债务：`memory/arxiv-seen.json` 只有 53 个 id，全是修 carrier 之前的 ZK/理论那批；carrier 修好后新解锁的 21 篇机器人论文 + `2608.13271` **从未落盘**。当时的原话是「正式 90d 跑前须先 seed 这 22 个 id，否则首推会是一次 22 条的洪水」。
+**本轮零新论文，不推送。** 但跑出一个跨轮次的工程问题：**已合并的 PR #8 修复在合并 26 分钟后被静默回滚**，`main` 上现在跑的是有缺陷的版本。
 
-本轮跑前先做了 seed：**53 → 75 个 id**，合法 JSON、无版本后缀、日期全为 10-24。复跑校验，90 天窗幸存从 22 归 **0**。**隐患已解除。**
+## 扫描结果
 
-**2. 索引仍停在 10-22，这是收录延迟的第二天。**
-3 天窗（10-21 → 10-24）原始命中只有 1 条、幸存 0。90 天窗的「窗口内最新收录日期」依旧是 `2026-10-22` —— arXiv API 今天还没吐出 10-23 / 10-24 的条目。与第六轮按日计数（`cs.CR` 10-23=0 / 10-24=0，`cs.RO` 同形 70/57/0/0）完全一致。**已知形态，不是话题降温，不用当异常报。**
+**7 天窗**：`原始 5 | 幸存 0 | 丢弃 seen=3 carrier=2 fail=0`。3 条已在 `seen`，2 条被 carrier 正确丢弃（`2610.29066` 零知识 PCP 复杂度理论、`2610.27452` ZKP 标量冗余硬件加速）。
 
-## 90 天存活板块（存量，供对照；非本轮新信号）
+**90 天窗复核**：`原始 90 | 幸存 0 | seen 78 | carrier 11 | excl 1`。90 天存量全部已在 `seen` 内 —— 「90d 正式跑会推 22 条洪水」的隐患再次确认已解除。
 
-唯一板块仍是**机器人 / 具身数据，20 篇，占存活量 91%** —— 与 DEUS / XMAQUINA 叙事同轨。数据采集 / 合成 / 仿真基础设施 11 篇：
+**索引滞后（按日计数，全类目）**：`cs.CR` 38/30/**0**/**0**/**0** · `cs.RO` 70/57/0/0/0 · `cs.LG` 211/151/0/0/0 · `q-fin.CP` 1/0/0/0/0（对应 10-21 → 10-25）。四类目同日同形归零 → **全局收录延迟**，窗口内最新停在 `2026-10-22`。已知形态，不作异常上报。
 
-| 日期 | 名字 | 一句话 | 链接 |
-|---|---|---|---|
-| 10-08 | StereoEngine | 免立体相机合成双目双臂机器人数据 | https://arxiv.org/abs/2610.12734 |
-| 10-06 | EmbodiedSmith | 仿真内递归自改进飞轮扩具身数据 | https://arxiv.org/abs/2610.07969 |
-| 10-01 | NEEDLEWORK | 离线重写轨迹，局部缝合不可用片段 | https://arxiv.org/abs/2610.02339 |
-| 09-28 | SkillWeaver | agentic 探索替代遥操作来量产机器人数据 | https://arxiv.org/abs/2609.36171 |
-| 09-22 | PhyVisGen | 物理+视觉双高保真操作数据生成 | https://arxiv.org/abs/2609.25653 |
-| 09-21 | ARSTAG | 一张 RGB + 一句自然语言 → 任务专属 Real2Sim2Real | https://arxiv.org/abs/2609.24563 |
-| 09-21 | Uranus | 面向具身 AI 的下一代仿真基础设施 | https://arxiv.org/abs/2609.24815 |
-| 09-16 | UMI-Bridge | 人类与机器人操作数据的动作锚定对齐 | https://arxiv.org/abs/2609.18232 |
-| 09-05 | IM-ENGINE | 用图像编辑生成具身数据 | https://arxiv.org/abs/2609.06279 |
-| 08-15 | GUIDER | 遥操作中无目标人类意图推理实测 | https://arxiv.org/abs/2608.15446 |
-| 07-30 | ACE-Data-0 | 以人为中心的环境采集作具身数据引擎（16 人） | https://arxiv.org/abs/2607.28625 |
+> 但要点明：**7 天窗在滞后下基本是盲的**。窗口覆盖 10-18 → 10-25，索引只到 10-22，且 10-22 及之前早已进 `seen`。「幸存 0」这几天既不代表降温也不代表词表失效，只代表索引没更新。
 
-**MEV / AMM 2 篇：**
+## 🔴 真发现：PR #8 被静默回滚
 
-| 日期 | 名字 | 一句话 | 链接 |
-|---|---|---|---|
-| 09-15 | When AI Agents Meet MEV | AI agent 当搜索者做跨链套利，**用 Base 上 23,000 笔 Uniswap V3 成交做实证** | https://arxiv.org/abs/2609.17897 |
-| 08-13 | Slow and Steady | 可验证延迟防 MEV，拜占庭+博弈双正结果 | https://arxiv.org/abs/2608.13271 |
+| 时间（10-24） | 事件 |
+|---|---|
+| 11:20:09Z | PR #8 合并（`894d6d37`），`CARRIER_MARKET` 从 5 词扩到 13 词 |
+| 11:46:07Z | `0e85bfd8` 基于**早于 PR #8 的旧副本**改动，把 8 个词连注释删掉 |
 
-`2609.17897` 那条的 **Base 23,000 笔 V3 成交**是可复用的链上数据源线索，比结论本身有用。
+`main` 的 `skills/arxiv-radar/SKILL.md:120` 现在是 5 词版本。单看 PR 状态是 MERGED 会误判生效，单看文件是 5 词会误判没合 —— 两边对不上才定位到 `0e85bfd8`。本地 git 历史还查不出来（shallow clone，只有一个合成快照提交）。
+
+**代价实测**（90d，AMM/MEV/consensus/restaking 四词）：被救回、当前会丢的 **1 篇，噪声 0** —— `2608.13271` *Slow and Steady: Preventing MEV with Verifiable Delays*，全文只写 `distributed ledger` / `block creator`，旧 5 词无一命中。该篇已在 `seen`，所以损失形态是**「存量已捞回、未来同类全丢」**，且表现为「零命中」—— 正是铁律「零命中不等于废词」要防的假象。这是本 skill 第三次栽在 carrier 静默误杀上。
+
+**已提 PR #11** `fix/arxiv-radar-restore-mev-carrier`：纯还原 8 词 + 补回实证注释。不动 ZK 域，不动词表。
+
+## PR #10 独立复核：主张成立
+
+自己建基准集复测，不看它的结论：`ti:"data" AND cat:cs.RO` 90d = 127 篇，去 `seen` 后 113 篇。
+
+| 词表 | 命中 |
+|---|---|
+| 现有 4 个机器人词 | **0 / 113** |
+| PR #10 新增 4 词 | **22 / 113** |
+
+救回的 22 篇全在唯一与 DEUS/XMAQUINA 同轨的板块：RoboTok（`2609.03199` 数据引擎）、Ego4WAM（`2609.40341`）、λ₀（`2610.18950`）、Workhorse / VioLA（人形 loco-manipulation 人类数据）、CoDA（`2610.22362`）、AutoRSR 等。PR #10 纯追加，与 PR #11 不重叠，**两者都应合**。
 
 ## 词表健康
 
-20 词里只有 5 词有 90 天命中：`embodied AI`=10 · `robot data`=5 · `embodied data`=3 · `cat:cs.CR AND ti:"MEV"`=2 · `robot manipulation data`=2。
-
-其余 **15 词连续两轮零命中，按铁律不删**：`proof-of-useful-work` · `verifiable inference` · `light client` · `proof of training` · `proof of learning` · `verifiable training` · `auditable training` · `data availability sampling` · `restaking` · `consensus protocol` · `liquid staking` · `automated market maker` · `zero-knowledge` · `ti:"EIP-1559"` · `ti:"Robinhood Chain"`。
-
-`excl` 只丢 1 条且判对：`2610.14038` "From bits to atoms: A survey of cross-layer safety in Embodied AI"，标题含 survey，真综述。
-
-## 通知
-
-**未发送。** 幸存 0；且这 22 篇是同日早前 dry-run 已入日志的同批信号，按「不重复报同一信号」也不推。
+90d 原始命中：`zero-knowledge`=28 · `embodied AI`=21 · `robot data`=9 · `consensus protocol`=6 · `MEV`=5 · AMM=4 · `embodied data`=4 · `auditable training`=3。**真零命中仅 4 词**（`proof of learning` / `verifiable training` / `liquid staking` / `Robinhood Chain`），前三个 all-time 也停在 05-22 / 06-12 / 05-01 —— 真降温，按铁律保留。
 
 ## Summary
 
-**做了什么**
-- 按 `var=days:90` 跑正式 90 天窗（20 词 × 3s 退避直连 arXiv API，0 失败），加跑 3 天窗和 seed 后复跑各 1 次做校验。
-- 清掉第六轮记下的去重债务：`memory/arxiv-seen.json` **53 → 75 个 id**，22 篇 90 天存量全部落盘。这个隐患原本会让下次正式 90d 跑一次推 22 条。
-
-**文件改动**
-- `memory/arxiv-seen.json` — 新增 22 个 id（已修改，未提交）
-- `memory/logs/2026-10-24.md` — 追加 `### arxiv-radar — 第七轮` 一节（已修改，未提交）
-
-**结论**
-- 本轮真零新增。索引仍停在 `2026-10-22`，是收录延迟的第二天，不是零命中。
-- 90 天窗唯一活跃板块是机器人/具身数据（20 篇），与 XMAQUINA 叙事同轨。
-
-**后续动作**
-1. 明天早上常规跑若仍返回 0，**先查 `submittedDate` 最新收录日期**再下结论 —— 别把「索引滞后第三天」记成「话题死了」。
-2. `git status` 里 `AGENTS.md` 是 deleted、`notify`/`notify-jsonrender`/`secretcurl` 是 untracked，都不是本轮产生的，留给你判断是否处理。
+- **扫描**：7d 与 90d 各一遍，20 词，0 失败，幸存 0。索引滞后按日计数复核（第三天）。
+- **发现**：PR #8 的 MEV carrier 修复被 `0e85bfd8` 静默回滚，实测代价 1 篇/0 噪声，且损失形态是未来同类全丢、伪装成「零命中」。
+- **复核**：PR #10 的 0/113 召回主张独立复现成立（22/113 救回）。
+- **文件**：`output/arxiv-radar/`（`radar.py` · `lagcheck.py` · `pr10_verify.py` · `carrier_regression.py` · `report.md` · `pr-body-restore.md`）；`memory/logs/2026-10-25.md` 追加 `### arxiv-radar` 两节；`memory/arxiv-seen.json` 未变（75 id）。
+- **PR**：#11 已开（还原 carrier）。#10 建议合并。
+- **待办**：① 审 #11 与 #10；② 两个 PR 合完后，`0e85bfd8` 类的「旧副本回写」值得在 skill-repair 侧加一条检查 —— 合并后 24h 内校验关键常量是否仍在位；③ 通知未发（幸存 0）。

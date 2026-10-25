@@ -1,0 +1,13 @@
+fix(arxiv-radar): restore MEV carrier words wiped by commit 0e85bfd8
+
+PR #8 加了 ledger / block creator 等 8 个 carrier 词并已合并（894d6d37，
+2026-10-24 11:20Z），但 26 分钟后的 0e85bfd8（11:46Z，改自一份旧副本）
+把这段覆盖掉，CARRIER_MARKET 退回 5 词。修复静默失效，且当时无人发现。
+
+实测代价（90d 窗，automated market maker / MEV / consensus protocol /
+restaking 四词）：新增词救回 2608.13271 "Slow and Steady: Preventing MEV
+with Verifiable Delays"（08-13，cs.CR）。该论文全文只写 distributed
+ledger / block creator / transaction ordering，旧 5 词一个都不含 →
+被 carrier 静默丢弃。噪声为零（四词窗内只多这 1 篇）。
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

@@ -1,10 +1,10 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-24T11:30:56Z",
+  "last_analyzed": "2026-10-25T09:11:42Z",
   "quality_score": 4,
-  "assessment": "Legitimate zero-new-item run: precise counts, dedup-debt seeding (53→75 ids) with re-run verification, honest index-lag caveat, sourced arXiv links, and correct no-push decision per operator rules; docked one point only because the 20 paper titles/IDs cannot be independently verified here and the report runs long for a read-and-decide operator.",
+  "assessment": "零幸存扫描执行正确且不推送；额外发现 PR #8 被静默回滚，附 commit 哈希、实测代价(1篇/0噪声)与已开 PR #11，数字自洽(90d: 78+11+1)、来源可追溯，仅篇幅略超“不要长文”偏好",
   "flags": [],
-  "avg_score": 3.38,
+  "avg_score": 3.44,
   "history": [
     {
       "date": "2026-10-24",
@@ -52,6 +52,12 @@
       "date": "2026-10-24",
       "score": 4,
       "ts": "2026-10-24T11:30:56Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-25",
+      "score": 4,
+      "ts": "2026-10-25T09:11:42Z",
       "harness": "claude"
     }
   ]
