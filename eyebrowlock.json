@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-24T23:44:35.772246525Z",
+  "generatedAt": "2026-10-25T00:28:59.344135814Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -245,7 +245,7 @@
           "hash": "07d3d3fe646f3bcc3a98e1605137a6ca78480d61ab8f079761ef8b2c90e15e9f"
         }
       ],
-      "contentHash": "sha256-4e37de88d4cd25030e67b0bb0a53d02338d69f436ce0135a55f7567065c8e646",
+      "contentHash": "sha256-69a856dd535c92fceb4631ef86dd885f763beb96dca49dab1d63119577cb7856",
       "discoveredFrom": "skills/onchain-monitor/SKILL.md"
     },
     {
