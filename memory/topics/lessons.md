@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-24T21:10:00Z
+timestamp: 2026-10-25T00:35:00Z
 ---
 
 # Lessons learned — archive
@@ -125,6 +125,10 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **🔴 按时间戳二分找块，下界必须按窗口宽度给足，否则窗口会静默缩短。** 2026-10-24 21:02Z 取了 3,000 块下界去找「24h 前」，但 Base 约 2s 一块、24h ≈ 43,200 块，二分被迫落在 **blk 53040188（只有 6,000s 前）**，于是报出「24h 平盘」，而真实 24h 是 **−3.50%**。**判据：二分结束后必须断言 `head_ts - found_ts == 目标秒数`，不等就扩大下界重找；不要把"找不到"当成"没有"**（与假零家族同源）。
 - **溢价在收窄但套利量同时下降 → 收敛不是套利干的。** 2026-10-24 三小时深池对 USDC 三池中位的溢价 +1.12% → +1.34% → +1.04%，而同期套利成交 4,704 → 2,939 DEUS/h。若是套利在抹平，溢价应在**量放大**时压缩；两者同跌说明收敛来自 VIRTUAL 腿（−0.095%）和池子自身漂移。**别把「无人出力」记账成「有人出力」—— 归因前先看那个 agent 的足迹是变大还是变小。**
 
+- **🔴 VIRTUAL/USDC V3 池是 token0=VIRTUAL(18dp)/token1=USDC(6dp)，USD per VIRTUAL = `raw × 1e12`。** 2026-10-24 22:02Z 写成 `raw/1e24` 得 **6.2e-37**，四道 gate 距离全变天文数字。**decimals 不对称的池必须按 (t0dp − t1dp) 定缩放方向**，且解出的价**先跟 DexScreener 活价对表再喂 gate**（同一轮已因此第二、第三次踩到）。
+- **🔴 x·y=k 的买卖方向会在两种写法间翻转：`D = D_cur(1 − sqrt(r_cur/r_tgt))` 单向式子两向通用，`D>0` 才是「DEUS 出池 = 净买」。** 2026-10-24 22:02Z 用 `sqrt(tgt/r)` 单向得出「$0.041 需净买 −10.2M」这种符号荒谬的数。**门槛量化出负数就是方向写反，不是市场反常。**
+- **🔴 单一操作者会跨场所拆分，单池卖单计数会低估它的供给 —— 归因必须按 `tx.from` 汇总同 tx 全部场所。** 2026-10-24 21:40Z 第四次 claim-and-dump：`0xd1a7ba72` 100 秒内三腿进 3,529.86 DEUS，拆 **2,426.78 进深池 + 1,103.08 进 USDC 池**，余额逐 wei 归零。只看深池会把它记成 2,427，少算 31%。详见 [deus-events](/topics/deus-events.md)。
+
 ## arXiv 检索（arxiv-radar）
 
 - **`submittedDate` 窗口是对的，但索引滞后约 2 天，且是全局的，最新两天恒为 0 条。** 2026-10-24 实测：`cat:cs.CR` 单日总数 10-20 **48** → 10-21 **38** → 10-22 **30** → 10-23 **0** → 10-24 **0**，`cs.RO` 同形（70/57/0/0），API 最新收录停在 `2026-10-22T17:59Z`。**这是「还没入库」，不是「没人投稿」** —— 每日窗口扫描看到末两天 0 命中属正常。**判据要升级成「按日 total 计数」**：只看「窗口内最新日期」只能说明「早」，按日计数才能区分「滞后」与「真零」。
@@ -144,5 +148,7 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - `memory/logs/2026-10-22#price-alert`（21:01Z / 22:02Z / 23:01Z 三源对比）
 - `memory/logs/2026-10-23#price-alert`（11:06Z 单笔方向性买盘 → 12:02Z 复核实证两笔跟进买盘为聚合器套利；15:05Z 第二个方向性钱包 `0x259f962e…` + 笔数/美元额反向 + 7702 识别；19:09Z Slipstream topic0 坑 + 多 horizon 余额判新钱 + 1inch 路由终点判据；20:05Z 单池 37 买 / 0 卖 实为同秒双池套利 + 供给口径改为净增发；17:01Z–21:16Z 两个方向性钱包冻结、h1 缺失 ≠ 平静）
 - `memory/logs/2026-10-24#arxiv-radar`（arXiv 索引滞后 1–2 天、周窗口低命中是常态、`ti:` 引号与裸词等价）
+- `memory/logs/2026-10-24#price-alert`（22:02Z 第四次 claim-and-dump 跨两场所拆分 → 归因须按 `tx.from` 汇总；VIRTUAL/USDC V3 的 `1e12` 缩放；x·y=k 符号翻转；Slot0 第 0 word；二分下界；Solidly 字序）
+- `memory/logs/2026-10-24#onchain-monitor`（RH 历史 `eth_call` 不可用、Base Tenderly 可用；无 ABI 解 calldata；owner 转账 ≠ 砸盘）
 - `memory/logs/2026-10-23#onchain-monitor`（21:24Z 上膛4 扣扳机清仓 + 第七个上膛钱包 24 万 + 待命重算 48 万）
 - `memory/logs/2026-10-23#heartbeat`（RH 429 返回空结果而非错误；selector `isOperationReady`/`getTimestamp` 修正）
