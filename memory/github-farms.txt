@@ -1,0 +1,10 @@
+# 仓库农场 owner 黑名单 —— 一行一个，大小写不敏感，# 开头是注释。
+# 命中的仓库直接丢弃，不进 seen 也不进报告。
+#
+# 判据：仓库结构同质 + 跨赛道 + 提交极少（1–2 笔）+ 同批日期。
+# 注意：只是「一个 owner 有 3+ 个仓」不够 —— 正经研究组也会。要三者同时成立。
+#
+# 三条都有三轮复现证据：
+maxamin              # 3 仓全建 10-23、size 20–27KB、各 1 提交、跨 DA安全/restaking风险/intent solver 三个赛道
+nirholas             # 60 天建 100 个仓，★3–7，主题横跨 3D avatar / x402 / Hyperliquid
+OpenMakerProjects    # 10 个仓全是 *-manual-teleoperation（warehouse/library/hospital/…），模板
