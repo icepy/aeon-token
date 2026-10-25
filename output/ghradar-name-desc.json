@@ -1,0 +1,3819 @@
+[
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Gamma-Robot/NEXUS",
+  "owner": "Gamma-Robot",
+  "url": "https://github.com/Gamma-Robot/NEXUS",
+  "stars": 4,
+  "created": "2026-10-23",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Official implementation of \"NEXUS: Perceptive Whole-Body Control for Terrain-Adaptive Teleoperation\"."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "PedroMarinhoDev/ComfyUI-Hy-Nomas",
+  "owner": "PedroMarinhoDev",
+  "url": "https://github.com/PedroMarinhoDev/ComfyUI-Hy-Nomas",
+  "stars": 8,
+  "created": "2026-10-23",
+  "lang": "Python",
+  "topics": [
+   "camera-control",
+   "comfyui",
+   "comfyui-custom-nodes",
+   "hy-nomas",
+   "image-to-video",
+   "quantization"
+  ],
+  "desc": "Tencent's Hy-Nomas video world model natively in ComfyUI: worlds from text or an image, chained segments, camera control and an interactive drive mode. INT8/FP8 kernels, 12 GB card"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "physical-world/physical-world-release",
+  "owner": "physical-world",
+  "url": "https://github.com/physical-world/physical-world-release",
+  "stars": 5,
+  "created": "2026-10-22",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[Code Release] PhysiCalWorld: In-Context Physics Calibration for World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "awesome-cwm/Awesome-Code-World-Model",
+  "owner": "awesome-cwm",
+  "url": "https://github.com/awesome-cwm/Awesome-Code-World-Model",
+  "stars": 4,
+  "created": "2026-10-22",
+  "lang": "HTML",
+  "topics": [],
+  "desc": "A curated collection of Code World Model papers, benchmarks, datasets, and resources"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "aigc3d/World-in-Context",
+  "owner": "aigc3d",
+  "url": "https://github.com/aigc3d/World-in-Context",
+  "stars": 4,
+  "created": "2026-10-22",
+  "lang": "",
+  "topics": [],
+  "desc": "In-Context Conditioning for Interactive Video World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "CuboiLeo/SuperMimic-Reproduced",
+  "owner": "CuboiLeo",
+  "url": "https://github.com/CuboiLeo/SuperMimic-Reproduced",
+  "stars": 200,
+  "created": "2026-10-21",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Reproduction of SuperMimic (arXiv:2610.28480): learned differentiable world model + BPTT policy for G1 humanoid motion tracking, on mjlab/MuJoCo Warp"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "jidaivita/awesome-generalizable-world-models",
+  "owner": "jidaivita",
+  "url": "https://github.com/jidaivita/awesome-generalizable-world-models",
+  "stars": 39,
+  "created": "2026-10-21",
+  "lang": "Python",
+  "topics": [
+   "awesome-list",
+   "generalization",
+   "model-based-reinforcement-learning",
+   "representation-learning",
+   "robot-learning",
+   "world-models"
+  ],
+  "desc": "Research papers on the mechanisms, generalization, and interpretability of learned world models."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "UCSC-VLAA/ALPS",
+  "owner": "UCSC-VLAA",
+  "url": "https://github.com/UCSC-VLAA/ALPS",
+  "stars": 22,
+  "created": "2026-10-21",
+  "lang": "Python",
+  "topics": [
+   "computer-vision",
+   "contrastive-learning",
+   "embodied-ai",
+   "jax",
+   "libero",
+   "pytorch"
+  ],
+  "desc": "🏔️ ALPS: Visual State Encoders for World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "mngli-ai/awesome-world-model-memory",
+  "owner": "mngli-ai",
+  "url": "https://github.com/mngli-ai/awesome-world-model-memory",
+  "stars": 4,
+  "created": "2026-10-21",
+  "lang": "HTML",
+  "topics": [
+   "awesome-list",
+   "interactive-visualization",
+   "memory",
+   "survey",
+   "video-generation",
+   "video-world-model"
+  ],
+  "desc": "World Model Memory Atlas - an interactive timeline of 124 papers on long-video world models and memory addressing"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "markerthu/Aquatic_RSI_world_model",
+  "owner": "markerthu",
+  "url": "https://github.com/markerthu/Aquatic_RSI_world_model",
+  "stars": 3,
+  "created": "2026-10-21",
+  "lang": "JavaScript",
+  "topics": [
+   "evolution-strategies",
+   "multi-agent",
+   "reinforcement-learning",
+   "self-improvement",
+   "simulation",
+   "threejs"
+  ],
+  "desc": "RSI Ocean Shallows: multi-agent self-improvement with a world model, in a live browser lagoon (Three.js). Rays learn by evolution strategies in a copy of their world, checked live "
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "zhangy0822/CofactVLA",
+  "owner": "zhangy0822",
+  "url": "https://github.com/zhangy0822/CofactVLA",
+  "stars": 16,
+  "created": "2026-10-21",
+  "lang": "Python",
+  "topics": [],
+  "desc": "CofactVLA: Deconfounding Vision-Language-Action Models via Counterfactual Intervention"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "No-518/Tactile-ETA",
+  "owner": "No-518",
+  "url": "https://github.com/No-518/Tactile-ETA",
+  "stars": 30,
+  "created": "2026-10-20",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Tactile-ETA: tactile in-context learning for fine robotic manipulation"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Cyberyyc/HoloMotion-Spatial-Robot-Teleoperation",
+  "owner": "Cyberyyc",
+  "url": "https://github.com/Cyberyyc/HoloMotion-Spatial-Robot-Teleoperation",
+  "stars": 13,
+  "created": "2026-10-20",
+  "lang": "C#",
+  "topics": [],
+  "desc": "Head-aligned spatial robot teleoperation with hand-pose tracking, quaternion motion commands, clutching, and ROS integration."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "InternRobotics/InternW0",
+  "owner": "InternRobotics",
+  "url": "https://github.com/InternRobotics/InternW0",
+  "stars": 5,
+  "created": "2026-10-20",
+  "lang": "Python",
+  "topics": [],
+  "desc": "InternW0: A Foundational Physical World Model for Efficient Real-World Interactions"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ZJU-OmniAI/VLA-Rolling",
+  "owner": "ZJU-OmniAI",
+  "url": "https://github.com/ZJU-OmniAI/VLA-Rolling",
+  "stars": 13,
+  "created": "2026-10-19",
+  "lang": "Python",
+  "topics": [],
+  "desc": "VLA-Rolling: Fewer Denoising Steps, Better Control via Adaptive Action Reuse"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "Skywalker-yqz/AffordanceWAM",
+  "owner": "Skywalker-yqz",
+  "url": "https://github.com/Skywalker-yqz/AffordanceWAM",
+  "stars": 9,
+  "created": "2026-10-18",
+  "lang": "Python",
+  "topics": [
+   "affordance",
+   "diffusion-models",
+   "embodied-ai",
+   "flow-matching",
+   "imitation-learning",
+   "pytorch"
+  ],
+  "desc": "Official code for AffordanceWAM: Affordance-Aware Joint World-Action Modeling for Robot Manipulation."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Zhao-Yian/Frechet_Forcing",
+  "owner": "Zhao-Yian",
+  "url": "https://github.com/Zhao-Yian/Frechet_Forcing",
+  "stars": 12,
+  "created": "2026-10-18",
+  "lang": "Python",
+  "topics": [],
+  "desc": "A small streaming video world model with over 4000 frames."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Escapist-coder/VLA-from-scratch",
+  "owner": "Escapist-coder",
+  "url": "https://github.com/Escapist-coder/VLA-from-scratch",
+  "stars": 21,
+  "created": "2026-10-18",
+  "lang": "Python",
+  "topics": [],
+  "desc": "VLA 源码阅读基础教程：八课中文讲解、Word 文档与 PyTorch 配套实验"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "Gamma-Robot/GR-BC",
+  "owner": "Gamma-Robot",
+  "url": "https://github.com/Gamma-Robot/GR-BC",
+  "stars": 7,
+  "created": "2026-10-17",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Graph-Reweighted Behavior Cloning with Human Interventions for Precise Robotic Manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Ropedia/ropedia-w0",
+  "owner": "Ropedia",
+  "url": "https://github.com/Ropedia/ropedia-w0",
+  "stars": 79,
+  "created": "2026-10-17",
+  "lang": "Python",
+  "topics": [
+   "cross-embodiment",
+   "human-data",
+   "loco-manipulation",
+   "world-models"
+  ],
+  "desc": "Ropedia W0: Scaling Loco-Manipulation World Models across Embodiments with Human Experience"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "vla"
+  ],
+  "repo": "Garfield-kh/FastVLA",
+  "owner": "Garfield-kh",
+  "url": "https://github.com/Garfield-kh/FastVLA",
+  "stars": 9,
+  "created": "2026-10-16",
+  "lang": "Python",
+  "topics": [
+   "embodied-ai",
+   "fast-vla",
+   "fastvla",
+   "imitation-learning",
+   "libero",
+   "robot-manipulation"
+  ],
+  "desc": "Fast-VLA (FastVLA): You Only Think Once for Robot Manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "NeuraLiying/LoopWorld",
+  "owner": "NeuraLiying",
+  "url": "https://github.com/NeuraLiying/LoopWorld",
+  "stars": 10,
+  "created": "2026-10-16",
+  "lang": "Python",
+  "topics": [
+   "computer-vision",
+   "diffusion-transformer",
+   "loop",
+   "loop-world-model",
+   "rectified-flow",
+   "rgb-d"
+  ],
+  "desc": "Loop deeper, not bigger: a from-scratch world model on one RTX 4090"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "robbyant-research/PPMem",
+  "owner": "robbyant-research",
+  "url": "https://github.com/robbyant-research/PPMem",
+  "stars": 9,
+  "created": "2026-10-16",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[NeurIPS 2026] Persistent Planar Memory for Video World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "nolie-rolie/contact-uan",
+  "owner": "nolie-rolie",
+  "url": "https://github.com/nolie-rolie/contact-uan",
+  "stars": 27,
+  "created": "2026-10-15",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Contact-UAN: a proprioception-based residual world model for humanoid control"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "weiqi-zhang/AEON",
+  "owner": "weiqi-zhang",
+  "url": "https://github.com/weiqi-zhang/AEON",
+  "stars": 19,
+  "created": "2026-10-15",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[NeurIPS'2026]: AEON: Unifying Video and 3D World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "yijunshens/ConfigWM",
+  "owner": "yijunshens",
+  "url": "https://github.com/yijunshens/ConfigWM",
+  "stars": 3,
+  "created": "2026-10-15",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Official implementation of ConfigWM: World Models with Configurable Perception."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Stanford-TML/FoveaVLA",
+  "owner": "Stanford-TML",
+  "url": "https://github.com/Stanford-TML/FoveaVLA",
+  "stars": 26,
+  "created": "2026-10-15",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Official code for FoveaVLA: Foveation Actions Replace the Wrist Camera in VLAs"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "rzc156/vla-diag",
+  "owner": "rzc156",
+  "url": "https://github.com/rzc156/vla-diag",
+  "stars": 10,
+  "created": "2026-10-15",
+  "lang": "Python",
+  "topics": [
+   "benchmark",
+   "embodied-ai",
+   "evaluation",
+   "libero",
+   "mujoco",
+   "reproducibility"
+  ],
+  "desc": "Check whether a VLA benchmark number is measuring what you think it measures — checkpoint integrity, failure taxonomy, headroom & power analysis (zero-dependency, framework-agnosti"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "QinnyuLan/SONIC_unitree_h2",
+  "owner": "QinnyuLan",
+  "url": "https://github.com/QinnyuLan/SONIC_unitree_h2",
+  "stars": 38,
+  "created": "2026-10-14",
+  "lang": "Python",
+  "topics": [
+   "humanoid-robot",
+   "motion-tracking",
+   "mujoco",
+   "robotics",
+   "teleoperation",
+   "unitree-h2"
+  ],
+  "desc": "Official Unitree H2 deployment of TRACE: SONIC whole-body control with motion replay, planning, and VR teleoperation."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Hongchang-Liu/GeoState",
+  "owner": "Hongchang-Liu",
+  "url": "https://github.com/Hongchang-Liu/GeoState",
+  "stars": 15,
+  "created": "2026-10-14",
+  "lang": "Python",
+  "topics": [],
+  "desc": "GeoState: Learning View-Decoupled Geometry States for 3D World Modeling"
+ },
+ {
+  "term": "embodied data",
+  "terms": [
+   "embodied data"
+  ],
+  "repo": "WUJIAHAO-HKU/Embodied-Data-Atlas",
+  "owner": "WUJIAHAO-HKU",
+  "url": "https://github.com/WUJIAHAO-HKU/Embodied-Data-Atlas",
+  "stars": 3,
+  "created": "2026-10-13",
+  "lang": "",
+  "topics": [
+   "datasets",
+   "embodied-ai",
+   "research-tools",
+   "robot-learning",
+   "robotics"
+  ],
+  "desc": "Public project hub for Embodied Data Atlas: dataset discovery, documentation, updates and feedback. Website source is maintained privately."
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "Iunacy/HAND",
+  "owner": "Iunacy",
+  "url": "https://github.com/Iunacy/HAND",
+  "stars": 5,
+  "created": "2026-10-13",
+  "lang": "C++",
+  "topics": [],
+  "desc": "An autonomous robotic manipulation system built with C++, integrating computer vision, motion planning, and intelligent control."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Maharishiva/tinywmcraft",
+  "owner": "Maharishiva",
+  "url": "https://github.com/Maharishiva/tinywmcraft",
+  "stars": 3,
+  "created": "2026-10-13",
+  "lang": "Python",
+  "topics": [
+   "craftax",
+   "flow-matching",
+   "jax",
+   "speedrun",
+   "world-models"
+  ],
+  "desc": "A tiny pixel world model for Craftax, trained from scratch in 10 minutes on one A100"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "AutoLab-SAI-SJTU/WAVE-0",
+  "owner": "AutoLab-SAI-SJTU",
+  "url": "https://github.com/AutoLab-SAI-SJTU/WAVE-0",
+  "stars": 32,
+  "created": "2026-10-13",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Official repository of \"WAVE-0: Bridging VLA Policies and WAMs with Lightweight Latent Future Prediction\""
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "hojjunekim/LEGS",
+  "owner": "hojjunekim",
+  "url": "https://github.com/hojjunekim/LEGS",
+  "stars": 6,
+  "created": "2026-10-13",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[CoRL 2026] LEGS: Fine-Tuning Teleop-Free VLAs for Humanoid Loco-manipulation in an Embodied Gaussian Splatting World"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "robosimstudio/robosimstudio",
+  "owner": "robosimstudio",
+  "url": "https://github.com/robosimstudio/robosimstudio",
+  "stars": 228,
+  "created": "2026-10-12",
+  "lang": "Python",
+  "topics": [],
+  "desc": "An open interactive toolkit that accelerates human and agentic physics-based Real2Sim of Robot Manipulation Tasks"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "cocacola-lab/Recursia",
+  "owner": "cocacola-lab",
+  "url": "https://github.com/cocacola-lab/Recursia",
+  "stars": 82,
+  "created": "2026-10-12",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Recursive self-improvement for robot manipulation, with real-robot experiments and shared executable skills."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "rzc156/dreamforge",
+  "owner": "rzc156",
+  "url": "https://github.com/rzc156/dreamforge",
+  "stars": 130,
+  "created": "2026-10-12",
+  "lang": "Python",
+  "topics": [
+   "embodied-ai",
+   "imitation-learning",
+   "lerobot",
+   "libero",
+   "pytorch",
+   "research"
+  ],
+  "desc": "Turn world-model imagination into corrective training data for robot policies — a single-GPU, falsifiable pipeline (SmolVLA · LIBERO · CEM · paired simulator replays)."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "TencentARC/Multics",
+  "owner": "TencentARC",
+  "url": "https://github.com/TencentARC/Multics",
+  "stars": 104,
+  "created": "2026-10-12",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Multics: Generative Multi-Player World Model with Hierarchical Communication"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "HKU-MMLab/MIST",
+  "owner": "HKU-MMLab",
+  "url": "https://github.com/HKU-MMLab/MIST",
+  "stars": 12,
+  "created": "2026-10-12",
+  "lang": "Python",
+  "topics": [
+   "agentic",
+   "benchmark",
+   "video-generation",
+   "video-understanding",
+   "world-models"
+  ],
+  "desc": "Execution Before Memory: diagnosing memory failures in video world models."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "pengqianhan/campus-world-model",
+  "owner": "pengqianhan",
+  "url": "https://github.com/pengqianhan/campus-world-model",
+  "stars": 9,
+  "created": "2026-10-12",
+  "lang": "TypeScript",
+  "topics": [],
+  "desc": "Unofficial 3D map of University of Auckland buildings, floors and teaching rooms (student project, not affiliated with the University)"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "haha-yuki-haha/AUGUstus",
+  "owner": "haha-yuki-haha",
+  "url": "https://github.com/haha-yuki-haha/AUGUstus",
+  "stars": 37,
+  "created": "2026-10-12",
+  "lang": "Python",
+  "topics": [
+   "augustus",
+   "autonomous-driving",
+   "diffusion-models",
+   "grpo",
+   "navsim",
+   "reinforcement-learning"
+  ],
+  "desc": "🚗 AUGUstus: Autonomous Driving VLA Model with Unified Generation and Understanding. 🏋️ 512 H800 GPUs · ~2 days · 318K+ video hours · 513B+ training tokens. ⚡ 12 Hz on-vehicle deplo"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "ZGCA-HMI-Lab/4LC",
+  "owner": "ZGCA-HMI-Lab",
+  "url": "https://github.com/ZGCA-HMI-Lab/4LC",
+  "stars": 12,
+  "created": "2026-10-11",
+  "lang": "Python",
+  "topics": [
+   "world-models"
+  ],
+  "desc": "4D Latent Cache for Efficient Conditioning in Dynamic World Modeling"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Jimntu/GameDirector_code",
+  "owner": "Jimntu",
+  "url": "https://github.com/Jimntu/GameDirector_code",
+  "stars": 8,
+  "created": "2026-10-11",
+  "lang": "Python",
+  "topics": [],
+  "desc": "GameDirector: Decoupling Gameplay Logic from Rendering for Player-Configurable Game World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "HKUST-LongGroup/RAR",
+  "owner": "HKUST-LongGroup",
+  "url": "https://github.com/HKUST-LongGroup/RAR",
+  "stars": 13,
+  "created": "2026-10-10",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[arXiv 2026] Project page for paper \"RAR: Rate-Adaptive Rollout for Time-Consistent Interactive World Models\""
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "rominay/LeHami",
+  "owner": "rominay",
+  "url": "https://github.com/rominay/LeHami",
+  "stars": 10,
+  "created": "2026-10-10",
+  "lang": "Jupyter Notebook",
+  "topics": [],
+  "desc": "LeHami: Symplectic Latent Dynamics for World Models"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "asdfaj23/VeriVLA",
+  "owner": "asdfaj23",
+  "url": "https://github.com/asdfaj23/VeriVLA",
+  "stars": 10,
+  "created": "2026-10-10",
+  "lang": "Python",
+  "topics": [
+   "grpo",
+   "llm",
+   "multimodal",
+   "qlora",
+   "qwen",
+   "reinforcement-learning"
+  ],
+  "desc": "多模态工具调用 Agent 的后训练全链路：QLoRA SFT → RM/PPO → DPO → GRPO → AWQ 量化 → vLLM 部署 → 评测反哺课程，附 20+ 真实踩坑记录与原始日志"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "RUCKBReasoning/TokenPB",
+  "owner": "RUCKBReasoning",
+  "url": "https://github.com/RUCKBReasoning/TokenPB",
+  "stars": 3,
+  "created": "2026-10-10",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[NeurIPS' 2026] TokenPB: Enabling VLA Action Self-Verification via VLM Token Probability Bucketing"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "tumeteor/safety-chores-rl",
+  "owner": "tumeteor",
+  "url": "https://github.com/tumeteor/safety-chores-rl",
+  "stars": 3,
+  "created": "2026-10-10",
+  "lang": "Python",
+  "topics": [],
+  "desc": "A new simulation framework for RL-based VLA tasks: rollout-native APIs, budgeted search, and checked trajectory execution on Safety-CHORES."
+ },
+ {
+  "term": "proof of useful work",
+  "terms": [
+   "proof of useful work"
+  ],
+  "repo": "vearl-verified-compute/vearl",
+  "owner": "vearl-verified-compute",
+  "url": "https://github.com/vearl-verified-compute/vearl",
+  "stars": 21,
+  "created": "2026-10-10",
+  "lang": "Rust",
+  "topics": [],
+  "desc": "Vearl - verified compute: a proof-of-useful-work chain"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "WorldOracle-benchmark/WorldOracle",
+  "owner": "WorldOracle-benchmark",
+  "url": "https://github.com/WorldOracle-benchmark/WorldOracle",
+  "stars": 20,
+  "created": "2026-10-09",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Official implementation for WorldOracle: Benchmarking Action-Conditioned World Models against Real-World Executions"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "ZJU-REAL/WorldMemBench",
+  "owner": "ZJU-REAL",
+  "url": "https://github.com/ZJU-REAL/WorldMemBench",
+  "stars": 17,
+  "created": "2026-10-09",
+  "lang": "Python",
+  "topics": [
+   "benchmark",
+   "memory",
+   "world-model"
+  ],
+  "desc": "WorldMemBench: A Comprehensive Benchmark for Memory of Video World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "bilemond/JANUS",
+  "owner": "bilemond",
+  "url": "https://github.com/bilemond/JANUS",
+  "stars": 7,
+  "created": "2026-10-09",
+  "lang": "",
+  "topics": [],
+  "desc": "JANUS: Enhancing Long-Horizon Autonomous Research with Co-Evolving World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Gen-Verse/RSI-Anything",
+  "owner": "Gen-Verse",
+  "url": "https://github.com/Gen-Verse/RSI-Anything",
+  "stars": 826,
+  "created": "2026-10-08",
+  "lang": "HTML",
+  "topics": [
+   "jepa",
+   "llm-agents",
+   "recursive-self-improvement",
+   "world-models"
+  ],
+  "desc": "RSI-Anything: Unlocking Recursive Self-Improvement with World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "clipspark/multiworldbench",
+  "owner": "clipspark",
+  "url": "https://github.com/clipspark/multiworldbench",
+  "stars": 59,
+  "created": "2026-10-08",
+  "lang": "Python",
+  "topics": [],
+  "desc": "bench mark for multi world model"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "fin-ai-lab/tfwm",
+  "owner": "fin-ai-lab",
+  "url": "https://github.com/fin-ai-lab/tfwm",
+  "stars": 26,
+  "created": "2026-10-08",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Towards Financial World Modeling, NeurIPS 2026"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Jalil-g/History-guessr",
+  "owner": "Jalil-g",
+  "url": "https://github.com/Jalil-g/History-guessr",
+  "stars": 3,
+  "created": "2026-10-08",
+  "lang": "TypeScript",
+  "topics": [],
+  "desc": "🏆 Winner of the Reactor x Google World Models Hackathon. History Guesser: step into a live, AI-generated moment in history, video call a local for clues, and guess where and when y"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "luo-yc17/Reflect-VLA",
+  "owner": "luo-yc17",
+  "url": "https://github.com/luo-yc17/Reflect-VLA",
+  "stars": 3,
+  "created": "2026-10-08",
+  "lang": "",
+  "topics": [],
+  "desc": "Repo of \"Reflect-VLA: Internalizing Reflective Guidance via Dual-Path On-Policy Self-Distillation for Autonomous Driving\""
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "world model"
+  ],
+  "repo": "iitimii/SmolWAM",
+  "owner": "iitimii",
+  "url": "https://github.com/iitimii/SmolWAM",
+  "stars": 13,
+  "created": "2026-10-07",
+  "lang": "Python",
+  "topics": [
+   "diffusion-transformer",
+   "embodied-ai",
+   "imitation-learning",
+   "libero",
+   "model-compression",
+   "pytorch"
+  ],
+  "desc": "SmolWAM: a 0.88B latent world-action model for robot manipulation on edge devices. NeurIPS 2026 Workshop on Robotics World Modeling."
+ },
+ {
+  "term": "robot dataset",
+  "terms": [
+   "robot dataset"
+  ],
+  "repo": "video-db/RoboPeek",
+  "owner": "video-db",
+  "url": "https://github.com/video-db/RoboPeek",
+  "stars": 13,
+  "created": "2026-10-07",
+  "lang": "TypeScript",
+  "topics": [
+   "dataset",
+   "physical-ai",
+   "robots",
+   "viewer",
+   "visualization"
+  ],
+  "desc": "Peek inside robotics datasets in the browser, straight from the source files. RLDS and MCAP readers plus a React viewer."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model",
+   "vla"
+  ],
+  "repo": "ASGuard-UCI/safedrive-vla",
+  "owner": "ASGuard-UCI",
+  "url": "https://github.com/ASGuard-UCI/safedrive-vla",
+  "stars": 29,
+  "created": "2026-10-07",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[CoRL 2026] SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Yoonkyo/TraceExtract",
+  "owner": "Yoonkyo",
+  "url": "https://github.com/Yoonkyo/TraceExtract",
+  "stars": 18,
+  "created": "2026-10-07",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Official code for \"μ0: A Scalable 3D Interaction-Trace World Model\" (CoRL 2026)"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "qingh097/Latent_action_world_model",
+  "owner": "qingh097",
+  "url": "https://github.com/qingh097/Latent_action_world_model",
+  "stars": 3,
+  "created": "2026-10-07",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Code for Cross-Embodiment Robot Foundation World Models with Latent Actions (LAC-WM)"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Dicomsky/StairVLA",
+  "owner": "Dicomsky",
+  "url": "https://github.com/Dicomsky/StairVLA",
+  "stars": 5,
+  "created": "2026-10-07",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Stage-aware hierarchical action generation for vision-language-action models (StairVLA, arXiv 2610.07756)."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Jize-W/Awesome-World-Model-Interpretability",
+  "owner": "Jize-W",
+  "url": "https://github.com/Jize-W/Awesome-World-Model-Interpretability",
+  "stars": 99,
+  "created": "2026-10-06",
+  "lang": "",
+  "topics": [],
+  "desc": "[ArXiv 2026] Methods for world model interpretability"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "seohongpark/ocbench",
+  "owner": "seohongpark",
+  "url": "https://github.com/seohongpark/ocbench",
+  "stars": 123,
+  "created": "2026-10-05",
+  "lang": "Python",
+  "topics": [],
+  "desc": "A controllable benchmark for robotic manipulation"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "vla"
+  ],
+  "repo": "alibaba-damo-academy/RynnVLA-Latent",
+  "owner": "alibaba-damo-academy",
+  "url": "https://github.com/alibaba-damo-academy/RynnVLA-Latent",
+  "stars": 5,
+  "created": "2026-10-05",
+  "lang": "Python",
+  "topics": [],
+  "desc": "RynnVLA-Latent: Scaling Robotic Manipulation Foundation Models with 3D-Grounded Latent Actions"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "AetherLabsAI/Video2World",
+  "owner": "AetherLabsAI",
+  "url": "https://github.com/AetherLabsAI/Video2World",
+  "stars": 200,
+  "created": "2026-10-05",
+  "lang": "Python",
+  "topics": [
+   "benchmark",
+   "coding-agent",
+   "embodied-ai",
+   "foundation-models",
+   "real-to-sim",
+   "robot-learning"
+  ],
+  "desc": "Benchmarking Coding Agents for Interactive World Modeling from Embodied Videos - Rethinking Embodied Real2Sim from a Software Engineering Perspective"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "lyk555/mini-world-model",
+  "owner": "lyk555",
+  "url": "https://github.com/lyk555/mini-world-model",
+  "stars": 9,
+  "created": "2026-10-05",
+  "lang": "Python",
+  "topics": [],
+  "desc": "A small spatial world model built from scratch and trained on a laptop, to understand how models like World Labs' Atlas work: camera-conditioned latent diffusion transformer with s"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "AkulRanjan/pyschic-vla",
+  "owner": "AkulRanjan",
+  "url": "https://github.com/AkulRanjan/pyschic-vla",
+  "stars": 3,
+  "created": "2026-10-05",
+  "lang": "Python",
+  "topics": [],
+  "desc": "A JEV based Gemma router for VLA Models that allows intelligent distribution and lets small open source VLA models scale and perform like the bigger ones."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ahemphil/agonc",
+  "owner": "ahemphil",
+  "url": "https://github.com/ahemphil/agonc",
+  "stars": 3,
+  "created": "2026-10-05",
+  "lang": "C",
+  "topics": [],
+  "desc": "A C compiler that runs on the Agon Light and Console8: C99 (except VLAs and complex numbers) with a strict C89 mode, compiling itself, for MOS"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "vla"
+  ],
+  "repo": "YuhengNa/EvoMem-VLA-Code",
+  "owner": "YuhengNa",
+  "url": "https://github.com/YuhengNa/EvoMem-VLA-Code",
+  "stars": 3,
+  "created": "2026-10-04",
+  "lang": "",
+  "topics": [],
+  "desc": "EvoMem-VLA: State-Evolution Memory for Long-Horizon Robot Manipulation"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Roboparty/P-BFM",
+  "owner": "Roboparty",
+  "url": "https://github.com/Roboparty/P-BFM",
+  "stars": 95,
+  "created": "2026-10-04",
+  "lang": "Python",
+  "topics": [
+   "behavioral-foundation-models",
+   "perception",
+   "teleoperation",
+   "unsupervised-learning"
+  ],
+  "desc": "Perceptive behavioral foundation models for terrain-adaptive humanoid control: motion tracking, goal reaching, reward inference and teleoperation."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "ruyue0001/trace2env",
+  "owner": "ruyue0001",
+  "url": "https://github.com/ruyue0001/trace2env",
+  "stars": 116,
+  "created": "2026-10-04",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Agentic Language World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "OpenInterpretability/ekbasis",
+  "owner": "OpenInterpretability",
+  "url": "https://github.com/OpenInterpretability/ekbasis",
+  "stars": 19,
+  "created": "2026-10-04",
+  "lang": "Python",
+  "topics": [
+   "agent-safety",
+   "ai-agents",
+   "calibration",
+   "computer-use",
+   "git",
+   "world-model"
+  ],
+  "desc": "Ekbasis: an open world model for agents. What an action will do, before it is done."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model",
+   "vla"
+  ],
+  "repo": "RainyRobo/PLaW-VLA",
+  "owner": "RainyRobo",
+  "url": "https://github.com/RainyRobo/PLaW-VLA",
+  "stars": 7,
+  "created": "2026-10-04",
+  "lang": "Python",
+  "topics": [
+   "corl-2026",
+   "embodied-ai",
+   "pytorch",
+   "robot-learning",
+   "robotic-manipulation",
+   "vision-language-action"
+  ],
+  "desc": "Official implementation of PLaW-VLA: Predictive Latent World Modeling for Vision-Language-Action Policies (CoRL 2026)."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Sarim-MBZUAI/advsim2real",
+  "owner": "Sarim-MBZUAI",
+  "url": "https://github.com/Sarim-MBZUAI/advsim2real",
+  "stars": 6,
+  "created": "2026-10-04",
+  "lang": "Python",
+  "topics": [],
+  "desc": "AdvSim2Real: Training Web Agents Against Adaptive Prompt Injection in a Web World Model"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "wiltechs-hd/wilro-moe",
+  "owner": "wiltechs-hd",
+  "url": "https://github.com/wiltechs-hd/wilro-moe",
+  "stars": 35,
+  "created": "2026-10-04",
+  "lang": "Python",
+  "topics": [],
+  "desc": "WILRO-MoE: a small VLA for LIBERO, with golden-ticket noise search and deterministic noise cycles"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "vla"
+  ],
+  "repo": "ShuhongLL/RawVLA",
+  "owner": "ShuhongLL",
+  "url": "https://github.com/ShuhongLL/RawVLA",
+  "stars": 94,
+  "created": "2026-10-02",
+  "lang": "Python",
+  "topics": [],
+  "desc": "RawVLA: Embodied Neural Image Signal Processor For Robotic Manipulation"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "xgq2005/GiTBench",
+  "owner": "xgq2005",
+  "url": "https://github.com/xgq2005/GiTBench",
+  "stars": 3,
+  "created": "2026-10-02",
+  "lang": "Python",
+  "topics": [],
+  "desc": "a simulation benchmark for temporal grounding in robotic manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "mbzuai-oryx/WorldGuide",
+  "owner": "mbzuai-oryx",
+  "url": "https://github.com/mbzuai-oryx/WorldGuide",
+  "stars": 27,
+  "created": "2026-10-02",
+  "lang": "Python",
+  "topics": [
+   "diffusion-transformers",
+   "goal-directed-generation",
+   "hierarchical-memory",
+   "long-horizon-planning",
+   "video-generation",
+   "video-world-models"
+  ],
+  "desc": "WorldGuide: Goal-Directed Video World Model for Procedural Task Execution."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "jiamingzhang94/lgwm",
+  "owner": "jiamingzhang94",
+  "url": "https://github.com/jiamingzhang94/lgwm",
+  "stars": 3,
+  "created": "2026-10-02",
+  "lang": "Python",
+  "topics": [
+   "agent-safety",
+   "ai-safety",
+   "android",
+   "benchmark",
+   "computer-use",
+   "gui-agent"
+  ],
+  "desc": "LGWM (Latent GUI World Model): an action-conditioned world model that verifies GUI agent transitions in representation space. Official code for \"Right Screen, Wrong Transition: Wor"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "ucd-dare/DuoMind",
+  "owner": "ucd-dare",
+  "url": "https://github.com/ucd-dare/DuoMind",
+  "stars": 6,
+  "created": "2026-10-01",
+  "lang": "Python",
+  "topics": [],
+  "desc": "RoboPoly: a distributed multi-robot manipulation benchmark."
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "world model"
+  ],
+  "repo": "RoboDyna/robodyna",
+  "owner": "RoboDyna",
+  "url": "https://github.com/RoboDyna/robodyna",
+  "stars": 3,
+  "created": "2026-10-01",
+  "lang": "Python",
+  "topics": [],
+  "desc": "RoboDyna: Benchmarking Robotic Manipulation under Physically Realistic Dynamics (NeurIPS 2026 Workshop on Robot Learning with World Models)"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Madaoer/Oneira",
+  "owner": "Madaoer",
+  "url": "https://github.com/Madaoer/Oneira",
+  "stars": 33,
+  "created": "2026-10-01",
+  "lang": "Python",
+  "topics": [
+   "video-generation",
+   "world-models"
+  ],
+  "desc": "Official PyTorch implementation of \"Oneira: From Open-Ended Generation to Open-World Interaction in Video World Models\""
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "cvlab-kaist/ME-World",
+  "owner": "cvlab-kaist",
+  "url": "https://github.com/cvlab-kaist/ME-World",
+  "stars": 24,
+  "created": "2026-10-01",
+  "lang": "",
+  "topics": [],
+  "desc": "Official implementation of \"Multi-Agent Egocentric World Model with Fine-Grained Embodied Interaction\""
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Sta8is/Latent-Foresight",
+  "owner": "Sta8is",
+  "url": "https://github.com/Sta8is/Latent-Foresight",
+  "stars": 20,
+  "created": "2026-10-01",
+  "lang": "Python",
+  "topics": [
+   "autonomous-driving",
+   "future-prediction",
+   "latent-world-models",
+   "physical-ai"
+  ],
+  "desc": "Official Implementation of Latent-Foresight: End-to-End Learning Predictable Representations for Latent World Models"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "KolaKivy/HIVE-Bench",
+  "owner": "KolaKivy",
+  "url": "https://github.com/KolaKivy/HIVE-Bench",
+  "stars": 4,
+  "created": "2026-09-30",
+  "lang": "Python",
+  "topics": [],
+  "desc": "HIVE-Bench: Evaluating Patch-Level Visual Representations for Egocentric Robot Manipulation"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "world model"
+  ],
+  "repo": "ChuyaoFu/Token-World",
+  "owner": "ChuyaoFu",
+  "url": "https://github.com/ChuyaoFu/Token-World",
+  "stars": 3,
+  "created": "2026-09-30",
+  "lang": "",
+  "topics": [],
+  "desc": "Token-World: World Modeling in Vision-Language Model Token Space for Robot Manipulation — project website"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "mrvgao/tiny-atlas",
+  "owner": "mrvgao",
+  "url": "https://github.com/mrvgao/tiny-atlas",
+  "stars": 17,
+  "created": "2026-09-30",
+  "lang": "Python",
+  "topics": [],
+  "desc": "A tiny end-to-end world model (pose-conditioned autoregressive rectified flow) you can train on a laptop — for teaching how models like World Labs' Atlas work"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "ImYangC7/AutoGUIWorld",
+  "owner": "ImYangC7",
+  "url": "https://github.com/ImYangC7/AutoGUIWorld",
+  "stars": 11,
+  "created": "2026-09-30",
+  "lang": "Python",
+  "topics": [],
+  "desc": "AutoGUIWorld: Image Generators as Visual World Models for GUI Agent"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "zhaozijie2022/locowm",
+  "owner": "zhaozijie2022",
+  "url": "https://github.com/zhaozijie2022/locowm",
+  "stars": 11,
+  "created": "2026-09-30",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Offical implementation of paper \"LocoWM: High-Precision Locomotion through World-Model-Guided Residual Adaptation\""
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "GimpelZhang/Cosmos-Dreams-AlpaSim",
+  "owner": "GimpelZhang",
+  "url": "https://github.com/GimpelZhang/Cosmos-Dreams-AlpaSim",
+  "stars": 7,
+  "created": "2026-09-30",
+  "lang": "Python",
+  "topics": [
+   "alpamayo",
+   "alpasim",
+   "autonomous-driving",
+   "autonomous-vehicles",
+   "closed-loop-simulation",
+   "cosmos"
+  ],
+  "desc": "Closed-loop autonomous-driving simulation with NVIDIA OmniDreams on AlpaSim: real-data rollouts with Alpamayo R1/1.5 drivers and counterfactual long-tail scenario generation (weath"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "fyantu/World2Motion",
+  "owner": "fyantu",
+  "url": "https://github.com/fyantu/World2Motion",
+  "stars": 4,
+  "created": "2026-09-30",
+  "lang": "HTML",
+  "topics": [],
+  "desc": "World2Motion: Turning Video World Models into 3D Human Motion Generators — project page"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Seonghoon-Yu/RACE-VLA",
+  "owner": "Seonghoon-Yu",
+  "url": "https://github.com/Seonghoon-Yu/RACE-VLA",
+  "stars": 6,
+  "created": "2026-09-30",
+  "lang": "",
+  "topics": [],
+  "desc": "When to Switch: Reliable Action-Chunk Extension for Vision-Language-Action Models"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ZJU4EmbodiedAI/JevVLA",
+  "owner": "ZJU4EmbodiedAI",
+  "url": "https://github.com/ZJU4EmbodiedAI/JevVLA",
+  "stars": 3,
+  "created": "2026-09-30",
+  "lang": "Python",
+  "topics": [],
+  "desc": "`Jev-inspired energy-based adaptation for vision-language-action policies, unifying candidate selection and continuous action guidance.`"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "nsdrbonseki/ABCDE-QDepthVLA",
+  "owner": "nsdrbonseki",
+  "url": "https://github.com/nsdrbonseki/ABCDE-QDepthVLA",
+  "stars": 3,
+  "created": "2026-09-30",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[ABCDE-QDepthVLA]:Attention-Based Conditional Depth Enhancement for QDepth-VLA"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "HandsomeYun/Mem4Act",
+  "owner": "HandsomeYun",
+  "url": "https://github.com/HandsomeYun/Mem4Act",
+  "stars": 9,
+  "created": "2026-09-29",
+  "lang": "",
+  "topics": [],
+  "desc": "Mem4Act: Learning Effective Latent Memory for Long-Horizon Robotic Manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "NoizAI/WorldSonus",
+  "owner": "NoizAI",
+  "url": "https://github.com/NoizAI/WorldSonus",
+  "stars": 234,
+  "created": "2026-09-29",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Real-time, interactive spatial audio generation for videos and world models."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "kaichen-z/HoneyComb",
+  "owner": "kaichen-z",
+  "url": "https://github.com/kaichen-z/HoneyComb",
+  "stars": 119,
+  "created": "2026-09-29",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Honeycomb: Constant-Size Scene Memory Representation for Video World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "DeLin1001/Dual-WM-Official",
+  "owner": "DeLin1001",
+  "url": "https://github.com/DeLin1001/Dual-WM-Official",
+  "stars": 25,
+  "created": "2026-09-29",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Dual-WM: DUAL-LATENT WORLD MODEL"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "xbyym/Spatial-Memory-Intelligence",
+  "owner": "xbyym",
+  "url": "https://github.com/xbyym/Spatial-Memory-Intelligence",
+  "stars": 24,
+  "created": "2026-09-29",
+  "lang": "",
+  "topics": [],
+  "desc": "Spatial Memory Intelligence: Endowing World Models with Understanding-Driven Long-Term Memory."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Zhangyr2022/StateWorldModel",
+  "owner": "Zhangyr2022",
+  "url": "https://github.com/Zhangyr2022/StateWorldModel",
+  "stars": 16,
+  "created": "2026-09-29",
+  "lang": "Python",
+  "topics": [
+   "world-models"
+  ],
+  "desc": "State World Models: Execute the Rules, Generate the Pixels"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "galilai-group/AnyGoal",
+  "owner": "galilai-group",
+  "url": "https://github.com/galilai-group/AnyGoal",
+  "stars": 16,
+  "created": "2026-09-29",
+  "lang": "Python",
+  "topics": [
+   "compositional-generalization",
+   "generative-world-model",
+   "jepa",
+   "world-model-evaluation"
+  ],
+  "desc": "A compositional generalization suite for world model research"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "xiaji2021/LOCI",
+  "owner": "xiaji2021",
+  "url": "https://github.com/xiaji2021/LOCI",
+  "stars": 15,
+  "created": "2026-09-29",
+  "lang": "Python",
+  "topics": [],
+  "desc": "LOCI: Spatial Linear Memory for Streaming World Models — inference code and weights coming soon"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "kyutai-labs/cadre-autoencoders-and-world-models",
+  "owner": "kyutai-labs",
+  "url": "https://github.com/kyutai-labs/cadre-autoencoders-and-world-models",
+  "stars": 11,
+  "created": "2026-09-29",
+  "lang": "Python",
+  "topics": [],
+  "desc": "CADRE: causal video autoencoders and real-time interactive world models. Code for \"Rethinking Video Autoencoders for Interactive World Models\"."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "pvskand/3dpwm",
+  "owner": "pvskand",
+  "url": "https://github.com/pvskand/3dpwm",
+  "stars": 6,
+  "created": "2026-09-29",
+  "lang": "",
+  "topics": [],
+  "desc": "Official Implementation of 3D Point World Models."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "HaoranZhuExplorer/AD-LiST-JEPA-Preview",
+  "owner": "HaoranZhuExplorer",
+  "url": "https://github.com/HaoranZhuExplorer/AD-LiST-JEPA-Preview",
+  "stars": 4,
+  "created": "2026-09-29",
+  "lang": "",
+  "topics": [],
+  "desc": "[Preview Version's Codebase] AD-LiST-JEPA: Self-Supervised JEPA-based World Models for LiDAR Occupancy Completion and Forecasting"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "kyounginbaik/SimVLA",
+  "owner": "kyounginbaik",
+  "url": "https://github.com/kyounginbaik/SimVLA",
+  "stars": 5,
+  "created": "2026-09-29",
+  "lang": "Python",
+  "topics": [
+   "mobile-manipulation",
+   "robotics",
+   "sim-to-real",
+   "vla-model"
+  ],
+  "desc": "SimVLA -- Zero-shot Sim-to-Real VLA Learning for Mobile Manipulation"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "DAGroup-PKU/ViGAR",
+  "owner": "DAGroup-PKU",
+  "url": "https://github.com/DAGroup-PKU/ViGAR",
+  "stars": 105,
+  "created": "2026-09-28",
+  "lang": "Python",
+  "topics": [
+   "efficiency",
+   "long-horizon",
+   "post-training",
+   "robotics",
+   "robotwin",
+   "simulation"
+  ],
+  "desc": "Rethinking World-Action Model for Compositional and In-context Robotic Manipulation"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "nanamma/HIDE-SEEK",
+  "owner": "nanamma",
+  "url": "https://github.com/nanamma/HIDE-SEEK",
+  "stars": 5,
+  "created": "2026-09-28",
+  "lang": "",
+  "topics": [],
+  "desc": "Benchmarking and Enhancing Skill-Level Memory for Partially Observable Robotic Manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "WorldPlay2/WorldPlay2",
+  "owner": "WorldPlay2",
+  "url": "https://github.com/WorldPlay2/WorldPlay2",
+  "stars": 120,
+  "created": "2026-09-28",
+  "lang": "Python",
+  "topics": [],
+  "desc": "WorldPlay2: Extending Real-Time Interactive World Models in Control and Horizon"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Scarlett-Yyq/World-as-Graph",
+  "owner": "Scarlett-Yyq",
+  "url": "https://github.com/Scarlett-Yyq/World-as-Graph",
+  "stars": 5,
+  "created": "2026-09-28",
+  "lang": "Python",
+  "topics": [],
+  "desc": "World-as-Graph: Relational World Modeling Through Latent Space Graphs"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "usail-hkust/VLALight",
+  "owner": "usail-hkust",
+  "url": "https://github.com/usail-hkust/VLALight",
+  "stars": 4,
+  "created": "2026-09-28",
+  "lang": "Python",
+  "topics": [],
+  "desc": "The code for VLALight."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "World4Scorer/World4Scorer",
+  "owner": "World4Scorer",
+  "url": "https://github.com/World4Scorer/World4Scorer",
+  "stars": 13,
+  "created": "2026-09-27",
+  "lang": "Python",
+  "topics": [],
+  "desc": "World4Scorer: Outcome-Grounded World Modeling for Autonomous Driving"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Cherishings/PhyLatent",
+  "owner": "Cherishings",
+  "url": "https://github.com/Cherishings/PhyLatent",
+  "stars": 4,
+  "created": "2026-09-27",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Official implementation of PhyLatent for physically grounded latent world modeling and planning"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Adyansh04/canopy",
+  "owner": "Adyansh04",
+  "url": "https://github.com/Adyansh04/canopy",
+  "stars": 3,
+  "created": "2026-09-27",
+  "lang": "C++",
+  "topics": [
+   "computer-vision",
+   "embodied-ai",
+   "exploration",
+   "frontier-exploration",
+   "mobile-robots",
+   "object-detection"
+  ],
+  "desc": "A semantic world model for ROS 2 robots: rooms, doorways, objects and camera coverage on the SLAM map, filled in by autonomous exploration and open-vocabulary detection (SAM 3.1 or"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "Mark4551124015/Copper-Policy",
+  "owner": "Mark4551124015",
+  "url": "https://github.com/Mark4551124015/Copper-Policy",
+  "stars": 11,
+  "created": "2026-09-26",
+  "lang": "Python",
+  "topics": [
+   "jepa",
+   "representation-learning",
+   "robotics",
+   "vision-language-model",
+   "world-action-model"
+  ],
+  "desc": "Official Implementation of \"Copper-Policy: Focus on the Representation for Robust Robot Manipulation\""
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "ManfredCh/ai-security-universe",
+  "owner": "ManfredCh",
+  "url": "https://github.com/ManfredCh/ai-security-universe",
+  "stars": 22,
+  "created": "2026-09-26",
+  "lang": "",
+  "topics": [
+   "ai-safety",
+   "ai-security",
+   "cc-by-nc-sa",
+   "deepfake",
+   "llm-security",
+   "open-research"
+  ],
+  "desc": "Four evidence reviews on AI security: LLMs and agents, image and video generation, embodied loops, world models. Licence: CC BY-NC-SA 4.0"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "DocyNoah/dawn-parkour",
+  "owner": "DocyNoah",
+  "url": "https://github.com/DocyNoah/dawn-parkour",
+  "stars": 11,
+  "created": "2026-09-26",
+  "lang": "Python",
+  "topics": [
+   "iros",
+   "iros2026",
+   "locomotion",
+   "parkour",
+   "quadruped",
+   "quadruped-robot"
+  ],
+  "desc": "Official implementation of DAWN: Noise-Robust Quadruped Parkour via Depth-Denoising World Models (IROS 2026)."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "tmz-lab/hjepa",
+  "owner": "tmz-lab",
+  "url": "https://github.com/tmz-lab/hjepa",
+  "stars": 6,
+  "created": "2026-09-26",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Hamiltonian JEPA: Action-Conditioned World Models with an Inherited Control State"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "lokiniuniu/CAST",
+  "owner": "lokiniuniu",
+  "url": "https://github.com/lokiniuniu/CAST",
+  "stars": 5,
+  "created": "2026-09-26",
+  "lang": "Python",
+  "topics": [],
+  "desc": "CAST: Reconstruction-Coupled Acceleration of Interactive World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "guoshaoyang-pku/momentum-induction",
+  "owner": "guoshaoyang-pku",
+  "url": "https://github.com/guoshaoyang-pku/momentum-induction",
+  "stars": 3,
+  "created": "2026-09-26",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Reproduction codebase for Why Do Conventional World Models Fail to Learn Cellular Automata? Main figures, conclusions, code, checkpoints, and the MetaCircle-branded paper. Release "
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Dbp-dev12/vla-preflight",
+  "owner": "Dbp-dev12",
+  "url": "https://github.com/Dbp-dev12/vla-preflight",
+  "stars": 112,
+  "created": "2026-09-26",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Local VLA workbench: data diagnostics, reproducible preparation and reference training."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Di-Zhu123/ActionUNet",
+  "owner": "Di-Zhu123",
+  "url": "https://github.com/Di-Zhu123/ActionUNet",
+  "stars": 7,
+  "created": "2026-09-26",
+  "lang": "Python",
+  "topics": [
+   "fine-tuning",
+   "manipulation",
+   "robotics",
+   "robustness",
+   "vision-language-action"
+  ],
+  "desc": "Official implementation of “ActionUNet: Improving Robustness of VLA Models with Efficient Multi-scale Fine-tuning” (NeurIPS 2026)"
+ },
+ {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "jiz322/tiptoe-biped",
+  "owner": "jiz322",
+  "url": "https://github.com/jiz322/tiptoe-biped",
+  "stars": 14,
+  "created": "2026-09-25",
+  "lang": "Python",
+  "topics": [
+   "biped",
+   "isaac-lab",
+   "legged-robots",
+   "reinforcement-learning",
+   "rsl-rl",
+   "sim2real"
+  ],
+  "desc": "Open-hardware point-foot biped (6-DOF, no ankles) trained with PPO in Isaac Lab / RSL-RL, plus a full sim2real research log. It stands and catch-steps on real hardware."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "TeaWhiteBro/ActionRoPE",
+  "owner": "TeaWhiteBro",
+  "url": "https://github.com/TeaWhiteBro/ActionRoPE",
+  "stars": 6,
+  "created": "2026-09-25",
+  "lang": "Python",
+  "topics": [],
+  "desc": "ActionRoPE: Action as Coordinates for Spatially Consistent Control in Planar-Camera Game World Models (code; project page on the gh-pages branch)"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ohho-robotics/ohho-omnibot",
+  "owner": "ohho-robotics",
+  "url": "https://github.com/ohho-robotics/ohho-omnibot",
+  "stars": 4,
+  "created": "2026-09-25",
+  "lang": "Python",
+  "topics": [
+   "embedded",
+   "gazebo",
+   "imitation-learning",
+   "lerobot",
+   "mecanum",
+   "mecanum-wheel"
+  ],
+  "desc": "Open-source ROS 2 Jazzy mecanum mobile manipulator: SO-101 arm, Nav2/SLAM, Gazebo sim, Quest VR teleop, LeRobot + VLA"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "hanfeny7/world-pose-fall-intelligence",
+  "owner": "hanfeny7",
+  "url": "https://github.com/hanfeny7/world-pose-fall-intelligence",
+  "stars": 15,
+  "created": "2026-09-24",
+  "lang": "Python",
+  "topics": [
+   "computer-vision",
+   "edge-ai",
+   "fall-detection",
+   "multimodal-ai",
+   "pose-estimation",
+   "world-model"
+  ],
+  "desc": "SentinelFlow - multimodal world-model and fall-detection intelligence showcase"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "xijiahe172-art/mushroom-body-learning",
+  "owner": "xijiahe172-art",
+  "url": "https://github.com/xijiahe172-art/mushroom-body-learning",
+  "stars": 4,
+  "created": "2026-09-24",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Experience-based learning for coding agents: an optional module that lets an agent form \"what is worth trying here\" from its own past steps. Inspired by the fruit fly's mushroom bo"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Eason149/3d-vla-group-project",
+  "owner": "Eason149",
+  "url": "https://github.com/Eason149/3d-vla-group-project",
+  "stars": 3,
+  "created": "2026-09-24",
+  "lang": "TeX",
+  "topics": [],
+  "desc": "Group workspace for learning and reproducing 3D-VLA"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "sim2real"
+  ],
+  "repo": "hesd10/astra-robot-sim2real",
+  "owner": "hesd10",
+  "url": "https://github.com/hesd10/astra-robot-sim2real",
+  "stars": 13,
+  "created": "2026-09-23",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Robot manipulation with GPT-6-Astra: body knowledge, experience reuse, emergent skills, and sim2real transfer."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "yandex/YaCT",
+  "owner": "yandex",
+  "url": "https://github.com/yandex/YaCT",
+  "stars": 3,
+  "created": "2026-09-23",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Yet Another Closed-loop Teleoperation"
+ },
+ {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "kedianwen/LDRQ",
+  "owner": "kedianwen",
+  "url": "https://github.com/kedianwen/LDRQ",
+  "stars": 3,
+  "created": "2026-09-23",
+  "lang": "Python",
+  "topics": [
+   "edge-ai",
+   "humanoid-robot",
+   "isaac-lab",
+   "jetson-orin",
+   "llm",
+   "ros2-foxy"
+  ],
+  "desc": "Unitree R1 humanoid: asymmetric-PPO walking policy from Isaac Lab to the onboard Jetson Orin NX, sim2real stiffness sweep, and English commands through a local LLM"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model",
+   "vla"
+  ],
+  "repo": "ABC12345anouys/EvoBot",
+  "owner": "ABC12345anouys",
+  "url": "https://github.com/ABC12345anouys/EvoBot",
+  "stars": 128,
+  "created": "2026-09-23",
+  "lang": "Python",
+  "topics": [
+   "bddl",
+   "embodied-ai",
+   "libero",
+   "manipulation",
+   "mujoco",
+   "robosuite"
+  ],
+  "desc": "Agent + reusable skill library for LIBERO manipulation tasks (no RL / VLA / world model; no LLM calls at runtime)"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "SIPAILab/SIPAI",
+  "owner": "SIPAILab",
+  "url": "https://github.com/SIPAILab/SIPAI",
+  "stars": 4,
+  "created": "2026-09-23",
+  "lang": "",
+  "topics": [],
+  "desc": "Simate Physical AI — A modular training framework for WM, WAM, VLA, and VLM research."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "AbdelStark/lejudge-jev-jepa",
+  "owner": "AbdelStark",
+  "url": "https://github.com/AbdelStark/lejudge-jev-jepa",
+  "stars": 13,
+  "created": "2026-09-22",
+  "lang": "Python",
+  "topics": [
+   "decision-model",
+   "jepa",
+   "jev-model",
+   "machine-learning",
+   "world-models"
+  ],
+  "desc": "Natural-language constraints for JEPA world-model planning, judged by a decision model instead of an LLM."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "guangyliu/open-code-world-model",
+  "owner": "guangyliu",
+  "url": "https://github.com/guangyliu/open-code-world-model",
+  "stars": 6,
+  "created": "2026-09-22",
+  "lang": "Python",
+  "topics": [
+   "code-world-model",
+   "depth",
+   "minimax-h3",
+   "proxy",
+   "video-generation",
+   "world-model"
+  ],
+  "desc": "The proxy generator for Code World Model: scripted worlds compiled to depth + semantic conditions that MiniMax-H3 (CWM LoRA) and LynnReal-Omni read; drive it live from the keyboard"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Haaareally/AdaHVLA-Adaptive_Harness_VLA",
+  "owner": "Haaareally",
+  "url": "https://github.com/Haaareally/AdaHVLA-Adaptive_Harness_VLA",
+  "stars": 13,
+  "created": "2026-09-22",
+  "lang": "Python",
+  "topics": [],
+  "desc": "AdaHVLA connects task-level reasoning and memory with vision-language-action (VLA) execution through an adaptive harness. The real-world deployement part is coming soon."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "PuzhenYuan/HARP-VLA",
+  "owner": "PuzhenYuan",
+  "url": "https://github.com/PuzhenYuan/HARP-VLA",
+  "stars": 3,
+  "created": "2026-09-22",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[CoRL2026] HARP-VLA: Human-Robot Aligned Representation Learning for Vision-Language-Action Models"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "vla"
+  ],
+  "repo": "bingaochen/Astra-on-RoboMME",
+  "owner": "bingaochen",
+  "url": "https://github.com/bingaochen/Astra-on-RoboMME",
+  "stars": 28,
+  "created": "2026-09-21",
+  "lang": "Python",
+  "topics": [],
+  "desc": "A three-tier system for memory-augmented robotic manipulation: Astra plans, a small VLM monitors, and a VLA acts. 79.13% success on RoboMME."
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "HealorCai/Skel-WAM",
+  "owner": "HealorCai",
+  "url": "https://github.com/HealorCai/Skel-WAM",
+  "stars": 4,
+  "created": "2026-09-21",
+  "lang": "",
+  "topics": [],
+  "desc": "Skel-WAM: A Hand-Skeleton-Conditioned World Action Model for Human-to-Robot Manipulation Transfer"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Luky-hui/xtrainer-tea-set-placement",
+  "owner": "Luky-hui",
+  "url": "https://github.com/Luky-hui/xtrainer-tea-set-placement",
+  "stars": 4,
+  "created": "2026-09-21",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Dual-arm robotic tea set placement with Isaac Sim, Isaac Lab, X-Trainer, teleoperation and policy inference."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Luky-hui/xtrainer-parcel-sorting",
+  "owner": "Luky-hui",
+  "url": "https://github.com/Luky-hui/xtrainer-parcel-sorting",
+  "stars": 3,
+  "created": "2026-09-21",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Dual-arm robotic parcel sorting with Isaac Sim, Isaac Lab, X-Trainer, teleoperation and policy inference."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "cair-vinuni/vla.simd",
+  "owner": "cair-vinuni",
+  "url": "https://github.com/cair-vinuni/vla.simd",
+  "stars": 33,
+  "created": "2026-09-21",
+  "lang": "C++",
+  "topics": [],
+  "desc": "A pure C++ inference engine for VLA policies on CPUs, with no GPU, CUDA, or ggml dependency. Built with its own tensors, operators, and SIMD kernels, the engine keeps kernels easy "
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "flyfaerss/RAPolicy",
+  "owner": "flyfaerss",
+  "url": "https://github.com/flyfaerss/RAPolicy",
+  "stars": 6,
+  "created": "2026-09-21",
+  "lang": "Python",
+  "topics": [],
+  "desc": "RAPolicy: Stable and Efficient Real-World Online VLA Post-Training via Asynchronous Replay-Anchored Policy Improvement"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "hiroki-oist/PredVLA",
+  "owner": "hiroki-oist",
+  "url": "https://github.com/hiroki-oist/PredVLA",
+  "stars": 4,
+  "created": "2026-09-21",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Predictive Coding inspired Vision-Language-Action policy for reproduction and research use"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Drgon-li/CableVLA",
+  "owner": "Drgon-li",
+  "url": "https://github.com/Drgon-li/CableVLA",
+  "stars": 3,
+  "created": "2026-09-21",
+  "lang": "HTML",
+  "topics": [],
+  "desc": "CableVLA: Simulation-Privileged Global–Local Representation Learning for Cable Routing"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ahmedsleem109/WorkshopRobot",
+  "owner": "ahmedsleem109",
+  "url": "https://github.com/ahmedsleem109/WorkshopRobot",
+  "stars": 3,
+  "created": "2026-09-21",
+  "lang": "Python",
+  "topics": [
+   "imitation-learning",
+   "lerobot",
+   "manipulation",
+   "mujoco",
+   "quadruped",
+   "reinforcement-learning"
+  ],
+  "desc": "Language-commanded mobile manipulation in MuJoCo: a Go2 quadruped with a Z1 arm fetches a named tool on one 6 GB GPU. 125/125 grasps, 86% end-to-end, and a VLA negative result diag"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "CAN-Lee/DeformSmith",
+  "owner": "CAN-Lee",
+  "url": "https://github.com/CAN-Lee/DeformSmith",
+  "stars": 6,
+  "created": "2026-09-20",
+  "lang": "",
+  "topics": [
+   "3d-reconstruction",
+   "embodied-ai",
+   "generation",
+   "harness-engineering",
+   "physics-simulation"
+  ],
+  "desc": "The official implementation of \"DeformSmith: Physics Harness-Guided Hierarchical Generation of Deformable Assets for Robot Manipulation\""
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "VVeiCao/4Director",
+  "owner": "VVeiCao",
+  "url": "https://github.com/VVeiCao/4Director",
+  "stars": 29,
+  "created": "2026-09-20",
+  "lang": "Python",
+  "topics": [],
+  "desc": "4Director: Controlling Video World Models with Rigid 3D Geometry"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "alexantaluo0/Ego2LeRobot",
+  "owner": "alexantaluo0",
+  "url": "https://github.com/alexantaluo0/Ego2LeRobot",
+  "stars": 4,
+  "created": "2026-09-20",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Convert egocentric videos (e.g. Egocentric-100K) into 14-DoF LeRobot state/action datasets for VLA / Pi0.5 pretrain."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "XinrunXu/awesome-agentic-robotics-papers",
+  "owner": "XinrunXu",
+  "url": "https://github.com/XinrunXu/awesome-agentic-robotics-papers",
+  "stars": 3,
+  "created": "2026-09-20",
+  "lang": "Python",
+  "topics": [],
+  "desc": "具身 VLA / Agentic Robotics 20 篇论文精读讲义 · 静态网页，可在每页讨论"
+ },
+ {
+  "term": "data availability",
+  "terms": [
+   "data availability"
+  ],
+  "repo": "Yonle/tssniff",
+  "owner": "Yonle",
+  "url": "https://github.com/Yonle/tssniff",
+  "stars": 3,
+  "created": "2026-09-20",
+  "lang": "Go",
+  "topics": [
+   "dvb",
+   "dvb-t2",
+   "fuse",
+   "go",
+   "golang",
+   "linux"
+  ],
+  "desc": "Linux userspace utility that presents a fake USB storage medium to a connected host, captures the MPEG-TS data the host writes to it, and makes that data available as an HTTP strea"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "healenrens/Move-then-Operate",
+  "owner": "healenrens",
+  "url": "https://github.com/healenrens/Move-then-Operate",
+  "stars": 3,
+  "created": "2026-09-19",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Official code implementation of the ICML 2026 paper Move-Then-Operate: Behavioral Phasing for Human-Like Robotic Manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "xm6018924/BSAI_ComfyUI_SolarWM_H3",
+  "owner": "xm6018924",
+  "url": "https://github.com/xm6018924/BSAI_ComfyUI_SolarWM_H3",
+  "stars": 4,
+  "created": "2026-09-19",
+  "lang": "Python",
+  "topics": [],
+  "desc": "BSAI SolarWM-H3 Camera Trajectory Controlled World Model for ComfyUI"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "RadixRootMind/Radix-Embodied-Stack",
+  "owner": "RadixRootMind",
+  "url": "https://github.com/RadixRootMind/Radix-Embodied-Stack",
+  "stars": 79,
+  "created": "2026-09-19",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Radix Embodied Stack: Universal infrastructure for VLA model quantization, inference, and deployment on domestic chips . Cross-model, cross-chip, cross-platform."
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "robot-hint/HINT",
+  "owner": "robot-hint",
+  "url": "https://github.com/robot-hint/HINT",
+  "stars": 23,
+  "created": "2026-09-18",
+  "lang": "Python",
+  "topics": [],
+  "desc": "HINT: Human-Intent Inception for Long-Horizon Robot Manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "yifliu3/awesome-code-world-models",
+  "owner": "yifliu3",
+  "url": "https://github.com/yifliu3/awesome-code-world-models",
+  "stars": 13,
+  "created": "2026-09-18",
+  "lang": "Python",
+  "topics": [
+   "awesome",
+   "awesome-list",
+   "code-world-models",
+   "llm-agents",
+   "model-based-reinforcement-learning",
+   "physical-reasoning"
+  ],
+  "desc": "A curated list of code world models: executable dynamics, programmatic simulation, and coding agents that build and reason about worlds."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "LivingFutureLab/HappyWorldBench",
+  "owner": "LivingFutureLab",
+  "url": "https://github.com/LivingFutureLab/HappyWorldBench",
+  "stars": 10,
+  "created": "2026-09-18",
+  "lang": "",
+  "topics": [
+   "benchmark",
+   "embodied-ai",
+   "spatial-intelligence",
+   "video-generation",
+   "world-models"
+  ],
+  "desc": "Benchmarking the reliability of video, spatial, and embodied world models."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "ziqi-ma/DynaTokens",
+  "owner": "ziqi-ma",
+  "url": "https://github.com/ziqi-ma/DynaTokens",
+  "stars": 4,
+  "created": "2026-09-18",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Test-time training to let camera-controlled world models learn dynamics"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "bepierre/world-modeling",
+  "owner": "bepierre",
+  "url": "https://github.com/bepierre/world-modeling",
+  "stars": 3,
+  "created": "2026-09-18",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Code for World Modeling in Transformers: mechanistic analysis of TaxiGPT."
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "xiaojunlan/care",
+  "owner": "xiaojunlan",
+  "url": "https://github.com/xiaojunlan/care",
+  "stars": 56,
+  "created": "2026-09-17",
+  "lang": "Python",
+  "topics": [],
+  "desc": "CARE: corrective data generation and FSR-Bench evaluation for robotic manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "awslabs/world-models-inference",
+  "owner": "awslabs",
+  "url": "https://github.com/awslabs/world-models-inference",
+  "stars": 12,
+  "created": "2026-09-17",
+  "lang": "Python",
+  "topics": [
+   "aws",
+   "ec2",
+   "generative-ai",
+   "inference",
+   "physical-ai",
+   "sagemaker"
+  ],
+  "desc": "One-command deployment of open-source world models on AWS. Each model is a self-contained cartridge served behind a uniform API on EC2 or SageMaker — real-time interactive (browser"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "griffinlabs-ai/alpha-s",
+  "owner": "griffinlabs-ai",
+  "url": "https://github.com/griffinlabs-ai/alpha-s",
+  "stars": 17,
+  "created": "2026-09-17",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Foundational vision-language action (VLA) model by Griffin Labs."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "y-wng/LIFT",
+  "owner": "y-wng",
+  "url": "https://github.com/y-wng/LIFT",
+  "stars": 16,
+  "created": "2026-09-17",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[CoRL 2026 Spotlight] Never Too Late for Force: Accelerating VLA Post-Training with Reactive Force Injection"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "AetherLabsAI/CausalWM",
+  "owner": "AetherLabsAI",
+  "url": "https://github.com/AetherLabsAI/CausalWM",
+  "stars": 58,
+  "created": "2026-09-16",
+  "lang": "Python",
+  "topics": [],
+  "desc": "A causal reasoning world model for embodied intelligence, predicting future video through explicit chain-of-thought over motion and geometry with flexible multimodal conditioning."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "hokindeng/object-permanence",
+  "owner": "hokindeng",
+  "url": "https://github.com/hokindeng/object-permanence",
+  "stars": 36,
+  "created": "2026-09-16",
+  "lang": "Python",
+  "topics": [
+   "blender",
+   "object-permanence",
+   "trainium",
+   "video-generation",
+   "world-model"
+  ],
+  "desc": "Training Object Permanence in World Models — the codebase"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "nv-tlabs/lidarverse",
+  "owner": "nv-tlabs",
+  "url": "https://github.com/nv-tlabs/lidarverse",
+  "stars": 35,
+  "created": "2026-09-16",
+  "lang": "Python",
+  "topics": [],
+  "desc": "A Real-time LiDAR World Model that generates, forecasts, and resimulates within a single model."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "kaarelkaarelson/lingbot-world-v2-realtime",
+  "owner": "kaarelkaarelson",
+  "url": "https://github.com/kaarelkaarelson/lingbot-world-v2-realtime",
+  "stars": 16,
+  "created": "2026-09-16",
+  "lang": "Python",
+  "topics": [],
+  "desc": "1.3B world model running at 16 FPS on an RTX 5090"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Daniel-rmc/ManiLoop",
+  "owner": "Daniel-rmc",
+  "url": "https://github.com/Daniel-rmc/ManiLoop",
+  "stars": 14,
+  "created": "2026-09-16",
+  "lang": "Python",
+  "topics": [],
+  "desc": "An open framework for closed-loop evaluation of VLA, VLM, and other robot policies across benchmarks, designed for fair and reproducible comparisons. Current integrations: MuJoCo t"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "vla"
+  ],
+  "repo": "Lin-Murphy/Awesome-Robot-Agents",
+  "owner": "Lin-Murphy",
+  "url": "https://github.com/Lin-Murphy/Awesome-Robot-Agents",
+  "stars": 20,
+  "created": "2026-09-15",
+  "lang": "",
+  "topics": [
+   "astra",
+   "embodied-ai",
+   "gpt-astra",
+   "llm-agents",
+   "real-world-robotics",
+   "robot-arm"
+  ],
+  "desc": "A source-aware directory of Embodied AI agents, LLM/VLM systems, VLA models, and robotic manipulation projects."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "yuchen-ji/bimanual-teleop",
+  "owner": "yuchen-ji",
+  "url": "https://github.com/yuchen-ji/bimanual-teleop",
+  "stars": 3,
+  "created": "2026-09-14",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Bimanual teleoperation with Quest, Wuji Glove, Tianji arms, and Hand2"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "TencentARC/WorldCrafter",
+  "owner": "TencentARC",
+  "url": "https://github.com/TencentARC/WorldCrafter",
+  "stars": 537,
+  "created": "2026-09-14",
+  "lang": "Python",
+  "topics": [
+   "video-generation",
+   "world-models"
+  ],
+  "desc": "[Arxiv 2026] WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "zsibot/gawm",
+  "owner": "zsibot",
+  "url": "https://github.com/zsibot/gawm",
+  "stars": 13,
+  "created": "2026-09-14",
+  "lang": "Python",
+  "topics": [],
+  "desc": "our lighweighted jepa-style latent space world model grouned on physical states and actions"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "acse-yl222/physics-grounded-4d-world-model-framework",
+  "owner": "acse-yl222",
+  "url": "https://github.com/acse-yl222/physics-grounded-4d-world-model-framework",
+  "stars": 5,
+  "created": "2026-09-14",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Physics-Grounded 4D World Model Framework: explicit geometry and physics for simulating evolving worlds across scales."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "j1s4nn/wmdrift",
+  "owner": "j1s4nn",
+  "url": "https://github.com/j1s4nn/wmdrift",
+  "stars": 9,
+  "created": "2026-09-13",
+  "lang": "Python",
+  "topics": [
+   "causal-forcing",
+   "causal-rcm",
+   "clip",
+   "computer-vision",
+   "diagnostics",
+   "evaluation"
+  ],
+  "desc": "Diagnostics for autoregressive video world models - quantifies camera drift, temporal jitter, memory attenuation, and quality decay from rollouts."
+ },
+ {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "Pseudo-Lab/Sim2Real-Walking-Robot",
+  "owner": "Pseudo-Lab",
+  "url": "https://github.com/Pseudo-Lab/Sim2Real-Walking-Robot",
+  "stars": 6,
+  "created": "2026-09-12",
+  "lang": "",
+  "topics": [],
+  "desc": "13기 가장 빠르게 만들어 보는 보행로봇 프로젝트 -가성비 높은 허깅페이스 로봇팔부터 RL, 또는 빠르게 진보하는 RFM 알고리즘을 연구하고 보행로봇에 적용할 것입니다."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "KangenJ/Nebulaw-OntologyPilot",
+  "owner": "KangenJ",
+  "url": "https://github.com/KangenJ/Nebulaw-OntologyPilot",
+  "stars": 5,
+  "created": "2026-09-12",
+  "lang": "TypeScript",
+  "topics": [
+   "ai-governance",
+   "artificial-intelligence",
+   "continual-learning",
+   "decision-support",
+   "knowledge-graph",
+   "legal-tech"
+  ],
+  "desc": "Early Research Release — An ontology-driven platform for fast adaptation and slow consolidation of business Logic, inspired by Legal World Model research and governed continual lea"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "3587jjh/HuRo",
+  "owner": "3587jjh",
+  "url": "https://github.com/3587jjh/HuRo",
+  "stars": 59,
+  "created": "2026-09-12",
+  "lang": "Python",
+  "topics": [
+   "egocentric-video",
+   "motion-retargeting",
+   "robot-learning",
+   "robotization",
+   "vision-language-action",
+   "vla"
+  ],
+  "desc": "HuRo: Robotizing Human Videos for Scalable VLA Pretraining (CoRL 2026)"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "swannaiden/drvla",
+  "owner": "swannaiden",
+  "url": "https://github.com/swannaiden/drvla",
+  "stars": 12,
+  "created": "2026-09-12",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "shengshu-ai/Motus2",
+  "owner": "shengshu-ai",
+  "url": "https://github.com/shengshu-ai/Motus2",
+  "stars": 94,
+  "created": "2026-09-11",
+  "lang": "",
+  "topics": [],
+  "desc": "Motus2: A Self-Evolving General World Model for Dexterous Manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "ZouShilong1024/Pelican-Sim1.0",
+  "owner": "ZouShilong1024",
+  "url": "https://github.com/ZouShilong1024/Pelican-Sim1.0",
+  "stars": 3,
+  "created": "2026-09-11",
+  "lang": "",
+  "topics": [
+   "world-model-evaluation",
+   "world-model-rl",
+   "world-models"
+  ],
+  "desc": "Code for paper: Pelican-Sim 1.0: A General World Model Simulator for Embodied Intelligence"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "ShuaixinHuang/awesome-robotics",
+  "owner": "ShuaixinHuang",
+  "url": "https://github.com/ShuaixinHuang/awesome-robotics",
+  "stars": 11,
+  "created": "2026-09-11",
+  "lang": "",
+  "topics": [
+   "autonomous-driving",
+   "awesome",
+   "awesome-list",
+   "embodied-ai",
+   "humanoid-robots",
+   "reinforcement-learning"
+  ],
+  "desc": "🤖 A curated collection of robotics and embodied AI resources, covering VLA models, humanoid robots, robotic arms, SLAM, simulation, and embedded systems."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "xiyuanyang45/WMRL",
+  "owner": "xiyuanyang45",
+  "url": "https://github.com/xiyuanyang45/WMRL",
+  "stars": 38,
+  "created": "2026-09-10",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Scaling Automatic Research Agents via World Models (arXiv:2608.12564) — project page and code release"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "penpenzh/pocketvla",
+  "owner": "penpenzh",
+  "url": "https://github.com/penpenzh/pocketvla",
+  "stars": 65,
+  "created": "2026-09-10",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Building a 0.003B VLA from Absolute Zero"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "robocurve/stationerybench",
+  "owner": "robocurve",
+  "url": "https://github.com/robocurve/stationerybench",
+  "stars": 6,
+  "created": "2026-09-10",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Five bimanual desk-stationery manipulation tasks for VLA models and LLM agents, built on Inspect Robots"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "codecaine-zz/vlang_webview_rad_studio",
+  "owner": "codecaine-zz",
+  "url": "https://github.com/codecaine-zz/vlang_webview_rad_studio",
+  "stars": 3,
+  "created": "2026-09-10",
+  "lang": "V",
+  "topics": [
+   "api",
+   "borland",
+   "delphi",
+   "gui",
+   "lazaru",
+   "rad"
+  ],
+  "desc": "Cross-Platform Visual Rapid Application Development (RAD) Studio & Enterprise Desktop Suite powered by native V (vlang) and lightweight hardware-accelerated Webview (macOS Cocoa / "
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "mfan-res/ROBOCHRONO",
+  "owner": "mfan-res",
+  "url": "https://github.com/mfan-res/ROBOCHRONO",
+  "stars": 14,
+  "created": "2026-09-09",
+  "lang": "Python",
+  "topics": [
+   "benchmark",
+   "egocentric-video",
+   "evaluation",
+   "robot-manipulation",
+   "robotics",
+   "temporal-reasoning"
+  ],
+  "desc": "A temporal visual reasoning benchmark over egocentric robot manipulation video — 39 scenarios, 7 dimensions, 34,713 questions"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Phyzicalorg/Phyzical_org",
+  "owner": "Phyzicalorg",
+  "url": "https://github.com/Phyzicalorg/Phyzical_org",
+  "stars": 273,
+  "created": "2026-09-09",
+  "lang": "Python",
+  "topics": [
+   "data-platform",
+   "elizaos",
+   "embodied-ai",
+   "imitation-learning",
+   "robot-learning",
+   "robotics"
+  ],
+  "desc": "Browser teleoperation data for embodied AI — elizaOS-ready episodes, trajectory_db converter, onchain provenance. The fuel station for agent robot stacks."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "AlayaLab/AlayaVista",
+  "owner": "AlayaLab",
+  "url": "https://github.com/AlayaLab/AlayaVista",
+  "stars": 31,
+  "created": "2026-09-09",
+  "lang": "",
+  "topics": [],
+  "desc": "AlayaVista: Streaming World Modeling from Panoramic States to Perspective Video."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "yihangtao/Awesome-Generative-Reconstruction",
+  "owner": "yihangtao",
+  "url": "https://github.com/yihangtao/Awesome-Generative-Reconstruction",
+  "stars": 4,
+  "created": "2026-09-09",
+  "lang": "",
+  "topics": [],
+  "desc": "Collecting some papers about generative reconstruction for world model."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "UMass-Embodied-AGI/SyncWorld",
+  "owner": "UMass-Embodied-AGI",
+  "url": "https://github.com/UMass-Embodied-AGI/SyncWorld",
+  "stars": 23,
+  "created": "2026-09-08",
+  "lang": "Python",
+  "topics": [
+   "artificial-intelligence",
+   "embodied-ai",
+   "robotics",
+   "video-generation",
+   "world-models"
+  ],
+  "desc": "[NeurIPS 2026 Oral] Source codes for the paper \"SyncWorld: Visual Calibration Enables World Models as Zero-Shot Simulators\""
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Yangxinyee/ehr2trace",
+  "owner": "Yangxinyee",
+  "url": "https://github.com/Yangxinyee/ehr2trace",
+  "stars": 4,
+  "created": "2026-09-08",
+  "lang": "Python",
+  "topics": [
+   "clinical-machine-learning",
+   "data-provenance",
+   "electronic-health-records",
+   "etl-validation",
+   "health-informatics",
+   "meds"
+  ],
+  "desc": "Auditable EHR data infrastructure for patient world models and clinical agents: source-linked conversion of hospital exports into OMOP CDM 5.4 and MEDS, with 55 checks that read th"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "AIGeeksGroup/PWM",
+  "owner": "AIGeeksGroup",
+  "url": "https://github.com/AIGeeksGroup/PWM",
+  "stars": 3,
+  "created": "2026-09-08",
+  "lang": "Python",
+  "topics": [],
+  "desc": "PWM: Personalized World Models with Online Reinforcement Learning"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "OpenFleX-Wheeled-Humanoid/OpenFleX",
+  "owner": "OpenFleX-Wheeled-Humanoid",
+  "url": "https://github.com/OpenFleX-Wheeled-Humanoid/OpenFleX",
+  "stars": 7,
+  "created": "2026-09-07",
+  "lang": "Shell",
+  "topics": [],
+  "desc": "This document describes hardware control, VR teleoperation, and subsystem operation for the OpenFlex whole-body robot system. The full robot consists of a **four-wheel independent-"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "hustvl/MotionVLA",
+  "owner": "hustvl",
+  "url": "https://github.com/hustvl/MotionVLA",
+  "stars": 20,
+  "created": "2026-09-07",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[CoRL2026] MotionVLA: Injecting Geometric Motion into Vision-Language-Action Model"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "lunarlab-gatech/PhysCoRe",
+  "owner": "lunarlab-gatech",
+  "url": "https://github.com/lunarlab-gatech/PhysCoRe",
+  "stars": 15,
+  "created": "2026-09-06",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[CoRL 2026] PhysCoRe: Physics-Corrected Residual World Models for Material-Aware Deformable Dynamics"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "5h4d0wn1k/n5-vlan-hop",
+  "owner": "5h4d0wn1k",
+  "url": "https://github.com/5h4d0wn1k/n5-vlan-hop",
+  "stars": 7,
+  "created": "2026-09-06",
+  "lang": "Python",
+  "topics": [
+   "arp",
+   "cybersecurity",
+   "dns",
+   "educational",
+   "hacking-education",
+   "mitm"
+  ],
+  "desc": "VLAN-hopping exploits - double-tagging and switch-spoofing experiments on lab switches."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "MiYanDoris/ZETA",
+  "owner": "MiYanDoris",
+  "url": "https://github.com/MiYanDoris/ZETA",
+  "stars": 7,
+  "created": "2026-09-06",
+  "lang": "",
+  "topics": [],
+  "desc": "ZETA: A Controlled Study of Zero-Shot Cross-Embodiment VLA Transfer for Tabletop Manipulation (CoRL 2026). Code coming soon."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "starVLA/starVLA-WBC",
+  "owner": "starVLA",
+  "url": "https://github.com/starVLA/starVLA-WBC",
+  "stars": 6,
+  "created": "2026-09-06",
+  "lang": "Python",
+  "topics": [],
+  "desc": "StarVLA-WBC: Towards a Generalizable Codebase for Humanoid Whole-Body Control"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "AlayaLab/PWM",
+  "owner": "AlayaLab",
+  "url": "https://github.com/AlayaLab/PWM",
+  "stars": 210,
+  "created": "2026-09-05",
+  "lang": "",
+  "topics": [],
+  "desc": "Programmable World Model: explicit world state, generative rendering."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "smthemex/ComfyUI_SolarWM_H3",
+  "owner": "smthemex",
+  "url": "https://github.com/smthemex/ComfyUI_SolarWM_H3",
+  "stars": 15,
+  "created": "2026-09-04",
+  "lang": "Python",
+  "topics": [],
+  "desc": "SolarWM:Open Data and Scalable Training for Long-Horizon Video World Models,use this node to run minimaxH3"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "cair-vinuni/FoldQuantVLA",
+  "owner": "cair-vinuni",
+  "url": "https://github.com/cair-vinuni/FoldQuantVLA",
+  "stars": 38,
+  "created": "2026-09-04",
+  "lang": "Python",
+  "topics": [],
+  "desc": "FoldQuant: offline folding for W4A4 / W8A8 vision-language-action inference on edge GPUs"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Youngermaster/VLA-introduction-slides",
+  "owner": "Youngermaster",
+  "url": "https://github.com/Youngermaster/VLA-introduction-slides",
+  "stars": 4,
+  "created": "2026-09-04",
+  "lang": "TypeScript",
+  "topics": [],
+  "desc": "My slides for my first presentation in Medellín AI"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "enkerewpo/tokens-to-torque",
+  "owner": "enkerewpo",
+  "url": "https://github.com/enkerewpo/tokens-to-torque",
+  "stars": 3,
+  "created": "2026-09-04",
+  "lang": "Python",
+  "topics": [
+   "cuda",
+   "edge-ai",
+   "embodied-ai",
+   "fine-tuning",
+   "from-scratch",
+   "jetson"
+  ],
+  "desc": "Tokens in, torque out：72 天把大模型一路跑到机器人关节。vLLM · CUDA · LoRA · VLM · VLA · 世界模型，每天一个可复现、带实测数字的实验。"
+ },
+ {
+  "term": "intent-based",
+  "terms": [
+   "intent-based"
+  ],
+  "repo": "nirholas/quiver",
+  "owner": "nirholas",
+  "url": "https://github.com/nirholas/quiver",
+  "stars": 7,
+  "created": "2026-09-04",
+  "lang": "TypeScript",
+  "topics": [
+   "agents-md",
+   "ai-agents",
+   "amm",
+   "defi",
+   "ethereum",
+   "evm"
+  ],
+  "desc": "Intent-based swap aggregation for Robinhood Chain: one-signature Permit2 orders, solver auctions, Uniswap v2/v3/v4 routing, on-chain limit enforcement."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "aminballoon/foxglove-rtsp-webrtc-extension",
+  "owner": "aminballoon",
+  "url": "https://github.com/aminballoon/foxglove-rtsp-webrtc-extension",
+  "stars": 3,
+  "created": "2026-09-03",
+  "lang": "TypeScript",
+  "topics": [],
+  "desc": "Low latency WebRTC & RTSP camera streaming extension for Foxglove Studio & Lichtblick. Built for low-latency robotics teleoperation, images snapshot and recording."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Harsh-DevOps117/netwatch",
+  "owner": "Harsh-DevOps117",
+  "url": "https://github.com/Harsh-DevOps117/netwatch",
+  "stars": 4,
+  "created": "2026-09-02",
+  "lang": "Python",
+  "topics": [
+   "artificial-intelligence",
+   "blockchain",
+   "cli",
+   "cybersecurity",
+   "graph-neural-networks",
+   "machine-learning"
+  ],
+  "desc": "NetWatch: early network intrusion detection and attack forecasting. A graph neural network names the attack family from a flow's first 10 ms, and a World Model forecasts the attack"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "scy-v/VLA-Precision",
+  "owner": "scy-v",
+  "url": "https://github.com/scy-v/VLA-Precision",
+  "stars": 95,
+  "created": "2026-09-02",
+  "lang": "Python",
+  "topics": [],
+  "desc": "VLA-Precision: Asymmetric Co-Bootstrapping for Efficient Real-World Online RL of Vision-Language-Action Models"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "futakw/Awesome-Physical-AI-Safety",
+  "owner": "futakw",
+  "url": "https://github.com/futakw/Awesome-Physical-AI-Safety",
+  "stars": 7,
+  "created": "2026-09-02",
+  "lang": "Python",
+  "topics": [
+   "adversarial-robustness",
+   "ai-safety",
+   "autonomous-systems",
+   "awesome-list",
+   "embodied-agent",
+   "embodied-ai"
+  ],
+  "desc": "An LLM-assisted bibliography of safety, security, robustness, ethical and societal risks, and trustworthy deployment across VLA, robots, autonomous systems, and embodied agents."
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "lizuju/unitree-r1-a7-linker-o6",
+  "owner": "lizuju",
+  "url": "https://github.com/lizuju/unitree-r1-a7-linker-o6",
+  "stars": 4,
+  "created": "2026-09-01",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Unofficial Unitree R1-A7 and Linker Hand O6 integration for Isaac Lab and XR teleoperation."
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "nagara214/GIM-World",
+  "owner": "nagara214",
+  "url": "https://github.com/nagara214/GIM-World",
+  "stars": 16,
+  "created": "2026-09-01",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[SIGGRAPH Asia 2026] Geometry-Aware Implicit Memory for Video World Models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "manifoldai-research/CAER.code",
+  "owner": "manifoldai-research",
+  "url": "https://github.com/manifoldai-research/CAER.code",
+  "stars": 14,
+  "created": "2026-09-01",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Causal Action Effect Reweighting for World Model Training"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Illuminfti/kizuki",
+  "owner": "Illuminfti",
+  "url": "https://github.com/Illuminfti/kizuki",
+  "stars": 4,
+  "created": "2026-09-01",
+  "lang": "TypeScript",
+  "topics": [],
+  "desc": "Your life, queryable as CLI + MCP. Local-first capture-to-canon world model. Pre-alpha."
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "world model"
+  ],
+  "repo": "kaichen-z/GEM-4d",
+  "owner": "kaichen-z",
+  "url": "https://github.com/kaichen-z/GEM-4d",
+  "stars": 24,
+  "created": "2026-08-31",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[ECCV 2026] GEM-4D: Geometry-Enhanced Video World Models for Robot Manipulation"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "NEBULIS-Lab/D-JEPA",
+  "owner": "NEBULIS-Lab",
+  "url": "https://github.com/NEBULIS-Lab/D-JEPA",
+  "stars": 32,
+  "created": "2026-08-31",
+  "lang": "Python",
+  "topics": [
+   "decision-alignment",
+   "jepa",
+   "world-model"
+  ],
+  "desc": "D-JEPA: A Decision-Aligned Latent World Model"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "MichiganDataScienceTeam/F26-World-Models",
+  "owner": "MichiganDataScienceTeam",
+  "url": "https://github.com/MichiganDataScienceTeam/F26-World-Models",
+  "stars": 9,
+  "created": "2026-08-31",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Adaptive world models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model",
+   "vla"
+  ],
+  "repo": "sutiankang/aster",
+  "owner": "sutiankang",
+  "url": "https://github.com/sutiankang/aster",
+  "stars": 8,
+  "created": "2026-08-31",
+  "lang": "Python",
+  "topics": [
+   "diffusion-models",
+   "distributed-training",
+   "inference",
+   "llm",
+   "lora",
+   "machine-learning"
+  ],
+  "desc": "Learn and build modern AI in one native PyTorch stack: LLMs, VLM/VLA, diffusion & flow matching, world models, and agents—with LoRA, RL post-training, distillation, distributed tra"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model",
+   "vla"
+  ],
+  "repo": "DRL-CASIA/WoVR",
+  "owner": "DRL-CASIA",
+  "url": "https://github.com/DRL-CASIA/WoVR",
+  "stars": 4,
+  "created": "2026-08-31",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Official implementation of WoVR: World Models as Reliable Simulators for Post-Training VLA Policies with RL"
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "MuRain37/so101-ros2-mujoco",
+  "owner": "MuRain37",
+  "url": "https://github.com/MuRain37/so101-ros2-mujoco",
+  "stars": 3,
+  "created": "2026-08-30",
+  "lang": "Python",
+  "topics": [
+   "imitation-learning",
+   "lerobot",
+   "mujoco",
+   "robot-learning",
+   "ros2",
+   "ros2-jazzy"
+  ],
+  "desc": "ROS 2 Jazzy workspace for SO-101 visualization, leader-arm teleoperation, and tabletop manipulation simulation in MuJoCo."
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation",
+   "vla"
+  ],
+  "repo": "OpenBMB/SimpleMemVLA",
+  "owner": "OpenBMB",
+  "url": "https://github.com/OpenBMB/SimpleMemVLA",
+  "stars": 95,
+  "created": "2026-08-29",
+  "lang": "Python",
+  "topics": [
+   "embodied-ai",
+   "long-horizon-robotics",
+   "multimodal-learning",
+   "native-video-memory",
+   "robot-learning",
+   "robot-manipulation"
+  ],
+  "desc": "Native-video memory for vision-language-action models, using timestamped visual history and exact streaming inference for long-horizon robot manipulation."
+ },
+ {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "godhandcrash/go2-pace-sim2real",
+  "owner": "godhandcrash",
+  "url": "https://github.com/godhandcrash/go2-pace-sim2real",
+  "stars": 6,
+  "created": "2026-08-29",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Unitree Go2 reinforcement learning and Sim-to-Real pipeline based on Isaac Lab, PACE system identification, domain randomization and teacher-student distillation"
+ },
+ {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "psrobotics/smp_deploy",
+  "owner": "psrobotics",
+  "url": "https://github.com/psrobotics/smp_deploy",
+  "stars": 10,
+  "created": "2026-08-28",
+  "lang": "C++",
+  "topics": [],
+  "desc": "Sim2sim and sim2real code for smp locomotion policy"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "fafraob/point-lewm",
+  "owner": "fafraob",
+  "url": "https://github.com/fafraob/point-lewm",
+  "stars": 16,
+  "created": "2026-08-28",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Code base for: Does Latent Planning Survive Point Clouds? Action-Conditioned JEPA World Models for Geometric Observations and Goals"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Mattral/rssmlite",
+  "owner": "Mattral",
+  "url": "https://github.com/Mattral/rssmlite",
+  "stars": 7,
+  "created": "2026-08-28",
+  "lang": "Python",
+  "topics": [
+   "pypi-package",
+   "recurrent-state-space-model",
+   "world-model"
+  ],
+  "desc": "under-development, pre-alpha | library for learning RSSM-based (Recurrent State-Space Model) world models"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "castacks/asm_mighty",
+  "owner": "castacks",
+  "url": "https://github.com/castacks/asm_mighty",
+  "stars": 4,
+  "created": "2026-08-28",
+  "lang": "C++",
+  "topics": [],
+  "desc": "MIGHTY Hermite-spline local planner (MIT ACL, RA-L 2026) as an AirStack module — acl-mapping world model + NavigateTask/global_plan bridge"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Thibault-GAREL/World_model_from_scratch",
+  "owner": "Thibault-GAREL",
+  "url": "https://github.com/Thibault-GAREL/World_model_from_scratch",
+  "stars": 3,
+  "created": "2026-08-28",
+  "lang": "",
+  "topics": [],
+  "desc": "Documentation to really understand better what is a world model + A world model to be on Physical Reasoning from Video leaderboard on Hugging Face"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "rokbenko/quackd",
+  "owner": "rokbenko",
+  "url": "https://github.com/rokbenko/quackd",
+  "stars": 276,
+  "created": "2026-08-28",
+  "lang": "Python",
+  "topics": [
+   "ai-agents",
+   "claude",
+   "embodied-ai",
+   "gemini",
+   "jetson",
+   "lerobot"
+  ],
+  "desc": "One CLI for all your robots. Connect them, command them, and let them work together, each with an LLM for a brain (Claude, OpenAI, Gemini, Grok, or local via Ollama or vLLM), VLAs "
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "Agents2AgentsAI/vla-edge",
+  "owner": "Agents2AgentsAI",
+  "url": "https://github.com/Agents2AgentsAI/vla-edge",
+  "stars": 9,
+  "created": "2026-08-28",
+  "lang": "Python",
+  "topics": [],
+  "desc": "Deployment runtime for VLA policies"
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "Collab-Gen/MEMOBench",
+  "owner": "Collab-Gen",
+  "url": "https://github.com/Collab-Gen/MEMOBench",
+  "stars": 4,
+  "created": "2026-08-27",
+  "lang": "Python",
+  "topics": [],
+  "desc": "[EMNLP 2026] MEMOBench: A Process Level Memory Benchmark for Robotic Manipulation"
+ },
+ {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "mike-grayhat/bittlejuice",
+  "owner": "mike-grayhat",
+  "url": "https://github.com/mike-grayhat/bittlejuice",
+  "stars": 4,
+  "created": "2026-08-27",
+  "lang": "Python",
+  "topics": [
+   "petoi",
+   "reinforcement-learning",
+   "rl",
+   "robotics",
+   "sim2real"
+  ],
+  "desc": "Reinforcement Learning & sim2real on a Petoi Bittle X"
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "alphaparkinc/genpark-realtime-interactive-world-model-neural-simulator-skill",
+  "owner": "alphaparkinc",
+  "url": "https://github.com/alphaparkinc/genpark-realtime-interactive-world-model-neural-simulator-skill",
+  "stars": 8,
+  "created": "2026-08-27",
+  "lang": "Python",
+  "topics": [
+   "agent-skills",
+   "ai-agents",
+   "automation",
+   "claude",
+   "cursor",
+   "llm-tools"
+  ],
+  "desc": "Real-time interactive world model neural simulator at 60 FPS (Oasis style)"
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "OpenBMB/SimpleNav",
+  "owner": "OpenBMB",
+  "url": "https://github.com/OpenBMB/SimpleNav",
+  "stars": 137,
+  "created": "2026-08-27",
+  "lang": "Python",
+  "topics": [
+   "embodied",
+   "navigation",
+   "vision-language-action"
+  ],
+  "desc": "SimpleNav: A simple, unified, reproducible, and extensible framework for navigation VLA research."
+ },
+ {
+  "term": "vla",
+  "terms": [
+   "vla"
+  ],
+  "repo": "PercyGeza/OrchardVLA-Mountain-Orchard-Robot",
+  "owner": "PercyGeza",
+  "url": "https://github.com/PercyGeza/OrchardVLA-Mountain-Orchard-Robot",
+  "stars": 4,
+  "created": "2026-08-27",
+  "lang": "Python",
+  "topics": [
+   "computer-vision",
+   "embodied-ai",
+   "isaac-lab",
+   "isaac-sim",
+   "mobile-manipulation",
+   "orchard-robot"
+  ],
+  "desc": "面向山地果园移动采摘的高精度具身智能仿真系统：融合RGB-D感知、语言条件任务、PPO安全导航、Isaac Sim/Isaac Lab验证、数据集与训练模型。源码公开，仅限非商业使用。"
+ }
+]
