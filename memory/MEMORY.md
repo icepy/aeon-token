@@ -34,8 +34,8 @@
 ### NOTE
 - 见 [note-systems](/topics/tokens/note-systems.md) —— 解锁-回锁-上膛时间线、per-schedule 量级。
 
-### github-radar（第七轮收口 · 全量核验）
-- **速查，全文见 [github-radar](/topics/github-radar.md)：** 30d 提交 ≠ 还在写；`AGENTS.md`/`CLAUDE.md` = 单人+agent 指纹；**报告级全量 402 不是 89（4.5× 低估）**；**55.2% 爆完即停**；**`vla`/`jepa` 污染 22%/14.5%**；**`per_term=0` 把「全已见」误标「真零」。**
+### github-radar（第八轮收口 · 词表改全称）
+- **速查，全文见 [github-radar](/topics/github-radar.md)：** **`vla`→全称是双赢**（污染 22%→1.4%，且 138/205 是旧口径从没抓到的新仓）；**`jepa`→全称损失 94.6%**（654→35，缩写才是生态写法）→ **换词前先量两口径 total 与重叠**。**`jepa-world-model-from-scratch` ×8 owner 同 desc 同 commit msg = 共享脚手架簇，owner 黑名单结构上抓不到**，且它占了本轮 7d 榜首。**EXCL 只查 desc 不查名字 → `awesome-*`/`*-website`/`*-page` 漏网 7 个进报告级。**
 
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。这里只留判据速查。

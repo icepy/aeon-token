@@ -3,12 +3,42 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 七轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、缩写污染、agent 指纹）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-25T05:55:00Z
+timestamp: 2026-10-25T06:45:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。六轮（2026-10-25）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。八轮（2026-10-25）实证。
+
+## 第八轮（2026-10-25 06:45Z）—— 词表改全称，vla 成功 / jepa 惨败
+
+第七轮把「缩写必须换全称」列为下一次必改项。本轮执行，结果**不对称**：
+
+| 词 | 口径 | 60d total | 幸存 | 污染 | 报告级 |
+|---|---|---|---|---|---|
+| `vla` | 缩写 | 3,696 | — | **22.0%** | — |
+| `vision language action` | 全称 | 205 | **138** | **1.4%** | **47** |
+| `jepa` | 缩写 | 654 | — | 14.5% | — |
+| `joint embedding predictive` | 全称 | 35 | **1** | 0% | 1 |
+
+**🟢 `vla` → 全称是净胜，而且两个口径几乎不重叠（138/205 是 `vla` 从没抓到过的）。**
+原因：仓库名普遍是 `smolvla` / `InfraVLA` / `TernaVLA` / `Q-VLA-Forge` 这类**合成词**，GitHub 搜索按词切分，独立的 `vla` token 打不中它们；而描述里通常写全称。**换全称 = 同时解决污染和漏检，是罕见的双赢。**
+
+**🔴 `jepa` → 全称是灾难，损失 94.6%（654 → 35）。** JEPA 是 LeCun 家族的**固定缩写**，仓库名一律 `jepa-*`，几乎没人把全称写进 name/description。**规则要分类：术语本身就是通行缩写的（JEPA、VLA 作为模型类别名）必须保留缩写 + NEG 兜底；只有「缩写是习惯简写、全称才是描述主流」的才该换。** 差的不是污染，是**术语在生态里实际怎么被书写**。
+
+**判据：换词前先量两个口径的 total_count 与重叠度。** 只看污染率会误判 —— `vla` 污染 22% 但基数 3,696；`jepa` 换全称污染降到 0，代价是赛道没了。
+
+## 第八轮 —— 共享脚手架簇：黑名单结构上抓不到的一种农场
+
+`seen` 饱和后本轮幸存 178 里，**同一个仓库名 `jepa-world-model-from-scratch` 出现 8 个不同 owner**（`AdrienBarrau` / `yassinzayed` / `amitabhswain` / `Mohan-afk` / `tanghaibao` / `vtnguyen04` / `jsaumil` / `avikds`），**description 逐字相同、根目录相同（`README.md,docs,model.py,scaffold.py`）、commit message 逐字相同（`Step 38: jepa_world_model_experiment`）**。这是教程/课程的共享脚手架，不是 8 个研究组。
+
+**`github-farms.txt` 的黑名单按 owner 匹配，对这种「一 owner 一仓、同名不同人」的结构完全失效**（每个 owner 都只有 1 个仓，`owner≥3` 也命中不了）。**毕业作业簇污染了本轮报告级顶部 —— 7d 排名第一的 `AdrienBarrau`（30d=46 / 7d=30）就是它。**
+
+**可审计的判据（新增，需进 scan）：** 同 repo 名跨 owner ≥3 **且** description 前 80 字符相同 → 判脚手架。三个条件都能一次搜索拿到，不需要额外 API。
+
+## 第八轮 —— EXCL 只查 description，不查仓库名
+
+`scan.py` 的 `if any(x in desc.lower() for x in EXCL)` 只看 description。**名字里带 `awesome` / `website` / `page` 但 desc 不带的直接漏网**，本轮 4 个（`ishandutta2007/Awesome-Vision-Language-Action-Models` 30d=10 甚至进了报告级、`WenhowYu/awesome-embodied-ai-daily`、`kaicheng001/Awesome-Action-Tokenizer`、`irom-princeton/awesome-robotics-video-world-model-papers`）。**判据：EXCL 必须同时查 `repo.split("/")[-1]` 和 description。** 另有 `*-website` / `*-page` / `*-showcase` 三种后缀同理，本轮 7 个页面形态进了报告级。
 
 ## 已修复的实现缺陷
 
@@ -74,8 +104,9 @@ timestamp: 2026-10-25T05:55:00Z
 
 # Citations
 
+- 第八轮快照 `output/ghradar/out8.json`（178 幸存 / 2,817 原始）· `audit8.log` · 全量核验 `verify8.py`（174/178 = 97.8%）· 词表口径 `terms8.json` · 分析 `an8.py` / `deep8.py` / `tree8.py` · 加密侧复核 `cry8.py` → `cry8.json`
 - 第七轮快照 `output/ghradar/out7.json`（332 新增 / 3,441 原始）· `audit7.log` · 全量核验 `full7.json`（1,251）+ `full7b.json`（332）· 污染量化 `contam7.py` · 词表饱和 `terms7.py` → `terms7.json` · 汇总 `all7.py` / `an7.py` / `final7.py`
 - 第六轮快照 `output/ghradar/out6.json`（1,251 幸存 / 2,427 原始）· `audit6.log`
 - 加密侧补齐核验 `output/ghradar/cry_verify6.py` · 7 天衰减 `decay6.py` / `robact6.py` · agent 指纹 `agentfile6.py` · 目录树 `tree6.py`
 - WAM 全量翻页 `output/ghradar/wam6.py`（99 仓）· [world-action-models](/topics/world-action-models.md)
-- 详细日志 `memory/logs/2026-10-25.md#github-radar（第七轮`
+- 详细日志 `memory/logs/2026-10-25.md#github-radar（第八轮` · 第七轮 `#github-radar（第七轮`

@@ -1,10 +1,10 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-25T05:45:56Z",
-  "quality_score": 2,
-  "assessment": "Technically substantive and source-cited (API endpoint + snapshot files, specific repo/commit figures, self-correction of prior rounds' errors), but almost entirely off-mission relative to the operator strategy: zero DEUS/xDEUS content, no price-trigger or 5-day unstake-lead-time information, and it is a long research essay where the stated priority is a short, decision-ready push. Minor internal inconsistency (1,251 repos verified vs 1,231 denominator).",
+  "last_analyzed": "2026-10-25T06:42:43Z",
+  "quality_score": 4,
+  "assessment": "Internal arithmetic checks out (174/178=97.8%, 138+38+1+1=178, 76/174=43.7%), gives concrete named repos and an actionable testable rule (measure total_count + overlap before swapping terms), plus an honest limitations section — but it is long versus the operator's 'short, decide-on-sight' preference and a few specifics (50-minute prior run, per-repo commit counts) are not independently checkable from the output itself.",
   "flags": [],
-  "avg_score": 3.29,
+  "avg_score": 3.38,
   "history": [
     {
       "date": "2026-10-25",
@@ -46,6 +46,12 @@
       "date": "2026-10-25",
       "score": 2,
       "ts": "2026-10-25T05:45:56Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-25",
+      "score": 4,
+      "ts": "2026-10-25T06:42:43Z",
       "harness": "claude"
     }
   ]
