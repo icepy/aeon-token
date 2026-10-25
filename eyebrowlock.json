@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-25T03:45:08.246861514Z",
+  "generatedAt": "2026-10-25T04:13:40.799030986Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -687,7 +687,7 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "65e0befb8f7b8605bab2277afbe468bcbf686e30d27c8979130524f85640408d"
+          "hash": "b54aba380a39d70e534d229587e09761dcc5a0ae82dad626e5d6a3612d02ef00"
         }
       ],
       "findings": [
@@ -696,7 +696,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "SKILL.md",
-          "line": 91,
+          "line": 92,
           "snippet": "import json, os, subprocess, sys, time, urllib.error, urllib.parse, urllib.request",
           "explanation": "uses a process-execution primitive"
         },
@@ -705,12 +705,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "SKILL.md",
-          "line": 176,
+          "line": 177,
           "snippet": "r = subprocess.run([\"gh\", \"api\", path], capture_output=True,",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-f217f5c84bd6f4bba1c0337939c1b1e557f7bfcb00f8679647c739fd6ba0d258",
+      "contentHash": "sha256-c81fbc054a4edf8c08c14e0bdd309b10013700bc5a3918cddd6a60f47acc7859",
       "discoveredFrom": "skills/github-radar/SKILL.md"
     },
     {
