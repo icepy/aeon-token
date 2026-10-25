@@ -35,27 +35,28 @@ metadata:
 
 ## 铁律
 
-- **换词前先量两个口径：total_count + 重叠度。不能只看污染率。** 实证：`vla`→全称是双赢（污染 22%→1.4%，且 138/205 是旧口径从没抓到的新仓）；`jepa`→全称是灾难（654→35，损失 94.6%）。**分界不是「缩写脏不脏」，是这个术语在生态里实际怎么被书写。**
-- **仓库名常写合成词，搜索按 token 切分。** `smolvla` / `InfraVLA` / `TernaVLA` 打不中独立的 `vla` token，而全称写在 description 里 —— **description 比 name 更可靠**。
+- **核验宁可全量。幸存数 ≤ 上限时，一个都别漏。** 实证：`PER_TERM_CAP=25` 按 star 排序，只核了 76/234，报告级被低估 3.85×。
+- **star 排序会切掉 ★0 长尾。** 在一个全是 ★0 的簇里（`jepa`），按 star 排序等于随机切 —— **核验排序要 `(-stars, -commits 不可得, -created)` 或干脆全量**。
+- **star 与 commits 可能反相关。** 实证：`jepa` 全簇 ★0，但全轮冠亚军（30d≥100/7d≥100、30d≥100/7d=52）都在里面。**跟这一支只能按 commits 读，按 star 全会漏掉。**
+- **换词前先量两个口径：total_count + 重叠度。不能只看污染率。** `vla`→全称双赢（污染 22%→1.4%，138/205 是旧口径没抓到的）；`jepa`→全称灾难（654→35）。**分界不是「缩写脏不脏」，是这个术语在生态里实际怎么被书写。**
+- **仓库名常写合成词，搜索按 token 切分**（`smolvla`/`InfraVLA` 打不中 `vla`）—— **description 比 name 更可靠**。
 - **缩写若留着，必须配 `NEG_BY_TERM`**（`jepa` 撞 jepang/jepara）。
-- **`per_term == 0` 必须分四类。** 有 seen 基线后**饱和词会全部读成 0**。四类：查询失败 / 真零 / **全已见（饱和）** / 有新增。**「饱和」留着，「真零」才谈删词。**
-- **采样必须按簇保证覆盖，不能只按 star 分桶。** 核验宁可全量（core 配额独立于 search）。
-- **共享脚手架 owner 黑名单抓不到。** 实证：同一仓库名跨 8 个 owner、desc 逐字相同、根目录逐字相同、commit message 逐字相同 —— 每个 owner 只有 1 个仓，`owner≥3` 命中不了。判据：**同短名跨 ≥3 owner 且 desc 前 80 字符相同**。
-- **EXCL 要同时查仓库名和 description。** 只查 desc 会漏掉名字里带禁词的（实证 4 个漏网，1 个直接进了报告级）。
+- **`per_term == 0` 必须分四类。** 有 seen 基线后饱和词会全部读成 0。四类：查询失败 / 真零 / **全已见（饱和）** / 有新增。**「饱和」留着，「真零」才谈删词。**
+- **共享脚手架 owner 黑名单抓不到**（同短名跨 8 owner、desc 逐字相同，每人只 1 个仓）。判据：同短名跨 ≥3 owner 且 desc 前 80 字符相同。
+- **EXCL 要同时查仓库名和 description。**
 - **star 地板是反向的。** 默认 `min:0`。
-- **star 测「发布时的传播」，commits 测「现在还有人在写」。判真伪只看 commits。**
-- **30 天提交高 ≠ 现在在写。** 必须同时看近 7 天 —— 实证 **43.7% 爆完即停**，报告级内 62.5%。
-- **高提交数 ≠ 代码仓。** 必须看 `language` 字段与根目录形态。
-- **`commits=100` 是 `per_page` 上限**，必须标 `≥100`。
+- **30 天提交高 ≠ 现在在写。** 必须同时看近 7 天 —— 实证 **59.7% 爆完即停**。
+- **高提交数 ≠ 代码仓。** 看 `language` 字段与根目录形态。
+- **`commits=100` 是 `per_page` 上限**，标 `≥100`。
 - **限速要重试，不能放弃。429（限速）和 409（真空仓）必须分开。gh 掉线必须进审计。**
 - **description 越像论文，越要查 commits。**
 - **只匹配 `in:name,description`，不要 readme。**
-- **脏词必须配 carrier**（`world model`）。判据是 carrier **之后**的精度。
-- **覆盖率必须报。** <50% 的词绝对数不可引用。
+- **脏词必须配 carrier**（`world model`）。
+- **覆盖率必须报。** <50% 的绝对数不可引用。
 - **`template` / `demo` / `sniper` = 练手仓库或农场。**
-- **项目页/列表页要「名字像页 + 体量小」两个条件同时成立才丢。** 别用 language 豁免。
+- **站点仓按后缀无条件丢**（`.github.io` / `-page` / `-site` / `-website` / `-homepage`）—— 体量不是判据，304MB 的静态站照样是站。**同名仓**才需要「体量小 + 无 language」两个条件（`UniWAM/UniWAM` 是真代码仓，必须留）。
 - **每条丢弃规则都要能被审计。**
-- **农场只认黑名单。** 「owner 有 3 个仓」只是**候选**。
+- **农场只认黑名单。**
 - **报「零命中」必须分开写四类。**
 - **不做判断。** 只给仓库 + 一句话 + 链接 + star + 30 天 / 7 天提交数。
 
@@ -108,13 +109,13 @@ DRY  = os.environ.get("DRY") == "1"
 DAYS = int(os.environ.get("DAYS") or 30)
 MIN  = int(os.environ.get("MIN") or 0)
 CHK  = int(os.environ.get("CHK") or 5)
-CHK_CAP = 2000
-PER_TERM_CAP = 25
+CHK_CAP = 2000         # 幸存数 <= 这个值 → 全量核验，一个不漏
+PER_TERM_CAP = 40      # 只在超上限时才启用（超上限时按词保底）
 REPORT_COMMITS = 5
 NOTIFY_TOP = 30
 MAXPAGE = 3
-PAGE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-docs")
-SCAFFOLD_MIN = 3      # 同短名跨这么多 owner 且 desc 前缀相同 → 判脚手架
+SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage")
+SCAFFOLD_MIN = 3
 
 TERMS = [t.strip() for t in """
 # ── AI / 机器人（主战场）──
@@ -128,7 +129,7 @@ world model
 world action model
 # vla → 全称：实测双赢（污染 22%→1.4%，且 138/205 是旧口径从没抓到的新仓）
 vision language action
-# jepa 保留缩写：换全称损失 94.6%（654→35），仓库名一律 jepa-*
+# jepa 保留缩写：换全称损失 94.6%；且这一簇 ★0 与 commits 反相关，必须按 commits 读
 jepa
 egocentric
 robotics data engine
@@ -141,13 +142,11 @@ intent-based
 maximal extractable value
 """.strip().split("\n") if t.strip() and not t.strip().startswith("#")]
 
-# 缩写词的子串污染：命中词撞到完全无关的同形串 → 直接否掉。
 NEG_BY_TERM = {
     "jepa": ["jepang", "jepara", "jepan"],
-    "vla": ["vlan", "vlad", "vladimir", "vladislav", "vladoss"],  # 若换回缩写用
+    "vla": ["vlan", "vlad", "vladimir", "vladislav", "vladoss"],
 }
 
-# 脏词必须配 carrier（须与本行词同现才算命中）。
 CARRIER_BY_TERM = {
     "world model": ["embodied", "robot", "vla", "manipulation", "sim2real",
                     "sim-to-real", "teleop", "egocentric", "action", "policy",
@@ -158,7 +157,6 @@ CARRIER_BY_TERM = {
                      "solver", "swap", "defi", "amm", "wallet"],
 }
 
-# EXCL 同时查仓库名与 description（只查 desc 会漏名字带禁词的）
 EXCL = ["awesome", "tutorial", "course", "survey", "cheatsheet", "roadmap",
         "interview", "homework", "assignment", "lecture", "book",
         "template", "boilerplate", "starter", "example", "demo", "playground",
@@ -270,19 +268,23 @@ for term in TERMS:
                     hit[rid]["terms"].append(term); drop["seen"] += 1; continue
                 if it.get("archived"):
                     drop["archived"] += 1; continue
+                lang = it.get("language")
                 lowall = (rid + " " + (it.get("description") or "")).lower()
                 if neg and any(x in lowall for x in neg):
                     drop["neg"] += 1; neg_dropped.append(rid); continue
                 size_kb = it.get("size", 0)
-                is_page = (short.lower().endswith(PAGE_SUFFIX)
-                           or short.lower() == owner.lower())
-                if is_page and size_kb < 300:
+                # 站点仓：按后缀**无条件**丢 —— 体量不是判据（304MB 静态站照样是站）
+                if short.lower().endswith(SITE_SUFFIX):
+                    drop["pages"] += 1
+                    page_dropped.append((rid, size_kb)); continue
+                # 同名仓：可能是真代码仓（UniWAM/UniWAM），也可能是个人主页
+                if (short.lower() == owner.lower() and size_kb < 300
+                        and not lang):
                     drop["pages"] += 1
                     page_dropped.append((rid, size_kb)); continue
                 desc = (it.get("description") or "").strip()
                 if len(desc) < 25:
                     drop["short_desc"] += 1; continue
-                # EXCL 同时查仓库名与 desc
                 if any(x in lowall for x in EXCL):
                     drop["excl"] += 1; continue
                 need = CARRIER_BY_TERM.get(term)
@@ -295,8 +297,7 @@ for term in TERMS:
                             "stars": it.get("stargazers_count", 0),
                             "created": (it.get("created_at") or "")[:10],
                             "topics": it.get("topics", [])[:6],
-                            "size_kb": size_kb, "page_form": is_page,
-                            "language": it.get("language"),
+                            "size_kb": size_kb, "language": lang,
                             "desc": " ".join(desc.split())[:140]})
                 hit[rid] = out[-1]; new_term[term] += 1
             time.sleep(3 if GH else 8)
@@ -307,8 +308,7 @@ for term in TERMS:
     if total:
         cov[term] = round(100.0 * got / total, 1)
 
-# ── 共享脚手架：owner 黑名单抓不到（每人只 1 个仓）──
-# 判据：同短名跨 >=SCAFFOLD_MIN 个 owner，且 desc 前 80 字符相同。
+# ── 共享脚手架：owner 黑名单抓不到 ──
 byname = {}
 for c in out:
     byname.setdefault(c["repo"].split("/")[-1].lower(), []).append(c)
@@ -319,23 +319,27 @@ for nm, lst in byname.items():
         if n >= SCAFFOLD_MIN:
             for c in lst:
                 if c["desc"][:80] == pref:
-                    c["scaffold"] = True
-                    scaffold.append(c["repo"])
+                    c["scaffold"] = True; scaffold.append(c["repo"])
 out = [c for c in out if not c.get("scaffold")]
 
-# ── 核验：全量 ──
-pick = {}
-for c in out:
-    if c["stars"] >= CHK:
-        pick[c["repo"]] = c
-by_term = {}
-for c in out:
-    by_term.setdefault(c["term"], []).append(c)
-for t, lst in by_term.items():
-    lst.sort(key=lambda c: (-c["stars"], c["created"]))
-    for c in lst[:PER_TERM_CAP]:
-        pick[c["repo"]] = c
-todo = list(pick.values())[:CHK_CAP]
+# ── 核验：幸存数不超上限就**全量**，一个不漏 ──
+if len(out) <= CHK_CAP:
+    todo = list(out)
+    verify_mode = "全量"
+else:
+    pick = {}
+    for c in out:
+        if c["stars"] >= CHK:
+            pick[c["repo"]] = c
+    by_term = {}
+    for c in out:
+        by_term.setdefault(c["term"], []).append(c)
+    for t, lst in by_term.items():
+        lst.sort(key=lambda c: (-c["stars"], c["created"]))
+        for c in lst[:PER_TERM_CAP]:
+            pick[c["repo"]] = c
+    todo = list(pick.values())[:CHK_CAP]
+    verify_mode = "抽样(超上限)"
 
 for c in todo:
     n30, st = commits_since(c["repo"], 30)
@@ -379,7 +383,7 @@ def fmt(c):
         "≥100" if c.get("commits_30d_ge") else c.get("commits_30d"),
         " [爆完即停]" if c.get("burst_only") else "",
         "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"),
-        " [页形态]" if c.get("page_form") else "")
+        "" if c.get("language") else " [无language]")
 
 failed_t = list(qfail)
 truly_zero = [t for t in TERMS if t not in qfail and raw_term.get(t, 0) == 0]
@@ -393,7 +397,9 @@ L = ["扫 %d 词 × %d 窗 × %d 页 | 原始 %d | 幸存 %d | 报告级 %d"
      % (drop["seen"], drop["excl"], drop["archived"], drop["short_desc"],
         drop["carrier"], drop["neg"], drop["pages"], len(scaffold),
         drop["farm"], drop["fail"]),
-     "核验 %d（上限 %d）· 黑名单载入 %d 个 owner" % (len(todo), CHK_CAP, len(farms)),
+     "核验 %d/%d (%.1f%%) · 模式 %s · 黑名单 %d owner"
+     % (len(todo), len(out), 100.0 * len(todo) / max(len(out), 1),
+        verify_mode, len(farms)),
      "词表四分类 —— 查询失败 %d / 真零 %d / 全已见(饱和) %d / 有新增 %d"
      % (len(failed_t), len(truly_zero), len(saturated), len(with_new))]
 if failed_t:
@@ -416,10 +422,10 @@ if scaffold:
     L.append("ℹ️ 共享脚手架（同短名跨≥%d owner 且 desc 前缀同）%d 个: %s"
              % (SCAFFOLD_MIN, len(scaffold), " · ".join(scaffold[:12])))
 if neg_dropped:
-    L.append("ℹ️ 被 NEG 规则丢弃 %d 个（缩写同形污染）: %s"
-             % (len(neg_dropped), " · ".join(neg_dropped[:12])))
+    L.append("ℹ️ 被 NEG 规则丢弃 %d 个: %s" % (len(neg_dropped),
+                                              " · ".join(neg_dropped[:12])))
 if page_dropped:
-    L.append("ℹ️ 被 pages 规则丢弃 %d 个（体量<300KB）: %s"
+    L.append("ℹ️ 被 pages 规则丢弃 %d 个: %s"
              % (len(page_dropped), " · ".join("%s(%dKB)" % p for p in page_dropped[:12])))
 vt = Counter(c["term"] for c in todo)
 L.append("逐词核验数: " + " · ".join("%s=%d" % (k, vt.get(k, 0)) for k in
@@ -470,5 +476,5 @@ if not DRY and hit:
 ### 3. 输出
 
 - `memory/logs/${today}.md` 追加一节，**四分类必须分开写**
-- 通知只发**报告级前 `NOTIFY_TOP` 条**，按 7 天提交数排序，每条给仓库 + 一句话 + 链接 + star + 30d/7d
+- 通知只发**报告级前 `NOTIFY_TOP` 条**，按 7 天提交数排序
 - 报告级为 0 时不发通知
