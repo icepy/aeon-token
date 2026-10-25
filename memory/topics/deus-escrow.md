@@ -8,7 +8,7 @@ tags:
   - runbook
   - onchain
 resource: https://basescan.org/address/0xA85A38796B951CE87B378538b32B3E6Ee3C4C373
-timestamp: 2026-10-24T05:20:00Z
+timestamp: 2026-10-25T05:01:35Z
 ---
 
 # DEUS / xDEUS watch addresses
@@ -192,6 +192,42 @@ not a passive contract.
 **Implication for the strategy:** dilution is a slow headwind against the $0.041 break-even line.
 Don't claim "deflationary" from a single unchanged read. [source: logs/2026-10-23#price-alert]
 
+## The 338k/day "drip" is mostly internal plumbing — 2026-10-25
+
+**This is the single most important correction to the CLAIM narrative.** Enumerated all **2,244**
+DEUS `Transfer` logs out of the main vault `0x5cbf5dfa` over the exact 86400s window and classified
+every recipient by `eth_getCode`:
+
+| Recipient | 24h in (DEUS) | Type | Balance now |
+|---|---|---|---|
+| `0x20d29c8e…6fc5` (CLAIM proxy) | 150,082.04 | CONTRACT | 9,225,852.53 |
+| `0xea247ce9…e6ae` (conduit A) | 113,872.81 | CONTRACT | 9,344,220.19 |
+| `0x0ae95bd7…c4a7b` (CLAIM W2) | 40,441.16 | CONTRACT | 4,711,376.93 |
+| `0xd4c450ac…9409` (distributor D) | 22,941.62 | CONTRACT | 1,331,275.67 |
+| `0x2347c364…500f` (dumped same day) | 7,293.56 | EOA | 0.00 |
+| `0xe338adc6…e61d` (staked it) | 3,771.14 | EIP-7702 | 30,903.11 |
+| small (<200 each, 101 txs/hour base drip) | 191.97 | mixed | — |
+
+- **97.8% of the gross outflow goes to four contracts the issuer controls**, and their combined
+  balance is **RISING**: +331,108.77 received, net **+186,618.99** (24,426,115.51 → 24,612,734.50).
+- So only **145,227.81 DEUS** was actually re-distributed outward by those conduits in 24h — **42.9%
+  of the headline number, not 100%**.
+- Of that 145,227.81, **zero** went straight into a DEUS pool. It broke down as: 93,716 through
+  three confirmed claim→dump EOAs (`0xbd6383c7` 52,736.88 / `0x2347c364` 24,451.11 /
+  `0x8180513f` 16,528.05 — all at balance 0 today), **23,756 into xDEUS stakes**, and ~27k to
+  small EOAs and other contracts.
+- **Realistic daily market supply ≈ 75,977 DEUS** (the dump EOAs plus small EOAs), i.e. **0.0087% of
+  the 876.2M supply**, ≈ **$1,318/day** at $0.01734.
+
+**Operational conclusion:** at the measured depth (~$1.7k notional per 1% move), $1,318/day of real
+supply is under **1% of one percent** of a price move. The emission drip **cannot** reach the
+operator's $0.012 floor and **cannot** justify unstaking. Both extreme gates need a deliberate
+whale — the drip is background noise, not a threat.
+
+**How to re-verify quickly:** `balanceOf` on the four conduits at now vs −86400s. If the combined
+balance is *rising*, the drip is being warehoused; if it is *falling* faster than the payouts, real
+distribution is accelerating. [source: logs/2026-10-25#price-alert]
+
 # Citations
 
 - All balances, transfers and counterparty classification read live from Base via
@@ -206,3 +242,9 @@ Don't claim "deflationary" from a single unchanged read. [source: logs/2026-10-2
   pool reserves via `eth_call balanceOf` on DEUS and VIRTUAL `0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b`
   at blocks `0x328cee6` / `0x328cee7`; xDEUS `totalSupply` `0x18160ddd`; `tokenOfOwnerByIndex`
   `0x2f745c59`. Live Base reads via `https://base.gateway.tenderly.co`, head 53,014,594, 2026-10-24 05:08Z.
+- Conduit attribution (2,244 `Transfer` logs out of `0x5cbf5dfa`, recipient classification by
+  `eth_getCode`, four-conduit `balanceOf` delta): live Base reads via
+  `https://base.gateway.tenderly.co`, `eth_getLogs` chunked at 999 blocks over the exact 86400s
+  window blk 53,014,374 → 53,057,574, head 53,057,574 (2026-10-25T05:01:35Z).
+  Depth calibration `~$1.7k notional per 1%` from three prints: 91.5k (−0.933%), 52.7k (−0.551%),
+  319.6k (−1.979%, the $2.9k/1% outlier).

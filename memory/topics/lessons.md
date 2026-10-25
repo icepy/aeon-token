@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-25T04:37:30Z
+timestamp: 2026-10-25T05:01:35Z
 ---
 
 # Lessons learned — archive
@@ -22,6 +22,34 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 - **监控盲区：Path C 只读 ERC-20 logs，看不到 native ETH。** Robinhood 无 key 时 `onchain-monitor` 走 Path C，因此"staging 钱包被充 gas"这类触发器永远不会响，需要额外跑 `eth_getBalance` 轮询。
 
 ## 假零与断层
+
+### 「流出」不等于「卖出」：归因到终点之前不要称它为压力
+
+**2026-10-25 踩到的最贵一次误读。** 连续多轮把 CLAIM 主库 24h 流出 **338,594 DEUS** 当成「日滴 338k = 砸盘压力」，还拿它去算砸到 $0.012 要几天。
+
+把 2,244 条 `Transfer` 全部按接收方 `eth_getCode` 分类后真相是：
+- **97.8% 流进四个自家导管合约**，且这些合约的合并余额在**涨**（进 331,109 / 净增 +186,619）；
+- 导管真正再派出去的只有 **145,228**（**42.9%**，不是 100%）；
+- 这 145,228 里 **0** 直接进任何一个 DEUS 池；93,716 走三个已验证 claim→砸盘 EOA，23,756 进了 xDEUS 质押；
+- **真正砸向市场的估算 ≈ 75,977/天 = 供应的 0.0087% ≈ $1,318。**
+
+**纪律：一条「流出」要成为「卖压」，必须满足全部三条** —— ① 接收方不是发行方自己的合约；② 该接收方的余额**下降**（不是收了就存着）；③ 终点落在某个池子或最终卖出者手上（不是又进了质押）。**只看第一跳的总额，会把内部搬家读成洪水。**
+
+**快速的重复核验**：对导管群做 `now` 与 `−86400s` 的 `balanceOf` 差。余额**上升** = 在仓库里堆着；余额**下降快于其派发** = 真在往外倒。
+
+### API 的 `h1 = null` 不能被读成 0，也不能被读成「平静」
+
+**2026-10-25：** DexScreener 在深池那对上返回 `priceChange.h1 = null`（5 个 Base 对里 3 个是 null）。若按 0 处理，sharp-move gate 会显示 QUIET —— 但那不是「测到没动」，是**没测量**。
+
+本轮的正确做法：直接问池子。`getReserves()` 的第三个返回值 **`blockTimestampLast` 就是最后一次成交的时间戳** —— 一旦看到它停在 63.9 分钟前，且首尾 `getReserves()` **逐 wei 相同**，就同时证明了「零 swap」和「比值未动」。
+
+**然后还有第二层**：比值没动 ≠ USD mark 没动。本轮 1h 的 **−0.19% 全部来自 VIRTUAL 引腿**（0.627966 → 0.626781）。**一个 USD 计价的涨跌幅永远是「本币腿 × 引腿」两件事，两个都要单独说清楚是哪个在动。**
+
+### 24h 分解的两条腿会重复计数，不能相加
+
+恒定乘积池里，「比值变化 X%」和「DEUS 进池 Y%」是**同一个事件的两种计法**（DEUS 进 ⇔ VIRTUAL 出，比值必随之变）。**只有引腿是独立项，它与池内项是复利关系，不是加法关系。**
+
+2026-10-25 实测：比值 −1.209%、DEUS 进池 +0.610%、VIRTUAL/USD −2.671%，USD mark **−3.848%**（≈ 1.01209 × 1.02671 − 1）。上一轮把三者写成「三分之二是引腿、三分之一是进池」并列相加，口径错了。**报分解时要明说哪两项同源。**
 
 ### `-32602` 有两种来源：窗口超限 **和** 自己拼错了 calldata
 
@@ -167,6 +195,7 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 
 # Citations
 
+- `memory/logs/2026-10-25#price-alert`（05:01Z **流出≠卖压：CLAIM 338k 里 97.8% 只是内部搬家**；`h1=null` 用 `blockTimestampLast` + 储备逐 wei 自证；24h 分解的池内腿与引腿是复利不是加法；地址靠记忆补零=假零）
 - `memory/logs/2026-10-21#onchain-monitor`, `#telegram-reply`, `#heartbeat-brief`, `#price-alert`
 - `memory/logs/2026-10-22#price-alert`（21:01Z / 22:02Z / 23:01Z 三源对比）
 - `memory/logs/2026-10-23#price-alert`（11:06Z 单笔方向性买盘 → 12:02Z 复核实证两笔跟进买盘为聚合器套利；15:05Z 第二个方向性钱包 `0x259f962e…` + 笔数/美元额反向 + 7702 识别；19:09Z Slipstream topic0 坑 + 多 horizon 余额判新钱 + 1inch 路由终点判据；20:05Z 单池 37 买 / 0 卖 实为同秒双池套利 + 供给口径改为净增发；17:01Z–21:16Z 两个方向性钱包冻结、h1 缺失 ≠ 平静）

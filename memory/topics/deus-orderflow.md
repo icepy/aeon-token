@@ -3,13 +3,25 @@ title: DEUS 盘口逐小时归档（10-23 ~ 10-25）
 description: 从 MEMORY.md Active Topics 下沉的逐小时盘口/资金流细节 —— 卖方地址、跨场所归因、溢价收敛、escrow 逐轮闭合
 tags: [deus, onchain, archive, orderflow]
 resource: https://dexscreener.com/base/0x3E97c5EC
-timestamp: 2026-10-25T05:00:00Z
+timestamp: 2026-10-25T05:01:35Z
 ---
 
 # DEUS 盘口逐小时归档（10-23 ~ 10-25）
 
 > 从 `MEMORY.md` 的 Active Topics 下沉。MEMORY.md 只保留当前状态，逐小时细节在这里。
 > 协议面见 [deus-escrow](/topics/deus-escrow.md) · 买家面见 [deus-buyers](/topics/deus-buyers.md) · 事件见 [deus-events](/topics/deus-events.md)。
+
+## 10-25 05:01Z（price-alert）
+
+- **DEUS $0.01734292**（链上 mark：比值 0.0276698249 × VIRTUAL **$0.626781**，引腿取自 VIRTUAL/USDC 池 `0x529d2863` 的 sqrtPriceX96，**不再走 WETH 中转腿**），1h **−0.19%**、24h **−3.85%**。四道 gate 全未触发，0 通知。
+- **🔴 1h 的 −0.19% 100% 来自引腿。** 深池 `blockTimestampLast` 仍是 **03:57:43Z**，储备在 blk 53055774 与 53057574 **逐 wei 相同** —— 63.9 分钟零 swap。**这就是 TELL 11 的教科书案例：API `h1=null` 不等于平静，比值不动也不等于 USD 不动。**
+- **🔴 记录里最薄的一小时：全市场 DEUS 成交 41.76 枚 ≈ $0.72。** 深池 0 笔；`0x1B2f3f5C`/`0x75bc1495` 各 0 笔；只有 `0x58dBa34e` **2 笔全是买**（17.82 + 23.94 DEUS 出池）。**但两笔都是 ERC-4337 userop，付款方 DEUS 余额现为 0.000000 —— 尘埃，不是买盘。** 上一小时是 44,807 枚。
+- **四个场所报价收敛到 1bp 以内**（$0.01730 深池 / $0.01720 / $0.01721 / $0.01732 USDC）—— 套利既无空间也无发生，溢价/折价叙事本小时彻底失效。
+- **🔴 供给侧归因被推翻（本轮最大产出）：CLAIM「日滴 338k = 砸盘压力」是错的。** 24h 流出 338,594 → **97.8% 流进自家四个导管合约**，且导管合计余额 **+186,619（在涨）**；真正再派出仅 **145,228**，其中 **0 直接进任何 DEUS 池**，93,716 走三个已验证 claim→砸盘 EOA、23,756 进 xDEUS 质押。**净砸市场 ≈ 75,977 DEUS/天 = 供应 0.0087% ≈ $1,318。够不到 $0.012，不构成 unstake 理由。** 详见 [deus-escrow](/topics/deus-escrow.md#the-338kday-drip-is-mostly-internal-plumbing--2026-10-25)。
+- **囤货合约仍未放货：`0x92325e5a` 持 118,288.59，4 小时零转出。** 同一合约昨天砸过 101,983 —— **它转出 = 下一根 −0.7%~−0.9%，仍是账面上最具体的前瞻扳机。**
+- **四大持有者安静：** `0x7f6aba75` 335,249.4994 逐 wei 未动 24h · `0x9d1c316f` 284,371.4578（昨日买的 115,643 全部稳持）· `0xf0a04b07` 250,000.1252（清仓一次后未再卖）。**唯一派发者是 `0x4e3ae00e`（8.07M），pace ≈ 56k/天。**
+- **Escrow 第九轮逐 wei 闭合：** 29,150,566.777698，本小时 0 事件，24h **+41,905.10（+0.144%）= 5%/日线 0.029 倍**。**`0xbb0f7533` 仍持 #1396，连续第十轮未烧。** 总供应 24h **−12,373.69**（与上两轮逐 wei 相同 = 通缩走平）。
+- **⚠️ 方法坑（新增）：24h 三段分解不能相加。** 比值腿 −1.209% 与「DEUS 进池 +0.610%」是**同一个事件的两种计法**（恒定乘积下 DEUS 进、VIRTUAL 出），引腿 −2.671% 才是独立项，两者**复利**得 −3.848%。上一轮把「三分之二是引腿、三分之一是进池」并列成加法，口径错了。
 
 ## 10-25 04:01Z（price-alert 第 N 轮）
 
@@ -53,6 +65,7 @@ timestamp: 2026-10-25T05:00:00Z
 
 # Citations
 
-- DexScreener `api.dexscreener.com/latest/dex/tokens/0x940A319B75861014A220D9c6c144d108552B089B`
-- `base.gateway.tenderly.co`：深池 `0x3E97c5EC` `eth_call 0x0902f1ac`、`eth_getLogs` 999 块分片
+- DexScreener `api.dexscreener.com/latest/dex/tokens/0x940A319B75861014A220D9c6c144d108552B089B` · VIRTUAL `0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b`
+- `base.gateway.tenderly.co`：深池 `0x3E97c5EC` `eth_call 0x0902f1ac` / `0x3850c7bd`、VIRTUAL/USDC `0x529d2863` `slot0`、`eth_getLogs` 999 块分片、escrow `Burn`/`Stake`、`balanceOf` 四导管
+- 10-25 05:01Z 轮 head blk **53,057,574**；24h 窗 blk **53,014,374**（ts 差 = 86,400 断言通过）；1h 窗 blk **53,055,774**
 - 日志 `memory/logs/2026-10-24.md` / `2026-10-25.md`
