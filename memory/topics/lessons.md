@@ -72,6 +72,14 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 ```
 看到 `NULL` 或 `err` 一律重试/缩窗，**不准当 0**。这条是 MEMORY 里"never trust a zero-log window"在**客户端侧**的对应物 —— 之前的假零都怀疑端点或 topic，这次错在自己的解析。
 
+### 第三种假零：Python 里 `except: res = []` 把 `-32602` 吞成"零事件"（2026-10-25 新增）
+
+上面两条是 `jq` 侧的。**Python 侧同样会中招，而且更隐蔽**：包一个 `try/except` 然后 `res = []`，再把失败写进一个没人看的 `errors` 数组。
+
+2026-10-25 price-alert 首扫 escrow 24h 窗（43,296 块）得到 `burns 0 / stakes 0`，**看起来就是"这小时没事件"**；实际是区间超了 1000 块上限，每次调用都 `-32602`。改成 44 个 999 块分片重扫 → **1 burn + 2 stakes**，且与余额差闭合到 wei。
+
+**纪律**：任何"零结果"必须**同时确认失败计数为 0**才能采信。分片扫描的返回结构里必须带 `failed_chunks: []`，并在判定"安静/无事件"之前先断言它是空的。**只看 `len(logs) == 0` 就下结论 = 假零。**
+
 ### 「最近一小时」要按时间戳取，不能按 head−1800 块
 
 Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，实际落点是 **100 分钟前**，算出的 h1 与 DexScreener 对不上。

@@ -1,17 +1,11 @@
 {
   "skill": "price-alert",
-  "last_analyzed": "2026-10-25T05:22:26Z",
+  "last_analyzed": "2026-10-25T06:15:55Z",
   "quality_score": 4,
-  "assessment": "链上实测的四道 gate 全部跑通、0 触发的合规 no-op，带合约前缀与储备/块高原始依据，并推翻了沿用多轮的 338k/天砸盘框架，直接服务于「不追加现金、提前 5 天启动冷却」的战略；扣分在篇幅明显过长（与「不要长文、看完就能决定」相悖）、部分来源地址只给 8 位前缀且若干对手方只作描述未给完整地址、以及大量内部术语需要读者自行换算。",
+  "assessment": "Delivered a real no-op alert cycle with chain-level specifics (unchanged reserves, block-pinned timestamps, VIRTUAL leg decomposition of the −1%), respected notification discipline, surfaced the 5-day unstake lead-time prerequisites, and self-audited a swallowed `-32602` false-zero with chunked rescan; slightly verbose for the 'short push' rule but it is a log, not a push.",
   "flags": [],
-  "avg_score": 4.27,
+  "avg_score": 4.23,
   "history": [
-    {
-      "date": "2026-10-23",
-      "score": 5,
-      "ts": "2026-10-23T16:05:59Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-23",
       "score": 5,
@@ -184,6 +178,12 @@
       "date": "2026-10-25",
       "score": 4,
       "ts": "2026-10-25T05:22:26Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-25",
+      "score": 4,
+      "ts": "2026-10-25T06:15:55Z",
       "harness": "claude"
     }
   ]
