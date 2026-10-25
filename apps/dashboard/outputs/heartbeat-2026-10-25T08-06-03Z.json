@@ -1,0 +1,290 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "⚠️ heartbeat 🟡",
+        "description": "2026-10-25 08:02Z"
+      },
+      "children": [
+        "header-badges",
+        "sep1",
+        "finding-heading",
+        "alert-timeout",
+        "stack-stats",
+        "finding-body",
+        "sep2",
+        "action-heading",
+        "action-text",
+        "sep3",
+        "green-heading",
+        "green-text",
+        "sep4",
+        "pending-heading",
+        "pending-text",
+        "sep5",
+        "source-heading",
+        "source-text"
+      ]
+    },
+    "header-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-status",
+        "badge-only-finding",
+        "badge-zero-chronic"
+      ]
+    },
+    "badge-status": {
+      "type": "Badge",
+      "props": {
+        "text": "🟡 warning",
+        "variant": "destructive"
+      }
+    },
+    "badge-only-finding": {
+      "type": "Badge",
+      "props": {
+        "text": "1 finding",
+        "variant": "outline"
+      }
+    },
+    "badge-zero-chronic": {
+      "type": "Badge",
+      "props": {
+        "text": "no chronic failures",
+        "variant": "secondary"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "finding-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "唯一 finding：arxiv-radar 07:30Z 那轮超时失败",
+        "level": "h2"
+      }
+    },
+    "alert-timeout": {
+      "type": "Alert",
+      "props": {
+        "title": "arxiv-radar · harness timeout",
+        "message": "07:30:47Z 派发 → 08:01:12Z 被杀，harness run exceeded --timeout 1800s，报 hivemindos: timeout，exit 124。",
+        "type": "error"
+      }
+    },
+    "stack-stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-failures",
+        "stat-success",
+        "progress-success"
+      ]
+    },
+    "stat-failures": {
+      "type": "Stat",
+      "props": {
+        "label": "consecutive_failures",
+        "value": "1",
+        "delta": "+1",
+        "trend": "up"
+      }
+    },
+    "stat-success": {
+      "type": "Stat",
+      "props": {
+        "label": "success_rate",
+        "value": "80%",
+        "delta": "10 跑 8 成",
+        "trend": "neutral"
+      }
+    },
+    "progress-success": {
+      "type": "Progress",
+      "props": {
+        "value": 80,
+        "max": 100,
+        "label": "success_rate · 8/10"
+      }
+    },
+    "finding-body": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "text-harness-wall",
+        "text-zero-output",
+        "text-prev-quality"
+      ]
+    },
+    "text-harness-wall": {
+      "type": "Text",
+      "props": {
+        "text": "是 harness 撞 30 分钟墙，不是 skill 逻辑坏。",
+        "variant": "body"
+      }
+    },
+    "text-zero-output": {
+      "type": "Text",
+      "props": {
+        "text": "整轮零输出，arXiv 抓取管线没跑到。",
+        "variant": "muted"
+      }
+    },
+    "text-prev-quality": {
+      "type": "Text",
+      "props": {
+        "text": "上一轮（10-24 11:30Z）质量分 4/5。",
+        "variant": "muted"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "action-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "要我动手的话",
+        "level": "h3"
+      }
+    },
+    "action-text": {
+      "type": "Text",
+      "props": {
+        "text": "再连败一次就拆窗口跑（现在单轮 90 天回补 + 20 词扫太重）。",
+        "variant": "lead"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "green-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "其余全绿",
+        "level": "h3"
+      }
+    },
+    "green-text": {
+      "type": "Text",
+      "props": {
+        "text": "6 个 cron skill 全部在调度区间内成功，零连败，无 chronic。",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "pending-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "两个 enabled 未跑的都正常",
+        "level": "h3"
+      }
+    },
+    "pending-text": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "text-unlock",
+        "text-aeon",
+        "badge-first-slot"
+      ]
+    },
+    "text-unlock": {
+      "type": "Text",
+      "props": {
+        "text": "unlock-monitor（周一 10:00Z）",
+        "variant": "body"
+      }
+    },
+    "text-aeon": {
+      "type": "Text",
+      "props": {
+        "text": "aeon-update（周一 11:00Z，10-24 才 enable）",
+        "variant": "body"
+      }
+    },
+    "badge-first-slot": {
+      "type": "Badge",
+      "props": {
+        "text": "首时隙都是 10-26",
+        "variant": "outline"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "source-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "来源",
+        "level": "h4"
+      }
+    },
+    "source-text": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "text-src-state",
+        "text-src-run",
+        "text-src-issue"
+      ]
+    },
+    "text-src-state": {
+      "type": "Text",
+      "props": {
+        "text": "memory/cron-state.json",
+        "variant": "caption"
+      }
+    },
+    "text-src-run": {
+      "type": "Text",
+      "props": {
+        "text": "run 40173045818",
+        "variant": "caption"
+      }
+    },
+    "text-src-issue": {
+      "type": "Text",
+      "props": {
+        "text": "GitHub issue #6",
+        "variant": "caption"
+      }
+    }
+  }
+}
