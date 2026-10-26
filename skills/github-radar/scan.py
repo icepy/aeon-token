@@ -6,17 +6,18 @@
     python3 skills/github-radar/scan.py "days:30 probe"      # 额外跑专名簇反查
 
 var token（空格分隔，可组合）:
-    dry-run   跳过 notify、不写 seen
+    dry-run   跳过 notify、不写 seen、**不覆盖 out.json**（改写 out.dry.json）
     days:N    扫描窗口，默认 30
     min:N     star 地板，默认 0
     chk:N     核验门槛（仅在幸存数超 CHK_CAP 时启用），默认 5
-    probe     对报告级 top-N 的仓名 token 做反查，找词表漏掉的专名簇
+    probe     对种子仓名 token 做反查，找词表漏掉的专名簇
 
-产物（文件名固定，别改成 scan12.py / audit12.log）:
-    output/ghradar/out.json       全部幸存者
+产物（文件名固定，别改成 scan13.py / audit13.log）:
+    output/ghradar/out.json       全部幸存者（非 dry-run）
+    output/ghradar/out.dry.json   全部幸存者（dry-run；空数组不许覆盖上一轮真快照）
     output/ghradar/audit.log      审计（同时打到 stdout）
     output/ghradar/report.md      通知正文
-    output/ghradar/clusters.json  仅 probe 时
+    output/ghradar/clusters.json  probe 时**必定重写**（空也写，好区分"没跑"和"跑了没货"）
     memory/github-seen.json       非 dry-run 才写
     memory/github-candidates.md   非 dry-run 才追加
 """
@@ -27,7 +28,8 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 
 OUTD = "output/ghradar"
-OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
+OUT, OUT_DRY = OUTD + "/out.json", OUTD + "/out.dry.json"
+AUD, REPORT = OUTD + "/audit.log", OUTD + "/report.md"
 CLUSTERS = OUTD + "/clusters.json"
 SEEN = "memory/github-seen.json"
 CARDS = "memory/github-candidates.md"
@@ -46,6 +48,7 @@ VERIFY_BUDGET = 900    # 核验墙钟预算（秒）；超预算的标 unverifie
 PROBE_TOP = 12         # probe: 取报告级前 N 个的仓名 token 作候选
 PROBE_MAXTOK = 20      # probe: 最多反查多少个 token
 PROBE_MAX_TOTAL = 600  # probe: 反查 total 超过这个 → 判为通用词，不是专名
+PROBE_SEED_TARGET = 36 # probe: 种子仓数量目标（报告级 → 幸存 → 丢弃堆，依次补足）
 
 # 根目录里有这些 = 真代码仓（用来否掉"页形态"）
 CODE_SKELETON = {"src", "tests", "test", "pyproject.toml", "package.json",
@@ -219,12 +222,15 @@ out, raw = [], 0
 drop = {"seen": 0, "excl": 0, "archived": 0, "short_desc": 0, "carrier": 0,
         "neg": 0, "pages": 0, "pages_root": 0, "farm": 0, "fail": 0}
 hit, qfail, cov = {}, [], {}
-raw_term, new_term = {}, {}
+raw_term, new_term, seen_term = {}, {}, {}
 page_dropped, neg_dropped, root_dropped = [], [], []
+# carrier / short_desc 丢掉的仓 —— probe 的第三顺位种子（活仓常躺在这里）
+drop_names = []
+DROP_NAMES_CAP = 400
 
 for term in TERMS:
     total, got, failed = 0, 0, False
-    raw_term[term] = 0; new_term[term] = 0
+    raw_term[term] = 0; new_term[term] = 0; seen_term[term] = 0
     neg = NEG_BY_TERM.get(term, [])
     for w in WINS:
         q = '"%s" in:name,description created:%s fork:false stars:>=%d' % (
@@ -244,9 +250,10 @@ for term in TERMS:
                 owner = (it.get("owner") or {}).get("login", "")
                 short = rid.split("/")[-1]
                 if rid in seen:
-                    drop["seen"] += 1; continue
+                    drop["seen"] += 1; seen_term[term] += 1; continue
                 if rid in hit:
-                    hit[rid]["terms"].append(term); drop["seen"] += 1; continue
+                    hit[rid]["terms"].append(term)
+                    drop["seen"] += 1; seen_term[term] += 1; continue
                 if it.get("archived"):
                     drop["archived"] += 1; continue
                 lang = it.get("language")
@@ -265,12 +272,18 @@ for term in TERMS:
                     page_dropped.append((rid, size_kb)); continue
                 desc = (it.get("description") or "").strip()
                 if len(desc) < 25:
-                    drop["short_desc"] += 1; continue
+                    drop["short_desc"] += 1
+                    if len(drop_names) < DROP_NAMES_CAP:
+                        drop_names.append((it.get("pushed_at") or "", rid))
+                    continue
                 if any(x in lowall for x in EXCL):
                     drop["excl"] += 1; continue
                 need = CARRIER_BY_TERM.get(term)
                 if need and not any(c in desc.lower() for c in need):
-                    drop["carrier"] += 1; continue
+                    drop["carrier"] += 1
+                    if len(drop_names) < DROP_NAMES_CAP:
+                        drop_names.append((it.get("pushed_at") or "", rid))
+                    continue
                 if owner.lower() in farms:
                     drop["farm"] += 1; continue
                 out.append({"term": term, "terms": [term], "repo": rid,
@@ -388,20 +401,40 @@ rep = sorted([c for c in out if reportable(c)],
              key=lambda c: (-c.get("commits_7d", 0), -c["commits_30d"], -c["stars"]))
 
 os.makedirs(OUTD, exist_ok=True)
-json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+# dry-run 不覆盖 out.json —— 否则一次 0 幸存就会把上一轮的真快照写成 "[]"
+SNAP = OUT_DRY if DRY else OUT
+json.dump(out, open(SNAP, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
-# ── probe：报告级 top-N 仓名 token 反查，找词表漏掉的专名簇 ──
-# 顺序必须是「先反查、再排序」—— 按 token 在 top-N 里出现几次排会漏掉
+# ── probe：反查找词表漏掉的专名簇 ──
+# 种子池必须是「报告级 → 幸存 → 丢弃堆最新」三级补足。只看报告级会在幸存 0 时整段空转
+# （第十三轮实证：活仓全躺在丢弃堆里，而 probe 因为 rep=0 完全没跑）。
+# 顺序必须是「先反查、再排序」—— 按 token 在种子里出现几次排会漏掉
 # SuperMimic（它只出现 1 次，被 capstone/recall 这类通用词挤掉）。
 # 专名判据：反查 total 小 + owner 密度高 + 簇内有高 commit 仓。
 cluster_report = []
-if PROBE and rep:
+probe_stat = {"rep": 0, "out": 0, "drop": 0, "tok": 0, "done": 0, "seeds": 0}
+if PROBE:
+    seeds = []
+    for tag, src in (("rep", rep), ("out", out),
+                     ("drop", [r for _, r in sorted(drop_names, reverse=True)])):
+        n0 = len(seeds)
+        for it in src:
+            rid = it["repo"] if isinstance(it, dict) else it
+            if rid not in seeds:
+                seeds.append(rid)
+            if len(seeds) >= PROBE_SEED_TARGET:
+                break
+        probe_stat[tag] = len(seeds) - n0
+        if len(seeds) >= PROBE_SEED_TARGET:
+            break
+    probe_stat["seeds"] = len(seeds)
     toks = []
-    for c in rep[:PROBE_TOP]:
-        for tk in re.split(r"[-_./]", c["repo"].split("/")[-1].lower()):
+    for rid in seeds:
+        for tk in re.split(r"[-_./]", rid.split("/")[-1].lower()):
             if (len(tk) >= 4 and tk not in STOPWORDS
                     and not tk.isdigit() and tk not in toks):
                 toks.append(tk)
+    probe_stat["tok"] = len(toks)
     in_out = {c["repo"] for c in out}
     for tk in toks[:PROBE_MAXTOK]:
         res, err = search('"%s" in:name,description created:%s fork:false'
@@ -425,8 +458,10 @@ if PROBE and rep:
             "generic": total > PROBE_MAX_TOTAL,
             "not_in_out": sum(1 for i in items if i["full_name"] not in in_out),
             "hot": hot[:8]})
+        probe_stat["done"] += 1
     # 专名优先：非通用词 → 簇内活跃仓多 → owner 密度高
     cluster_report.sort(key=lambda x: (x["generic"], -len(x["hot"]), -x["owners"]))
+    # **无条件重写** —— 空数组也要写，否则上一轮的 clusters.json 会冒充本轮结果
     json.dump(cluster_report, open(CLUSTERS, "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
 
@@ -442,9 +477,12 @@ failed_t = list(qfail)
 truly_zero = [t for t in TERMS if t not in qfail and raw_term.get(t, 0) == 0]
 saturated = [t for t in TERMS if raw_term.get(t, 0) > 0 and new_term.get(t, 0) == 0]
 with_new = [t for t in TERMS if new_term.get(t, 0) > 0]
+sat_seen = [t for t in saturated if seen_term.get(t, 0) > 0]
+sat_loss = [t for t in saturated if seen_term.get(t, 0) == 0]
 
 L = ["扫 %d 词 × %d 窗 × %d 页 | 原始 %d | 幸存 %d | 报告级 %d | var=%r"
      % (len(TERMS), NWIN, MAXPAGE, raw, len(out), len(rep), var),
+     "快照 %s%s" % (SNAP, "（dry-run 不覆盖 out.json）" if DRY else ""),
      "丢弃 seen=%d excl=%d archived=%d short_desc=%d carrier=%d neg=%d "
      "pages=%d pages_root=%d scaffold=%d farm=%d fail=%d"
      % (drop["seen"], drop["excl"], drop["archived"], drop["short_desc"],
@@ -464,11 +502,19 @@ if failed_t:
 if truly_zero:
     L.append("⚠️ 真零命中（total=0，可考虑删词）: " + " · ".join(truly_zero))
 if saturated:
-    L.append("ℹ️ 全已见（饱和，**别删**）: " + " · ".join(
-        "%s(raw=%d)" % (t, raw_term[t]) for t in saturated))
-L.append("词表返回/新收: " + " · ".join(
-    "%s=%d/%d" % (t, raw_term.get(t, 0), new_term.get(t, 0)) for t in
-    sorted(TERMS, key=lambda x: -raw_term.get(x, 0))))
+    # 「饱和」这个标签本身是混的：new_term 只在全部过滤器跑完之后才自增，
+    # 所以「被 carrier/short_desc 丢光」和「真被 seen 吸收」会落进同一类。必须拆开。
+    L.append("ℹ️ 饱和（raw>0 且 0 新增）%d —— 其中真被 seen 吸收 %d 个（**别删**）: %s"
+             % (len(saturated), len(sat_seen),
+                " · ".join("%s(raw=%d seen=%d)" % (t, raw_term[t], seen_term[t])
+                           for t in sat_seen)))
+    if sat_loss:
+        L.append("   └ 全是过滤损耗 %d 个（seen=0，**不是饱和**，别按饱和读）: %s"
+                 % (len(sat_loss), " · ".join("%s(raw=%d)" % (t, raw_term[t])
+                                              for t in sat_loss)))
+L.append("词表返回/新收/已见: " + " · ".join(
+    "%s=%d/%d/%d" % (t, raw_term.get(t, 0), new_term.get(t, 0), seen_term.get(t, 0))
+    for t in sorted(TERMS, key=lambda x: -raw_term.get(x, 0))))
 if gh_lost[0]:
     L.append("⚠️ gh 认证曾掉线（已按 %ds 冷却自动重试）—— 核验完整性存疑" % GH_COOLDOWN)
 low = {k: v for k, v in cov.items() if v < 50}
@@ -511,17 +557,24 @@ cand = {o: n for o, n in owner_n.items() if n >= 3}
 if cand:
     L.append("ℹ️ 候选农场（owner≥3，需人工判）: " +
              " · ".join("%s=%d" % kv for kv in cand.items()))
-if cluster_report:
-    L.append("ℹ️ probe 反查 —— 专名候选（total≤%d）:" % PROBE_MAX_TOTAL)
-    for cl in [c for c in cluster_report if not c["generic"]][:8]:
-        L.append("  `%s` total=%d owners=%d 未在幸存者=%d | %s"
-                 % (cl["token"], cl["total"], cl["owners"], cl["not_in_out"],
-                    " · ".join("%s(%s/%s)" % (h["repo"], h["commits_30d"],
-                                              h["commits_7d"]) for h in cl["hot"][:4])))
-    gen = [c for c in cluster_report if c["generic"]][:5]
-    if gen:
-        L.append("  （通用词，反查噪声）: " + " · ".join(
-            "%s(total=%d)" % (c["token"], c["total"]) for c in gen))
+if PROBE:
+    L.append("ℹ️ probe 种子 %d（报告级 %d / 幸存 %d / 丢弃堆 %d）→ 候选 token %d → "
+             "已反查 %d · clusters.json 已重写（空也写）"
+             % (probe_stat["seeds"], probe_stat["rep"], probe_stat["out"],
+                probe_stat["drop"], probe_stat["tok"], probe_stat["done"]))
+    if not probe_stat["seeds"]:
+        L.append("   ⚠️ 种子为 0 —— 本轮 probe 无从反查，不是「没有簇」")
+    else:
+        L.append("ℹ️ probe 反查 —— 专名候选（total≤%d）:" % PROBE_MAX_TOTAL)
+        for cl in [c for c in cluster_report if not c["generic"]][:8]:
+            L.append("  `%s` total=%d owners=%d 未在幸存者=%d | %s"
+                     % (cl["token"], cl["total"], cl["owners"], cl["not_in_out"],
+                        " · ".join("%s(%s/%s)" % (h["repo"], h["commits_30d"],
+                                                  h["commits_7d"]) for h in cl["hot"][:4])))
+        gen = [c for c in cluster_report if c["generic"]][:5]
+        if gen:
+            L.append("  （通用词，反查噪声）: " + " · ".join(
+                "%s(total=%d)" % (c["token"], c["total"]) for c in gen))
 for c in rep[:25]:
     L.append("  " + fmt(c))
 
@@ -533,7 +586,9 @@ stamp = now.strftime("%Y-%m-%d")
 if not DRY and hit:
     merged = {k: stamp for k in hit}
     merged.update(seen)
-    json.dump(dict(list(merged.items())[-8000:]),
+    # 保留**新**条目：merged 的顺序是「本轮新命中 → 旧 seen」，
+    # 原来取 [-8000:] 保留的是尾部旧条目，超 8000 会先把新命中挤掉。
+    json.dump(dict(list(merged.items())[:8000]),
               open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     with open(CARDS, "a", encoding="utf-8") as f:
         f.write("\n## %s · github-radar（报告级 %d）\n" % (stamp, len(rep)))
