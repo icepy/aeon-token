@@ -58,3 +58,41 @@
 - `BFT` Diagnosing High-Performance BFT Consensus via Mixture Modeling of Block Time · 08-03 · https://arxiv.org/abs/2608.01934
 - Beyond Byzantine: Organizational Consensus for Self-Interested Agents Under Information Asymmetry · 07-31 · https://arxiv.org/abs/2607.28957
 - Hermes: Low Tail-Latency Via Prefix Consensus · 07-28 · https://arxiv.org/abs/2607.25916
+**arxiv-radar** · 窗口 90 天 · 幸存 22 · dry-run（未推送）
+
+⚠️ **22 条全部落在 60–90 天带（7-28 ～ 8-26），不是新论文，是历史补洞。** 前九轮的 seen 基线只覆盖 30d/60d，这一带从没扫过。
+
+**零知识**
+- `2608.13078` — Deterministic JL Projections from Pisot β-Transformations for ZK Private Routing · [零知识/隐私] · https://arxiv.org/abs/2608.13078
+- `2608.07063` — Soft Redaction of Image Provenance via Zero-Knowledge Proofs · [零知识/内容溯源] · https://arxiv.org/abs/2608.07063
+
+**共识 / BFT（7 条，唯一成簇方向）**
+- `2608.24622` — Scalable datacenter replication with mostly-synchronous consensus on hardware · [共识/硬件加速] · https://arxiv.org/abs/2608.24622
+- `2608.17998` — Multivalued Consensus: General Adversaries Require More Communication · [共识/理论下界] · https://arxiv.org/abs/2608.17998
+- `2609.00392` — Operation-Type-Aware Client Routing for Leader-Based Consensus Datastores · [共识/客户端路由] · https://arxiv.org/abs/2609.00392
+- `2608.11034` — `SCOUT`: Symmetric Consensus Outlier Detection for Failure Localization in LLM Pre-Training · [共识/故障定位] · https://arxiv.org/abs/2608.11034
+- `2608.01934` — `BFT`: Diagnosing High-Performance BFT Consensus via Mixture Modeling of Block Time · [共识/BFT 测量] · https://arxiv.org/abs/2608.01934
+- `2607.28957` — Beyond Byzantine: Organizational Consensus for Self-Interested Agents Under Information Asymmetry · [共识/博弈] · https://arxiv.org/abs/2607.28957
+- `2607.25916` — `Hermes`: Low Tail-Latency Via Prefix Consensus · [共识/延迟] · https://arxiv.org/abs/2607.25916
+
+**RWA**
+- `2608.25269` — RWA-PoB: A Credential-Based Proof-of-Backing Framework for Tokenized U.S. Treasury Products · [RWA/储备证明] · https://arxiv.org/abs/2608.25269
+
+**具身 / 自我中心数据（10 条，机器人侧）**
+- `2608.22449` — `EMPIRE`: Explicit Manipulation Planning as Learnable Intermediate Representation for Egocentric Hand-Motion · [具身数据/规划表征] · https://arxiv.org/abs/2608.22449
+- `2608.15060` — `EgoTac`: In-the-wild Tactile Prediction from Egocentric Vision · [具身数据/触觉] · https://arxiv.org/abs/2608.15060
+- `2608.13014` — `EgoPHI`: Estimating 3D Hand-Object Contact and Force from Egocentric Vision · [具身数据/接触力] · https://arxiv.org/abs/2608.13014
+- `2608.12515` — Can VLMs Assess Proxemic Risk from Egocentric Robot Images? · [具身/安全评估] · https://arxiv.org/abs/2608.12515
+- `2608.12122` — `HandEdit`: Benchmark for Egocentric Human-to-Robot Dexterous Hand Image Editing · [具身数据/人手→机手] · https://arxiv.org/abs/2608.12122
+- `2608.08285` — `CAptuRe`: Ego-OSCAR Egocentric Open-source Stereo Capture System · [具身数据/采集硬件] · https://arxiv.org/abs/2608.08285
+- `2608.04196` — `SiMDex`: Mining Similar Egocentric Videos for Cross-Embodiment Dexterous Manipulation · [具身数据/跨本体] · https://arxiv.org/abs/2608.04196
+- `2608.03387` — `RoboReact`: Agentic Skill Distillation from Generated Egocentric Videos · [具身数据/合成视频] · https://arxiv.org/abs/2608.03387
+- `2608.00652` — Assistant Placement Aria: Benchmark for Egocentric Placement Assistance · [具身数据/基准] · https://arxiv.org/abs/2608.00652
+- `2607.26985` — `SymmGrid`: Super-Scaling On-Robot Learning with Parallelized Symmetries · [具身数据/对称性] · https://arxiv.org/abs/2607.26985
+
+**合成数据生成**
+- `2608.14207` — MMUSV-Sim: Perception-Oriented Simulation and Data-Generation Platform for Multi-USV · [合成数据/仿真] · https://arxiv.org/abs/2608.14207
+- `2608.07106` — `LiDAR`: Synthetic LiDAR Data Generation and Deterministic Downsampling · [合成数据/点云] · https://arxiv.org/abs/2608.07106
+
+---
+单侧读数：加密词 9 / 机器人词 12。0–60 天带本轮 0 条新增 —— 该带已被前九轮吃满。
