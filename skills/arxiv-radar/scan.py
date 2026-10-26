@@ -7,15 +7,20 @@
     python3 skills/arxiv-radar/scan.py "check:world model"  # 量候选词两个口径后退出
 
 var token（空格分隔，可组合）:
-    dry-run   跳过 notify、不写 seen、不写 hits
-    days:N    窗口天数，默认 30
-    names     词表整个换成 memory/universe-names.txt
-    check:<词>  只量这个词，跑完退出
+    dry-run        跳过 notify、不写 seen、不写 hits
+    days:N         窗口天数，默认 30
+    names          词表整个换成 memory/universe-names.txt
+    check:<词>      只量这个词，跑完退出
+    notify:script  让脚本自己发通知（默认不发，见下）
+
+通知归属：正文归**模型**。脚本不会翻译英文标题，也不会"按簇分组"，
+所以默认只写 output/arxiv/report.md 的机械列表，由模型覆写成中文后发。
+无人值守场景用 notify:script 走降级路径。
 
 产物（文件名固定，别改成 radar2.json）:
     output/arxiv/out.json     全部幸存者
     output/arxiv/audit.log    审计（同时打到 stdout）
-    output/arxiv/report.md    通知正文
+    output/arxiv/report.md    通知正文（脚本写机械版 → 模型覆写成中文）
     memory/arxiv-seen.json    非 dry-run 才写
     memory/arxiv-hits.tsv     命中流水，append-only，非 dry-run 才写
 """
@@ -38,12 +43,14 @@ DOMAIN = None      # check 模式用：三个 carrier 域的并集
 
 # ── var ───────────────────────────────────────────────────────────
 var = sys.argv[1] if len(sys.argv) > 1 else ""
-DRY, DAYS, NAMES_MODE, CHECK, UNKNOWN = False, 30, False, "", []
+DRY, DAYS, NAMES_MODE, CHECK, SEND, UNKNOWN = False, 30, False, "", False, []
 for tok in var.split():
     if tok == "dry-run":
         DRY = True
     elif tok == "names":
         NAMES_MODE = True
+    elif tok == "notify:script":
+        SEND = True
     elif tok.startswith("days:"):
         DAYS = int(tok.split(":", 1)[1] or 30)
     elif tok.startswith("check:"):
@@ -354,10 +361,18 @@ if out:
                                        "+".join(c["terms"]), c["link"]))
     open(REPORT, "w", encoding="utf-8").write("\n".join(R) + "\n")
 
-if not DRY and out and os.path.exists("./notify"):
-    r = subprocess.run(["./notify", "-f", REPORT], capture_output=True, text=True)
-    print("notify: %s" % ((r.stdout or r.stderr or "ok").strip()[:200]))
-else:
+# 通知正文归模型：脚本不会翻译英文标题，也不会"按簇分组"。
+# 默认不发 —— 模型覆写 REPORT 为中文后自己发。notify:script 走降级路径。
+if DRY or not out:
     print("notify: 跳过（%s）" % ("dry-run" if DRY else "零命中"))
+elif SEND:
+    if os.path.exists("./notify"):
+        r = subprocess.run(["./notify", "-f", REPORT], capture_output=True, text=True)
+        print("notify: 已由脚本发出 · %s" % ((r.stdout or r.stderr or "ok").strip()[:180]))
+    else:
+        print("notify: ./notify 不存在")
+else:
+    print("notify: **未发** —— 覆写 %s 为中文（按簇分组）后：" % REPORT)
+    print("        ./notify -f %s" % REPORT)
 print("STATUS: ARXIV_RADAR_OK · 原始 %d · 幸存 %d · 总耗时 %.0fs"
       % (raw, len(out), time.time() - T0))
