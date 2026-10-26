@@ -1,10 +1,10 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-26T06:33:53Z",
-  "quality_score": 3,
-  "assessment": "结构干净的 3 条结果，标题/命中查询/原始链接齐全，但只是条目罗列，没有摘要或相关性判断，且正文未用简体中文、与 DEUS 时机型优先级无关。",
+  "last_analyzed": "2026-10-26T07:33:47Z",
+  "quality_score": 4,
+  "assessment": "干净的零命中复跑：数字自洽（8-6-2=0）、来源可核（arxiv id / audit.log / commit）、诚实标注索引停更第 5 天并说明真零 19 词暂无判别力；无实际研究情报产出，故不给 5",
   "flags": [],
-  "avg_score": 3.4,
+  "avg_score": 3.45,
   "history": [
     {
       "date": "2026-10-24",
@@ -64,6 +64,12 @@
       "date": "2026-10-26",
       "score": 3,
       "ts": "2026-10-26T06:33:53Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 4,
+      "ts": "2026-10-26T07:33:47Z",
       "harness": "claude"
     }
   ]
