@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-26T06:08:55.839436284Z",
+  "generatedAt": "2026-10-26T06:37:27.759401034Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -711,7 +711,7 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "d6ddeb2e3f01480e92e7b0017194cd40071819e8186755c651c3133f679b260e"
+          "hash": "7b216c99c087db5220fe9540e8bb97ee08d9b80b16c2cf204b96a0914f5d5349"
         },
         {
           "path": "scan.py",
@@ -747,7 +747,7 @@
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-3aed41a354c9e46cb1a697b710328d9593feb48b207dd91a19d9bb34a9bf06dc",
+      "contentHash": "sha256-cc0c2521de845947ca62c591c044009a334535fd18dfc144cf07a4a66e3b2fcb",
       "discoveredFrom": "skills/github-radar/SKILL.md"
     },
     {
