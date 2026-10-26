@@ -1,12 +1,10 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-26T05:31:25Z",
-  "quality_score": 3,
-  "assessment": "Structured, substantive scan with real activity metrics and a useful '爆完即停' burst-vs-sustained distinction, but it is an undifferentiated repo dump: no relevance ranking rationale, no synthesis, truncated descriptions, one malformed metric (30d=≥100), and no tie-back to the operator's action-oriented priorities.",
-  "flags": [
-    "generic_content"
-  ],
-  "avg_score": 3.42,
+  "last_analyzed": "2026-10-26T05:49:38Z",
+  "quality_score": 4,
+  "assessment": "简体中文、带漏斗数字与 scan.py 行号，把「0 命中」归因为过滤损耗而非饱和，结论可执行；但属自审式长文，外部 repo 明细未能独立核验。",
+  "flags": [],
+  "avg_score": 3.46,
   "history": [
     {
       "date": "2026-10-25",
@@ -78,6 +76,12 @@
       "date": "2026-10-26",
       "score": 3,
       "ts": "2026-10-26T05:31:25Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 4,
+      "ts": "2026-10-26T05:49:38Z",
       "harness": "claude"
     }
   ]

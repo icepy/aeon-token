@@ -1,32 +1,58 @@
-**github-radar** · 窗口 30 天 · 报告级 32 · 7d 活跃 13
+## github-radar 第十三轮 · 30 天窗 · probe · dry-run
 
-- [Hostileoracle0606/motion-lab](https://github.com/Hostileoracle0606/motion-lab) ★0 · 30d=47 7d=43 · `world model` · Exploring robotics, control systems, and embodied intelligence through simulation, learned dynamics,
-- [shangchaohu718/supermimic-pera](https://github.com/shangchaohu718/supermimic-pera) ★0 · 30d=19 7d=19 · `world model` · G1 SuperMimic-PERA: native UniLab world-model tracking baseline and interaction research
-- [eshaan2418/Recall](https://github.com/eshaan2418/Recall) ★0 · 30d=19 7d=19 · `egocentric` · On-device episodic visual memory for egocentric video: learned trigger, compact event memory, calibr
-- [Kushaan-N/SyncSim](https://github.com/Kushaan-N/SyncSim) ★0 · 30d=81 7d=18 · `world model` · Bimanual world-model training data on RoboTwin 2.0: randomized multi-view cameras, visual calibratio
-- [ZaidKamil1574/Robot-Teleoperation](https://github.com/ZaidKamil1574/Robot-Teleoperation) ★0 · 30d=16 7d=16 · `teleoperation` · Unity 6 data center teleoperation simulator for Meta Quest and WebGL/WebXR, alongside a Da Vinci sur
-- [sirosiro/SpaceGuidance-FBB](https://github.com/sirosiro/SpaceGuidance-FBB) ★1 · 30d=41 7d=9 · `sim-to-real` · Sim-to-Real 6-DoF Spacecraft GNC & Non-Cooperative Docking Testbed. Hardware-equivalent AXI4-Lite/UI
-- [SetsunaFSeiei21/Circuit-OP-JEPA](https://github.com/SetsunaFSeiei21/Circuit-OP-JEPA) ★0 · 30d=9 7d=9 · `jepa` · Device-level JEPA-inspired operating-point pretraining for analog circuit performance prediction.
-- [Hchnr/s2a](https://github.com/Hchnr/s2a) ★0 · 30d=11 7d=8 · `world model` · S2A converts desired states and state changes predicted by world models into robot control commands.
-- [Wade-Owo/Rob_Capstone](https://github.com/Wade-Owo/Rob_Capstone) ★0 · 30d=9 7d=5 · `world model` · Persistent AI World Models for Robot Workspaces/Persistent 3D Scene Understanding for Robot Workspac
-- [EVE-World/EVEWorld](https://github.com/EVE-World/EVEWorld) ★0 · 30d=49 7d=4 · `world model` · Code release for EVEWorld: physical evolution supervision for target-instance and cross-frame consis
-- [huangkiki/huangkiki](https://github.com/huangkiki/huangkiki) ★0 · 30d=5 7d=4 · `world model` · Robotics Simulation Engineer | Simulation Platforms, Dexterous Manipulation Simulation, Physics Solv
-- [mayuelala/EgoACT](https://github.com/mayuelala/EgoACT) ★7 · 30d=11 7d=1 · `egocentric` · [NeurIPS 2026] EgoACT: This repo is the official implementation of "Decoupling Action from Egocentri
-- [ideal-sisyphus/embodied-ai-learning](https://github.com/ideal-sisyphus/embodied-ai-learning) ★0 · 30d=8 7d=1 · `world model` · A learning repository for Embodied AI, covering RL, Imitation Learning, Robot Simulation, VLA, and W
-- [PreshenNaidoo/applied-pytorch-bootcamp](https://github.com/PreshenNaidoo/applied-pytorch-bootcamp) ★0 · 30d=≥100 7d=0 [爆完即停] · `world model` · Hands-on PyTorch exercises covering deep learning, computer vision, LLMs, reinforcement learning, wo
-- [behappya/EVEWorld](https://github.com/behappya/EVEWorld) ★0 · 30d=47 7d=0 [爆完即停] · `world model` · Code release for EVEWorld: physical evolution supervision for target-instance and cross-frame consis
-- [mh4970121/Action-Certified-Entropic-Geometric-Planning-ACEGP-](https://github.com/mh4970121/Action-Certified-Entropic-Geometric-Planning-ACEGP-) ★0 · 30d=26 7d=0 [爆完即停] · `world model` · Confined Coupling and Conformal Action Certificates for Latent World Models
-- [Katherine624/Paper_Reproduction](https://github.com/Katherine624/Paper_Reproduction) ★0 · 30d=18 7d=0 [爆完即停] · `world model` · Some reimplementation results of papers on world models and VLA
-- [kushagrathisside/VLAFinetuningExperiments](https://github.com/kushagrathisside/VLAFinetuningExperiments) ★0 · 30d=14 7d=0 [爆完即停] · `vision language action` · This repository is the experiment, training, evaluation, deployment, and feedback layer for vision-l
-- [CLMI-Lab/halt.cc](https://github.com/CLMI-Lab/halt.cc) ★0 · 30d=11 7d=0 [爆完即停] · `world model` · World models are evaluated on whether their futures look real. A robot needs to know whether they’re
-- [Kentpun/Imagine-then-Act](https://github.com/Kentpun/Imagine-then-Act) ★0 · 30d=10 7d=0 [爆完即停] · `world model` · Imagine-then-Act: Semantic World Model for Tabletop Manipulation
-- [Azhu9701/aiman-personal-world](https://github.com/Azhu9701/aiman-personal-world) ★0 · 30d=10 7d=0 [爆完即停] · `world model` · Local-first Personal World Model: private chat history, evidence-linked timelines, relationship expl
-- [carlo-scr/RobotPluggingSim](https://github.com/carlo-scr/RobotPluggingSim) ★0 · 30d=9 7d=0 [爆完即停] · `world model` · MuJoCo simulation of a bimanual robot plugging RJ45 cables into a data-center patch panel: failure/O
-- [mkturkcan/matrix-new-york](https://github.com/mkturkcan/matrix-new-york) ★0 · 30d=9 7d=0 [爆完即停] · `world model` · Street View initial observations and a kinematic vehicle controller for action-conditioned video wor
-- [seungjoolee24/krafton-q3-video-worldmodel](https://github.com/seungjoolee24/krafton-q3-video-worldmodel) ★0 · 30d=8 7d=0 [爆完即停] · `world model` · Q3 video-only latent-action world model: ConvGRU, posterior/prior learning, resumable GPU training o
-- [Nakadai-Lab/hands](https://github.com/Nakadai-Lab/hands) ★1 · 30d=7 7d=0 [爆完即停] · `teleoperation` · Unitree R1 and BrainCo Revo2 control stack with live webcam hand teleoperation
-- [Nikhildusa07/AEGIS-Autonomous-Multimodal-World-Understanding](https://github.com/Nikhildusa07/AEGIS-Autonomous-Multimodal-World-Understanding) ★0 · 30d=7 7d=0 [爆完即停] · `world model` · AEGIS is an autonomous multimodal AI system that perceives text, images, video, audio and sensor dat
-- [YG3-ai/yg3-agent-garden](https://github.com/YG3-ai/yg3-agent-garden) ★0 · 30d=6 7d=0 [爆完即停] · `world model` · Open spatial environment server for embodied agents and world models, with an MCP sensorimotor inter
-- [laharyyteja9-dot/SIH-VIGNAX](https://github.com/laharyyteja9-dot/SIH-VIGNAX) ★0 · 30d=6 7d=0 [爆完即停] · `world model` · VIGHNAX — World-Model Forecasting of Network Attacks A team-developed SIH 2026 cybersecurity project
-- [kevinc-lab/Structured-Latent-Dynamics](https://github.com/kevinc-lab/Structured-Latent-Dynamics) ★0 · 30d=5 7d=0 [爆完即停] · `world model` · Project page for Structured Latent Dynamics for Long-Horizon Embodied World Models.
-- [silvermew/hand-to-robot-cube](https://github.com/silvermew/hand-to-robot-cube) ★0 · 30d=5 7d=0 [爆完即停] · `world model` · Filming my hand turning a cube, replaying it on a simulated Panda, a small world model and a fine-tu
+**口径**：`var=dry-run days:30 probe`｜18 词 × 3 窗（9/26–10/26）× 3 页｜star 地板 0｜dry-run，未写 seen（仍 1891），未发通知。
+
+### 漏斗
+原始 2237 → 丢 seen 1085 / excl 139 / archived 2 / **short_desc 399** / **carrier 479** / neg 58 / pages 52 / farm 23 / fail 0 → 幸存 **0** → 报告级 **0**。查询失败 0，耗时 136s。`pages_root=0`——第十二轮加进代码的根目录规则已经把静态站全拦在上游了。
+
+### 四分类（分开写）
+- **A 查询失败**：0
+- **B 真零**：1 — `maximal extractable value`
+- **C 全已见(饱和)**：17
+- **D 有新增**：0
+
+**C 这个「饱和」是假的。** 这是本轮唯一实质发现。
+
+### 判据级发现
+
+**① 「饱和」标签本身错了。** `scan.py:443` 用 `raw_term>0 and new_term==0` 判饱和，而 `new_term` 只在**全部过滤器跑完之后**才自增，结果「被 carrier/short_desc 丢光」和「真被 seen 吸收」被算成了同一类。`world model` 一词在 30 天窗里复算：seen 吃掉 **54** 个，carrier 吃掉 **132**，short_desc 吃掉 **79**。**主体是过滤损耗，不是饱和。**
+
+**② carrier / short_desc 正在吃掉活仓。** 抽两个丢弃堆里 `pushed_at` 最新的各 14 个逐仓核 commits：**carrier 堆 9/14 是活仓，short_desc 堆 8/14 是活仓。**
+
+| 仓库 | 30d/7d | ★ | 死在哪 |
+|---|---|---|---|
+| `latent-horizon/pytorch-world` | 85 / 47 | 2 | carrier |
+| `gimocimo/aero-adapt` | 84 / 37 | 0 | carrier |
+| `mysukriramli/world-model-patch-wire` | 11 / 11 | 1 | carrier |
+| `social-world-model/parabox` | 22 / 21 | 0 | short_desc |
+| `Weizhi727/VLA-World-Model-Research` | 15 / 15 | 0 | short_desc |
+
+全是 ★0–2——star 排序照样看不见。`short_desc` 的 25 字符门槛对「无 description 的论文官方实现」是硬伤（`Tsinghua-MARS-Lab/RepresentationWorldModel` 这类 desc 为空）。
+
+**③ `sort=stars` 不是切长尾，是切掉整条。** 同一查询换 `sort=updated`：`world model` 100 个里 **76 个不在 seen**（jepa 52 · teleoperation 32 · VLA 22）。SKILL.md 第 42 条已写「star 不该出现在排序里」，**但 `scan.py:204` 仍是 `sort: stars`**——规则进了文档没进代码。
+
+**④ probe 本轮静默空转。** 幸存 0 → `out.json` 写成 `[]`（2 字节）→ 无种子 → `clusters.json` **没有重新生成**（mtime 仍是第十二轮的 05:41）。**这恰恰是最该用 probe 的一轮**：活仓全躺在丢弃堆里，而 probe 只从报告级反查。种子池应改成「幸存 ∪ 高丢弃堆里 pushed_at 最新的 N 个」。
+
+**⑤ `maximal extractable value` 是窄窗假零，不是死词。** 跨窗量：7d=**0** / 30d=**0** / 60d=**2** / 全期=**48**。脚本那句「可考虑删词」照做就是错的。
+
+**⑥ `SuperMimic` 盲区第四次复现**：30 天窗 55 仓 / 55 owner，**只有 6 个在 seen**，49 个词表全盲，与第十二轮（53/55 盲）同水位。
+
+### 本轮没做的事
+`scan.py` 未改动（dry-run 轮不动过滤器）。三条待修都在同一个文件：`sort` 参数、四分类归属、probe 种子池。要动的话应该单独一轮改完再跑全量。
+
+## Summary
+
+**做了什么**：跑完 github-radar 第十三轮（`dry-run days:30 probe`），幸存 0 / 报告级 0，dry-run 未落 seen、未发通知。对「0 命中」做了归因验证，确认不是饱和而是过滤损耗。
+
+**文件创建/修改**：
+- `memory/logs/2026-10-26.md` — 追加第十三轮完整记录（漏斗 + 四分类 + 6 条判据级发现）
+- `output/ghradar/verify13.py` · `tail13.py` · `where13.py` · `drop13.py` — 验证脚本
+- `output/ghradar/out.json`（本轮 `[]`）、`audit.log`；`clusters.json` 未更新
+
+**后续需要处理**：
+1. `scan.py:204` 的 `sort=stars` → 改 `updated` 或去掉排序
+2. `scan.py:443` 四分类改按丢弃规则归属，`new_term` 不能当饱和判据
+3. carrier 词表要复核（`world model` 一支漏活仓 9/14）、`short_desc` 25 字符门槛对空 desc 论文仓放行
+4. probe 种子池扩容到丢弃堆
+5. `output/ghradar/` 积压十二轮一次性脚本，建议只留 `scan.py` / `out.json` / `audit.log` / `report.md`
+6. 工具调用约 23 次，超 15 预算 1.5×——超支全在验证假饱和上
