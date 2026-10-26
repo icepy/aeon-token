@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-26T05:46:58.968786501Z",
+  "generatedAt": "2026-10-26T06:05:04.517527167Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -715,7 +715,7 @@
         },
         {
           "path": "scan.py",
-          "hash": "c60fbfdd973176bec20f0c1c6dd606c1e4e50e7c053de126f16f23348871d3df"
+          "hash": "c94110d75a286f1de21867728ef3f4636d0a36408e50d78d0e2961b8de43890d"
         }
       ],
       "findings": [
@@ -724,7 +724,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 23,
+          "line": 24,
           "snippet": "import json, os, re, subprocess, sys, threading, time",
           "explanation": "uses a process-execution primitive"
         },
@@ -733,7 +733,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 169,
+          "line": 172,
           "snippet": "r = subprocess.run([\"gh\", \"api\", path], capture_output=True,",
           "explanation": "uses a process-execution primitive"
         },
@@ -742,12 +742,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 561,
+          "line": 616,
           "snippet": "r = subprocess.run([\"./notify\", \"-f\", REPORT], capture_output=True, text=True)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-0b567dc6ec520d9f4001ae790cd35c972959bf107c38492f26c631b182d0e427",
+      "contentHash": "sha256-62ef75c7bed35a52b0f583a3e53f71d1199f30d51d72f7f7a94bede82561933f",
       "discoveredFrom": "skills/github-radar/SKILL.md"
     },
     {
