@@ -90,3 +90,15 @@ metadata:
 
 ```bash
 python3 skills/github-radar/scan.py "${var}"
+```
+
+脚本自己解析 var、扫描、过滤、核验、写全部产物、按需发通知。**审计全文打在 stdout**，不用再 `cat`。审计开头那行 `🧹 清理 …` 就是本轮自动删掉的历史文件。
+
+### 2. 写日志
+
+往 `memory/logs/${today}.md` 追加一节 `### github-radar（第 N 轮）`：口径 + 漏斗 + 四分类（**必须分开写**）+ 你自己的判据级发现。报告级为 0 就只写一行。
+
+### 3. 输出
+
+- 通知正文由脚本写进 `output/ghradar/report.md` 并发出去
+- 只给仓库 + 一句话 + 链接 + star + 30d/7d，不做判断
