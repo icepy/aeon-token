@@ -1,0 +1,141 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar"
+      },
+      "children": [
+        "header-stack",
+        "sep1",
+        "papers"
+      ]
+    },
+    "header-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-window",
+        "badge-count"
+      ]
+    },
+    "badge-window": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 7 天",
+        "variant": "secondary"
+      }
+    },
+    "badge-count": {
+      "type": "Badge",
+      "props": {
+        "text": "幸存 3",
+        "variant": "outline"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "papers": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "paper1",
+        "paper2",
+        "paper3"
+      ]
+    },
+    "paper1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge1",
+        "link1"
+      ]
+    },
+    "badge1": {
+      "type": "Badge",
+      "props": {
+        "text": "FLORA",
+        "variant": "default"
+      }
+    },
+    "link1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "FLORA: An Open Model Suite for Scaling Robotics Data Engines",
+        "href": "https://arxiv.org/abs/2610.31779",
+        "source": "robot data+ti:\"data engine\" AND cat:cs.RO",
+        "score": "FLORA"
+      }
+    },
+    "paper2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge2",
+        "link2"
+      ]
+    },
+    "badge2": {
+      "type": "Badge",
+      "props": {
+        "text": "EgoForesight",
+        "variant": "default"
+      }
+    },
+    "link2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoForesight: Effectively Scaling Policy Learning with Noisy Egocentric Actions",
+        "href": "https://arxiv.org/abs/2610.31845",
+        "source": "ti:\"egocentric\" AND cat:cs.RO",
+        "score": "EgoForesight"
+      }
+    },
+    "paper3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge3",
+        "link3"
+      ]
+    },
+    "badge3": {
+      "type": "Badge",
+      "props": {
+        "text": "EgoRayFormer",
+        "variant": "default"
+      }
+    },
+    "link3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoRayFormer: Ray-Space Stereo Refinement for Egocentric 3D Human Pose Estimation",
+        "href": "https://arxiv.org/abs/2610.26641",
+        "source": "ti:\"egocentric\" AND cat:cs.RO",
+        "score": "EgoRayFormer"
+      }
+    }
+  }
+}

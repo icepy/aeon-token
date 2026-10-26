@@ -1,10 +1,10 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-25T09:11:42Z",
-  "quality_score": 4,
-  "assessment": "零幸存扫描执行正确且不推送；额外发现 PR #8 被静默回滚，附 commit 哈希、实测代价(1篇/0噪声)与已开 PR #11，数字自洽(90d: 78+11+1)、来源可追溯，仅篇幅略超“不要长文”偏好",
+  "last_analyzed": "2026-10-26T06:33:53Z",
+  "quality_score": 3,
+  "assessment": "结构干净的 3 条结果，标题/命中查询/原始链接齐全，但只是条目罗列，没有摘要或相关性判断，且正文未用简体中文、与 DEUS 时机型优先级无关。",
   "flags": [],
-  "avg_score": 3.44,
+  "avg_score": 3.4,
   "history": [
     {
       "date": "2026-10-24",
@@ -58,6 +58,12 @@
       "date": "2026-10-25",
       "score": 4,
       "ts": "2026-10-25T09:11:42Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 3,
+      "ts": "2026-10-26T06:33:53Z",
       "harness": "claude"
     }
   ]

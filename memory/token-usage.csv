@@ -132,3 +132,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-10-26,github-radar,claude-opus-5-5,95635,54364,2289408,0
 2026-10-26,github-radar,claude-opus-5-5,29877,24253,1009536,0
 2026-10-26,github-radar,claude-opus-5-5,327442,48522,4520192,0
+2026-10-26,arxiv-radar,claude-opus-5-5,39036,5941,341504,0
