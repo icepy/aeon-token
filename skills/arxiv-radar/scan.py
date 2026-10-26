@@ -3,18 +3,21 @@
 
 用法:
     python3 skills/arxiv-radar/scan.py "days:30"
-    python3 skills/arxiv-radar/scan.py "names"        # 机制/名字反查模式
+    python3 skills/arxiv-radar/scan.py "names"           # 机制/名字反查模式
+    python3 skills/arxiv-radar/scan.py "check:world model"  # 量候选词两个口径后退出
 
 var token（空格分隔，可组合）:
-    dry-run   跳过 notify、不写 seen
+    dry-run   跳过 notify、不写 seen、不写 hits
     days:N    窗口天数，默认 30
     names     词表整个换成 memory/universe-names.txt
+    check:<词>  只量这个词，跑完退出
 
 产物（文件名固定，别改成 radar2.json）:
     output/arxiv/out.json     全部幸存者
     output/arxiv/audit.log    审计（同时打到 stdout）
     output/arxiv/report.md    通知正文
     memory/arxiv-seen.json    非 dry-run 才写
+    memory/arxiv-hits.tsv     命中流水，append-only，非 dry-run 才写
 """
 import json, os, re, subprocess, sys, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
@@ -24,16 +27,18 @@ from datetime import datetime, timedelta, timezone
 OUTD = "output/arxiv"
 OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
 SEEN = "memory/arxiv-seen.json"
+HITS = "memory/arxiv-hits.tsv"
 NAMES_FILE = "memory/universe-names.txt"
 NOTIFY_TOP = 30
 MAX_RESULTS = 100
 API = "https://export.arxiv.org/api/query"
 NS = {"a": "http://www.w3.org/2005/Atom"}
 OPENSEARCH = "{http://a9.com/-/spec/opensearch/1.1/}totalResults"
+DOMAIN = None      # check 模式用：三个 carrier 域的并集
 
 # ── var ───────────────────────────────────────────────────────────
 var = sys.argv[1] if len(sys.argv) > 1 else ""
-DRY, DAYS, NAMES_MODE, UNKNOWN = False, 30, False, []
+DRY, DAYS, NAMES_MODE, CHECK, UNKNOWN = False, 30, False, "", []
 for tok in var.split():
     if tok == "dry-run":
         DRY = True
@@ -41,6 +46,8 @@ for tok in var.split():
         NAMES_MODE = True
     elif tok.startswith("days:"):
         DAYS = int(tok.split(":", 1)[1] or 30)
+    elif tok.startswith("check:"):
+        CHECK = tok.split(":", 1)[1].strip()
     else:
         UNKNOWN.append(tok)
 
@@ -111,6 +118,7 @@ CARRIER_BY_TERM = {
     "automated market maker": CARRIER_BASE + CARRIER_MARKET,
     'cat:cs.CR AND ti:"MEV"': CARRIER_BASE + CARRIER_MARKET,
 }
+DOMAIN = CARRIER_BASE + CARRIER_ROBOT + CARRIER_MARKET
 # 只对 title 判，且只留这两个：benchmark 是论文自称，不该丢
 EXCL = ["survey", "tutorial"]
 STOP = set("""a an the on of in for with from and or to at by as is are was were
@@ -128,6 +136,56 @@ if os.path.exists(SEEN):
         seen = json.load(open(SEEN, encoding="utf-8"))
     except Exception:
         seen = {}
+
+# ── check 模式：加词前量两个口径，量完退出 ────────────────────────
+def q_of(term):
+    if term.startswith(("cat:", "ti:", "abs:", "all:")):
+        return term
+    if NAMES_MODE:
+        return (f'ti:"{term}" AND (cat:cs.CR OR cat:cs.CE OR cat:cs.GT OR cat:cs.DC '
+                'OR cat:q-fin.CP OR cat:q-fin.GN)')
+    return f'ti:"{term}"'
+
+def total_of(q, d):
+    """返回 (total_count, entries)。失败返回 (-1, [])。"""
+    since = (now - timedelta(days=d)).strftime("%Y%m%d%H%M")
+    p = {"search_query": f"({q}) AND submittedDate:[{since} TO {now:%Y%m%d%H%M}]",
+         "start": 0, "max_results": MAX_RESULTS,
+         "sortBy": "submittedDate", "sortOrder": "descending"}
+    try:
+        with urllib.request.urlopen(API + "?" + urllib.parse.urlencode(p),
+                                    timeout=20) as r:
+            root = ET.fromstring(r.read())
+    except Exception:
+        return -1, []
+    node = root.find(OPENSEARCH)
+    return (int(node.text) if node is not None and node.text else 0), root.findall("a:entry", NS)
+
+if CHECK:
+    q = q_of(CHECK)
+    print("候选词: %r" % CHECK)
+    print("查询  : %s" % q)
+    print("已在词表: %s" % ("是" if CHECK in TERMS else "否"))
+    print()
+    print("窗口   total  已见/100  领域命中  前 3 条标题")
+    for d in (7, 30, 60, 90):
+        tot, ents = total_of(q, d)
+        if tot < 0:
+            print("%4dd  查询失败" % d); time.sleep(3); continue
+        ins = sum(1 for e in ents
+                  if e.find("a:id", NS).text.split("/abs/")[-1].split("v")[0] in seen)
+        dom = sum(1 for e in ents
+                  if any(c in (" ".join(e.find("a:title", NS).text.split()) + " " +
+                               " ".join(e.find("a:summary", NS).text.split())).lower()
+                         for c in DOMAIN))
+        print("%4dd  %5d  %8d/%d  %8d/%d" % (d, tot, ins, len(ents), dom, len(ents)))
+        for e in ents[:3]:
+            print("        · " + " ".join(e.find("a:title", NS).text.split())[:78])
+        time.sleep(3)
+    print()
+    print("读法: 重叠度低 = 带来新条目；领域命中低 = 会污染；total 太小 = 稀有词。")
+    print("     四档全 0 = 写法可能不对，换写法再量。")
+    sys.exit(0)
 
 def guess_name(title, summ, known):
     for n in known:
@@ -150,13 +208,7 @@ failed_t = []
 
 for term in TERMS:
     carrier = CARRIER_BY_TERM.get(term, CARRIER_BASE)
-    if term.startswith(("cat:", "ti:", "abs:", "all:")):
-        q = term
-    elif NAMES_MODE:
-        q = (f'ti:"{term}" AND (cat:cs.CR OR cat:cs.CE OR cat:cs.GT OR cat:cs.DC '
-             'OR cat:q-fin.CP OR cat:q-fin.GN)')
-    else:
-        q = f'ti:"{term}"'
+    q = q_of(term)
 
     p = {"search_query": f"({q}) AND submittedDate:{win}",
          "start": 0, "max_results": MAX_RESULTS,
@@ -218,28 +270,12 @@ with_new = [t for t in TERMS if per_term.get(t, 0) > 0]
 # 7d ⊂ 30d ⊂ 60d：窗口 30 时 7d 被蕴含，只补 60d；窗口 7 时补 30d/60d。
 # 目的：把「真零」和「废词」分开 —— 索引滞后 5 天时，窄窗会把稀有词系统性读成零。
 XW = [d for d in (7, 30, 60) if d > DAYS]
-nowstr = now.strftime("%Y%m%d%H%M")
 xwin = {t: {} for t in truly_zero}
 for term in truly_zero:
-    if term.startswith(("cat:", "ti:", "abs:", "all:")):
-        q = term
-    elif NAMES_MODE:
-        q = (f'ti:"{term}" AND (cat:cs.CR OR cat:cs.CE OR cat:cs.GT OR cat:cs.DC '
-             'OR cat:q-fin.CP OR cat:q-fin.GN)')
-    else:
-        q = f'ti:"{term}"'
+    q = q_of(term)
     for d in XW:
-        since = (now - timedelta(days=d)).strftime("%Y%m%d%H%M")
-        p = {"search_query": f"({q}) AND submittedDate:[{since} TO {nowstr}]",
-             "start": 0, "max_results": 1}
-        try:
-            with urllib.request.urlopen(API + "?" + urllib.parse.urlencode(p),
-                                        timeout=20) as r:
-                root = ET.fromstring(r.read())
-            node = root.find(OPENSEARCH)
-            xwin[term][d] = int(node.text) if node is not None else -1
-        except Exception:
-            xwin[term][d] = -1
+        tot, _ = total_of(q, d)
+        xwin[term][d] = tot
         time.sleep(3)
 
 L = ["扫 %d 词 | 窗口 %s | 原始 %d | 幸存 %d | var=%r"
@@ -274,7 +310,7 @@ if truly_zero:
             L.append("   └ 跨窗有命中（活的，**别删**）%d 个: %s"
                      % (len(alive), " · ".join(alive)))
         if real:
-            L.append("   └ 跨窗全零（候选废词，连续两轮才谈删）%d 个: %s"
+            L.append("   └ 跨窗全零（第 1 轮；第 2 轮仍全零 → 降级为低频，不删）%d 个: %s"
                      % (len(real), " · ".join(real)))
         if unk:
             L.append("   └ 跨窗查询失败（存疑，先别删）%d 个: %s"
@@ -297,6 +333,18 @@ if not DRY and hit_ids:
     merged.update(seen)
     json.dump(dict(list(merged.items())[-2000:]),
               open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+# 命中流水：append-only。out.json 每轮被覆盖，这是唯一的历史。
+# 日期用报告日期（不是 published）—— 滞后要按「通道点亮那天」算。
+if not DRY and out:
+    fresh = not os.path.exists(HITS)
+    with open(HITS, "a", encoding="utf-8") as f:
+        if fresh:
+            f.write("日期\t键\t名字\t方向\n")
+        for c in out:
+            f.write("%s\t%s\t%s\t\n"
+                    % (now.strftime("%Y-%m-%d"), c["link"].split("/abs/")[-1],
+                       (c["name"] or c["title"])[:60].replace("\t", " ")))
 
 if out:
     R = ["**arxiv-radar** · 窗口 %d 天 · 幸存 %d" % (DAYS, len(out)), ""]
