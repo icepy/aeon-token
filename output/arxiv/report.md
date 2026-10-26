@@ -1,28 +1,21 @@
-**arxiv-radar** · 窗口 30 天 · 幸存 26
+**arxiv-radar** · 窗口 60 天 · 幸存 14
 
-- `SocialCoAct` SocialCoAct: Enabling and Benchmarking Egocentric Social Co-Action for VLM-Based Humanoid Robots [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.24559
-- `Ego2Contact` Ego2Contact: Predicting Touch from Egocentric Human Video for Contact-Rich Robot Manipulation [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.22932
-- `CoDA` CoDA: Co-Evolution of Data Engines and Action Policies [ti:"data engine" AND cat:cs.RO] · https://arxiv.org/abs/2610.22362
-- `Perceive` Perceive, Predict, and Plan: a Unified World Action Model for Egocentric Dexterous Manipulation [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.22363
-- `KODA` KODA: Kinematics--Observation Data Alignment for Humanoid Learning from Human Egocentric Demonstration [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.21152
-- `EgoJEPA` EgoJEPA: Beyond Retargeting for Dexterous Manipulation from Egocentric Videos [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.20904
-- `AutoRSR` AutoRSR: Automated Real-to-Sim-to-Real Data Generation for Scalable Robot Learning [ti:"data generation" AND cat:cs.RO] · https://arxiv.org/abs/2610.20336
-- `NavAble` NavAble: A Large-Scale Dataset and Synthetic Data Generation Pipeline for Blind Navigation [ti:"data generation" AND cat:cs.RO] · https://arxiv.org/abs/2610.19330
-- `Scaling` $λ_0$: Scaling Open-World Egocentric Human Data for Humanoid Loco-Manipulation [ti:"human data" AND cat:cs.RO+ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.18950
-- `EgoMatrix` EgoMatrix: Physically Faithful Dexterous Robot Demonstrations from Egocentric Human Videos [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.18822
-- `DR-VLA` DR-VLA: Learning Human-Like Quadruped Navigation from Egocentric Web Videos via Domain-Invariant Scene Represe [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.18373
-- `OneDemo` OneDemo: Unified Policy Learning and Data Generation from a Single Demonstration [ti:"data generation" AND cat:cs.RO] · https://arxiv.org/abs/2610.18188
-- `DexNinja` DexNinja: Learning Robust Dexterous Cutting Policy with a Real-to-Sim-to-Real Data Engine [ti:"data engine" AND cat:cs.RO] · https://arxiv.org/abs/2610.17208
-- `EgoReveal` EgoReveal: Learning Active Vision and Object Manipulation under Partial Occlusions from Egocentric Demonstrati [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.12999
-- `VioLA` VioLA: Learning Generalist Humanoid Control Policies from Human Data [ti:"human data" AND cat:cs.RO] · https://arxiv.org/abs/2610.12435
-- `ESCAPE` ESCAPE: Egocentric Sensing for Collision Avoidance and Policy Execution [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.23943
-- `Never` Never Look Back: Understanding Persistence in 3D Object Memory from Egocentric Videos [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.10538
-- `Workhorse` Workhorse: Learning Robust Whole-Body Humanoid Loco-Manipulation from Human Data [ti:"human data" AND cat:cs.RO] · https://arxiv.org/abs/2610.09117
-- `EgoLAP` EgoLAP: Learning from Egocentric Human Data through Language-Action Reasoning [ti:"human data" AND cat:cs.RO+ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.08726
-- `RoboCap` RoboCap: A New Platform for Egocentric Robot Learning [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.07217
-- `FlashDexRetarget` FlashDexRetarget: Accelerating Dexterous Manipulation Data Generation through Multi-Motion Retargeting [ti:"data generation" AND cat:cs.RO] · https://arxiv.org/abs/2610.01849
-- `Ego4WAM` Ego4WAM: What Matters When Scaling Egocentric Human Data for Robot Learning? [ti:"human data" AND cat:cs.RO+ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2609.40341
-- `General` Towards a General Humanoid Loco-Manipulation Model via Egocentric Whole-Body Human Data Pretraining [ti:"human data" AND cat:cs.RO+ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2610.00438
-- `OccluDex` OccluDex: Hierarchical 3D Visuo-Tactile Representation Learning for Egocentric Dexterous Manipulation under Se [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2609.39017
-- `DexRoam` DexRoam: Learning Mobile Bimanual Dexterous Manipulation from Egocentric Whole-Body Human Demonstrations [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2609.35761
-- `MonoEgo` MonoEgo: Monocular Metric Egocentric Demonstration Capture with Passive Wrist Constellations and Sparse Workst [ti:"egocentric" AND cat:cs.RO] · https://arxiv.org/abs/2609.34512
+**具身数据 · 第一视角人类数据 / 数据引擎（11）**
+- `RoboTok` — 从互联网演示视频检索数据的可扩展数据引擎，服务灵巧操作学习 · https://arxiv.org/abs/2609.03199
+- `Scene` — 面向车载第一视角数据集的行车场景图提取 · https://arxiv.org/abs/2609.00333
+- `MINT` — 从可扩展第一视角管线监督中估计世界坐标下的相机与手部运动 · https://arxiv.org/abs/2609.04958
+- `LTLDiff` — 线性时序逻辑约束的数据生成 + 扩散策略，多机协作操作 · https://arxiv.org/abs/2609.11043
+- `ReWeight` — 用示范检索与样本加权把人类数据用于 VLA 后训练 · https://arxiv.org/abs/2609.13851
+- `Dreaming` — 借视频与音频生成做零样本力感知操作与数据生成 · https://arxiv.org/abs/2609.19137
+- `MotionForge` — 长时程动态物体操作的数据生成管线与大规模基准 · https://arxiv.org/abs/2609.25689
+- `Zeva-Ego` — 面向机器人操作的第一视角中期训练与上下文因果学习 · https://arxiv.org/abs/2609.24411
+- `Praxis` — 从第一视角视频蒸馏物理交互先验，做全身操作泛化 · https://arxiv.org/abs/2609.30735
+- `NavGen` — 把视觉生成模型当可扩展数据引擎，做具身 3D 导航 · https://arxiv.org/abs/2609.30770
+- `Function-Preserving` — 保持功能的数据生成，实现零样本 real-to-sim-to-real 操作 · https://arxiv.org/abs/2609.18293
+
+**世界模型 · 第一视角环境表示（1）**
+- `AnyWorld` — 因子化第一视角世界模型，跨本体泛化 · https://arxiv.org/abs/2608.29242
+
+**? · 感知 / 估计，未落到现有标签（2）**
+- `EgoNeMo` — 用第一视角 LiDAR 扫描学习可迁移的行人动力学地图 · https://arxiv.org/abs/2609.06195
+- `HAP` — 手部驱动的主动感知框架，预测第一视角头部运动 · https://arxiv.org/abs/2609.18548

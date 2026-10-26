@@ -1,0 +1,250 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 60 天 · 幸存 14"
+      },
+      "children": [
+        "header",
+        "sep1",
+        "sec1_heading",
+        "sec1_stack",
+        "sep2",
+        "sec2_heading",
+        "sec2_stack",
+        "sep3",
+        "sec3_heading",
+        "sec3_stack"
+      ]
+    },
+    "header": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "h_title",
+        "badge_window",
+        "badge_survived"
+      ]
+    },
+    "h_title": {
+      "type": "Heading",
+      "props": {
+        "text": "arxiv-radar",
+        "level": "h2"
+      }
+    },
+    "badge_window": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 60 天",
+        "variant": "outline"
+      }
+    },
+    "badge_survived": {
+      "type": "Badge",
+      "props": {
+        "text": "幸存 14",
+        "variant": "secondary"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec1_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据 · 第一视角人类数据 / 数据引擎（11）",
+        "level": "h3"
+      }
+    },
+    "sec1_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8",
+        "p9",
+        "p10",
+        "p11"
+      ]
+    },
+    "p1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "RoboTok — 从互联网演示视频检索数据的可扩展数据引擎，服务灵巧操作学习",
+        "href": "https://arxiv.org/abs/2609.03199",
+        "source": "arXiv"
+      }
+    },
+    "p2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Scene — 面向车载第一视角数据集的行车场景图提取",
+        "href": "https://arxiv.org/abs/2609.00333",
+        "source": "arXiv"
+      }
+    },
+    "p3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "MINT — 从可扩展第一视角管线监督中估计世界坐标下的相机与手部运动",
+        "href": "https://arxiv.org/abs/2609.04958",
+        "source": "arXiv"
+      }
+    },
+    "p4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "LTLDiff — 线性时序逻辑约束的数据生成 + 扩散策略，多机协作操作",
+        "href": "https://arxiv.org/abs/2609.11043",
+        "source": "arXiv"
+      }
+    },
+    "p5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ReWeight — 用示范检索与样本加权把人类数据用于 VLA 后训练",
+        "href": "https://arxiv.org/abs/2609.13851",
+        "source": "arXiv"
+      }
+    },
+    "p6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Dreaming — 借视频与音频生成做零样本力感知操作与数据生成",
+        "href": "https://arxiv.org/abs/2609.19137",
+        "source": "arXiv"
+      }
+    },
+    "p7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "MotionForge — 长时程动态物体操作的数据生成管线与大规模基准",
+        "href": "https://arxiv.org/abs/2609.25689",
+        "source": "arXiv"
+      }
+    },
+    "p8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Zeva-Ego — 面向机器人操作的第一视角中期训练与上下文因果学习",
+        "href": "https://arxiv.org/abs/2609.24411",
+        "source": "arXiv"
+      }
+    },
+    "p9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Praxis — 从第一视角视频蒸馏物理交互先验，做全身操作泛化",
+        "href": "https://arxiv.org/abs/2609.30735",
+        "source": "arXiv"
+      }
+    },
+    "p10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "NavGen — 把视觉生成模型当可扩展数据引擎，做具身 3D 导航",
+        "href": "https://arxiv.org/abs/2609.30770",
+        "source": "arXiv"
+      }
+    },
+    "p11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Function-Preserving — 保持功能的数据生成，实现零样本 real-to-sim-to-real 操作",
+        "href": "https://arxiv.org/abs/2609.18293",
+        "source": "arXiv"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec2_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "世界模型 · 第一视角环境表示（1）",
+        "level": "h3"
+      }
+    },
+    "sec2_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p12"
+      ]
+    },
+    "p12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "AnyWorld — 因子化第一视角世界模型，跨本体泛化",
+        "href": "https://arxiv.org/abs/2608.29242",
+        "source": "arXiv"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec3_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "? · 感知 / 估计，未落到现有标签（2）",
+        "level": "h3"
+      }
+    },
+    "sec3_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p13",
+        "p14"
+      ]
+    },
+    "p13": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoNeMo — 用第一视角 LiDAR 扫描学习可迁移的行人动力学地图",
+        "href": "https://arxiv.org/abs/2609.06195",
+        "source": "arXiv"
+      }
+    },
+    "p14": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HAP — 手部驱动的主动感知框架，预测第一视角头部运动",
+        "href": "https://arxiv.org/abs/2609.18548",
+        "source": "arXiv"
+      }
+    }
+  }
+}
