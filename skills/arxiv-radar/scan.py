@@ -24,7 +24,7 @@ var token（空格分隔，可组合）:
     output/arxiv/report.md      通知正文（脚本写机械备用稿 → 模型覆写成中文）
     memory/arxiv-seen.json      非 dry-run 才写
     memory/arxiv-hits.tsv       命中流水，append-only，非 dry-run 才写
-    memory/arxiv-labels.tsv     方向标签，append-only，**模型写**（键 \\t 方向）
+    memory/arxiv-labels.tsv     方向标签，append-only，**模型写**（键 \\t 方向，无表头）
 """
 import json, os, re, subprocess, sys, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
@@ -372,15 +372,15 @@ if not DRY and hit_ids:
     json.dump(dict(list(merged.items())[-2000:]),
               open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
-# 命中流水：append-only。out.json 每轮被覆盖，这是唯一的历史。
+# 命中流水：append-only，3 列（方向在 labels.tsv，避免一个列两个归属）。
 # 日期用报告日期（不是 published）—— 滞后要按「通道点亮那天」算。
 if not DRY and out:
     fresh = not os.path.exists(HITS)
     with open(HITS, "a", encoding="utf-8") as f:
         if fresh:
-            f.write("日期\t键\t名字\t方向\n")
+            f.write("日期\t键\t名字\n")
         for c in out:
-            f.write("%s\t%s\t%s\t\n"
+            f.write("%s\t%s\t%s\n"
                     % (now.strftime("%Y-%m-%d"), c["link"].split("/abs/")[-1],
                        (c["name"] or c["title"])[:60].replace("\t", " ")))
 
