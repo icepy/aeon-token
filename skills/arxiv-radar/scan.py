@@ -14,13 +14,13 @@ var token（空格分隔，可组合）:
     notify:script  让脚本自己发通知（默认不发，见下）
 
 通知归属：正文归**模型**。脚本不会翻译英文标题，也不会"按簇分组"，
-所以默认只写 output/arxiv/report.md 的机械列表，由模型覆写成中文后发。
-无人值守场景用 notify:script 走降级路径。
+所以默认只写 output/arxiv/report.md 的机械备用稿（已去噪，能读），
+由模型用 Write 工具覆写成中文后发。无人值守场景用 notify:script 走降级路径。
 
 产物（文件名固定，别改成 radar2.json）:
     output/arxiv/out.json     全部幸存者
     output/arxiv/audit.log    审计（同时打到 stdout）
-    output/arxiv/report.md    通知正文（脚本写机械版 → 模型覆写成中文）
+    output/arxiv/report.md    通知正文（脚本写机械备用稿 → 模型覆写成中文）
     memory/arxiv-seen.json    非 dry-run 才写
     memory/arxiv-hits.tsv     命中流水，append-only，非 dry-run 才写
 """
@@ -206,6 +206,12 @@ def guess_name(title, summ, known):
             return w
     return ""
 
+def short_term(t):
+    """把查询串剥成能读的短形：ti:"egocentric" AND cat:cs.RO → egocentric"""
+    t = t.replace('ti:"', "").replace('"', "")
+    t = t.replace(" AND cat:cs.RO", "").replace("cat:cs.CR AND ", "")
+    return t.strip()
+
 out, raw, newest = [], 0, ""
 drop = {"seen": 0, "excl": 0, "carrier": 0, "fail": 0}
 hit_ids = {}          # run 内判重；不要直接写 seen，否则跨词命中只记第一个词
@@ -353,12 +359,16 @@ if not DRY and out:
                     % (now.strftime("%Y-%m-%d"), c["link"].split("/abs/")[-1],
                        (c["name"] or c["title"])[:60].replace("\t", " ")))
 
+# 机械备用稿（已去噪：不重复名字、term 剥成短形、多词用 / 拼）。模型覆写成中文后发。
 if out:
     R = ["**arxiv-radar** · 窗口 %d 天 · 幸存 %d" % (DAYS, len(out)), ""]
     for c in out[:NOTIFY_TOP]:
-        nm = ("`%s` " % c["name"]) if c["name"] else ""
-        R.append("- %s%s [%s] · %s" % (nm, c["title"][:110],
-                                       "+".join(c["terms"]), c["link"]))
+        t, nm = c["title"], c["name"]
+        if nm and t.lower().startswith(nm.lower()):
+            t = t[len(nm):].lstrip(" :—-·")
+        R.append("- %s%s [%s] · %s"
+                 % (("`%s` " % nm) if nm else "", t,
+                    "/".join(short_term(x) for x in c["terms"]), c["link"]))
     open(REPORT, "w", encoding="utf-8").write("\n".join(R) + "\n")
 
 # 通知正文归模型：脚本不会翻译英文标题，也不会"按簇分组"。
@@ -372,7 +382,8 @@ elif SEND:
     else:
         print("notify: ./notify 不存在")
 else:
-    print("notify: **未发** —— 覆写 %s 为中文（按簇分组）后：" % REPORT)
+    print("notify: **未发** —— 用 Write 覆写 %s 为中文（按簇分组）后：" % REPORT)
     print("        ./notify -f %s" % REPORT)
+    print("        改不了就直接发机械版（已去噪），**别不发**。")
 print("STATUS: ARXIV_RADAR_OK · 原始 %d · 幸存 %d · 总耗时 %.0fs"
       % (raw, len(out), time.time() - T0))
