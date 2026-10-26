@@ -1,0 +1,953 @@
+{
+ "Minerva-Laboratories/Praxis": {
+  "n": 10,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "checkpoints",
+   "docs",
+   "praxis",
+   "tests"
+  ],
+  "code_dirs": [
+   "tests"
+  ]
+ },
+ "shendkar-narendra/Failvent": {
+  "n": 1,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "ashushirke2008/EDITH-CAD": {
+  "n": 28,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "Nakadai-Lab/hands": {
+  "n": 9,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "assets",
+   "configs",
+   "docs",
+   "scripts",
+   "src",
+   "tests"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "shutongliu-dev/uni-teleop": {
+  "n": 14,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "backends",
+   "configs",
+   "docs",
+   "tests",
+   "tools",
+   "uni_teleop"
+  ],
+  "code_dirs": [
+   "configs",
+   "tests"
+  ]
+ },
+ "ZaidKamil1574/Robot-Teleoperation": {
+  "n": 7,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".vscode",
+   "Assets",
+   "Packages",
+   "ProjectSettings"
+  ],
+  "code_dirs": []
+ },
+ "7oei/masumasu_crawler_ros2": {
+  "n": 5,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "docs",
+   "src"
+  ],
+  "code_dirs": [
+   "src"
+  ]
+ },
+ "2437buaa/r5-vla": {
+  "n": 17,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "config",
+   "docs",
+   "integrations",
+   "provenance",
+   "reference",
+   "scripts",
+   "tests"
+  ],
+  "code_dirs": [
+   "scripts",
+   "tests"
+  ]
+ },
+ "SDUM-Liu/piper-craft": {
+  "n": 14,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "astra_vla",
+   "config",
+   "docs",
+   "scripts",
+   "tests"
+  ],
+  "code_dirs": [
+   "scripts",
+   "tests"
+  ]
+ },
+ "doniljaison/autonomous-navigation-rover": {
+  "n": 6,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "docs",
+   "phase1_teleop",
+   "phase2_autonomous"
+  ],
+  "code_dirs": []
+ },
+ "summer-lotso/xarm7-xhand1-vr-teleop": {
+  "n": 12,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "configs",
+   "docs",
+   "scripts",
+   "src",
+   "tests",
+   "vendor"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "NJU-R-L-Group-Embodied-Lab/SuperMimic-Repro-Sim2Real": {
+  "n": 14,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "LICENSES",
+   "docs",
+   "motions",
+   "scripts",
+   "src",
+   "tests",
+   "tools"
+  ],
+  "code_dirs": [
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "AliOzcelik/raptor-sight": {
+  "n": 1,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "sirosiro/SpaceGuidance-FBB": {
+  "n": 18,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".agents",
+   "assets",
+   "docs",
+   "examples",
+   "include",
+   "panes",
+   "ros2",
+   "rtl"
+  ],
+  "code_dirs": [
+   "src",
+   "tests"
+  ]
+ },
+ "Kentpun/Imagine-then-Act": {
+  "n": 13,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "configs",
+   "data",
+   "docs",
+   "scripts",
+   "src",
+   "tests"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "Katherine624/Paper_Reproduction": {
+  "n": 6,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "Cosmos Policy - Fine-Tuning Video Models for Visuomotor Control and Planning",
+   "Dream to Control - Learning Behaviors by Latent Imagination",
+   "OpenVLA - An Open-Source Vision-Language-Action Model",
+   "π0.5 - a Vision-Language-Action Model with Open-World Generalization",
+   "τ0-WM A Unified Video-Action World Model for Robotic Manipulation"
+  ],
+  "code_dirs": []
+ },
+ "syaok1/wm-outcome-pilot": {
+  "n": 4,
+  "nojekyll": true,
+  "index": true,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "UnendlessGit/WorldTrainer": {
+  "n": 11,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "App",
+   "Core",
+   "Learning",
+   "Resources",
+   "Services",
+   "Stores",
+   "Views",
+   "WorldTrainer.xcodeproj"
+  ],
+  "code_dirs": []
+ },
+ "shangchaohu718/supermimic-pera": {
+  "n": 19,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "LICENSES",
+   "configs",
+   "docs",
+   "reports",
+   "src",
+   "tests",
+   "tools"
+  ],
+  "code_dirs": [
+   "configs",
+   "src",
+   "tests"
+  ]
+ },
+ "DAXIAORobotics/WorldFailBench": {
+  "n": 2,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "namesarnav/scaling-wms": {
+  "n": 6,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "experiments",
+   "src"
+  ],
+  "code_dirs": [
+   "src"
+  ]
+ },
+ "karthikeyagnkrishna-source/krishna-karthikeya-portfolio": {
+  "n": 11,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "cs781",
+   "ugp"
+  ],
+  "code_dirs": []
+ },
+ "Hchnr/s2a": {
+  "n": 10,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "configs",
+   "plans",
+   "reports",
+   "scripts",
+   "src",
+   "tests"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "Hostileoracle0606/motion-lab": {
+  "n": 8,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "assets",
+   "docs",
+   "experiments"
+  ],
+  "code_dirs": []
+ },
+ "Alexander-wu/RoboImagine": {
+  "n": 1,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "HARSHAVARDHAN-SEKAR/Cognitive-Robot-Intelligence-Platform": {
+  "n": 15,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "benchmarks",
+   "docker",
+   "docs",
+   "scripts",
+   "src"
+  ],
+  "code_dirs": [
+   "scripts",
+   "src"
+  ]
+ },
+ "AuraJZ/swm-framework": {
+  "n": 14,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "docs",
+   "examples",
+   "figures",
+   "spec",
+   "swm",
+   "tests"
+  ],
+  "code_dirs": [
+   "tests"
+  ]
+ },
+ "pranay172/AGIBOT-World-Challenge-ICRA26": {
+  "n": 15,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "cloud",
+   "docs",
+   "eval",
+   "preds",
+   "runs"
+  ],
+  "code_dirs": []
+ },
+ "CLMI-Lab/halt.cc": {
+  "n": 13,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "configs",
+   "docs",
+   "halt",
+   "runs",
+   "scripts",
+   "tests"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "tests"
+  ]
+ },
+ "Ay-source/Deep-Sight-Quadruped": {
+  "n": 1,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "kevinc-lab/Structured-Latent-Dynamics": {
+  "n": 3,
+  "nojekyll": false,
+  "index": true,
+  "dirs": [
+   "assets"
+  ],
+  "code_dirs": []
+ },
+ "qingh097/lacwm-project": {
+  "n": 6,
+  "nojekyll": true,
+  "index": true,
+  "dirs": [
+   "assets"
+  ],
+  "code_dirs": []
+ },
+ "huangkiki/huangkiki": {
+  "n": 2,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "assets"
+  ],
+  "code_dirs": []
+ },
+ "KAI030113/safedojo": {
+  "n": 6,
+  "nojekyll": true,
+  "index": true,
+  "dirs": [
+   "assets"
+  ],
+  "code_dirs": []
+ },
+ "seungjoolee24/krafton-q3-video-worldmodel": {
+  "n": 10,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "configs",
+   "docs",
+   "notebooks",
+   "scripts",
+   "src",
+   "tests"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "Azhu9701/aiman-personal-world": {
+  "n": 45,
+  "nojekyll": false,
+  "index": true,
+  "dirs": [
+   ".github",
+   "docs",
+   "examples",
+   "scripts",
+   "tests"
+  ],
+  "code_dirs": [
+   "scripts",
+   "tests"
+  ]
+ },
+ "Wade-Owo/Rob_Capstone": {
+  "n": 1,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "docs"
+  ],
+  "code_dirs": []
+ },
+ "Kushaan-N/SyncSim": {
+  "n": 6,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "scripts",
+   "syncsim"
+  ],
+  "code_dirs": [
+   "scripts"
+  ]
+ },
+ "fffstrong/Grounded-Dreamer": {
+  "n": 25,
+  "nojekyll": true,
+  "index": true,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "PreshenNaidoo/applied-pytorch-bootcamp": {
+  "n": 10,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "common",
+   "data",
+   "exercises",
+   "outputs"
+  ],
+  "code_dirs": []
+ },
+ "YG3-ai/yg3-agent-garden": {
+  "n": 11,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "engine",
+   "src",
+   "test"
+  ],
+  "code_dirs": [
+   "engine",
+   "src",
+   "test"
+  ]
+ },
+ "Topmost2020/vla-lwm-toy-simulation": {
+  "n": 6,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "figures",
+   "simulation"
+  ],
+  "code_dirs": []
+ },
+ "silvermew/hand-to-robot-cube": {
+  "n": 12,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "docs",
+   "notebooks",
+   "outputs",
+   "scripts",
+   "src",
+   "tests"
+  ],
+  "code_dirs": [
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "kmylonas/pointmaze-random-episodes": {
+  "n": 7,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".vscode",
+   "__pycache__"
+  ],
+  "code_dirs": []
+ },
+ "Reflexion-robotics/embodied-ai-workshop": {
+  "n": 14,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "cpu",
+   "deploy",
+   "docs",
+   "install",
+   "participant",
+   "scripts",
+   "workshop"
+  ],
+  "code_dirs": [
+   "scripts"
+  ]
+ },
+ "shing1Sks/simulator-shot": {
+  "n": 12,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "assets",
+   "docs",
+   "scenes",
+   "scripts",
+   "simulator_shot",
+   "tests",
+   "video",
+   "viewer"
+  ],
+  "code_dirs": [
+   "scripts",
+   "tests"
+  ]
+ },
+ "tsadi/worldsim-guard": {
+  "n": 6,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "assets",
+   "examples",
+   "worldsim_guard"
+  ],
+  "code_dirs": []
+ },
+ "carlo-scr/RobotPluggingSim": {
+  "n": 9,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "media",
+   "notebooks",
+   "plugsim",
+   "scripts",
+   "tests"
+  ],
+  "code_dirs": [
+   "scripts",
+   "tests"
+  ]
+ },
+ "mkturkcan/matrix-new-york": {
+  "n": 8,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "configs",
+   "docs",
+   "nycdrive",
+   "scripts"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts"
+  ]
+ },
+ "reliable-world-model/revamp_codebase": {
+  "n": 14,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "configs",
+   "revamp",
+   "third_party"
+  ],
+  "code_dirs": [
+   "configs"
+  ]
+ },
+ "mh4970121/Action-Certified-Entropic-Geometric-Planning-ACEGP-": {
+  "n": 7,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "Experiment ",
+   "Experiment",
+   "configs",
+   "scripts",
+   "src"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src"
+  ]
+ },
+ "BasisResearch/empiric": {
+  "n": 5,
+  "nojekyll": true,
+  "index": true,
+  "dirs": [
+   "assets",
+   "tools"
+  ],
+  "code_dirs": []
+ },
+ "Ethancohenn/lewm-anticollapse-study": {
+  "n": 16,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "configs",
+   "docs",
+   "figures",
+   "protocol",
+   "results",
+   "src",
+   "tests"
+  ],
+  "code_dirs": [
+   "configs",
+   "src",
+   "tests"
+  ]
+ },
+ "ideal-sisyphus/embodied-ai-learning": {
+  "n": 4,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "code",
+   "docs",
+   "vision"
+  ],
+  "code_dirs": []
+ },
+ "tangjzh/Video2World": {
+  "n": 2,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "EVE-World/EVEWorld": {
+  "n": 20,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "assets",
+   "checkpoints",
+   "configs",
+   "data",
+   "docs",
+   "envs",
+   "experiments",
+   "scripts"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "behappya/EVEWorld": {
+  "n": 20,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "assets",
+   "configs",
+   "data",
+   "docs",
+   "envs",
+   "experiments",
+   "scripts"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "laharyyteja9-dot/SIH-VIGNAX": {
+  "n": 21,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "configs",
+   "docs",
+   "models",
+   "results",
+   "samples",
+   "scripts",
+   "src"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "yiqisu/epimind": {
+  "n": 6,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "epimind-code",
+   "epimind-revised"
+  ],
+  "code_dirs": []
+ },
+ "Szilko121/szcore_interact": {
+  "n": 5,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "client",
+   "server",
+   "web"
+  ],
+  "code_dirs": []
+ },
+ "Lossfunk/Self-Driving-Symbolic-Policy": {
+  "n": 8,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "docs",
+   "grounded_drive",
+   "scripts",
+   "tests"
+  ],
+  "code_dirs": [
+   "scripts",
+   "tests"
+  ]
+ },
+ "Nikhildusa07/AEGIS-Autonomous-Multimodal-World-Understanding": {
+  "n": 4,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "backend",
+   "frontend"
+  ],
+  "code_dirs": []
+ },
+ "kushagrathisside/VLAFinetuningExperiments": {
+  "n": 9,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "configs",
+   "docs",
+   "scripts",
+   "src",
+   "tests"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "src",
+   "tests"
+  ]
+ },
+ "SetsunaFSeiei21/Circuit-OP-JEPA": {
+  "n": 10,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "configs",
+   "device_jepa",
+   "docs",
+   "scripts",
+   "tests",
+   "verification"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "tests"
+  ]
+ },
+ "sbhatt2030/jepa-causal-dynamics": {
+  "n": 2,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "LinShan-Bin/EgoForesight": {
+  "n": 19,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "assets",
+   "configs",
+   "deployment",
+   "docs",
+   "examples",
+   "licenses",
+   "requirements",
+   "scripts"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts"
+  ]
+ },
+ "VincenzoB77/Adult-Egocentric-Language-and-PTSD-A-Phenomenological-and-Clinical-Perspective": {
+  "n": 1,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ },
+ "eshaan2418/Recall": {
+  "n": 27,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   ".github",
+   "android",
+   "configs",
+   "docs",
+   "paper",
+   "privacy",
+   "recall",
+   "results"
+  ],
+  "code_dirs": [
+   "configs",
+   "scripts",
+   "tests"
+  ]
+ },
+ "mayuelala/EgoACT": {
+  "n": 10,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [
+   "data",
+   "diffsynth",
+   "docs",
+   "examples",
+   "models"
+  ],
+  "code_dirs": []
+ },
+ "Zahraxy09/intent-centric-web3-2026": {
+  "n": 2,
+  "nojekyll": false,
+  "index": false,
+  "dirs": [],
+  "code_dirs": []
+ }
+}

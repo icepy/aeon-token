@@ -1,14 +1,76 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 十轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、seen 基线有效性）
+description: github-radar 十一轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、seen 基线有效性）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-26T04:20:00Z
+timestamp: 2026-10-26T09:30:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十轮（2026-10-26）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十一轮（2026-10-26）实证。
+
+## 第十一轮（2026-10-26，30 天窗，dry-run）—— 首个 30 天基线；窗口本身就是「新增」的制造机
+
+本轮 `var=dry-run days:30`，窗口 `2026-09-26..2026-10-26`。原始 2,236 → 幸存 **70** → 报告级 **35**，核验全量 70/70。
+
+### 23. 🔴 与上轮求差得到的「新增 44」全是窗口算术，0 个真漏检
+
+与第十轮快照 `out10.json`（7 天创建窗，26 仓）求差：重叠 26、新增 44。按 `created` 拆解：
+
+| 创建时间 | 数量 | 能否被上一轮看到 |
+|---|---|---|
+| `2026-10-01..10-18` | 39 | **不能** —— 第十轮窗口从 10-19 起 |
+| `2026-09-01..09-30` | 5 | 不能 |
+| `>= 2026-10-19` | **0** | —— |
+
+**44 个里没有一个是在上一轮窗口内被漏掉的。** 反向也成立：第十轮报的「真新增 26」是 7 天创建窗的产物，同样不可当增量。**判据：跨窗口比较前，必须先把「新增」按 `created` 分到「窗口内 / 窗口外」，否则两轮互为镜像，各报一次虚增。**
+
+### 24. 🟢 30 天创建窗救回 5 个 7 天窗结构上看不到的活仓 —— 这不是「更全」，是「更慢」
+
+7 天创建窗只能看见「这一周诞生的仓」，一个 10-12 建的仓若一直写到现在，它在 7 天窗里永远不出现。30 天窗救回 5 个 7d≥5：
+
+| 仓库 | 30d | 7d | 形态 |
+|---|---|---|---|
+| `Hostileoracle0606/motion-lab` | 47 | **43** | ★0 Python，`assets/docs/experiments` + `pyproject.toml` |
+| `Kushaan-N/SyncSim` | 81 | 18 | RoboTwin 2.0 双臂世界模型训练数据，有 `CLAUDE.md` |
+| `sirosiro/SpaceGuidance-FBB` | 41 | 9 | 6-DoF 航天器 GNC sim-to-real，有 `rtl/` `ros2/` |
+| `Hchnr/s2a` | 11 | 9 | 世界模型预测态 → 控制指令，有 `AGENTS.md` |
+| `Wade-Owo/Rob_Capstone` | 9 | 5 | 根目录只有 `docs/`，无代码 |
+
+**判据：窗口长度是「提前量」与「覆盖率」的取舍轴，不是质量轴。** 7 天窗追「刚出现」，30 天窗追「还在写」，两者测的不是同一件事 —— 用同一个词表跑，结论自然不同。
+
+### 25. 🔴 star 在整轮上彻底失效：报告级 35 个里 34 个 ★0，幸存集最高 ★7
+
+70 个幸存里 ★≥5 只有 1 个（`mayuelala/EgoACT` ★7，NeurIPS 2026 官方实现），**全轮最高 star = 7**。而报告级 35 里 28 个来自 `world model` 一支、全部 ★0。**第九轮 `PER_TERM_CAP` 按 star 抽样的 3.85× 低估，在 30 天窗上是更极端版本：不是抽样切掉 74%，而是整个排序轴与信号轴正交。** 只要 `world model` 这类机制词还在，star 就永远不该出现在排序或采样里。
+
+### 26. 🔴 爆完即停 57.1%：30d 提交在 30 天窗里几乎不携带「现在还在写」
+
+报告级 35 中 **20 个 30d≥5 但 7d=0**（57.1%），与前几轮 55.2%（第七轮）、59.7%（第六轮）同水位。**这个比例跨窗口、跨轮次稳定，说明它是结构性现象（论文/项目页写完即停、作业仓集中提交），不是某一轮的偶然。** 报告级必须双列 30d/7d，7d=0 的照报但不能说「在写」。
+
+### 27. ⚠️ pages 规则漏 3 个纯静态站进报告级 —— 第十轮的自动化判据第二次独立复现
+
+| 仓库 | 30d | 7d | 根目录 | 体积 |
+|---|---|---|---|---|
+| `syaok1/wm-outcome-pilot` | 5 | 5 | `index.html` + `.nojekyll` + README | 123KB |
+| `KAI030113/safedojo` | 14 | 4 | 同上 + `script.js`/`style.css` | 39MB |
+| `BasisResearch/empiric` | 25 | 0 | 同上 + `assets/` | 115MB |
+
+**三仓根目录都没有 `src/`/`tests/`/`pyproject.toml`/`package.json`。** 而真正的代码仓（`shangchaohu718/supermimic-pera`：`src+tests+configs+pyproject.toml`；`eshaan2418/Recall`：`android+Dockerfile+Makefile`）一眼可分。**判据「`index.html` + `.nojekyll` 且无代码骨架 → 页」两次独立命中，第三次该进代码了。** 注意 `KAI030113/safedojo` 39MB、`BasisResearch/empiric` 115MB —— **再次验证体量绝不能当页形态的豁免条件。**
+
+### 28. 🟡 SuperMimic：换成 30 天窗后全盲依旧 —— 证明这是词表结构缺陷，不是 7 天窗的副产品
+
+30 天窗内直接搜 `supermimic in:name,description created:>2026-09-26` = **55 仓**，逐仓核验 **30d≥5 25 个 / 7d≥5 25 个 / 7d=0 零个**；18 词只捞到 **2 个**（都是 desc 里恰好写了 "world model" 的）。冠亚军 `sxh-kk/SuperMimic_Recurrence` **85/85**、`QinnyuLan/SuperMimicCarnival` 33/33（**索引仓，须单列**）、`Motphys/Uni-SuperMimic` ★138 22/22。
+
+**第十轮把这个记为「7 天窗下的发现」，本轮证明它与窗口无关。** 词表按机制词组织，抓不到「一个具体工作/方法的名称」—— 而新专名恰恰是「有人在写代码」最强的信号。**唯一仍在生效的兜底是人工反查：从候选仓里挑 star/commit 最高的，搜它的派生簇。**
+
+### 29. 🟡 agent 指纹在 30 天窗开始显形（报告级 3/35），但样本太小
+
+`AGENTS.md`/`CLAUDE.md`/`.clinerules`：幸存 6 个、报告级 3 个（`Hchnr/s2a`、`Kushaan-N/SyncSim`、`YG3-ai/yg3-agent-garden`）。第十轮（7 天窗）报告级 0 个。**方向与第六轮判据 11 一致（单人 + agent），但 3 个不足以推「比例上升」—— 记形态，不记趋势。**
+
+### 30. ⚠️ carrier 丢 479 个（占原始 21.4%）—— 只记数量，不重放净增
+
+本轮 carrier 是最大单条丢弃规则。**不重复第十轮的错误**：只看 carrier 一条会得出「误杀」虚高上界，必须把 EXCL / short_desc / pages / 离题一起重放才有意义。本轮不做净增重放（dry-run 不引入新判据），只记：**discard 量大 ≠ 误杀大。**
 
 ## 第十轮（2026-10-26，7 天窗，dry-run）—— 窄窗把稀有词读成「真零」，且词表对一个 55 仓热点全盲
 
@@ -220,6 +282,7 @@ carrier 本轮丢 123 个。只看 carrier 一条规则，120 个 `world model` 
 
 # Citations
 
+- 第十一轮快照 `output/ghradar/out.json`（70 幸存 / 2,236 原始，窗口 `2026-09-26..2026-10-26`）· `audit.log` · `report.md` · `scan.py` **未改** · 窗口拆解 `diff11.py` · 根目录 `tree11full.py` → `tree11full.json`（70/70）· 词分布 `agg11.py` · SuperMimic 簇 `cluster11.py` → `cluster11.json`（55 仓全量核验）+ `probe11b.py` → `probe11b.json` · 形态抽查 `shape11.py` · agent 指纹 `fp11.py` → `fp11.json` · `logs/2026-10-26#github-radar（第十一轮`
 - 第十轮快照 `output/ghradar/out10.json`（26 幸存 / 592 原始，窗口 `2026-10-19..2026-10-26`）· `audit10.log` · 扫描 `scan10.py` · 跨窗词表 `terms10.py` → `terms10.json` · 簇探测 `cluster10.py` → `cluster10.json`（SuperMimic 55 仓全量核验）· carrier 审计 `carrier10.py` → `carrier10.json` / `carrier10_commits.py` / `carrier10_net.py` → `carrier10_net.json` / `carrier10_topics.py` → `carrier10_topics.json` · 根目录 `tree10.py` → `tree10.json` · `logs/2026-10-26#github-radar（第十轮`
 - 第九轮快照 `output/ghradar/out9full.json`（234 幸存 / 3,461 原始）· `audit.log` · 全量核验 `full9.py`（230/234）· 候选重建 `cards9.py` · 对照第八轮 `out8.json`（178 幸存，dry-run 未落 seen）· 词表口径 `terms9.py` → `terms9.json`
 - 第八轮：`output/ghradar/out8.json`（178 幸存 / 2,817 原始）· 全量核验 `verify8.py`（174/178）· 词表口径 `terms8.json` · 目录树 `tree8.py` · 加密复核 `cry8.json` · `logs/2026-10-25#github-radar`

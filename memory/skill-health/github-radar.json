@@ -1,10 +1,10 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-26T04:10:54Z",
-  "quality_score": 4,
-  "assessment": "干跑报告扎实：漏斗 592→26→5 自洽，方法学自审（词表对 SuperMimic 专名全盲、star 反向、carrier 单条审计虚高 43 倍）是真洞察，附 API 口径与快照文件名可回溯；扣分在于篇幅偏长、违背「看完就能决定」的推送口径，且结论停在诊断层——没给出改词表的下一步命令或非 dry-run 的处置动作。",
+  "last_analyzed": "2026-10-26T05:10:37Z",
+  "quality_score": 3,
+  "assessment": "完整跑通并给出真实判据（窗口算术伪增量、star 失效、57.1% 爆完即停），但严重违背 operator 的「不要长文/看完就能决定」与「必须带原始来源」两条硬约束：35 行大表无任何 API/commit 出处、与 DEUS 仓位动作无可执行关联，且自曝工具调用超预算 4.8×。",
   "flags": [],
-  "avg_score": 3.5,
+  "avg_score": 3.45,
   "history": [
     {
       "date": "2026-10-25",
@@ -64,6 +64,12 @@
       "date": "2026-10-26",
       "score": 4,
       "ts": "2026-10-26T04:10:54Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 3,
+      "ts": "2026-10-26T05:10:37Z",
       "harness": "claude"
     }
   ]

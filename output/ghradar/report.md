@@ -1,0 +1,32 @@
+**github-radar** · 窗口 30 天 · 报告级 35 · 7d 活跃 15
+
+- [Hostileoracle0606/motion-lab](https://github.com/Hostileoracle0606/motion-lab) ★0 · 30d=47 7d=43 · `world model` · Exploring robotics, control systems, and embodied intelligence through simulation, learned dynamics,
+- [shangchaohu718/supermimic-pera](https://github.com/shangchaohu718/supermimic-pera) ★0 · 30d=19 7d=19 · `world model` · G1 SuperMimic-PERA: native UniLab world-model tracking baseline and interaction research
+- [eshaan2418/Recall](https://github.com/eshaan2418/Recall) ★0 · 30d=19 7d=19 · `egocentric` · On-device episodic visual memory for egocentric video: learned trigger, compact event memory, calibr
+- [Kushaan-N/SyncSim](https://github.com/Kushaan-N/SyncSim) ★0 · 30d=81 7d=18 · `world model` · Bimanual world-model training data on RoboTwin 2.0: randomized multi-view cameras, visual calibratio
+- [ZaidKamil1574/Robot-Teleoperation](https://github.com/ZaidKamil1574/Robot-Teleoperation) ★0 · 30d=16 7d=16 · `teleoperation` · Unity 6 data center teleoperation simulator for Meta Quest and WebGL/WebXR, alongside a Da Vinci sur
+- [sirosiro/SpaceGuidance-FBB](https://github.com/sirosiro/SpaceGuidance-FBB) ★1 · 30d=41 7d=9 · `sim-to-real` · Sim-to-Real 6-DoF Spacecraft GNC & Non-Cooperative Docking Testbed. Hardware-equivalent AXI4-Lite/UI
+- [Hchnr/s2a](https://github.com/Hchnr/s2a) ★0 · 30d=11 7d=9 · `world model` · S2A converts desired states and state changes predicted by world models into robot control commands.
+- [SetsunaFSeiei21/Circuit-OP-JEPA](https://github.com/SetsunaFSeiei21/Circuit-OP-JEPA) ★0 · 30d=9 7d=9 · `jepa` · Device-level JEPA-inspired operating-point pretraining for analog circuit performance prediction.
+- [Wade-Owo/Rob_Capstone](https://github.com/Wade-Owo/Rob_Capstone) ★0 · 30d=9 7d=5 · `world model` · Persistent AI World Models for Robot Workspaces/Persistent 3D Scene Understanding for Robot Workspac
+- [syaok1/wm-outcome-pilot](https://github.com/syaok1/wm-outcome-pilot) ★0 · 30d=5 7d=5 · `world model` · Bilingual research progress on robot action outcome prediction with world models.
+- [EVE-World/EVEWorld](https://github.com/EVE-World/EVEWorld) ★0 · 30d=49 7d=4 · `world model` · Code release for EVEWorld: physical evolution supervision for target-instance and cross-frame consis
+- [KAI030113/safedojo](https://github.com/KAI030113/safedojo) ★0 · 30d=14 7d=4 · `world model` · SafeDojo: Safe Reinforcement Learning for VLA via Interactive World Model — CoRL 2026 project websit
+- [huangkiki/huangkiki](https://github.com/huangkiki/huangkiki) ★0 · 30d=5 7d=4 · `world model` · Robotics Simulation Engineer | Simulation Platforms, Dexterous Manipulation Simulation, Physics Solv
+- [mayuelala/EgoACT](https://github.com/mayuelala/EgoACT) ★7 · 30d=11 7d=1 · `egocentric` · [NeurIPS 2026] EgoACT: This repo is the official implementation of "Decoupling Action from Egocentri
+- [ideal-sisyphus/embodied-ai-learning](https://github.com/ideal-sisyphus/embodied-ai-learning) ★0 · 30d=8 7d=1 · `world model` · A learning repository for Embodied AI, covering RL, Imitation Learning, Robot Simulation, VLA, and W
+- [PreshenNaidoo/applied-pytorch-bootcamp](https://github.com/PreshenNaidoo/applied-pytorch-bootcamp) ★0 · 30d=≥100 7d=0 [爆完即停] · `world model` · Hands-on PyTorch exercises covering deep learning, computer vision, LLMs, reinforcement learning, wo
+- [behappya/EVEWorld](https://github.com/behappya/EVEWorld) ★0 · 30d=47 7d=0 [爆完即停] · `world model` · Code release for EVEWorld: physical evolution supervision for target-instance and cross-frame consis
+- [mh4970121/Action-Certified-Entropic-Geometric-Planning-ACEGP-](https://github.com/mh4970121/Action-Certified-Entropic-Geometric-Planning-ACEGP-) ★0 · 30d=26 7d=0 [爆完即停] · `world model` · Confined Coupling and Conformal Action Certificates for Latent World Models
+- [BasisResearch/empiric](https://github.com/BasisResearch/empiric) ★0 · 30d=25 7d=0 [爆完即停] · `world model` · Project page for EMPIRIC: Experiment-Driven Learning of Residual World Models for Robot Planning
+- [Katherine624/Paper_Reproduction](https://github.com/Katherine624/Paper_Reproduction) ★0 · 30d=18 7d=0 [爆完即停] · `world model` · Some reimplementation results of papers on world models and VLA
+- [kushagrathisside/VLAFinetuningExperiments](https://github.com/kushagrathisside/VLAFinetuningExperiments) ★0 · 30d=14 7d=0 [爆完即停] · `vision language action` · This repository is the experiment, training, evaluation, deployment, and feedback layer for vision-l
+- [CLMI-Lab/halt.cc](https://github.com/CLMI-Lab/halt.cc) ★0 · 30d=11 7d=0 [爆完即停] · `world model` · World models are evaluated on whether their futures look real. A robot needs to know whether they’re
+- [Kentpun/Imagine-then-Act](https://github.com/Kentpun/Imagine-then-Act) ★0 · 30d=10 7d=0 [爆完即停] · `world model` · Imagine-then-Act: Semantic World Model for Tabletop Manipulation
+- [Azhu9701/aiman-personal-world](https://github.com/Azhu9701/aiman-personal-world) ★0 · 30d=10 7d=0 [爆完即停] · `world model` · Local-first Personal World Model: private chat history, evidence-linked timelines, relationship expl
+- [carlo-scr/RobotPluggingSim](https://github.com/carlo-scr/RobotPluggingSim) ★0 · 30d=9 7d=0 [爆完即停] · `world model` · MuJoCo simulation of a bimanual robot plugging RJ45 cables into a data-center patch panel: failure/O
+- [mkturkcan/matrix-new-york](https://github.com/mkturkcan/matrix-new-york) ★0 · 30d=9 7d=0 [爆完即停] · `world model` · Street View initial observations and a kinematic vehicle controller for action-conditioned video wor
+- [seungjoolee24/krafton-q3-video-worldmodel](https://github.com/seungjoolee24/krafton-q3-video-worldmodel) ★0 · 30d=8 7d=0 [爆完即停] · `world model` · Q3 video-only latent-action world model: ConvGRU, posterior/prior learning, resumable GPU training o
+- [Nakadai-Lab/hands](https://github.com/Nakadai-Lab/hands) ★1 · 30d=7 7d=0 [爆完即停] · `teleoperation` · Unitree R1 and BrainCo Revo2 control stack with live webcam hand teleoperation
+- [Nikhildusa07/AEGIS-Autonomous-Multimodal-World-Understanding](https://github.com/Nikhildusa07/AEGIS-Autonomous-Multimodal-World-Understanding) ★0 · 30d=7 7d=0 [爆完即停] · `world model` · AEGIS is an autonomous multimodal AI system that perceives text, images, video, audio and sensor dat
+- [YG3-ai/yg3-agent-garden](https://github.com/YG3-ai/yg3-agent-garden) ★0 · 30d=6 7d=0 [爆完即停] · `world model` · Open spatial environment server for embodied agents and world models, with an MCP sensorimotor inter

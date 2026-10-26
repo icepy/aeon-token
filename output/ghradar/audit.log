@@ -1,35 +1,38 @@
-扫 18 词 × 3 窗 × 3 页 | 原始 3461 | 幸存 234 | 报告级 20
-丢弃 seen=1530 excl=211 archived=2 short_desc=739 carrier=614 neg=86 pages=27 scaffold=4 farm=14 fail=0
-核验 76（上限 2000）· 黑名单载入 3 个 owner
-词表四分类 —— 查询失败 0 / 真零 0 / 全已见(饱和) 14 / 有新增 4
-ℹ️ 全已见（饱和，**别删**）: embodied data(raw=18) · robot manipulation(raw=297) · robot dataset(raw=41) · teleoperation(raw=434) · sim2real(raw=173) · sim-to-real(raw=179) · world action model(raw=102) · robotics data engine(raw=1) · verifiable inference(raw=7) · proof of useful work(raw=13) · data availability(raw=132) · restaking(raw=5) · intent-based(raw=120) · maximal extractable value(raw=2)
-词表返回/新收: world model=900/37 · jepa=678/65 · teleoperation=434/0 · robot manipulation=297/0 · vision language action=211/135 · sim-to-real=179/0 · sim2real=173/0 · egocentric=148/1 · data availability=132/0 · intent-based=120/0 · world action model=102/0 · robot dataset=41/0 · embodied data=18/0 · proof of useful work=13/0 · verifiable inference=7/0 · restaking=5/0 · maximal extractable value=2/0 · robotics data engine=1/0
-ℹ️ 共享脚手架（同短名跨≥3 owner 且 desc 前缀同）4 个: AdrienBarrau/jepa-world-model-from-scratch · yassinzayed/jepa-world-model-from-scratch · amitabhswain/jepa-world-model-from-scratch · Mohan-afk/jepa-world-model-from-scratch
-ℹ️ 被 NEG 规则丢弃 86 个（缩写同形污染）: aryamaulana-coder/jepang · DikhaAG/jepang · Posumah/Buku-jepang · erlanggaputrak0987-hub/Belajar-Jepang · Jonathan12345Salim/belajar-jepang · Trinaldi3/latihan-jepang · data1488/Jepara-memesona · data1488/Pesona-Jepara · risskanaera46-boop/jepang-website · aryamaulana-coder/Test-Jepang · Taqwa-ULM/overseas-jepang · data1488/Jeparaa-memesonaa
-ℹ️ 被 pages 规则丢弃 27 个（体量<300KB）: aizhiqi-work/aizhiqi-work(1KB) · hayfung-hue/hayfung-hue(1KB) · vietanh-mechatronics/sim2realgap.github.io(0KB) · caesar-jojo/caesar-jojo(1KB) · WanruJia/WanruJia(0KB) · WanruJia/WanruJia(0KB) · houxq8888/houxq8888(5KB) · FrankGraen/FrankGraen(7KB) · shrdlu-ii/shrdlu-ii(1KB) · canvascloudai/canvascloudai(3KB) · shibo769/shibo769(1KB) · OmniWorldModel/OmniWorldModel.github.io(0KB)
-逐词核验数: world model=25 · vision language action=25 · jepa=25 · egocentric=1 · embodied data=0 · robot manipulation=0 · robot dataset=0 · teleoperation=0 · sim2real=0 · sim-to-real=0 · world action model=0 · robotics data engine=0 · verifiable inference=0 · proof of useful work=0 · data availability=0 · restaking=0 · intent-based=0 · maximal extractable value=0
-⚠️ 30 天零提交（star 在骗人）34: declare-lab/MemBodied · DeepCybo-PhysAI/ActionPiece · nubot-nudt/Behavior-Skill · alphaparkinc/genpark-vision-language-action-robotic-trajectory-planner-skill · Leesangoh/INDI · victorkich/MACT · YAO-001/YAO-001.github.io · Cgisu/direct-h8-building-world-models · gghosh1980/reading-ai-architectures · tanveera2001/world-model-indoor-scene-understanding · hasankara80/NeuroWorldEngine · Shiam1995/world-model-pro-max · kairunwen/kairunwen · Josephguogxy/indwm-showcase · Kunallubhana77/DWMA-developmental-world-model-ai
-⚠️ 爆完即停（30d 有量 / 7d 归零）32: ZhuYuChenNO1/Juno · SamratSahoo/DATAFARM · amazon-science/StructRL · PuzhenYuan/GALA · hku-sail/StreamPI · MommeAbbas/video-world-model-contact-sensitivity · Pendragon08/hab-contact-aware-world-model · PardisTaghavi/actionsplice-website · batgr/world-model-turn-taking-data · fengxiaoxu96/roboworld-agent · khush-l/latent-world-model-manipulation · Franky5278/Embodied-AI-Vision-Language-Action-World-Models- · varshacvenkat-web/vla-eval-world-model · Mark-zjtang/ALAM · buaa-colalab/LTM-pi
-⚠️ 无 language 字段（疑似非代码仓）8: guoyue0412/guoyue0412 · Franky5278/Embodied-AI-Vision-Language-Action-World-Models- · varshacvenkat-web/vla-eval-world-model · labicon/SAMBAR · yupeng-2003/FailPatch · jonathansearch/ratiss-vrn · noahzhy/tinyLayout · build-the-future-11/Wharton-GYIC-Model-Stochastic-Engram-Reservoir-JEPA-for-Regime-Aware-Financial-Forecasting
-⚠️ 空仓（409）: PMIONT-JAHO-SAK-Research-Lab/sangam-lingua
-ℹ️ 候选农场（owner≥3，需人工判）: SuperInstance=4
-  bondtesty/let-it-be-simple ★2 30d=22 7d=22
-  kyutai-labs/reki ★33 30d=6 7d=5
-  tlab-wide/CausalSceneNarration ★2 30d=6 7d=4
-  batgr/world-model-turn-taking-model ★0 30d=≥100 7d=3
-  WJ-CV/LECDrive ★14 30d=17 7d=1
-  labicon/SAMBAR ★1 30d=6 7d=1
-  fengxiaoxu96/roboworld-agent ★0 30d=59 [爆完即停] 7d=0
-  Mark-zjtang/ALAM ★4 30d=33 [爆完即停] 7d=0
-  KennyMcSimpson/measurement-scene-state ★0 30d=24 [爆完即停] 7d=0
-  batgr/world-model-turn-taking-data ★0 30d=23 [爆完即停] 7d=0
-  PhyLatent/phylatent.github.io ★0 30d=14 [爆完即停] 7d=0 [页形态]
-  rkdrn79/AnisoWM-page ★0 30d=9 [爆完即停] 7d=0 [页形态]
-  ZhuYuChenNO1/Juno ★10 30d=8 [爆完即停] 7d=0
-  buaa-colalab/LTM-pi ★3 30d=7 [爆完即停] 7d=0
-  mzhao1599/dnhacks26 ★1 30d=7 [爆完即停] 7d=0
-  gandhiashutosh14/noisefloor ★0 30d=7 [爆完即停] 7d=0
-  SamratSahoo/DATAFARM ★6 30d=6 [爆完即停] 7d=0
-  mh-rabiee/vjepa-video-anomaly-detection ★0 30d=6 [爆完即停] 7d=0
-  gandhiashutosh14/lewm-t4 ★0 30d=6 [爆完即停] 7d=0
-  arion-a/Latent-states-in-V-JEPA-2.1 ★0 30d=5 [爆完即停] 7d=0
+扫 18 词 × 3 窗 × 3 页 | 原始 2236 | 幸存 70 | 报告级 35 | var='dry-run days:30'
+丢弃 seen=1014 excl=139 archived=2 short_desc=399 carrier=479 neg=58 pages=52 scaffold=0 farm=23 fail=0
+核验 70/70 (100.0%) · 模式 全量 · 黑名单 3 owner
+词表四分类 —— 查询失败 0 / 真零 1 / 全已见(饱和) 8 / 有新增 9
+耗时 搜索 140s · 核验 7s · 总 147s
+⚠️ 真零命中（total=0，可考虑删词）: maximal extractable value
+ℹ️ 全已见（饱和，**别删**）: embodied data(raw=8) · robot dataset(raw=27) · world action model(raw=58) · robotics data engine(raw=1) · verifiable inference(raw=6) · proof of useful work(raw=6) · data availability(raw=71) · restaking(raw=3)
+词表返回/新收: world model=803/48 · jepa=400/2 · teleoperation=247/8 · robot manipulation=161/3 · vision language action=102/1 · sim-to-real=101/2 · egocentric=101/4 · sim2real=80/1 · data availability=71/0 · intent-based=61/1 · world action model=58/0 · robot dataset=27/0 · embodied data=8/0 · verifiable inference=6/0 · proof of useful work=6/0 · restaking=3/0 · robotics data engine=1/0 · maximal extractable value=0/0
+ℹ️ 被 NEG 规则丢弃 58 个: Posumah/Buku-jepang · erlanggaputrak0987-hub/Belajar-Jepang · Trinaldi3/latihan-jepang · data1488/Pesona-Jepara · data1488/Jepara-memesona · Taqwa-ULM/overseas-jepang · data1488/Jeparaa-memesonaa · rell135679/bagan-jepang · izzatifahmulk/web-jepang · data1488/Jepara-memesonaa · inipunyasani123/menu-jepang · LRJsukses2026/lini-rumah-jepara
+ℹ️ 被 pages 规则丢弃 52 个: embodied-datasets/embodied-datasets.github.io(104294KB) · aizhiqi-work/aizhiqi-work(1KB) · hayfung-hue/hayfung-hue(1KB) · aizhiqi-work/aizhiqi-work(1KB) · WanruJia/WanruJia(0KB) · mundo-world-model/mundo-world-model.github.io(357817KB) · hongjin-he/microworld-showcase(33313KB) · latent-action-world-models/latent-action-world-models.github.io(13240KB) · FrankGraen/FrankGraen(7KB) · bars-2026-psf/bars-2026-psf.github.io(34842KB) · YuboWang-zxx/YuboWang-zxx.github.io(1345KB) · Isaac-Daroch/Isaac-Daroch.github.io(7162KB)
+逐词核验数: world model=48 · teleoperation=8 · egocentric=4 · robot manipulation=3 · sim-to-real=2 · jepa=2 · sim2real=1 · vision language action=1 · intent-based=1 · embodied data=0 · robot dataset=0 · world action model=0 · robotics data engine=0 · verifiable inference=0 · proof of useful work=0 · data availability=0 · restaking=0 · maximal extractable value=0
+⚠️ 爆完即停（30d 有量 / 7d 归零）32: Nakadai-Lab/hands · Kentpun/Imagine-then-Act · Katherine624/Paper_Reproduction · pranay172/AGIBOT-World-Challenge-ICRA26 · CLMI-Lab/halt.cc · Ay-source/Deep-Sight-Quadruped · kevinc-lab/Structured-Latent-Dynamics · qingh097/lacwm-project · seungjoolee24/krafton-q3-video-worldmodel · Azhu9701/aiman-personal-world · fffstrong/Grounded-Dreamer · PreshenNaidoo/applied-pytorch-bootcamp · YG3-ai/yg3-agent-garden · Topmost2020/vla-lwm-toy-simulation · silvermew/hand-to-robot-cube
+⚠️ 无 language 字段（疑似非代码仓）12: shendkar-narendra/Failvent · ashushirke2008/EDITH-CAD · AliOzcelik/raptor-sight · DAXIAORobotics/WorldFailBench · Alexander-wu/RoboImagine · Ay-source/Deep-Sight-Quadruped · huangkiki/huangkiki · Wade-Owo/Rob_Capstone · tangjzh/Video2World · sbhatt2030/jepa-causal-dynamics · VincenzoB77/Adult-Egocentric-Language-and-PTSD-A-Phenomenological-and-Clinical-Perspective · Zahraxy09/intent-centric-web3-2026
+  Hostileoracle0606/motion-lab ★0 30d=47 7d=43
+  shangchaohu718/supermimic-pera ★0 30d=19 7d=19
+  eshaan2418/Recall ★0 30d=19 7d=19
+  Kushaan-N/SyncSim ★0 30d=81 7d=18
+  ZaidKamil1574/Robot-Teleoperation ★0 30d=16 7d=16
+  sirosiro/SpaceGuidance-FBB ★1 30d=41 7d=9
+  Hchnr/s2a ★0 30d=11 7d=9
+  SetsunaFSeiei21/Circuit-OP-JEPA ★0 30d=9 7d=9
+  Wade-Owo/Rob_Capstone ★0 30d=9 7d=5 [无language]
+  syaok1/wm-outcome-pilot ★0 30d=5 7d=5
+  EVE-World/EVEWorld ★0 30d=49 7d=4
+  KAI030113/safedojo ★0 30d=14 7d=4
+  huangkiki/huangkiki ★0 30d=5 7d=4 [无language]
+  mayuelala/EgoACT ★7 30d=11 7d=1
+  ideal-sisyphus/embodied-ai-learning ★0 30d=8 7d=1
+  PreshenNaidoo/applied-pytorch-bootcamp ★0 30d=≥100 [爆完即停] 7d=0
+  behappya/EVEWorld ★0 30d=47 [爆完即停] 7d=0
+  mh4970121/Action-Certified-Entropic-Geometric-Planning-ACEGP- ★0 30d=26 [爆完即停] 7d=0
+  BasisResearch/empiric ★0 30d=25 [爆完即停] 7d=0
+  Katherine624/Paper_Reproduction ★0 30d=18 [爆完即停] 7d=0
+  kushagrathisside/VLAFinetuningExperiments ★0 30d=14 [爆完即停] 7d=0
+  CLMI-Lab/halt.cc ★0 30d=11 [爆完即停] 7d=0
+  Kentpun/Imagine-then-Act ★0 30d=10 [爆完即停] 7d=0
+  Azhu9701/aiman-personal-world ★0 30d=10 [爆完即停] 7d=0
+  carlo-scr/RobotPluggingSim ★0 30d=9 [爆完即停] 7d=0

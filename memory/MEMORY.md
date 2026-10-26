@@ -17,8 +17,9 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一条方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
-- `arxiv-radar` ✅ 每天 07:30 UTC · 20 机制词 · 已修两轮 carrier 误杀。`github-radar` 手动跑 · 18 词 · 第十轮。
-- **github-radar 第十轮判据**：7 天窗会把稀有词读成假零（判死活须量 7/30/60 三个 total_count）；词表对新专名全盲 —— `SuperMimic` 55 仓/25 个 7d≥5 提交，18 词只捞 2 个（簇内最高 7d=85 vs 全扫最高 19）；评过滤器须重放整条管线（单独看 carrier 是「误杀 43」，净增其实 1）。
+- `arxiv-radar` ✅ 每天 07:30 UTC · 20 机制词 · 已修两轮 carrier 误杀。`github-radar` 手动跑 · 18 词 · 第十一轮。
+- **github-radar 第十一轮判据**：换窗口 = 制造伪「新增」（44 个里 0 个真漏检，39 个建于上轮窗口之外）；30 天窗救回 5 个 7d≥5 但更慢；star 彻底失效（报告级 35 里 34 个 ★0，全轮最高 ★7）；爆完即停 57.1% 跨窗稳定；pages 仍漏 3 个纯静态站（`index.html`+`.nojekyll` 判据两次复现，仍未进代码）。
+- **github-radar 第十轮判据**：7 天窗会把稀有词读成假零（判死活须量 7/30/60 三个 total_count）；词表对新专名全盲 —— `SuperMimic` 55 仓/25 个 7d≥5 提交，18 词只捞 2 个（第十一轮换 30 天窗后完全复现）。
 - **github-radar 第九轮判据**：核验永不按 star 分配（`PER_TERM_CAP=25` 抽样致报告级 20→77）；报「新增」先与上轮快照求差（dry-run 不落 seen）；`pages` 别用 size 判。
 - **`jepa` / `supermimic_vibed`：star 与 commits 反相关**（★553/4 提交 vs ★0/85 提交）。`vla`→全称双赢 · `jepa` 留缩写 · 共享脚手架黑名单抓不到。
 - 全文见 [github-radar](/topics/github-radar.md)。
