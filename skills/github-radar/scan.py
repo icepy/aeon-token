@@ -20,6 +20,8 @@ var token（空格分隔，可组合）:
     output/ghradar/clusters.json  probe 时**必定重写**（空也写，好区分"没跑"和"跑了没货"）
     memory/github-seen.json       非 dry-run 才写
     memory/github-candidates.md   非 dry-run 才追加
+
+开跑前会清理 output/ghradar/：只保留上面这几个名字（`keep*` 前缀除外）。
 """
 import json, os, re, subprocess, sys, threading, time
 import urllib.error, urllib.parse, urllib.request
@@ -34,6 +36,9 @@ CLUSTERS = OUTD + "/clusters.json"
 SEEN = "memory/github-seen.json"
 CARDS = "memory/github-candidates.md"
 FARMS = "memory/github-farms.txt"
+
+# output/ghradar/ 里只允许这些名字；其余每次开跑前删掉。`keep*` 前缀可跨轮保留。
+KEEP = {"out.json", "out.dry.json", "audit.log", "report.md", "clusters.json"}
 
 CHK_CAP = 2000         # 幸存数 <= 这个值 → 全量核验，一个不漏
 PER_TERM_CAP = 40      # 只在超上限时才启用（超上限时按词保底）
@@ -146,6 +151,20 @@ WINS = ["%s..%s" % ((now - timedelta(days=step * (i + 1))).strftime("%Y-%m-%d"),
         for i in range(NWIN)]
 FULLWIN = "%s..%s" % ((now - timedelta(days=DAYS)).strftime("%Y-%m-%d"),
                       now.strftime("%Y-%m-%d"))
+
+# ── 清理：output/ghradar/ 只留固定产物 ──
+# 前 13 轮在这儿攒了 150 个一次性旁路脚本和中间 json。靠代码强制清，
+# 不靠模型记得删。想跨轮保留就给文件名加 `keep` 前缀。
+cleaned = []
+if os.path.isdir(OUTD):
+    for nm in sorted(os.listdir(OUTD)):
+        if nm in KEEP or nm.startswith("keep"):
+            continue
+        if os.path.isfile(os.path.join(OUTD, nm)):
+            try:
+                os.remove(os.path.join(OUTD, nm)); cleaned.append(nm)
+            except OSError:
+                pass
 
 GH_LOCK = threading.Lock()
 GH_COOLDOWN = 60           # gh 掉线后的冷却秒数；到期自动重试，不再整轮放弃
@@ -495,6 +514,10 @@ L = ["扫 %d 词 × %d 窗 × %d 页 | 原始 %d | 幸存 %d | 报告级 %d | va
      % (len(failed_t), len(truly_zero), len(saturated), len(with_new)),
      "耗时 搜索 %.0fs · 核验 %.0fs · 总 %.0fs"
      % (T_SEARCH, T_VERIFY, time.time() - T0)]
+if cleaned:
+    L.append("🧹 清理 output/ghradar/ 历史文件 %d 个（只留 %s；`keep*` 前缀可跨轮保留）: %s"
+             % (len(cleaned), " / ".join(sorted(KEEP)),
+                " · ".join(cleaned[:12]) + (" …" if len(cleaned) > 12 else "")))
 if UNKNOWN:
     L.append("⚠️ 未识别 var token（会被静默忽略）: " + " · ".join(UNKNOWN))
 if failed_t:
