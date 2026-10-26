@@ -1,1 +1,222 @@
-[]
+[
+ {
+  "term": "staking",
+  "terms": [
+   "staking"
+  ],
+  "name": "Same",
+  "title": "Same Probabilities, Different Advice: Gain-Loss Framing Effects in High-Stakes LLM Decision Support",
+  "published": "2026-10-21",
+  "link": "https://arxiv.org/abs/2610.29294",
+  "carrier": "stake"
+ },
+ {
+  "term": "zero-knowledge",
+  "terms": [
+   "zero-knowledge"
+  ],
+  "name": "Dinur",
+  "title": "Zero Knowledge for Free up to Linear Query Bounds: Quasilinear-Size Constant-Query Zero-Knowledge PCPs",
+  "published": "2026-10-21",
+  "link": "https://arxiv.org/abs/2610.29066",
+  "carrier": "proof"
+ },
+ {
+  "term": "zero-knowledge",
+  "terms": [
+   "zero-knowledge"
+  ],
+  "name": "Pippenger",
+  "title": "SRE: Accelerating Zero-Knowledge Proofs via Scalar Redundancy Elimination in Multi-Scalar Multiplication",
+  "published": "2026-10-20",
+  "link": "https://arxiv.org/abs/2610.27452",
+  "carrier": "proof"
+ },
+ {
+  "term": "staking",
+  "terms": [
+   "staking"
+  ],
+  "name": "Effective-Balance",
+  "title": "Effective-Balance Design in Ethereum Proof-of-Stake",
+  "published": "2026-10-14",
+  "link": "https://arxiv.org/abs/2610.19699",
+  "carrier": "protocol"
+ },
+ {
+  "term": "auditable training",
+  "terms": [
+   "auditable training"
+  ],
+  "name": "MINT",
+  "title": "inLoRA-MINT: Internal Representations for Auditing Training Data in Domain-adapted LLMs",
+  "published": "2026-10-13",
+  "link": "https://arxiv.org/abs/2610.18051",
+  "carrier": "training"
+ },
+ {
+  "term": "staking",
+  "terms": [
+   "staking"
+  ],
+  "name": "Can",
+  "title": "Can agents whose sole duty is to keep humans alive be hijacked to kill? Delayed multi-turn derived-action trap attacks in simulated high-stakes environments",
+  "published": "2026-10-10",
+  "link": "https://arxiv.org/abs/2610.15153",
+  "carrier": "open-source"
+ },
+ {
+  "term": "zero-knowledge",
+  "terms": [
+   "zero-knowledge"
+  ],
+  "name": "Zero-Knowledge",
+  "title": "A Zero-Knowledge Signature Framework for Efficient Post-Quantum Message Authentication in Cooperative Automated Driving",
+  "published": "2026-10-08",
+  "link": "https://arxiv.org/abs/2610.11490",
+  "carrier": "proof"
+ },
+ {
+  "term": "staking",
+  "terms": [
+   "staking"
+  ],
+  "name": "LLM",
+  "title": "Why LLM Agents Favor Their Group: Stakes, Observed Norms, and Reputation",
+  "published": "2026-10-07",
+  "link": "https://arxiv.org/abs/2610.11008",
+  "carrier": "round"
+ },
+ {
+  "term": "staking",
+  "terms": [
+   "staking"
+  ],
+  "name": "Generative",
+  "title": "Generative AI translations in high-stakes emergency messaging",
+  "published": "2026-10-06",
+  "link": "https://arxiv.org/abs/2610.08601",
+  "carrier": "stake"
+ },
+ {
+  "term": "staking",
+  "terms": [
+   "staking"
+  ],
+  "name": "LLM",
+  "title": "MERCI Cards: An LLM Evaluation and Deployment Framework for High-Stakes Domains",
+  "published": "2026-10-03",
+  "link": "https://arxiv.org/abs/2610.04430",
+  "carrier": "deployed"
+ },
+ {
+  "term": "staking",
+  "terms": [
+   "staking"
+  ],
+  "name": "STAKE",
+  "title": "STAKE: Preventing a colluding majority from double spending",
+  "published": "2026-10-01",
+  "link": "https://arxiv.org/abs/2610.01169",
+  "carrier": "protocol"
+ },
+ {
+  "term": "zero-knowledge",
+  "terms": [
+   "zero-knowledge"
+  ],
+  "name": "Zero-Knowledge",
+  "title": "Zero-Knowledge Remote Adversarial Attack against Wi-Fi-based Human Activity Recognition for Privacy Protection",
+  "published": "2026-09-21",
+  "link": "https://arxiv.org/abs/2609.24173",
+  "carrier": "adversary"
+ },
+ {
+  "term": "zero-knowledge",
+  "terms": [
+   "zero-knowledge"
+  ],
+  "name": "Shor",
+  "title": "Zero-Knowledge Proofs of Quantumness",
+  "published": "2026-09-20",
+  "link": "https://arxiv.org/abs/2609.23455",
+  "carrier": "proof"
+ },
+ {
+  "term": "staking",
+  "terms": [
+   "staking"
+  ],
+  "name": "Evaluative",
+  "title": "Evaluative Dynamics of AI Integration and Expert Performance under Epistemic Dependence across Heterogeneous Stakes",
+  "published": "2026-09-19",
+  "link": "https://arxiv.org/abs/2609.23135",
+  "carrier": "stake"
+ },
+ {
+  "term": "zero-knowledge",
+  "terms": [
+   "zero-knowledge"
+  ],
+  "name": "Locus",
+  "title": "Locus: A Framework for Exploring and Optimizing Point Addition Hardware for Zero-Knowledge Proofs",
+  "published": "2026-09-16",
+  "link": "https://arxiv.org/abs/2609.18846",
+  "carrier": "proof"
+ },
+ {
+  "term": "RWA",
+  "terms": [
+   "RWA"
+  ],
+  "name": "Real-World",
+  "title": "A prelude to the theory of Real-World Asset (RWA) Tokenization",
+  "published": "2026-09-14",
+  "link": "https://arxiv.org/abs/2609.15797",
+  "carrier": "token"
+ },
+ {
+  "term": "zero-knowledge",
+  "terms": [
+   "zero-knowledge"
+  ],
+  "name": "ZK-Trace",
+  "title": "ZK-Trace: Certified Collusion Tracing with Zero-Knowledge Credentials for Federated GNSS Interference Monitoring",
+  "published": "2026-09-08",
+  "link": "https://arxiv.org/abs/2609.08763",
+  "carrier": "verification"
+ },
+ {
+  "term": "zero-knowledge",
+  "terms": [
+   "zero-knowledge"
+  ],
+  "name": "ZK-eSIM",
+  "title": "ZK-eSIM: A Privacy-Centric Zero-Knowledge Approach for eSIM Provisioning",
+  "published": "2026-09-07",
+  "link": "https://arxiv.org/abs/2609.07654",
+  "carrier": "proof"
+ },
+ {
+  "term": "staking",
+  "terms": [
+   "staking"
+  ],
+  "name": "FairLens",
+  "title": "FairLens: Benchmarking Fairness in Vision-Language Models for High-Stakes Decision-Making",
+  "published": "2026-09-01",
+  "link": "https://arxiv.org/abs/2609.01691",
+  "carrier": "stake"
+ },
+ {
+  "term": "ti:\"consensus\" AND cat:cs.DC",
+  "terms": [
+   "ti:\"consensus\" AND cat:cs.DC"
+  ],
+  "name": "Consensus",
+  "title": "Consensus with Stochastic Broadcast",
+  "published": "2026-08-27",
+  "link": "https://arxiv.org/abs/2608.27336",
+  "carrier": "broadcast"
+ }
+]

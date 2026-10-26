@@ -1,0 +1,474 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar · 60 天补历史 · 幸存 20",
+        "description": "ℹ️ arXiv 60d · 幸存 20 · staking 精度 1/9"
+      },
+      "children": [
+        "header-stack",
+        "sep-1",
+        "stats-grid",
+        "progress-precision",
+        "sep-2",
+        "zk-stack",
+        "sep-3",
+        "consensus-stack",
+        "sep-4",
+        "stake-alert",
+        "stake-stack",
+        "sep-5",
+        "other-stack",
+        "sep-6",
+        "action-stack"
+      ]
+    },
+    "header-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "h-window",
+        "t-window",
+        "t-latest"
+      ]
+    },
+    "h-window": {
+      "type": "Heading",
+      "props": {
+        "text": "arxiv-radar · 60 天补历史 · 幸存 20",
+        "level": "h2"
+      }
+    },
+    "t-window": {
+      "type": "Text",
+      "props": {
+        "text": "窗口 `2026-08-27 → 2026-10-26` · 24 词 · 原始 141 → 幸存 20（seen 吸收 120 / excl 1 / carrier 0）。",
+        "variant": "body"
+      }
+    },
+    "t-latest": {
+      "type": "Text",
+      "props": {
+        "text": "窗口内最新收录 2026-10-23。",
+        "variant": "muted"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stats-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-raw",
+        "stat-survived",
+        "stat-precision"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口天数",
+        "value": "60",
+        "delta": "2026-08-27 → 2026-10-26",
+        "trend": "neutral"
+      }
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始命中",
+        "value": "141",
+        "delta": "24 词",
+        "trend": "neutral"
+      }
+    },
+    "stat-survived": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "20",
+        "delta": "seen 吸收 120 / excl 1 / carrier 0",
+        "trend": "neutral"
+      }
+    },
+    "stat-precision": {
+      "type": "Stat",
+      "props": {
+        "label": "staking 精度",
+        "value": "1/9",
+        "delta": "11%",
+        "trend": "down"
+      }
+    },
+    "progress-precision": {
+      "type": "Progress",
+      "props": {
+        "value": 11,
+        "max": 100,
+        "label": "staking 词精度 1/9（11%）"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "zk-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "h-zk",
+        "t-zk-sub",
+        "zk-1",
+        "zk-2",
+        "zk-3",
+        "zk-4",
+        "zk-5",
+        "zk-6",
+        "zk-7",
+        "zk-8",
+        "alert-zk"
+      ]
+    },
+    "h-zk": {
+      "type": "Heading",
+      "props": {
+        "text": "零知识（8 条）—— 全部是新收，纯密码学/硬件，无链上标的",
+        "level": "h3"
+      }
+    },
+    "t-zk-sub": {
+      "type": "Text",
+      "props": {
+        "text": "全部是新收。",
+        "variant": "caption"
+      }
+    },
+    "zk-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Zero Knowledge for Free up to Linear Query Bounds：拟线性规模常数查询 ZK PCP",
+        "href": "https://arxiv.org/abs/2610.29066",
+        "source": "arXiv",
+        "score": "零知识"
+      }
+    },
+    "zk-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SRE: 多标量乘中用标量冗余消除加速 ZK 证明",
+        "href": "https://arxiv.org/abs/2610.27452",
+        "source": "arXiv",
+        "score": "零知识"
+      }
+    },
+    "zk-3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Zero-Knowledge Proofs of Quantumness",
+        "href": "https://arxiv.org/abs/2609.23455",
+        "source": "arXiv",
+        "score": "零知识"
+      }
+    },
+    "zk-4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ZK 签名框架：协作式自动驾驶里的后量子消息认证",
+        "href": "https://arxiv.org/abs/2610.11490",
+        "source": "arXiv",
+        "score": "零知识"
+      }
+    },
+    "zk-5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ZK 远程对抗攻击：针对 Wi-Fi 人体活动识别",
+        "href": "https://arxiv.org/abs/2609.24173",
+        "source": "arXiv",
+        "score": "零知识"
+      }
+    },
+    "zk-6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Locus：ZK 点加运算的硬件探索与优化框架",
+        "href": "https://arxiv.org/abs/2609.18846",
+        "source": "arXiv",
+        "score": "零知识"
+      }
+    },
+    "zk-7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ZK-Trace：联邦 GNSS 干扰监测的零知识凭证共谋溯源",
+        "href": "https://arxiv.org/abs/2609.08763",
+        "source": "arXiv",
+        "score": "零知识"
+      }
+    },
+    "zk-8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ZK-eSIM：隐私优先的 eSIM 开通方案",
+        "href": "https://arxiv.org/abs/2609.07654",
+        "source": "arXiv",
+        "score": "零知识"
+      }
+    },
+    "alert-zk": {
+      "type": "Alert",
+      "props": {
+        "title": "方向对，但离可交易标的仍远",
+        "message": "8 条里 6 条是纯原语/硬件/隐私应用，没有一条是证明市场或链上可验证计算。",
+        "type": "info"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "consensus-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "h-consensus",
+        "cons-1",
+        "cons-2",
+        "cons-3"
+      ]
+    },
+    "h-consensus": {
+      "type": "Heading",
+      "props": {
+        "text": "共识 / 质押机制（3 条）",
+        "level": "h3"
+      }
+    },
+    "cons-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Effective-Balance Design in Ethereum Proof-of-Stake",
+        "href": "https://arxiv.org/abs/2610.19699",
+        "source": "arXiv",
+        "score": "共识"
+      }
+    },
+    "cons-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "STAKE: 阻止合谋多数双花",
+        "href": "https://arxiv.org/abs/2610.01169",
+        "source": "arXiv",
+        "score": "共识"
+      }
+    },
+    "cons-3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Consensus with Stochastic Broadcast",
+        "href": "https://arxiv.org/abs/2608.27336",
+        "source": "arXiv",
+        "score": "共识"
+      }
+    },
+    "sep-4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stake-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "⚠️ 词表污染：`staking` 命中的是 high-stakes，不是质押（8 条）",
+        "message": "`ti:\"staking\"` 被词干化成 `stake*`，把这批 LLM 高风险决策论文全捞进来，9 条原始命中里 8 条与质押无关：",
+        "type": "warning"
+      }
+    },
+    "stake-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "stake-1",
+        "stake-2",
+        "stake-3",
+        "stake-4",
+        "stake-5",
+        "stake-6",
+        "stake-7"
+      ]
+    },
+    "stake-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Same Probabilities, Different Advice：高风险 LLM 决策支持中的得失框架效应",
+        "href": "https://arxiv.org/abs/2610.29294",
+        "source": "arXiv",
+        "score": "？"
+      }
+    },
+    "stake-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "只负责维持人类生命的 agent 能否被劫持成杀人：高风险仿真环境下的延迟多轮派生动作陷阱",
+        "href": "https://arxiv.org/abs/2610.15153",
+        "source": "arXiv",
+        "score": "？"
+      }
+    },
+    "stake-3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Why LLM Agents Favor Their Group：Stakes、观察到的规范与声誉",
+        "href": "https://arxiv.org/abs/2610.11008",
+        "source": "arXiv",
+        "score": "？"
+      }
+    },
+    "stake-4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "高风险应急消息中的生成式 AI 翻译",
+        "href": "https://arxiv.org/abs/2610.08601",
+        "source": "arXiv",
+        "score": "？"
+      }
+    },
+    "stake-5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "MERCI Cards：高风险领域的 LLM 评测与部署框架",
+        "href": "https://arxiv.org/abs/2610.04430",
+        "source": "arXiv",
+        "score": "？"
+      }
+    },
+    "stake-6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "AI 集成与专家绩效的评价动力学：异质 stakes 下的认知依赖",
+        "href": "https://arxiv.org/abs/2609.23135",
+        "source": "arXiv",
+        "score": "？"
+      }
+    },
+    "stake-7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "FairLens：视觉语言模型在高风险决策中的公平性基准",
+        "href": "https://arxiv.org/abs/2609.01691",
+        "source": "arXiv",
+        "score": "？"
+      }
+    },
+    "sep-5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "other-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "h-other",
+        "other-1",
+        "other-2"
+      ]
+    },
+    "h-other": {
+      "type": "Heading",
+      "props": {
+        "text": "其他（2 条）",
+        "level": "h3"
+      }
+    },
+    "other-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "inLoRA-MINT：用内部表示审计领域适配 LLM 的训练数据",
+        "href": "https://arxiv.org/abs/2610.18051",
+        "source": "arXiv",
+        "score": "？"
+      }
+    },
+    "other-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Real-World Asset (RWA) 代币化理论前导",
+        "href": "https://arxiv.org/abs/2609.15797",
+        "source": "arXiv",
+        "score": "？"
+      }
+    },
+    "sep-6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "action-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "h-action",
+        "t-action-1",
+        "t-action-2"
+      ]
+    },
+    "h-action": {
+      "type": "Heading",
+      "props": {
+        "text": "本轮要看的只有一件事",
+        "level": "h3"
+      }
+    },
+    "t-action-1": {
+      "type": "Text",
+      "props": {
+        "text": "`staking` 这个词本轮 精度 1/9（11%），污染源是词干化后的 `stakes`。按铁律动作顺序是「换写法 → 降级 → 删词」：下轮用 `check:\"proof-of-stake\"` 与 `check:\"liquid staking\"` 量两个口径，不看就直接改是跳级。",
+        "variant": "body"
+      }
+    },
+    "t-action-2": {
+      "type": "Text",
+      "props": {
+        "text": "其余：`zero-knowledge` 20 原始 / 8 新收，是本轮唯一稳定产出的真方向；加密侧其余词仍无链上标的级命中。",
+        "variant": "muted"
+      }
+    }
+  }
+}
