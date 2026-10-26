@@ -18,6 +18,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一条方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
 - `arxiv-radar` ✅ 每天 07:30 UTC · 20 机制词 · 已修两轮 carrier 误杀。`github-radar` 手动跑 · 18 词 · 第十六轮。
+- **github-radar 第十七轮判据（2026-10-26）**：**carrier 误杀率首次有同口径对照组 → 50% vs 50%，无差异，不放宽**（丢弃侧 74/149 存活 · 幸存者对照 12/24），第十六轮「误杀率偏高」的 12 样本粗估作废。**新回归：自适应开窗（17 整窗 + 1 拆窗，`WIN_SPLIT_TOTAL=1000`）让 `sim2real` 52.7% / `restaking` 83.3% 首次跌破 95%，但手工复量 `sim2real` 两页并集正好 163 = total，不是 GitHub 封顶，差额来自整窗 `total_count` 与实际 `items` 不符。** 单样本先不改代码。probe 第三判据（`thematic`）首轮全额生效，`uniview`/`senku`/`pouw`/`eidolon`/`physguard` 全被挡下，0 个真簇。
 - **github-radar 第十六轮判据（2026-10-26）**：`dropped.json` 上线，carrier/short_desc 首次全量落仓名 —— 「每条丢弃规则可审计」补齐。**carrier 丢的 886 个里 190 个（21.4%）仓名自带 `world-model`、177 owner，抽样 12 个有 9 个近 7 天在推** → carrier 在「活着且明确叫世界模型」的仓上误杀率高，但**别据此放宽，先按 owner 去重全量核 7d 再对照**。同窗口 dry-run 复跑 = 原样重放（4004/49/10，与上轮逐项相同），**不含新信号，勿当增量引用**。
 - **probe 判据再退一步（第三修正）：`total` 小、`cohesive` 都不充分，还需「主题词落在我们词表语义内」。** 本轮 3 个 cohesive 簇全假：`senku` 主题词只有 `with`×11（**连接词不在 `STOPWORDS`**）、`uniview` 是海康大华 NVR、`pouw` 撞荷兰语「货运」。→ 两处可修：`STOPWORDS` 补高频虚词、probe 加第三判据。第十五轮的 `PhysGuard` 悬念已关：老仓 `ZhouChaunge` pushed 2026-05-05 停摆，**非占名**。
 - 前轮判据：**第十五轮翻页修好，幸存 4→49（12.3×）**，页数改 `min(10, ceil(total/100))`，60 天窗现优于 30 天窗，carrier 改 `desc ∪ topics`。probe 历史种子池只取最近 200 条（`PROBE_HIST_CAP`），candidates 已 335 行 → 老仓反复当种子。

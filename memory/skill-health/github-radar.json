@@ -1,10 +1,10 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-26T07:55:24Z",
-  "quality_score": 4,
-  "assessment": "Dry-run probe round is rigorous and self-correcting: quantification of carrier false-kill rate (190/886, 21.4%) with an explicit 'not a rate' caveat, third revision of the probe criterion backed by concrete counterexamples, prior-round PhysGuard question closed, full funnel counts and source files cited; held back from 5 by producing no judgment on the 10 report-level repos and by being an intra-window replay with no new signal, so it informs the scanner more than it supports a decision.",
+  "last_analyzed": "2026-10-26T10:13:31Z",
+  "quality_score": 3,
+  "assessment": "内部算术自洽（丢弃项合计3767+幸存51=原始3818）且坦诚标注复跑重复、star失效、超预算，显示是真实运行；50%/50%对照组推翻上一轮误杀率估计是有价值的实证发现。但报告绝大部分篇幅用于扫描器自身的过滤器/覆盖率调参（carrier、sim2real、probe判据），对11个报告级仓库只给名称与一行描述、无信号解读或可执行动作，与操作策略「看完就能决定、避免长文、服务DEUS仓位」的取向契合度弱，push式价值低。",
   "flags": [],
-  "avg_score": 3.56,
+  "avg_score": 3.53,
   "history": [
     {
       "date": "2026-10-25",
@@ -100,6 +100,12 @@
       "date": "2026-10-26",
       "score": 4,
       "ts": "2026-10-26T07:55:24Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 3,
+      "ts": "2026-10-26T10:13:31Z",
       "harness": "claude"
     }
   ]
