@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-26T07:40:00.246478426Z",
+  "generatedAt": "2026-10-26T07:43:12.845223939Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -711,11 +711,11 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "5cad73b357d1b4c04aa679fc12dec24dfd158ce616648dc42bed5b410e2ee9a4"
+          "hash": "fde7e7bdada826d0f7401d9aed32b9288ac5dcc9e626b0fe4e2d1ab77aaa1302"
         },
         {
           "path": "scan.py",
-          "hash": "011220542beff03edf377dee087705b09258fc68c1eb63f3df3fd00891082693"
+          "hash": "8071aff5eb0f494497ef737ccd48bf4c19f514e220e27c5d55e8a9020317f741"
         }
       ],
       "findings": [
@@ -724,7 +724,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 26,
+          "line": 27,
           "snippet": "import json, os, re, subprocess, sys, threading, time",
           "explanation": "uses a process-execution primitive"
         },
@@ -733,7 +733,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 202,
+          "line": 209,
           "snippet": "r = subprocess.run([\"gh\", \"api\", path], capture_output=True,",
           "explanation": "uses a process-execution primitive"
         },
@@ -742,12 +742,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 702,
+          "line": 763,
           "snippet": "r = subprocess.run([\"./notify\", \"-f\", REPORT], capture_output=True, text=True)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-f9a653a6cfe861bce36295048052fe61a284b9a4a9900bd622ad377d59d9051a",
+      "contentHash": "sha256-90c952eb46da2d297a53241b09361c7fd45f13d091b641a2688147f6966d77ee",
       "discoveredFrom": "skills/github-radar/SKILL.md"
     },
     {
