@@ -129,3 +129,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-10-26,memory-flush,claude-opus-5-5,577104,63598,13902720,0
 2026-10-26,github-radar,claude-opus-5-5,95108,98968,9715200,0
 2026-10-26,github-radar,claude-opus-5-5,216166,51085,2553088,0
+2026-10-26,github-radar,claude-opus-5-5,95635,54364,2289408,0

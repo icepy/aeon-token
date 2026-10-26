@@ -1,0 +1,376 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 30 天 · 报告级 32 · 7d 活跃 13"
+      },
+      "children": [
+        "main"
+      ]
+    },
+    "main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "stats",
+        "sep1",
+        "list"
+      ]
+    },
+    "stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "st1",
+        "st2",
+        "st3"
+      ]
+    },
+    "st1": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      }
+    },
+    "st2": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "32"
+      }
+    },
+    "st3": {
+      "type": "Stat",
+      "props": {
+        "label": "7d 活跃",
+        "value": "13"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8",
+        "r9",
+        "r10",
+        "r11",
+        "r12",
+        "r13",
+        "r14",
+        "r15",
+        "r16",
+        "r17",
+        "r18",
+        "r19",
+        "r20",
+        "r21",
+        "r22",
+        "r23",
+        "r24",
+        "r25",
+        "r26",
+        "r27",
+        "r28",
+        "r29",
+        "r30"
+      ]
+    },
+    "r1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Hostileoracle0606/motion-lab",
+        "href": "https://github.com/Hostileoracle0606/motion-lab",
+        "source": "world model",
+        "score": "★0 · 30d=47 7d=43"
+      }
+    },
+    "r2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "shangchaohu718/supermimic-pera",
+        "href": "https://github.com/shangchaohu718/supermimic-pera",
+        "source": "world model",
+        "score": "★0 · 30d=19 7d=19"
+      }
+    },
+    "r3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "eshaan2418/Recall",
+        "href": "https://github.com/eshaan2418/Recall",
+        "source": "egocentric",
+        "score": "★0 · 30d=19 7d=19"
+      }
+    },
+    "r4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Kushaan-N/SyncSim",
+        "href": "https://github.com/Kushaan-N/SyncSim",
+        "source": "world model",
+        "score": "★0 · 30d=81 7d=18"
+      }
+    },
+    "r5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ZaidKamil1574/Robot-Teleoperation",
+        "href": "https://github.com/ZaidKamil1574/Robot-Teleoperation",
+        "source": "teleoperation",
+        "score": "★0 · 30d=16 7d=16"
+      }
+    },
+    "r6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "sirosiro/SpaceGuidance-FBB",
+        "href": "https://github.com/sirosiro/SpaceGuidance-FBB",
+        "source": "sim-to-real",
+        "score": "★1 · 30d=41 7d=9"
+      }
+    },
+    "r7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SetsunaFSeiei21/Circuit-OP-JEPA",
+        "href": "https://github.com/SetsunaFSeiei21/Circuit-OP-JEPA",
+        "source": "jepa",
+        "score": "★0 · 30d=9 7d=9"
+      }
+    },
+    "r8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Hchnr/s2a",
+        "href": "https://github.com/Hchnr/s2a",
+        "source": "world model",
+        "score": "★0 · 30d=11 7d=8"
+      }
+    },
+    "r9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Wade-Owo/Rob_Capstone",
+        "href": "https://github.com/Wade-Owo/Rob_Capstone",
+        "source": "world model",
+        "score": "★0 · 30d=9 7d=5"
+      }
+    },
+    "r10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EVE-World/EVEWorld",
+        "href": "https://github.com/EVE-World/EVEWorld",
+        "source": "world model",
+        "score": "★0 · 30d=49 7d=4"
+      }
+    },
+    "r11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "huangkiki/huangkiki",
+        "href": "https://github.com/huangkiki/huangkiki",
+        "source": "world model",
+        "score": "★0 · 30d=5 7d=4"
+      }
+    },
+    "r12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "mayuelala/EgoACT",
+        "href": "https://github.com/mayuelala/EgoACT",
+        "source": "egocentric",
+        "score": "★7 · 30d=11 7d=1"
+      }
+    },
+    "r13": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ideal-sisyphus/embodied-ai-learning",
+        "href": "https://github.com/ideal-sisyphus/embodied-ai-learning",
+        "source": "world model",
+        "score": "★0 · 30d=8 7d=1"
+      }
+    },
+    "r14": {
+      "type": "StoryLink",
+      "props": {
+        "title": "PreshenNaidoo/applied-pytorch-bootcamp",
+        "href": "https://github.com/PreshenNaidoo/applied-pytorch-bootcamp",
+        "source": "world model",
+        "score": "★0 · 30d=≥100 7d=0 [爆完即停]"
+      }
+    },
+    "r15": {
+      "type": "StoryLink",
+      "props": {
+        "title": "behappya/EVEWorld",
+        "href": "https://github.com/behappya/EVEWorld",
+        "source": "world model",
+        "score": "★0 · 30d=47 7d=0 [爆完即停]"
+      }
+    },
+    "r16": {
+      "type": "StoryLink",
+      "props": {
+        "title": "mh4970121/Action-Certified-Entropic-Geometric-Planning-ACEGP-",
+        "href": "https://github.com/mh4970121/Action-Certified-Entropic-Geometric-Planning-ACEGP-",
+        "source": "world model",
+        "score": "★0 · 30d=26 7d=0 [爆完即停]"
+      }
+    },
+    "r17": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Katherine624/Paper_Reproduction",
+        "href": "https://github.com/Katherine624/Paper_Reproduction",
+        "source": "world model",
+        "score": "★0 · 30d=18 7d=0 [爆完即停]"
+      }
+    },
+    "r18": {
+      "type": "StoryLink",
+      "props": {
+        "title": "kushagrathisside/VLAFinetuningExperiments",
+        "href": "https://github.com/kushagrathisside/VLAFinetuningExperiments",
+        "source": "vision language action",
+        "score": "★0 · 30d=14 7d=0 [爆完即停]"
+      }
+    },
+    "r19": {
+      "type": "StoryLink",
+      "props": {
+        "title": "CLMI-Lab/halt.cc",
+        "href": "https://github.com/CLMI-Lab/halt.cc",
+        "source": "world model",
+        "score": "★0 · 30d=11 7d=0 [爆完即停]"
+      }
+    },
+    "r20": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Kentpun/Imagine-then-Act",
+        "href": "https://github.com/Kentpun/Imagine-then-Act",
+        "source": "world model",
+        "score": "★0 · 30d=10 7d=0 [爆完即停]"
+      }
+    },
+    "r21": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Azhu9701/aiman-personal-world",
+        "href": "https://github.com/Azhu9701/aiman-personal-world",
+        "source": "world model",
+        "score": "★0 · 30d=10 7d=0 [爆完即停]"
+      }
+    },
+    "r22": {
+      "type": "StoryLink",
+      "props": {
+        "title": "carlo-scr/RobotPluggingSim",
+        "href": "https://github.com/carlo-scr/RobotPluggingSim",
+        "source": "world model",
+        "score": "★0 · 30d=9 7d=0 [爆完即停]"
+      }
+    },
+    "r23": {
+      "type": "StoryLink",
+      "props": {
+        "title": "mkturkcan/matrix-new-york",
+        "href": "https://github.com/mkturkcan/matrix-new-york",
+        "source": "world model",
+        "score": "★0 · 30d=9 7d=0 [爆完即停]"
+      }
+    },
+    "r24": {
+      "type": "StoryLink",
+      "props": {
+        "title": "seungjoolee24/krafton-q3-video-worldmodel",
+        "href": "https://github.com/seungjoolee24/krafton-q3-video-worldmodel",
+        "source": "world model",
+        "score": "★0 · 30d=8 7d=0 [爆完即停]"
+      }
+    },
+    "r25": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Nakadai-Lab/hands",
+        "href": "https://github.com/Nakadai-Lab/hands",
+        "source": "teleoperation",
+        "score": "★1 · 30d=7 7d=0 [爆完即停]"
+      }
+    },
+    "r26": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Nikhildusa07/AEGIS-Autonomous-Multimodal-World-Understanding",
+        "href": "https://github.com/Nikhildusa07/AEGIS-Autonomous-Multimodal-World-Understanding",
+        "source": "world model",
+        "score": "★0 · 30d=7 7d=0 [爆完即停]"
+      }
+    },
+    "r27": {
+      "type": "StoryLink",
+      "props": {
+        "title": "YG3-ai/yg3-agent-garden",
+        "href": "https://github.com/YG3-ai/yg3-agent-garden",
+        "source": "world model",
+        "score": "★0 · 30d=6 7d=0 [爆完即停]"
+      }
+    },
+    "r28": {
+      "type": "StoryLink",
+      "props": {
+        "title": "laharyyteja9-dot/SIH-VIGNAX",
+        "href": "https://github.com/laharyyteja9-dot/SIH-VIGNAX",
+        "source": "world model",
+        "score": "★0 · 30d=6 7d=0 [爆完即停]"
+      }
+    },
+    "r29": {
+      "type": "StoryLink",
+      "props": {
+        "title": "kevinc-lab/Structured-Latent-Dynamics",
+        "href": "https://github.com/kevinc-lab/Structured-Latent-Dynamics",
+        "source": "world model",
+        "score": "★0 · 30d=5 7d=0 [爆完即停]"
+      }
+    },
+    "r30": {
+      "type": "StoryLink",
+      "props": {
+        "title": "silvermew/hand-to-robot-cube",
+        "href": "https://github.com/silvermew/hand-to-robot-cube",
+        "source": "world model",
+        "score": "★0 · 30d=5 7d=0 [爆完即停]"
+      }
+    }
+  }
+}

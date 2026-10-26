@@ -1,0 +1,396 @@
+[
+ {
+  "token": "capstone",
+  "total": 11036,
+  "owners": 97,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "princeodoh566/code-16",
+    "stars": 8,
+    "commits_30d": 86,
+    "commits_7d": 24
+   },
+   {
+    "repo": "guolola/SoftJL",
+    "stars": 113,
+    "commits_30d": 26,
+    "commits_7d": 15
+   },
+   {
+    "repo": "Edith-Anurika-Monday1/planet-explorer-capstone-project_TS-hajime-group-15",
+    "stars": 6,
+    "commits_30d": 31,
+    "commits_7d": 13
+   },
+   {
+    "repo": "JiamingShi-JsPhys/capstone-labmate",
+    "stars": 4,
+    "commits_30d": 10,
+    "commits_7d": 10
+   },
+   {
+    "repo": "dejibimbolaAyo/das-2026-capstone-project",
+    "stars": 18,
+    "commits_30d": 10,
+    "commits_7d": 4
+   },
+   {
+    "repo": "athallah280208/spatial-geochemical-data-mining-ngdb",
+    "stars": 6,
+    "commits_30d": 18,
+    "commits_7d": 2
+   },
+   {
+    "repo": "BeeJa01/hirelume",
+    "stars": 4,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "WAYWO-capstone/WAYWO",
+    "stars": 4,
+    "commits_30d": 13,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "recall",
+  "total": 3291,
+  "owners": 94,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "hsuanshao/AgentMemory",
+    "stars": 38,
+    "commits_30d": 67,
+    "commits_7d": 59
+   },
+   {
+    "repo": "Cashara-io/eunomia",
+    "stars": 14,
+    "commits_30d": 100,
+    "commits_7d": 51
+   },
+   {
+    "repo": "dagoSte/squadra",
+    "stars": 580,
+    "commits_30d": 100,
+    "commits_7d": 23
+   },
+   {
+    "repo": "Rekabytes-Enterprise/omni-graph",
+    "stars": 27,
+    "commits_30d": 21,
+    "commits_7d": 20
+   },
+   {
+    "repo": "lastreload/mnemonic-proxy",
+    "stars": 23,
+    "commits_30d": 72,
+    "commits_7d": 9
+   },
+   {
+    "repo": "AsherJN/recall",
+    "stars": 325,
+    "commits_30d": 22,
+    "commits_7d": 9
+   },
+   {
+    "repo": "KarmenLoop/user-behavior-personalization",
+    "stars": 21,
+    "commits_30d": 9,
+    "commits_7d": 8
+   },
+   {
+    "repo": "turlockmike/deep-recall",
+    "stars": 12,
+    "commits_30d": 41,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "motion",
+  "total": 11009,
+  "owners": 93,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "storytold/effectcraft",
+    "stars": 7905,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "HayatoG/iss_pc",
+    "stars": 906,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "alchaincyf/huashu-motion",
+    "stars": 1685,
+    "commits_30d": 15,
+    "commits_7d": 13
+   },
+   {
+    "repo": "feitangyuan/onetake",
+    "stars": 3261,
+    "commits_30d": 20,
+    "commits_7d": 3
+   },
+   {
+    "repo": "showheyohtaki/motion-prompt",
+    "stars": 704,
+    "commits_30d": 10,
+    "commits_7d": 3
+   },
+   {
+    "repo": "Leonxlnx/cinetic",
+    "stars": 873,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "howseen-ai/claude-motion-design",
+    "stars": 684,
+    "commits_30d": 32,
+    "commits_7d": 0
+   },
+   {
+    "repo": "alchaincyf/huashu-art-motion",
+    "stars": 5212,
+    "commits_30d": 22,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "circuit",
+  "total": 4983,
+  "owners": 69,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "idlefoundry/ca-72",
+    "stars": 170,
+    "commits_30d": 100,
+    "commits_7d": 31
+   },
+   {
+    "repo": "Ghillermo/CIRCUIT-HACKS-RC",
+    "stars": 55,
+    "commits_30d": 42,
+    "commits_7d": 13
+   },
+   {
+    "repo": "richiewillmott/Wirely",
+    "stars": 24,
+    "commits_30d": 12,
+    "commits_7d": 12
+   },
+   {
+    "repo": "BookkeeperIncrease/minecraft-redstone-planner-desktop",
+    "stars": 17,
+    "commits_30d": 5,
+    "commits_7d": 5
+   },
+   {
+    "repo": "KwantaeKim/cirfig_gen",
+    "stars": 38,
+    "commits_30d": 9,
+    "commits_7d": 3
+   },
+   {
+    "repo": "Sturmi77/heatpump-hydraulic-card",
+    "stars": 16,
+    "commits_30d": 84,
+    "commits_7d": null
+   },
+   {
+    "repo": "yaoyuxiang-gnn/agent-guard",
+    "stars": 21,
+    "commits_30d": 34,
+    "commits_7d": 0
+   },
+   {
+    "repo": "Garinmckayl/anima",
+    "stars": 247,
+    "commits_30d": 21,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "jepa",
+  "total": 372,
+  "owners": 94,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "zhuxun132/InJepa",
+    "stars": 50,
+    "commits_30d": 10,
+    "commits_7d": 3
+   },
+   {
+    "repo": "HaoranZhuExplorer/AD-E2E-JEPA",
+    "stars": 69,
+    "commits_30d": 6,
+    "commits_7d": 3
+   },
+   {
+    "repo": "khelverskovp/atom-jepa",
+    "stars": 12,
+    "commits_30d": 15,
+    "commits_7d": 0
+   },
+   {
+    "repo": "Tanpig-X/PDE-JEPA",
+    "stars": 12,
+    "commits_30d": 12,
+    "commits_7d": 0
+   },
+   {
+    "repo": "kevinghst/H-JEPA",
+    "stars": 192,
+    "commits_30d": 10,
+    "commits_7d": 0
+   },
+   {
+    "repo": "OliverZ-dot/TI-JEPA",
+    "stars": 5,
+    "commits_30d": 9,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "teleoperation",
+  "total": 220,
+  "owners": 88,
+  "not_in_out": 97,
+  "hot": [
+   {
+    "repo": "Gamma-Robot/NEXUS",
+    "stars": 11,
+    "commits_30d": 8,
+    "commits_7d": 8
+   },
+   {
+    "repo": "moumde/robot_learning_workbench",
+    "stars": 2,
+    "commits_30d": 18,
+    "commits_7d": 3
+   },
+   {
+    "repo": "Roboparty/P-BFM",
+    "stars": 98,
+    "commits_30d": 10,
+    "commits_7d": 3
+   },
+   {
+    "repo": "dtecx/trashdrop",
+    "stars": 2,
+    "commits_30d": 86,
+    "commits_7d": 0
+   },
+   {
+    "repo": "QinnyuLan/SONIC_unitree_h2",
+    "stars": 38,
+    "commits_30d": 35,
+    "commits_7d": 0
+   },
+   {
+    "repo": "MoallaMelek/GhostHands",
+    "stars": 2,
+    "commits_30d": 8,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "supermimic",
+  "total": 55,
+  "owners": 55,
+  "not_in_out": 53,
+  "hot": [
+   {
+    "repo": "Motphys/Uni-SuperMimic",
+    "stars": 139,
+    "commits_30d": 22,
+    "commits_7d": 22
+   },
+   {
+    "repo": "btx0424/rethinking-supermimic",
+    "stars": 23,
+    "commits_30d": 15,
+    "commits_7d": 15
+   },
+   {
+    "repo": "Renforce-Dynamics/trackerlab-supermimic",
+    "stars": 9,
+    "commits_30d": 10,
+    "commits_7d": 10
+   },
+   {
+    "repo": "YanYuan98/Supermimic_mod",
+    "stars": 8,
+    "commits_30d": 9,
+    "commits_7d": 9
+   },
+   {
+    "repo": "CuboiLeo/SuperMimic-Reproduced",
+    "stars": 231,
+    "commits_30d": 5,
+    "commits_7d": 5
+   },
+   {
+    "repo": "panhainan2020/SuperMimic-MuJoCo",
+    "stars": 12,
+    "commits_30d": 5,
+    "commits_7d": 5
+   }
+  ]
+ },
+ {
+  "token": "pera",
+  "total": 679,
+  "owners": 95,
+  "not_in_out": 99,
+  "hot": [
+   {
+    "repo": "Vertias3u/Peras",
+    "stars": 4,
+    "commits_30d": 17,
+    "commits_7d": 3
+   },
+   {
+    "repo": "perawallet/use-wallet-pera",
+    "stars": 1,
+    "commits_30d": 8,
+    "commits_7d": 1
+   },
+   {
+    "repo": "tai-kun/pera1",
+    "stars": 1,
+    "commits_30d": 78,
+    "commits_7d": 0
+   },
+   {
+    "repo": "Peragus01/PeragusSVM",
+    "stars": 1,
+    "commits_30d": 42,
+    "commits_7d": 0
+   },
+   {
+    "repo": "Ember452/peracta",
+    "stars": 1,
+    "commits_30d": 13,
+    "commits_7d": 0
+   }
+  ]
+ }
+]

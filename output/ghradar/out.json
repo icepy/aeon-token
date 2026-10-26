@@ -312,23 +312,6 @@
   "terms": [
    "world model"
   ],
-  "repo": "syaok1/wm-outcome-pilot",
-  "owner": "syaok1",
-  "url": "https://github.com/syaok1/wm-outcome-pilot",
-  "stars": 0,
-  "created": "2026-10-22",
-  "topics": [],
-  "size_kb": 123,
-  "language": "HTML",
-  "desc": "Bilingual research progress on robot action outcome prediction with world models.",
-  "commits_30d": 5,
-  "commits_7d": 5
- },
- {
-  "term": "world model",
-  "terms": [
-   "world model"
-  ],
   "repo": "UnendlessGit/WorldTrainer",
   "owner": "UnendlessGit",
   "url": "https://github.com/UnendlessGit/WorldTrainer",
@@ -426,7 +409,7 @@
   "language": "Python",
   "desc": "S2A converts desired states and state changes predicted by world models into robot control commands.",
   "commits_30d": 11,
-  "commits_7d": 9
+  "commits_7d": 8
  },
  {
   "term": "world model",
@@ -593,24 +576,6 @@
   "terms": [
    "world model"
   ],
-  "repo": "qingh097/lacwm-project",
-  "owner": "qingh097",
-  "url": "https://github.com/qingh097/lacwm-project",
-  "stars": 0,
-  "created": "2026-10-07",
-  "topics": [],
-  "size_kb": 1702,
-  "language": "HTML",
-  "desc": "Project website for Cross-Embodiment Robot Foundation World Models with Latent Actions",
-  "commits_30d": 2,
-  "commits_7d": 0,
-  "burst_only": true
- },
- {
-  "term": "world model",
-  "terms": [
-   "world model"
-  ],
   "repo": "huangkiki/huangkiki",
   "owner": "huangkiki",
   "url": "https://github.com/huangkiki/huangkiki",
@@ -623,23 +588,6 @@
   "commits_30d": 5,
   "commits_7d": 4,
   "no_lang": true
- },
- {
-  "term": "world model",
-  "terms": [
-   "world model"
-  ],
-  "repo": "KAI030113/safedojo",
-  "owner": "KAI030113",
-  "url": "https://github.com/KAI030113/safedojo",
-  "stars": 0,
-  "created": "2026-10-08",
-  "topics": [],
-  "size_kb": 39278,
-  "language": "HTML",
-  "desc": "SafeDojo: Safe Reinforcement Learning for VLA via Interactive World Model — CoRL 2026 project website",
-  "commits_30d": 14,
-  "commits_7d": 4
  },
  {
   "term": "world model",
@@ -711,24 +659,6 @@
   "desc": "Bimanual world-model training data on RoboTwin 2.0: randomized multi-view cameras, visual calibration, and counterfactual rollouts.",
   "commits_30d": 81,
   "commits_7d": 18
- },
- {
-  "term": "world model",
-  "terms": [
-   "world model"
-  ],
-  "repo": "fffstrong/Grounded-Dreamer",
-  "owner": "fffstrong",
-  "url": "https://github.com/fffstrong/Grounded-Dreamer",
-  "stars": 0,
-  "created": "2026-10-09",
-  "topics": [],
-  "size_kb": 8348,
-  "language": "HTML",
-  "desc": "Project website for Grounded-Dreamer: Robot Learning from World Model Synthetic Data with Physical Grounding. Research code coming soon.",
-  "commits_30d": 2,
-  "commits_7d": 0,
-  "burst_only": true
  },
  {
   "term": "world model",
@@ -964,24 +894,6 @@
   "language": "Python",
   "desc": "Confined Coupling and Conformal Action Certificates for Latent World Models",
   "commits_30d": 26,
-  "commits_7d": 0,
-  "burst_only": true
- },
- {
-  "term": "world model",
-  "terms": [
-   "world model"
-  ],
-  "repo": "BasisResearch/empiric",
-  "owner": "BasisResearch",
-  "url": "https://github.com/BasisResearch/empiric",
-  "stars": 0,
-  "created": "2026-09-30",
-  "topics": [],
-  "size_kb": 115546,
-  "language": "HTML",
-  "desc": "Project page for EMPIRIC: Experiment-Driven Learning of Residual World Models for Robot Planning",
-  "commits_30d": 25,
   "commits_7d": 0,
   "burst_only": true
  },

@@ -1,14 +1,61 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 十一轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、seen 基线有效性）
+description: github-radar 十二轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、seen 基线有效性、probe token 泛化）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-26T09:30:00Z
+timestamp: 2026-10-26T13:10:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十一轮（2026-10-26）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十二轮（2026-10-26）实证。
+
+## 第十二轮（2026-10-26，30 天窗，probe，首次非 dry-run）—— pages 根规则终进代码；probe 的 token 泛化是设计缺陷
+
+本轮 `var=days:30 probe`，与第十一轮完全同窗口同参数，唯一差别是非 dry-run。原始 2,236 → 幸存 **65** → 报告级 **32**，核验全量 65/65，耗时 284s。
+
+### 28. 🟢 重叠 65 / 新增 0 / 掉出 5 —— 差集被 pages 根规则一条吃干净
+
+与第十一轮快照求差：**新增 0**（同窗口 + seen 已含第十一轮 dry-run 的 70，这是预期结果，不是「没信号」）。掉出的 5 个：
+
+`BasisResearch/empiric` · `KAI030113/safedojo` · `fffstrong/Grounded-Dreamer` · `qingh097/lacwm-project` · `syaok1/wm-outcome-pilot`
+
+**五个全是第十轮人工发现、第十一轮第二次复现的纯静态站**（`index.html` + `.nojekyll` + 无代码骨架）。**判据从「人工记录」变成「代码执行」的这一刻，正好可以量它值多少：5/70 = 7.1% 的报告级被一个可知的规则污染了三轮。** 这是本项目里「已写出的判据不进代码 = 每轮持续损失」的第一次可量化证据。
+
+### 29. 🔴 probe 的 token 选取只过 STOPWORDS，不要求「是专名」—— 7 个 token 里 5 个是纯噪声
+
+probe 从报告级 top-10 的仓库名切 token，唯一过滤是 `len>=4` + `STOPWORDS` + 非数字。本轮回查 7 个：
+
+| token | total | owners | 未在幸存者 | 真簇？ |
+|---|---|---|---|---|
+| `supermimic` | 55 | 55 | **53** | ✅ 真簇 |
+| `jepa` | 372 | 94 | 100 | ✅ 真簇 |
+| `capstone` | 11,036 | 97 | 100 | ❌ 课程作业词 |
+| `motion` | 11,009 | 93 | 100 | ❌ 通用词 |
+| `circuit` | 4,983 | 69 | 100 | ❌ 通用词（含红石/电路板） |
+| `recall` | 3,291 | 94 | 100 | ❌ 通用词 |
+| `pera` | 679 | 95 | 99 | ❌ 人名/钱包名 |
+
+**判据：探「词表外的新专名」时，`owners>=3` 完全不构成证据 —— 一个通用词天然有几千个 owner。** 有效的过滤轴是**词表的反面**：token 必须无法用日常词义解释。可自动化的近似：`total` 要小（专名在 60 天窗口内通常 <300），或 token 不含通用学科/课程词。**本轮 5 个噪声 token 共浪费 5 次 search + 20 次 commits 调用，占 probe 预算 70%。**
+
+### 30. 🔴 409 空仓仍会触发全局认证降级 —— 第四轮复现，代码未修
+
+脚本 stderr 打出 `! gh api 放弃: gh: Git Repository is empty. (HTTP 409)`，随后整轮降级到未认证 urllib，审计写「gh 认证已丢失，完整性存疑」。
+
+用 `gh api` 对 32 个报告级逐仓重放：**30/32 的 30d 与 7d 逐字相同**，2 个 7d 差 1–7 笔（`Hchnr/s2a` 8→9、`Kushaan-N/SyncSim` 18→25）—— 是重放时间晚于首跑的时间差，不是降级造成的错误。**结论：本轮数据可用，但「完整性存疑」这个告警是假警报，根因仍是 MEMORY 里那条「单个 409 不能触发降级」没落地。**
+
+### 31. ⚠️ 报告级的两处根目录形态漏洞（第三条判据）
+
+| 仓库 | size | language | 根目录 | 应判 |
+|---|---|---|---|---|
+| `kevinc-lab/Structured-Latent-Dynamics` | 32,659 KB | HTML | `.gitignore` / `assets` / `index.html` | 项目页 |
+| `huangkiki/huangkiki` | 1,427 KB | None | `README.md` / `assets` | 个人主页 |
+
+两者都不带页后缀、也不是同名仓（短名 ≠ owner），所以现有两条规则全部漏网。**待加：`index.html` 存在且根目录无代码骨架 → 页（不要求 `.nojekyll`）。** 注意 `kevinc-lab` 的 desc 明写「Project page for …」，description 也可作为弱判据。
+
+### 32. 🟡 `REPORT_COMMITS=5` 在同一支上已区分不出「在写代码」与「做作业」
+
+`world model` 一支占报告级 25/32 = 78%。其中持续以 5–100 提交进报告级的是学习/作业仓：`PreshenNaidoo/applied-pytorch-bootcamp`（≥100/0）、`Katherine624/Paper_Reproduction`（18/0）、`ideal-sisyphus/embodied-ai-learning`（8/1）、`silvermew/hand-to-robot-cube`（5/0）。**爆完即停 19/32 = 59.4%，四轮稳定在 55–60%（55.2 / 57.1 / 59.7 / 59.4）。** 这个常数说明「30d 有量」本身不是信号；门槛该加的第二维是「7d 仍在动」，而不是提高 30d 阈值。
 
 ## 第十一轮（2026-10-26，30 天窗，dry-run）—— 首个 30 天基线；窗口本身就是「新增」的制造机
 

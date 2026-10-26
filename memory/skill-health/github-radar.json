@@ -1,10 +1,12 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-26T05:10:37Z",
+  "last_analyzed": "2026-10-26T05:31:25Z",
   "quality_score": 3,
-  "assessment": "完整跑通并给出真实判据（窗口算术伪增量、star 失效、57.1% 爆完即停），但严重违背 operator 的「不要长文/看完就能决定」与「必须带原始来源」两条硬约束：35 行大表无任何 API/commit 出处、与 DEUS 仓位动作无可执行关联，且自曝工具调用超预算 4.8×。",
-  "flags": [],
-  "avg_score": 3.45,
+  "assessment": "Structured, substantive scan with real activity metrics and a useful '爆完即停' burst-vs-sustained distinction, but it is an undifferentiated repo dump: no relevance ranking rationale, no synthesis, truncated descriptions, one malformed metric (30d=≥100), and no tie-back to the operator's action-oriented priorities.",
+  "flags": [
+    "generic_content"
+  ],
+  "avg_score": 3.42,
   "history": [
     {
       "date": "2026-10-25",
@@ -70,6 +72,12 @@
       "date": "2026-10-26",
       "score": 3,
       "ts": "2026-10-26T05:10:37Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 3,
+      "ts": "2026-10-26T05:31:25Z",
       "harness": "claude"
     }
   ]
