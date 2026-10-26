@@ -1,8 +1,8 @@
-扫 24 词 | 窗口 [202610190731 TO 202610260731] | 原始 8 | 幸存 0 | var=''
+扫 24 词 | 窗口 [202610191016 TO 202610261016] | 原始 8 | 幸存 0 | var='dry-run days:7'
 丢弃 seen=6 excl=0 carrier=2 fail=0
 词表四分类 —— 查询失败 0 / 真零 19 / 全已见(饱和) 5 / 有新增 0
 窗口内最新收录日期: 2026-10-22   ← 比今天早 3 天以上即索引滞后，不是零命中
-耗时 78s
+耗时 79s
 ⚠️ 真零命中（total=0，可考虑删词）: proof-of-useful-work · verifiable inference · light client · proof of training · proof of learning · verifiable training · auditable training · data availability sampling · restaking · automated market maker · consensus protocol · cat:cs.CR AND ti:"MEV" · liquid staking · embodied data · robot manipulation data · embodied AI · ti:"human data" AND cat:cs.RO · ti:"data generation" AND cat:cs.RO · ti:"Robinhood Chain"
 ℹ️ 全已见（饱和，**别删**）: robot data(raw=1) · zero-knowledge(raw=3) · ti:"data engine" AND cat:cs.RO(raw=1) · ti:"egocentric" AND cat:cs.RO(raw=2) · ti:"EIP-1559"(raw=1)
 词表原始/新收: zero-knowledge=3/0 · ti:"egocentric" AND cat:cs.RO=2/0 · robot data=1/0 · ti:"data engine" AND cat:cs.RO=1/0 · ti:"EIP-1559"=1/0

@@ -1,10 +1,10 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-26T07:33:47Z",
+  "last_analyzed": "2026-10-26T10:18:32Z",
   "quality_score": 4,
-  "assessment": "干净的零命中复跑：数字自洽（8-6-2=0）、来源可核（arxiv id / audit.log / commit）、诚实标注索引停更第 5 天并说明真零 19 词暂无判别力；无实际研究情报产出，故不给 5",
+  "assessment": "Dry-run scan delivered a complete, internally consistent report (8 raw → 0 survivors, 5 saturated + 19 true-zero terms summing to 24) with funnel, classification, index-lag caveat, and explicit warning not to prune terms on a narrow window; no actionable intel because nothing new hit, but the no-finding outcome is honestly reported rather than padded.",
   "flags": [],
-  "avg_score": 3.45,
+  "avg_score": 3.5,
   "history": [
     {
       "date": "2026-10-24",
@@ -70,6 +70,12 @@
       "date": "2026-10-26",
       "score": 4,
       "ts": "2026-10-26T07:33:47Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 4,
+      "ts": "2026-10-26T10:18:32Z",
       "harness": "claude"
     }
   ]
