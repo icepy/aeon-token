@@ -3,7 +3,7 @@
 
 用法:
     python3 skills/github-radar/scan.py "days:30"
-    python3 skills/github-radar/scan.py "days:30 probe"      # 额外跑专名簇反查
+    python3 skills/github-radar/scan.py "days:60 probe"      # 额外跑专名簇反查
 
 var token（空格分隔，可组合）:
     dry-run   跳过 notify、不写 seen、**不覆盖 out.json**（改写 out.dry.json）
@@ -12,7 +12,7 @@ var token（空格分隔，可组合）:
     chk:N     核验门槛（仅在幸存数超 CHK_CAP 时启用），默认 5
     probe     对种子仓名 token 做反查，找词表漏掉的专名簇
 
-产物（文件名固定，别改成 scan13.py / audit13.log）:
+产物（文件名固定，别改成 scan14.py / audit14.log）:
     output/ghradar/out.json       全部幸存者（非 dry-run）
     output/ghradar/out.dry.json   全部幸存者（dry-run；空数组不许覆盖上一轮真快照）
     output/ghradar/audit.log      审计（同时打到 stdout）
@@ -44,16 +44,20 @@ CHK_CAP = 2000         # 幸存数 <= 这个值 → 全量核验，一个不漏
 PER_TERM_CAP = 40      # 只在超上限时才启用（超上限时按词保底）
 REPORT_COMMITS = 5
 NOTIFY_TOP = 30
-MAXPAGE = 3
+MAXPAGE = 3            # 旧口径；现在只用来判"曾经会撞顶"，真正的页数按 total 动态算
+MAXPAGE_HARD = 10      # 动态页数上限（GitHub search 深翻页在 1000 条处封顶）
 SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-showcase")
 SCAFFOLD_MIN = 3
 SEARCH_MIN_GAP = 2.1   # search 限速 30/min
 VERIFY_WORKERS = 6     # 核验并发（core quota 5000/h，但并发太高会触发二级限流）
 VERIFY_BUDGET = 900    # 核验墙钟预算（秒）；超预算的标 unverified
-PROBE_TOP = 12         # probe: 取报告级前 N 个的仓名 token 作候选
-PROBE_MAXTOK = 20      # probe: 最多反查多少个 token
+PROBE_MAXTOK = 28      # probe: 最多反查多少个 token
 PROBE_MAX_TOTAL = 600  # probe: 反查 total 超过这个 → 判为通用词，不是专名
-PROBE_SEED_TARGET = 36 # probe: 种子仓数量目标（报告级 → 幸存 → 丢弃堆，依次补足）
+PROBE_HIST_CAP = 200   # probe: 从 memory/github-candidates.md 取多少条历史报告级仓
+# probe 种子配额。顺序 = 优先级：报告级 → 幸存 → 历史报告级 → 本轮丢弃堆。
+# 历史那一档是必须的：像 SuperMimic 这种簇，仓的 desc 不含任何词表词，连 raw 都进不去，
+# 所以它既不在幸存、也不在丢弃堆 —— 只看本轮种子的 probe 永远抓不到它。
+PROBE_QUOTA = (("rep", 12), ("out", 12), ("hist", 24), ("drop", 24))
 
 # 根目录里有这些 = 真代码仓（用来否掉"页形态"）
 CODE_SKELETON = {"src", "tests", "test", "pyproject.toml", "package.json",
@@ -170,6 +174,9 @@ GH_LOCK = threading.Lock()
 GH_COOLDOWN = 60           # gh 掉线后的冷却秒数；到期自动重试，不再整轮放弃
 GH_DOWN_UNTIL = [0.0]
 gh_lost = [False]
+GH_LOST_N = [0]            # 掉线次数
+GH_LAST_ERR = [""]         # 末次原因（进审计，以前只打 stderr）
+GH_UNAUTH = [0]            # 冷却期间走未认证通道的调用次数
 
 def gh_alive():
     return time.time() >= GH_DOWN_UNTIL[0]
@@ -177,13 +184,16 @@ def gh_alive():
 def gh_down(reason):
     with GH_LOCK:
         GH_DOWN_UNTIL[0] = time.time() + GH_COOLDOWN
+        GH_LOST_N[0] += 1
+        GH_LAST_ERR[0] = reason[:160]
         if not gh_lost[0]:
             print("  ! gh api 放弃: %s" % reason[:140], file=sys.stderr)
             gh_lost[0] = True
 
 def gh_get(path):
     """先走 gh api（认证）；失败则冷却 GH_COOLDOWN 秒后自动回来。
-    429（限速）与 409（真空仓）必须分开；404 不该拖垮认证态。"""
+    429（限速）与 409（真空仓）必须分开 —— 409 不是认证失败，不该打掉认证态。
+    404（不存在）同理。"""
     last = ""
     if gh_alive():
         for i in range(3):
@@ -199,8 +209,12 @@ def gh_get(path):
                 break
             except Exception as ex:
                 last = str(ex); time.sleep(3)
-        if "404" not in last and "Not Found" not in last:
+        # 404 / 409 是"这条记录的问题"，不是"认证坏了"
+        if not any(x in last for x in ("404", "Not Found", "409",
+                                       "empty repository", "Git Repository is empty")):
             gh_down(last)
+    if gh_lost[0]:
+        GH_UNAUTH[0] += 1
     for i in range(2):
         try:
             req = urllib.request.Request("https://api.github.com/" + path, headers={
@@ -236,6 +250,24 @@ def commits_since(rid, days):
         return None, ("empty" if err and "409" in err else "unverified")
     return (len(data) if isinstance(data, list) else None), "ok"
 
+def load_history(limit=PROBE_HIST_CAP):
+    """从 memory/github-candidates.md 抓历轮报告级仓名，给 probe 当历史种子。
+    文件是追加写的，倒过来读 = 最近优先。"""
+    if not os.path.exists(CARDS):
+        return []
+    try:
+        txt = open(CARDS, encoding="utf-8").read()
+    except Exception:
+        return []
+    found = re.findall(r"\]\(https://github\.com/([^/\s]+/[^/)\s]+)\)", txt)
+    out = []
+    for rid in reversed(found):
+        if rid not in out:
+            out.append(rid)
+        if len(out) >= limit:
+            break
+    return out
+
 # ── 扫描 ──────────────────────────────────────────────────────────
 out, raw = [], 0
 drop = {"seen": 0, "excl": 0, "archived": 0, "short_desc": 0, "carrier": 0,
@@ -243,7 +275,9 @@ drop = {"seen": 0, "excl": 0, "archived": 0, "short_desc": 0, "carrier": 0,
 hit, qfail, cov = {}, [], {}
 raw_term, new_term, seen_term = {}, {}, {}
 page_dropped, neg_dropped, root_dropped = [], [], []
-# carrier / short_desc 丢掉的仓 —— probe 的第三顺位种子（活仓常躺在这里）
+carrier_topic_only, desc_topic_only = [], []      # 两条放行路径，单独记账
+capped = []                                       # 曾经会撞 3 页上限的子窗
+# carrier / short_desc 丢掉的仓 —— probe 的第四顺位种子（活仓常躺在这里）
 drop_names = []
 DROP_NAMES_CAP = 400
 
@@ -254,13 +288,21 @@ for term in TERMS:
     for w in WINS:
         q = '"%s" in:name,description created:%s fork:false stars:>=%d' % (
             term, w, MIN)
-        for page in range(1, MAXPAGE + 1):
+        pages, page = 1, 1
+        while page <= pages:
             res, err = search(q, page)
             if res is None:
                 print("! %s @%s p%d: %s" % (term, w, page, err), file=sys.stderr)
                 drop["fail"] += 1; failed = True; break
             if page == 1:
-                total += res.get("total_count", 0)
+                t = res.get("total_count", 0)
+                total += t
+                # 动态页数。原来固定 MAXPAGE=3 页 = 300 个硬上限，窗口一长就静默截断：
+                # 第十四轮 world model 单子窗 total=509，只取到 300，覆盖率 66.5%，
+                # 且丢掉的不是被过滤器判掉，是根本没取回来（sort=stars 在 ★0 堆里约等于随机切）。
+                pages = min(MAXPAGE_HARD, max(1, (t + 99) // 100))
+                if t > MAXPAGE * 100:
+                    capped.append((term, w, t))
             items = res.get("items", [])
             got += len(items); raw_term[term] += len(items)
             for it in items:
@@ -290,31 +332,39 @@ for term in TERMS:
                     drop["pages"] += 1
                     page_dropped.append((rid, size_kb)); continue
                 desc = (it.get("description") or "").strip()
+                topics = [str(x).lower() for x in (it.get("topics") or [])]
+                # carrier 用 desc ∪ topics；EXCL 仍只看 name+desc（否则会放走 awesome 列表仓）
+                blob_t = (desc + " " + " ".join(topics)).lower()
                 if len(desc) < 25:
-                    drop["short_desc"] += 1
-                    if len(drop_names) < DROP_NAMES_CAP:
-                        drop_names.append((it.get("pushed_at") or "", rid))
-                    continue
+                    if not topics:
+                        drop["short_desc"] += 1
+                        if len(drop_names) < DROP_NAMES_CAP:
+                            drop_names.append((it.get("pushed_at") or "", rid))
+                        continue
+                    desc_topic_only.append(rid)     # 空/短 desc 靠 topics 放行
                 if any(x in lowall for x in EXCL):
                     drop["excl"] += 1; continue
                 need = CARRIER_BY_TERM.get(term)
-                if need and not any(c in desc.lower() for c in need):
+                if need and not any(c in blob_t for c in need):
                     drop["carrier"] += 1
                     if len(drop_names) < DROP_NAMES_CAP:
                         drop_names.append((it.get("pushed_at") or "", rid))
                     continue
+                if need and not any(c in desc.lower() for c in need):
+                    carrier_topic_only.append(rid)  # 只靠 topics 过的 carrier
                 if owner.lower() in farms:
                     drop["farm"] += 1; continue
                 out.append({"term": term, "terms": [term], "repo": rid,
                             "owner": owner, "url": it["html_url"],
                             "stars": it.get("stargazers_count", 0),
                             "created": (it.get("created_at") or "")[:10],
-                            "topics": it.get("topics", [])[:6],
+                            "topics": topics[:6],
                             "size_kb": size_kb, "language": lang,
                             "desc": " ".join(desc.split())[:140]})
                 hit[rid] = out[-1]; new_term[term] += 1
             if len(items) < 100:
                 break
+            page += 1
     if failed and not got:
         qfail.append(term)
     if total:
@@ -425,27 +475,26 @@ SNAP = OUT_DRY if DRY else OUT
 json.dump(out, open(SNAP, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 # ── probe：反查找词表漏掉的专名簇 ──
-# 种子池必须是「报告级 → 幸存 → 丢弃堆最新」三级补足。只看报告级会在幸存 0 时整段空转
-# （第十三轮实证：活仓全躺在丢弃堆里，而 probe 因为 rep=0 完全没跑）。
+# 种子池必须是「报告级 → 幸存 → 历史报告级 → 本轮丢弃堆」四级。
+# 只看本轮会在两种情况下空转：幸存 0（第十三轮）和"该抓的簇本轮恰好没有命中"（第十四轮）。
 # 顺序必须是「先反查、再排序」—— 按 token 在种子里出现几次排会漏掉
 # SuperMimic（它只出现 1 次，被 capstone/recall 这类通用词挤掉）。
 # 专名判据：反查 total 小 + owner 密度高 + 簇内有高 commit 仓。
 cluster_report = []
-probe_stat = {"rep": 0, "out": 0, "drop": 0, "tok": 0, "done": 0, "seeds": 0}
+probe_stat = {"rep": 0, "out": 0, "hist": 0, "drop": 0, "tok": 0, "done": 0,
+              "seeds": 0}
 if PROBE:
+    srcs = (("rep", [c["repo"] for c in rep]),
+            ("out", [c["repo"] for c in out]),
+            ("hist", load_history()),
+            ("drop", [r for _, r in sorted(drop_names, reverse=True)]))
     seeds = []
-    for tag, src in (("rep", rep), ("out", out),
-                     ("drop", [r for _, r in sorted(drop_names, reverse=True)])):
+    for tag, lst in srcs:
         n0 = len(seeds)
-        for it in src:
-            rid = it["repo"] if isinstance(it, dict) else it
+        for rid in lst[:dict(PROBE_QUOTA)[tag]]:
             if rid not in seeds:
                 seeds.append(rid)
-            if len(seeds) >= PROBE_SEED_TARGET:
-                break
         probe_stat[tag] = len(seeds) - n0
-        if len(seeds) >= PROBE_SEED_TARGET:
-            break
     probe_stat["seeds"] = len(seeds)
     toks = []
     for rid in seeds:
@@ -499,7 +548,7 @@ with_new = [t for t in TERMS if new_term.get(t, 0) > 0]
 sat_seen = [t for t in saturated if seen_term.get(t, 0) > 0]
 sat_loss = [t for t in saturated if seen_term.get(t, 0) == 0]
 
-L = ["扫 %d 词 × %d 窗 × %d 页 | 原始 %d | 幸存 %d | 报告级 %d | var=%r"
+L = ["扫 %d 词 × %d 窗 × %d 页（页数按 total 动态）| 原始 %d | 幸存 %d | 报告级 %d | var=%r"
      % (len(TERMS), NWIN, MAXPAGE, raw, len(out), len(rep), var),
      "快照 %s%s" % (SNAP, "（dry-run 不覆盖 out.json）" if DRY else ""),
      "丢弃 seen=%d excl=%d archived=%d short_desc=%d carrier=%d neg=%d "
@@ -518,6 +567,16 @@ if cleaned:
     L.append("🧹 清理 output/ghradar/ 历史文件 %d 个（只留 %s；`keep*` 前缀可跨轮保留）: %s"
              % (len(cleaned), " / ".join(sorted(KEEP)),
                 " · ".join(cleaned[:12]) + (" …" if len(cleaned) > 12 else "")))
+if capped:
+    L.append("ℹ️ 曾撞 %d 页上限的子窗 %d 个（已按 total 动态加页，最多 %d 页）: %s"
+             % (MAXPAGE, len(capped), MAXPAGE_HARD,
+                " · ".join("%s@%s(total=%d)" % c for c in capped[:8])))
+if carrier_topic_only:
+    L.append("ℹ️ carrier 只靠 topics 放行 %d 个（desc 里没有 carrier 词）: %s"
+             % (len(carrier_topic_only), " · ".join(carrier_topic_only[:12])))
+if desc_topic_only:
+    L.append("ℹ️ 空/短 desc 靠 topics 放行 %d 个: %s"
+             % (len(desc_topic_only), " · ".join(desc_topic_only[:12])))
 if UNKNOWN:
     L.append("⚠️ 未识别 var token（会被静默忽略）: " + " · ".join(UNKNOWN))
 if failed_t:
@@ -539,10 +598,12 @@ L.append("词表返回/新收/已见: " + " · ".join(
     "%s=%d/%d/%d" % (t, raw_term.get(t, 0), new_term.get(t, 0), seen_term.get(t, 0))
     for t in sorted(TERMS, key=lambda x: -raw_term.get(x, 0))))
 if gh_lost[0]:
-    L.append("⚠️ gh 认证曾掉线（已按 %ds 冷却自动重试）—— 核验完整性存疑" % GH_COOLDOWN)
-low = {k: v for k, v in cov.items() if v < 50}
+    L.append("⚠️ gh 认证曾掉线 %d 次（末次原因: %s）；已按 %ds 冷却自动重试，"
+             "冷却期间 %d 次调用走未认证通道（配额低、数据一致）"
+             % (GH_LOST_N[0], GH_LAST_ERR[0] or "(未记录)", GH_COOLDOWN, GH_UNAUTH[0]))
+low = {k: v for k, v in cov.items() if v < 95}
 if low:
-    L.append("⚠️ 覆盖率 <50%%（绝对数不可引用）: " +
+    L.append("⚠️ 覆盖率 <95%%（撞顶或 total_count 不准，绝对数不可引用）: " +
              " · ".join("%s=%.1f%%" % kv for kv in low.items()))
 if scaffold:
     L.append("ℹ️ 共享脚手架（同短名跨≥%d owner 且 desc 前缀同）%d 个: %s"
@@ -581,15 +642,16 @@ if cand:
     L.append("ℹ️ 候选农场（owner≥3，需人工判）: " +
              " · ".join("%s=%d" % kv for kv in cand.items()))
 if PROBE:
-    L.append("ℹ️ probe 种子 %d（报告级 %d / 幸存 %d / 丢弃堆 %d）→ 候选 token %d → "
-             "已反查 %d · clusters.json 已重写（空也写）"
+    L.append("ℹ️ probe 种子 %d（报告级 %d / 幸存 %d / 历史 %d / 丢弃堆 %d）→ "
+             "候选 token %d → 已反查 %d · clusters.json 已重写（空也写）"
              % (probe_stat["seeds"], probe_stat["rep"], probe_stat["out"],
-                probe_stat["drop"], probe_stat["tok"], probe_stat["done"]))
+                probe_stat["hist"], probe_stat["drop"], probe_stat["tok"],
+                probe_stat["done"]))
     if not probe_stat["seeds"]:
         L.append("   ⚠️ 种子为 0 —— 本轮 probe 无从反查，不是「没有簇」")
     else:
         L.append("ℹ️ probe 反查 —— 专名候选（total≤%d）:" % PROBE_MAX_TOTAL)
-        for cl in [c for c in cluster_report if not c["generic"]][:8]:
+        for cl in [c for c in cluster_report if not c["generic"]][:10]:
             L.append("  `%s` total=%d owners=%d 未在幸存者=%d | %s"
                      % (cl["token"], cl["total"], cl["owners"], cl["not_in_out"],
                         " · ".join("%s(%s/%s)" % (h["repo"], h["commits_30d"],
