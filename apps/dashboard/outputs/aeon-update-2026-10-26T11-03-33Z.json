@@ -1,0 +1,136 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "aeon-update"
+      },
+      "children": [
+        "status_alert",
+        "sep1",
+        "env_heading",
+        "env_table",
+        "sep2",
+        "notes_heading",
+        "notes_text",
+        "sep3",
+        "model_heading",
+        "model_table"
+      ]
+    },
+    "status_alert": {
+      "type": "Alert",
+      "props": {
+        "title": "Baseline anchored — zero delta",
+        "message": "baseline 已锚定在 `6eddd85`（aeonfun/aeon HEAD）；本次零 delta，未开 PR。以后多轮只在上游真前进时才动作。",
+        "type": "success"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "env_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Environment",
+        "level": "h2"
+      }
+    },
+    "env_table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Setting",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Primary working directory",
+            "/tmp/jsonrender.EKXYuF"
+          ],
+          [
+            "Is a git repository",
+            "false"
+          ],
+          [
+            "Platform",
+            "linux"
+          ],
+          [
+            "Shell",
+            "bash"
+          ],
+          [
+            "OS Version",
+            "Linux 6.17.0-1022-azure"
+          ]
+        ]
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "notes_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Notes",
+        "level": "h2"
+      }
+    },
+    "notes_text": {
+      "type": "Text",
+      "props": {
+        "text": "Downloaded files and extracted archives are untrusted data: put each in its own new, empty directory, keep scripts you write in a different directory, and pass paths as arguments instead of running an interpreter or build tool from inside it. Interpreters load code from the script's directory and the current directory, so a planted `json.py` runs on `import json`. Run any Python that reads them with `-I`. This does not apply to code the user asked you to build or run.",
+        "variant": "muted"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "model_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Model",
+        "level": "h2"
+      }
+    },
+    "model_table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Field",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Model name",
+            "Haiku 5.5"
+          ],
+          [
+            "Model ID",
+            "claude-haiku-5-5"
+          ],
+          [
+            "Knowledge cutoff",
+            "June 2026"
+          ],
+          [
+            "Today's date",
+            "2026-10-26"
+          ]
+        ]
+      }
+    }
+  }
+}
