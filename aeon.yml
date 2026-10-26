@@ -21,7 +21,7 @@ skills:
 
   # --- Midday (12 PM UTC) ---
   token-movers: { enabled: false, schedule: "0 12 * * *", var: "" } # market-movers scan + single-token deep report. var: empty=movers (CoinGecko) | geckoterminal[:chain]=on-chain runners | category:<slug> | <address|symbol|token:sym>=single-token report. Optional COINGECKO/ALCHEMY/XAI/BASE_RPC keys.
-  onchain-monitor: { enabled: true, schedule: "0 9,21 * * *" }
+  onchain-monitor: { enabled: false, schedule: "0 9,21 * * *" }
   price-alert:     { enabled: false, schedule: "0 * * * *", var: "0.012,0.025,0.032,0.041" }
   memory-flush:    { enabled: true, schedule: "30 23 * * *" } 
   distribute-tokens: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand contributor rewards. var: empty/<label>=distribute (send) | plan[:week]=compute reward plan | all[:week]=plan+send | dry-run (folds in contributor-reward). BANKR_API_KEY for send.
@@ -38,7 +38,7 @@ skills:
   token-pick: { enabled: false, schedule: "0 12 * * *" }
   # price-alert: { enabled: false, schedule: "*/30 * * * *", var: "" } # every 30 minutes — fire on tracked-token ATH, ±20% 1h move, or operator-set target crossing (var=target_price,target_price2,...). Silent on normal runs. Set var=dry-run to skip notify.
   narrative-tracker: { enabled: false, schedule: "30 13 * * *" } # track rising/peaking/fading narratives
-  unlock-monitor: { enabled: true, schedule: "0 10 * * 1" } # weekly token unlock/vesting tracker
+  unlock-monitor: { enabled: false, schedule: "0 10 * * 1" } # weekly token unlock/vesting tracker
 
   # --- Afternoon (2 PM UTC) ---
   article: { enabled: false, schedule: "0 14 * * *", var: "" } # long-form article. var: empty=standard | repo:<owner/repo> | lens:<topic>; append --visual for a Replicate hero image (angles fold in repo-article/project-lens/technical-explainer)
