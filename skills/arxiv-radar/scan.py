@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""arxiv-radar 扫描器。vH
+"""arxiv-radar 扫描器。vI
+
+vI 第二稿 —— vI 尚未跑过，故名字严格化（第 4 处）折进本版，版本号不跳。
 
 用法:
     python3 skills/arxiv-radar/scan.py "days:30"
@@ -7,17 +9,23 @@
     python3 skills/arxiv-radar/scan.py "check:verifiable training"   # check: 必须是最后一个 token
 
 var token（空格分隔，可组合）:
-    dry-run      跳过 notify、不写 seen / hits
-    days:N       窗口天数，默认 30
-    names        词表整个换成 memory/universe-names.txt
-    check:<词>   只量这个词（7/30/60/90 四档 total + 已见重叠 + 领域命中），跑完退出
+    dry-run         跳过 notify、不写 seen / hits
+    days:N          窗口天数，默认 30
+    names           词表整个换成 memory/universe-names.txt
+    check:<词>      只量这个词（7/30/60/90 四档 total + 已见重叠 + 领域命中），跑完退出
+    notify:script   让脚本自己发通知（默认**不发**，见下）
+
+通知归谁：正文归模型，不归脚本。
+  脚本只会写机械列表（英文标题 + 原始查询串）；翻译和「按簇分组」都是判断。
+  所以默认不发，由模型覆写 output/arxiv/report.md 为中文后再发一次。
+  `notify:script` 是兜底（人手动跑、或模型那轮没跟上时）。
 
 产物（文件名固定）:
     output/arxiv/out.json     全部幸存者
     output/arxiv/audit.log    审计（同时打到 stdout）
-    output/arxiv/report.md    通知正文
+    output/arxiv/report.md    通知正文（脚本写机械版，模型覆写中文版）
     memory/arxiv-seen.json    非 dry-run 才写
-    memory/arxiv-hits.tsv     非 dry-run 才追加（日期 / 键 / 名字，append-only）
+    memory/arxiv-hits.tsv     非 dry-run 才追加（日期 / 裸 id / 名字，append-only）
 
 失败必须能与「零命中」区分：查询失败重试 3 次（429 单独退避），仍失败进「未测到」；
 连续 3 个词全失败 → 熔断，剩余词进「未尝试」。两者都不是零命中。
@@ -28,7 +36,7 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
-VERSION = "vH"
+VERSION = "vI"
 
 OUTD = "output/arxiv"
 OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
@@ -63,12 +71,14 @@ CHECK = m.group(1).strip() if m else ""
 if m:
     var = var[:m.start()].strip()
 
-DRY, DAYS, NAMES_MODE, UNKNOWN = False, 30, False, []
+DRY, DAYS, NAMES_MODE, SEND, UNKNOWN = False, 30, False, False, []
 for tok in var.split():
     if tok == "dry-run":
         DRY = True
     elif tok == "names":
         NAMES_MODE = True
+    elif tok == "notify:script":
+        SEND = True
     elif tok.startswith("days:"):
         DAYS = int(tok.split(":", 1)[1] or 30)
     elif tok:
@@ -114,10 +124,11 @@ ti:"EIP-1559"
 """.strip().split("\n") if t.strip() and not t.strip().startswith("#")]
 
 # 三档动作梯子的中间一格：换写法 → 降级为低频 → 删词。
-# 跨窗全零 ≥2 轮、同义写法还没量完（或量完仍值得留）的词放这里；
-# 审计里单独归类，不进「可考虑删词」。
+# 跨窗全零 ≥2 轮、同义写法已量完且无新增的词放这里；审计里单独归类，不进「可考虑删词」。
 LOW_FREQ = {
-    "verifiable training",   # 第四轮跨窗全零；同义写法未量，先降级不删
+    # 跨窗全零；`verifiable fine-tuning` 四档全 0、`zero-knowledge machine learning`
+    # 60/90d 各 1 篇但已见 1/1 → 两级候选皆无新增 → 维持，不删不换。
+    "verifiable training",
 }
 
 if NAMES_MODE and os.path.exists(NAMES_FILE):
@@ -181,6 +192,12 @@ learning deep neural network networks system systems new novel study analysis
 empirical measurement framework approach method methods data theory practice
 case real world beyond not all end how what why when where which that this""".split())
 
+# 名字形状判据的辅助黑名单：这些词大写开头也是普通词，不是项目名
+NAME_STOP = set("""the a an on of in for with from and or to at by as is are was were
+towards toward via using based novel new study analysis survey benchmark learning
+deep zero data model models system systems framework approach method methods
+verifiable verified trusted efficient scalable towards paper""".split())
+
 now = datetime.now(timezone.utc)
 WD = "一二三四五六日"
 
@@ -196,7 +213,7 @@ def arxiv_get(url, attempts=ATTEMPTS, timeout=TIMEOUT, tag=""):
     """返回 (root, err)。root 为 None 即失败 —— 失败必须能与「零命中」区分。
 
     旧写法单次 urlopen 异常即 continue，把 429 读成真零，是 16/24 静默失败的成因。
-    退避时往 stderr 打一行，否则和「卡住」长得一样（你 Ctrl-C 过一次）。
+    退避时往 stderr 打一行，否则和「卡住」长得一样。
     """
     last = ""
     for i in range(attempts):
@@ -274,6 +291,38 @@ def short_term(t):
     s = re.sub(r"\s+AND\s+\(?cat:[^)]*\)?", "", s)
     s = re.sub(r"cat:[A-Za-z.\-]+ AND ", "", s)
     return re.sub(r"\s+", " ", s).strip(" ()") or t
+
+# ── 名字 ──────────────────────────────────────────────────────────
+def looks_like_name(w):
+    """项目名的形状，不是「大写开头的英文词」。
+
+    旧写法取标题里第一个不在 STOP 的大写词，必然吐垃圾：
+    "Verifiable Computation with Trusted ..." → `Verifiable`（而它就在标题里重复了一遍）。
+    宁可返回空（下游退回标题），也不要错名字（会污染 hits.tsv 的名字列）。
+    """
+    if len(w) < 3 or len(w) > 22:
+        return False
+    if w.lower() in NAME_STOP:
+        return False
+    if w.isupper() and any(c.isalpha() for c in w):
+        return True                      # 全大写缩写：PEARL / FLORA / XMAQUINA
+    if any(c.isdigit() for c in w):
+        return True                      # 含数字：EIP-1559 / GPT-4
+    if "-" in w:
+        return False                     # On-Chain / End-to-End 这类短语
+    return any(c.isupper() for c in w[1:])   # 内部有大写：SocialCoAct / SkillWeaver
+
+def guess_name(title, summ, known):
+    for n in known:
+        if re.search(r"\b%s\b" % re.escape(n), title + " " + summ, re.I):
+            return n
+    m = re.search(r"\b([A-Z][A-Za-z0-9\-]{2,})(?:'s|’s)\b", title + " " + summ)
+    if m and looks_like_name(m.group(1)):
+        return m.group(1)
+    for w in re.findall(r"\b[A-Za-z][A-Za-z0-9\-]*\b", title):
+        if looks_like_name(w):
+            return w
+    return ""
 
 # ── check 模式 ────────────────────────────────────────────────────
 def do_check():
@@ -357,7 +406,9 @@ def absorb(root, term):
             if len(dropped["carrier"]) < DROPPED_CAP:
                 dropped["carrier"].append((pub, title[:72]))
             continue
-        rec = {"term": term, "terms": [term], "name": guess_name(title, summ, known),
+        # vI：裸 id 进记录 —— hits.tsv 的键必须和 labels.tsv 同构，否则 join 不上
+        rec = {"id": aid, "term": term, "terms": [term],
+               "name": guess_name(title, summ, known),
                "title": title, "published": pub, "link": "https://arxiv.org/abs/%s" % aid,
                "carrier": next(c for c in carrier if c in blob)}
         out.append(rec)
@@ -385,18 +436,6 @@ def cross_probe(term):
         for d in CROSS_WINDOWS:
             cross.setdefault(term, {})[d] = total_of(q_of(term), d)[0]
             time.sleep(REQUEST_GAP)
-
-def guess_name(title, summ, known):
-    for n in known:
-        if re.search(r"\b%s\b" % re.escape(n), title + " " + summ, re.I):
-            return n
-    m = re.search(r"\b([A-Z][A-Za-z0-9\-]{2,})(?:'s|’s)\b", title + " " + summ)
-    if m:
-        return m.group(1)
-    for w in re.findall(r"\b[A-Z][A-Za-z0-9\-]{2,}\b", title):
-        if w.lower() not in STOP:
-            return w
-    return ""
 
 # ── 预检 ──────────────────────────────────────────────────────────
 ok, perr = preflight()
@@ -542,7 +581,8 @@ L.append("词表原始/新收: " + " · ".join(
     "%s=%d/%d" % (k, v, per_term.get(k, 0)) for k, v in
     sorted(raw_term.items(), key=lambda x: -x[1])))
 for c in out[:25]:
-    L.append("  %s [%s] %s" % (c["published"], "+".join(c["terms"]), c["title"][:88]))
+    L.append("  %s [%s] %s%s" % (c["published"], "+".join(c["terms"]), c["title"][:88],
+                                 (" · 名字=%s" % c["name"]) if c["name"] else ""))
 
 if not out and not with_new:
     if drop["excl"] or drop["carrier"]:
@@ -566,28 +606,39 @@ if not DRY:
         json.dump(dict(list(merged.items())[:2000]),   # merged 新的在前，取头
                   open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     if out:
+        # vI：第三列写裸 id（不是 URL）—— 必须和 labels.tsv 的键同构才能 join
         old = open(HITS, encoding="utf-8").read() if os.path.exists(HITS) else ""
         with open(HITS, "w", encoding="utf-8") as f:
             f.write(old)
             if old and not old.endswith("\n"):
                 f.write("\n")
             for c in out:
-                f.write("%s\t%s\t%s\n" % (now.strftime("%Y-%m-%d"), c["link"],
+                f.write("%s\t%s\t%s\n" % (now.strftime("%Y-%m-%d"), c["id"],
                                           c["name"] or c["title"][:40]))
 
 if out:
     R = ["**arxiv-radar** · 窗口 %d 天 · 幸存 %d" % (DAYS, len(out)), ""]
     for c in out[:NOTIFY_TOP]:
         nm = ("`%s` " % c["name"]) if c["name"] else ""
-        R.append("- %s%s [%s] · %s" % (nm, c["title"][:110],
-                                       "+".join(c["terms"]), c["link"]))
+        R.append("- %s%s [%s] · %s · %s" % (nm, c["title"][:110],
+                                            "+".join(c["terms"]), c["published"],
+                                            c["link"]))
     open(REPORT, "w", encoding="utf-8").write("\n".join(R) + "\n")
 
-if not DRY and out and os.path.exists("./notify"):
-    r = subprocess.run(["./notify", "-f", REPORT], capture_output=True, text=True)
-    print("notify: %s" % ((r.stdout or r.stderr or "ok").strip()[:200]))
-else:
+# ── 通知 ──────────────────────────────────────────────────────────
+# 正文归模型：脚本只会拼英文标题 + 原始查询串，翻译和「按簇分组」都是判断。
+# 所以默认不发 —— 由模型覆写 report.md 为中文后发一次。两个发送方就是两条推送。
+if DRY or not out:
     print("notify: 跳过（%s）" % ("dry-run" if DRY else "零命中"))
+elif SEND:
+    if os.path.exists("./notify"):
+        r = subprocess.run(["./notify", "-f", REPORT], capture_output=True, text=True)
+        print("notify: 已由脚本发送 · %s" % ((r.stdout or r.stderr or "ok").strip()[:160]))
+    else:
+        print("notify: ./notify 不存在，未发")
+else:
+    print("notify: **未发** —— 覆写 %s 为中文（按簇分组、带 [方向]），然后：" % REPORT)
+    print("        ./notify -f %s" % REPORT)
 
 print("STATUS: %s · 原始 %d · 幸存 %d · 总耗时 %.0fs"
       % ("ARXIV_RADAR_DEGRADED" if skipped_t else "ARXIV_RADAR_OK",
