@@ -58,7 +58,7 @@
   "stars": 15,
   "created": "2026-10-25",
   "topics": [],
-  "size_kb": 37796,
+  "size_kb": 37801,
   "language": "Python",
   "desc": "Agentic Embodied Intelligence via Reciprocal VLM Reasoning and World Modeling",
   "commits_30d": 7,
@@ -263,7 +263,7 @@
   "repo": "DocyNoah/dawn-parkour",
   "owner": "DocyNoah",
   "url": "https://github.com/DocyNoah/dawn-parkour",
-  "stars": 11,
+  "stars": 12,
   "created": "2026-09-26",
   "topics": [
    "iros",
@@ -365,6 +365,23 @@
  {
   "term": "world model",
   "terms": [
+   "world model"
+  ],
+  "repo": "saanviiyer/neurobotwm",
+  "owner": "saanviiyer",
+  "url": "https://github.com/saanviiyer/neurobotwm",
+  "stars": 0,
+  "created": "2026-09-23",
+  "topics": [],
+  "size_kb": 2749,
+  "language": "Python",
+  "desc": "Label-free causal grounding and modular grid-code world models in simulated robots.",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "world model",
+  "terms": [
    "world model",
    "world model"
   ],
@@ -380,23 +397,6 @@
   "commits_30d": 9,
   "commits_7d": 0,
   "burst_only": true
- },
- {
-  "term": "world model",
-  "terms": [
-   "world model"
-  ],
-  "repo": "saanviiyer/neurobotwm",
-  "owner": "saanviiyer",
-  "url": "https://github.com/saanviiyer/neurobotwm",
-  "stars": 0,
-  "created": "2026-09-23",
-  "topics": [],
-  "size_kb": 2749,
-  "language": "Python",
-  "desc": "Label-free causal grounding and modular grid-code world models in simulated robots.",
-  "commits_30d": 0,
-  "stale": true
  },
  {
   "term": "world model",

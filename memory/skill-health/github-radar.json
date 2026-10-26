@@ -1,10 +1,10 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-26T07:35:06Z",
+  "last_analyzed": "2026-10-26T07:55:24Z",
   "quality_score": 4,
-  "assessment": "Substantive, self-critical round report with concrete per-repo evidence, root-cause and same-type-defect analysis, auditability gap flagged, and a specific next step; held back from 5 by lacking raw data-source citations (repo names only, no source URLs) and by length running against the operator's 'decide-at-a-glance' brevity preference, plus dry-run means nothing actionable was delivered.",
+  "assessment": "Dry-run probe round is rigorous and self-correcting: quantification of carrier false-kill rate (190/886, 21.4%) with an explicit 'not a rate' caveat, third revision of the probe criterion backed by concrete counterexamples, prior-round PhysGuard question closed, full funnel counts and source files cited; held back from 5 by producing no judgment on the 10 report-level repos and by being an intra-window replay with no new signal, so it informs the scanner more than it supports a decision.",
   "flags": [],
-  "avg_score": 3.53,
+  "avg_score": 3.56,
   "history": [
     {
       "date": "2026-10-25",
@@ -94,6 +94,12 @@
       "date": "2026-10-26",
       "score": 4,
       "ts": "2026-10-26T07:35:06Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 4,
+      "ts": "2026-10-26T07:55:24Z",
       "harness": "claude"
     }
   ]
