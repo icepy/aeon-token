@@ -57,7 +57,9 @@ VERIFY_WORKERS = 6     # 核验并发（core quota 5000/h，但并发太高会�
 VERIFY_BUDGET = 900    # 核验墙钟预算（秒）；超预算的标 unverified
 PROBE_MAXTOK = 28      # probe: 最多反查多少个 token
 PROBE_MAX_TOTAL = 600  # probe: 反查 total 超过这个 → 判为通用词，不是专名
-PROBE_HIST_CAP = 200   # probe: 从 memory/github-candidates.md 取多少条历史报告级仓
+# probe 历史种子池大小。**必须 ≈ hist 配额**，否则只有最近几条能当种子：
+# 第十五轮实测 candidates 已 335 行 / 321 仓，只取最近 200 条 → 实际只有最近 24 条进池。
+PROBE_HIST_POOL = 24
 # probe 种子配额。顺序 = 优先级：报告级 → 幸存 → 历史报告级 → 本轮丢弃堆。
 # 历史那一档是必须的：像 SuperMimic 这种簇，仓的 desc 不含任何词表词，连 raw 都进不去，
 # 所以它既不在幸存、也不在丢弃堆 —— 只看本轮种子的 probe 永远抓不到它。
@@ -67,11 +69,13 @@ PROBE_QUOTA = (("rep", 12), ("out", 12), ("hist", 24), ("drop", 24))
 CODE_SKELETON = {"src", "tests", "test", "pyproject.toml", "package.json",
                  "cargo.toml", "contracts", "crates", "app", "lib", "makefile",
                  "setup.py", "requirements.txt", "cmake", "go.mod", "build.gradle"}
-# 反查时不该当专名的通用 token
+# 反查时不该当专名的通用 token；也用来算簇内主题词（都要排除）
 STOPWORDS = set("""world model models data robot robots learning sim sim2real agent
 agents lab labs ai repo code page site github io project paper papers reproduce
 reproduction experiments experiment baseline baselines implementation demo
-official release training framework system systems control policy""".split())
+official release training framework system systems control policy
+python pytorch jax deep neural research tool tools llm main new real
+simulation simulator dataset datasets benchmark benchmarks""".split())
 
 # ── 词表：`#` 开头是注释 ──────────────────────────────────────────
 TERMS = [t.strip() for t in """
@@ -254,23 +258,46 @@ def commits_since(rid, days):
         return None, ("empty" if err and "409" in err else "unverified")
     return (len(data) if isinstance(data, list) else None), "ok"
 
-def load_history(limit=PROBE_HIST_CAP):
+def load_history(limit=PROBE_HIST_POOL):
     """从 memory/github-candidates.md 抓历轮报告级仓名，给 probe 当历史种子。
-    文件是追加写的，倒过来读 = 最近优先。"""
+    文件是追加写的，倒过来读 = 最近优先。
+    **必须「最近一半 + 其余等距」**：只取最近 N 条时，candidates 越长老仓越饿死
+    （第十五轮实测：335 行 / 321 仓，只取最近 200 条 → 实际只有最近 24 条能当种子）。"""
     if not os.path.exists(CARDS):
         return []
     try:
         txt = open(CARDS, encoding="utf-8").read()
     except Exception:
         return []
-    found = re.findall(r"\]\(https://github\.com/([^/\s]+/[^/)\s]+)\)", txt)
-    out = []
-    for rid in reversed(found):
-        if rid not in out:
-            out.append(rid)
-        if len(out) >= limit:
-            break
-    return out
+    found = []
+    for rid in reversed(re.findall(r"\]\(https://github\.com/([^/\s]+/[^/)\s]+)\)", txt)):
+        if rid not in found:
+            found.append(rid)
+    if len(found) <= limit:
+        return found
+    half = max(1, limit // 2)
+    rest = found[half:]
+    stride = max(1, len(rest) // max(1, limit - half))
+    return found[:half] + rest[::stride][:limit - half]
+
+def cluster_cohesion(items, token):
+    """簇内同主题度。真专名簇（一个工作被大量复现）的 desc 会反复出现同一批词；
+    撞名簇各写各的。返回 (是否同主题, [(词, 出现仓数), …])。
+    **`total` 小只是必要条件，簇内同主题才是充分条件**（第十五轮判据 38）。
+    阈值 max(3, ceil(n/5)) 是首版，下一轮用真实分布校准。"""
+    n = len(items)
+    if n < 2:
+        return False, []
+    cnt = Counter()
+    for it in items:
+        words = {w for w in re.split(r"[^a-z0-9]+",
+                                     (it.get("description") or "").lower())
+                 if len(w) >= 4 and not w.isdigit()
+                 and w not in STOPWORDS and w != token}
+        cnt.update(words)
+    need = max(3, (n + 4) // 5)
+    theme = [[w, c] for w, c in cnt.most_common(40) if c >= need][:8]
+    return (len(theme) > 0), theme
 
 # ── 扫描 ──────────────────────────────────────────────────────────
 out, raw = [], 0
@@ -485,7 +512,8 @@ json.dump({"carrier": [r for _, r in carrier_dropped],
 # 只看本轮会在两种情况下空转：幸存 0（第十三轮）和"该抓的簇本轮恰好没有命中"（第十四轮）。
 # 顺序必须是「先反查、再排序」—— 按 token 在种子里出现几次排会漏掉
 # SuperMimic（它只出现 1 次，被 capstone/recall 这类通用词挤掉）。
-# 专名判据：反查 total 小 + owner 密度高 + 簇内有高 commit 仓。
+# 专名判据（两条，缺一不可）：① 反查 total 小；② **簇内同主题**（cluster_cohesion）。
+# 只有 ① 会误报 —— `eidolon`(total=98)、`senku`、`physguard`(total=3) 都是撞名。
 drop_names = sorted(carrier_dropped + short_desc_dropped, reverse=True)
 cluster_report = []
 probe_stat = {"rep": 0, "out": 0, "hist": 0, "drop": 0, "tok": 0, "done": 0,
@@ -519,6 +547,7 @@ if PROBE:
         total = res.get("total_count", 0)
         items = res.get("items", [])
         owners = {(i.get("owner") or {}).get("login", "") for i in items}
+        cohesive, theme = cluster_cohesion(items, tk)
         hot = []
         for i in items[:8]:
             n30, st = commits_since(i["full_name"], 30)
@@ -530,12 +559,15 @@ if PROBE:
         hot.sort(key=lambda x: (-(x["commits_7d"] or 0), -x["commits_30d"]))
         cluster_report.append({
             "token": tk, "total": total, "owners": len(owners),
+            "cohesive": cohesive, "theme": theme,
+            "one_man": len(owners) <= 2 and total >= 3,
             "generic": total > PROBE_MAX_TOTAL,
             "not_in_out": sum(1 for i in items if i["full_name"] not in in_out),
             "hot": hot[:8]})
         probe_stat["done"] += 1
-    # 专名优先：非通用词 → 簇内活跃仓多 → owner 密度高
-    cluster_report.sort(key=lambda x: (x["generic"], -len(x["hot"]), -x["owners"]))
+    # 专名优先：非通用词 → **同主题** → 簇内活跃仓多 → owner 密度高
+    cluster_report.sort(key=lambda x: (x["generic"], not x["cohesive"],
+                                       -len(x["hot"]), -x["owners"]))
     # **无条件重写** —— 空数组也要写，否则上一轮的 clusters.json 会冒充本轮结果
     json.dump(cluster_report, open(CLUSTERS, "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
@@ -669,12 +701,23 @@ if PROBE:
     if not probe_stat["seeds"]:
         L.append("   ⚠️ 种子为 0 —— 本轮 probe 无从反查，不是「没有簇」")
     else:
-        L.append("ℹ️ probe 反查 —— 专名候选（total≤%d）:" % PROBE_MAX_TOTAL)
-        for cl in [c for c in cluster_report if not c["generic"]][:10]:
-            L.append("  `%s` total=%d owners=%d 未在幸存者=%d | %s"
-                     % (cl["token"], cl["total"], cl["owners"], cl["not_in_out"],
+        real = [c for c in cluster_report if not c["generic"] and c["cohesive"]]
+        alias = [c for c in cluster_report if not c["generic"] and not c["cohesive"]]
+        L.append("ℹ️ probe 反查 —— 小 total 候选（≤%d）。**同主题**=desc 有跨仓重复词"
+                 "（真簇嫌疑）；**异质**=各写各的（撞名嫌疑）。给证据，不下结论。"
+                 % PROBE_MAX_TOTAL)
+        for cl in real[:8]:
+            L.append("  ✅ `%s` total=%d owners=%d%s 未在幸存者=%d 主题词=%s | %s"
+                     % (cl["token"], cl["total"], cl["owners"],
+                        " [一人多仓]" if cl["one_man"] else "", cl["not_in_out"],
+                        ",".join("%s×%d" % (w, c) for w, c in cl["theme"][:5]),
                         " · ".join("%s(%s/%s)" % (h["repo"], h["commits_30d"],
-                                                  h["commits_7d"]) for h in cl["hot"][:4])))
+                                                  h["commits_7d"]) for h in cl["hot"][:3])))
+        if alias:
+            L.append("  ⚠️ 撞名嫌疑（异质，各写各的）%d 个: %s" % (len(alias),
+                     " · ".join("%s(total=%d,owners=%d)" % (c["token"], c["total"],
+                                                            c["owners"])
+                                for c in alias[:8])))
         gen = [c for c in cluster_report if c["generic"]][:5]
         if gen:
             L.append("  （通用词，反查噪声）: " + " · ".join(
