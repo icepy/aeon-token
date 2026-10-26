@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-26T12:41:57.989518913Z",
+  "generatedAt": "2026-10-26T12:44:40.568390748Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -200,7 +200,7 @@
         },
         {
           "path": "scan.py",
-          "hash": "a0e34c0779887b892daeb66e77518f7ba7c4ca82d0a3686e6ceb482095d59b53"
+          "hash": "5d0981a369a567a5d48a91d2304cfd1e194e96fac4be009f24af3b2017b792db"
         }
       ],
       "findings": [
@@ -209,7 +209,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 30,
+          "line": 33,
           "snippet": "import json, os, re, subprocess, sys, time, urllib.error, urllib.parse, urllib.request",
           "explanation": "uses a process-execution primitive"
         },
@@ -218,12 +218,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 440,
+          "line": 454,
           "snippet": "r = subprocess.run([\"./notify\", \"-f\", REPORT], capture_output=True, text=True)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-ed038f50869d29b65d1056e14c4608ec461259b6b02d0a9c9bbdaefaccfe2654",
+      "contentHash": "sha256-605749c1f294b3be727b56822a1811f44314a9146d2b61ca08724d9b337abe19",
       "discoveredFrom": "skills/arxiv-radar/SKILL.md"
     },
     {
