@@ -46,7 +46,8 @@ REPORT_COMMITS = 5
 NOTIFY_TOP = 30
 MAXPAGE = 3            # 旧口径；现在只用来判"曾经会撞顶"，真正的页数按 total 动态算
 MAXPAGE_HARD = 10      # 动态页数上限（GitHub search 深翻页在 1000 条处封顶）
-SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-showcase")
+SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-showcase",
+               "-docs")
 SCAFFOLD_MIN = 3
 SEARCH_MIN_GAP = 2.1   # search 限速 30/min
 VERIFY_WORKERS = 6     # 核验并发（core quota 5000/h，但并发太高会触发二级限流）
