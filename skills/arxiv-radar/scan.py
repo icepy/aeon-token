@@ -2,12 +2,12 @@
 """arxiv-radar 扫描器（静态文件 —— 模型只调用，不重写）。
 
 用法:
-    python3 skills/arxiv-radar/scan.py "days:7"
+    python3 skills/arxiv-radar/scan.py "days:30"
     python3 skills/arxiv-radar/scan.py "names"        # 机制/名字反查模式
 
 var token（空格分隔，可组合）:
     dry-run   跳过 notify、不写 seen
-    days:N    窗口天数，默认 7
+    days:N    窗口天数，默认 30
     names     词表整个换成 memory/universe-names.txt
 
 产物（文件名固定，别改成 radar2.json）:
@@ -29,17 +29,18 @@ NOTIFY_TOP = 30
 MAX_RESULTS = 100
 API = "https://export.arxiv.org/api/query"
 NS = {"a": "http://www.w3.org/2005/Atom"}
+OPENSEARCH = "{http://a9.com/-/spec/opensearch/1.1/}totalResults"
 
 # ── var ───────────────────────────────────────────────────────────
 var = sys.argv[1] if len(sys.argv) > 1 else ""
-DRY, DAYS, NAMES_MODE, UNKNOWN = False, 7, False, []
+DRY, DAYS, NAMES_MODE, UNKNOWN = False, 30, False, []
 for tok in var.split():
     if tok == "dry-run":
         DRY = True
     elif tok == "names":
         NAMES_MODE = True
     elif tok.startswith("days:"):
-        DAYS = int(tok.split(":", 1)[1] or 7)
+        DAYS = int(tok.split(":", 1)[1] or 30)
     else:
         UNKNOWN.append(tok)
 
@@ -213,13 +214,41 @@ truly_zero = [t for t in TERMS if t not in failed_t and raw_term.get(t, 0) == 0]
 saturated = [t for t in TERMS if raw_term.get(t, 0) > 0 and per_term.get(t, 0) == 0]
 with_new = [t for t in TERMS if per_term.get(t, 0) > 0]
 
+# ── 跨窗复量（只对真零词，只补比本轮窗口更宽的档）────────────────
+# 7d ⊂ 30d ⊂ 60d：窗口 30 时 7d 被蕴含，只补 60d；窗口 7 时补 30d/60d。
+# 目的：把「真零」和「废词」分开 —— 索引滞后 5 天时，窄窗会把稀有词系统性读成零。
+XW = [d for d in (7, 30, 60) if d > DAYS]
+nowstr = now.strftime("%Y%m%d%H%M")
+xwin = {t: {} for t in truly_zero}
+for term in truly_zero:
+    if term.startswith(("cat:", "ti:", "abs:", "all:")):
+        q = term
+    elif NAMES_MODE:
+        q = (f'ti:"{term}" AND (cat:cs.CR OR cat:cs.CE OR cat:cs.GT OR cat:cs.DC '
+             'OR cat:q-fin.CP OR cat:q-fin.GN)')
+    else:
+        q = f'ti:"{term}"'
+    for d in XW:
+        since = (now - timedelta(days=d)).strftime("%Y%m%d%H%M")
+        p = {"search_query": f"({q}) AND submittedDate:[{since} TO {nowstr}]",
+             "start": 0, "max_results": 1}
+        try:
+            with urllib.request.urlopen(API + "?" + urllib.parse.urlencode(p),
+                                        timeout=20) as r:
+                root = ET.fromstring(r.read())
+            node = root.find(OPENSEARCH)
+            xwin[term][d] = int(node.text) if node is not None else -1
+        except Exception:
+            xwin[term][d] = -1
+        time.sleep(3)
+
 L = ["扫 %d 词 | 窗口 %s | 原始 %d | 幸存 %d | var=%r"
      % (len(TERMS), win, raw, len(out), var),
      "丢弃 seen=%d excl=%d carrier=%d fail=%d"
      % (drop["seen"], drop["excl"], drop["carrier"], drop["fail"]),
      "词表四分类 —— 查询失败 %d / 真零 %d / 全已见(饱和) %d / 有新增 %d"
      % (len(failed_t), len(truly_zero), len(saturated), len(with_new)),
-     "窗口内最新收录日期: %s   ← 比今天早 3 天以上即索引滞后，不是零命中"
+     "窗口内最新收录日期: %s   ← 比今天早 3 天以上即索引滞后，实测已到 5 天"
      % (newest or "(无)"),
      "耗时 %.0fs" % T_RUN]
 if UNKNOWN:
@@ -227,7 +256,29 @@ if UNKNOWN:
 if failed_t:
     L.append("⚠️ 查询失败（不是零命中）: " + " · ".join(failed_t))
 if truly_zero:
-    L.append("⚠️ 真零命中（total=0，可考虑删词）: " + " · ".join(truly_zero))
+    if not XW:
+        L.append("⚠️ 真零命中（本轮 %dd total=0，无更宽档可补）: %s"
+                 % (DAYS, " · ".join(truly_zero)))
+    else:
+        L.append("⚠️ 真零命中（本轮 %dd total=0）—— 跨窗 %s 复量："
+                 % (DAYS, "/".join("%dd" % d for d in XW)))
+        for t in truly_zero:
+            L.append("   %s: win=%d %s" % (
+                t, raw_term.get(t, 0),
+                " ".join("%dd=%s" % (d, xwin[t].get(d, -1)) for d in XW)))
+        alive = [t for t in truly_zero if any(xwin[t].get(d, 0) > 0 for d in XW)]
+        unk = [t for t in truly_zero if t not in alive
+               and any(xwin[t].get(d, -1) < 0 for d in XW)]
+        real = [t for t in truly_zero if t not in alive and t not in unk]
+        if alive:
+            L.append("   └ 跨窗有命中（活的，**别删**）%d 个: %s"
+                     % (len(alive), " · ".join(alive)))
+        if real:
+            L.append("   └ 跨窗全零（候选废词，连续两轮才谈删）%d 个: %s"
+                     % (len(real), " · ".join(real)))
+        if unk:
+            L.append("   └ 跨窗查询失败（存疑，先别删）%d 个: %s"
+                     % (len(unk), " · ".join(unk)))
 if saturated:
     L.append("ℹ️ 全已见（饱和，**别删**）: " + " · ".join(
         "%s(raw=%d)" % (t, raw_term[t]) for t in saturated))
