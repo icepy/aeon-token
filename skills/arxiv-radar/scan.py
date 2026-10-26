@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""arxiv-radar 扫描器。vL
+"""arxiv-radar 扫描器。vM
 
+vM = vL + 饱和词的「raw 命中最新发布日期」。
+     原来审计只记 raw 计数不记日期分布，于是「seen 饱和」和「话题降温」字面一模一样
+     （第十一轮实测：`embodied AI` raw=21/新收=0，无法判断话题是否还活着）。
+     加一列 maxpub 即可分辨，且零额外请求 —— 不需要跑 days:180 对照。
 vL = vK + dry-run 写自己的快照 out.dry.json。
-     原来 `if not DRY` 把 out.json 一起挡掉，导致 dry-run 后 out.json 是上一轮旧值，
-     而 audit.log / report.md 是本轮的 —— 同一次跑三种代际（第十一轮实测 1 条 vs 49 条）。
 vK = vJ + 两个零覆盖的相邻簇（human demonstration / hand-object）。
 
 用法:
@@ -43,7 +45,7 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
-VERSION = "vL"
+VERSION = "vM"
 
 OUTD = "output/arxiv"
 OUT, OUTDRY = OUTD + "/out.json", OUTD + "/out.dry.json"
@@ -391,6 +393,7 @@ drop = {"seen_mem": 0, "seen_dup": 0, "excl": 0, "carrier": 0, "fail": 0}
 hit_ids = {}          # run 内判重；不要直接写 seen，否则跨词命中只记第一个词
 per_term = {}
 raw_term = {}
+raw_maxpub = {}       # vM：每个词原始命中的最新发布日期 —— 分辨「seen 饱和」与「话题降温」
 failed_t = []
 skipped_t = []
 fail_reason = {}
@@ -415,6 +418,9 @@ def absorb(root, term):
         pub = e.find("a:published", NS).text[:10]
         if pub > newest:
             newest = pub
+        # vM：记该词原始命中的最新发布日期（含已被 seen 吸收的那些 —— 正是要看的）
+        if pub > raw_maxpub.get(term, ""):
+            raw_maxpub[term] = pub
         if aid in seen:
             drop["seen_mem"] += 1
             continue
@@ -600,6 +606,12 @@ if lf_t:
 if saturated:
     L.append("全已见（饱和，**别删**）: " + " · ".join(
         "%s(raw=%d)" % (t, raw_term[t]) for t in saturated))
+    # vM：饱和 ≠ 降温。raw 命中的最新发布日期才是判据 —— 没有这一列，
+    #      「话题活着但都被 seen 吃了」和「话题真的停了」字面完全一样。
+    L.append("   饱和词 raw 命中的最新发布日期: " + " · ".join(
+        "%s=%s" % (t, raw_maxpub.get(t, "?")[5:]) for t in saturated))
+    L.append("   读法: 最新发布日期在近 30 天内 → 话题活着，是 seen 饱和（**别删**）；"
+             "停在 60 天前 → 才考虑降温，且需再一轮确认")
 
 for k in ("excl", "carrier"):
     if dropped[k]:
