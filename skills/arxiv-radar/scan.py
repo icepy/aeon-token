@@ -15,14 +15,16 @@ var token（空格分隔，可组合）:
 
 通知归属：正文归**模型**。脚本不会翻译英文标题，也不会"按簇分组"，
 所以默认只写 output/arxiv/report.md 的机械备用稿（已去噪，能读），
-由模型用 Write 工具覆写成中文后发。无人值守场景用 notify:script 走降级路径。
+由模型用 Write 工具覆写成中文（按簇分组、簇标题带方向标签）后发。
+无人值守场景用 notify:script 走降级路径。
 
 产物（文件名固定，别改成 radar2.json）:
-    output/arxiv/out.json     全部幸存者
-    output/arxiv/audit.log    审计（同时打到 stdout）
-    output/arxiv/report.md    通知正文（脚本写机械备用稿 → 模型覆写成中文）
-    memory/arxiv-seen.json    非 dry-run 才写
-    memory/arxiv-hits.tsv     命中流水，append-only，非 dry-run 才写
+    output/arxiv/out.json       全部幸存者
+    output/arxiv/audit.log      审计（同时打到 stdout）
+    output/arxiv/report.md      通知正文（脚本写机械备用稿 → 模型覆写成中文）
+    memory/arxiv-seen.json      非 dry-run 才写
+    memory/arxiv-hits.tsv       命中流水，append-only，非 dry-run 才写
+    memory/arxiv-labels.tsv     方向标签，append-only，**模型写**（键 \\t 方向）
 """
 import json, os, re, subprocess, sys, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
@@ -33,6 +35,7 @@ OUTD = "output/arxiv"
 OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
 SEEN = "memory/arxiv-seen.json"
 HITS = "memory/arxiv-hits.tsv"
+LABELS = "memory/arxiv-labels.tsv"
 NAMES_FILE = "memory/universe-names.txt"
 NOTIFY_TOP = 30
 MAX_RESULTS = 100
@@ -291,6 +294,24 @@ for term in truly_zero:
         xwin[term][d] = tot
         time.sleep(3)
 
+# ── 标签覆盖自检：hits 里有、labels 里没有的条数 ──────────────────
+unlabeled = []
+if os.path.exists(HITS):
+    hkeys = set()
+    for i, ln in enumerate(open(HITS, encoding="utf-8")):
+        if i == 0:
+            continue
+        p = ln.rstrip("\n").split("\t")
+        if len(p) >= 2 and p[1]:
+            hkeys.add(p[1])
+    lkeys = set()
+    if os.path.exists(LABELS):
+        for ln in open(LABELS, encoding="utf-8"):
+            p = ln.rstrip("\n").split("\t")
+            if len(p) >= 2 and p[1]:
+                lkeys.add(p[0])
+    unlabeled = sorted(hkeys - lkeys)
+
 L = ["扫 %d 词 | 窗口 %s | 原始 %d | 幸存 %d | var=%r"
      % (len(TERMS), win, raw, len(out), var),
      "丢弃 seen=%d excl=%d carrier=%d fail=%d"
@@ -334,6 +355,10 @@ if saturated:
 L.append("词表原始/新收: " + " · ".join(
     "%s=%d/%d" % (k, v, per_term.get(k, 0)) for k, v in
     sorted(raw_term.items(), key=lambda x: -x[1])))
+if unlabeled:
+    L.append("ℹ️ 未打方向标签 %d 条（写进 %s：键\\t方向）: %s"
+             % (len(unlabeled), LABELS, " · ".join(unlabeled[:8])
+                + (" …" if len(unlabeled) > 8 else "")))
 for c in out[:25]:
     L.append("  %s [%s] %s" % (c["published"], "+".join(c["terms"]), c["title"][:85]))
 
