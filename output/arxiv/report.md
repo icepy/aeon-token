@@ -1,21 +1,22 @@
-**arxiv-radar** · 窗口 60 天 · 幸存 14
+**arxiv-radar** · 窗口 60 天 · 幸存 13
 
-**具身数据 · 第一视角人类数据 / 数据引擎（11）**
-- `RoboTok` — 从互联网演示视频检索数据的可扩展数据引擎，服务灵巧操作学习 · https://arxiv.org/abs/2609.03199
-- `Scene` — 面向车载第一视角数据集的行车场景图提取 · https://arxiv.org/abs/2609.00333
-- `MINT` — 从可扩展第一视角管线监督中估计世界坐标下的相机与手部运动 · https://arxiv.org/abs/2609.04958
-- `LTLDiff` — 线性时序逻辑约束的数据生成 + 扩散策略，多机协作操作 · https://arxiv.org/abs/2609.11043
-- `ReWeight` — 用示范检索与样本加权把人类数据用于 VLA 后训练 · https://arxiv.org/abs/2609.13851
-- `Dreaming` — 借视频与音频生成做零样本力感知操作与数据生成 · https://arxiv.org/abs/2609.19137
-- `MotionForge` — 长时程动态物体操作的数据生成管线与大规模基准 · https://arxiv.org/abs/2609.25689
-- `Zeva-Ego` — 面向机器人操作的第一视角中期训练与上下文因果学习 · https://arxiv.org/abs/2609.24411
-- `Praxis` — 从第一视角视频蒸馏物理交互先验，做全身操作泛化 · https://arxiv.org/abs/2609.30735
-- `NavGen` — 把视觉生成模型当可扩展数据引擎，做具身 3D 导航 · https://arxiv.org/abs/2609.30770
-- `Function-Preserving` — 保持功能的数据生成，实现零样本 real-to-sim-to-real 操作 · https://arxiv.org/abs/2609.18293
+**共识 · DAG 与多 leader 调度（3）**
+- `KCensus` — 综合出延迟最优的共识快速路径（扩展版）· https://arxiv.org/abs/2609.31302
+- `Hydrozoan` — 拜占庭与崩溃混合故障下的延迟自适应 DAG 共识 · https://arxiv.org/abs/2609.25918
+- `Barnacle` — 面向 DAG 共识的自适应多 leader 调度 · https://arxiv.org/abs/2609.03978
 
-**世界模型 · 第一视角环境表示（1）**
-- `AnyWorld` — 因子化第一视角世界模型，跨本体泛化 · https://arxiv.org/abs/2608.29242
+**共识 · 抗审查与 BFT 安全边界（4）**
+- `How Not to Be Censored` — 客户端主导共识下的纳入安全性 · https://arxiv.org/abs/2610.29497
+- `Simple and Fast Signature-Free Blockchain Consensus` — 无签名区块链共识 · https://arxiv.org/abs/2609.32985
+- `Breaking Fault Lines` — TEE 辅助 BFT 共识在部分可信世界下的统一 · https://arxiv.org/abs/2609.09742
+- `Security Limits of Mining Before Validation` — Nakamoto 共识中先挖后验的安全上限 · https://arxiv.org/abs/2609.29222
 
-**? · 感知 / 估计，未落到现有标签（2）**
-- `EgoNeMo` — 用第一视角 LiDAR 扫描学习可迁移的行人动力学地图 · https://arxiv.org/abs/2609.06195
-- `HAP` — 手部驱动的主动感知框架，预测第一视角头部运动 · https://arxiv.org/abs/2609.18548
+**共识 · 后量子与弱假设（3）**
+- `Quantum Cadence` — 多并发提议者的后量子共识 · https://arxiv.org/abs/2610.32803
+- `Fully Fluctuating Sleepy Consensus` — 最小假设下的 sleepy 共识 · https://arxiv.org/abs/2609.03063
+- `Time Semantics and Liveness Artifacts` — 对抗性共识仿真中的时间语义与活性伪影 · https://arxiv.org/abs/2609.32972
+
+**共识 · 元研究与邻近（3）**
+- `The End of Consensus Research?` — 对共识研究本身的追问 · https://arxiv.org/abs/2610.30114
+- `New Contraction Bounds` — 动态网络中多维渐近共识的收缩界 · https://arxiv.org/abs/2610.11805
+- `Consensus-based Decentralized Distributed Swarm Learning` — 异构大数据下的共识式去中心化群学习 · https://arxiv.org/abs/2609.12143

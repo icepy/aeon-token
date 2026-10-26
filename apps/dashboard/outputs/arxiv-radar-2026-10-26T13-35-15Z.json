@@ -1,0 +1,338 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 60 天 · 幸存 13"
+      },
+      "children": [
+        "hdrRow",
+        "sep1",
+        "sec1head",
+        "sec1list",
+        "sep2",
+        "sec2head",
+        "sec2list",
+        "sep3",
+        "sec3head",
+        "sec3list",
+        "sep4",
+        "sec4head",
+        "sec4list"
+      ]
+    },
+    "hdrRow": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "hdrBadgeSkill",
+        "hdrTextWindow",
+        "hdrBadgeSurvived"
+      ]
+    },
+    "hdrBadgeSkill": {
+      "type": "Badge",
+      "props": {
+        "text": "arxiv-radar",
+        "variant": "default"
+      }
+    },
+    "hdrTextWindow": {
+      "type": "Text",
+      "props": {
+        "text": "窗口 60 天",
+        "variant": "muted"
+      }
+    },
+    "hdrBadgeSurvived": {
+      "type": "Badge",
+      "props": {
+        "text": "幸存 13",
+        "variant": "secondary"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec1head": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sec1title",
+        "sec1badge"
+      ]
+    },
+    "sec1title": {
+      "type": "Heading",
+      "props": {
+        "text": "共识 · DAG 与多 leader 调度",
+        "level": "h3"
+      }
+    },
+    "sec1badge": {
+      "type": "Badge",
+      "props": {
+        "text": "3",
+        "variant": "outline"
+      }
+    },
+    "sec1list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "p1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "KCensus — 综合出延迟最优的共识快速路径（扩展版）",
+        "href": "https://arxiv.org/abs/2609.31302",
+        "source": "arXiv"
+      }
+    },
+    "p2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Hydrozoan — 拜占庭与崩溃混合故障下的延迟自适应 DAG 共识",
+        "href": "https://arxiv.org/abs/2609.25918",
+        "source": "arXiv"
+      }
+    },
+    "p3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Barnacle — 面向 DAG 共识的自适应多 leader 调度",
+        "href": "https://arxiv.org/abs/2609.03978",
+        "source": "arXiv"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec2head": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sec2title",
+        "sec2badge"
+      ]
+    },
+    "sec2title": {
+      "type": "Heading",
+      "props": {
+        "text": "共识 · 抗审查与 BFT 安全边界",
+        "level": "h3"
+      }
+    },
+    "sec2badge": {
+      "type": "Badge",
+      "props": {
+        "text": "4",
+        "variant": "outline"
+      }
+    },
+    "sec2list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ]
+    },
+    "p4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "How Not to Be Censored — 客户端主导共识下的纳入安全性",
+        "href": "https://arxiv.org/abs/2610.29497",
+        "source": "arXiv"
+      }
+    },
+    "p5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Simple and Fast Signature-Free Blockchain Consensus — 无签名区块链共识",
+        "href": "https://arxiv.org/abs/2609.32985",
+        "source": "arXiv"
+      }
+    },
+    "p6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Breaking Fault Lines — TEE 辅助 BFT 共识在部分可信世界下的统一",
+        "href": "https://arxiv.org/abs/2609.09742",
+        "source": "arXiv"
+      }
+    },
+    "p7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Security Limits of Mining Before Validation — Nakamoto 共识中先挖后验的安全上限",
+        "href": "https://arxiv.org/abs/2609.29222",
+        "source": "arXiv"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec3head": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sec3title",
+        "sec3badge"
+      ]
+    },
+    "sec3title": {
+      "type": "Heading",
+      "props": {
+        "text": "共识 · 后量子与弱假设",
+        "level": "h3"
+      }
+    },
+    "sec3badge": {
+      "type": "Badge",
+      "props": {
+        "text": "3",
+        "variant": "outline"
+      }
+    },
+    "sec3list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p8",
+        "p9",
+        "p10"
+      ]
+    },
+    "p8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Quantum Cadence — 多并发提议者的后量子共识",
+        "href": "https://arxiv.org/abs/2610.32803",
+        "source": "arXiv"
+      }
+    },
+    "p9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Fully Fluctuating Sleepy Consensus — 最小假设下的 sleepy 共识",
+        "href": "https://arxiv.org/abs/2609.03063",
+        "source": "arXiv"
+      }
+    },
+    "p10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Time Semantics and Liveness Artifacts — 对抗性共识仿真中的时间语义与活性伪影",
+        "href": "https://arxiv.org/abs/2609.32972",
+        "source": "arXiv"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec4head": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sec4title",
+        "sec4badge"
+      ]
+    },
+    "sec4title": {
+      "type": "Heading",
+      "props": {
+        "text": "共识 · 元研究与邻近",
+        "level": "h3"
+      }
+    },
+    "sec4badge": {
+      "type": "Badge",
+      "props": {
+        "text": "3",
+        "variant": "outline"
+      }
+    },
+    "sec4list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p11",
+        "p12",
+        "p13"
+      ]
+    },
+    "p11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "The End of Consensus Research? — 对共识研究本身的追问",
+        "href": "https://arxiv.org/abs/2610.30114",
+        "source": "arXiv"
+      }
+    },
+    "p12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "New Contraction Bounds — 动态网络中多维渐近共识的收缩界",
+        "href": "https://arxiv.org/abs/2610.11805",
+        "source": "arXiv"
+      }
+    },
+    "p13": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Consensus-based Decentralized Distributed Swarm Learning — 异构大数据下的共识式去中心化群学习",
+        "href": "https://arxiv.org/abs/2609.12143",
+        "source": "arXiv"
+      }
+    }
+  }
+}

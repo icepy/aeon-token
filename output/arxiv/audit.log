@@ -1,20 +1,40 @@
-扫 24 词 | 窗口 [202609261245 TO 202610261245] | 原始 62 | 幸存 0 | var='days:30'
-丢弃 seen=57 excl=1 carrier=4 fail=0
-词表五分类 —— 未测到(查询失败) 0 / 窗口内零命中 10 / 全已见(饱和) 14 / 有新增 0
-窗口内最新收录日期: 2026-10-22   ← 比今天早 3 天以上即索引滞后，不是零命中
-跨窗档 60d/90d（只取 > 30d 的档；等宽档是 win 列的副本，不重复量）
-耗时 扫描 152s（含重试 0s）· 总 152s
-⚠️ 窗口内零命中 10 个 —— 已跨窗量 total_count（win=30d / 60d/90d）：
-   verifiable inference: win=0 60d=0 90d=1 → 窗口太短 → 非真零，别删
-   light client: win=0 60d=1 90d=1 → 窗口太短 → 非真零，别删
-   proof of learning: win=0 60d=0 90d=0 → 真零（60d/90d 皆 0）→ 可考虑删词
-   verifiable training: win=0 60d=0 90d=0 → 真零（60d/90d 皆 0）→ 可考虑删词
-   restaking: win=0 60d=0 90d=1 → 窗口太短 → 非真零，别删
-   consensus protocol: win=0 60d=4 90d=6 → 窗口太短 → 非真零，别删
-   cat:cs.CR AND ti:"MEV": win=0 60d=3 90d=5 → 窗口太短 → 非真零，别删
-   liquid staking: win=0 60d=0 90d=0 → 真零（60d/90d 皆 0）→ 可考虑删词
-   robot manipulation data: win=0 60d=2 90d=2 → 窗口太短 → 非真零，别删
-   ti:"Robinhood Chain": win=0 60d=0 90d=0 → 真零（60d/90d 皆 0）→ 可考虑删词
-   └ 小结: 窗口太短 6 · 真零 4 · 跨窗失败 0
-ℹ️ 全已见（饱和，**别删**）: proof-of-useful-work(raw=1) · proof of training(raw=1) · auditable training(raw=2) · data availability sampling(raw=1) · automated market maker(raw=2) · embodied data(raw=1) · robot data(raw=4) · embodied AI(raw=6) · zero-knowledge(raw=8) · ti:"data engine" AND cat:cs.RO(raw=3) · ti:"human data" AND cat:cs.RO(raw=6) · ti:"egocentric" AND cat:cs.RO(raw=20) · ti:"data generation" AND cat:cs.RO(raw=5) · ti:"EIP-1559"(raw=2)
-词表原始/新收: ti:"egocentric" AND cat:cs.RO=20/0 · zero-knowledge=8/0 · embodied AI=6/0 · ti:"human data" AND cat:cs.RO=6/0 · ti:"data generation" AND cat:cs.RO=5/0 · robot data=4/0 · ti:"data engine" AND cat:cs.RO=3/0 · auditable training=2/0 · automated market maker=2/0 · ti:"EIP-1559"=2/0 · proof-of-useful-work=1/0 · proof of training=1/0 · data availability sampling=1/0 · embodied data=1/0
+[vF] 扫 24 词 | 窗口 [202608271331 TO 202610261331] | 原始 131 | 幸存 13 | var='days:60'
+丢弃 seen(记忆)=107 seen(本轮重复)=0 excl=1 carrier=10 首次失败=0
+词表六分类 —— 未测到(试过失败) 0 / 未尝试(熔断跳过) 0 / 窗口内零命中 6 / 全已见(饱和) 17 / 有新增 1
+跨窗档 90d（只取 > 60d 的档；等宽档是 win 列的副本，不重复量）
+耗时 扫描 95s（含重试 0s）· 补扫救回 0 · 总 95s
+窗口内最新收录日期: 2026-10-23（周五，距今 3 天）→ 正常（周末不公告；周一/周二看到 3–4 天属节律）
+⚠️ 窗口内零命中 6 个 —— 已跨窗量 total_count（win=60d / 90d）：
+   verifiable inference: win=0 90d=1 → 窗口太短 → 非真零，别删
+   proof of learning: win=0 90d=0 → 跨窗皆 0 → **先用 check: 换同义写法**；连写法都 0 才是死词
+   verifiable training: win=0 90d=0 → 跨窗皆 0 → **先用 check: 换同义写法**；连写法都 0 才是死词
+   restaking: win=0 90d=1 → 窗口太短 → 非真零，别删
+   liquid staking: win=0 90d=0 → 跨窗皆 0 → **先用 check: 换同义写法**；连写法都 0 才是死词
+   ti:"Robinhood Chain": win=0 90d=0 → 跨窗皆 0 → **先用 check: 换同义写法**；连写法都 0 才是死词
+   └ 小结: 窗口太短 2 · 真零 4 · 跨窗失败 0
+ℹ️ 全已见（饱和，**别删**）: proof-of-useful-work(raw=1) · light client(raw=1) · proof of training(raw=1) · auditable training(raw=3) · data availability sampling(raw=1) · automated market maker(raw=3) · cat:cs.CR AND ti:"MEV"(raw=3) · embodied data(raw=3) · robot manipulation data(raw=2) · robot data(raw=8) · embodied AI(raw=14) · zero-knowledge(raw=20) · ti:"data engine" AND cat:cs.RO(raw=5) · ti:"human data" AND cat:cs.RO(raw=7) · ti:"egocentric" AND cat:cs.RO(raw=27) · ti:"data generation" AND cat:cs.RO(raw=12) · ti:"EIP-1559"(raw=2)
+ℹ️ carrier 无命中 丢弃 10 条，前 8 条:
+   2026-10-13  inLoRA-MINT: Internal Representations for Auditing Training Data in Doma
+   2026-08-27  Consensus with Stochastic Broadcast
+   2026-10-21  Zero Knowledge for Free up to Linear Query Bounds: Quasilinear-Size Cons
+   2026-10-20  SRE: Accelerating Zero-Knowledge Proofs via Scalar Redundancy Eliminatio
+   2026-10-08  A Zero-Knowledge Signature Framework for Efficient Post-Quantum Message 
+   2026-09-21  Zero-Knowledge Remote Adversarial Attack against Wi-Fi-based Human Activ
+   2026-09-20  Zero-Knowledge Proofs of Quantumness
+   2026-09-16  Locus: A Framework for Exploring and Optimizing Point Addition Hardware 
+ℹ️ EXCL 命中 丢弃 1 条，前 1 条:
+   2026-10-02  From bits to atoms: A survey of cross-layer safety in Embodied AI
+词表原始/新收: ti:"egocentric" AND cat:cs.RO=27/0 · zero-knowledge=20/0 · ti:"consensus" AND cat:cs.DC=18/13 · embodied AI=14/0 · ti:"data generation" AND cat:cs.RO=12/0 · robot data=8/0 · ti:"human data" AND cat:cs.RO=7/0 · ti:"data engine" AND cat:cs.RO=5/0 · auditable training=3/0 · automated market maker=3/0 · cat:cs.CR AND ti:"MEV"=3/0 · embodied data=3/0 · robot manipulation data=2/0 · ti:"EIP-1559"=2/0 · proof-of-useful-work=1/0 · light client=1/0 · proof of training=1/0 · data availability sampling=1/0
+  2026-10-23 [ti:"consensus" AND cat:cs.DC] Quantum Cadence: Post-Quantum Consensus with Multiple Concurrent Proposers
+  2026-10-21 [ti:"consensus" AND cat:cs.DC] The End of Consensus Research?
+  2026-10-21 [ti:"consensus" AND cat:cs.DC] How Not to Be Censored: Inclusion Safety in Client-Led Consensus
+  2026-10-08 [ti:"consensus" AND cat:cs.DC] New Contraction Bounds for Multidimensional Asymptotic Consensus in Dynamic Networks
+  2026-09-26 [ti:"consensus" AND cat:cs.DC] Simple and Fast Signature-Free Blockchain Consensus
+  2026-09-26 [ti:"consensus" AND cat:cs.DC] Time Semantics and Liveness Artifacts in Adversarial Consensus Simulation
+  2026-09-25 [ti:"consensus" AND cat:cs.DC] KCensus: Synthesizing Latency-Optimal Consensus Fast Paths (Extended Version)
+  2026-09-24 [ti:"consensus" AND cat:cs.DC] Security Limits of Mining Before Validation in Nakamoto Consensus
+  2026-09-22 [ti:"consensus" AND cat:cs.DC] Hydrozoan: Latency-Adaptive DAG Consensus under Mixed Byzantine and Crash Faults
+  2026-09-10 [ti:"consensus" AND cat:cs.DC] Consensus-based Decentralized Distributed Swarm Learning with Heterogeneous Big Data
+  2026-09-09 [ti:"consensus" AND cat:cs.DC] Breaking Fault Lines: Unifying TEE-Assisted BFT Consensus in Partially Trusted Worlds
+  2026-09-03 [ti:"consensus" AND cat:cs.DC] Barnacle: Adaptive Multi-Leader Scheduling for DAG-Based Consensus
+  2026-09-02 [ti:"consensus" AND cat:cs.DC] Fully Fluctuating Sleepy Consensus from Minimal Assumptions
