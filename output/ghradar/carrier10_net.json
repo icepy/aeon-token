@@ -1,0 +1,11 @@
+[
+ {
+  "repo": "DU525/paired-counterfactual-eval",
+  "stars": 0,
+  "created": "2026-10-22",
+  "lang": "Python",
+  "desc": "Paired-counterfactual evaluation for world models: does the model add value over a strong baseline, and if not",
+  "c30": 5,
+  "c7": 5
+ }
+]

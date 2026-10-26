@@ -1,16 +1,76 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 九轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、seen 基线有效性）
+description: github-radar 十轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、seen 基线有效性）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-26T00:15:00Z
+timestamp: 2026-10-26T04:20:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。九轮（2026-10-25）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十轮（2026-10-26）实证。
+
+## 第十轮（2026-10-26，7 天窗，dry-run）—— 窄窗把稀有词读成「真零」，且词表对一个 55 仓热点全盲
+
+### 18. 🔴 7 天窗会让稀有词系统性读成「真零」—— 判词死活必须跨窗量三个 total_count
+
+本轮首次用 7 天窗（`var=dry-run days:7`）。扫描器报「真零命中」3 个：`verifiable inference` / `proof of useful work` / `maximal extractable value`。逐词跨窗复核（`output/ghradar/terms10.json`）：
+
+| 词 | 7d | 30d | 60d | 判定 |
+|---|---|---|---|---|
+| `verifiable inference` | 0 | 6 | 7 | **窗口太短**，词没废 |
+| `proof of useful work` | 0 | 6 | 13 | **窗口太短** |
+| `maximal extractable value` | 0 | 0 | 2 | 真稀（60d 仅 2） |
+| `robotics data engine` | 1 | 1 | 1 | 真稀 |
+| `restaking` | 1 | 3 | 6 | 稀但在 |
+| `intent-based` | 14 | 58 | 116 | 正常 |
+| `data availability` | 18 | 65 | 129 | 正常 |
+| `vision language action` | 14 | 98 | 200 | 正常 |
+| `world action model` | 9 | 55 | 95 | 正常 |
+
+**判据：窄窗只用来追「这一周新增了什么」，不能用来判词表死活。** 上一轮（第九轮）的教训是「有 seen 基线后 0 新增 ≠ 废词」，本轮的教训是**更前置的一条：窗口长度本身就会制造假零**。两者叠加时，一个词在 7 天窗 + 有 seen 基线的情况下读 0 是最弱的信号，必须回退到 30/60 天 total_count 才能分类。
+
+### 19. 🔴 词表对一个真实热点近乎全盲：`SuperMimic` 55 仓，18 词只捞到 2 个
+
+7 天窗内扫 18 词，幸存 26、报告级 5，**7d 提交最高值只有 19**。但直接搜 `"SuperMimic" in:name,description created:2026-10-19..2026-10-26` 得到 **55 个仓**（`total_count` 报 55，实际翻页取到 56 个 item —— 搜索计数是近似值；60 天窗同样 55，整簇都是 10 月新建），逐仓核验 **25 个 30d≥5 提交、25 个 7d≥5 提交**：
+
+| 仓库 | ★ | 30d | 7d | 说明 |
+|---|---|---|---|---|
+| `sxh-kk/SuperMimic_Recurrence` | 0 | **85** | **85** | 单卡 4090 复现，Ollie 起跳先验 |
+| `QinnyuLan/SuperMimicCarnival` | 0 | 33 | 33 | 复现索引仓（≈脚手架，需单独判） |
+| `CesarLiu/smimic` | 0 | 31 | 31 | reproducing supermimic |
+| `LaoYang1994/SuperMimic-Rep` | 0 | 27 | 27 | |
+| `Motphys/Uni-SuperMimic` | 137 | 22 | 22 | UniLab 上的独立复现 |
+| `zita-ch/supermimic_vibed` | **553** | 4 | 4 | 自称 "vibe coded within 1h" |
+
+**为什么全盲：热点仓一律把术语写在仓库名/描述里（`SuperMimic`），而词表的 `world model` / `embodied data` / `sim2real` 都不在它们的 desc 里。** 18 词捞到的 2 个（`shangchaohu718/supermimic-pera`、`NJU-R-L-Group-Embodied-Lab/SuperMimic-Repro-Sim2Real`）恰好是描述里写了 "world model" 的那两个。
+
+**这是第八轮 `jepa` 判据的重演，但性质不同：`jepa` 是「通行缩写」，`SuperMimic` 是「10 月才诞生的新专名」。** 判据要扩写：**不只是缩写需要保留，新生的专名（一个具体工作/方法的名称）同样抓不到，而新专名恰恰是「有人在写代码」最强的信号 —— 一个工作刚出论文就有 55 个复现仓。词表按机制词组织，结构上无法覆盖这一类。**
+
+**可操作修法（未实施）：** 词表之外加一路「新专名探测」—— 从上一轮 `github-candidates.md` 里取近期 star 最高的新奇仓库，反查其派生簇（`"<name>" in:name,description`）。本轮 `SuperMimic` 就是从 `CuboiLeo/SuperMimic-Reproduced` 反查出来的。
+
+**注意 `SuperMimicCarnival` / `huangkiki/awesome-supermimic` 是索引/列表仓**，与本 skill 的入场判据同类，不该计入「写代码」。**复现簇里「索引仓」和「复现仓」必须分开数。**
+
+### 20. ⚠️ 评估单条过滤器前必须把其余过滤器一起重放
+
+carrier 本轮丢 123 个。只看 carrier 一条规则，120 个 `world model` 被丢仓里 **43 个是 30d≥5 提交**，看起来是重大误杀。**但按 scan 真实顺序重放过 EXCL / short_desc / pages / 离题判定后，净增只有 1 个报告级**（`DU525/paired-counterfactual-eval` 5/5）：EXCL 挡 11、short_desc 挡 27、后缀挡 7、仍判离题 73。
+
+**判据：评估某条过滤器时不能只排除那一条重跑。** 否则会把「本来就该被别的规则挡掉」的仓记到它头上，得出 43 倍的虚高误杀。第九轮 `PER_TERM_CAP` 的 3.85× 是真误杀（因为它是**排序**，切掉的仓没有别的规则会挡），本轮的 43 是假误杀（因为它们是**被下游规则正确拦截**）。**两者形态相似、结论相反，区别在于被丢样本在完整管线里的存活率。**
+
+### 21. ⚠️ carrier 只看 description，不看 topics —— 真缺陷，但单改会放行列表仓
+
+`UCSC-VLAA/ALPS`（★24）被判离题，因为 desc 只写 "Visual State Encoders for World Models"；但它的 topics 是 `embodied-ai` / `robot-learning` / `libero` / `world-models` —— 教科书级的具身世界模型工作。同类「desc 离题、topics 属机器人」共 **13 个**（多数是 awesome 列表）。
+
+**修法：carrier 判据改为「desc 或 topics 任一命中」。但必须同时确认 EXCL 仍拦得住列表仓 —— 单改 carrier 只会多放进 12 个 awesome/索引仓。**（本轮未改代码，dry-run 保持与上轮可比。）
+
+### 22. 🟢 站点仓「后缀单条件即丢」的反向验证通过
+
+第九轮把 pages 规则改成「后缀命中即丢，不看体量」。本轮丢 17 个，含 **357MB** 的 `mundo-world-model/mundo-world-model.github.io`、102MB 的 `Ephemeral6/awm-site`、34MB 的 `bars-2026-psf.github.io`。**如果「体量小」条件还留着，这三个会全部进报告级。** 第九轮判据 16 得到独立复现。
+
+**但留了一个洞：`syaok1/wm-outcome-pilot`（HTML + `index.html` + `.nojekyll`，纯静态研究站）本轮进了报告级。** 它不匹配后缀（名字不带页后缀）、也不是同名仓。**判据 10 的「根目录形态」检查始终没有进 scan 代码，只靠人工。** 可自动化的判据：`index.html` + `.nojekyll` 且无 `src/`/`tests/`/`pyproject.toml`/`package.json` → 页。
 
 ## 第九轮（2026-10-25 07:00Z）—— 抽样低估 3.85×，且切掉的正好是 ★0 域
+
 
 `scan.py` 的 `PER_TERM_CAP = 25` 按 star 排序取样，本轮只核了 **76/234 (32.5%)**。补全到 **230/234 (98.3%)** 后：
 
@@ -160,6 +220,7 @@ timestamp: 2026-10-26T00:15:00Z
 
 # Citations
 
+- 第十轮快照 `output/ghradar/out10.json`（26 幸存 / 592 原始，窗口 `2026-10-19..2026-10-26`）· `audit10.log` · 扫描 `scan10.py` · 跨窗词表 `terms10.py` → `terms10.json` · 簇探测 `cluster10.py` → `cluster10.json`（SuperMimic 55 仓全量核验）· carrier 审计 `carrier10.py` → `carrier10.json` / `carrier10_commits.py` / `carrier10_net.py` → `carrier10_net.json` / `carrier10_topics.py` → `carrier10_topics.json` · 根目录 `tree10.py` → `tree10.json` · `logs/2026-10-26#github-radar（第十轮`
 - 第九轮快照 `output/ghradar/out9full.json`（234 幸存 / 3,461 原始）· `audit.log` · 全量核验 `full9.py`（230/234）· 候选重建 `cards9.py` · 对照第八轮 `out8.json`（178 幸存，dry-run 未落 seen）· 词表口径 `terms9.py` → `terms9.json`
 - 第八轮：`output/ghradar/out8.json`（178 幸存 / 2,817 原始）· 全量核验 `verify8.py`（174/178）· 词表口径 `terms8.json` · 目录树 `tree8.py` · 加密复核 `cry8.json` · `logs/2026-10-25#github-radar`
 - 第七轮：`output/ghradar/full7.py` → `full7.json`（1,251 仓）+ `full7b.py` → `full7b.json`（332 仓）· 污染量化 `contam7.py` · 词表饱和 `terms7.py`

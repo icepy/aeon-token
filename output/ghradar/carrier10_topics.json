@@ -1,0 +1,242 @@
+[
+ {
+  "repo": "jidaivita/awesome-generalizable-world-models",
+  "stars": 52,
+  "topics": [
+   "awesome-list",
+   "generalization",
+   "model-based-reinforcement-learning",
+   "representation-learning",
+   "robot-learning",
+   "world-models"
+  ],
+  "desc": "Research papers on the mechanisms, generalization, and interpretability of learned world models.",
+  "matched": [
+   "robot-learning",
+   "world-models"
+  ]
+ },
+ {
+  "repo": "UCSC-VLAA/ALPS",
+  "stars": 24,
+  "topics": [
+   "computer-vision",
+   "contrastive-learning",
+   "embodied-ai",
+   "jax",
+   "libero",
+   "pytorch",
+   "representation-learning",
+   "robot-learning",
+   "self-supervised-learning",
+   "vision-language",
+   "vision-transformer",
+   "world-models"
+  ],
+  "desc": "🏔️ ALPS: Visual State Encoders for World Models",
+  "matched": [
+   "embodied-ai",
+   "libero",
+   "robot-learning",
+   "world-models"
+  ]
+ },
+ {
+  "repo": "mngli-ai/awesome-world-model-memory",
+  "stars": 4,
+  "topics": [
+   "awesome-list",
+   "interactive-visualization",
+   "memory",
+   "survey",
+   "video-generation",
+   "video-world-model",
+   "world-models"
+  ],
+  "desc": "World Model Memory Atlas - an interactive timeline of 124 papers on long-video world models and memory address",
+  "matched": [
+   "world-models"
+  ]
+ },
+ {
+  "repo": "markerthu/Aquatic_RSI_world_model",
+  "stars": 4,
+  "topics": [
+   "evolution-strategies",
+   "multi-agent",
+   "reinforcement-learning",
+   "self-improvement",
+   "simulation",
+   "threejs",
+   "webgl",
+   "world-models"
+  ],
+  "desc": "Aquatic RSI World Model: multi-agent self-improvement with a world model, in a live browser lagoon (Three.js).",
+  "matched": [
+   "reinforcement-learning",
+   "world-models"
+  ]
+ },
+ {
+  "repo": "Danzer1xxxxChan/Awesome-Code-World-Models",
+  "stars": 3,
+  "topics": [
+   "awesome-list",
+   "code-world-models",
+   "embodied-ai",
+   "game-ai",
+   "generative-rendering",
+   "threejs",
+   "video-generation",
+   "world-models"
+  ],
+  "desc": "Research on executable visual worlds, programmatic dynamics, generative rendering, and evaluation — with verif",
+  "matched": [
+   "embodied-ai",
+   "world-models"
+  ]
+ },
+ {
+  "repo": "dilmurod3037729-max/AsphaltAI",
+  "stars": 2,
+  "topics": [
+   "asphalt-legends",
+   "computer-vision",
+   "dreamerv3",
+   "game-ai",
+   "imitation-learning",
+   "reinforcement-learning",
+   "world-models"
+  ],
+  "desc": "Research: AI that plays Asphalt Legends from pixels (DreamerV3-style world model + planner, virtual gamepad). ",
+  "matched": [
+   "reinforcement-learning",
+   "world-models"
+  ]
+ },
+ {
+  "repo": "hongjin-he/awesome-world-models-for-finance",
+  "stars": 0,
+  "topics": [
+   "agent-based-modeling",
+   "awesome",
+   "awesome-list",
+   "market-simulation",
+   "quantitative-finance",
+   "reinforcement-learning",
+   "world-model"
+  ],
+  "desc": "Curated reading list on world models for quantitative finance and market simulation",
+  "matched": [
+   "reinforcement-learning"
+  ]
+ },
+ {
+  "repo": "jschomay/thunder-lizard-next-frame-prediction",
+  "stars": 0,
+  "topics": [
+   "ai",
+   "cnn",
+   "game-ai",
+   "gamedev",
+   "machine-learning",
+   "transformer",
+   "world-models"
+  ],
+  "desc": "Building a local world model from scratch to predict next game frames",
+  "matched": [
+   "world-models"
+  ]
+ },
+ {
+  "repo": "ZhijingWu/StressDream-Decision-Reliability-Audit",
+  "stars": 0,
+  "topics": [
+   "evaluation",
+   "reliability",
+   "reproducible-research",
+   "world-models"
+  ],
+  "desc": "Independent audit of StressDream: dynamics oracle, decision-relevant evaluation, and world-model compatibility",
+  "matched": [
+   "world-models"
+  ]
+ },
+ {
+  "repo": "GonzaloFuentes1/dreamer-core",
+  "stars": 0,
+  "topics": [
+   "dreamer",
+   "dreamerv3",
+   "model-based-reinforcement-learning",
+   "pytorch",
+   "reinforcement-learning",
+   "rssm",
+   "world-models"
+  ],
+  "desc": "Tested PyTorch building blocks of DreamerV3-style world models: RSSM, KL balancing, symlog two-hot heads, lamb",
+  "matched": [
+   "reinforcement-learning",
+   "world-models"
+  ]
+ },
+ {
+  "repo": "Shushant17711/AeroWM-FDIR",
+  "stars": 0,
+  "topics": [
+   "6dof-dynamics",
+   "aerospace",
+   "fault-detection",
+   "model-predictive-control",
+   "powered-descent",
+   "reinforcement-learning",
+   "research",
+   "simulation",
+   "td-mpc2",
+   "world-model"
+  ],
+  "desc": "Latent world-model control with real-time fault detection, isolation and recovery (FDIR) for 6-DOF powered des",
+  "matched": [
+   "reinforcement-learning"
+  ]
+ },
+ {
+  "repo": "dhaulagani/awesome-sentient-ai",
+  "stars": 0,
+  "topics": [
+   "agi",
+   "autonomous-agents",
+   "awesome",
+   "awesome-list",
+   "cognitive-architecture",
+   "dspy",
+   "embodied-ai",
+   "episodic-memory",
+   "letta",
+   "mem0",
+   "sentient-ai",
+   "world-models"
+  ],
+  "desc": "🧠 Curated & live-monitored directory of open-source cognitive architectures, episodic memory engines, world mo",
+  "matched": [
+   "embodied-ai",
+   "world-models"
+  ]
+ },
+ {
+  "repo": "DU525/paired-counterfactual-eval",
+  "stars": 0,
+  "topics": [
+   "benchmark",
+   "causal-evaluation",
+   "embodied-ai",
+   "evaluation",
+   "model-based-reinforcement-learning",
+   "world-model"
+  ],
+  "desc": "Paired-counterfactual evaluation for world models: does the model add value over a strong baseline, and if not",
+  "matched": [
+   "embodied-ai"
+  ]
+ }
+]

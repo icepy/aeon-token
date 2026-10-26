@@ -1,0 +1,524 @@
+{
+ "SuperMimic": {
+  "2026-10-19..2026-10-26": 55,
+  "2026-08-27..2026-10-26": 55
+ },
+ "BeyondMimic": {
+  "2026-10-19..2026-10-26": 3,
+  "2026-08-27..2026-10-26": 11
+ },
+ "vibe coded": {
+  "2026-10-19..2026-10-26": 1099,
+  "2026-08-27..2026-10-26": 6957
+ },
+ "whole-body tracking": {
+  "2026-10-19..2026-10-26": 7,
+  "2026-08-27..2026-10-26": 18
+ },
+ "_superminic_7d_items": [
+  {
+   "repo": "sxh-kk/SuperMimic_Recurrence",
+   "stars": 0,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 85,
+   "c7": 85,
+   "desc": "SuperMimic 单卡复现：基于 mjlab 与 MuJoCo Warp，适配 RTX 4090 和 CUDA 12"
+  },
+  {
+   "repo": "QinnyuLan/SuperMimicCarnival",
+   "stars": 0,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 33,
+   "c7": 33,
+   "desc": "Curated, continuously updated index of SuperMimic open-source reproductions and adaptations with ver"
+  },
+  {
+   "repo": "CesarLiu/smimic",
+   "stars": 0,
+   "created": "2026-10-25",
+   "lang": "Python",
+   "c30": 31,
+   "c7": 31,
+   "desc": "reproducing supermimic"
+  },
+  {
+   "repo": "LaoYang1994/SuperMimic-Rep",
+   "stars": 0,
+   "created": "2026-10-25",
+   "lang": "Python",
+   "c30": 27,
+   "c7": 27,
+   "desc": ""
+  },
+  {
+   "repo": "Breezewrf/supermimic_mjlab",
+   "stars": 2,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 23,
+   "c7": 23,
+   "desc": "Reproduce of Supermimic in Mjlab"
+  },
+  {
+   "repo": "Motphys/Uni-SuperMimic",
+   "stars": 137,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 22,
+   "c7": 22,
+   "desc": "SuperMimic-UniLab: An Independent reproduction of SuperMimic on UniLab for whole-body humanoid motio"
+  },
+  {
+   "repo": "RaraAlu/Supermimic",
+   "stars": 3,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 21,
+   "c7": 21,
+   "desc": ""
+  },
+  {
+   "repo": "shangchaohu718/supermimic-pera",
+   "stars": 0,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 19,
+   "c7": 19,
+   "desc": "G1 SuperMimic-PERA: native UniLab world-model tracking baseline and interaction research"
+  },
+  {
+   "repo": "KunYing-Lee/SuperMimic",
+   "stars": 1,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 17,
+   "c7": 17,
+   "desc": ""
+  },
+  {
+   "repo": "btx0424/rethinking-supermimic",
+   "stars": 23,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 15,
+   "c7": 15,
+   "desc": ""
+  },
+  {
+   "repo": "OMEGA-i/SuperMimicKit",
+   "stars": 3,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 13,
+   "c7": 13,
+   "desc": "Unofficial SuperMimic reproduction and multi-embodiment toolkit for Unitree G1/H2 and Agibot A3"
+  },
+  {
+   "repo": "Renforce-Dynamics/trackerlab-supermimic",
+   "stars": 9,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 10,
+   "c7": 10,
+   "desc": "TrackerLab SuperMimic: G1 data processing, IsaacLab/PhysX training, evaluation and policy export"
+  },
+  {
+   "repo": "YanYuan98/Supermimic_mod",
+   "stars": 8,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 9,
+   "c7": 9,
+   "desc": ""
+  },
+  {
+   "repo": "enffft/supermimic",
+   "stars": 0,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 7,
+   "c7": 7,
+   "desc": ""
+  },
+  {
+   "repo": "yuntian137/supermimic_lab",
+   "stars": 0,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 7,
+   "c7": 7,
+   "desc": ""
+  },
+  {
+   "repo": "Mark054/SuperMimic_TienKung",
+   "stars": 0,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 7,
+   "c7": 7,
+   "desc": ""
+  },
+  {
+   "repo": "tianshuwu/supermimic-retargeted",
+   "stars": 7,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 6,
+   "c7": 6,
+   "desc": ""
+  },
+  {
+   "repo": "kangzejian1896/supermimic-g1-reproduction",
+   "stars": 4,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 6,
+   "c7": 6,
+   "desc": "Independent SuperMimic reproduction for Unitree G1 with MuJoCo Warp: training/evaluation code and BO"
+  },
+  {
+   "repo": "chu-fa/isaaclab-supermimic",
+   "stars": 0,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 6,
+   "c7": 6,
+   "desc": "SuperMimic 的个人复现（非官方），基于 Isaac Lab，可跨项目复用，附智元远征 A3 示例。"
+  },
+  {
+   "repo": "CuboiLeo/SuperMimic-Reproduced",
+   "stars": 231,
+   "created": "2026-10-21",
+   "lang": "Python",
+   "c30": 5,
+   "c7": 5,
+   "desc": "Reproduction of SuperMimic (arXiv:2610.28480): learned differentiable world model + BPTT policy for "
+  },
+  {
+   "repo": "panhainan2020/SuperMimic-MuJoCo",
+   "stars": 12,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 5,
+   "c7": 5,
+   "desc": "SuperMimic reproduction with standalone MuJoCo and MJLab, trained G1 policy and reproducible evaluat"
+  },
+  {
+   "repo": "HighTorque-Dev/supermimic-colab",
+   "stars": 1,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 5,
+   "c7": 5,
+   "desc": "SuperMimic (Unitree G1) Google Colab reproduction & 14k A100 training logs"
+  },
+  {
+   "repo": "samindaa/supermimic_mjlab",
+   "stars": 1,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 5,
+   "c7": 5,
+   "desc": ""
+  },
+  {
+   "repo": "liuskywalkerjskd/supermimic_oli",
+   "stars": 1,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 5,
+   "c7": 5,
+   "desc": "SuperMimic motion tracking for the 31-DoF LimX Oli humanoid in Isaac Lab 3 / MuJoCo-Warp, with LAFAN"
+  },
+  {
+   "repo": "WXyuany/supermimic-m5",
+   "stars": 1,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 5,
+   "c7": 5,
+   "desc": "SuperMimic trained from scratch on Apple M5: MPS learning + CPU MuJoCo, all 40 LAFAN1 clips, reprodu"
+  },
+  {
+   "repo": "zita-ch/supermimic_vibed",
+   "stars": 553,
+   "created": "2026-10-21",
+   "lang": "Python",
+   "c30": 4,
+   "c7": 4,
+   "desc": "vibe coded supermimic within 1h, LAFAN passed within 1.5 gpuh training"
+  },
+  {
+   "repo": "JackMin7/supermimic_whole_body_tracking",
+   "stars": 19,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 4,
+   "c7": 4,
+   "desc": "在同一静态站立任务上，对比 MBRL（SuperMimic） 与 PPO（原版 BeyondMimic），两组各累计训练约 1 小时。"
+  },
+  {
+   "repo": "Shimingyi/allmimic",
+   "stars": 10,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 4,
+   "c7": 4,
+   "desc": "SuperMimic re-implementation"
+  },
+  {
+   "repo": "mode1223345/SuperMimic-perceptive",
+   "stars": 3,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 4,
+   "c7": 4,
+   "desc": "G1 perceptive SuperMimic prototype with a pretrained frozen heightmap autoencoder shared by policy, "
+  },
+  {
+   "repo": "jackzedgar/SuperDex",
+   "stars": 2,
+   "created": "2026-10-23",
+   "lang": null,
+   "c30": 3,
+   "c7": 3,
+   "desc": "Exploring dexterous manipulation with differentiable world models, inspired by SuperMimic."
+  },
+  {
+   "repo": "liudi159/supermimic-backflip-5090",
+   "stars": 1,
+   "created": "2026-10-25",
+   "lang": "Python",
+   "c30": 3,
+   "c7": 3,
+   "desc": "Single RTX 5090 G1 backflip reproduction using SuperMimic: scratch training, contact-force validatio"
+  },
+  {
+   "repo": "tianny0078/supermimic-repro",
+   "stars": 0,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 3,
+   "c7": 3,
+   "desc": ""
+  },
+  {
+   "repo": "zzhanYoung/supermimic-lite",
+   "stars": 0,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 4,
+   "c7": 2,
+   "desc": "A lightweight reproduction of Supermimic (https://supermimic.github.io/)."
+  },
+  {
+   "repo": "Baojch/SuperMimic_Dyn",
+   "stars": 15,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 2,
+   "c7": 2,
+   "desc": "基于 SuperMimic 复现与适配，在 MuJoCo 闭环仿真中实现前空翻、后空翻、侧空翻、侧手翻等高动态动作，并支持爬行、跌倒起身与全身动作跟踪。"
+  },
+  {
+   "repo": "CumulusAlpha/Dex-Supermimic",
+   "stars": 5,
+   "created": "2026-10-26",
+   "lang": "Python",
+   "c30": 2,
+   "c7": 2,
+   "desc": "This is a reproduction of SuperMimic for dexterous hand manipulation task."
+  },
+  {
+   "repo": "humble02/supermimic_mjlab_vibed",
+   "stars": 4,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 2,
+   "c7": 2,
+   "desc": ""
+  },
+  {
+   "repo": "wenconggan/SuperMimic_e1",
+   "stars": 4,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 2,
+   "c7": 2,
+   "desc": ""
+  },
+  {
+   "repo": "NJU-R-L-Group-Embodied-Lab/SuperMimic-Repro-Sim2Real",
+   "stars": 2,
+   "created": "2026-10-25",
+   "lang": "Python",
+   "c30": 2,
+   "c7": 2,
+   "desc": "Unofficial reproduction of SuperMimic on Unitree G1: differentiable world model training in mjlab + "
+  },
+  {
+   "repo": "PrimebotTech/SuperMimic",
+   "stars": 1,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 2,
+   "c7": 2,
+   "desc": ""
+  },
+  {
+   "repo": "joreb/supermimic-yai",
+   "stars": 0,
+   "created": "2026-10-25",
+   "lang": "Python",
+   "c30": 2,
+   "c7": 2,
+   "desc": ""
+  },
+  {
+   "repo": "jboyxs/Supermimic_for_transcube",
+   "stars": 0,
+   "created": "2026-10-26",
+   "lang": "Python",
+   "c30": 2,
+   "c7": 2,
+   "desc": "To verify the other task with the Supermimic"
+  },
+  {
+   "repo": "luoshaqi/g1-moonwalk-supermimic",
+   "stars": 0,
+   "created": "2026-10-26",
+   "lang": "Python",
+   "c30": 2,
+   "c7": 2,
+   "desc": "G1 moonwalk fine-tuning with the third-party SuperMimic_Dyn implementation: reproducible training, e"
+  },
+  {
+   "repo": "Zhengtianjin/go2-supermimic",
+   "stars": 42,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 1,
+   "c7": 1,
+   "desc": ""
+  },
+  {
+   "repo": "huangkiki/awesome-supermimic",
+   "stars": 19,
+   "created": "2026-10-26",
+   "lang": null,
+   "c30": 1,
+   "c7": 1,
+   "desc": "A curated collection of SuperMimic implementations, extensions, demos, and resources."
+  },
+  {
+   "repo": "KyrieYoung926/supermimic_deploy",
+   "stars": 4,
+   "created": "2026-10-23",
+   "lang": "Python",
+   "c30": 1,
+   "c7": 1,
+   "desc": ""
+  },
+  {
+   "repo": "fan-ziqi/supermimic-agy",
+   "stars": 2,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 1,
+   "c7": 1,
+   "desc": ""
+  },
+  {
+   "repo": "Alchedata/supermimic-locomujoco",
+   "stars": 1,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 1,
+   "c7": 1,
+   "desc": "SuperMimic-style model-based control on LocoMuJoCo H1 and LAFAN1, with world-model and action-output"
+  },
+  {
+   "repo": "dhmbb2/supermimic_vibe",
+   "stars": 1,
+   "created": "2026-10-22",
+   "lang": "Python",
+   "c30": 1,
+   "c7": 1,
+   "desc": ""
+  },
+  {
+   "repo": "Green-Fr0g/supermimic",
+   "stars": 0,
+   "created": "2026-10-26",
+   "lang": null,
+   "c30": 1,
+   "c7": 1,
+   "desc": ""
+  },
+  {
+   "repo": "yangkunpeng-coder/supermimic_reproduce",
+   "stars": 0,
+   "created": "2026-10-25",
+   "lang": null,
+   "c30": 1,
+   "c7": 1,
+   "desc": "supermimic reproduce"
+  },
+  {
+   "repo": "yagami-light7/SuperMimic-codex",
+   "stars": 0,
+   "created": "2026-10-24",
+   "lang": "Python",
+   "c30": 1,
+   "c7": 1,
+   "desc": "复刻SuperMimic(CoRL 2026 Oral)"
+  },
+  {
+   "repo": "Go-Youngster/supermimic-reproduce",
+   "stars": 0,
+   "created": "2026-10-25",
+   "lang": "Python",
+   "c30": 1,
+   "c7": 1,
+   "desc": ""
+  },
+  {
+   "repo": "yhx1203/supermimic_mjlab",
+   "stars": 1,
+   "created": "2026-10-23",
+   "lang": null,
+   "c30": null,
+   "c7": null,
+   "desc": ""
+  },
+  {
+   "repo": "Tianao-Zhang/supermimic_dualhand",
+   "stars": 0,
+   "created": "2026-10-24",
+   "lang": null,
+   "c30": null,
+   "c7": null,
+   "desc": ""
+  },
+  {
+   "repo": "xinruilee04/supermimic-test",
+   "stars": 0,
+   "created": "2026-10-24",
+   "lang": null,
+   "c30": null,
+   "c7": null,
+   "desc": ""
+  },
+  {
+   "repo": "somidaa/supermimic-lafan1-reproduction",
+   "stars": 0,
+   "created": "2026-10-26",
+   "lang": null,
+   "c30": null,
+   "c7": null,
+   "desc": ""
+  }
+ ]
+}
