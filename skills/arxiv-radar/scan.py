@@ -113,7 +113,7 @@ automated market maker
 #    宽 4.5 倍、精度不掉 —— 「有词 ≠ 有召回」的第二例，修法是换写法不是加窗口。
 ti:"consensus" AND cat:cs.DC
 cat:cs.CR AND ti:"MEV"
-liquid staking
+staking Lido
 embodied data
 robot manipulation data
 robot data
@@ -127,7 +127,7 @@ ti:"egocentric" AND cat:cs.RO
 ti:"data generation" AND cat:cs.RO
 # ── 持仓依赖的机制 ──
 ti:"EIP-1559"
-ti:"Robinhood Chain"
+ti:"tokenized RWA"
 """.strip().split("\n") if t.strip() and not t.strip().startswith("#")]
 
 if NAMES_MODE and os.path.exists(NAMES_FILE):
