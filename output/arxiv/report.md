@@ -1,39 +1,60 @@
-**arxiv-radar** · vJ · 窗口 90 天（补历史口径）· 原始 181 → 幸存 22 · dry-run 未推送
+**arxiv-radar** · 窗口 90 天（补历史口径） · 幸存 49 · dry-run
 
-窗口 `2026-07-28 – 2026-10-26`。最新收录 2026-10-23（周五，距今 3 天）= 正常节律。
+## 具身数据 / 人类示范（19 条，最近 30 天 11 条）
+- `TTT` TTT in VLA Models: Exploring Training with Human Demonstrations · 10-23 · https://arxiv.org/abs/2610.32094
+- `DONIC` DONIC: Generalist Dexterous Bimanual Tracking Control from Human Demonstrations · 10-21 · https://arxiv.org/abs/2610.29997
+- Human Demonstrations as Post-Training Data for Any Robot Body: Retargeting the Object, Not the Hand · 10-14 · https://arxiv.org/abs/2610.20351
+- Beyond the End-Effector: Learning Whole-Arm Contact Manipulation from Human Demonstrations · 10-13 · https://arxiv.org/abs/2610.17802
+- `Hand2Robot` Object-Centric 4D Hand Reconstruction from Human Demonstrations for Robotics · 10-11 · https://arxiv.org/abs/2610.15769
+- `Human2Dex` Dexterous Robot Learning from Wrist-Centric Human Demonstrations · 10-09 · https://arxiv.org/abs/2610.13119
+- `Dex-One2Many` Learning Dexterous Manipulation from a Single Human Demonstration · 10-08 · https://arxiv.org/abs/2610.12470
+- `TacOT` Contact-Rich Dexterous Manipulation via Tactile-Guided Optimal Transport · 10-03 · https://arxiv.org/abs/2610.04363
+- `Practice Makes Policies` Bootstrapping Robotic Capabilities from Zero Human Demonstrations · 07-29 · https://arxiv.org/abs/2607.26809
+- From Pixel to Poses: Object-centric Tool Manipulation Learning from Human Demonstrations · 09-28 · https://arxiv.org/abs/2609.35375
+- `DexWeave` Dexterous Humanoid Loco-Manipulation from Human Demonstrations · 09-28 · https://arxiv.org/abs/2609.34724
+- Unified Visual-Tactile-Action Modeling from Human Demonstrations for Dexterous Manipulation · 09-28 · https://arxiv.org/abs/2609.34182
+- `Touch2Robot` Robot Touch in the Human Demonstration Loop · 09-21 · https://arxiv.org/abs/2609.24660
+- Dexterous Robot Manipulation via Contact-Anchored Retargeting and Residual Policy Learning · 09-21 · https://arxiv.org/abs/2609.24093
+- Learning Scene-Aware Humanoid Locomotion through 3D Clutter from Immersive Human Demonstrations · 09-17 · https://arxiv.org/abs/2609.21107
+- `A4A` Cross-Embodiment Transfer of Action-Oriented 4D Affordances from Human Demonstrations · 09-05 · https://arxiv.org/abs/2609.05892
+- `AdvDex` Dexterous Manipulation via Joint-Aligned Actions and Adversarial Learning · 08-14 · https://arxiv.org/abs/2608.14028
+- High Fidelity Capture and Transfer of Human Demonstrations for Robot-Assisted Bathing · 08-10 · https://arxiv.org/abs/2608.09127
+- Robot Learning from Human Demonstrations: Handwritten Alphabet Trajectories · 08-06 · https://arxiv.org/abs/2608.06221
 
-**具身数据 / 第一视角**（10）
-- `EMPIRE` — 把显式操作规划当作可学习中间表示，用于第一视角手部动作 · https://arxiv.org/abs/2608.22449
-- `EgoTac` — 从第一视角视觉预测野外触觉 · https://arxiv.org/abs/2608.15060
-- `EgoPHI` — 从第一视角视觉估计 3D 手-物接触与力 · https://arxiv.org/abs/2608.13014
-- 视觉语言模型能否从第一视角机器人图像判断近身距离风险 · https://arxiv.org/abs/2608.12515
-- `HandEdit` — 人→机灵巧手图像编辑的统一基准 · https://arxiv.org/abs/2608.12122
-- `Ego-OSCAR` — 开源第一视角双目采集系统 · https://arxiv.org/abs/2608.08285
-- `SiMDex` — 挖掘相似第一视角视频做跨具身灵巧操作 · https://arxiv.org/abs/2608.04196
-- `RoboReact` — 从生成的第一视角视频蒸馏全身操作技能 · https://arxiv.org/abs/2608.03387
-- `Aria` — 第一视角摆放协助基准 · https://arxiv.org/abs/2608.00652
-- `SymmGrid` — 对称性并行 + 第一/第三人称视觉的在机学习扩容 · https://arxiv.org/abs/2607.26985
+## 手物交互（8 条，最近 30 天 6 条）
+- Learning Tactile-Aware Hand Representations from Human Hand-Object Interaction Data · 10-20 · https://arxiv.org/abs/2610.27995
+- `EmbodyHOI` Embodiment-Aware Generation of Hand-Object Interactions for Humanoid Dexterous Manipulation · 10-19 · https://arxiv.org/abs/2610.27242
+- Tactile In-Hand Object Rotation: A Comparative Study of Hand Morphology · 10-19 · https://arxiv.org/abs/2610.26759
+- `DexMimic` Generalist Dexterous Hand-Object Tracking Policy via Value-Guided Reset Allocation · 10-13 · https://arxiv.org/abs/2610.19089
+- `OmniHOI` Dexterous Hand-Object Interaction from Monocular Human Video · 10-07 · https://arxiv.org/abs/2610.10855
+- `VICON` Visual-Inertial-Contact based Hand-Object Tracking for Manipulation Datasets · 10-04 · https://arxiv.org/abs/2610.05180
+- Relative Contact Velocity-Controlled Hand-Object Mechanism for Dexterous Tool Manipulation · 09-22 · https://arxiv.org/abs/2609.25619
+- Learning In-Hand Object Reaching to General 6D Poses · 09-12 · https://arxiv.org/abs/2609.13761
 
-**共识机制**（7，均 cs.DC，数据中心 / BFT 口径）
-- 硬件上近似同步共识的可扩展数据中心复制 · https://arxiv.org/abs/2608.24622
-- 多值共识：通用对手需要更多通信 · https://arxiv.org/abs/2608.17998
-- 领导式共识存储的操作类型感知客户端路由 · https://arxiv.org/abs/2609.00392
-- `SCOUT` — LLM 预训练中的对称共识离群检测 · https://arxiv.org/abs/2608.11034
-- 用块时间分布混合模型诊断高性能 BFT 共识 · https://arxiv.org/abs/2608.01934
-- 超越拜占庭：信息不对称下自利主体的组织型共识 · https://arxiv.org/abs/2607.28957
-- `Hermes` — 前缀共识换低尾延迟 · https://arxiv.org/abs/2607.25916
+## 第一视角 / 具身
+- `EMPIRE` Explicit Manipulation Planning as a Learnable Intermediate Representation · 08-23 · https://arxiv.org/abs/2608.22449
+- `EgoTac` In-the-wild Tactile Prediction from Egocentric Vision · 08-15 · https://arxiv.org/abs/2608.15060
+- `EgoPHI` Estimating 3D Hand-Object Contact and Force from Egocentric Vision · 08-13 · https://arxiv.org/abs/2608.13014
+- Can Vision-Language Models Assess Proxemic Risk from Egocentric Robot Images? · 08-12 · https://arxiv.org/abs/2608.12515
+- `HandEdit` Egocentric Human-to-Robot Dexterous Hand Image Editing · 08-12 · https://arxiv.org/abs/2608.12122
+- `CAptuRe` Ego-OSCAR: Egocentric Open source Stereo CAptuRe System · 08-08 · https://arxiv.org/abs/2608.08285
+- `SiMDex` Mining Similar Egocentric Videos for Cross-Embodiment Dexterous Manipulation · 08-04 · https://arxiv.org/abs/2608.04196
+- `RoboReact` Agentic Skill Distillation from Generated Egocentric Videos · 08-04 · https://arxiv.org/abs/2608.03387
+- Assistant Placement Aria: A Benchmark for Egocentric Placement Assistance · 08-01 · https://arxiv.org/abs/2608.00652
+- `SymmGrid` Super-Scaling On-Robot Learning with Parallelized Symmetries · 07-29 · https://arxiv.org/abs/2607.26985
+- MMUSV-Sim: Simulation and Data-Generation Platform for Multi-USV Cooperative Perception · 08-14 · https://arxiv.org/abs/2608.14207
+- `LiDAR` Synthetic LiDAR Data Generation and Deterministic Downsampling · 08-07 · https://arxiv.org/abs/2608.07106
 
-**零知识**（2）
-- 由 Pisot β-变换构造确定性 JL 投影，用于零知识隐私检索 · https://arxiv.org/abs/2608.13078
-- 用零知识证明做图像来源的软性脱敏 · https://arxiv.org/abs/2608.07063
+## 可验证计算 / 链上（3 条）
+- Deterministic Johnson–Lindenstrauss Projections from Pisot β-Transformations for Zero-Knowledge · 08-13 · https://arxiv.org/abs/2608.13078
+- Soft Redaction of Image Provenance via Zero-Knowledge Proofs · 08-07 · https://arxiv.org/abs/2608.07063
+- `RWA-PoB` Credential-Based Proof-of-Backing for Tokenized U.S. Treasury Products · 08-26 · https://arxiv.org/abs/2608.25269
 
-**机器人合成数据**（2）
-- `MMUSV-Sim` — 多无人艇协同感知的仿真与数据生成平台 · https://arxiv.org/abs/2608.14207
-- 合成 LiDAR 数据生成 + 确定性降采样，面向边缘端点云分类 · https://arxiv.org/abs/2608.07106
-
-**RWA**（1）
-- `RWA-PoB` — 面向代币化美国国债的凭证式储备证明框架 · https://arxiv.org/abs/2608.25269
-
----
-
-**这批全部落在 61–90 天带**：22 条发布日期从 2026-07-28 到 2026-08-26，**没有一条落在第九轮已扫过的 60 天内**（边界 2026-08-28）。第一次开 90d，补到的全是更早的沉积层。别读成"突然有动静"。
+## 共识
+- Scalable datacenter replication with mostly-synchronous consensus on hardware · 08-25 · https://arxiv.org/abs/2608.24622
+- Multivalued Consensus: General Adversaries Require More Communication · 08-18 · https://arxiv.org/abs/2608.17998
+- Operation-Type-Aware Client Routing for Leader-Based Consensus Datastores · 08-11 · https://arxiv.org/abs/2609.00392
+- `SCOUT` Symmetric Consensus Outlier Detection for Failure Localization in LLM Pre-Training · 08-11 · https://arxiv.org/abs/2608.11034
+- `BFT` Diagnosing High-Performance BFT Consensus via Mixture Modeling of Block Time · 08-03 · https://arxiv.org/abs/2608.01934
+- Beyond Byzantine: Organizational Consensus for Self-Interested Agents Under Information Asymmetry · 07-31 · https://arxiv.org/abs/2607.28957
+- Hermes: Low Tail-Latency Via Prefix Consensus · 07-28 · https://arxiv.org/abs/2607.25916

@@ -1,12 +1,12 @@
-arxiv-radar vJ · 窗口 90 天（补历史口径） · 词 24 · 原始 181 · 幸存 22 · var='dry-run days:90'
-丢弃 seen(记忆)=158 · seen(本轮重复)=0 · EXCL=1 · carrier=0 · 查询失败=0
+arxiv-radar vK · 窗口 90 天（补历史口径） · 词 26 · 原始 210 · 幸存 49 · var='dry-run days:90'
+丢弃 seen(记忆)=159 · seen(本轮重复)=1 · EXCL=1 · carrier=0 · 查询失败=0
 窗口内最新收录日期: 2026-10-23（周五，距今 3 天）— 周一/周二 + 周末不公告 → 正常节律
-六分类: 未测到(试过失败)=0 · 未尝试(熔断跳过)=0 · 窗口内零命中=0 · 低频探针=1 · 全已见(饱和)=18 · 有新增=5
+六分类: 未测到(试过失败)=0 · 未尝试(熔断跳过)=0 · 窗口内零命中=0 · 低频探针=1 · 全已见(饱和)=18 · 有新增=7
 低频探针（已降级，别删）: verifiable training
 全已见（饱和，**别删**）: verifiable inference(raw=1) · verifiable computation(raw=1) · auditable training(raw=3) · proof of training(raw=1) · proof-of-useful-work(raw=1) · light client(raw=1) · data availability sampling(raw=1) · restaking(raw=1) · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)(raw=1) · cat:cs.CR AND ti:"MEV"(raw=5) · automated market maker(raw=4) · embodied data(raw=4) · robot manipulation data(raw=2) · robot data(raw=10) · embodied AI(raw=21) · ti:"data engine" AND cat:cs.RO(raw=5) · ti:"human data" AND cat:cs.RO(raw=8) · ti:"EIP-1559"(raw=2)
 丢弃名单 excl（前 12）:
    2026-10-02  From bits to atoms: A survey of cross-layer safety in Embodied AI
-词表原始/新收: ti:"egocentric" AND cat:cs.RO=38/10 · zero-knowledge=28/2 · ti:"consensus" AND cat:cs.DC=27/7 · embodied AI=21/0 · ti:"data generation" AND cat:cs.RO=14/2 · robot data=10/0 · ti:"human data" AND cat:cs.RO=8/0 · cat:cs.CR AND ti:"MEV"=5/0 · ti:"data engine" AND cat:cs.RO=5/0 · automated market maker=4/0 · embodied data=4/0 · auditable training=3/0 · RWA=2/1 · robot manipulation data=2/0 · ti:"EIP-1559"=2/0 · verifiable inference=1/0 · verifiable computation=1/0 · proof of training=1/0 · proof-of-useful-work=1/0 · light client=1/0 · data availability sampling=1/0 · restaking=1/0 · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)=1/0 · verifiable training=0/0
+词表原始/新收: ti:"egocentric" AND cat:cs.RO=38/10 · zero-knowledge=28/2 · ti:"consensus" AND cat:cs.DC=27/7 · embodied AI=21/0 · ti:"human demonstration" AND cat:cs.RO=20/19 · ti:"data generation" AND cat:cs.RO=14/2 · robot data=10/0 · ti:"hand-object" AND cat:cs.RO=9/8 · ti:"human data" AND cat:cs.RO=8/0 · cat:cs.CR AND ti:"MEV"=5/0 · ti:"data engine" AND cat:cs.RO=5/0 · automated market maker=4/0 · embodied data=4/0 · auditable training=3/0 · RWA=2/1 · robot manipulation data=2/0 · ti:"EIP-1559"=2/0 · verifiable inference=1/0 · verifiable computation=1/0 · proof of training=1/0 · proof-of-useful-work=1/0 · light client=1/0 · data availability sampling=1/0 · restaking=1/0 · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)=1/0 · verifiable training=0/0
   2026-08-13 [zero-knowledge] Deterministic Johnson--Lindenstrauss Projections from Pisot $β$-Transformations for Zero
   2026-08-07 [zero-knowledge] Soft Redaction of Image Provenance via Zero-Knowledge Proofs
   2026-08-25 [ti:"consensus" AND cat:cs.DC] Scalable datacenter replication with mostly-synchronous consensus on hardware
@@ -19,7 +19,7 @@ arxiv-radar vJ · 窗口 90 天（补历史口径） · 词 24 · 原始 181 · 
   2026-08-26 [RWA] RWA-PoB: A Credential-Based Proof-of-Backing Framework for Tokenized U.S. Treasury Produ
   2026-08-23 [ti:"egocentric" AND cat:cs.RO] EMPIRE: Explicit Manipulation Planning as a Learnable Intermediate Representation for Eg · 名字=EMPIRE
   2026-08-15 [ti:"egocentric" AND cat:cs.RO] EgoTac: In-the-wild Tactile Prediction from Egocentric Vision · 名字=EgoTac
-  2026-08-13 [ti:"egocentric" AND cat:cs.RO] EgoPHI: Estimating 3D Hand-Object Contact and Force from Egocentric Vision · 名字=EgoPHI
+  2026-08-13 [ti:"egocentric" AND cat:cs.RO+ti:"hand-object" AND cat:cs.RO] EgoPHI: Estimating 3D Hand-Object Contact and Force from Egocentric Vision · 名字=EgoPHI
   2026-08-12 [ti:"egocentric" AND cat:cs.RO] Can Vision-Language Models Assess Proxemic Risk from Egocentric Robot Images?
   2026-08-12 [ti:"egocentric" AND cat:cs.RO] HandEdit: A Unified Benchmark for Egocentric Human-to-Robot Dexterous Hand Image Editing · 名字=HandEdit
   2026-08-08 [ti:"egocentric" AND cat:cs.RO] Ego-OSCAR: Egocentric Open source Stereo CAptuRe System · 名字=CAptuRe
@@ -29,3 +29,6 @@ arxiv-radar vJ · 窗口 90 天（补历史口径） · 词 24 · 原始 181 · 
   2026-07-29 [ti:"egocentric" AND cat:cs.RO] SymmGrid: Super-Scaling On-Robot Learning with Parallelized Symmetries and Egocentric-Ex · 名字=SymmGrid
   2026-08-14 [ti:"data generation" AND cat:cs.RO] MMUSV-Sim: A Perception-Oriented Simulation and Data-Generation Platform for Multi-USV C
   2026-08-07 [ti:"data generation" AND cat:cs.RO] Synthetic LiDAR Data Generation and Deterministic Downsampling for Point Cloud Classific · 名字=LiDAR
+  2026-10-23 [ti:"human demonstration" AND cat:cs.RO] TTT in VLA Models: Exploring Training with Human Demonstrations · 名字=TTT
+  2026-10-21 [ti:"human demonstration" AND cat:cs.RO] DONIC: Generalist Dexterous Bimanual Tracking Control from Human Demonstrations · 名字=DONIC
+  2026-10-14 [ti:"human demonstration" AND cat:cs.RO] Human Demonstrations as Post-Training Data for Any Robot Body: Retargeting the Object, N

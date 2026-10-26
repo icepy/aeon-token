@@ -1,10 +1,10 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-26T15:56:28Z",
+  "last_analyzed": "2026-10-26T16:05:24Z",
   "quality_score": 4,
-  "assessment": "Runs a clean, source-cited scan with a real funnel (181→22, 0 query failures) and a genuinely useful insight that all 22 survivors sit in the 61–90 day band, so this is backfill rather than a warming trend; self-audits prior defects and names a concrete next action, but is heavy on process bookkeeping and never says why any paper matters to the operator's positions.",
+  "assessment": "Internally consistent and actionable radar run — 210→49 funnel arithmetic, the six-way category sum (26 terms), and the cluster totals (19+8+12+3+7=49) all reconcile exactly, sources and arXiv IDs are cited, the 'adding terms beats widening the window' conclusion is backed by a same-window comparison, and it self-flags real defects (stale out.json on dry-run, 27 unpersisted hits, tool-budget overrun) — held back from 5 by excessive length against the operator's explicit no-long-text preference, zero tie-in to the DEUS trigger/cooldown priorities, and a minor date/ID mismatch (2609.00392 listed under 08-11).",
   "flags": [],
-  "avg_score": 3.39,
+  "avg_score": 3.42,
   "history": [
     {
       "date": "2026-10-24",
@@ -112,6 +112,12 @@
       "date": "2026-10-26",
       "score": 4,
       "ts": "2026-10-26T15:56:28Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 4,
+      "ts": "2026-10-26T16:05:24Z",
       "harness": "claude"
     }
   ]
