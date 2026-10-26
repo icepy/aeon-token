@@ -144,3 +144,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-10-26,arxiv-radar,claude-opus-5-5,55395,19099,478720,0
 2026-10-26,defi-overview,claude-opus-5-5,213944,84064,7505920,0
 2026-10-26,arxiv-radar,claude-opus-5-5,167308,36051,2409088,0
+2026-10-26,arxiv-radar,claude-opus-5-5,24205,9481,299904,0
