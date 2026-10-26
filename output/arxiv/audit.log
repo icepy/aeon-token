@@ -1,9 +1,21 @@
-扫 24 词 | 窗口 [202609261019 TO 202610261019] | 原始 62 | 幸存 26 | var='dry-run days:30'
+扫 24 词 | 窗口 [202609261125 TO 202610261125] | 原始 62 | 幸存 26 | var='days:30'
 丢弃 seen=31 excl=1 carrier=4 fail=0
 词表四分类 —— 查询失败 0 / 真零 10 / 全已见(饱和) 10 / 有新增 4
-窗口内最新收录日期: 2026-10-22   ← 比今天早 3 天以上即索引滞后，不是零命中
-耗时 77s
-⚠️ 真零命中（total=0，可考虑删词）: verifiable inference · light client · proof of learning · verifiable training · restaking · consensus protocol · cat:cs.CR AND ti:"MEV" · liquid staking · robot manipulation data · ti:"Robinhood Chain"
+窗口内最新收录日期: 2026-10-22   ← 比今天早 3 天以上即索引滞后，实测已到 5 天
+耗时 97s
+⚠️ 真零命中（本轮 30d total=0）—— 跨窗 60d 复量：
+   verifiable inference: win=0 60d=0
+   light client: win=0 60d=1
+   proof of learning: win=0 60d=0
+   verifiable training: win=0 60d=0
+   restaking: win=0 60d=0
+   consensus protocol: win=0 60d=4
+   cat:cs.CR AND ti:"MEV": win=0 60d=3
+   liquid staking: win=0 60d=0
+   robot manipulation data: win=0 60d=2
+   ti:"Robinhood Chain": win=0 60d=0
+   └ 跨窗有命中（活的，**别删**）4 个: light client · consensus protocol · cat:cs.CR AND ti:"MEV" · robot manipulation data
+   └ 跨窗全零（候选废词，连续两轮才谈删）6 个: verifiable inference · proof of learning · verifiable training · restaking · liquid staking · ti:"Robinhood Chain"
 ℹ️ 全已见（饱和，**别删**）: proof-of-useful-work(raw=1) · proof of training(raw=1) · auditable training(raw=2) · data availability sampling(raw=1) · automated market maker(raw=2) · embodied data(raw=1) · robot data(raw=4) · embodied AI(raw=6) · zero-knowledge(raw=8) · ti:"EIP-1559"(raw=2)
 词表原始/新收: ti:"egocentric" AND cat:cs.RO=20/14 · zero-knowledge=8/0 · embodied AI=6/0 · ti:"human data" AND cat:cs.RO=6/6 · ti:"data generation" AND cat:cs.RO=5/4 · robot data=4/0 · ti:"data engine" AND cat:cs.RO=3/2 · auditable training=2/0 · automated market maker=2/0 · ti:"EIP-1559"=2/0 · proof-of-useful-work=1/0 · proof of training=1/0 · data availability sampling=1/0 · embodied data=1/0
   2026-10-17 [ti:"egocentric" AND cat:cs.RO] SocialCoAct: Enabling and Benchmarking Egocentric Social Co-Action for VLM-Based Huma

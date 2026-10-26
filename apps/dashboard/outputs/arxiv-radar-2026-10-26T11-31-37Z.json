@@ -1,0 +1,304 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 幸存 26"
+      },
+      "children": [
+        "root-stack"
+      ]
+    },
+    "root-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "stats",
+        "sep1",
+        "papers"
+      ]
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "sm"
+      },
+      "children": [
+        "stat-window",
+        "stat-survivors"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天",
+        "trend": "neutral"
+      }
+    },
+    "stat-survivors": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "26",
+        "trend": "neutral"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "papers": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8",
+        "p9",
+        "p10",
+        "p11",
+        "p12",
+        "p13",
+        "p14",
+        "p15",
+        "p16",
+        "p17",
+        "p18",
+        "p19",
+        "p20",
+        "p21",
+        "p22",
+        "p23",
+        "p24",
+        "p25",
+        "p26"
+      ]
+    },
+    "p1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SocialCoAct: Enabling and Benchmarking Egocentric Social Co-Action for VLM-Based Humanoid Robots",
+        "href": "https://arxiv.org/abs/2610.24559",
+        "source": "SocialCoAct · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ego2Contact: Predicting Touch from Egocentric Human Video for Contact-Rich Robot Manipulation",
+        "href": "https://arxiv.org/abs/2610.22932",
+        "source": "Ego2Contact · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "CoDA: Co-Evolution of Data Engines and Action Policies",
+        "href": "https://arxiv.org/abs/2610.22362",
+        "source": "CoDA · ti:\"data engine\" AND cat:cs.RO"
+      }
+    },
+    "p4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Perceive, Predict, and Plan: a Unified World Action Model for Egocentric Dexterous Manipulation",
+        "href": "https://arxiv.org/abs/2610.22363",
+        "source": "Perceive · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "KODA: Kinematics--Observation Data Alignment for Humanoid Learning from Human Egocentric Demonstration",
+        "href": "https://arxiv.org/abs/2610.21152",
+        "source": "KODA · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoJEPA: Beyond Retargeting for Dexterous Manipulation from Egocentric Videos",
+        "href": "https://arxiv.org/abs/2610.20904",
+        "source": "EgoJEPA · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "AutoRSR: Automated Real-to-Sim-to-Real Data Generation for Scalable Robot Learning",
+        "href": "https://arxiv.org/abs/2610.20336",
+        "source": "AutoRSR · ti:\"data generation\" AND cat:cs.RO"
+      }
+    },
+    "p8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "NavAble: A Large-Scale Dataset and Synthetic Data Generation Pipeline for Blind Navigation",
+        "href": "https://arxiv.org/abs/2610.19330",
+        "source": "NavAble · ti:\"data generation\" AND cat:cs.RO"
+      }
+    },
+    "p9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "$λ_0$: Scaling Open-World Egocentric Human Data for Humanoid Loco-Manipulation",
+        "href": "https://arxiv.org/abs/2610.18950",
+        "source": "Scaling · ti:\"human data\" AND cat:cs.RO + ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoMatrix: Physically Faithful Dexterous Robot Demonstrations from Egocentric Human Videos",
+        "href": "https://arxiv.org/abs/2610.18822",
+        "source": "EgoMatrix · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DR-VLA: Learning Human-Like Quadruped Navigation from Egocentric Web Videos via Domain-Invariant Scene Represe",
+        "href": "https://arxiv.org/abs/2610.18373",
+        "source": "DR-VLA · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "OneDemo: Unified Policy Learning and Data Generation from a Single Demonstration",
+        "href": "https://arxiv.org/abs/2610.18188",
+        "source": "OneDemo · ti:\"data generation\" AND cat:cs.RO"
+      }
+    },
+    "p13": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DexNinja: Learning Robust Dexterous Cutting Policy with a Real-to-Sim-to-Real Data Engine",
+        "href": "https://arxiv.org/abs/2610.17208",
+        "source": "DexNinja · ti:\"data engine\" AND cat:cs.RO"
+      }
+    },
+    "p14": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoReveal: Learning Active Vision and Object Manipulation under Partial Occlusions from Egocentric Demonstrati",
+        "href": "https://arxiv.org/abs/2610.12999",
+        "source": "EgoReveal · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p15": {
+      "type": "StoryLink",
+      "props": {
+        "title": "VioLA: Learning Generalist Humanoid Control Policies from Human Data",
+        "href": "https://arxiv.org/abs/2610.12435",
+        "source": "VioLA · ti:\"human data\" AND cat:cs.RO"
+      }
+    },
+    "p16": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ESCAPE: Egocentric Sensing for Collision Avoidance and Policy Execution",
+        "href": "https://arxiv.org/abs/2610.23943",
+        "source": "ESCAPE · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p17": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Never Look Back: Understanding Persistence in 3D Object Memory from Egocentric Videos",
+        "href": "https://arxiv.org/abs/2610.10538",
+        "source": "Never · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p18": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Workhorse: Learning Robust Whole-Body Humanoid Loco-Manipulation from Human Data",
+        "href": "https://arxiv.org/abs/2610.09117",
+        "source": "Workhorse · ti:\"human data\" AND cat:cs.RO"
+      }
+    },
+    "p19": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoLAP: Learning from Egocentric Human Data through Language-Action Reasoning",
+        "href": "https://arxiv.org/abs/2610.08726",
+        "source": "EgoLAP · ti:\"human data\" AND cat:cs.RO + ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p20": {
+      "type": "StoryLink",
+      "props": {
+        "title": "RoboCap: A New Platform for Egocentric Robot Learning",
+        "href": "https://arxiv.org/abs/2610.07217",
+        "source": "RoboCap · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p21": {
+      "type": "StoryLink",
+      "props": {
+        "title": "FlashDexRetarget: Accelerating Dexterous Manipulation Data Generation through Multi-Motion Retargeting",
+        "href": "https://arxiv.org/abs/2610.01849",
+        "source": "FlashDexRetarget · ti:\"data generation\" AND cat:cs.RO"
+      }
+    },
+    "p22": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ego4WAM: What Matters When Scaling Egocentric Human Data for Robot Learning?",
+        "href": "https://arxiv.org/abs/2609.40341",
+        "source": "Ego4WAM · ti:\"human data\" AND cat:cs.RO + ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p23": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Towards a General Humanoid Loco-Manipulation Model via Egocentric Whole-Body Human Data Pretraining",
+        "href": "https://arxiv.org/abs/2610.00438",
+        "source": "General · ti:\"human data\" AND cat:cs.RO + ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p24": {
+      "type": "StoryLink",
+      "props": {
+        "title": "OccluDex: Hierarchical 3D Visuo-Tactile Representation Learning for Egocentric Dexterous Manipulation under Se",
+        "href": "https://arxiv.org/abs/2609.39017",
+        "source": "OccluDex · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p25": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DexRoam: Learning Mobile Bimanual Dexterous Manipulation from Egocentric Whole-Body Human Demonstrations",
+        "href": "https://arxiv.org/abs/2609.35761",
+        "source": "DexRoam · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    },
+    "p26": {
+      "type": "StoryLink",
+      "props": {
+        "title": "MonoEgo: Monocular Metric Egocentric Demonstration Capture with Passive Wrist Constellations and Sparse Workst",
+        "href": "https://arxiv.org/abs/2609.34512",
+        "source": "MonoEgo · ti:\"egocentric\" AND cat:cs.RO"
+      }
+    }
+  }
+}
