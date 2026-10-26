@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-25T11:10:31.344482561Z",
+  "generatedAt": "2026-10-26T04:50:46.048612467Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -687,7 +687,11 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "2d07e743577613ca5eae373625685dd1a078b3991d07b80145b7e2cc1277831a"
+          "hash": "6eeb5cc93df7c7b5b92185a5720334984d05d988671e32bb99f67f28c3add348"
+        },
+        {
+          "path": "scan.py",
+          "hash": "3f224caddfd0688579d44f2a5710cc49566760ebd14e90e9e99980c19bb7d595"
         }
       ],
       "findings": [
@@ -695,22 +699,31 @@
           "ruleId": "EXEC-PRIMITIVE",
           "severity": "medium",
           "owasp": "ASK-03",
-          "file": "SKILL.md",
-          "line": 100,
-          "snippet": "import json, os, subprocess, sys, time, urllib.error, urllib.parse, urllib.request",
+          "file": "scan.py",
+          "line": 20,
+          "snippet": "import json, os, subprocess, sys, threading, time",
           "explanation": "uses a process-execution primitive"
         },
         {
           "ruleId": "EXEC-PRIMITIVE",
           "severity": "medium",
           "owasp": "ASK-03",
-          "file": "SKILL.md",
-          "line": 194,
+          "file": "scan.py",
+          "line": 136,
           "snippet": "r = subprocess.run([\"gh\", \"api\", path], capture_output=True,",
+          "explanation": "uses a process-execution primitive"
+        },
+        {
+          "ruleId": "EXEC-PRIMITIVE",
+          "severity": "medium",
+          "owasp": "ASK-03",
+          "file": "scan.py",
+          "line": 455,
+          "snippet": "r = subprocess.run([\"./notify\", \"-f\", REPORT], capture_output=True, text=True)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-ea819c9191c2d473ce8305f85f23130a4e5eed67ee59bb8ef373d9809509a548",
+      "contentHash": "sha256-a0ae61e888070ddd7b7ef836eb0cf81415e95a8bd013fc2be339ca3773ccba0d",
       "discoveredFrom": "skills/github-radar/SKILL.md"
     },
     {
