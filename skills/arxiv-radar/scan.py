@@ -1,32 +1,33 @@
 #!/usr/bin/env python3
-"""arxiv-radar 扫描器（静态文件 —— 模型只调用，不重写）。
-
-用法:
-    python3 skills/arxiv-radar/scan.py "days:30"
-    python3 skills/arxiv-radar/scan.py "names"           # 机制/名字反查模式
-    python3 skills/arxiv-radar/scan.py "check:world model"  # 量候选词两个口径后退出
+"""arxiv-radar 扫描器。
 
 var token（空格分隔，可组合）:
-    dry-run        跳过 notify、不写 seen、不写 hits
-    days:N         窗口天数，默认 30
-    names          词表整个换成 memory/universe-names.txt
-    check:<词>      只量这个词，跑完退出
+    dry-run      跳过 notify、不写 seen、不写 hits
+    days:N       窗口天数，默认 30
+    names        词表整个换成 memory/universe-names.txt
+    check:<词>   只量这个词（7/30/60/90 四档 total + 已见重叠 + 领域命中），跑完退出
     notify:script  让脚本自己发通知（默认不发，见下）
 
+查询失败会重试 3 次（429 单独退避）；仍失败则进「未测到」分类，
+**绝不能被读成零命中** —— 旧写法单次 urlopen 异常即 continue，是 66.7% 静默失败的原因。
+
+零命中 ≠「可考虑删词」：脚本对**窗口内零命中**的词自动跨 30/60 天量
+opensearch:totalResults，只有 30d 与 60d 同时为 0 才判真零；跨窗查询本身失败
+（-1）单独归为「存疑」，不按真零读。窄窗 + 索引滞后会把稀有词系统性读成假零。
+
 通知归属：正文归**模型**。脚本不会翻译英文标题，也不会"按簇分组"，
-所以默认只写 output/arxiv/report.md 的机械备用稿（已去噪，能读），
-由模型用 Write 工具覆写成中文（按簇分组、簇标题带方向标签）后发。
+所以默认只写 output/arxiv/report.md 的机械列表，由模型覆写成中文后发。
 无人值守场景用 notify:script 走降级路径。
 
 产物（文件名固定，别改成 radar2.json）:
-    output/arxiv/out.json       全部幸存者
-    output/arxiv/audit.log      审计（同时打到 stdout）
-    output/arxiv/report.md      通知正文（脚本写机械备用稿 → 模型覆写成中文）
-    memory/arxiv-seen.json      非 dry-run 才写
-    memory/arxiv-hits.tsv       命中流水，append-only，非 dry-run 才写
-    memory/arxiv-labels.tsv     方向标签，append-only，**模型写**（键 \\t 方向，无表头）
+    output/arxiv/out.json      全部幸存者
+    output/arxiv/audit.log     审计（同时打到 stdout）
+    output/arxiv/report.md     通知正文（脚本写机械版 → 模型覆写成中文）
+    memory/arxiv-seen.json     非 dry-run 才写
+    memory/arxiv-hits.tsv      命中流水，append-only，非 dry-run 才写（3 列：日期/键/名字）
+    memory/arxiv-labels.tsv    方向标签，append-only，**模型写**（键 \\t 方向，无表头）
 """
-import json, os, re, subprocess, sys, time, urllib.parse, urllib.request
+import json, os, re, subprocess, sys, time, urllib.error, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timedelta, timezone
@@ -43,6 +44,12 @@ API = "https://export.arxiv.org/api/query"
 NS = {"a": "http://www.w3.org/2005/Atom"}
 OPENSEARCH = "{http://a9.com/-/spec/opensearch/1.1/}totalResults"
 DOMAIN = None      # check 模式用：三个 carrier 域的并集
+
+# 失败重试。arXiv 限速是 1 req/3s，主循环本来就 sleep 3s，重试只在异常时叠加。
+ATTEMPTS = 3
+TIMEOUT = 45       # 实测补扫用 45s 才把 16 个失败词全捞回来
+RETRY_BUDGET = 600 # 全轮重试总预算（秒）；超了就不再重试，直接标未测到
+RETRY_SPENT = [0.0]
 
 # ── var ───────────────────────────────────────────────────────────
 var = sys.argv[1] if len(sys.argv) > 1 else ""
@@ -147,7 +154,29 @@ if os.path.exists(SEEN):
     except Exception:
         seen = {}
 
-# ── check 模式：加词前量两个口径，量完退出 ────────────────────────
+# ── 取回（带重试）────────────────────────────────────────────────
+def arxiv_get(url, timeout=TIMEOUT):
+    """返回 (root, err)。root 为 None 即失败 —— 失败必须能与「零命中」区分。"""
+    last = ""
+    for i in range(ATTEMPTS):
+        try:
+            with urllib.request.urlopen(url, timeout=timeout) as r:
+                return ET.fromstring(r.read()), ""
+        except urllib.error.HTTPError as he:
+            last = "HTTP %s" % he.code
+            if he.code not in (429, 500, 502, 503, 504):
+                return None, last            # 4xx 重试无用
+            wait = min(10 * (i + 1), 25)
+        except Exception as ex:
+            last = str(ex)[:90]
+            wait = min(5 * (i + 1), 20)
+        if i < ATTEMPTS - 1:
+            if RETRY_SPENT[0] >= RETRY_BUDGET:
+                return None, last + "（重试预算用尽）"
+            time.sleep(wait)
+            RETRY_SPENT[0] += wait
+    return None, last
+
 def q_of(term):
     if term.startswith(("cat:", "ti:", "abs:", "all:")):
         return term
@@ -156,21 +185,20 @@ def q_of(term):
                 'OR cat:q-fin.CP OR cat:q-fin.GN)')
     return f'ti:"{term}"'
 
-def total_of(q, d):
-    """返回 (total_count, entries)。失败返回 (-1, [])。"""
-    since = (now - timedelta(days=d)).strftime("%Y%m%d%H%M")
-    p = {"search_query": f"({q}) AND submittedDate:[{since} TO {now:%Y%m%d%H%M}]",
-         "start": 0, "max_results": MAX_RESULTS,
+def total_of(q, d, n=None):
+    """(totalResults, entries)。total=-1 表示**查询失败**，不是 0。"""
+    w = f"[{(now - timedelta(days=d)):%Y%m%d%H%M} TO {now:%Y%m%d%H%M}]"
+    p = {"search_query": f"({q}) AND submittedDate:{w}", "start": 0,
+         "max_results": n or MAX_RESULTS,
          "sortBy": "submittedDate", "sortOrder": "descending"}
-    try:
-        with urllib.request.urlopen(API + "?" + urllib.parse.urlencode(p),
-                                    timeout=20) as r:
-            root = ET.fromstring(r.read())
-    except Exception:
+    root, _ = arxiv_get(API + "?" + urllib.parse.urlencode(p))
+    if root is None:
         return -1, []
     node = root.find(OPENSEARCH)
-    return (int(node.text) if node is not None and node.text else 0), root.findall("a:entry", NS)
+    return (int(node.text) if node is not None and node.text else 0), \
+           root.findall("a:entry", NS)
 
+# ── check 模式：加词前量两个口径，量完退出 ────────────────────────
 if CHECK:
     q = q_of(CHECK)
     print("候选词: %r" % CHECK)
@@ -221,6 +249,8 @@ hit_ids = {}          # run 内判重；不要直接写 seen，否则跨词命�
 per_term = {}
 raw_term = {}
 failed_t = []
+fail_reason = {}
+cross = {}            # 零命中词的跨窗 total_count；-1 = 该档查询失败
 
 for term in TERMS:
     carrier = CARRIER_BY_TERM.get(term, CARRIER_BASE)
@@ -229,14 +259,12 @@ for term in TERMS:
     p = {"search_query": f"({q}) AND submittedDate:{win}",
          "start": 0, "max_results": MAX_RESULTS,
          "sortBy": "submittedDate", "sortOrder": "descending"}
-    url = API + "?" + urllib.parse.urlencode(p)
-    try:
-        with urllib.request.urlopen(url, timeout=20) as r:
-            root = ET.fromstring(r.read())
-    except Exception as ex:
-        print(f"! {term}: {ex}", file=sys.stderr)
+    root, err = arxiv_get(API + "?" + urllib.parse.urlencode(p))
+    if root is None:
+        print(f"! {term}: {err}", file=sys.stderr)
         drop["fail"] += 1
         failed_t.append(term)
+        fail_reason[term] = err
         time.sleep(3)
         continue
 
@@ -270,6 +298,12 @@ for term in TERMS:
         out.append(rec)
         hit_ids[aid] = rec
         per_term[term] = per_term.get(term, 0) + 1
+
+    # 窗口内零命中 → 跨 30/60 天量真实 total_count，避免把「窗口太短」读成「真零」
+    if raw_term.get(term, 0) == 0:
+        for d in CROSS_WINDOWS:
+            cross.setdefault(term, {})[d] = total_of(q, d, 1)[0]
+            time.sleep(3)
     time.sleep(3)
 
 out.sort(key=lambda c: c["published"], reverse=True)
@@ -282,85 +316,79 @@ truly_zero = [t for t in TERMS if t not in failed_t and raw_term.get(t, 0) == 0]
 saturated = [t for t in TERMS if raw_term.get(t, 0) > 0 and per_term.get(t, 0) == 0]
 with_new = [t for t in TERMS if per_term.get(t, 0) > 0]
 
-# ── 跨窗复量（只对真零词，只补比本轮窗口更宽的档）────────────────
-# 7d ⊂ 30d ⊂ 60d：窗口 30 时 7d 被蕴含，只补 60d；窗口 7 时补 30d/60d。
-# 目的：把「真零」和「废词」分开 —— 索引滞后 5 天时，窄窗会把稀有词系统性读成零。
-XW = [d for d in (7, 30, 60) if d > DAYS]
-xwin = {t: {} for t in truly_zero}
-for term in truly_zero:
-    q = q_of(term)
-    for d in XW:
-        tot, _ = total_of(q, d)
-        xwin[term][d] = tot
-        time.sleep(3)
-
-# ── 标签覆盖自检：hits 里有、labels 里没有的条数 ──────────────────
-unlabeled = []
-if os.path.exists(HITS):
-    hkeys = set()
-    for i, ln in enumerate(open(HITS, encoding="utf-8")):
-        if i == 0:
-            continue
-        p = ln.rstrip("\n").split("\t")
-        if len(p) >= 2 and p[1]:
-            hkeys.add(p[1])
-    lkeys = set()
-    if os.path.exists(LABELS):
-        for ln in open(LABELS, encoding="utf-8"):
-            p = ln.rstrip("\n").split("\t")
-            if len(p) >= 2 and p[1]:
-                lkeys.add(p[0])
-    unlabeled = sorted(hkeys - lkeys)
+# 跨窗分类。**-1 是查询失败，不能按 0 读** —— 否则跨窗本身成了新的假删来源。
+cz_short, cz_real, cz_unk = [], [], []
+for t in truly_zero:
+    c = cross.get(t) or {}
+    c30, c60 = c.get(30), c.get(60)
+    if c30 in (None, -1) or c60 in (None, -1):
+        cz_unk.append(t)
+    elif c30 > 0 or c60 > 0:
+        cz_short.append(t)
+    else:
+        cz_real.append(t)
 
 L = ["扫 %d 词 | 窗口 %s | 原始 %d | 幸存 %d | var=%r"
      % (len(TERMS), win, raw, len(out), var),
      "丢弃 seen=%d excl=%d carrier=%d fail=%d"
      % (drop["seen"], drop["excl"], drop["carrier"], drop["fail"]),
-     "词表四分类 —— 查询失败 %d / 真零 %d / 全已见(饱和) %d / 有新增 %d"
+     "词表五分类 —— 未测到(查询失败) %d / 窗口内零命中 %d / 全已见(饱和) %d / 有新增 %d"
      % (len(failed_t), len(truly_zero), len(saturated), len(with_new)),
-     "窗口内最新收录日期: %s   ← 比今天早 3 天以上即索引滞后，实测已到 5 天"
+     "窗口内最新收录日期: %s   ← 比今天早 3 天以上即索引滞后，不是零命中"
      % (newest or "(无)"),
-     "耗时 %.0fs" % T_RUN]
+     "耗时 扫描 %.0fs（含重试 %.0fs）· 总 %.0fs"
+     % (T_RUN, RETRY_SPENT[0], time.time() - T0)]
 if UNKNOWN:
     L.append("⚠️ 未识别 var token（会被静默忽略）: " + " · ".join(UNKNOWN))
 if failed_t:
-    L.append("⚠️ 查询失败（不是零命中）: " + " · ".join(failed_t))
+    L.append("⚠️ 未测到 %d 个（重试 %d 次后仍失败，**不是零命中**）: %s"
+             % (len(failed_t), ATTEMPTS, " · ".join(failed_t)))
+    L.append("   └ **本轮结论不完整**：这 %d 个词的窗口是空洞，别按零读。原因: %s"
+             % (len(failed_t),
+                " · ".join("%s=%s" % (t, fail_reason.get(t, "?")) for t in failed_t[:6])))
 if truly_zero:
-    if not XW:
-        L.append("⚠️ 真零命中（本轮 %dd total=0，无更宽档可补）: %s"
-                 % (DAYS, " · ".join(truly_zero)))
-    else:
-        L.append("⚠️ 真零命中（本轮 %dd total=0）—— 跨窗 %s 复量："
-                 % (DAYS, "/".join("%dd" % d for d in XW)))
-        for t in truly_zero:
-            L.append("   %s: win=%d %s" % (
-                t, raw_term.get(t, 0),
-                " ".join("%dd=%s" % (d, xwin[t].get(d, -1)) for d in XW)))
-        alive = [t for t in truly_zero if any(xwin[t].get(d, 0) > 0 for d in XW)]
-        unk = [t for t in truly_zero if t not in alive
-               and any(xwin[t].get(d, -1) < 0 for d in XW)]
-        real = [t for t in truly_zero if t not in alive and t not in unk]
-        if alive:
-            L.append("   └ 跨窗有命中（活的，**别删**）%d 个: %s"
-                     % (len(alive), " · ".join(alive)))
-        if real:
-            L.append("   └ 跨窗全零（第 1 轮；第 2 轮仍全零 → 降级为低频，不删）%d 个: %s"
-                     % (len(real), " · ".join(real)))
-        if unk:
-            L.append("   └ 跨窗查询失败（存疑，先别删）%d 个: %s"
-                     % (len(unk), " · ".join(unk)))
+    L.append("⚠️ 窗口内零命中 %d 个 —— 已跨窗量 total_count（win=%dd / 30d / 60d）："
+             % (len(truly_zero), DAYS))
+    for t in truly_zero:
+        c = cross.get(t) or {}
+        c30, c60 = c.get(30), c.get(60)
+        v = ("跨窗查询失败 → 存疑，别删" if t in cz_unk else
+             "窗口太短 → 非真零，别删" if t in cz_short else
+             "真零（30d/60d 皆 0）→ 可考虑删词")
+        L.append("   %s: win=%d 30d=%s 60d=%s → %s"
+                 % (t, raw_term.get(t, 0), c30, c60, v))
+    L.append("   └ 小结: 窗口太短 %d · 真零 %d · 跨窗失败 %d"
+             % (len(cz_short), len(cz_real), len(cz_unk)))
 if saturated:
     L.append("ℹ️ 全已见（饱和，**别删**）: " + " · ".join(
         "%s(raw=%d)" % (t, raw_term[t]) for t in saturated))
 L.append("词表原始/新收: " + " · ".join(
     "%s=%d/%d" % (k, v, per_term.get(k, 0)) for k, v in
     sorted(raw_term.items(), key=lambda x: -x[1])))
-if unlabeled:
-    L.append("ℹ️ 未打方向标签 %d 条（写进 %s：键\\t方向）: %s"
-             % (len(unlabeled), LABELS, " · ".join(unlabeled[:8])
-                + (" …" if len(unlabeled) > 8 else "")))
 for c in out[:25]:
     L.append("  %s [%s] %s" % (c["published"], "+".join(c["terms"]), c["title"][:85]))
+
+# 标签覆盖自检：hits 有、labels 没有的 → 比对层会补，但空洞要可见（`?` 也算已打）
+try:
+    keys = set()
+    if os.path.exists(HITS):
+        for i, ln in enumerate(open(HITS, encoding="utf-8")):
+            if i == 0:
+                continue
+            p = ln.rstrip("\n").split("\t")
+            if len(p) >= 2 and p[1]:
+                keys.add(p[1])
+    lab = set()
+    if os.path.exists(LABELS):
+        for ln in open(LABELS, encoding="utf-8"):
+            p = ln.rstrip("\n").split("\t")
+            if len(p) >= 2 and p[1]:
+                lab.add(p[0])
+    if keys - lab:
+        L.append("ℹ️ 未打方向标签 %d 条（`?` 也算已打；比对层会先补）: %s"
+                 % (len(keys - lab), " · ".join(sorted(keys - lab)[:8])))
+except Exception:
+    pass
 
 open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
 print("\n".join(L))
@@ -372,19 +400,27 @@ if not DRY and hit_ids:
     json.dump(dict(list(merged.items())[-2000:]),
               open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
-# 命中流水：append-only，3 列（方向在 labels.tsv，避免一个列两个归属）。
+# 命中流水：append-only，3 列（方向归 labels.tsv，一列一个 owner）。
 # 日期用报告日期（不是 published）—— 滞后要按「通道点亮那天」算。
+# 追加前先补换行：上一次写入若没以 \n 结尾，两行会粘连（实证过，1 行 4 字段）。
 if not DRY and out:
     fresh = not os.path.exists(HITS)
+    need_nl = False
+    if not fresh and os.path.getsize(HITS):
+        with open(HITS, "rb") as fh:
+            fh.seek(-1, 2)
+            need_nl = fh.read(1) != b"\n"
     with open(HITS, "a", encoding="utf-8") as f:
         if fresh:
             f.write("日期\t键\t名字\n")
+        elif need_nl:
+            f.write("\n")
         for c in out:
             f.write("%s\t%s\t%s\n"
                     % (now.strftime("%Y-%m-%d"), c["link"].split("/abs/")[-1],
                        (c["name"] or c["title"])[:60].replace("\t", " ")))
 
-# 机械备用稿（已去噪：不重复名字、term 剥成短形、多词用 / 拼）。模型覆写成中文后发。
+# 机械备用稿（已去噪：不重复名字、term 剥成短形）。模型覆写成中文后发。
 if out:
     R = ["**arxiv-radar** · 窗口 %d 天 · 幸存 %d" % (DAYS, len(out)), ""]
     for c in out[:NOTIFY_TOP]:
@@ -392,8 +428,7 @@ if out:
         if nm and t.lower().startswith(nm.lower()):
             t = t[len(nm):].lstrip(" :—-·")
         R.append("- %s%s [%s] · %s"
-                 % (("`%s` " % nm) if nm else "", t,
-                    "/".join(short_term(x) for x in c["terms"]), c["link"]))
+                 % (("`%s` " % nm) if nm else "", t, short_term(c["term"]), c["link"]))
     open(REPORT, "w", encoding="utf-8").write("\n".join(R) + "\n")
 
 # 通知正文归模型：脚本不会翻译英文标题，也不会"按簇分组"。
@@ -407,8 +442,8 @@ elif SEND:
     else:
         print("notify: ./notify 不存在")
 else:
-    print("notify: **未发** —— 用 Write 覆写 %s 为中文（按簇分组）后：" % REPORT)
+    print("notify: **未发** —— 用 Write 覆写 %s 为中文（按簇分组、每行带 [方向]）后：" % REPORT)
     print("        ./notify -f %s" % REPORT)
     print("        改不了就直接发机械版（已去噪），**别不发**。")
-print("STATUS: ARXIV_RADAR_OK · 原始 %d · 幸存 %d · 总耗时 %.0fs"
-      % (raw, len(out), time.time() - T0))
+print("STATUS: ARXIV_RADAR_OK · 原始 %d · 幸存 %d · 未测到 %d · 总耗时 %.0fs"
+      % (raw, len(out), len(failed_t), time.time() - T0))
