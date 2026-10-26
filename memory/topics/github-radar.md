@@ -1,14 +1,91 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 十二轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、seen 基线有效性、probe token 泛化）
+description: github-radar 十四轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-26T13:10:00Z
+timestamp: 2026-10-26T14:40:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十二轮（2026-10-26）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十四轮（2026-10-26）实证。
+
+## 第十四轮（2026-10-26，60 天窗，probe，dry-run）—— 「60 天更全」是反的：`MAXPAGE` 撞顶取代 `PER_TERM_CAP` 成为新的静默丢失源
+
+本轮 `var=dry-run days:60 probe`，窗口 `2026-08-27..2026-10-26`（首次 60 天）。原始 **3474** → 幸存 **4** → 报告级 **1**。核验全量 4/4，耗时 345s。
+
+### 33. 🔴 幸存 4 不是词表饱和，是 `sort=stars` 在子窗内撞 `MAXPAGE=3` 的顶 —— 静默丢失
+
+`scan.py` 把窗口切成 3 个子窗，每子窗最多 `MAXPAGE=3` 页 × 100 = **300 个**，且 `sort=stars`。`world model` 单子窗实测 total_count：`2026-10-06..10-26` **509** / `2026-09-16..10-06` **497** / `2026-08-27..09-16` **416**。**三个子窗全部超过 300。**
+
+复现取第三子窗前 3 页（star 排序 300 个）核实：**`SunCCNY/Embodied-AI`（30d=54、★0、Python、desc 明写 "world modeling in Applied and Embodied AI"）与 `colorHur/world-model-lab`（30d≥100 / 7d=99）都不在这 300 个里，也都不在 `seen` 里。** 它们既没被任何过滤器判掉，也没被 seen 吸收 —— 是搜索取样的静默丢失。
+
+**这是第九轮 `PER_TERM_CAP=25` 造成 3.85× 低估的同型缺陷第二次出现，载体换了：cap 从「每词 25 个」变成「每子窗 300 个」，代价一样。**
+
+### 34. 🔴 窗口越长撞顶越狠 —— 在当前代码里「60 天窗更全」是反的
+
+| 窗口 | `world model` 单子窗 total | 是否撞 300 | 幸存 |
+|---|---|---|---|
+| 30 天（第十二轮） | ~250 | 否 | 65 |
+| 60 天（本轮） | 416–509 | **是** | **4** |
+
+**幸存 65 → 4 不是窗口变长该有的结果，是覆盖率从 ~95% 掉到 66.5% 的结果。** 逐词算：`world model` = 900/1354 = **66.5%（唯一撞顶）**，其余 17 词 83–109%（取尽）。
+
+**判据：`MAXPAGE` 撞顶和 `PER_TERM_CAP` 是同一类错，必须同样对待。** 修法二选一：① `world model` 这类大词按 `sort=updated` 分页取尽（第十三轮已证 `sort=updated` 的 100 个里 76 个不在 seen）；② 子窗按 total_count 动态加页（`ceil(total/100)`，上限设 20 页）。**在修之前，60 天窗不可再用 —— 它比 30 天窗覆盖率更低。**
+
+### 35. 🔴 覆盖率口径要改：撞顶的 66.5% 和「<50% 不可引用」同等不可信
+
+SKILL.md 铁律写「覆盖率必须报，<50% 的绝对数不可引用」。本轮 `world model` 覆盖率 **66.5%**，而报告级 1 个里 0 个来自这一支 —— 但它占了原始量的 26%（900/3474）。**覆盖率不能只报百分比，必须同时报「是否撞顶」**：`raw == 900` 就是撞顶的确定性标志（3 子窗 × 3 页 × 100）。撞顶的覆盖率是**采样后验**，不是真实覆盖率。
+
+### 36. 🔴 「窗口外新增」区间 31 个活仓，26 个（84%）死在 carrier
+
+取 `2026-08-27..2026-09-26`（60 天窗独有、30 天窗看不见）的 `world model` 仓，逐仓核 commits，**31 个 30d≥5**。按 scan 真实顺序复算它们死在哪：
+
+| 死因 | 数量 |
+|---|---|
+| carrier | **21** |
+| short_desc + carrier | 4 |
+| excl + carrier | 1 |
+| 幸存 | 5（4 个已在 seen，真新增只有 `SunCCNY/Embodied-AI`，且它被 MAXPAGE 切掉） |
+
+按 7d 排前列的全是 ★0–4 真代码仓：`Illuminfti/kizuki`（100/100 ★4，CLI+MCP 本地生活库）· `ilakkmanoharan/rsna-knee-mri-classifier`（100/99）· `colorHur/world-model-lab`（100/99）· `AsProgDojo/LeWorldModel-Reimplementation`（61/61）· `canvascloudai/cwm-bench`（88/30）· `TencentARC/WorldCrafter`（55/15，★538，arXiv 2026 官方实现）。
+
+**carrier 要求 desc 里出现机器人词，而这些仓写的是「world-model rollout / ARC training gym / 分子结构预测」—— 机制正确、措辞不带 carrier。** 第十三轮判据 21（carrier 改为「desc 或 topics 任一命中」）若落地，本轮至少救回 26 个。**这是「已写出的判据不进代码 = 每轮持续损失」的第二次可量化证据（第一次是 pages 根规则，值 7.1%）。**
+
+### 37. 🟡 probe 种子池修法生效，但 token 泛化缺陷未修；`total` 小也不等于专名
+
+种子 36（报告级 1 / 幸存 3 / **丢弃堆 32**）—— 幸存 0 时 probe 照样能跑，第十三轮的修法确实进了代码。20 个反查 token 里**只有 `eumenes` 是真簇**：
+
+| token | total | 实况 |
+|---|---|---|
+| `eumenes` | 6 | ✅ 真簇，但**同一 owner 5 仓**（见下） |
+| `Mirage` | 571 | ❌ 通用词/产品名 |
+| `eidolon` | 98 | ❌ 多义 |
+| `greentrace` | 12 | ❌ 碳核算课程作业扎堆（6 个 owner 各做一个） |
+| `lpds` | 37 | ❌ 与 LPD 工单号、印尼语缩写撞名 |
+| `physguard` | 3 | ❌ **3 个互不相干的东西** |
+
+**`physguard` 是最有说服力的反例：`total=3` 看着像小专名，实际是三个不同主题** —— `itz-smarann/physguard-by-quadcore` 是 EV 充电桩物理防火墙（无 language）、`Arkz-Deepak/physguard` 无 desc、`Data-Driven-Computational-Geotechnics/PhysGuard` 才是 NeurIPS 2026 的 PDE 代理论文。**判据：`total` 小只是必要条件，簇内同主题才是充分条件 —— 需要看 desc 相似度，不是 owner 数。**
+
+### 38. 🟡 `eumenes` 是「一人五仓」，不是生态热点 —— probe 簇必须先看 owner 集中度
+
+`ugnoguchigxp` 一个 owner 在 19 天内建了 `eumenes`（★1，172MB TypeScript，根目录有 `AGENTS.md` + `.claude`）、`eumenes_world_model`、`eumenes_memory`、`eumenes_pursuit`（65/65）、`eumenes_agency`（51/51）；另有 `WorldOfEpoch/epoch-connectors`（desc 自称 "Muse Eumenes"）。
+
+**这是第六轮判据 11「单人 + agent」指纹的极端形态：一个人用 agent 铺开 5 个仓。** 按 commits 看很热（65/65、51/51），按生态看是 1 —— **probe 报簇时必须同时给 `owner 数` 和 `repo 数`，单 owner 多仓不构成趋势。** 现有 `owners` 字段能算出来（`eumenes` 那轮 owners=2），但报告层没把它当判据用。
+
+### 39. 🟢 脚本自清 + probe 种子池两项修复的独立验证通过
+
+- **自清**：开跑删掉前十三轮积压 **150 个**一次性脚本，`output/ghradar/` 现在只剩 5 个固定产物。审计行 `🧹 清理 …` 正常打印。**这一条从「模型记得删」变成「代码强制」，第十三轮的建议落地生效。**
+- **probe 种子池三级补足**：`probe_stat` 显示 报告级 1 / 幸存 3 / **丢弃堆 32** —— 在幸存仅 4 的情况下 probe 仍然跑满了 36 个种子。**第十三轮判据④（幸存 0 时 probe 静默空转）已修。**
+
+### 40. ⚠️ `409` 触发全局认证降级 —— 第五轮复现，代码仍未修
+
+stderr 打出 `! gh api 放弃: gh: Git Repository is empty. (HTTP 409)`，随后整轮审计写「gh 认证曾掉线 —— 核验完整性存疑」。**但本轮核验只 4 个仓，且耗时 1s，实际影响可忽略；问题是这个告警每轮都出现，会让「完整性存疑」变成背景噪音。** MEMORY 里「单个 409 不能触发降级」这条从第四轮记到第十四轮，`gh_get` 的降级判断仍未加 409 分支。
+
+### 41. 🟡 `maximal extractable value` 第四次读作稀词 —— 稳定在「真稀不废」
+
+跨窗：7d=**0** / 30d=**0** / 60d=**2** / 全期 **48**。与第十三轮、第十轮同。**别删。**
+
 
 ## 第十二轮（2026-10-26，30 天窗，probe，首次非 dry-run）—— pages 根规则终进代码；probe 的 token 泛化是设计缺陷
 
@@ -329,6 +406,7 @@ carrier 本轮丢 123 个。只看 carrier 一条规则，120 个 `world model` 
 
 # Citations
 
+- 第十四轮快照 `output/ghradar/out.dry.json`（4 幸存 / 3,474 原始，窗口 `2026-08-27..2026-10-26`）· `audit.log` · `clusters.json` · `scan.py` **未改** · probe 簇 profile `/tmp/gh14_probe.py` · 跨窗词表 + 30–60 区间 `/tmp/gh14_terms.py` · 区间活仓死因复算 `/tmp/gh14_band.py` · carrier 堆 7d `/tmp/gh14_carrier7.py` · 逐词覆盖率 `/tmp/gh14_cov.py` · **MAXPAGE 撞顶复现 `/tmp/gh14_cut.py`** · `logs/2026-10-26#github-radar（第十四轮`
 - 第十一轮快照 `output/ghradar/out.json`（70 幸存 / 2,236 原始，窗口 `2026-09-26..2026-10-26`）· `audit.log` · `report.md` · `scan.py` **未改** · 窗口拆解 `diff11.py` · 根目录 `tree11full.py` → `tree11full.json`（70/70）· 词分布 `agg11.py` · SuperMimic 簇 `cluster11.py` → `cluster11.json`（55 仓全量核验）+ `probe11b.py` → `probe11b.json` · 形态抽查 `shape11.py` · agent 指纹 `fp11.py` → `fp11.json` · `logs/2026-10-26#github-radar（第十一轮`
 - 第十轮快照 `output/ghradar/out10.json`（26 幸存 / 592 原始，窗口 `2026-10-19..2026-10-26`）· `audit10.log` · 扫描 `scan10.py` · 跨窗词表 `terms10.py` → `terms10.json` · 簇探测 `cluster10.py` → `cluster10.json`（SuperMimic 55 仓全量核验）· carrier 审计 `carrier10.py` → `carrier10.json` / `carrier10_commits.py` / `carrier10_net.py` → `carrier10_net.json` / `carrier10_topics.py` → `carrier10_topics.json` · 根目录 `tree10.py` → `tree10.json` · `logs/2026-10-26#github-radar（第十轮`
 - 第九轮快照 `output/ghradar/out9full.json`（234 幸存 / 3,461 原始）· `audit.log` · 全量核验 `full9.py`（230/234）· 候选重建 `cards9.py` · 对照第八轮 `out8.json`（178 幸存，dry-run 未落 seen）· 词表口径 `terms9.py` → `terms9.json`

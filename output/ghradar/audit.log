@@ -1,11 +1,26 @@
-扫 18 词 × 3 窗 × 3 页 | 原始 2237 | 幸存 0 | 报告级 0 | var='dry-run days:30 probe'
-丢弃 seen=1085 excl=139 archived=2 short_desc=399 carrier=479 neg=58 pages=52 pages_root=0 scaffold=0 farm=23 fail=0
-核验 0/0 (0.0%) · 模式 全量 · 黑名单 3 owner
-词表四分类 —— 查询失败 0 / 真零 1 / 全已见(饱和) 17 / 有新增 0
-耗时 搜索 136s · 核验 0s · 总 136s
-⚠️ 真零命中（total=0，可考虑删词）: maximal extractable value
-ℹ️ 全已见（饱和，**别删**）: embodied data(raw=8) · robot manipulation(raw=161) · robot dataset(raw=27) · teleoperation(raw=247) · sim2real(raw=80) · sim-to-real(raw=101) · world model(raw=803) · world action model(raw=58) · vision language action(raw=102) · jepa(raw=400) · egocentric(raw=101) · robotics data engine(raw=1) · verifiable inference(raw=6) · proof of useful work(raw=6) · data availability(raw=72) · restaking(raw=3) · intent-based(raw=61)
-词表返回/新收: world model=803/0 · jepa=400/0 · teleoperation=247/0 · robot manipulation=161/0 · vision language action=102/0 · sim-to-real=101/0 · egocentric=101/0 · sim2real=80/0 · data availability=72/0 · intent-based=61/0 · world action model=58/0 · robot dataset=27/0 · embodied data=8/0 · verifiable inference=6/0 · proof of useful work=6/0 · restaking=3/0 · robotics data engine=1/0 · maximal extractable value=0/0
-ℹ️ 被 NEG 规则丢弃 58 个: Posumah/Buku-jepang · erlanggaputrak0987-hub/Belajar-Jepang · Trinaldi3/latihan-jepang · data1488/Pesona-Jepara · data1488/Jepara-memesona · Taqwa-ULM/overseas-jepang · data1488/Jeparaa-memesonaa · rell135679/bagan-jepang · izzatifahmulk/web-jepang · data1488/Jepara-memesonaa · inipunyasani123/menu-jepang · LRJsukses2026/lini-rumah-jepara
-ℹ️ 被 pages 后缀规则丢弃 52 个: embodied-datasets/embodied-datasets.github.io(104294KB) · aizhiqi-work/aizhiqi-work(1KB) · hayfung-hue/hayfung-hue(1KB) · aizhiqi-work/aizhiqi-work(1KB) · WanruJia/WanruJia(0KB) · mundo-world-model/mundo-world-model.github.io(357817KB) · hongjin-he/microworld-showcase(33313KB) · latent-action-world-models/latent-action-world-models.github.io(13240KB) · FrankGraen/FrankGraen(7KB) · bars-2026-psf/bars-2026-psf.github.io(34842KB) · YuboWang-zxx/YuboWang-zxx.github.io(1345KB) · Isaac-Daroch/Isaac-Daroch.github.io(7162KB)
-逐词核验数: embodied data=0 · robot manipulation=0 · robot dataset=0 · teleoperation=0 · sim2real=0 · sim-to-real=0 · world model=0 · world action model=0 · vision language action=0 · jepa=0 · egocentric=0 · robotics data engine=0 · verifiable inference=0 · proof of useful work=0 · data availability=0 · restaking=0 · intent-based=0 · maximal extractable value=0
+扫 18 词 × 3 窗 × 3 页 | 原始 3474 | 幸存 4 | 报告级 1 | var='dry-run days:60 probe'
+快照 output/ghradar/out.dry.json（dry-run 不覆盖 out.json）
+丢弃 seen=1761 excl=214 archived=2 short_desc=742 carrier=600 neg=85 pages=42 pages_root=0 scaffold=0 farm=24 fail=0
+核验 4/4 (100.0%) · 模式 全量 · 黑名单 3 owner
+词表四分类 —— 查询失败 0 / 真零 0 / 全已见(饱和) 15 / 有新增 3
+耗时 搜索 153s · 核验 1s · 总 345s
+🧹 清理 output/ghradar/ 历史文件 150 个（只留 audit.log / clusters.json / out.dry.json / out.json / report.md；`keep*` 前缀可跨轮保留）: agentfile6.py · agg11.py · all7.py · an6.py · an7.py · an8.py · analyze.py · audit10.log · audit6.log · audit7.log · audit8.log · bias5.py …
+ℹ️ 饱和（raw>0 且 0 新增）15 —— 其中真被 seen 吸收 15 个（**别删**）: embodied data(raw=19 seen=11) · robot manipulation(raw=293 seen=232) · robot dataset(raw=42 seen=33) · teleoperation(raw=443 seen=336) · sim2real(raw=178 seen=96) · world action model(raw=100 seen=96) · vision language action(raw=211 seen=177) · jepa(raw=674 seen=321) · robotics data engine(raw=1 seen=1) · verifiable inference(raw=7 seen=6) · proof of useful work(raw=13 seen=12) · data availability(raw=134 seen=4) · restaking(raw=5 seen=3) · intent-based(raw=123 seen=9) · maximal extractable value(raw=2 seen=2)
+词表返回/新收/已见: world model=900/2/149 · jepa=674/0/321 · teleoperation=443/0/336 · robot manipulation=293/0/232 · vision language action=211/0/177 · sim2real=178/0/96 · sim-to-real=174/1/148 · egocentric=155/1/125 · data availability=134/0/4 · intent-based=123/0/9 · world action model=100/0/96 · robot dataset=42/0/33 · embodied data=19/0/11 · proof of useful work=13/0/12 · verifiable inference=7/0/6 · restaking=5/0/3 · maximal extractable value=2/0/2 · robotics data engine=1/0/1
+⚠️ gh 认证曾掉线（已按 60s 冷却自动重试）—— 核验完整性存疑
+ℹ️ 被 NEG 规则丢弃 85 个: aryamaulana-coder/jepang · DikhaAG/jepang · Posumah/Buku-jepang · erlanggaputrak0987-hub/Belajar-Jepang · Jonathan12345Salim/belajar-jepang · Trinaldi3/latihan-jepang · data1488/Pesona-Jepara · risskanaera46-boop/jepang-website · data1488/Jepara-memesona · aryamaulana-coder/Test-Jepang · Taqwa-ULM/overseas-jepang · data1488/Jeparaa-memesonaa
+ℹ️ 被 pages 后缀规则丢弃 42 个: embodied-datasets/embodied-datasets.github.io(104294KB) · hydarealman/hydarealman.github.io(138982KB) · aizhiqi-work/aizhiqi-work(1KB) · hayfung-hue/hayfung-hue(1KB) · SIM2REAL-RL/SIM2REAL-RL.github.io(7881KB) · vietanh-mechatronics/sim2realgap.github.io(0KB) · caesar-jojo/caesar-jojo(1KB) · WanruJia/WanruJia(0KB) · houxq8888/houxq8888(5KB) · mundo-world-model/mundo-world-model.github.io(357817KB) · DocZbs/doczbs.github.io(11176KB) · hongjin-he/microworld-showcase(33313KB)
+逐词核验数: world model=2 · sim-to-real=1 · egocentric=1 · embodied data=0 · robot manipulation=0 · robot dataset=0 · teleoperation=0 · sim2real=0 · world action model=0 · vision language action=0 · jepa=0 · robotics data engine=0 · verifiable inference=0 · proof of useful work=0 · data availability=0 · restaking=0 · intent-based=0 · maximal extractable value=0
+⚠️ 30 天零提交（star 在骗人）1: SufianTA/MIRAGE-X
+⚠️ 爆完即停（30d 有量 / 7d 归零）1: dialgop/eidolon
+ℹ️ probe 种子 36（报告级 1 / 幸存 3 / 丢弃堆 32）→ 候选 token 36 → 已反查 20 · clusters.json 已重写（空也写）
+ℹ️ probe 反查 —— 专名候选（total≤600）:
+  `eumenes` total=6 owners=2 未在幸存者=6 | ugnoguchigxp/eumenes_pursuit(65/65) · ugnoguchigxp/eumenes_agency(51/51) · ugnoguchigxp/eumenes(100/41) · WorldOfEpoch/epoch-connectors(6/6)
+  `mirage` total=571 owners=92 未在幸存者=100 | paraldaMeta/mirage-engine(6/6) · AstralSightStudios/Mirage(68/4) · mirage-hq/Tesseract-Converter(6/3) · Gz3192019/StegoTank(100/1)
+  `eidolon` total=98 owners=74 未在幸存者=97 | Sallyn0225/eidolon-sc(100/100) · gegane-lutshaba/eidolon(9/8) · savageAZfck/eidolon(6/0) · pink-pig-djw/5(5/0)
+  `greentrace` total=12 owners=12 未在幸存者=12 | polmanas1998-star/greentrace(100/100) · EmadQureshiKhi/GreenTrace(38/15) · NLC-Lab/GreenTrace(40/0) · SaiKeerthanaPalavalasa28/GreenTrace(5/0)
+  `lpds` total=37 owners=29 未在幸存者=36 | orbit7146/lpdsi(100/0) · silveraxiom70/lpdsn(100/0) · BrainJellyPie/lpds(7/0)
+  `physguard` total=3 owners=3 未在幸存者=2 | itz-smarann/physguard-by-quadcore(17/0) · Arkz-Deepak/physguard(7/0)
+  `egosg` total=1 owners=1 未在幸存者=0 | 
+  （通用词，反查噪声）: patch(total=16597) · vision(total=38199) · worlds(total=37073) · real(total=163894) · connector(total=33598)
+  dialgop/eidolon ★0 30d=9 [爆完即停] 7d=0

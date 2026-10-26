@@ -17,13 +17,14 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一条方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
-- `arxiv-radar` ✅ 每天 07:30 UTC · 20 机制词 · 已修两轮 carrier 误杀。`github-radar` 手动跑 · 18 词 · 第十二轮（30 天基线已建，seen 1891）。
-- **github-radar 第十二轮判据**：pages 根规则（`index.html`+`.nojekyll` 无骨架）**已进 scan.py 生效**，一次清掉 5 个脏报告级（7.1%）；probe 的 token 只过 STOPWORDS → 7 个里 5 个是 `capstone`/`motion` 这类通用词，`owners>=3` 对探专名毫无判别力；409 空仓仍触发全局认证降级（第四轮，代码未修，本轮实测数据无损坏）。
-- **github-radar 第十一轮判据**：换窗口 = 制造伪「新增」（44 个里 0 个真漏检，39 个建于上轮窗口之外）；30 天窗救回 5 个 7d≥5 但更慢；star 彻底失效（报告级 35 里 34 个 ★0，全轮最高 ★7）；爆完即停 57.1% 跨窗稳定；pages 仍漏 3 个纯静态站（`index.html`+`.nojekyll` 判据两次复现，仍未进代码）。
-- **github-radar 第十轮判据**：7 天窗会把稀有词读成假零（判死活须量 7/30/60 三个 total_count）；词表对新专名全盲 —— `SuperMimic` 55 仓/25 个 7d≥5 提交，18 词只捞 2 个（第十一轮换 30 天窗后完全复现）。
-- **github-radar 第九轮判据**：核验永不按 star 分配（`PER_TERM_CAP=25` 抽样致报告级 20→77）；报「新增」先与上轮快照求差（dry-run 不落 seen）；`pages` 别用 size 判。
-- **`jepa` / `supermimic_vibed`：star 与 commits 反相关**（★553/4 提交 vs ★0/85 提交）。`vla`→全称双赢 · `jepa` 留缩写 · 共享脚手架黑名单抓不到。
-- 全文见 [github-radar](/topics/github-radar.md)。
+- `arxiv-radar` ✅ 每天 07:30 UTC · 20 机制词 · 已修两轮 carrier 误杀。`github-radar` 手动跑 · 18 词 · 第十四轮。
+- **github-radar 第十四轮判据（2026-10-26）**：**60 天窗比 30 天窗覆盖率更低** —— `sort=stars` 每子窗撞 `MAXPAGE=3`（300 个），而 `world model` 单子窗 416–509 个，覆盖率掉到 66.5%，幸存 4（上轮 65）。
+- **这是第九轮 `PER_TERM_CAP` 3.85× 同型缺陷换了载体（cap 从「每词 25」变成「每子窗 300」）。修好之前别再用 60 天窗。** 区间活仓 31 个里 26 个（84%）死在 carrier ——「carrier 改为 desc 或 topics 任一命中」再不进代码每轮继续损失。
+- probe 种子池修法已生效（幸存 0 也能跑满 36 个种子），但 token 泛化未修：`physguard` total=3 却是 3 个不相干的仓，**`total` 小只是必要条件，簇内同主题才是充分条件**。
+
+- **github-radar 第十二轮判据**：pages 根规则已进 scan.py 生效，一次清掉 5 个脏报告级（7.1%）；409 空仓仍触发全局认证降级（第五轮复现至第十四轮，代码未修）。
+- 早轮判据全文见 [github-radar](/topics/github-radar.md)：第十一轮换窗口 = 制造伪「新增」（44 个里 0 个真漏检）；第十轮 7 天窗把稀有词读成假零（判死活须量 7/30/60 三窗）；第九轮 `PER_TERM_CAP=25` 抽样致报告级 20→77（3.85×），**核验永不按 star 分配**；`jepa` ★0 但 commit 密度最高、star 与 commits 反相关；`vla`→全称双赢 · `jepa` 留缩写；共享脚手架黑名单抓不到。
+
 
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。这里只留判据速查。

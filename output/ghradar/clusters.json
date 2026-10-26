@@ -1,394 +1,725 @@
 [
  {
-  "token": "capstone",
-  "total": 11036,
-  "owners": 97,
-  "not_in_out": 100,
+  "token": "eumenes",
+  "total": 6,
+  "owners": 2,
+  "generic": false,
+  "not_in_out": 6,
   "hot": [
    {
-    "repo": "princeodoh566/code-16",
-    "stars": 8,
-    "commits_30d": 86,
-    "commits_7d": 24
+    "repo": "ugnoguchigxp/eumenes_pursuit",
+    "stars": 0,
+    "commits_30d": 65,
+    "commits_7d": 65
    },
    {
-    "repo": "guolola/SoftJL",
-    "stars": 113,
-    "commits_30d": 26,
-    "commits_7d": 15
-   },
-   {
-    "repo": "Edith-Anurika-Monday1/planet-explorer-capstone-project_TS-hajime-group-15",
-    "stars": 6,
-    "commits_30d": 31,
-    "commits_7d": 13
-   },
-   {
-    "repo": "JiamingShi-JsPhys/capstone-labmate",
-    "stars": 4,
-    "commits_30d": 10,
-    "commits_7d": 10
-   },
-   {
-    "repo": "dejibimbolaAyo/das-2026-capstone-project",
-    "stars": 18,
-    "commits_30d": 10,
-    "commits_7d": 4
-   },
-   {
-    "repo": "athallah280208/spatial-geochemical-data-mining-ngdb",
-    "stars": 6,
-    "commits_30d": 18,
-    "commits_7d": 2
-   },
-   {
-    "repo": "BeeJa01/hirelume",
-    "stars": 4,
-    "commits_30d": 100,
-    "commits_7d": 0
-   },
-   {
-    "repo": "WAYWO-capstone/WAYWO",
-    "stars": 4,
-    "commits_30d": 13,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "recall",
-  "total": 3291,
-  "owners": 94,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "hsuanshao/AgentMemory",
-    "stars": 38,
-    "commits_30d": 67,
-    "commits_7d": 59
-   },
-   {
-    "repo": "Cashara-io/eunomia",
-    "stars": 14,
-    "commits_30d": 100,
+    "repo": "ugnoguchigxp/eumenes_agency",
+    "stars": 0,
+    "commits_30d": 51,
     "commits_7d": 51
    },
    {
-    "repo": "dagoSte/squadra",
-    "stars": 580,
+    "repo": "ugnoguchigxp/eumenes",
+    "stars": 1,
     "commits_30d": 100,
-    "commits_7d": 23
+    "commits_7d": 41
    },
    {
-    "repo": "Rekabytes-Enterprise/omni-graph",
-    "stars": 27,
-    "commits_30d": 21,
-    "commits_7d": 20
+    "repo": "WorldOfEpoch/epoch-connectors",
+    "stars": 0,
+    "commits_30d": 6,
+    "commits_7d": 6
    },
    {
-    "repo": "lastreload/mnemonic-proxy",
-    "stars": 23,
-    "commits_30d": 72,
-    "commits_7d": 9
+    "repo": "ugnoguchigxp/eumenes_world_model",
+    "stars": 0,
+    "commits_30d": 28,
+    "commits_7d": 1
    },
    {
-    "repo": "AsherJN/recall",
-    "stars": 325,
-    "commits_30d": 22,
-    "commits_7d": 9
-   },
-   {
-    "repo": "KarmenLoop/user-behavior-personalization",
-    "stars": 21,
-    "commits_30d": 9,
-    "commits_7d": 8
-   },
-   {
-    "repo": "turlockmike/deep-recall",
-    "stars": 12,
-    "commits_30d": 41,
-    "commits_7d": 0
+    "repo": "ugnoguchigxp/eumenes_memory",
+    "stars": 0,
+    "commits_30d": 27,
+    "commits_7d": 1
    }
   ]
  },
  {
-  "token": "motion",
-  "total": 11009,
-  "owners": 93,
+  "token": "mirage",
+  "total": 571,
+  "owners": 92,
+  "generic": false,
   "not_in_out": 100,
   "hot": [
    {
-    "repo": "storytold/effectcraft",
-    "stars": 7905,
-    "commits_30d": 100,
-    "commits_7d": 100
+    "repo": "paraldaMeta/mirage-engine",
+    "stars": 10,
+    "commits_30d": 6,
+    "commits_7d": 6
    },
    {
-    "repo": "HayatoG/iss_pc",
-    "stars": 906,
-    "commits_30d": 100,
-    "commits_7d": 100
+    "repo": "AstralSightStudios/Mirage",
+    "stars": 7,
+    "commits_30d": 68,
+    "commits_7d": 4
    },
    {
-    "repo": "alchaincyf/huashu-motion",
-    "stars": 1685,
-    "commits_30d": 15,
-    "commits_7d": 13
-   },
-   {
-    "repo": "feitangyuan/onetake",
-    "stars": 3261,
-    "commits_30d": 20,
-    "commits_7d": 3
-   },
-   {
-    "repo": "showheyohtaki/motion-prompt",
-    "stars": 704,
-    "commits_30d": 10,
-    "commits_7d": 3
-   },
-   {
-    "repo": "Leonxlnx/cinetic",
-    "stars": 873,
-    "commits_30d": 100,
-    "commits_7d": 0
-   },
-   {
-    "repo": "howseen-ai/claude-motion-design",
-    "stars": 684,
-    "commits_30d": 32,
-    "commits_7d": 0
-   },
-   {
-    "repo": "alchaincyf/huashu-art-motion",
-    "stars": 5212,
-    "commits_30d": 22,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "circuit",
-  "total": 4983,
-  "owners": 69,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "idlefoundry/ca-72",
-    "stars": 170,
-    "commits_30d": 100,
-    "commits_7d": 31
-   },
-   {
-    "repo": "Ghillermo/CIRCUIT-HACKS-RC",
-    "stars": 55,
-    "commits_30d": 42,
-    "commits_7d": 13
-   },
-   {
-    "repo": "richiewillmott/Wirely",
-    "stars": 24,
-    "commits_30d": 12,
-    "commits_7d": 12
-   },
-   {
-    "repo": "BookkeeperIncrease/minecraft-redstone-planner-desktop",
-    "stars": 17,
-    "commits_30d": 5,
-    "commits_7d": 5
-   },
-   {
-    "repo": "KwantaeKim/cirfig_gen",
-    "stars": 38,
-    "commits_30d": 9,
-    "commits_7d": 3
-   },
-   {
-    "repo": "Sturmi77/heatpump-hydraulic-card",
-    "stars": 16,
-    "commits_30d": 84,
-    "commits_7d": null
-   },
-   {
-    "repo": "yaoyuxiang-gnn/agent-guard",
-    "stars": 21,
-    "commits_30d": 34,
-    "commits_7d": 0
-   },
-   {
-    "repo": "Garinmckayl/anima",
-    "stars": 247,
-    "commits_30d": 21,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "jepa",
-  "total": 372,
-  "owners": 94,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "zhuxun132/InJepa",
-    "stars": 50,
-    "commits_30d": 10,
-    "commits_7d": 3
-   },
-   {
-    "repo": "HaoranZhuExplorer/AD-E2E-JEPA",
-    "stars": 69,
+    "repo": "mirage-hq/Tesseract-Converter",
+    "stars": 5,
     "commits_30d": 6,
     "commits_7d": 3
    },
    {
-    "repo": "khelverskovp/atom-jepa",
-    "stars": 12,
-    "commits_30d": 15,
-    "commits_7d": 0
-   },
-   {
-    "repo": "Tanpig-X/PDE-JEPA",
-    "stars": 12,
-    "commits_30d": 12,
-    "commits_7d": 0
-   },
-   {
-    "repo": "kevinghst/H-JEPA",
-    "stars": 192,
-    "commits_30d": 10,
-    "commits_7d": 0
-   },
-   {
-    "repo": "OliverZ-dot/TI-JEPA",
+    "repo": "Gz3192019/StegoTank",
     "stars": 5,
-    "commits_30d": 9,
-    "commits_7d": 0
+    "commits_30d": 100,
+    "commits_7d": 1
+   },
+   {
+    "repo": "mirage-hq/Tesseract",
+    "stars": 159,
+    "commits_30d": 7,
+    "commits_7d": 1
    }
   ]
  },
  {
-  "token": "teleoperation",
-  "total": 220,
-  "owners": 88,
+  "token": "eidolon",
+  "total": 98,
+  "owners": 74,
+  "generic": false,
   "not_in_out": 97,
   "hot": [
    {
-    "repo": "Gamma-Robot/NEXUS",
-    "stars": 11,
-    "commits_30d": 8,
+    "repo": "Sallyn0225/eidolon-sc",
+    "stars": 241,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "gegane-lutshaba/eidolon",
+    "stars": 3,
+    "commits_30d": 9,
     "commits_7d": 8
    },
    {
-    "repo": "moumde/robot_learning_workbench",
-    "stars": 2,
-    "commits_30d": 18,
-    "commits_7d": 3
-   },
-   {
-    "repo": "Roboparty/P-BFM",
-    "stars": 98,
-    "commits_30d": 10,
-    "commits_7d": 3
-   },
-   {
-    "repo": "dtecx/trashdrop",
-    "stars": 2,
-    "commits_30d": 86,
+    "repo": "savageAZfck/eidolon",
+    "stars": 1,
+    "commits_30d": 6,
     "commits_7d": 0
    },
    {
-    "repo": "QinnyuLan/SONIC_unitree_h2",
-    "stars": 38,
-    "commits_30d": 35,
-    "commits_7d": 0
-   },
-   {
-    "repo": "MoallaMelek/GhostHands",
-    "stars": 2,
-    "commits_30d": 8,
+    "repo": "pink-pig-djw/5",
+    "stars": 1,
+    "commits_30d": 5,
     "commits_7d": 0
    }
   ]
  },
  {
-  "token": "supermimic",
-  "total": 55,
-  "owners": 55,
-  "not_in_out": 53,
+  "token": "greentrace",
+  "total": 12,
+  "owners": 12,
+  "generic": false,
+  "not_in_out": 12,
   "hot": [
    {
-    "repo": "Motphys/Uni-SuperMimic",
-    "stars": 139,
-    "commits_30d": 22,
-    "commits_7d": 22
+    "repo": "polmanas1998-star/greentrace",
+    "stars": 1,
+    "commits_30d": 100,
+    "commits_7d": 100
    },
    {
-    "repo": "btx0424/rethinking-supermimic",
-    "stars": 23,
-    "commits_30d": 15,
+    "repo": "EmadQureshiKhi/GreenTrace",
+    "stars": 0,
+    "commits_30d": 38,
     "commits_7d": 15
    },
    {
-    "repo": "Renforce-Dynamics/trackerlab-supermimic",
-    "stars": 9,
-    "commits_30d": 10,
-    "commits_7d": 10
+    "repo": "NLC-Lab/GreenTrace",
+    "stars": 0,
+    "commits_30d": 40,
+    "commits_7d": 0
    },
    {
-    "repo": "YanYuan98/Supermimic_mod",
-    "stars": 8,
-    "commits_30d": 9,
-    "commits_7d": 9
-   },
-   {
-    "repo": "CuboiLeo/SuperMimic-Reproduced",
-    "stars": 231,
+    "repo": "SaiKeerthanaPalavalasa28/GreenTrace",
+    "stars": 0,
     "commits_30d": 5,
-    "commits_7d": 5
-   },
-   {
-    "repo": "panhainan2020/SuperMimic-MuJoCo",
-    "stars": 12,
-    "commits_30d": 5,
-    "commits_7d": 5
+    "commits_7d": 0
    }
   ]
  },
  {
-  "token": "pera",
-  "total": 679,
-  "owners": 95,
-  "not_in_out": 99,
+  "token": "lpds",
+  "total": 37,
+  "owners": 29,
+  "generic": false,
+  "not_in_out": 36,
   "hot": [
    {
-    "repo": "Vertias3u/Peras",
-    "stars": 4,
-    "commits_30d": 17,
-    "commits_7d": 3
+    "repo": "orbit7146/lpdsi",
+    "stars": 0,
+    "commits_30d": 100,
+    "commits_7d": 0
    },
    {
-    "repo": "perawallet/use-wallet-pera",
-    "stars": 1,
+    "repo": "silveraxiom70/lpdsn",
+    "stars": 0,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "BrainJellyPie/lpds",
+    "stars": 0,
+    "commits_30d": 7,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "physguard",
+  "total": 3,
+  "owners": 3,
+  "generic": false,
+  "not_in_out": 2,
+  "hot": [
+   {
+    "repo": "itz-smarann/physguard-by-quadcore",
+    "stars": 0,
+    "commits_30d": 17,
+    "commits_7d": 0
+   },
+   {
+    "repo": "Arkz-Deepak/physguard",
+    "stars": 0,
+    "commits_30d": 7,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "egosg",
+  "total": 1,
+  "owners": 1,
+  "generic": false,
+  "not_in_out": 0,
+  "hot": []
+ },
+ {
+  "token": "patch",
+  "total": 16597,
+  "owners": 94,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "lucannez64/darling-lol",
+    "stars": 588,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "SysAdminDoc/HushFacebook",
+    "stars": 394,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "SysAdminDoc/HushFeed",
+    "stars": 307,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "SysAdminDoc/HushGram",
+    "stars": 243,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "alexturkey/voxcpm2-turkce-ses-tasarimi",
+    "stars": 256,
+    "commits_30d": 31,
+    "commits_7d": 31
+   },
+   {
+    "repo": "Zfinix/eleven",
+    "stars": 880,
+    "commits_30d": 100,
+    "commits_7d": 30
+   },
+   {
+    "repo": "bearinmindcat/morphe-patches",
+    "stars": 220,
+    "commits_30d": 100,
+    "commits_7d": 6
+   },
+   {
+    "repo": "githubuser420x/FGOAC-scooby",
+    "stars": 197,
+    "commits_30d": 5,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "vision",
+  "total": 38199,
+  "owners": 100,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "Valen-Team/Valen",
+    "stars": 881,
+    "commits_30d": 54,
+    "commits_7d": 13
+   },
+   {
+    "repo": "fudan-generative-vision/Remory",
+    "stars": 497,
+    "commits_30d": 43,
+    "commits_7d": 7
+   },
+   {
+    "repo": "onehumanbeing/esp32-iphone-agent",
+    "stars": 3904,
+    "commits_30d": 54,
+    "commits_7d": 4
+   },
+   {
+    "repo": "LMIXR/CV_Deployment_skill",
+    "stars": 463,
+    "commits_30d": 11,
+    "commits_7d": 4
+   },
+   {
+    "repo": "v-modal/vmodal_sdk_robotics",
+    "stars": 448,
+    "commits_30d": 17,
+    "commits_7d": 1
+   },
+   {
+    "repo": "PSRben/VisionHOPE",
+    "stars": 1213,
+    "commits_30d": 17,
+    "commits_7d": 0
+   },
+   {
+    "repo": "jeremyipark/vision-demos",
+    "stars": 863,
+    "commits_30d": 7,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "worlds",
+  "total": 37073,
+  "owners": 94,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "HeyPuter/everything",
+    "stars": 3892,
+    "commits_30d": 100,
+    "commits_7d": 37
+   },
+   {
+    "repo": "OpenWAM-Official/OpenWAM",
+    "stars": 1111,
+    "commits_30d": 12,
+    "commits_7d": 4
+   },
+   {
+    "repo": "wheresryan22/anatomy",
+    "stars": 20730,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "AgnesAI-Labs/agnes-harness",
+    "stars": 1294,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "chasmlol/2010-rust-rewrite-mashup",
+    "stars": 918,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "chasmlol/SkyCraft",
+    "stars": 1264,
+    "commits_30d": 7,
+    "commits_7d": 0
+   },
+   {
+    "repo": "jeremyipark/vision-demos",
+    "stars": 863,
+    "commits_30d": 7,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "real",
+  "total": 163894,
+  "owners": 98,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "ZJU-REAL/Easel",
+    "stars": 4090,
+    "commits_30d": 100,
+    "commits_7d": 16
+   },
+   {
+    "repo": "oil-oil/oil-ui",
+    "stars": 2291,
+    "commits_30d": 81,
+    "commits_7d": 8
+   },
+   {
+    "repo": "Albert-Weasker/niubigeo",
+    "stars": 8702,
+    "commits_30d": 23,
+    "commits_7d": 8
+   },
+   {
+    "repo": "onehumanbeing/esp32-iphone-agent",
+    "stars": 3904,
+    "commits_30d": 54,
+    "commits_7d": 4
+   },
+   {
+    "repo": "SonicloudTech/sonicloud_opensdk",
+    "stars": 2552,
+    "commits_30d": 10,
+    "commits_7d": 1
+   },
+   {
+    "repo": "wheresryan22/anatomy",
+    "stars": 20730,
+    "commits_30d": 100,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "connector",
+  "total": 33598,
+  "owners": 96,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "dingminhua/dsh-connect-workbuddy",
+    "stars": 629,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "crmne/spotifast",
+    "stars": 9196,
+    "commits_30d": 100,
+    "commits_7d": 48
+   },
+   {
+    "repo": "hanzohanzhe/Grandet",
+    "stars": 793,
+    "commits_30d": 100,
+    "commits_7d": 2
+   },
+   {
+    "repo": "hydra-db/open-glean",
+    "stars": 1606,
+    "commits_30d": 12,
+    "commits_7d": 2
+   },
+   {
+    "repo": "bjarneo/flux",
+    "stars": 606,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "LordixDemon/apple_watch_connector",
+    "stars": 630,
+    "commits_30d": 9,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "pytorch",
+  "total": 11679,
+  "owners": 95,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "kanaworksai-hue/audio-studio-mcp",
+    "stars": 496,
+    "commits_30d": 48,
+    "commits_7d": 37
+   },
+   {
+    "repo": "YeonwooSung/llm-architecture-from-scratch",
+    "stars": 1105,
+    "commits_30d": 70,
+    "commits_7d": 21
+   },
+   {
+    "repo": "mizorewww/laya-mlx",
+    "stars": 7025,
+    "commits_30d": 14,
+    "commits_7d": 8
+   },
+   {
+    "repo": "OpenSenseNova/Looped-DiT",
+    "stars": 98,
     "commits_30d": 8,
     "commits_7d": 1
    },
    {
-    "repo": "tai-kun/pera1",
-    "stars": 1,
-    "commits_30d": 78,
+    "repo": "PSRben/VisionHOPE",
+    "stars": 1213,
+    "commits_30d": 17,
     "commits_7d": 0
    },
    {
-    "repo": "Peragus01/PeragusSVM",
-    "stars": 1,
-    "commits_30d": 42,
+    "repo": "iamwavecut/MLX-DLSS",
+    "stars": 116,
+    "commits_30d": 6,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "tiny",
+  "total": 15069,
+  "owners": 95,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "Ansub/tv-detox",
+    "stars": 1569,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "Louis-CFM/coucou",
+    "stars": 6468,
+    "commits_30d": 100,
+    "commits_7d": 83
+   },
+   {
+    "repo": "Pal-AI-Lab/Coopanion",
+    "stars": 1928,
+    "commits_30d": 100,
+    "commits_7d": 76
+   },
+   {
+    "repo": "ViceVerse-cz/Serein",
+    "stars": 872,
+    "commits_30d": 100,
+    "commits_7d": 21
+   },
+   {
+    "repo": "aboard-io/tinylittleoffice",
+    "stars": 491,
+    "commits_30d": 100,
+    "commits_7d": 5
+   },
+   {
+    "repo": "alejandrobujan/tendedero",
+    "stars": 2539,
+    "commits_30d": 55,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "wire",
+  "total": 8403,
+  "owners": 92,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "shihabal3amri/DiPlay",
+    "stars": 12398,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "shivk035636-arch/robux-wire-vault",
+    "stars": 70,
+    "commits_30d": 100,
+    "commits_7d": 40
+   },
+   {
+    "repo": "usenocturne/prelude",
+    "stars": 77,
+    "commits_30d": 28,
+    "commits_7d": 9
+   },
+   {
+    "repo": "Fwooffy/Qpro-Enhanced-FT-Wireless",
+    "stars": 89,
+    "commits_30d": 100,
     "commits_7d": 0
    },
    {
-    "repo": "Ember452/peracta",
-    "stars": 1,
-    "commits_30d": 13,
+    "repo": "CycleChain/CycleWire",
+    "stars": 57,
+    "commits_30d": 89,
+    "commits_7d": 0
+   },
+   {
+    "repo": "wasif-exe/wire",
+    "stars": 87,
+    "commits_30d": 17,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "action",
+  "total": 57081,
+  "owners": 99,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "muellerberndt/cadence",
+    "stars": 455,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "Hybirdss/Hycli",
+    "stars": 424,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "xinxuxin/keystone-bench",
+    "stars": 935,
+    "commits_30d": 19,
+    "commits_7d": 5
+   },
+   {
+    "repo": "OpenWAM-Official/OpenWAM",
+    "stars": 1111,
+    "commits_30d": 12,
+    "commits_7d": 4
+   },
+   {
+    "repo": "awlevin/typesafe-computer-use",
+    "stars": 1266,
+    "commits_30d": 38,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "manipulation",
+  "total": 4349,
+  "owners": 94,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "robosimstudio/robosimstudio",
+    "stars": 246,
+    "commits_30d": 10,
+    "commits_7d": 7
+   },
+   {
+    "repo": "ABC12345anouys/EvoBot",
+    "stars": 128,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "amazon-far/PRISM",
+    "stars": 118,
+    "commits_30d": 21,
+    "commits_7d": 0
+   },
+   {
+    "repo": "seohongpark/ocbench",
+    "stars": 126,
+    "commits_30d": 6,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "campus",
+  "total": 39005,
+  "owners": 100,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "Ye9137/CampusConnect",
+    "stars": 46,
+    "commits_30d": 66,
+    "commits_7d": 28
+   },
+   {
+    "repo": "Sanpan53/zhixin-campus-showcase",
+    "stars": 50,
+    "commits_30d": 5,
+    "commits_7d": 5
+   }
+  ]
+ },
+ {
+  "token": "glove",
+  "total": 820,
+  "owners": 98,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "lubaxe/glovebox",
+    "stars": 28,
+    "commits_30d": 16,
+    "commits_7d": 2
+   },
+   {
+    "repo": "Maahe-25/multimodal-tactile-pipeline",
+    "stars": 5,
+    "commits_30d": 26,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "handle",
+  "total": 24223,
+  "owners": 95,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "Sarfraz64744/luau-safe-result",
+    "stars": 68,
+    "commits_30d": 100,
+    "commits_7d": 43
+   },
+   {
+    "repo": "ray-amjad/claude-code-mods",
+    "stars": 95,
+    "commits_30d": 38,
     "commits_7d": 0
    }
   ]

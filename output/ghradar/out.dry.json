@@ -1,0 +1,78 @@
+[
+ {
+  "term": "sim-to-real",
+  "terms": [
+   "sim-to-real"
+  ],
+  "repo": "Data-Driven-Computational-Geotechnics/PhysGuard",
+  "owner": "Data-Driven-Computational-Geotechnics",
+  "url": "https://github.com/Data-Driven-Computational-Geotechnics/PhysGuard",
+  "stars": 0,
+  "created": "2026-10-25",
+  "topics": [
+   "fisher-information",
+   "gradient-projection",
+   "neural-operator",
+   "neurips-2026",
+   "pde-surrogate",
+   "pytorch"
+  ],
+  "size_kb": 0,
+  "language": "Python",
+  "desc": "PhysGuard (NeurIPS 2026): Fisher-Guided Gradient Projection for Sim-to-Real Neural PDE Surrogates",
+  "commits_30d": 2,
+  "commits_7d": 2
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "dialgop/eidolon",
+  "owner": "dialgop",
+  "url": "https://github.com/dialgop/eidolon",
+  "stars": 0,
+  "created": "2026-09-16",
+  "topics": [],
+  "size_kb": 150,
+  "language": "Python",
+  "desc": "An experimental framework for memory, attention, world models, self-models, and embodied cognition.",
+  "commits_30d": 9,
+  "commits_7d": 0,
+  "burst_only": true
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "SufianTA/MIRAGE-X",
+  "owner": "SufianTA",
+  "url": "https://github.com/SufianTA/MIRAGE-X",
+  "stars": 0,
+  "created": "2026-09-02",
+  "topics": [],
+  "size_kb": 22,
+  "language": "Python",
+  "desc": "Task-grounded verification and select-or-abstain reasoning for embodied world-model agents.",
+  "commits_30d": 0,
+  "stale": true
+ },
+ {
+  "term": "egocentric",
+  "terms": [
+   "egocentric"
+  ],
+  "repo": "mukunda-k/egosg-lpds",
+  "owner": "mukunda-k",
+  "url": "https://github.com/mukunda-k/egosg-lpds",
+  "stars": 0,
+  "created": "2026-10-13",
+  "topics": [],
+  "size_kb": 8097,
+  "language": "Python",
+  "desc": "Egocentric Scene Graph and LPDS from streaming egocentric video, with step-localization and HD-EPIC VQA evaluations",
+  "commits_30d": 4,
+  "commits_7d": 2
+ }
+]
