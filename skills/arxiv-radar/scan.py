@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """arxiv-radar 扫描器。vI
 
-vI 第二稿 —— vI 尚未跑过，故名字严格化（第 4 处）折进本版，版本号不跳。
+vI 尚未跑过，本版折入两处收尾（名字严格化、check 截断提示），版本号不跳。
 
 用法:
     python3 skills/arxiv-radar/scan.py "days:30"
@@ -332,8 +332,10 @@ def do_check():
     print("已在词表: %s" % ("是" if CHECK in TERMS else "否"))
     if UNKNOWN:
         print("⚠️ 未识别 token（check: 必须在最后）: %s" % " ".join(UNKNOWN))
-    if CHECK not in TERMS and " " in CHECK:
-        print("⚠️ 不在词表且含空格 —— 先确认没有第二个词被切出去")
+    # 只在「像是被截断」时报。CHECK 不在词表是常态（正在评估的候选词），
+    # 而「不在词表 + 含空格」几乎每次都成立，等于没提示。
+    if CHECK not in TERMS and any(t.startswith(CHECK + " ") for t in TERMS):
+        print("⚠️ 不在词表，但像是词表某条的截断 —— 确认 check: 是最后一个 token")
     print()
     print("窗口   total  已见/100  领域命中  前 3 条标题")
     for d in (7, 30, 60, 90):
