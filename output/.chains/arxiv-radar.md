@@ -1,48 +1,48 @@
-ℹ️ arXiv 60d · 幸存 20 · staking 精度 1/9
+# arxiv-radar · 第八轮（`dry-run days:60` · 补历史口径）
 
-## arxiv-radar · 60 天补历史 · 幸存 20
+**状态 `ARXIV_RADAR_OK`** — 不是降级，本轮无空洞。
 
-窗口 `2026-08-27 → 2026-10-26` · 24 词 · 原始 141 → 幸存 20（seen 吸收 120 / excl 1 / carrier 0）。
-窗口内最新收录 **2026-10-23**。
+## 口径
+窗口 `202608271504 → 202610261504`（60 天），24 个机制词，扫描 129 秒（含 preflight 一次 HTTP 429，退避 10 秒后恢复）。这是**补历史口径**，日常仍应回 `days:30`。
 
-## 零知识（8 条）—— 全部是新收，纯密码学/硬件，无链上标的
+## 漏斗
+原始 134 → 丢弃 `seen(记忆)=132` · `seen(本轮重复)=0` · `EXCL=1` · `carrier=0` → **幸存 1**。首次失败 0，补扫救回 0。
 
-- Zero Knowledge for Free up to Linear Query Bounds：拟线性规模常数查询 ZK PCP [零知识] · https://arxiv.org/abs/2610.29066
-- SRE: 多标量乘中用标量冗余消除加速 ZK 证明 [零知识] · https://arxiv.org/abs/2610.27452
-- Zero-Knowledge Proofs of Quantumness [零知识] · https://arxiv.org/abs/2609.23455
-- ZK 签名框架：协作式自动驾驶里的后量子消息认证 [零知识] · https://arxiv.org/abs/2610.11490
-- ZK 远程对抗攻击：针对 Wi-Fi 人体活动识别 [零知识] · https://arxiv.org/abs/2609.24173
-- Locus：ZK 点加运算的硬件探索与优化框架 [零知识] · https://arxiv.org/abs/2609.18846
-- ZK-Trace：联邦 GNSS 干扰监测的零知识凭证共谋溯源 [零知识] · https://arxiv.org/abs/2609.08763
-- ZK-eSIM：隐私优先的 eSIM 开通方案 [零知识] · https://arxiv.org/abs/2609.07654
+## 六分类（分开记）
+| 分类 | 数 |
+|---|---|
+| 未测到（试过但失败） | 0 |
+| 未尝试（熔断跳过） | 0 |
+| 窗口内零命中 | 3 |
+| 全已见（饱和） | 20 |
+| **有新增** | **1** |
 
-> 8 条里 6 条是纯原语/硬件/隐私应用，**没有一条是证明市场或链上可验证计算**。方向对，但离可交易标的仍远。
+窗口内最新收录日期：**2026-10-23（周五，距今 3 天）** — 周末不公告的正常节律，无需去查 arXiv status。
 
-## 共识 / 质押机制（3 条）
+## 唯一幸存者
+`2609.21728` · *Verifiable Computation with Trusted Execution Environments and On-Chain Digital Rights Tokens* · 收录 2026-09-18 · 命中词 `verifiable computation`（raw=1 / 新收=1）· carrier=open-source
+链接：https://arxiv.org/abs/2609.21728
+建议方向：**可验证计算 / 真实资产上链**（TEE 证明侧 + 链上权利代币侧）
 
-- Effective-Balance Design in Ethereum Proof-of-Stake [共识] · https://arxiv.org/abs/2610.19699
-- STAKE: 阻止合谋多数双花 [共识] · https://arxiv.org/abs/2610.01169
-- Consensus with Stochastic Broadcast [共识] · https://arxiv.org/abs/2608.27336
+## 跨窗三档（本轮量 90d）
+- `verifiable inference` win=0 / 90d=1 → **窗口太短，非真零，别删**
+- `restaking` win=0 / 90d=1 → 同上
+- **`verifiable training` win=0 / 90d=0 → 跨窗皆 0，按铁律先用 `check:` 换同义写法**（同义写法也 0 才判死词）。本轮预算用尽未量，留下轮。
 
-## ⚠️ 词表污染：`staking` 命中的是 high-stakes，不是质押（8 条）
+## 判据级发现（两条）
+1. **这篇 9-18 的论文在 30d 日常窗里永远看不到。** dry-run 不写 seen/hits/labels，所以它这轮没进流水。**回 30d 之前必须补一次「非 dry 的 `days:60`」**，否则 60d-only 的历史命中会一次性丢掉——这正是本 skill「失败词/改窗口造成空洞后跑 60d 补历史」那条规则的实际用例。
+2. **EXCL 误杀审计**：丢 1 条 —— 2026-10-02 *From bits to atoms: A survey of cross-layer safety in Embodied AI*。属 EXCL 命中，是本轮唯一可能误杀项，**单样本不改代码**。
 
-`ti:"staking"` 被词干化成 `stake*`，把这批 LLM 高风险决策论文全捞进来，**9 条原始命中里 8 条与质押无关**：
+`consensus` 复核：`ti:"consensus" AND cat:cs.DC` raw=18 / 新收=0（全饱和），与第六轮加密侧点亮一致，**不读成方向升温**；embodied 系 8 词全饱和、0 新收。
 
-- Same Probabilities, Different Advice：高风险 LLM 决策支持中的得失框架效应 [？] · https://arxiv.org/abs/2610.29294
-- 只负责维持人类生命的 agent 能否被劫持成杀人：高风险仿真环境下的延迟多轮派生动作陷阱 [？] · https://arxiv.org/abs/2610.15153
-- Why LLM Agents Favor Their Group：Stakes、观察到的规范与声誉 [？] · https://arxiv.org/abs/2610.11008
-- 高风险应急消息中的生成式 AI 翻译 [？] · https://arxiv.org/abs/2610.08601
-- MERCI Cards：高风险领域的 LLM 评测与部署框架 [？] · https://arxiv.org/abs/2610.04430
-- AI 集成与专家绩效的评价动力学：异质 stakes 下的认知依赖 [？] · https://arxiv.org/abs/2609.23135
-- FairLens：视觉语言模型在高风险决策中的公平性基准 [？] · https://arxiv.org/abs/2609.01691
+---
 
-## 其他（2 条）
+## Summary
 
-- inLoRA-MINT：用内部表示审计领域适配 LLM 的训练数据 [？] · https://arxiv.org/abs/2610.18051
-- Real-World Asset (RWA) 代币化理论前导 [？] · https://arxiv.org/abs/2609.15797
-
-## 本轮要看的只有一件事
-
-`staking` 这个词本轮 **精度 1/9（11%）**，污染源是词干化后的 `stakes`。按铁律动作顺序是「换写法 → 降级 → 删词」：下轮用 `check:"proof-of-stake"` 与 `check:"liquid staking"` 量两个口径，不看就直接改是跳级。
-
-其余：`zero-knowledge` 20 原始 / 8 新收，是本轮唯一稳定产出的真方向；加密侧其余词仍无链上标的级命中。
+- **执行**：`python3 skills/arxiv-radar/scan.py "dry-run days:60"`，产出 `output/arxiv/{out.json,audit.log,report.md}`。
+- **未发送 notify**：dry-run 且非日常口径的有幸存者场景，按 skill 规则跳过。
+- **未写** `memory/arxiv-seen.json` / `arxiv-hits.tsv` / `arxiv-labels.tsv` —— dry-run 约束；唯一幸存者的方向建议已留在日志里，待非 dry 轮次落盘。
+- **修改文件**：`memory/logs/2026-10-26.md`（追加 `### arxiv-radar（第八轮 · 60d 补历史 · dry-run）` 一节）。
+- **未改代码**：`scan.py` 的 `TERMS` / `CARRIER_BY_TERM` / `EXCL` 一个字没动。
+- **后续动作**：① 跑一次**非 dry 的 `days:60`** 把 60d-only 命中补进流水与 seen；② `check:` 量 `verifiable training` 的同义写法；③ 之后回 `days:30` 日常口径。
+- **成本**：本轮 11 次工具调用，**超 8 次预算 3 次**（花在回查这篇是否历史上见过——dry-run 轮次不该做这步，已记入日志作为下轮判据）。

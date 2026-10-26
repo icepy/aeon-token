@@ -1,36 +1,16 @@
-[vG] 扫 24 词 | 窗口 [202608271432 TO 202610261432] | 原始 141 | 幸存 20 | var='days:60'
-丢弃 seen(记忆)=120 seen(本轮重复)=0 excl=1 carrier=0 首次失败=0
-词表六分类 —— 未测到(试过失败) 0 / 未尝试(熔断跳过) 0 / 窗口内零命中 4 / 全已见(饱和) 15 / 有新增 5
+[vH] 扫 24 词 | 窗口 [202608271504 TO 202610261504] | 原始 134 | 幸存 1 | var='dry-run days:60'
+丢弃 seen(记忆)=132 seen(本轮重复)=0 excl=1 carrier=0 首次失败=0
+词表六分类 —— 未测到(试过失败) 0 / 未尝试(熔断跳过) 0 / 窗口内零命中 3 / 全已见(饱和) 20 / 有新增 1
 跨窗档 90d（只取 > 60d 的档；等宽档是 win 列的副本，不重复量）
-耗时 扫描 92s（含重试 0s）· 补扫救回 0 · 总 92s
+耗时 扫描 129s（含重试 10s）· 补扫救回 0 · 总 129s
 窗口内最新收录日期: 2026-10-23（周五，距今 3 天）→ 正常（周末不公告；周一/周二看到 3–4 天属节律）
-⚠️ 窗口内零命中 4 个 —— 已跨窗量 total_count（win=60d / 90d）：
+⚠️ 窗口内零命中 3 个 —— 已跨窗量 total_count（win=60d / 90d）：
    verifiable inference: win=0 90d=1 → 窗口太短 → 非真零，别删
-   proof of learning: win=0 90d=0 → 跨窗皆 0 → **先用 check: 换同义写法**；连写法都 0 才是死词
    verifiable training: win=0 90d=0 → 跨窗皆 0 → **先用 check: 换同义写法**；连写法都 0 才是死词
    restaking: win=0 90d=1 → 窗口太短 → 非真零，别删
-   └ 小结: 窗口太短 2 · 真零 2 · 跨窗失败 0
-ℹ️ 全已见（饱和，**别删**）: proof-of-useful-work(raw=1) · light client(raw=1) · proof of training(raw=1) · data availability sampling(raw=1) · automated market maker(raw=3) · cat:cs.CR AND ti:"MEV"(raw=3) · embodied data(raw=3) · robot manipulation data(raw=2) · robot data(raw=8) · embodied AI(raw=14) · ti:"data engine" AND cat:cs.RO(raw=5) · ti:"human data" AND cat:cs.RO(raw=7) · ti:"egocentric" AND cat:cs.RO(raw=27) · ti:"data generation" AND cat:cs.RO(raw=12) · ti:"EIP-1559"(raw=2)
-ℹ️ EXCL 命中 丢弃 1 条，前 1 条:
-   2026-10-02  From bits to atoms: A survey of cross-layer safety in Embodied AI
-词表原始/新收: ti:"egocentric" AND cat:cs.RO=27/0 · zero-knowledge=20/8 · ti:"consensus" AND cat:cs.DC=18/1 · embodied AI=14/0 · ti:"data generation" AND cat:cs.RO=12/0 · staking=9/9 · robot data=8/0 · ti:"human data" AND cat:cs.RO=7/0 · ti:"data engine" AND cat:cs.RO=5/0 · auditable training=3/1 · automated market maker=3/0 · cat:cs.CR AND ti:"MEV"=3/0 · embodied data=3/0 · robot manipulation data=2/0 · ti:"EIP-1559"=2/0 · proof-of-useful-work=1/0 · light client=1/0 · proof of training=1/0 · data availability sampling=1/0 · RWA=1/1
-  2026-10-21 [staking] Same Probabilities, Different Advice: Gain-Loss Framing Effects in High-Stakes LLM De
-  2026-10-21 [zero-knowledge] Zero Knowledge for Free up to Linear Query Bounds: Quasilinear-Size Constant-Query Ze
-  2026-10-20 [zero-knowledge] SRE: Accelerating Zero-Knowledge Proofs via Scalar Redundancy Elimination in Multi-Sc
-  2026-10-14 [staking] Effective-Balance Design in Ethereum Proof-of-Stake
-  2026-10-13 [auditable training] inLoRA-MINT: Internal Representations for Auditing Training Data in Domain-adapted LL
-  2026-10-10 [staking] Can agents whose sole duty is to keep humans alive be hijacked to kill? Delayed multi
-  2026-10-08 [zero-knowledge] A Zero-Knowledge Signature Framework for Efficient Post-Quantum Message Authenticatio
-  2026-10-07 [staking] Why LLM Agents Favor Their Group: Stakes, Observed Norms, and Reputation
-  2026-10-06 [staking] Generative AI translations in high-stakes emergency messaging
-  2026-10-03 [staking] MERCI Cards: An LLM Evaluation and Deployment Framework for High-Stakes Domains
-  2026-10-01 [staking] STAKE: Preventing a colluding majority from double spending
-  2026-09-21 [zero-knowledge] Zero-Knowledge Remote Adversarial Attack against Wi-Fi-based Human Activity Recogniti
-  2026-09-20 [zero-knowledge] Zero-Knowledge Proofs of Quantumness
-  2026-09-19 [staking] Evaluative Dynamics of AI Integration and Expert Performance under Epistemic Dependen
-  2026-09-16 [zero-knowledge] Locus: A Framework for Exploring and Optimizing Point Addition Hardware for Zero-Know
-  2026-09-14 [RWA] A prelude to the theory of Real-World Asset (RWA) Tokenization
-  2026-09-08 [zero-knowledge] ZK-Trace: Certified Collusion Tracing with Zero-Knowledge Credentials for Federated G
-  2026-09-07 [zero-knowledge] ZK-eSIM: A Privacy-Centric Zero-Knowledge Approach for eSIM Provisioning
-  2026-09-01 [staking] FairLens: Benchmarking Fairness in Vision-Language Models for High-Stakes Decision-Ma
-  2026-08-27 [ti:"consensus" AND cat:cs.DC] Consensus with Stochastic Broadcast
+   └ 小结: 窗口太短 2 · 真零 1 · 跨窗失败 0
+ℹ️ 全已见（饱和，**别删**）: proof-of-useful-work(raw=1) · light client(raw=1) · proof of training(raw=1) · auditable training(raw=3) · data availability sampling(raw=1) · automated market maker(raw=3) · ti:"consensus" AND cat:cs.DC(raw=18) · cat:cs.CR AND ti:"MEV"(raw=3) · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)(raw=1) · embodied data(raw=3) · robot manipulation data(raw=2) · robot data(raw=8) · embodied AI(raw=14) · zero-knowledge(raw=20) · ti:"data engine" AND cat:cs.RO(raw=5) · ti:"human data" AND cat:cs.RO(raw=7) · ti:"egocentric" AND cat:cs.RO(raw=27) · ti:"data generation" AND cat:cs.RO(raw=12) · ti:"EIP-1559"(raw=2) · RWA(raw=1)
+ℹ️ EXCL 命中 丢弃 1 条（**误杀只能在这里看见**）:
+   2026-10-02 From bits to atoms: A survey of cross-layer safety in Embodied AI
+词表原始/新收: ti:"egocentric" AND cat:cs.RO=27/0 · zero-knowledge=20/0 · ti:"consensus" AND cat:cs.DC=18/0 · embodied AI=14/0 · ti:"data generation" AND cat:cs.RO=12/0 · robot data=8/0 · ti:"human data" AND cat:cs.RO=7/0 · ti:"data engine" AND cat:cs.RO=5/0 · auditable training=3/0 · automated market maker=3/0 · cat:cs.CR AND ti:"MEV"=3/0 · embodied data=3/0 · robot manipulation data=2/0 · ti:"EIP-1559"=2/0 · proof-of-useful-work=1/0 · light client=1/0 · proof of training=1/0 · verifiable computation=1/1 · data availability sampling=1/0 · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)=1/0 · RWA=1/0
+  2026-09-18 [verifiable computation] Verifiable Computation with Trusted Execution Environments and On-Chain Digital Right
