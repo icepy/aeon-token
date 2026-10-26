@@ -4,7 +4,7 @@ description: 按方向词扫 GitHub 新建仓库，看「有没有人在写代�
 metadata:
   title: GitHub Radar
   category: crypto
-  var: ""
+  var: "days:7"
   tags:
     - crypto
     - discovery
@@ -13,7 +13,7 @@ metadata:
     - sends_notifications
 ---
 
-> **${var}** — 可选，空格分隔，可组合。`dry-run` 跳过 notify；`days:N` 换窗口（默认 30）；`min:N` 换 star 地板（**默认 0**）；`chk:N` 换核验门槛（默认 5）；`probe` 额外跑专名簇反查找漏掉的簇。**原样传给脚本，不要自己解析。**
+> **${var}** — 可选，空格分隔，可组合。`dry-run` 跳过 notify；`days:N` 换窗口（**默认 7**）；`min:N` 换 star 地板（**默认 0**）；`chk:N` 换核验门槛（默认 5）；`probe` 强制跑专名簇反查（否则脚本按 7 天到期自动跑）；`--full` 打全文审计（默认只打 digest）。**原样传给脚本，不要自己解析。**
 
 发现层第二条通道。**与 `arxiv-radar` 平行，不是它的下游。**
 
@@ -29,64 +29,83 @@ metadata:
 
 **本通道的真实产出在 AI / 机器人侧**，加密侧顺带。
 
+**窗口是流量旋钮，不是语义轴。** 有 `seen` 去重之后，7 天窗和 30 天窗在稳态下**产出完全相同**（都是「上次跑之后新建的仓」），差别只在搜索成本与冗余。所以取最短够用值：7 天（6 天冗余，抗一天跑挂）。**加词 / 改 carrier 时手动跑一次 `days:60` 补历史**，之后回 7 天。
+
 ## 词表与过滤器在哪
 
-**全在 `skills/github-radar/scan.py`。** `TERMS` / `NEG_BY_TERM` / `CARRIER_BY_TERM` / `EXCL` / `SITE_SUFFIX` / `CODE_SKELETON` / `GLUE` / `THEME_LEXICON` 都在那个文件里，改词改那里，**不要在 SKILL.md 里再抄一份**。
+**全在 `skills/github-radar/scan.py`。** `TERMS` / `NEG_BY_TERM` / `CARRIER_BY_TERM` / `EXCL` / `SITE_SUFFIX` / `CODE_SKELETON` / `GLUE` / `THEME_LEXICON` 都在那里（常量若已拆到同目录 `words.py`，改那边），**不要在 SKILL.md 里再抄一份**。
 
 ## 铁律
 
-- **预算是铁律：全程 ≤ 15 次工具调用。** 第十四轮 24 次、第十五轮 17 次；213 次 = 30 分钟超时（脚本只占几百秒，其余全是模型往返，每次调用重读 ~53k 上下文）。旁路探测走 `probe`，别每轮现写脚本。
-- **产物文件名固定**（`out.json` / `out.dry.json` / `audit.log` / `report.md` / `clusters.json` / `dropped.json`）。**轮次号写进日志内容，不要写进文件名。**
+- **预算是铁律：全程 ≤ 8 次工具调用。** 成本 = 调用数 × 每次重读上下文（~53k）。上一轮 97 次调用 = 5M 量级重读，脚本只占 349 秒。**要砍的是调用数，不是脚本行数。** 一轮的标准形状见下。
+- **审计默认只打 digest（~50 行）。** 全文落 `output/ghradar/audit.log`，要归因时才 `--full`。**`dropped.json` 永远不整读**（全量千级），只看 digest 里的计数与误杀两行。
+- **`gh api` 不带 `--jq` 视为没写。** 默认根本不 profile 任何仓 —— digest 里报告级已自带 desc；只有要判「是不是页形态」时才补一次 `gh api repos/O/R/contents --jq '.[].name'`。
+- **不许现写 `python3 -c`。** 先看 `scan.py` 有没有子命令（`replay` / `liveness`）。每个一行流 = 1 次调用 + 一次全文重读。
+- **日志用 bash `>>` 追加，不要 Read 后 Edit。**
+- **产物文件名固定**（`out.json` / `out.dry.json` / `audit.log` / `report.md` / `clusters.json` / `dropped.json`）。**轮次号写进日志内容，不要写进文件名**（脚本会算好并打进 digest）。
 - **`output/ghradar/` 由脚本自己清，不用你手动删。** 每次开跑前它会把目录里不在上面六个名字内的文件删掉，并把这行打进审计（`🧹 清理 …`）。想跨轮保留某个文件，文件名以 `keep` 开头。
-- **旁路脚本不进 `output/ghradar/`。** 要留档的判据写进 `memory/logs/${today}.md`；真需要临时脚本，放这个目录也行，下一轮会被自动删掉 —— 所以别指望它跨轮存在。
+- **旁路脚本不进 `output/ghradar/`。** 要留档的判据写进 `memory/logs/${today}.md`。
 - **不要重写脚本。** 只有改过滤器时才 Edit `scan.py`。
-- **核验宁可全量。幸存数 ≤ 上限时，一个都别漏。** 实证：`PER_TERM_CAP=25` 按 star 排序，只核了 76/234，报告级被低估 3.85×。
-- **分页按 `total_count` 自适应**：先查整窗第 1 页拿 `total`，`total ≤ WIN_SPLIT_TOTAL`(1000) 就**整窗单跑（1 个子窗）**，超过才拆 3 子窗，每子窗页数 `min(10, ceil(total/100))`（10 页 = GitHub search 1000 条封顶）。**长窗不再静默丢仓** —— 撞顶子窗仍进审计。第十五轮实证：修好后幸存 4→49（12.3×），`world model` 覆盖率 66.5%→100%。**审计头固定打 `整窗 N / 拆 3 子窗 M`，M=1 是正常值**（18 词里通常只有 1–2 个大词走拆窗），M 突然变大要当口径变化读。
+- **核验宁可全量。幸存数 ≤ 上限时，一个都别漏。** 实证：`PER_TERM_CAP=25` 按 star 排序，只核了 76/234，报告级被低估 3.85×。7 天窗下幸存量本身很小（个位数），全量是廉价的。
+- **分页按 `total_count` 动态取**（`min(10, ceil(total/100))`）。**7 天窗下几乎不触发** —— 旧 300 个硬上限只在大窗口下才咬人（第十五轮：修好后幸存 4→49，`world model` 覆盖率 66.5%→100%）。撞顶子窗仍进审计。
 - **star 排序会切掉 ★0 长尾。** 实证第十一轮：幸存 70 个里 ★≥5 只有 1 个、全轮最高 ★7，报告级 35 里 34 个是 ★0。**只要机制词还在，star 就不该出现在排序或采样里。**
 - **star 与 commits 可能反相关。** 跟这一支只能按 commits 读。
 - **换词前先量两个口径：total_count + 重叠度。不能只看污染率。** `vla`→全称双赢；`jepa`→全称灾难（654→35）。**分界不是「缩写脏不脏」，是这个术语在生态里实际怎么被书写。**
 - **仓库名常写合成词，搜索按 token 切分** —— **description 比 name 更可靠**。
 - **缩写若留着，必须配 `NEG_BY_TERM`**。
-- **`per_term == 0` 必须分四类。** 查询失败 / 真零 / **全已见（饱和）** / 有新增。**「饱和」留着，「真零」才谈删词。** 注意「饱和」是混的：`new_term` 只在全部过滤器跑完之后才自增，「被过滤丢光」和「真被 seen 吸收」会落进同一类 —— 脚本会把这两者分开打。
+- **`per_term == 0` 必须分四类。** 查询失败 / 真零 / **全已见（饱和）** / 有新增。**「饱和」留着，「真零」才谈删词。** digest 的逐词表里四类是分开打的。
 - **窄窗会把稀有词系统性读成「真零」** —— 判词表死活必须跨 7/30/60 三个窗口量 total_count。
-- **窗口长度是「提前量 vs 覆盖率」的取舍，不是质量轴。** 第十一轮：30 天窗比 7 天窗多救回 5 个 7d≥5 的活仓；但两轮报的「新增」全部来自窗口算术，**0 个真漏检**，不能当增量引用。
-- **同窗口连跑会读出「幸存 0」。** 非 `dry-run` 把幸存者写进 `seen` 之后，同窗口再跑必然 0 —— 那是算术，不是词表饱和，也不是故障。这时核验层和 `probe` 层**整段不会被执行**，所以「没报错」不等于「验过了」。**dry-run 不写 seen，所以同窗口 dry-run 复跑 = 原样重放，数字不含新信号，勿当增量引用。**
-- **词表对新生专名是全盲的（结构性，与窗口无关）。** 实证：`SuperMimic` 55 仓簇，18 词只捞到 2 个（7 天窗、30 天窗各验证一次）。**修法是反向做**：拿报告级里 commit 最高的几个，用仓名 token 反查 —— 就是 `probe`。
-- **`probe` 判真簇要三条，缺一不可：① `total` 小；② 簇内同主题（`cohesive`）；③ 主题词落在 `THEME_LEXICON` 语义内（`thematic`）。** 前两条都是必要条件，**两条全中也还是假** —— 第十六轮 3 个非通用且 `cohesive=true` 的候选**3/3 全假**：`senku`(54/40) 主题词只有 `with`×11（连接词不在 `GLUE`/`STOPWORDS`，虚词被当主题证据）、`uniview`(19/18) 主题词 `hikvision`×5 / `dahua`×4（海康大华 NVR 工具，簇内高度同主题但主题不是我们的）、`pouw`(31/24) 主题词 `content`×10（第二名撞荷兰语「货运」）。脚本已把 `GLUE` 从主题词里剔除、加 `THEME_LEXICON` 第三判据，候选按 **✅同主题 / ⚠️近似（同主题但主题词不在词表内）/ ⚠️撞名（异质，各写各的）** 三段给证据。**`eidolon` 撞《偶像大师》、`senku` 撞分子对接 —— 看着像专名不代表是我们的题。**
-- **`probe` 历史种子池必须「最近一半 + 其余等距」。** 只取最近 N 条时，`github-candidates.md` 越长老仓越饿死（第十五轮：335 行，只取最近 200 条 → 实际只有最近 24 条进池）。`PROBE_HIST_POOL` 必须 ≈ hist 配额。
-- **`probe` 报簇必须同时给 `owner` 数与 `repo` 数。** 单 owner 多仓（一人铺开几个仓）不构成生态趋势。
+- **同窗口连跑会读出「幸存 0」。** 非 `dry-run` 把幸存者写进 `seen` 之后，同窗口再跑必然 0 —— 那是算术。**dry-run 不写 seen，所以同窗口 dry-run 复跑 = 原样重放，数字不含新信号。**
+- **词表对新生专名是全盲的（结构性，与窗口无关）。** 实证：`SuperMimic` 55 仓簇，18 词只捞到 2 个。**修法是反向做**：拿仓名 token 反查 —— 就是 `probe`。
+- **`probe` 的定位是「候选词发现」，不是「仓库发现」。** 它索引的是**名字**（词表索引的是机制）。产物是「这几个名字在积累，考虑加进监控」，不是「今天多了几个仓」。所以它挂周跑、挂在比对层，不进日跑输出。
+- **`probe` 判真簇要三条，缺一不可：① `total` 小；② 簇内同主题（`cohesive`）；③ 主题词落在 `THEME_LEXICON` 语义内（`thematic`）。** 前两条全中也还是假 —— 第十六轮 3 个非通用且 cohesive 的候选**3/3 全假**（`senku` 主题词只有 `with`×11、`uniview` 是海康大华 NVR、`pouw` 撞荷兰语货运）。脚本已把 `GLUE` 剔出主题词。**看着像专名不代表是我们的题。**
+- **`probe` 跑 60 天窗，不跟日跑窗口。** 它问的是「这个名字在积累吗」= 周/月尺度；7 天窗下真簇 6 仓 vs 撞名 4 仓，**都在噪声底下面，判不出**。`PROBE_WIN=60` 必须独立于 run 窗口。
+- **`probe` 到期用 `memory/ghradar-probe-last.txt` 戳判（≥7 天），`dry-run` 不写戳，显式带 `probe` 时无视戳。** 跑挂不写戳 → 次日自愈。
+- **`probe` 报簇必须同时给 `owner` 数与 `repo` 数。** 单 owner 多仓（一人铺开几个仓）不构成趋势。
 - **共享脚手架 owner 黑名单抓不到**。判据：同短名跨 ≥3 owner 且 desc 前 80 字符相同。
 - **EXCL 要同时查仓库名和 description。**
 - **star 地板是反向的。** 默认 `min:0`。
 - **30 天提交高 ≠ 现在在写。** 必须同时看近 7 天 —— 实测跨窗稳定在 55–60% 爆完即停。
 - **高提交数 ≠ 代码仓。** 看 `language` 字段与根目录形态。
 - **`commits=100` 是 `per_page` 上限**，标 `≥100`。
-- **限速要重试，不能放弃。429（限速）和 409（真空仓）必须分开 —— 404 / 409 不再触发认证降级（已进代码，第十五轮回归通过）。** gh 掉线次数、末次原因、冷却期间未认证调用次数都进审计。
+- **限速要重试，不能放弃。429（限速）和 409（真空仓）必须分开 —— 404 / 409 不触发认证降级（已进代码）。** gh 掉线次数、末次原因、未认证调用次数都进 digest 末行。
 - **description 越像论文，越要查 commits。**
 - **只匹配 `in:name,description`，不要 readme。**
-- **脏词必须配 carrier**（`world model`）。**discard 量大 ≠ 误杀大**（第十一轮 carrier 丢 479 个，是最大单条规则，但没重放就不能算净增）。**carrier 判据 = desc ∪ topics 任一命中**；`EXCL` 仍只看 name+desc（否则放走 awesome 列表仓）。`len(desc)<25` 留逃生口：只有**无 topics** 才丢。**误杀率现在自动量**：`dropped.json` 全量落 carrier 名单，脚本另打 `carrier_named_uniq`（仓名 token 命中机制词的丢弃数，**按 owner 去重**）与 `carrier_named_alive_7d`，并与幸存者做同口径对照 —— 第十六轮粗估：886 丢里 190 个（21.4%、177 owner）仓名自带 `world-model`，抽样 9/12 近 7 天在推。**放宽前必须先看这两行 + 对照，别盲改**（盲改会重演 `jepa` 654→35）。
-- **覆盖率必须报。** <50% 的绝对数不可引用；撞顶的 66.5% 同样是采样后验，不是真实覆盖率。
+- **脏词必须配 carrier**（`world model`）。**discard 量大 ≠ 误杀大**。**carrier 判据 = desc ∪ topics 任一命中**；`EXCL` 仍只看 name+desc。`len(desc)<25` 留逃生口：只有**无 topics** 才丢。**误杀率自动量**：`dropped.json` 全量落名单，digest 打 `carrier_named_uniq` / `carrier_named_alive_7d` + 幸存者对照。**放宽前先看这两行，别盲改。**
+- **覆盖率必须报。** <50% 的绝对数不可引用；撞顶的百分比是采样后验，不是真实覆盖率。
 - **`template` / `demo` / `sniper` = 练手仓库或农场。**
-- **站点仓按后缀无条件丢**（`.github.io` / `-page` / `-site` / `-website` / `-homepage` / `-showcase` / `-docs`）—— 体量不是判据。**同名仓**才需要「体量小 + 无 language」两个条件。`-docs` 是这组里最弱的一条，盯一轮有没有带 `language` 的仓被误丢。
-- **纯静态站还有第二种形态**：根目录 `index.html` + `.nojekyll` 且无任何代码骨架（`src`/`tests`/`pyproject.toml`/`package.json`/…）→ 页。第十/十一轮三次独立命中（含 39MB、115MB），已进代码。
-- **每条丢弃规则都要能被审计。** 归因行固定进审计：曾撞页上限的子窗 · 整窗/拆窗计数 · carrier 靠 topics 放行数 · 空/短 desc 靠 topics 放行数 · probe 各来源种子数 · **`carrier_named_*` 误杀两行 + 幸存者对照**。**`carrier` 与 `short_desc` 的丢弃名单全量落 `output/ghradar/dropped.json`**（此前是唯一两条不落仓名的规则）。
+- **站点仓按后缀无条件丢**（`.github.io` / `-page` / `-site` / `-website` / `-homepage` / `-showcase` / `-docs`）—— 体量不是判据。**同名仓**才需要「体量小 + 无 language」两个条件。
+- **纯静态站还有第二种形态**：根目录 `index.html` + `.nojekyll` 且无任何代码骨架 → 页。
+- **每条丢弃规则都要能被审计。** `carrier` 与 `short_desc` 的全量名单落 `dropped.json`。
 - **农场只认黑名单。**
 - **报「零命中」必须分开写四类。**
 - **不做判断。** 只给仓库 + 一句话 + 链接 + star + 30 天 / 7 天提交数。
+
+## 一轮的形状（调用预算）
+
+```
+1. python3 skills/github-radar/scan.py "${var}"     ← digest，1 次
+2. gh api repos/O/R/contents --jq '.[].name'        ← 只在要判页形态时，0–1 次
+3. bash >> memory/logs/${today}.md                  ← 1 次
+                                             合计 2–3 次
+```
+
+digest 里已经有：口径 / 漏斗 / 逐词四分类 / 报告级 + desc / probe 三段 / 误杀两行 / 异常行。**需要补调用，说明 digest 缺字段 —— 先补 digest，别补调用。**
 
 ## Config
 
 读：
 - `skills/github-radar/scan.py` 里的 `TERMS`
 - `memory/github-seen.json` · `memory/github-farms.txt`（**黑名单，行内可带 `#` 注释**）
+- `memory/ghradar-probe-last.txt`（probe 到期戳）
 
 写（脚本自己写，模型不用管）：
 - `output/ghradar/out.json` · `audit.log` · `report.md` · `dropped.json`（`probe` 时另有 `clusters.json`）
-- `output/ghradar/out.dry.json` —— `dry-run` 时快照写这里，**不覆盖 `out.json`**（否则一次 0 幸存就会把上一轮的真快照写成 `[]`）
+- `output/ghradar/out.dry.json` —— `dry-run` 时快照写这里，**不覆盖 `out.json`**
 - `memory/github-seen.json`（全部幸存者，`dry-run` 不写）
 - `memory/github-candidates.md`（只写报告级，`dry-run` 不写）
 - 通知：只在报告级 > 0 且非 `dry-run` 时发，最多 `NOTIFY_TOP` 条
-- 清：开跑前删掉 `output/ghradar/` 里除上述六个名字外的文件（`keep*` 前缀除外），删了什么打进审计
+- 清：开跑前删掉 `output/ghradar/` 里除上述六个名字外的文件（`keep*` 前缀除外）
 
 ## Steps
 
@@ -96,11 +115,11 @@ metadata:
 python3 skills/github-radar/scan.py "${var}"
 ```
 
-脚本自己解析 var、扫描、过滤、核验、写全部产物、按需发通知。**审计全文打在 stdout**，不用再 `cat`。审计开头那行 `🧹 清理 …` 就是本轮自动删掉的历史文件。
+脚本自己解析 var、扫描、过滤、核验、写全部产物、按需发通知。**默认只把 digest 打 stdout**，全文落 `output/ghradar/audit.log`。要归因时加 `--full`。
 
-### 2. 写日志
+### 2. 写日志（bash 追加，不 Read）
 
-往 `memory/logs/${today}.md` 追加一节 `### github-radar（第 N 轮）`：口径 + 漏斗 + 四分类（**必须分开写**）+ 你自己的判据级发现。报告级为 0 就只写一行。
+往 `memory/logs/${today}.md` 追加一节 `### github-radar（第 N 轮）`：口径 + 漏斗 + 四分类（**必须分开写**）+ 你自己的判据级发现。报告级为 0 就只写一行。digest 的行可以直接抄。
 
 ### 3. 输出
 
