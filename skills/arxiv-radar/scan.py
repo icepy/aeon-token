@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""arxiv-radar 扫描器。vJ
+"""arxiv-radar 扫描器。vK
 
-vJ = vI + 一处 schema 变更（hits.tsv 加「窗口」列）。vI 未跑过，故 vI 可跳过。
-vI 折入的收尾（名字严格化、check 截断提示）在本版同样生效。
+vK = vJ + 两个零覆盖的相邻簇（`human demonstration` / `hand-object`）。
+    依据：90 天探针 已见 1/20 与 0/9 —— 不是窗口太短，是词表没覆盖；前 3 条标题逐条读过，全在域内。
+vJ = vI + hits.tsv「窗口」列。vI 未单独跑过，故 vI/vJ 可视为同一版链。
 
 用法:
     python3 skills/arxiv-radar/scan.py "days:30"
-    python3 skills/arxiv-radar/scan.py "dry-run days:60"
+    python3 skills/arxiv-radar/scan.py "dry-run days:90"
     python3 skills/arxiv-radar/scan.py "check:verifiable training"   # check: 必须是最后一个 token
 
 var token（空格分隔，可组合）:
@@ -40,7 +41,7 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
-VERSION = "vJ"
+VERSION = "vK"
 
 OUTD = "output/arxiv"
 OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
@@ -126,6 +127,11 @@ ti:"data engine" AND cat:cs.RO
 ti:"human data" AND cat:cs.RO
 ti:"egocentric" AND cat:cs.RO
 ti:"data generation" AND cat:cs.RO
+# vK 新增：不是 egocentric 的同义写法，是零覆盖的相邻簇。
+#   实证 90d total=20 而已见 1/20（19 篇从没报过）、7d=2 会日常开火；前 3 条标题全在域内。
+ti:"human demonstration" AND cat:cs.RO
+# vK 新增：同上。90d total=9 而已见 **0/9** —— 与现有 24 词零重叠；7d=3。
+ti:"hand-object" AND cat:cs.RO
 # ── 持仓依赖的机制 ──
 ti:"EIP-1559"
 """.strip().split("\n") if t.strip() and not t.strip().startswith("#")]
@@ -187,6 +193,9 @@ CARRIER_BY_TERM = {
     'ti:"human data" AND cat:cs.RO': CARRIER_ROBOT,
     'ti:"egocentric" AND cat:cs.RO': CARRIER_ROBOT,
     'ti:"data generation" AND cat:cs.RO': CARRIER_ROBOT,
+    # vK：与上面 4 条同类，走 CARRIER_ROBOT，不落到默认的 crypto carrier
+    'ti:"human demonstration" AND cat:cs.RO': CARRIER_ROBOT,
+    'ti:"hand-object" AND cat:cs.RO': CARRIER_ROBOT,
     "automated market maker": CARRIER_BASE + CARRIER_MARKET,
     'cat:cs.CR AND ti:"MEV"': CARRIER_BASE + CARRIER_MARKET,
 }
