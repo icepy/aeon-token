@@ -1,40 +1,29 @@
 #!/usr/bin/env python3
-"""arxiv-radar 扫描器（静态文件 —— 模型只调用，不重写）。
+"""arxiv-radar 扫描器。vH
 
 用法:
     python3 skills/arxiv-radar/scan.py "days:30"
     python3 skills/arxiv-radar/scan.py "dry-run days:60"
-    python3 skills/arxiv-radar/scan.py 'check:ti:"consensus" AND cat:cs.DC'
-    python3 skills/arxiv-radar/scan.py "names"        # 机制/名字反查模式
+    python3 skills/arxiv-radar/scan.py "check:verifiable training"   # check: 必须是最后一个 token
 
 var token（空格分隔，可组合）:
-    dry-run        跳过 notify、不写 seen/hits
-    days:N         窗口天数，默认 30
-    names          词表整个换成 memory/universe-names.txt
-    notify:script  由脚本自己发通知（默认：脚本只写 report.md，模型覆写成中文后发）
-    check:<词>     只量这一个词，不扫描。**必须放在整串最后** ——
-                   内部按空格切 token，多词项只有放最后才能被完整取出
-                   （放中间会把 "check:consensus protocol" 切成 check:consensus + protocol，
-                   静默量成另一个词）。
+    dry-run      跳过 notify、不写 seen / hits
+    days:N       窗口天数，默认 30
+    names        词表整个换成 memory/universe-names.txt
+    check:<词>   只量这个词（7/30/60/90 四档 total + 已见重叠 + 领域命中），跑完退出
 
-产物（文件名固定，别改成 radar2.json）:
-    output/arxiv/out.json      全部幸存者
-    output/arxiv/audit.log     审计（同时打到 stdout；降级收场也写）
-    output/arxiv/report.md     通知正文（脚本写机械版 → 模型覆写成中文）
-    memory/arxiv-seen.json     非 dry-run 才写
-    memory/arxiv-hits.tsv      命中流水，append-only，非 dry-run 才写（3 列：日期/键/名字）
-    memory/arxiv-labels.tsv    方向标签，append-only，**模型写**（键 \\t 方向，无表头）
+产物（文件名固定）:
+    output/arxiv/out.json     全部幸存者
+    output/arxiv/audit.log    审计（同时打到 stdout）
+    output/arxiv/report.md    通知正文
+    memory/arxiv-seen.json    非 dry-run 才写
+    memory/arxiv-hits.tsv     非 dry-run 才追加（日期 / 键 / 名字，append-only）
 
-arXiv 侧会整段降级（read timeout 与 429 交替、整批全挂、约 10 分钟自恢复）。
-降级期里重试**是在加码**，所以三层：preflight → 熔断 → 补扫。
-
-失败绝不能读成零命中：total=0 是词/写法的问题（arXiv 答了），read timeout / 429 是
-arXiv 侧的问题（它没答），跟词无关。
-
-零命中 ≠「可考虑删词」：跨窗档 = (30,60,90) 中所有 > DAYS 的值，全部为 0 时判词是
-「**先用 check: 换同义写法**」—— arXiv 的 ti: 是词干化短语匹配，0 命中多半是写法不对。
+失败必须能与「零命中」区分：查询失败重试 3 次（429 单独退避），仍失败进「未测到」；
+连续 3 个词全失败 → 熔断，剩余词进「未尝试」。两者都不是零命中。
 """
-import json, os, re, subprocess, sys, time, urllib.error, urllib.parse, urllib.request
+import json, os, re, subprocess, sys, time
+import urllib.error, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timedelta, timezone
@@ -45,90 +34,91 @@ OUTD = "output/arxiv"
 OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
 SEEN = "memory/arxiv-seen.json"
 HITS = "memory/arxiv-hits.tsv"
-LABELS = "memory/arxiv-labels.tsv"
 NAMES_FILE = "memory/universe-names.txt"
 NOTIFY_TOP = 30
 MAX_RESULTS = 100
-# https 直连：http 会先吃一个 301（实测 0.3s/请求），而且平白依赖重定向跟随。
+MAXPAGES = 3
 API = "https://export.arxiv.org/api/query"
 NS = {"a": "http://www.w3.org/2005/Atom"}
 OPENSEARCH = "{http://a9.com/-/spec/opensearch/1.1/}totalResults"
-DOMAIN = None      # check 模式用：三个 carrier 域的并集
 
-ATTEMPTS = 2
-RETRY_ATTEMPTS = 4
-RETRY_COOLDOWN = 20
-PREFLIGHT_ATTEMPTS = 2
-PREFLIGHT_TIMEOUT = 25     # 实测 arXiv 冷启动首条要 7.2s
-CONSEC_FAIL_LIMIT = 3
+ATTEMPTS = 3
 TIMEOUT = 45
 RETRY_BUDGET = 900
 RETRY_SPENT = [0.0]
+RETRY_COOLDOWN = 20
+RETRY_ATTEMPTS = 4
+PREFLIGHT_ATTEMPTS = 2
+PREFLIGHT_TIMEOUT = 25
+CONSEC_FAIL_LIMIT = 3
+REQUEST_GAP = 3
 
 # ── var ───────────────────────────────────────────────────────────
 var = sys.argv[1] if len(sys.argv) > 1 else ""
 
-DRY, DAYS, NAMES_MODE, CHECK, SEND, UNKNOWN = False, 30, False, "", False, []
+# check: 必须整体提取 —— var.split() 会把 "check:consensus protocol" 切成两个 token，
+# 静默去量 ti:"consensus"。这是最贵的一类 bug：量出来了，量的是另一个词。
+m = re.search(r"(?:^|\s)check:(.+)$", var)
+CHECK = m.group(1).strip() if m else ""
+if m:
+    var = var[:m.start()].strip()
 
-# check: 必须先按「到串尾」提取，再解析其余 token。放最后是约定。
-mchk = re.search(r"(?:^|\s)check:(.+)$", var)
-if mchk:
-    CHECK = mchk.group(1).strip()
-    var = (var[:mchk.start()] + var[mchk.end():]).strip()
-
+DRY, DAYS, NAMES_MODE, UNKNOWN = False, 30, False, []
 for tok in var.split():
     if tok == "dry-run":
         DRY = True
     elif tok == "names":
         NAMES_MODE = True
-    elif tok == "notify:script":
-        SEND = True
     elif tok.startswith("days:"):
         DAYS = int(tok.split(":", 1)[1] or 30)
-    else:
+    elif tok:
         UNKNOWN.append(tok)
-
-CROSS_WINDOWS = tuple(d for d in (30, 60, 90) if d > DAYS)
 
 T0 = time.time()
 
 # ── 词表：`#` 开头是注释。写「持仓依赖的机制」，不是持仓的名字 ──────
-# 裸串（不带 ti:/cat: 前缀）会被包成 ti:"…" 短语。多词 = 连续短语。
+# 只查 ti:（标题）—— 标题是作者自己的定位，摘要里什么都有。
+# 带 cat: 约束的写法是精度手段：carrier 已经不太筛了，词必须自己扛精度。
 TERMS = [t.strip() for t in """
-proof-of-useful-work
+# ── 可验证计算 / 证明系统 ──
 verifiable inference
-light client
-proof of training
-# vH: `verifiable computation` 替 `proof of learning`。探针 90d=1、已见 0/1、一条精确
-#     新论文（TEE + 链上数字）；而 `proof of learning` 四档全 0、换写法也是 0。
 verifiable computation
-# vH: 保留但降级 —— 同语义已被 `proof of training`(raw=1) / `auditable training`(raw=3) 覆盖。
 verifiable training
 auditable training
+proof of training
+proof-of-useful-work
+light client
+zero-knowledge
+# ── 链上机制 ──
+ti:"consensus" AND cat:cs.DC
 data availability sampling
 restaking
-automated market maker
-ti:"consensus" AND cat:cs.DC
-cat:cs.CR AND ti:"MEV"
-# vH: 加 cat: 约束。裸 `staking` 的词干会撞 LLM「high-stakes decision」——8/9 条是垃圾；
-#     约束后领域命中 1/1 但极稀（90d=1 且已见 1/1）。**精确的空槽，留着当哨兵，别指望它产出。**
-#     另三个已量过、别再 probe：`proof-of-stake` 90d=1 已见 / `proof of inference` 四档全 0。
+# vH：liquid staking 四档全 0（写法问题，不是没货）→ 换单词；
+#     但单词撞 'stakes'（LLM high-stakes 论文，精度 1/9）→ 加 cat 约束，污染挡在词上。
 ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)
+cat:cs.CR AND ti:"MEV"
+automated market maker
+# vH：ti:"Robinhood Chain" 四档全 0 → 换 RWA（90d=2，两篇都是 RWA 代币化）
+RWA
+# ── 具身 / 机器人数据（主战场）──
 embodied data
 robot manipulation data
 robot data
 embodied AI
-zero-knowledge
-# ── 机器人数据基础设施（2026-10-25 新增）：旧 4 词只认「embodied AI / robot data」，
-#    对同期标题含 data 的机器人论文召回 0/88。这 4 条带 cat:cs.RO 约束，实测精度 23/27。
 ti:"data engine" AND cat:cs.RO
 ti:"human data" AND cat:cs.RO
 ti:"egocentric" AND cat:cs.RO
 ti:"data generation" AND cat:cs.RO
 # ── 持仓依赖的机制 ──
 ti:"EIP-1559"
-RWA
 """.strip().split("\n") if t.strip() and not t.strip().startswith("#")]
+
+# 三档动作梯子的中间一格：换写法 → 降级为低频 → 删词。
+# 跨窗全零 ≥2 轮、同义写法还没量完（或量完仍值得留）的词放这里；
+# 审计里单独归类，不进「可考虑删词」。
+LOW_FREQ = {
+    "verifiable training",   # 第四轮跨窗全零；同义写法未量，先降级不删
+}
 
 if NAMES_MODE and os.path.exists(NAMES_FILE):
     TERMS = [l.strip() for l in open(NAMES_FILE, encoding="utf-8")
@@ -139,6 +129,9 @@ if os.path.exists(NAMES_FILE):
     known = [l.strip() for l in open(NAMES_FILE, encoding="utf-8")
              if l.strip() and not l.startswith("#")]
 
+# 跨窗档 = 所有比本轮窗口更宽的档。比窗口窄的档等于重复量同一件事。
+CROSS_WINDOWS = tuple(d for d in (30, 60, 90) if d > DAYS)
+
 # ── carrier ───────────────────────────────────────────────────────
 # carrier 必须按词分域 —— 一组链上词会把「具身/机器人」整簇误杀。
 CARRIER_BASE = ["deployed", "deployment", "mainnet", "testnet", "protocol",
@@ -147,7 +140,8 @@ CARRIER_BASE = ["deployed", "deployment", "mainnet", "testnet", "protocol",
 CARRIER_ROBOT = ["robotic", "robot", "manipulation", "teleoperation", "simulation",
                  "simulator", "dataset", "datasets", "real-world", "embodied",
                  "sensor", "egocentric", "demonstration", "vla"]
-# 追加 ledger 系：MEV 论文常写 "distributed ledger" / "block creator"。
+# 追加 ledger 系：MEV 论文常写 "distributed ledger" / "block creator"，
+# 实证 2608.13271 全文无一词命中旧 6 词而被静默丢弃。
 CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher",
                   "ledger", "ledgers", "block creator", "block builder",
                   "block proposer", "transaction ordering", "on-chain",
@@ -175,10 +169,10 @@ CARRIER_BY_TERM = {
     'ti:"human data" AND cat:cs.RO': CARRIER_ROBOT,
     'ti:"egocentric" AND cat:cs.RO': CARRIER_ROBOT,
     'ti:"data generation" AND cat:cs.RO': CARRIER_ROBOT,
-    "automated market maker": CARRIER_CRYPTO + CARRIER_MARKET,
-    'cat:cs.CR AND ti:"MEV"': CARRIER_CRYPTO + CARRIER_MARKET,
+    "automated market maker": CARRIER_BASE + CARRIER_MARKET,
+    'cat:cs.CR AND ti:"MEV"': CARRIER_BASE + CARRIER_MARKET,
 }
-DOMAIN = CARRIER_CRYPTO + CARRIER_ROBOT + CARRIER_MARKET
+DOMAIN = CARRIER_BASE + CARRIER_ROBOT + CARRIER_MARKET
 # 只对 title 判，且只留这两个：benchmark 是论文自称，不该丢
 EXCL = ["survey", "tutorial"]
 STOP = set("""a an the on of in for with from and or to at by as is are was were
@@ -188,7 +182,7 @@ empirical measurement framework approach method methods data theory practice
 case real world beyond not all end how what why when where which that this""".split())
 
 now = datetime.now(timezone.utc)
-win = f"[{(now - timedelta(days=DAYS)):%Y%m%d%H%M} TO {now:%Y%m%d%H%M}]"
+WD = "一二三四五六日"
 
 seen = {}
 if os.path.exists(SEEN):
@@ -197,18 +191,13 @@ if os.path.exists(SEEN):
     except Exception:
         seen = {}
 
-def write_audit(lines):
-    os.makedirs(OUTD, exist_ok=True)
-    open(AUD, "w", encoding="utf-8").write("\n".join(lines) + "\n")
-    print("\n".join(lines), flush=True)
+# ── 取回（带重试 + 重试可见）─────────────────────────────────────
+def arxiv_get(url, attempts=ATTEMPTS, timeout=TIMEOUT, tag=""):
+    """返回 (root, err)。root 为 None 即失败 —— 失败必须能与「零命中」区分。
 
-# ── 取回（带重试 + 可见）──────────────────────────────────────────
-def arxiv_get(url, attempts=None, timeout=TIMEOUT, tag=""):
-    """返回 (root, err)。root 为 None 即失败。
-
-    每次退避打一行 stderr：不然「在退避」和「卡死了」长得一模一样（实测被 Ctrl-C 过）。
+    旧写法单次 urlopen 异常即 continue，把 429 读成真零，是 16/24 静默失败的成因。
+    退避时往 stderr 打一行，否则和「卡住」长得一样（你 Ctrl-C 过一次）。
     """
-    attempts = attempts or ATTEMPTS
     last = ""
     for i in range(attempts):
         try:
@@ -217,7 +206,7 @@ def arxiv_get(url, attempts=None, timeout=TIMEOUT, tag=""):
         except urllib.error.HTTPError as he:
             last = "HTTP %s" % he.code
             if he.code not in (429, 500, 502, 503, 504):
-                return None, last            # 4xx 重试无用，立刻返回
+                return None, last            # 4xx 重试无用
             wait = min(10 * (i + 1), 25)
         except Exception as ex:
             last = str(ex)[:90]
@@ -226,120 +215,102 @@ def arxiv_get(url, attempts=None, timeout=TIMEOUT, tag=""):
             if RETRY_SPENT[0] >= RETRY_BUDGET:
                 return None, last + "（重试预算用尽）"
             print("  ↻ %s 重试 %d/%d（%s，等 %ds）"
-                  % (tag or "?", i + 1, attempts, last, wait), file=sys.stderr)
+                  % (tag or "query", i + 1, attempts, last, wait),
+                  file=sys.stderr, flush=True)
             time.sleep(wait)
             RETRY_SPENT[0] += wait
     return None, last
 
+def preflight():
+    """一条最小的带窗请求：arXiv 侧不可用就别让 24 个词去撞。"""
+    p = {"search_query": "all:electron AND submittedDate:[%s TO %s]"
+         % ((now - timedelta(days=max(DAYS, 1))).strftime("%Y%m%d%H%M"),
+            now.strftime("%Y%m%d%H%M")),
+         "start": 0, "max_results": 1}
+    root, err = arxiv_get(API + "?" + urllib.parse.urlencode(p),
+                          attempts=PREFLIGHT_ATTEMPTS, timeout=PREFLIGHT_TIMEOUT,
+                          tag="preflight")
+    return root is not None, err
+
 def q_of(term):
-    if term.startswith(("cat:", "ti:", "abs:", "all:")):
+    """纯词自动包 ti:；已经带字段/布尔/括号的原样用（写全形，别指望自动补）。"""
+    if term.startswith(("cat:", "ti:", "abs:", "all:", "(")):
+        return term
+    if re.search(r"\b(AND|OR|NOT)\b", term):
         return term
     if NAMES_MODE:
-        return (f'ti:"{term}" AND (cat:cs.CR OR cat:cs.CE OR cat:cs.GT OR cat:cs.DC '
-                'OR cat:q-fin.CP OR cat:q-fin.GN)')
-    return f'ti:"{term}"'
+        return ('ti:"%s" AND (cat:cs.CR OR cat:cs.CE OR cat:cs.GT OR cat:cs.DC '
+                'OR cat:q-fin.CP OR cat:q-fin.GN)' % term)
+    return 'ti:"%s"' % term
 
-def total_of(q, d, n=None, tag="", attempts=RETRY_ATTEMPTS, timeout=TIMEOUT):
-    """返回 (totalResults, entries)。失败返回 (-1, [])。"""
-    since = (now - timedelta(days=d)).strftime("%Y%m%d%H%M")
-    p = {"search_query": f"({q}) AND submittedDate:[{since} TO {now:%Y%m%d%H%M}]",
-         "start": 0, "max_results": n or MAX_RESULTS,
+def fetch_term(term, d=None, start=0, attempts=ATTEMPTS, tag=""):
+    d = d or DAYS
+    p = {"search_query": "(%s) AND submittedDate:[%s TO %s]"
+         % (q_of(term), (now - timedelta(days=d)).strftime("%Y%m%d%H%M"),
+            now.strftime("%Y%m%d%H%M")),
+         "start": start, "max_results": MAX_RESULTS,
          "sortBy": "submittedDate", "sortOrder": "descending"}
-    root, _ = arxiv_get(API + "?" + urllib.parse.urlencode(p),
-                        attempts=attempts, timeout=timeout, tag=tag)
+    return arxiv_get(API + "?" + urllib.parse.urlencode(p),
+                     attempts=attempts, tag=tag or "%s %dd" % (short_term(term), d))
+
+def total_of(q, d, attempts=3):
+    """只量 total_count。失败返回 (-1, [])。"""
+    p = {"search_query": "(%s) AND submittedDate:[%s TO %s]"
+         % (q, (now - timedelta(days=d)).strftime("%Y%m%d%H%M"),
+            now.strftime("%Y%m%d%H%M")),
+         "start": 0, "max_results": MAX_RESULTS,
+         "sortBy": "submittedDate", "sortOrder": "descending"}
+    root, err = arxiv_get(API + "?" + urllib.parse.urlencode(p),
+                          attempts=attempts, tag="cross:%dd" % d)
     if root is None:
         return -1, []
     node = root.find(OPENSEARCH)
     return (int(node.text) if node is not None and node.text else 0), \
-           root.findall("a:entry", NS)
+        root.findall("a:entry", NS)
 
-def fetch_term(term, attempts=None):
-    q = q_of(term)
-    p = {"search_query": f"({q}) AND submittedDate:{win}",
-         "start": 0, "max_results": MAX_RESULTS,
-         "sortBy": "submittedDate", "sortOrder": "descending"}
-    root, err = arxiv_get(API + "?" + urllib.parse.urlencode(p),
-                          attempts=attempts, tag=term)
-    return q, root, err
+def short_term(t):
+    """把查询串剥成能读的短形：ti:"staking" AND (cat:…) → staking"""
+    s = t.replace('ti:"', "").replace('"', "")
+    s = re.sub(r"\s+AND\s+\(?cat:[^)]*\)?", "", s)
+    s = re.sub(r"cat:[A-Za-z.\-]+ AND ", "", s)
+    return re.sub(r"\s+", " ", s).strip(" ()") or t
 
-# ── preflight ────────────────────────────────────────────────────
-pf_ok, pf_err = True, ""
-pf_tot, _ = total_of("all:electron", DAYS, 1, tag="preflight",
-                     attempts=PREFLIGHT_ATTEMPTS, timeout=PREFLIGHT_TIMEOUT)
-if pf_tot < 0:
-    pf_ok, pf_err = False, pf_err or "preflight 请求失败"
-
-if not pf_ok:
-    write_audit(["[%s] preflight 失败 —— arXiv 侧不可用，未扫描" % VERSION,
-                 "查询  : all:electron（窗口 %dd，max_results=1）" % DAYS,
-                 "耗时  %.0fs（含重试 %.0fs）" % (time.time() - T0, RETRY_SPENT[0]),
-                 "",
-                 "读法: 这是**API 侧**的问题，跟词表无关 —— 一个词都没试过，",
-                 "     所以既不是「零命中」也不是「词不行」。隔 10–30 分钟再跑。",
-                 "     total=0 才是词的问题；read timeout / 429 是 arXiv 的问题。"])
-    print("STATUS: ARXIV_RADAR_DEGRADED · preflight 失败（arXiv 侧不可用）· 未尝试 %d"
-          % len(TERMS))
-    sys.exit(0)
-
-# ── check 模式 ───────────────────────────────────────────────────
-if CHECK:
+# ── check 模式 ────────────────────────────────────────────────────
+def do_check():
     q = q_of(CHECK)
     print("候选词: %r" % CHECK)
     print("查询  : %s" % q)
     print("已在词表: %s" % ("是" if CHECK in TERMS else "否"))
     if UNKNOWN:
-        print("⚠️ 未识别 token（会被忽略）: " + " · ".join(UNKNOWN))
+        print("⚠️ 未识别 token（check: 必须在最后）: %s" % " ".join(UNKNOWN))
+    if CHECK not in TERMS and " " in CHECK:
+        print("⚠️ 不在词表且含空格 —— 先确认没有第二个词被切出去")
     print()
     print("窗口   total  已见/100  领域命中  前 3 条标题")
     for d in (7, 30, 60, 90):
-        print("  … 量 %dd" % d, flush=True)
-        tot, ents = total_of(q, d, tag="check:%dd" % d)
+        tot, ents = total_of(q, d)
         if tot < 0:
-            print("%4dd  查询失败" % d, flush=True)
+            print("%4dd   查询失败" % d)
             continue
-        cap = min(tot, MAX_RESULTS)
-        seen_n = dom_n = 0
-        titles = []
-        for e in ents[:MAX_RESULTS]:
-            aid = e.find("a:id", NS).text.split("/abs/")[-1].split("v")[0]
-            title = " ".join(e.find("a:title", NS).text.split())
-            summ = " ".join(e.find("a:summary", NS).text.split())
-            if aid in seen:
-                seen_n += 1
-            if any(c in (title + " " + summ).lower() for c in DOMAIN):
-                dom_n += 1
-            if len(titles) < 3:
-                titles.append(title)
-        print("%4dd %7d %10s %10s" % (d, tot, "%d/%d" % (seen_n, cap),
-                                      "%d/%d" % (dom_n, cap)), flush=True)
-        for t in titles:
-            print("        · %s" % t[:72], flush=True)
-        time.sleep(3)
+        ids = [e.find("a:id", NS).text.split("/abs/")[-1].split("v")[0] for e in ents]
+        old = sum(1 for i in ids if i in seen)
+        dom = 0
+        for e in ents:
+            blob = (" ".join(e.find("a:title", NS).text.split()) + " " +
+                    " ".join(e.find("a:summary", NS).text.split())).lower()
+            if any(c in blob for c in DOMAIN):
+                dom += 1
+        print("%4dd   %5d  %5s/%-3d  %3s/%-3d   %s"
+              % (d, tot, old, len(ids), dom, len(ents),
+                 " ｜ ".join(" ".join(e.find("a:title", NS).text.split())[:52]
+                             for e in ents[:3])))
+        time.sleep(REQUEST_GAP)
     print()
-    print("读法: 重叠度低 = 带来新条目；领域命中低 = 会污染；total 太小 = 稀有词。")
-    print("     ti: 是**词干化短语匹配**（非子串精确）—— 前 3 条标题里找不到该词是正常的。")
-    print("     四档全 0 = 换写法；换了写法仍全 0 = 这个名字没有 arxiv 足迹。")
+    print("读法: 已见/100 低 = 能带来新条目；领域命中低 = 会污染。"
+          "领域命中用 DOMAIN 词算，偏乐观 30-50%，真精度靠前 3 条标题人眼读。")
     sys.exit(0)
 
-def guess_name(title, summ, known):
-    for n in known:
-        if re.search(rf"\b{re.escape(n)}\b", title + " " + summ, re.I):
-            return n
-    m = re.search(r"\b([A-Z][A-Za-z0-9\-]{2,})(?:'s|\u2019s)\b", title + " " + summ)
-    if m:
-        return m.group(1)
-    for w in re.findall(r"\b[A-Z][A-Za-z0-9\-]{2,}\b", title):
-        if w.lower() not in STOP:
-            return w
-    return ""
-
-def short_term(t):
-    """查询串剥成能读的短形：ti:"consensus" AND cat:cs.DC → consensus"""
-    t = t.replace('ti:"', "").replace('"', "")
-    t = re.sub(r"\s+AND\s+cat:cs\.\w+", "", t)
-    t = re.sub(r"^cat:cs\.\w+\s+AND\s+", "", t)
-    return t.strip()
-
+# ── 扫描 ──────────────────────────────────────────────────────────
 out, raw, newest = [], 0, ""
 drop = {"seen_mem": 0, "seen_dup": 0, "excl": 0, "carrier": 0, "fail": 0}
 hit_ids = {}          # run 内判重；不要直接写 seen，否则跨词命中只记第一个词
@@ -349,14 +320,11 @@ failed_t = []
 skipped_t = []
 fail_reason = {}
 cross = {}            # 零命中词的跨窗 total_count；-1 = 该档查询失败
-dropped = {"excl": [], "carrier": []}   # 丢掉的名字 —— 索引封顶期这是唯一未知量
+dropped = {"excl": [], "carrier": []}   # 丢掉的名字 —— 审计里唯一能看见误杀的地方
 DROPPED_CAP = 12
 
 def absorb(root, term):
-    """把一次成功取回的结果吃进 out/raw/drop。返回该词原始条数。
-
-    抽成函数是为了让补扫复用同一段逻辑，不必写第二遍。
-    """
+    """把一次成功取回的结果吃进 out/raw/drop。返回该次取回条数。"""
     global raw, newest
     n = 0
     carrier = CARRIER_BY_TERM.get(term, CARRIER_CRYPTO)
@@ -390,186 +358,237 @@ def absorb(root, term):
                 dropped["carrier"].append((pub, title[:72]))
             continue
         rec = {"term": term, "terms": [term], "name": guess_name(title, summ, known),
-               "title": title, "published": pub, "link": f"https://arxiv.org/abs/{aid}",
+               "title": title, "published": pub, "link": "https://arxiv.org/abs/%s" % aid,
                "carrier": next(c for c in carrier if c in blob)}
         out.append(rec)
         hit_ids[aid] = rec
         per_term[term] = per_term.get(term, 0) + 1
     return n
 
-def cross_probe(term, q):
-    """窗口内零命中 → 跨更宽的档量真实 total_count，避免把「窗口太短」读成「真零」。"""
-    if raw_term.get(term, 0) == 0:
-        for d in CROSS_WINDOWS:
-            cross.setdefault(term, {})[d] = total_of(q, d, 1, tag="cross:%s" % term)[0]
-            time.sleep(3)
-
-# ── 主循环（带熔断）──────────────────────────────────────────────
-consec = 0
-for idx, term in enumerate(TERMS):
-    q, root, err = fetch_term(term)
-    if root is None:
-        print(f"! {term}: {err}", file=sys.stderr)
-        drop["fail"] += 1
-        failed_t.append(term)
-        fail_reason[term] = err
-        consec += 1
-        if consec >= CONSEC_FAIL_LIMIT:
-            skipped_t = list(TERMS[idx + 1:])
-            print("⚠️ 连续 %d 个词全失败 → 判定 arXiv 侧降级，跳过剩余 %d 个词"
-                  % (consec, len(skipped_t)), file=sys.stderr)
-            break
-        time.sleep(3)
-        continue
-    consec = 0
-    absorb(root, term)
-    cross_probe(term, q)
-    time.sleep(3)
-
-# ── 补扫：失败词一次性重试，跑在主循环之外（429 是成簇的，立刻重试没用）────
-rescued = 0
-if failed_t:
-    print("↻ 补扫 %d 个失败词（先等 %ds 让 API 缓一下）: %s"
-          % (len(failed_t), RETRY_COOLDOWN, " · ".join(failed_t)), file=sys.stderr)
-    time.sleep(RETRY_COOLDOWN)
-    still = []
-    for term in list(failed_t):
-        q, root, err = fetch_term(term, attempts=RETRY_ATTEMPTS)
+def scan_term(term, attempts=ATTEMPTS, tag=""):
+    """取尽一个词的全部页。返回 (条数, 失败原因或"")。"""
+    n, page = 0, 0
+    while page < MAXPAGES:
+        root, err = fetch_term(term, start=page * MAX_RESULTS, attempts=attempts, tag=tag)
         if root is None:
-            fail_reason[term] = err + "（补扫仍失败）"
-            still.append(term)
+            return n, err
+        c = absorb(root, term)
+        n += c
+        page += 1
+        if c < MAX_RESULTS:
+            break
+    return n, ""
+
+def cross_probe(term):
+    """窗口内零命中 → 跨更宽的档量真实 total_count，别把「窗口太短」读成「真零」。"""
+    if raw_term.get(term, 0) == 0 and term not in failed_t:
+        for d in CROSS_WINDOWS:
+            cross.setdefault(term, {})[d] = total_of(q_of(term), d)[0]
+            time.sleep(REQUEST_GAP)
+
+def guess_name(title, summ, known):
+    for n in known:
+        if re.search(r"\b%s\b" % re.escape(n), title + " " + summ, re.I):
+            return n
+    m = re.search(r"\b([A-Z][A-Za-z0-9\-]{2,})(?:'s|’s)\b", title + " " + summ)
+    if m:
+        return m.group(1)
+    for w in re.findall(r"\b[A-Z][A-Za-z0-9\-]{2,}\b", title):
+        if w.lower() not in STOP:
+            return w
+    return ""
+
+# ── 预检 ──────────────────────────────────────────────────────────
+ok, perr = preflight()
+if not ok:
+    print("🛑 preflight 失败: %s" % perr, file=sys.stderr)
+    L = ["arxiv-radar %s · preflight 失败 · 窗口 %d 天" % (VERSION, DAYS),
+         "原因: %s" % perr,
+         "未测到（试过但失败）: 全部 %d 词" % len(TERMS),
+         "未尝试（熔断跳过）: 0",
+         "判据: arXiv 侧降级，不是词的问题，别据此改词表。"]
+    os.makedirs(OUTD, exist_ok=True)
+    open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
+    print("\n".join(L))
+    print("STATUS: ARXIV_RADAR_DEGRADED · 原始 0 · 幸存 0 · 总耗时 %.0fs"
+          % (time.time() - T0))
+    sys.exit(0)
+
+if CHECK:
+    do_check()
+
+# ── 主循环 ────────────────────────────────────────────────────────
+consec = 0
+for i, term in enumerate(TERMS):
+    raw_term.setdefault(term, 0)
+    per_term.setdefault(term, 0)
+    n, err = scan_term(term, tag="%s %dd" % (short_term(term), DAYS))
+    if err:
+        print("! %s: %s" % (term, err), file=sys.stderr, flush=True)
+        drop["fail"] += 1
+        fail_reason[term] = err
+        if n == 0:
+            failed_t.append(term)
+            consec += 1
+        else:
+            consec = 0
+    else:
+        consec = 0
+    if consec >= CONSEC_FAIL_LIMIT:
+        skipped_t = list(TERMS[i + 1:])
+        print("🛑 连续 %d 个词全失败 → 判定 arXiv 侧降级，跳过剩余 %d 个词"
+              % (consec, len(skipped_t)), file=sys.stderr, flush=True)
+        break
+    time.sleep(REQUEST_GAP)
+
+# 补扫：429 是成簇的，冷却后单独重试。放主循环之外（立刻重试时 API 还在不高兴）。
+rescued = []
+if failed_t:
+    print("… 冷却 %ds 后补扫 %d 个失败词" % (RETRY_COOLDOWN, len(failed_t)),
+          file=sys.stderr, flush=True)
+    time.sleep(RETRY_COOLDOWN)
+    for term in list(failed_t):
+        n, err = scan_term(term, attempts=RETRY_ATTEMPTS,
+                           tag="%s 补扫" % short_term(term))
+        if err:
+            fail_reason[term] = err
             continue
-        rescued += 1
-        drop["fail"] -= 1
-        absorb(root, term)
-        cross_probe(term, q)
-        time.sleep(3)
-    failed_t = still
+        failed_t.remove(term)
+        rescued.append(term)
 
-out.sort(key=lambda c: c["published"], reverse=True)
-T_RUN = time.time() - T0
+# 零命中词 → 跨窗量
+for term in TERMS:
+    if term not in skipped_t:
+        cross_probe(term)
 
-os.makedirs(OUTD, exist_ok=True)
-json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-
-truly_zero = [t for t in TERMS if t not in failed_t and raw_term.get(t, 0) == 0]
+# ── 分类（六类分开记）─────────────────────────────────────────────
+zero_t = [t for t in TERMS if t not in failed_t and t not in skipped_t
+          and raw_term.get(t, 0) == 0 and t not in LOW_FREQ]
+lf_t = [t for t in TERMS if t in LOW_FREQ and t not in skipped_t
+        and raw_term.get(t, 0) == 0]
 saturated = [t for t in TERMS if raw_term.get(t, 0) > 0 and per_term.get(t, 0) == 0]
 with_new = [t for t in TERMS if per_term.get(t, 0) > 0]
 
-WD = "一二三四五六日"
-lag, wd, hint = -1, "?", "?"
+short_w, real_w, unk_w = [], [], []
+for t in zero_t:
+    cs = [cross.get(t, {}).get(d) for d in CROSS_WINDOWS]
+    if not cs or any(c is None for c in cs):
+        unk_w.append(t)
+    elif any(c > 0 for c in cs):
+        short_w.append(t)
+    else:
+        real_w.append(t)
+
+# ── 审计 ──────────────────────────────────────────────────────────
+L = ["arxiv-radar %s · 窗口 %d 天 · 词 %d · 原始 %d · 幸存 %d · var=%r"
+     % (VERSION, DAYS, len(TERMS), raw, len(out), var),
+     "丢弃 seen(记忆)=%d · seen(本轮重复)=%d · EXCL=%d · carrier=%d · 查询失败=%d"
+     % (drop["seen_mem"], drop["seen_dup"], drop["excl"], drop["carrier"], drop["fail"])]
+
 if newest:
-    nd = datetime.strptime(newest, "%Y-%m-%d")
-    lag = (now.date() - nd.date()).days
-    wd = "周" + WD[nd.weekday()]
-    hint = ("正常（周末不公告；周一/周二看到 3–4 天属节律）" if lag <= 4
-            else "偏大，先怀疑索引滞后，不是零命中")
+    nd = datetime.strptime(newest, "%Y-%m-%d").date()
+    lag = (now.date() - nd).days
+    if lag <= 2:
+        hint = "正常"
+    elif lag <= 4 and now.weekday() in (0, 1):
+        hint = "周一/周二 + 周末不公告 → 正常节律"
+    elif lag <= 4:
+        hint = "3-4 天，连续两天不动才算滞后"
+    else:
+        hint = "⚠️ 偏大 —— 连续两天不动才算真滞后，别急"
+    L.append("窗口内最新收录日期: %s（周%s，距今 %d 天）— %s"
+             % (newest, WD[nd.weekday()], lag, hint))
+else:
+    L.append("窗口内最新收录日期: 无")
 
-L = ["[%s] 扫 %d 词 | 窗口 %s | 原始 %d | 幸存 %d | var=%r"
-     % (VERSION, len(TERMS), win, raw, len(out), var),
-     "丢弃 seen(记忆)=%d seen(本轮重复)=%d excl=%d carrier=%d 首次失败=%d"
-     % (drop["seen_mem"], drop["seen_dup"], drop["excl"], drop["carrier"], drop["fail"]),
-     "词表六分类 —— 未测到(试过失败) %d / 未尝试(熔断跳过) %d / 窗口内零命中 %d / "
-     "全已见(饱和) %d / 有新增 %d"
-     % (len(failed_t), len(skipped_t), len(truly_zero), len(saturated), len(with_new)),
-     "跨窗档 %s（只取 > %dd 的档；等宽档是 win 列的副本，不重复量）"
-     % (("·".join("%dd" % d for d in CROSS_WINDOWS) or "无"), DAYS),
-     "耗时 扫描 %.0fs（含重试 %.0fs）· 补扫救回 %d · 总 %.0fs"
-     % (T_RUN, RETRY_SPENT[0], rescued, time.time() - T0),
-     "窗口内最新收录日期: %s（%s，距今 %d 天）→ %s"
-     % (newest or "(无)", wd, lag, hint)]
+L.append("六分类: 未测到(试过失败)=%d · 未尝试(熔断跳过)=%d · 窗口内零命中=%d · "
+         "低频探针=%d · 全已见(饱和)=%d · 有新增=%d"
+         % (len(failed_t), len(skipped_t), len(zero_t), len(lf_t),
+            len(saturated), len(with_new)))
 
-if UNKNOWN:
-    L.append("⚠️ 未识别 var token（会被静默忽略）: " + " · ".join(UNKNOWN))
 if failed_t:
-    L.append("⚠️ 未测到（试过、失败 —— **不是零命中**）: "
-             + " · ".join("%s(%s)" % (t, fail_reason.get(t, "?")) for t in failed_t))
+    L.append("未测到（**不是零命中**）: " + " · ".join(
+        "%s(%s)" % (t, fail_reason.get(t, "?")[:28]) for t in failed_t))
 if skipped_t:
-    L.append("⚠️ 未尝试（熔断跳过 —— 一个词都没试过）: " + " · ".join(skipped_t))
-if truly_zero:
-    L.append("⚠️ 窗口内零命中 %d 个 —— 已跨窗量 total_count（win=%dd / %s）："
-             % (len(truly_zero), DAYS, " / ".join("%dd" % d for d in CROSS_WINDOWS) or "无"))
-    short, real, unk = [], [], []
-    for t in truly_zero:
-        c = cross.get(t) or {}
-        vals = " ".join("%dd=%s" % (d, c.get(d)) for d in CROSS_WINDOWS)
-        if any(c.get(d) is None for d in CROSS_WINDOWS):
-            unk.append(t); verdict = "跨窗查询失败（存疑，先别删）"
-        elif any((c.get(d) or 0) > 0 for d in CROSS_WINDOWS):
-            short.append(t); verdict = "窗口太短 → 非真零，别删"
-        else:
-            real.append(t); verdict = "跨窗皆 0 → **先用 check: 换同义写法**；连写法都 0 才是死词"
-        L.append("   %s: win=0 %s → %s" % (t, vals, verdict))
-    L.append("   └ 小结: 窗口太短 %d · 真零 %d · 跨窗失败 %d"
-             % (len(short), len(real), len(unk)))
+    L.append("未尝试（熔断跳过，本轮没有数据）: " + " · ".join(skipped_t))
+if rescued:
+    L.append("补扫救回 %d 个: %s" % (len(rescued), " · ".join(rescued)))
+
+for t in short_w + real_w + unk_w:
+    L.append("   %s: win=%d %s" % (
+        t, raw_term.get(t, 0),
+        " ".join("%dd=%s" % (d, cross.get(t, {}).get(d)) for d in CROSS_WINDOWS)))
+if short_w:
+    L.append("   └ 窗口太短（跨窗有命中）→ **非真零，别删** %d 个: %s"
+             % (len(short_w), " · ".join(short_w)))
+if real_w:
+    L.append("   └ 跨窗皆 0 → **先换写法**（同义写法也 0 才判死词）%d 个: %s"
+             % (len(real_w), " · ".join(real_w)))
+if unk_w:
+    L.append("   └ 跨窗查询失败（存疑，先别删）%d 个: %s" % (len(unk_w), " · ".join(unk_w)))
+if lf_t:
+    L.append("低频探针（已降级，别删）: " + " · ".join(lf_t))
 if saturated:
-    L.append("ℹ️ 全已见（饱和，**别删**）: " + " · ".join(
+    L.append("全已见（饱和，**别删**）: " + " · ".join(
         "%s(raw=%d)" % (t, raw_term[t]) for t in saturated))
-for k, label in (("carrier", "carrier 无命中"), ("excl", "EXCL 命中")):
+
+for k in ("excl", "carrier"):
     if dropped[k]:
-        L.append("ℹ️ %s 丢弃 %d 条（**误杀只能在这里看见**）:" % (label, drop[k]))
-        for pub, t in dropped[k][:8]:
-            L.append("   %s %s" % (pub, t))
+        L.append("丢弃名单 %s（前 %d）:" % (k, DROPPED_CAP))
+        for pub, ti in dropped[k]:
+            L.append("   %s  %s" % (pub, ti))
+
 L.append("词表原始/新收: " + " · ".join(
     "%s=%d/%d" % (k, v, per_term.get(k, 0)) for k, v in
     sorted(raw_term.items(), key=lambda x: -x[1])))
 for c in out[:25]:
-    L.append("  %s [%s] %s" % (c["published"], "+".join(c["terms"]), c["title"][:85]))
+    L.append("  %s [%s] %s" % (c["published"], "+".join(c["terms"]), c["title"][:88]))
+
 if not out and not with_new:
     if drop["excl"] or drop["carrier"]:
-        L.append("ℹ️ 本轮 0 幸存，但**不是 seen 吃干了**：有 %d 条穿过了 seen 却全死在过滤器"
-                 "（excl=%d carrier=%d）—— 名单见上，这 %d 条是唯一未知。"
+        L.append("ℹ️ 本轮 0 幸存，**但不是 seen 吃干了**：有 %d 条穿过了 seen 却全死在过滤器"
+                 "（EXCL=%d carrier=%d）—— 名单见上。这 %d 条是唯一未知。"
                  % (drop["excl"] + drop["carrier"], drop["excl"], drop["carrier"],
                     drop["excl"] + drop["carrier"]))
     else:
-        L.append("ℹ️ 本轮 0 幸存 = 结构性（全部命中已在 seen）。不是故障。")
+        L.append("ℹ️ 本轮 0 幸存 = 结构性（全部命中已在 seen 或跨窗），不是故障。")
 
-write_audit(L)
+os.makedirs(OUTD, exist_ok=True)
+open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
+print("\n".join(L))
 
-# ── 落盘 / 通知 ───────────────────────────────────────────────────
-if not DRY and hit_ids:
-    merged = {k: now.strftime("%Y-%m-%d") for k in hit_ids}
-    merged.update(seen)
-    # 保新不保旧：merged 是「新的在前」，截尾会留最旧 → 最近看到的论文掉出 seen、下轮重报
-    json.dump(dict(list(merged.items())[:2000]),
-              open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+# ── 落盘 ──────────────────────────────────────────────────────────
+if not DRY:
+    json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    if hit_ids:
+        merged = {k: now.strftime("%Y-%m-%d") for k in hit_ids}
+        merged.update(seen)
+        json.dump(dict(list(merged.items())[:2000]),   # merged 新的在前，取头
+                  open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    if out:
+        old = open(HITS, encoding="utf-8").read() if os.path.exists(HITS) else ""
+        with open(HITS, "w", encoding="utf-8") as f:
+            f.write(old)
+            if old and not old.endswith("\n"):
+                f.write("\n")
+            for c in out:
+                f.write("%s\t%s\t%s\n" % (now.strftime("%Y-%m-%d"), c["link"],
+                                          c["name"] or c["title"][:40]))
 
-# 命中流水：append-only。out.json 每轮被覆盖，这是唯一的历史。
-# 日期用报告日期（不是 published）—— 滞后要按「通道点亮那天」算。
-if not DRY and out:
-    fresh = not os.path.exists(HITS)
-    with open(HITS, "a", encoding="utf-8") as f:
-        if fresh:
-            f.write("日期\t键\t名字\t方向\n")
-        for c in out:
-            f.write("%s\t%s\t%s\t\n"
-                    % (now.strftime("%Y-%m-%d"), c["link"].split("/abs/")[-1],
-                       (c["name"] or c["title"])[:60].replace("\t", " ")))
-
-# 机械备用稿（已去噪：不重复名字、term 剥成短形、多词用 / 拼）。模型覆写成中文后发。
 if out:
     R = ["**arxiv-radar** · 窗口 %d 天 · 幸存 %d" % (DAYS, len(out)), ""]
     for c in out[:NOTIFY_TOP]:
-        t, nm = c["title"], c["name"]
-        if nm and t.lower().startswith(nm.lower()):
-            t = t[len(nm):].lstrip(" :—-·")
-        R.append("- %s%s [%s] · %s"
-                 % (("`%s` " % nm) if nm else "", t,
-                    "/".join(short_term(x) for x in c["terms"]), c["link"]))
+        nm = ("`%s` " % c["name"]) if c["name"] else ""
+        R.append("- %s%s [%s] · %s" % (nm, c["title"][:110],
+                                       "+".join(c["terms"]), c["link"]))
     open(REPORT, "w", encoding="utf-8").write("\n".join(R) + "\n")
 
-# 通知正文归模型：脚本不会翻译英文标题，也不会「按簇分组」。
-# 默认不发 —— 模型覆写 REPORT 为中文后自己发。notify:script 走降级路径。
-if DRY or not out:
-    print("notify: 跳过（%s）" % ("dry-run" if DRY else "零命中"))
-elif SEND:
-    if os.path.exists("./notify"):
-        r = subprocess.run(["./notify", "-f", REPORT], capture_output=True, text=True)
-        print("notify: 已由脚本发出 · %s"
-              % ((r.stdout or r.stderr or "ok").strip()[:200]))
-    else:
-        print("notify: 跳过（没有 ./notify）")
+if not DRY and out and os.path.exists("./notify"):
+    r = subprocess.run(["./notify", "-f", REPORT], capture_output=True, text=True)
+    print("notify: %s" % ((r.stdout or r.stderr or "ok").strip()[:200]))
 else:
-    print("notify: 待模型覆写 output/arxiv/report.md 后自行发出")
-print("STATUS: ARXIV_RADAR_OK · 原始 %d · 幸存 %d · 总耗时 %.0fs"
-      % (raw, len(out), time.time() - T0))
+    print("notify: 跳过（%s）" % ("dry-run" if DRY else "零命中"))
+
+print("STATUS: %s · 原始 %d · 幸存 %d · 总耗时 %.0fs"
+      % ("ARXIV_RADAR_DEGRADED" if skipped_t else "ARXIV_RADAR_OK",
+         raw, len(out), time.time() - T0))
