@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""arxiv-radar 扫描器。vK
+"""arxiv-radar 扫描器。vL
 
-vK = vJ + 两个零覆盖的相邻簇（`human demonstration` / `hand-object`）。
-    依据：90 天探针 已见 1/20 与 0/9 —— 不是窗口太短，是词表没覆盖；前 3 条标题逐条读过，全在域内。
-vJ = vI + hits.tsv「窗口」列。vI 未单独跑过，故 vI/vJ 可视为同一版链。
+vL = vK + dry-run 写自己的快照 out.dry.json。
+     原来 `if not DRY` 把 out.json 一起挡掉，导致 dry-run 后 out.json 是上一轮旧值，
+     而 audit.log / report.md 是本轮的 —— 同一次跑三种代际（第十一轮实测 1 条 vs 49 条）。
+vK = vJ + 两个零覆盖的相邻簇（human demonstration / hand-object）。
 
 用法:
     python3 skills/arxiv-radar/scan.py "days:30"
@@ -11,7 +12,7 @@ vJ = vI + hits.tsv「窗口」列。vI 未单独跑过，故 vI/vJ 可视为同�
     python3 skills/arxiv-radar/scan.py "check:verifiable training"   # check: 必须是最后一个 token
 
 var token（空格分隔，可组合）:
-    dry-run         跳过 notify、不写 seen / hits
+    dry-run         跳过 notify、不写 seen / hits；out.json 不覆盖，改写 out.dry.json
     days:N          窗口天数，默认 30
     names           词表整个换成 memory/universe-names.txt
     check:<词>      只量这个词（7/30/60/90 四档 total + 已见重叠 + 领域命中），跑完退出
@@ -23,7 +24,8 @@ var token（空格分隔，可组合）:
   `notify:script` 是兜底（人手动跑、或模型那轮没跟上时）。
 
 产物（文件名固定）:
-    output/arxiv/out.json     全部幸存者（每条含 window）
+    output/arxiv/out.json     全部幸存者（非 dry-run；每条含 window）
+    output/arxiv/out.dry.json 全部幸存者（dry-run；空数组不许覆盖上一轮真快照）
     output/arxiv/audit.log    审计（同时打到 stdout）
     output/arxiv/report.md    通知正文（脚本写机械版，模型覆写中文版）
     memory/arxiv-seen.json    非 dry-run 才写
@@ -41,10 +43,11 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
-VERSION = "vK"
+VERSION = "vL"
 
 OUTD = "output/arxiv"
-OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
+OUT, OUTDRY = OUTD + "/out.json", OUTD + "/out.dry.json"
+AUD, REPORT = OUTD + "/audit.log", OUTD + "/report.md"
 SEEN = "memory/arxiv-seen.json"
 HITS = "memory/arxiv-hits.tsv"
 NAMES_FILE = "memory/universe-names.txt"
@@ -139,8 +142,11 @@ ti:"EIP-1559"
 # 三档动作梯子的中间一格：换写法 → 降级为低频 → 删词。
 # 跨窗全零 ≥2 轮、同义写法已量完且无新增的词放这里；审计里单独归类，不进「可考虑删词」。
 LOW_FREQ = {
-    # 跨窗全零；`verifiable fine-tuning` 四档全 0、`zero-knowledge machine learning`
-    # 60/90d 各 1 篇但已见 1/1 → 两级候选皆无新增 → 维持，不删不换。
+    # 第十一轮结清：`ti:"verifiable training"` 全期仅 9 篇、最近一篇 2026-06-12；
+    # `ti:"verifiable fine-tuning"` 全期 2 篇；`all:"verifiable training"` 90d 28 篇
+    # 但抽样 12 条全是 RLVR 语义（不是「训练过程可证明」）。
+    # → 不是死词，也不是缺同义词；真实写法已被 `proof of training` 覆盖。
+    # **不要再加 verifiable 变体**；下一个候选是 `attestation` 类，但要先 check: 量。
     "verifiable training",
 }
 
@@ -172,6 +178,8 @@ CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher",
                   "state transition"]
 # ★ vG 新增，纯增量：BASE 是 github 的部署词汇，arxiv 理论论文不写这些。
 #   实证 60 天里 6 篇新 ZK 论文因缺这些词被静默丢弃。默认 carrier 换成它。
+#   注：此后连续四轮 carrier 丢 0 —— 已退化成空转，但「零假阴」本身有价值，
+#   在没量到假阳之前不要收紧。
 CARRIER_CRYPTO = CARRIER_BASE + [
     "proof", "proofs", "circuit", "circuits", "snark", "starks", "stark",
     "verifier", "verifiers", "verification", "verify", "commitment", "commitments",
@@ -255,7 +263,7 @@ def arxiv_get(url, attempts=ATTEMPTS, timeout=TIMEOUT, tag=""):
     return None, last
 
 def preflight():
-    """一条最小的带窗请求：arXiv 侧不可用就别让 24 个词去撞。"""
+    """一条最小的带窗请求：arXiv 侧不可用就别让 26 个词去撞。"""
     p = {"search_query": "all:electron AND submittedDate:[%s TO %s]"
          % ((now - timedelta(days=max(DAYS, 1))).strftime("%Y%m%d%H%M"),
             now.strftime("%Y%m%d%H%M")),
@@ -519,7 +527,7 @@ for term in TERMS:
     if term not in skipped_t:
         cross_probe(term)
 
-# ── 分类（六类分开记）─────────────────────────────────────────────
+# ── 分类（六类分开记；计数单位是「词」，漏斗的单位是「条」）──────────
 zero_t = [t for t in TERMS if t not in failed_t and t not in skipped_t
           and raw_term.get(t, 0) == 0 and t not in LOW_FREQ]
 lf_t = [t for t in TERMS if t in LOW_FREQ and t not in skipped_t
@@ -543,6 +551,9 @@ L = ["arxiv-radar %s · 窗口 %d 天%s · 词 %d · 原始 %d · 幸存 %d · v
      "丢弃 seen(记忆)=%d · seen(本轮重复)=%d · EXCL=%d · carrier=%d · 查询失败=%d"
      % (drop["seen_mem"], drop["seen_dup"], drop["excl"], drop["carrier"], drop["fail"])]
 
+if DRY:
+    L.append("快照: %s（dry-run 不覆盖 out.json —— out.json 只代表最后一次真跑）" % OUTDRY)
+
 if newest:
     nd = datetime.strptime(newest, "%Y-%m-%d").date()
     lag = (now.date() - nd).days
@@ -559,7 +570,7 @@ if newest:
 else:
     L.append("窗口内最新收录日期: 无")
 
-L.append("六分类: 未测到(试过失败)=%d · 未尝试(熔断跳过)=%d · 窗口内零命中=%d · "
+L.append("六分类（单位=词）: 未测到(试过失败)=%d · 未尝试(熔断跳过)=%d · 窗口内零命中=%d · "
          "低频探针=%d · 全已见(饱和)=%d · 有新增=%d"
          % (len(failed_t), len(skipped_t), len(zero_t), len(lf_t),
             len(saturated), len(with_new)))
@@ -620,7 +631,11 @@ open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
 print("\n".join(L))
 
 # ── 落盘 ──────────────────────────────────────────────────────────
-if not DRY:
+# vL：dry-run 写自己的快照。原来 out.json 一起被挡掉，于是同一次跑里
+#     audit.log / report.md 是本轮的、out.json 是上一轮的 —— 三种代际。
+if DRY:
+    json.dump(out, open(OUTDRY, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+else:
     json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     if hit_ids:
         merged = {k: now.strftime("%Y-%m-%d") for k in hit_ids}
