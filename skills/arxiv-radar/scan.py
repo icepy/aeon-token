@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""arxiv-radar 扫描器。vF
+"""arxiv-radar 扫描器。vG
 
 var token（空格分隔，可组合）:
     dry-run      跳过 notify、不写 seen、不写 hits
@@ -9,21 +9,21 @@ var token（空格分隔，可组合）:
                  （7/30/60/90 四档 total + 已见重叠 + 领域命中），跑完退出
     notify:script  让脚本自己发通知（默认不发，见下）
 
-arXiv 侧会整段降级（实证：`read operation timed out` 与 `HTTP 429` 交替出现，
-整批请求全挂，约 10 分钟后自行恢复）。降级期里重试**是在加码**，所以三层：
+⚠️ 词表里带空格的裸串会被包成短语（`staking Lido` → ti:"staking Lido"），
+   要求标题里**连续**出现。想要「两个独立词」就写两条，不要写一条短语。
 
-  1) preflight：开跑前一条最小带窗请求。失败就直接收场，不让 24 个词去撞墙。
-  2) 熔断：主循环连续 CONSEC_FAIL_LIMIT 个词全失败 → 停手，剩余词记「未尝试」。
-     **「试过失败」和「没试过」必须分开记** —— 前者是空洞，后者是没数据。
-  3) 补扫：只在主循环跑完后做一次（隔 RETRY_COOLDOWN 秒、4 次尝试）。
+carrier 是 vG 的主修：CARRIER_BASE 原本是给 github 写的部署词汇
+（deployed/mainnet/testnet/token/validator/miner），而 arxiv 的加密论文是**理论论文**，
+摘要里写 proof/circuit/broadcast/round/adversary，不写 mainnet —— 加密侧整条 carrier
+错配。实证：60 天里 6 篇新 ZK 论文被静默丢弃（ZK proofs of quantumness / SRE /
+ZK signature framework / ZK for free / ZK remote attack / Locus hardware）。
+修法是**纯增量**的 CARRIER_CRYPTO，并设为默认 —— 不会让原来通过的变成不通过。
 
-失败绝不能读成零命中：total=0 是词/写法的问题（arXiv 答了，答案是"没有"），
-read timeout / 429 是 arXiv 侧的问题（arXiv 没答），跟词无关。
+arXiv 侧会整段降级（read timeout 与 429 交替、整批全挂、约 10 分钟自恢复）。
+降级期里重试**是在加码**，所以三层：preflight → 熔断 → 补扫。
 
-check: 不能靠 var.split() 解析 —— 它按空格切，`check:consensus protocol` 会被切成
-"check:consensus" + "protocol"，静默地量成 ti:"consensus"（实测踩过）。
-check 模式回显「查询」和「已在词表」两行，用来一眼发现量错了词。
-stdout 进管道会块缓冲，实时进度一律打 stderr；表格本身已加 flush。
+失败绝不能读成零命中：total=0 是词/写法的问题（arXiv 答了），read timeout / 429 是
+arXiv 侧的问题（它没答），跟词无关。
 
 零命中 ≠「可考虑删词」：跨窗档 = (30,60,90) 中所有 > DAYS 的值，全部为 0 时判词是
 「**先用 check: 换同义写法**」—— arXiv 的 ti: 是词干化短语匹配，0 命中多半是写法不对。
@@ -41,7 +41,7 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
-VERSION = "vF"
+VERSION = "vG"
 
 OUTD = "output/arxiv"
 OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
@@ -51,8 +51,7 @@ LABELS = "memory/arxiv-labels.tsv"
 NAMES_FILE = "memory/universe-names.txt"
 NOTIFY_TOP = 30
 MAX_RESULTS = 100
-# https 直连：http 会先吃一个 301（实测 0.3s/请求，一轮 ~40 请求白花约 12 秒），
-# 而且平白依赖 urlopen 的重定向跟随。
+# https 直连：http 会先吃一个 301（实测 0.3s/请求），而且平白依赖重定向跟随。
 API = "https://export.arxiv.org/api/query"
 NS = {"a": "http://www.w3.org/2005/Atom"}
 OPENSEARCH = "{http://a9.com/-/spec/opensearch/1.1/}totalResults"
@@ -62,7 +61,7 @@ ATTEMPTS = 2
 RETRY_ATTEMPTS = 4
 RETRY_COOLDOWN = 20
 PREFLIGHT_ATTEMPTS = 2
-PREFLIGHT_TIMEOUT = 25     # 实测 arXiv 冷启动首条要 7.2s，别卡太紧
+PREFLIGHT_TIMEOUT = 25     # 实测 arXiv 冷启动首条要 7.2s
 CONSEC_FAIL_LIMIT = 3
 TIMEOUT = 45
 RETRY_BUDGET = 900
@@ -95,6 +94,7 @@ CROSS_WINDOWS = tuple(d for d in (30, 60, 90) if d > DAYS)
 T0 = time.time()
 
 # ── 词表：`#` 开头是注释。写「持仓依赖的机制」，不是持仓的名字 ──────
+# 裸串（不带 ti:/cat: 前缀）会被包成 ti:"…" 短语。多词 = 连续短语。
 TERMS = [t.strip() for t in """
 proof-of-useful-work
 verifiable inference
@@ -106,14 +106,15 @@ auditable training
 data availability sampling
 restaking
 automated market maker
-# ── 共识：2026-10-26 换写法。原 `consensus protocol` 实测 30d=0 / 60d=4
-#    （低于 30d 窗的检测下限 → 永远不响）；`consensus mechanism` 四档全 0。
-#    改测 ti:"consensus" AND cat:cs.DC：30d=6 / 60d=18 / 90d=27，
-#    领域命中 6/6 · 17/18 · 26/27（≈100%），已见仅 0/6 · 4/18。
-#    宽 4.5 倍、精度不掉 —— 「有词 ≠ 有召回」的第二例，修法是换写法不是加窗口。
+# ── 共识：2026-10-26 换写法。原 `consensus protocol` 30d=0 / 60d=4（低于检测下限）；
+#    `consensus mechanism` 四档全 0。改测 ti:"consensus" AND cat:cs.DC：
+#    30d=6 / 60d=18 / 90d=27，领域命中 ≈100%。宽 4.5 倍、精度不掉。
 ti:"consensus" AND cat:cs.DC
 cat:cs.CR AND ti:"MEV"
-staking Lido
+# ── 质押：`liquid staking` / `staked ETH` / `staking Lido` 全 0（后两个是短语太窄）。
+#    改回单词 `staking`：词干覆盖 stake/staking/staked。精度预计 ~45%（会连
+#    High-Stakes 一起捞），靠模型标 `?` 兜住 —— 但那个槽本来就没有能过 80% 的词。
+staking
 embodied data
 robot manipulation data
 robot data
@@ -127,7 +128,11 @@ ti:"egocentric" AND cat:cs.RO
 ti:"data generation" AND cat:cs.RO
 # ── 持仓依赖的机制 ──
 ti:"EIP-1559"
-ti:"tokenized RWA"
+# ── RWA：`Robinhood Chain` / `ti:"Robinhood"` 90d 全 0（名字，不是机制）；
+#    `ti:"tokenized RWA"` 也是 0（短语太窄）。改回单词 `RWA`。
+#    已知碰撞：量子光学的 rotating-wave approximation 也缩写 RWA。
+#    若 backfill 显示物理污染严重，加 ANDNOT ti:"rotating wave" 或 cat: 约束。
+RWA
 """.strip().split("\n") if t.strip() and not t.strip().startswith("#")]
 
 if NAMES_MODE and os.path.exists(NAMES_FILE):
@@ -139,16 +144,33 @@ if os.path.exists(NAMES_FILE):
     known = [l.strip() for l in open(NAMES_FILE, encoding="utf-8")
              if l.strip() and not l.startswith("#")]
 
+# ── carrier ───────────────────────────────────────────────────────
+# carrier 必须按词分域 —— 一组链上词会把「具身/机器人」整簇误杀。
 CARRIER_BASE = ["deployed", "deployment", "mainnet", "testnet", "protocol",
                 "production", "open-source", "released", "blockchain", "network",
                 "token", "incentive", "marketplace", "validator", "miner"]
 CARRIER_ROBOT = ["robotic", "robot", "manipulation", "teleoperation", "simulation",
                  "simulator", "dataset", "datasets", "real-world", "embodied",
                  "sensor", "egocentric", "demonstration", "vla"]
+# 追加 ledger 系：MEV 论文常写 "distributed ledger" / "block creator"。
 CARRIER_MARKET = ["arbitrage", "swap", "liquidity", "order flow", "searcher",
                   "ledger", "ledgers", "block creator", "block builder",
                   "block proposer", "transaction ordering", "on-chain",
                   "state transition"]
+# ★ vG 新增，纯增量：BASE 是 github 的部署词汇，arxiv 理论论文不写这些。
+#   实证 60 天里 6 篇新 ZK 论文因缺这些词被静默丢弃。默认 carrier 换成它。
+CARRIER_CRYPTO = CARRIER_BASE + [
+    "proof", "proofs", "circuit", "circuits", "snark", "starks", "stark",
+    "verifier", "verifiers", "verification", "verify", "commitment", "commitments",
+    "signature", "signatures", "cryptograph", "cryptographic", "prover", "provers",
+    "witness", "polynomial", "hash", "hashing", "merkle",
+    "node", "nodes", "broadcast", "broadcasting", "round", "rounds", "replica",
+    "replicas", "leader", "leaders", "committee", "quorum", "byzantine",
+    "adversary", "adversarial", "fault", "faulty", "finality", "fork",
+    "transaction", "transactions", "block", "blocks", "shard", "sharding",
+    "epoch", "slashing", "stake", "staker", "stakers", "delegat", "reward",
+    "training", "model", "models", "inference", "audit", "auditing",
+]
 CARRIER_BY_TERM = {
     "embodied data": CARRIER_ROBOT,
     "robot manipulation data": CARRIER_ROBOT,
@@ -158,11 +180,10 @@ CARRIER_BY_TERM = {
     'ti:"human data" AND cat:cs.RO': CARRIER_ROBOT,
     'ti:"egocentric" AND cat:cs.RO': CARRIER_ROBOT,
     'ti:"data generation" AND cat:cs.RO': CARRIER_ROBOT,
-    'ti:"consensus" AND cat:cs.DC': CARRIER_BASE,
-    "automated market maker": CARRIER_BASE + CARRIER_MARKET,
-    'cat:cs.CR AND ti:"MEV"': CARRIER_BASE + CARRIER_MARKET,
+    "automated market maker": CARRIER_CRYPTO + CARRIER_MARKET,
+    'cat:cs.CR AND ti:"MEV"': CARRIER_CRYPTO + CARRIER_MARKET,
 }
-DOMAIN = CARRIER_BASE + CARRIER_ROBOT + CARRIER_MARKET
+DOMAIN = CARRIER_CRYPTO + CARRIER_ROBOT + CARRIER_MARKET
 EXCL = ["survey", "tutorial"]
 STOP = set("""a an the on of in for with from and or to at by as is are was were
 towards toward via using based scalable efficient large language model models
@@ -242,11 +263,11 @@ def fetch_term(term, attempts=None):
     return q, root, err
 
 # ── preflight ────────────────────────────────────────────────────
-pf_ok, pf_err = True, ""
+pf_ok = True
 pf_tot, _ = total_of("all:electron", DAYS, 1, tag="preflight",
                      attempts=PREFLIGHT_ATTEMPTS, timeout=PREFLIGHT_TIMEOUT)
 if pf_tot < 0:
-    pf_ok, pf_err = False, pf_err or "preflight 请求失败"
+    pf_ok = False
 
 if not pf_ok:
     write_audit(["[%s] preflight 失败 —— arXiv 侧不可用，未扫描" % VERSION,
@@ -331,7 +352,7 @@ DROPPED_CAP = 12
 def absorb(root, term):
     global raw, newest
     n = 0
-    carrier = CARRIER_BY_TERM.get(term, CARRIER_BASE)
+    carrier = CARRIER_BY_TERM.get(term, CARRIER_CRYPTO)
     for e in root.findall("a:entry", NS):
         n += 1
         raw += 1
@@ -374,7 +395,7 @@ def cross_probe(term, q):
             cross.setdefault(term, {})[d] = total_of(q, d, 1, tag="cross:%dd" % d)[0]
             time.sleep(3)
 
-# ── 主循环（重试 2 次快速脱身；连续失败则熔断）──────────────────
+# ── 主循环 ───────────────────────────────────────────────────────
 attempted = 0
 consec_fail = 0
 tripped = False
@@ -506,6 +527,7 @@ if saturated:
     L.append("ℹ️ 全已见（饱和，**别删**）: " + " · ".join(
         "%s(raw=%d)" % (t, raw_term[t]) for t in saturated))
 
+# 丢掉的名单 —— 索引封顶时每天只有个位数条目，这一格是唯一能看见误杀的地方
 for k, label in (("carrier", "carrier 无命中"), ("excl", "EXCL 命中")):
     if dropped[k]:
         L.append("ℹ️ %s 丢弃 %d 条，前 %d 条:"
