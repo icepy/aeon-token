@@ -18,7 +18,7 @@ var token（空格分隔，可组合）:
     output/ghradar/audit.log      审计（同时打到 stdout）
     output/ghradar/report.md      通知正文
     output/ghradar/clusters.json  probe 时**必定重写**（空也写，好区分"没跑"和"跑了没货"）
-    output/ghradar/dropped.json   **全量**丢弃名单（carrier / short_desc），每次重写
+    output/ghradar/dropped.json   **全量**丢弃名单（carrier / short_desc）+ carrier 存活对照
     memory/github-seen.json       非 dry-run 才写
     memory/github-candidates.md   非 dry-run 才追加
 
@@ -49,12 +49,18 @@ REPORT_COMMITS = 5
 NOTIFY_TOP = 30
 MAXPAGE = 3            # 旧口径；现在只用来判"曾经会撞顶"，真正的页数按 total 动态算
 MAXPAGE_HARD = 10      # 动态页数上限（GitHub search 深翻页在 1000 条处封顶）
+# 整窗 total ≤ 这个值 → 不拆窗（单窗即可取全）。拆 3 子窗的唯一理由是深翻页 1000 条封顶，
+# 不撞顶时拆窗纯浪费 3 倍搜索调用（第十六轮：18 词里只有 world model 会撞顶）。
+WIN_SPLIT_TOTAL = MAXPAGE_HARD * 100
 SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-showcase",
                "-docs")
 SCAFFOLD_MIN = 3
 SEARCH_MIN_GAP = 2.1   # search 限速 30/min
 VERIFY_WORKERS = 6     # 核验并发（core quota 5000/h，但并发太高会触发二级限流）
 VERIFY_BUDGET = 900    # 核验墙钟预算（秒）；超预算的标 unverified
+PROBE_WORKERS = 6      # probe / carrier 热仓核验并发（原来是逐个串行）
+PROBE_BUDGET = 240     # probe / carrier 并发阶段墙钟预算（秒）
+CARRIER_PROBE_CAP = 150  # carrier 误杀抽核上限（owner 去重后）
 PROBE_MAXTOK = 28      # probe: 最多反查多少个 token
 PROBE_MAX_TOTAL = 600  # probe: 反查 total 超过这个 → 判为通用词，不是专名
 # probe 历史种子池大小。**必须 ≈ hist 配额**，否则只有最近几条能当种子：
@@ -76,6 +82,39 @@ reproduction experiments experiment baseline baselines implementation demo
 official release training framework system systems control policy
 python pytorch jax deep neural research tool tools llm main new real
 simulation simulator dataset datasets benchmark benchmarks""".split())
+# 主题词要额外排除的「胶水词」：虚词 + 到哪都有的通用名词。
+# 与 STOPWORDS 分开：STOPWORDS 管「能不能当 probe token」，GLUE 只管「能不能当主题证据」。
+# 第十六轮实证：3 个 cohesive 簇全假，其中 2 个的"主题词"就是 with / content ——
+# 连接词被当成主题证据，而 senku 的 need 恰好 = 11，with 恰好 = 11，刚好踩线通过。
+GLUE = set("""with without using use used uses based from into onto via your their
+our its this that these those there here when where how what which all any some
+more most other others same different very just also then than only such each both
+can may will would could should has have had does did not own way ways thing things
+part parts set sets get gets got make makes made take takes give gives need needs
+know see look find work works working start starting end ending time times day days
+week weeks month months year years version test tests testing note notes readme doc
+docs git pip install setup run runs running build builds building create created
+update updated add added fix fixed change changed support supports supported include
+includes including feature features module modules package packages library
+libraries script scripts app apps web api server client config configuration env
+environment dev development prod production master branch commit commits license
+author summary description overview intro introduction guide example examples
+sample samples simple complex advanced basic quick fast slow high low large small
+big tiny mini micro nano super ultra multi cross self auto semi non pre post sub
+over under out up down off full first second third last next final file files code
+project projects content""".split())
+# 主题词还必须落在「我们这条线」的语义里 —— 簇再自洽，主题不是我们的题也不是信号。
+# 反例（第十六轮）：uniview 主题词 hikvision/dahua 是海康大华 NVR，pouw 主题词 content。
+# 注意 world / model / data / sim2real 仍在 STOPWORDS 里（通常就等于 token 本身），
+# 所以这里列的是"允许作为主题词"的语义域，不是"允许作为 token"。
+THEME_LEXICON = set("""embodied robot robotics manipulation manipulator teleop
+teleoperation teleoperate sim2real sim-to-real egocentric action actions policy
+policies vla vision language jepa world worlds model models data dataset datasets
+benchmark benchmarks eval evaluation imitation navigation driving control planning
+planner latent representation generative diffusion transformer rl reinforcement
+inference verifiable proof useful work availability restaking intent intent-based
+blockchain crypto onchain web3 solver swap defi amm wallet layer zk rollup
+ethereum modular""".split())
 
 # ── 词表：`#` 开头是注释 ──────────────────────────────────────────
 TERMS = [t.strip() for t in """
@@ -283,7 +322,9 @@ def load_history(limit=PROBE_HIST_POOL):
 def cluster_cohesion(items, token):
     """簇内同主题度。真专名簇（一个工作被大量复现）的 desc 会反复出现同一批词；
     撞名簇各写各的。返回 (是否同主题, [(词, 出现仓数), …])。
-    **`total` 小只是必要条件，簇内同主题才是充分条件**（第十五轮判据 38）。
+    **`total` 小只是必要条件，簇内同主题也只是必要条件** —— 第十六轮 3 个 cohesive
+    簇全假，因为"主题词"可能是 with / content 这类胶水词。所以主题词还必须落在
+    THEME_LEXICON 里（由调用方判 `thematic`）。
     阈值 max(3, ceil(n/5)) 是首版，下一轮用真实分布校准。"""
     n = len(items)
     if n < 2:
@@ -293,7 +334,7 @@ def cluster_cohesion(items, token):
         words = {w for w in re.split(r"[^a-z0-9]+",
                                      (it.get("description") or "").lower())
                  if len(w) >= 4 and not w.isdigit()
-                 and w not in STOPWORDS and w != token}
+                 and w not in STOPWORDS and w not in GLUE and w != token}
         cnt.update(words)
     need = max(3, (n + 4) // 5)
     theme = [[w, c] for w, c in cnt.most_common(40) if c >= need][:8]
@@ -307,7 +348,8 @@ hit, qfail, cov = {}, [], {}
 raw_term, new_term, seen_term = {}, {}, {}
 page_dropped, neg_dropped, root_dropped = [], [], []
 carrier_topic_only, desc_topic_only = [], []      # 两条放行路径，单独记账
-capped = []                                       # 曾经会撞 3 页上限的子窗
+capped = []                                       # 曾经会撞 3 页上限的窗口/子窗
+win_whole, win_split = 0, 0                       # 自适应窗口：整窗 / 拆 3 子窗 的词数
 # carrier / short_desc 丢掉的仓 —— **全量**存（可审计性 + probe 的第四顺位种子）。
 # 之前只累加计数，是本轮唯一两条不落仓名的丢弃规则（第十五轮判据 37）。
 carrier_dropped, short_desc_dropped = [], []
@@ -316,12 +358,26 @@ for term in TERMS:
     total, got, failed = 0, 0, False
     raw_term[term] = 0; new_term[term] = 0; seen_term[term] = 0
     neg = NEG_BY_TERM.get(term, [])
-    for w in WINS:
-        q = '"%s" in:name,description created:%s fork:false stars:>=%d' % (
-            term, w, MIN)
+    # 先探一次整窗 total 决定窗数。拆 3 子窗的唯一理由是深翻页在 1000 条封顶；
+    # 不撞顶时拆窗纯浪费 3 倍搜索调用（第十六轮：18 词里只有 world model 会撞顶）。
+    q_whole = ('"%s" in:name,description created:%s fork:false stars:>=%d'
+               % (term, FULLWIN, MIN))
+    whole_res, _ = search(q_whole, 1)
+    if whole_res is not None and whole_res.get("total_count", 0) <= WIN_SPLIT_TOTAL:
+        term_wins = [FULLWIN]; win_whole += 1
+    else:
+        term_wins = WINS; win_split += 1
+    for w in term_wins:
+        q = ('"%s" in:name,description created:%s fork:false stars:>=%d'
+             % (term, w, MIN))
         pages, page = 1, 1
+        # 整窗单窗时复用刚才那一次探测结果，别重复请求
+        pre = whole_res if (w == FULLWIN and whole_res is not None) else None
         while page <= pages:
-            res, err = search(q, page)
+            if pre is not None:
+                res, err = pre, None; pre = None
+            else:
+                res, err = search(q, page)
             if res is None:
                 print("! %s @%s p%d: %s" % (term, w, page, err), file=sys.stderr)
                 drop["fail"] += 1; failed = True; break
@@ -498,13 +554,50 @@ def reportable(c):
 rep = sorted([c for c in out if reportable(c)],
              key=lambda c: (-c.get("commits_7d", 0), -c["commits_30d"], -c["stars"]))
 
+# ── carrier 误杀率（第十六轮判据：dropped.json 上线后第一次可算）──
+# 口径：carrier 丢弃名单里「仓名自带词表词」的那批（= 名字上明确属于这条线却被丢的），
+# owner 去重后并发核近 7 天存活，与「放行的幸存者」存活率**对照**。
+# 只给两个数，不下结论 —— 放宽 carrier 必须对照（参照 `jepa`→全称 654→35）。
+NAME_TOKENS = {tk for t in TERMS for tk in re.split(r"[^a-z0-9]+", t.lower())
+               if len(tk) >= 4 and not tk.isdigit()}
+for _ws in CARRIER_BY_TERM.values():
+    NAME_TOKENS.update(_ws)
+carrier_named = [rid for _, rid in sorted(carrier_dropped, reverse=True)
+                 if any(tk in rid.lower() for tk in NAME_TOKENS)]
+_cown, carrier_named_uniq = set(), []
+for rid in carrier_named:
+    ow = rid.split("/")[0].lower()
+    if ow in _cown:
+        continue
+    _cown.add(ow); carrier_named_uniq.append(rid)
+carrier_probe = carrier_named_uniq[:CARRIER_PROBE_CAP]
+CARRIER_ALIVE = {}
+
+def carrier_alive(rid):
+    if time.time() > C_DEADLINE:
+        return
+    n7, st = commits_since(rid, 7)
+    if st == "ok" and n7 is not None:
+        CARRIER_ALIVE[rid] = n7
+
+if carrier_probe:
+    C_DEADLINE = time.time() + PROBE_BUDGET
+    with ThreadPoolExecutor(max_workers=PROBE_WORKERS) as ex:
+        list(ex.map(carrier_alive, carrier_probe))
+
+_ctrl = [c for c in out if c.get("commits_7d") is not None]
+ctrl_alive = sum(1 for c in _ctrl if c["commits_7d"] > 0)
+car_alive = sum(1 for v in CARRIER_ALIVE.values() if v > 0)
+
 os.makedirs(OUTD, exist_ok=True)
 # dry-run 不覆盖 out.json —— 否则一次 0 幸存就会把上一轮的真快照写成 "[]"
 SNAP = OUT_DRY if DRY else OUT
 json.dump(out, open(SNAP, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 # 全量丢弃名单，每次无条件重写（空也写）—— 让「carrier 误杀率」可直接算，不必离线重放
 json.dump({"carrier": [r for _, r in carrier_dropped],
-           "short_desc": [r for _, r in short_desc_dropped]},
+           "short_desc": [r for _, r in short_desc_dropped],
+           "carrier_named_uniq": carrier_named_uniq,
+           "carrier_named_alive_7d": {r: v for r, v in CARRIER_ALIVE.items() if v > 0}},
           open(DROPPED, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 # ── probe：反查找词表漏掉的专名簇 ──
@@ -512,12 +605,15 @@ json.dump({"carrier": [r for _, r in carrier_dropped],
 # 只看本轮会在两种情况下空转：幸存 0（第十三轮）和"该抓的簇本轮恰好没有命中"（第十四轮）。
 # 顺序必须是「先反查、再排序」—— 按 token 在种子里出现几次排会漏掉
 # SuperMimic（它只出现 1 次，被 capstone/recall 这类通用词挤掉）。
-# 专名判据（两条，缺一不可）：① 反查 total 小；② **簇内同主题**（cluster_cohesion）。
-# 只有 ① 会误报 —— `eidolon`(total=98)、`senku`、`physguard`(total=3) 都是撞名。
+# 专名判据（三条，缺一不可）：① 反查 total 小；② 簇内同主题（cluster_cohesion）；
+# ③ 主题词落在 THEME_LEXICON 语义内（`thematic`）。只有 ① 会误报（eidolon/senku/
+# physguard 全是撞名）；只有 ①② 也会误报（第十六轮 3 个 cohesive 簇全假，主题词是
+# with / content / hikvision 这类胶水词或非本线专名）。
+# 阶段 1 串行反查（受 SEARCH_MIN_GAP 约束）；阶段 2 并发核热仓 commits。
 drop_names = sorted(carrier_dropped + short_desc_dropped, reverse=True)
 cluster_report = []
 probe_stat = {"rep": 0, "out": 0, "hist": 0, "drop": 0, "tok": 0, "done": 0,
-              "seeds": 0}
+              "seeds": 0, "hot": 0, "hot_quiet": 0}
 if PROBE:
     srcs = (("rep", [c["repo"] for c in rep]),
             ("out", [c["repo"] for c in out]),
@@ -539,6 +635,7 @@ if PROBE:
                 toks.append(tk)
     probe_stat["tok"] = len(toks)
     in_out = {c["repo"] for c in out}
+    pending = []
     for tk in toks[:PROBE_MAXTOK]:
         res, err = search('"%s" in:name,description created:%s fork:false'
                           % (tk, FULLWIN))
@@ -548,25 +645,48 @@ if PROBE:
         items = res.get("items", [])
         owners = {(i.get("owner") or {}).get("login", "") for i in items}
         cohesive, theme = cluster_cohesion(items, tk)
-        hot = []
+        thematic = any(w in THEME_LEXICON for w, _ in theme)
         for i in items[:8]:
-            n30, st = commits_since(i["full_name"], 30)
-            if st == "ok" and n30 and n30 >= REPORT_COMMITS:
-                n7, _ = commits_since(i["full_name"], 7)
-                hot.append({"repo": i["full_name"],
-                            "stars": i.get("stargazers_count", 0),
-                            "commits_30d": n30, "commits_7d": n7})
-        hot.sort(key=lambda x: (-(x["commits_7d"] or 0), -x["commits_30d"]))
+            pending.append((tk, i["full_name"], i.get("stargazers_count", 0)))
         cluster_report.append({
             "token": tk, "total": total, "owners": len(owners),
-            "cohesive": cohesive, "theme": theme,
+            "cohesive": cohesive, "thematic": thematic, "theme": theme,
             "one_man": len(owners) <= 2 and total >= 3,
             "generic": total > PROBE_MAX_TOTAL,
             "not_in_out": sum(1 for i in items if i["full_name"] not in in_out),
-            "hot": hot[:8]})
+            "hot": []})
         probe_stat["done"] += 1
-    # 专名优先：非通用词 → **同主题** → 簇内活跃仓多 → owner 密度高
-    cluster_report.sort(key=lambda x: (x["generic"], not x["cohesive"],
+    # 阶段 2：热仓 commits 并发核验（原来逐个串行，probe 吃掉脚本近一半墙钟）
+    hot_repos = sorted({r for _, r, _ in pending})
+    probe_stat["hot"] = len(hot_repos)
+    HOT = {}
+    P_DEADLINE = time.time() + PROBE_BUDGET
+
+    def probe_hot(rid):
+        if time.time() > P_DEADLINE:
+            return
+        n30, st = commits_since(rid, 30)
+        if st != "ok" or not n30 or n30 < REPORT_COMMITS:
+            return
+        n7, st7 = commits_since(rid, 7)
+        HOT[rid] = (n30, n7 if st7 == "ok" else None)
+
+    if hot_repos:
+        with ThreadPoolExecutor(max_workers=PROBE_WORKERS) as ex:
+            list(ex.map(probe_hot, hot_repos))
+    probe_stat["hot_quiet"] = len(hot_repos) - len(HOT)
+    by_tok = {cl["token"]: cl for cl in cluster_report}
+    for tk, rid, st in pending:
+        cl = by_tok.get(tk)
+        if cl is not None and rid in HOT:
+            cl["hot"].append({"repo": rid, "stars": st,
+                              "commits_30d": HOT[rid][0], "commits_7d": HOT[rid][1]})
+    for cl in cluster_report:
+        cl["hot"].sort(key=lambda x: (-(x["commits_7d"] or 0), -x["commits_30d"]))
+        cl["hot"] = cl["hot"][:8]
+    # 专名优先：非通用词 → **同主题且主题词是本线的** → 簇内活跃仓多 → owner 密度高
+    cluster_report.sort(key=lambda x: (x["generic"],
+                                       not (x["cohesive"] and x["thematic"]),
                                        -len(x["hot"]), -x["owners"]))
     # **无条件重写** —— 空数组也要写，否则上一轮的 clusters.json 会冒充本轮结果
     json.dump(cluster_report, open(CLUSTERS, "w", encoding="utf-8"),
@@ -587,8 +707,9 @@ with_new = [t for t in TERMS if new_term.get(t, 0) > 0]
 sat_seen = [t for t in saturated if seen_term.get(t, 0) > 0]
 sat_loss = [t for t in saturated if seen_term.get(t, 0) == 0]
 
-L = ["扫 %d 词 × %d 窗 × %d 页（页数按 total 动态）| 原始 %d | 幸存 %d | 报告级 %d | var=%r"
-     % (len(TERMS), NWIN, MAXPAGE, raw, len(out), len(rep), var),
+L = ["扫 %d 词 × 窗自适应（整窗 %d / 拆 3 子窗 %d；整窗 total>%d 才拆）"
+     "| 原始 %d | 幸存 %d | 报告级 %d | var=%r"
+     % (len(TERMS), win_whole, win_split, WIN_SPLIT_TOTAL, raw, len(out), len(rep), var),
      "快照 %s%s" % (SNAP, "（dry-run 不覆盖 out.json）" if DRY else ""),
      "丢弃 seen=%d excl=%d archived=%d short_desc=%d carrier=%d neg=%d "
      "pages=%d pages_root=%d scaffold=%d farm=%d fail=%d"
@@ -607,7 +728,7 @@ if cleaned:
              % (len(cleaned), " / ".join(sorted(KEEP)),
                 " · ".join(cleaned[:12]) + (" …" if len(cleaned) > 12 else "")))
 if capped:
-    L.append("ℹ️ 曾撞 %d 页上限的子窗 %d 个（已按 total 动态加页，最多 %d 页）: %s"
+    L.append("ℹ️ 曾撞 %d 页上限的窗口/子窗 %d 个（已按 total 动态加页，最多 %d 页）: %s"
              % (MAXPAGE, len(capped), MAXPAGE_HARD,
                 " · ".join("%s@%s(total=%d)" % c for c in capped[:8])))
 if carrier_topic_only:
@@ -622,6 +743,15 @@ if carrier_dropped:
              % (len(carrier_dropped),
                 " · ".join("%s(%s)" % (r, p[:10])
                            for p, r in sorted(carrier_dropped, reverse=True)[:20])))
+    L.append("ℹ️ carrier 误杀口径（对照，不下结论）：丢弃里仓名自带词表词 %d 个，"
+             "owner 去重 %d 个，本轮核 %d 个 → 近 7 天存活 %d/%d = %s"
+             % (len(carrier_named), len(carrier_named_uniq), len(CARRIER_ALIVE),
+                car_alive, len(CARRIER_ALIVE),
+                "%.0f%%" % (100.0 * car_alive / len(CARRIER_ALIVE))
+                if CARRIER_ALIVE else "n/a"))
+    L.append("   对照（放行的幸存者，已核 %d）：近 7 天存活 %d/%d = %s"
+             % (len(_ctrl), ctrl_alive, len(_ctrl),
+                "%.0f%%" % (100.0 * ctrl_alive / len(_ctrl)) if _ctrl else "n/a"))
 if short_desc_dropped:
     L.append("ℹ️ 被 short_desc 规则丢弃 %d 个（len(desc)<25 且无 topics）"
              "—— 全量在 dropped.json，最近 20: %s"
@@ -694,25 +824,35 @@ if cand:
              " · ".join("%s=%d" % kv for kv in cand.items()))
 if PROBE:
     L.append("ℹ️ probe 种子 %d（报告级 %d / 幸存 %d / 历史 %d / 丢弃堆 %d）→ "
-             "候选 token %d → 已反查 %d · clusters.json 已重写（空也写）"
+             "候选 token %d → 已反查 %d · 热仓核验 %d（未达门槛 %d）· "
+             "clusters.json 已重写（空也写）"
              % (probe_stat["seeds"], probe_stat["rep"], probe_stat["out"],
                 probe_stat["hist"], probe_stat["drop"], probe_stat["tok"],
-                probe_stat["done"]))
+                probe_stat["done"], probe_stat["hot"], probe_stat["hot_quiet"]))
     if not probe_stat["seeds"]:
         L.append("   ⚠️ 种子为 0 —— 本轮 probe 无从反查，不是「没有簇」")
     else:
-        real = [c for c in cluster_report if not c["generic"] and c["cohesive"]]
+        ours = [c for c in cluster_report
+                if not c["generic"] and c["cohesive"] and c["thematic"]]
+        near = [c for c in cluster_report
+                if not c["generic"] and c["cohesive"] and not c["thematic"]]
         alias = [c for c in cluster_report if not c["generic"] and not c["cohesive"]]
-        L.append("ℹ️ probe 反查 —— 小 total 候选（≤%d）。**同主题**=desc 有跨仓重复词"
-                 "（真簇嫌疑）；**异质**=各写各的（撞名嫌疑）。给证据，不下结论。"
-                 % PROBE_MAX_TOTAL)
-        for cl in real[:8]:
+        L.append("ℹ️ probe 反查 —— 小 total 候选（≤%d）。**同主题**=簇内 desc 有跨仓重复词"
+                 "**且主题词落在词表语义内**；**近似**=簇内自洽但主题词不是本线的；"
+                 "**异质**=各写各的（撞名嫌疑）。给证据，不下结论。" % PROBE_MAX_TOTAL)
+        for cl in ours[:8]:
             L.append("  ✅ `%s` total=%d owners=%d%s 未在幸存者=%d 主题词=%s | %s"
                      % (cl["token"], cl["total"], cl["owners"],
                         " [一人多仓]" if cl["one_man"] else "", cl["not_in_out"],
                         ",".join("%s×%d" % (w, c) for w, c in cl["theme"][:5]),
                         " · ".join("%s(%s/%s)" % (h["repo"], h["commits_30d"],
                                                   h["commits_7d"]) for h in cl["hot"][:3])))
+        if near:
+            L.append("  ⚠️ 近似（同主题但主题词不在词表语义内，仍可能是撞名）%d 个: %s"
+                     % (len(near), " · ".join(
+                         "`%s`(total=%d,owners=%d,主题词=%s)"
+                         % (c["token"], c["total"], c["owners"],
+                            ",".join(w for w, _ in c["theme"][:3])) for c in near[:8])))
         if alias:
             L.append("  ⚠️ 撞名嫌疑（异质，各写各的）%d 个: %s" % (len(alias),
                      " · ".join("%s(total=%d,owners=%d)" % (c["token"], c["total"],

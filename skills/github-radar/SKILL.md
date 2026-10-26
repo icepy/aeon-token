@@ -31,7 +31,7 @@ metadata:
 
 ## 词表与过滤器在哪
 
-**全在 `skills/github-radar/scan.py`。** `TERMS` / `NEG_BY_TERM` / `CARRIER_BY_TERM` / `EXCL` / `SITE_SUFFIX` / `CODE_SKELETON` 都在那个文件里，改词改那里，**不要在 SKILL.md 里再抄一份**。
+**全在 `skills/github-radar/scan.py`。** `TERMS` / `NEG_BY_TERM` / `CARRIER_BY_TERM` / `EXCL` / `SITE_SUFFIX` / `CODE_SKELETON` / `GLUE` / `THEME_LEXICON` 都在那个文件里，改词改那里，**不要在 SKILL.md 里再抄一份**。
 
 ## 铁律
 
@@ -41,7 +41,7 @@ metadata:
 - **旁路脚本不进 `output/ghradar/`。** 要留档的判据写进 `memory/logs/${today}.md`；真需要临时脚本，放这个目录也行，下一轮会被自动删掉 —— 所以别指望它跨轮存在。
 - **不要重写脚本。** 只有改过滤器时才 Edit `scan.py`。
 - **核验宁可全量。幸存数 ≤ 上限时，一个都别漏。** 实证：`PER_TERM_CAP=25` 按 star 排序，只核了 76/234，报告级被低估 3.85×。
-- **分页按 `total_count` 动态取**（`min(10, ceil(total/100))`；10 页 = GitHub search 1000 条封顶）。**长窗不再静默丢仓** —— 撞顶子窗会进审计。第十五轮实证：修好后幸存 4→49（12.3×），`world model` 覆盖率 66.5%→100%。
+- **分页按 `total_count` 自适应**：先查整窗第 1 页拿 `total`，`total ≤ WIN_SPLIT_TOTAL`(1000) 就**整窗单跑（1 个子窗）**，超过才拆 3 子窗，每子窗页数 `min(10, ceil(total/100))`（10 页 = GitHub search 1000 条封顶）。**长窗不再静默丢仓** —— 撞顶子窗仍进审计。第十五轮实证：修好后幸存 4→49（12.3×），`world model` 覆盖率 66.5%→100%。**审计头固定打 `整窗 N / 拆 3 子窗 M`，M=1 是正常值**（18 词里通常只有 1–2 个大词走拆窗），M 突然变大要当口径变化读。
 - **star 排序会切掉 ★0 长尾。** 实证第十一轮：幸存 70 个里 ★≥5 只有 1 个、全轮最高 ★7，报告级 35 里 34 个是 ★0。**只要机制词还在，star 就不该出现在排序或采样里。**
 - **star 与 commits 可能反相关。** 跟这一支只能按 commits 读。
 - **换词前先量两个口径：total_count + 重叠度。不能只看污染率。** `vla`→全称双赢；`jepa`→全称灾难（654→35）。**分界不是「缩写脏不脏」，是这个术语在生态里实际怎么被书写。**
@@ -50,9 +50,9 @@ metadata:
 - **`per_term == 0` 必须分四类。** 查询失败 / 真零 / **全已见（饱和）** / 有新增。**「饱和」留着，「真零」才谈删词。** 注意「饱和」是混的：`new_term` 只在全部过滤器跑完之后才自增，「被过滤丢光」和「真被 seen 吸收」会落进同一类 —— 脚本会把这两者分开打。
 - **窄窗会把稀有词系统性读成「真零」** —— 判词表死活必须跨 7/30/60 三个窗口量 total_count。
 - **窗口长度是「提前量 vs 覆盖率」的取舍，不是质量轴。** 第十一轮：30 天窗比 7 天窗多救回 5 个 7d≥5 的活仓；但两轮报的「新增」全部来自窗口算术，**0 个真漏检**，不能当增量引用。
-- **同窗口连跑会读出「幸存 0」。** 非 `dry-run` 把幸存者写进 `seen` 之后，同窗口再跑必然 0 —— 那是算术，不是词表饱和，也不是故障。这时核验层和 `probe` 层**整段不会被执行**，所以「没报错」不等于「验过了」。
+- **同窗口连跑会读出「幸存 0」。** 非 `dry-run` 把幸存者写进 `seen` 之后，同窗口再跑必然 0 —— 那是算术，不是词表饱和，也不是故障。这时核验层和 `probe` 层**整段不会被执行**，所以「没报错」不等于「验过了」。**dry-run 不写 seen，所以同窗口 dry-run 复跑 = 原样重放，数字不含新信号，勿当增量引用。**
 - **词表对新生专名是全盲的（结构性，与窗口无关）。** 实证：`SuperMimic` 55 仓簇，18 词只捞到 2 个（7 天窗、30 天窗各验证一次）。**修法是反向做**：拿报告级里 commit 最高的几个，用仓名 token 反查 —— 就是 `probe`。
-- **`probe` 判真簇要两条，缺一不可：① `total` 小；② 簇内同主题。** `total` 小只是必要条件 —— `eidolon`(98)、`senku`(54)、`physguard`(3) 都是撞名。脚本用 desc 跨仓重复词算 `cohesive`，并把候选拆成「同主题 / 撞名嫌疑」两段给证据。**`eidolon` 撞《偶像大师》，`senku` 撞分子对接 —— 看着像专名不代表是我们的题。**
+- **`probe` 判真簇要三条，缺一不可：① `total` 小；② 簇内同主题（`cohesive`）；③ 主题词落在 `THEME_LEXICON` 语义内（`thematic`）。** 前两条都是必要条件，**两条全中也还是假** —— 第十六轮 3 个非通用且 `cohesive=true` 的候选**3/3 全假**：`senku`(54/40) 主题词只有 `with`×11（连接词不在 `GLUE`/`STOPWORDS`，虚词被当主题证据）、`uniview`(19/18) 主题词 `hikvision`×5 / `dahua`×4（海康大华 NVR 工具，簇内高度同主题但主题不是我们的）、`pouw`(31/24) 主题词 `content`×10（第二名撞荷兰语「货运」）。脚本已把 `GLUE` 从主题词里剔除、加 `THEME_LEXICON` 第三判据，候选按 **✅同主题 / ⚠️近似（同主题但主题词不在词表内）/ ⚠️撞名（异质，各写各的）** 三段给证据。**`eidolon` 撞《偶像大师》、`senku` 撞分子对接 —— 看着像专名不代表是我们的题。**
 - **`probe` 历史种子池必须「最近一半 + 其余等距」。** 只取最近 N 条时，`github-candidates.md` 越长老仓越饿死（第十五轮：335 行，只取最近 200 条 → 实际只有最近 24 条进池）。`PROBE_HIST_POOL` 必须 ≈ hist 配额。
 - **`probe` 报簇必须同时给 `owner` 数与 `repo` 数。** 单 owner 多仓（一人铺开几个仓）不构成生态趋势。
 - **共享脚手架 owner 黑名单抓不到**。判据：同短名跨 ≥3 owner 且 desc 前 80 字符相同。
@@ -64,12 +64,12 @@ metadata:
 - **限速要重试，不能放弃。429（限速）和 409（真空仓）必须分开 —— 404 / 409 不再触发认证降级（已进代码，第十五轮回归通过）。** gh 掉线次数、末次原因、冷却期间未认证调用次数都进审计。
 - **description 越像论文，越要查 commits。**
 - **只匹配 `in:name,description`，不要 readme。**
-- **脏词必须配 carrier**（`world model`）。**discard 量大 ≠ 误杀大**（第十一轮 carrier 丢 479 个，是最大单条规则，但没重放就不能算净算）。**carrier 判据 = desc ∪ topics 任一命中**；`EXCL` 仍只看 name+desc（否则放走 awesome 列表仓）。`len(desc)<25` 留逃生口：只有**无 topics** 才丢。**注意 carrier 假设「得有机器人词」，而世界模型正往纯 ML 措辞漂移 —— `colorHur/world-model-lab` 因 desc/topics 全无机器人词被丢（第十五轮）。放宽前先用 `dropped.json` 量误杀率。**
+- **脏词必须配 carrier**（`world model`）。**discard 量大 ≠ 误杀大**（第十一轮 carrier 丢 479 个，是最大单条规则，但没重放就不能算净增）。**carrier 判据 = desc ∪ topics 任一命中**；`EXCL` 仍只看 name+desc（否则放走 awesome 列表仓）。`len(desc)<25` 留逃生口：只有**无 topics** 才丢。**误杀率现在自动量**：`dropped.json` 全量落 carrier 名单，脚本另打 `carrier_named_uniq`（仓名 token 命中机制词的丢弃数，**按 owner 去重**）与 `carrier_named_alive_7d`，并与幸存者做同口径对照 —— 第十六轮粗估：886 丢里 190 个（21.4%、177 owner）仓名自带 `world-model`，抽样 9/12 近 7 天在推。**放宽前必须先看这两行 + 对照，别盲改**（盲改会重演 `jepa` 654→35）。
 - **覆盖率必须报。** <50% 的绝对数不可引用；撞顶的 66.5% 同样是采样后验，不是真实覆盖率。
 - **`template` / `demo` / `sniper` = 练手仓库或农场。**
 - **站点仓按后缀无条件丢**（`.github.io` / `-page` / `-site` / `-website` / `-homepage` / `-showcase` / `-docs`）—— 体量不是判据。**同名仓**才需要「体量小 + 无 language」两个条件。`-docs` 是这组里最弱的一条，盯一轮有没有带 `language` 的仓被误丢。
 - **纯静态站还有第二种形态**：根目录 `index.html` + `.nojekyll` 且无任何代码骨架（`src`/`tests`/`pyproject.toml`/`package.json`/…）→ 页。第十/十一轮三次独立命中（含 39MB、115MB），已进代码。
-- **每条丢弃规则都要能被审计。** 四类归因行固定进审计：曾撞页上限的子窗 · carrier 靠 topics 放行数 · 空/短 desc 靠 topics 放行数 · probe 各来源种子数。**`carrier` 与 `short_desc` 的丢弃名单全量落 `output/ghradar/dropped.json`**（此前是唯一两条不落仓名的规则）。
+- **每条丢弃规则都要能被审计。** 归因行固定进审计：曾撞页上限的子窗 · 整窗/拆窗计数 · carrier 靠 topics 放行数 · 空/短 desc 靠 topics 放行数 · probe 各来源种子数 · **`carrier_named_*` 误杀两行 + 幸存者对照**。**`carrier` 与 `short_desc` 的丢弃名单全量落 `output/ghradar/dropped.json`**（此前是唯一两条不落仓名的规则）。
 - **农场只认黑名单。**
 - **报「零命中」必须分开写四类。**
 - **不做判断。** 只给仓库 + 一句话 + 链接 + star + 30 天 / 7 天提交数。
