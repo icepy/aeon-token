@@ -1,12 +1,10 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-26T15:26:55Z",
-  "quality_score": 2,
-  "assessment": "只输出单篇论文标题与链接，没有摘要、作者或入选理由，也没用简体中文写正文，读者无法判断它为什么值得看或该做什么，筛选标准也无从验证。",
-  "flags": [
-    "low_quality"
-  ],
-  "avg_score": 3.35,
+  "last_analyzed": "2026-10-26T15:56:28Z",
+  "quality_score": 4,
+  "assessment": "Runs a clean, source-cited scan with a real funnel (181→22, 0 query failures) and a genuinely useful insight that all 22 survivors sit in the 61–90 day band, so this is backfill rather than a warming trend; self-audits prior defects and names a concrete next action, but is heavy on process bookkeeping and never says why any paper matters to the operator's positions.",
+  "flags": [],
+  "avg_score": 3.39,
   "history": [
     {
       "date": "2026-10-24",
@@ -108,6 +106,12 @@
       "date": "2026-10-26",
       "score": 2,
       "ts": "2026-10-26T15:26:55Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 4,
+      "ts": "2026-10-26T15:56:28Z",
       "harness": "claude"
     }
   ]
