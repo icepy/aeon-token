@@ -148,3 +148,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-10-26,arxiv-radar,claude-opus-5-5,70321,15894,962560,0
 2026-10-26,arxiv-radar,claude-opus-5-5,107182,32549,1024512,0
 2026-10-26,arxiv-radar,claude-opus-5-5,15782,6755,278016,0
+2026-10-26,arxiv-radar,claude-opus-5-5,37698,24410,1438464,0

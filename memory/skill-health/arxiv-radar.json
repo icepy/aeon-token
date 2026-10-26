@@ -1,10 +1,12 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-26T15:06:56Z",
-  "quality_score": 4,
-  "assessment": "Substantive, well-structured scan report with explicit window/funnel counts, a cited arXiv ID + link for the sole hit, honest auditing of EXCL false positives and the dry-run persistence gap, plus concrete next steps — solid and largely verifiable, though value is mostly process bookkeeping and thin on research insight, with only weak linkage to the DEUS timing/threshold priorities.",
-  "flags": [],
-  "avg_score": 3.44,
+  "last_analyzed": "2026-10-26T15:26:55Z",
+  "quality_score": 2,
+  "assessment": "只输出单篇论文标题与链接，没有摘要、作者或入选理由，也没用简体中文写正文，读者无法判断它为什么值得看或该做什么，筛选标准也无从验证。",
+  "flags": [
+    "low_quality"
+  ],
+  "avg_score": 3.35,
   "history": [
     {
       "date": "2026-10-24",
@@ -100,6 +102,12 @@
       "date": "2026-10-26",
       "score": 4,
       "ts": "2026-10-26T15:06:56Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-26",
+      "score": 2,
+      "ts": "2026-10-26T15:26:55Z",
       "harness": "claude"
     }
   ]

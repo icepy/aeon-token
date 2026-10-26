@@ -1,0 +1,101 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 60 天 · 幸存 1"
+      },
+      "children": [
+        "stats",
+        "sep1",
+        "section-heading",
+        "badge-row",
+        "story-link",
+        "story-url"
+      ]
+    },
+    "stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-survived"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "60 天",
+        "trend": "neutral"
+      }
+    },
+    "stat-survived": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "1",
+        "trend": "neutral"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "可验证计算 / 真实资产上链",
+        "level": "h2"
+      }
+    },
+    "badge-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-verifiable",
+        "badge-category"
+      ]
+    },
+    "badge-verifiable": {
+      "type": "Badge",
+      "props": {
+        "text": "Verifiable",
+        "variant": "secondary"
+      }
+    },
+    "badge-category": {
+      "type": "Badge",
+      "props": {
+        "text": "可验证计算/真实资产上链",
+        "variant": "outline"
+      }
+    },
+    "story-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Verifiable Computation with Trusted Execution Environments and On-Chain Digital Rights Tokens",
+        "href": "https://arxiv.org/abs/2609.21728",
+        "source": "arXiv · 2026-09-18"
+      }
+    },
+    "story-url": {
+      "type": "Link",
+      "props": {
+        "label": "https://arxiv.org/abs/2609.21728",
+        "href": "https://arxiv.org/abs/2609.21728"
+      }
+    }
+  }
+}
