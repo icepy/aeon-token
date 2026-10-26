@@ -3,16 +3,16 @@
 
 用法:
     python3 skills/github-radar/scan.py "days:30"
-    python3 skills/github-radar/scan.py "days:30 probe"      # 额外跑簇反查
+    python3 skills/github-radar/scan.py "days:30 probe"      # 额外跑专名簇反查
 
 var token（空格分隔，可组合）:
     dry-run   跳过 notify、不写 seen
     days:N    扫描窗口，默认 30
     min:N     star 地板，默认 0
     chk:N     核验门槛（仅在幸存数超 CHK_CAP 时启用），默认 5
-    probe     对报告级 top-10 做仓名 token 反查，找被词表漏掉的派生簇
+    probe     对报告级 top-N 的仓名 token 做反查，找词表漏掉的专名簇
 
-产物（文件名固定，别改成 scan11.py / audit11.log）:
+产物（文件名固定，别改成 scan12.py / audit12.log）:
     output/ghradar/out.json       全部幸存者
     output/ghradar/audit.log      审计（同时打到 stdout）
     output/ghradar/report.md      通知正文
@@ -41,10 +41,11 @@ MAXPAGE = 3
 SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-showcase")
 SCAFFOLD_MIN = 3
 SEARCH_MIN_GAP = 2.1   # search 限速 30/min
-VERIFY_WORKERS = 8     # 核验 / 根目录检查并发（core quota 5000/h）
+VERIFY_WORKERS = 6     # 核验并发（core quota 5000/h，但并发太高会触发二级限流）
 VERIFY_BUDGET = 900    # 核验墙钟预算（秒）；超预算的标 unverified
-PROBE_TOP = 10         # probe: 取报告级前 N 个做反查
-PROBE_MAXTOK = 12      # probe: 最多反查多少个 token
+PROBE_TOP = 12         # probe: 取报告级前 N 个的仓名 token 作候选
+PROBE_MAXTOK = 20      # probe: 最多反查多少个 token
+PROBE_MAX_TOTAL = 600  # probe: 反查 total 超过这个 → 判为通用词，不是专名
 
 # 根目录里有这些 = 真代码仓（用来否掉"页形态"）
 CODE_SKELETON = {"src", "tests", "test", "pyproject.toml", "package.json",
@@ -144,13 +145,25 @@ FULLWIN = "%s..%s" % ((now - timedelta(days=DAYS)).strftime("%Y-%m-%d"),
                       now.strftime("%Y-%m-%d"))
 
 GH_LOCK = threading.Lock()
-GH = [True]
+GH_COOLDOWN = 60           # gh 掉线后的冷却秒数；到期自动重试，不再整轮放弃
+GH_DOWN_UNTIL = [0.0]
 gh_lost = [False]
 
+def gh_alive():
+    return time.time() >= GH_DOWN_UNTIL[0]
+
+def gh_down(reason):
+    with GH_LOCK:
+        GH_DOWN_UNTIL[0] = time.time() + GH_COOLDOWN
+        if not gh_lost[0]:
+            print("  ! gh api 放弃: %s" % reason[:140], file=sys.stderr)
+            gh_lost[0] = True
+
 def gh_get(path):
-    """先走 gh api（认证），掉线才降级未认证 urllib。429 与 409 必须分开。"""
+    """先走 gh api（认证）；失败则冷却 GH_COOLDOWN 秒后自动回来。
+    429（限速）与 409（真空仓）必须分开；404 不该拖垮认证态。"""
     last = ""
-    if GH[0]:
+    if gh_alive():
         for i in range(3):
             try:
                 r = subprocess.run(["gh", "api", path], capture_output=True,
@@ -164,10 +177,8 @@ def gh_get(path):
                 break
             except Exception as ex:
                 last = str(ex); time.sleep(3)
-        with GH_LOCK:
-            if GH[0]:
-                print("  ! gh api 放弃: %s" % last[:140], file=sys.stderr)
-                GH[0] = False; gh_lost[0] = True
+        if "404" not in last and "Not Found" not in last:
+            gh_down(last)
     for i in range(2):
         try:
             req = urllib.request.Request("https://api.github.com/" + path, headers={
@@ -293,7 +304,7 @@ for nm, lst in byname.items():
                     c["scaffold"] = True; scaffold.append(c["repo"])
 out = [c for c in out if not c.get("scaffold")]
 
-# ── pages 根目录规则（第三次独立复现后固化）──
+# ── pages 根目录规则（三次独立复现后固化）──
 # index.html + .nojekyll 且根目录无任何代码骨架 → 页。体积不做豁免。
 def is_page_repo(rid):
     data, _ = gh_get("repos/%s/contents" % rid)
@@ -304,7 +315,8 @@ def is_page_repo(rid):
             and not (names & CODE_SKELETON))
 
 if out:
-    with ThreadPoolExecutor(max_workers=VERIFY_WORKERS) as ex:
+    # 4 路：并发太高会把 gh 打成二级限流
+    with ThreadPoolExecutor(max_workers=4) as ex:
         flags = list(ex.map(is_page_repo, [c["repo"] for c in out]))
     kept = []
     for c, isp in zip(out, flags):
@@ -378,39 +390,43 @@ rep = sorted([c for c in out if reportable(c)],
 os.makedirs(OUTD, exist_ok=True)
 json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
-# ── probe：报告级 top-N 仓名 token 反查，找词表漏掉的派生簇 ──
-# 判据：同一个 token 出现在 >=3 个不同 owner 的仓名里 → 报簇。
-# 注意必须**反向**做 —— 直接从幸存者里抽专名抓不到 SuperMimic（55 仓里只有 2 个进幸存者）。
+# ── probe：报告级 top-N 仓名 token 反查，找词表漏掉的专名簇 ──
+# 顺序必须是「先反查、再排序」—— 按 token 在 top-N 里出现几次排会漏掉
+# SuperMimic（它只出现 1 次，被 capstone/recall 这类通用词挤掉）。
+# 专名判据：反查 total 小 + owner 密度高 + 簇内有高 commit 仓。
 cluster_report = []
 if PROBE and rep:
-    toks = Counter()
+    toks = []
     for c in rep[:PROBE_TOP]:
         for tk in re.split(r"[-_./]", c["repo"].split("/")[-1].lower()):
-            if len(tk) >= 4 and tk not in STOPWORDS and not tk.isdigit():
-                toks[tk] += 1
-    for tk, _ in toks.most_common(PROBE_MAXTOK):
+            if (len(tk) >= 4 and tk not in STOPWORDS
+                    and not tk.isdigit() and tk not in toks):
+                toks.append(tk)
+    in_out = {c["repo"] for c in out}
+    for tk in toks[:PROBE_MAXTOK]:
         res, err = search('"%s" in:name,description created:%s fork:false'
                           % (tk, FULLWIN))
         if res is None:
             continue
+        total = res.get("total_count", 0)
         items = res.get("items", [])
         owners = {(i.get("owner") or {}).get("login", "") for i in items}
-        if len(owners) < SCAFFOLD_MIN:
-            continue
-        seen_here = {c["repo"] for c in out}
-        fresh = [i["full_name"] for i in items if i["full_name"] not in seen_here]
         hot = []
-        for i in items[:12]:
+        for i in items[:8]:
             n30, st = commits_since(i["full_name"], 30)
             if st == "ok" and n30 and n30 >= REPORT_COMMITS:
                 n7, _ = commits_since(i["full_name"], 7)
-                hot.append({"repo": i["full_name"], "stars": i.get("stargazers_count", 0),
+                hot.append({"repo": i["full_name"],
+                            "stars": i.get("stargazers_count", 0),
                             "commits_30d": n30, "commits_7d": n7})
         hot.sort(key=lambda x: (-(x["commits_7d"] or 0), -x["commits_30d"]))
-        cluster_report.append({"token": tk, "total": res.get("total_count", 0),
-                               "owners": len(owners), "not_in_out": len(fresh),
-                               "hot": hot[:8]})
-    cluster_report.sort(key=lambda x: (-len(x["hot"]), -x["owners"]))
+        cluster_report.append({
+            "token": tk, "total": total, "owners": len(owners),
+            "generic": total > PROBE_MAX_TOTAL,
+            "not_in_out": sum(1 for i in items if i["full_name"] not in in_out),
+            "hot": hot[:8]})
+    # 专名优先：非通用词 → 簇内活跃仓多 → owner 密度高
+    cluster_report.sort(key=lambda x: (x["generic"], -len(x["hot"]), -x["owners"]))
     json.dump(cluster_report, open(CLUSTERS, "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
 
@@ -454,7 +470,7 @@ L.append("词表返回/新收: " + " · ".join(
     "%s=%d/%d" % (t, raw_term.get(t, 0), new_term.get(t, 0)) for t in
     sorted(TERMS, key=lambda x: -raw_term.get(x, 0))))
 if gh_lost[0]:
-    L.append("⚠️ gh 认证已丢失，降级未认证 —— 本轮完整性存疑")
+    L.append("⚠️ gh 认证曾掉线（已按 %ds 冷却自动重试）—— 核验完整性存疑" % GH_COOLDOWN)
 low = {k: v for k, v in cov.items() if v < 50}
 if low:
     L.append("⚠️ 覆盖率 <50%%（绝对数不可引用）: " +
@@ -496,12 +512,16 @@ if cand:
     L.append("ℹ️ 候选农场（owner≥3，需人工判）: " +
              " · ".join("%s=%d" % kv for kv in cand.items()))
 if cluster_report:
-    L.append("ℹ️ probe 反查（token → owner 数 / 不在幸存者 / 簇内活跃）:")
-    for cl in cluster_report[:6]:
-        L.append("  `%s` total=%d owners=%d 未见过=%d | %s"
+    L.append("ℹ️ probe 反查 —— 专名候选（total≤%d）:" % PROBE_MAX_TOTAL)
+    for cl in [c for c in cluster_report if not c["generic"]][:8]:
+        L.append("  `%s` total=%d owners=%d 未在幸存者=%d | %s"
                  % (cl["token"], cl["total"], cl["owners"], cl["not_in_out"],
                     " · ".join("%s(%s/%s)" % (h["repo"], h["commits_30d"],
                                               h["commits_7d"]) for h in cl["hot"][:4])))
+    gen = [c for c in cluster_report if c["generic"]][:5]
+    if gen:
+        L.append("  （通用词，反查噪声）: " + " · ".join(
+            "%s(total=%d)" % (c["token"], c["total"]) for c in gen))
 for c in rep[:25]:
     L.append("  " + fmt(c))
 
