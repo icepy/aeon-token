@@ -1,8 +1,33 @@
-扫 24 词 | 窗口 [202610191016 TO 202610261016] | 原始 8 | 幸存 0 | var='dry-run days:7'
-丢弃 seen=6 excl=0 carrier=2 fail=0
-词表四分类 —— 查询失败 0 / 真零 19 / 全已见(饱和) 5 / 有新增 0
+扫 24 词 | 窗口 [202609261019 TO 202610261019] | 原始 62 | 幸存 26 | var='dry-run days:30'
+丢弃 seen=31 excl=1 carrier=4 fail=0
+词表四分类 —— 查询失败 0 / 真零 10 / 全已见(饱和) 10 / 有新增 4
 窗口内最新收录日期: 2026-10-22   ← 比今天早 3 天以上即索引滞后，不是零命中
-耗时 79s
-⚠️ 真零命中（total=0，可考虑删词）: proof-of-useful-work · verifiable inference · light client · proof of training · proof of learning · verifiable training · auditable training · data availability sampling · restaking · automated market maker · consensus protocol · cat:cs.CR AND ti:"MEV" · liquid staking · embodied data · robot manipulation data · embodied AI · ti:"human data" AND cat:cs.RO · ti:"data generation" AND cat:cs.RO · ti:"Robinhood Chain"
-ℹ️ 全已见（饱和，**别删**）: robot data(raw=1) · zero-knowledge(raw=3) · ti:"data engine" AND cat:cs.RO(raw=1) · ti:"egocentric" AND cat:cs.RO(raw=2) · ti:"EIP-1559"(raw=1)
-词表原始/新收: zero-knowledge=3/0 · ti:"egocentric" AND cat:cs.RO=2/0 · robot data=1/0 · ti:"data engine" AND cat:cs.RO=1/0 · ti:"EIP-1559"=1/0
+耗时 77s
+⚠️ 真零命中（total=0，可考虑删词）: verifiable inference · light client · proof of learning · verifiable training · restaking · consensus protocol · cat:cs.CR AND ti:"MEV" · liquid staking · robot manipulation data · ti:"Robinhood Chain"
+ℹ️ 全已见（饱和，**别删**）: proof-of-useful-work(raw=1) · proof of training(raw=1) · auditable training(raw=2) · data availability sampling(raw=1) · automated market maker(raw=2) · embodied data(raw=1) · robot data(raw=4) · embodied AI(raw=6) · zero-knowledge(raw=8) · ti:"EIP-1559"(raw=2)
+词表原始/新收: ti:"egocentric" AND cat:cs.RO=20/14 · zero-knowledge=8/0 · embodied AI=6/0 · ti:"human data" AND cat:cs.RO=6/6 · ti:"data generation" AND cat:cs.RO=5/4 · robot data=4/0 · ti:"data engine" AND cat:cs.RO=3/2 · auditable training=2/0 · automated market maker=2/0 · ti:"EIP-1559"=2/0 · proof-of-useful-work=1/0 · proof of training=1/0 · data availability sampling=1/0 · embodied data=1/0
+  2026-10-17 [ti:"egocentric" AND cat:cs.RO] SocialCoAct: Enabling and Benchmarking Egocentric Social Co-Action for VLM-Based Huma
+  2026-10-16 [ti:"egocentric" AND cat:cs.RO] Ego2Contact: Predicting Touch from Egocentric Human Video for Contact-Rich Robot Mani
+  2026-10-15 [ti:"data engine" AND cat:cs.RO] CoDA: Co-Evolution of Data Engines and Action Policies
+  2026-10-15 [ti:"egocentric" AND cat:cs.RO] Perceive, Predict, and Plan: a Unified World Action Model for Egocentric Dexterous Ma
+  2026-10-15 [ti:"egocentric" AND cat:cs.RO] KODA: Kinematics--Observation Data Alignment for Humanoid Learning from Human Egocent
+  2026-10-14 [ti:"egocentric" AND cat:cs.RO] EgoJEPA: Beyond Retargeting for Dexterous Manipulation from Egocentric Videos
+  2026-10-14 [ti:"data generation" AND cat:cs.RO] AutoRSR: Automated Real-to-Sim-to-Real Data Generation for Scalable Robot Learning
+  2026-10-14 [ti:"data generation" AND cat:cs.RO] NavAble: A Large-Scale Dataset and Synthetic Data Generation Pipeline for Blind Navig
+  2026-10-13 [ti:"human data" AND cat:cs.RO+ti:"egocentric" AND cat:cs.RO] $λ_0$: Scaling Open-World Egocentric Human Data for Humanoid Loco-Manipulation
+  2026-10-13 [ti:"egocentric" AND cat:cs.RO] EgoMatrix: Physically Faithful Dexterous Robot Demonstrations from Egocentric Human V
+  2026-10-13 [ti:"egocentric" AND cat:cs.RO] DR-VLA: Learning Human-Like Quadruped Navigation from Egocentric Web Videos via Domai
+  2026-10-13 [ti:"data generation" AND cat:cs.RO] OneDemo: Unified Policy Learning and Data Generation from a Single Demonstration
+  2026-10-12 [ti:"data engine" AND cat:cs.RO] DexNinja: Learning Robust Dexterous Cutting Policy with a Real-to-Sim-to-Real Data En
+  2026-10-09 [ti:"egocentric" AND cat:cs.RO] EgoReveal: Learning Active Vision and Object Manipulation under Partial Occlusions fr
+  2026-10-08 [ti:"human data" AND cat:cs.RO] VioLA: Learning Generalist Humanoid Control Policies from Human Data
+  2026-10-08 [ti:"egocentric" AND cat:cs.RO] ESCAPE: Egocentric Sensing for Collision Avoidance and Policy Execution
+  2026-10-07 [ti:"egocentric" AND cat:cs.RO] Never Look Back: Understanding Persistence in 3D Object Memory from Egocentric Videos
+  2026-10-06 [ti:"human data" AND cat:cs.RO] Workhorse: Learning Robust Whole-Body Humanoid Loco-Manipulation from Human Data
+  2026-10-06 [ti:"human data" AND cat:cs.RO+ti:"egocentric" AND cat:cs.RO] EgoLAP: Learning from Egocentric Human Data through Language-Action Reasoning
+  2026-10-05 [ti:"egocentric" AND cat:cs.RO] RoboCap: A New Platform for Egocentric Robot Learning
+  2026-10-01 [ti:"data generation" AND cat:cs.RO] FlashDexRetarget: Accelerating Dexterous Manipulation Data Generation through Multi-M
+  2026-09-30 [ti:"human data" AND cat:cs.RO+ti:"egocentric" AND cat:cs.RO] Ego4WAM: What Matters When Scaling Egocentric Human Data for Robot Learning?
+  2026-09-30 [ti:"human data" AND cat:cs.RO+ti:"egocentric" AND cat:cs.RO] Towards a General Humanoid Loco-Manipulation Model via Egocentric Whole-Body Human Da
+  2026-09-30 [ti:"egocentric" AND cat:cs.RO] OccluDex: Hierarchical 3D Visuo-Tactile Representation Learning for Egocentric Dexter
+  2026-09-28 [ti:"egocentric" AND cat:cs.RO] DexRoam: Learning Mobile Bimanual Dexterous Manipulation from Egocentric Whole-Body H
