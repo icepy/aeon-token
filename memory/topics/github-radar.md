@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 九轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、seen 基线有效性）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-25T07:05:00Z
+timestamp: 2026-10-26T00:15:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -119,9 +119,27 @@ timestamp: 2026-10-25T07:05:00Z
 - **剔污染后合并报告级 515 → 495**，其中 7d 活跃 **216**。
 - **判据：缩写词必须配 carrier（像 `world model` 那样）或改用全称。`vla` 用 `"vision language action"`，`jepa` 用 `"joint embedding predictive"`。** 本轮未改词表（保持与前六轮可比），但这是下一次必改项。
 
-### 16. ⚠️ `pages` 加 `not language` 带进反向泄露（第七轮引入）
+### 16. ⚠️ `pages` 规则在两侧都判错：先漏放静态站，后误杀代码仓
 
-第六轮的修法是「`short==owner` 且 `size<300KB` 且 **无 language** 才丢」，结果 `*.github.io` 里 **<300KB 但有 language** 的仓被放行（GitHub 会把静态站标成 HTML/JS/CSS），两批共 **6 个漏网**（`vladimirsk1234.github.io` 0KB HTML、`focal-vla.github.io` 0KB HTML 等）。影响小（0 个进报告级），但方向错了。**正确判据：名字像页 + 体量小，两个条件，`language` 不该做豁免。**
+第六轮修法是「`short==owner` 且 `size<300KB` 且 **无 language** 才丢」，于是 `*.github.io` 里 **<300KB 但有 language** 的仓被放行（GitHub 会把静态站标成 HTML/JS/CSS），两批共 **6 个漏网**（`vladimirsk1234.github.io` 0KB HTML、`focal-vla.github.io` 0KB HTML 等）。**第九轮反向验证了这个修法错得更深**：`pages` 只丢 <300KB 后，**19 个页形态幸存、9 个进报告级，最大 304,228KB**（`le-wam/le-wam.github.io` **297MB**、`liujiting123/morphact-website` 99MB、`dill-vla.github.io` 74MB、`phylatent.github.io` 27MB、`Axiom0-page` 19MB）。**「体量小」这个条件在巨型静态站上是反向的 —— 304MB 的 `.github.io` 仍然是页。**
+**最终判据：改用「名字像页 / 后缀像页」单条件成立即丢；或「根目录无 `src/`/`contracts/`/`crates/` 且 language ∈ {HTML,CSS,JS,TypeScript}」。`size` 与 `language` 都不能单独当豁免 —— 研究组的官方实现仓经常就叫 `Owner/Project`，也可能叫 `Owner/Project.github.io`（后者塞了 594MB CSS/JS 资源）。**
+
+### 16b. 🟢 第八、九轮补上的一课：`jepa` 不是噪音，是「★0 但代码写得最狠」
+
+第八轮按污染率把 `jepa` 判为「换全称损失 94.6% → 缩写才是生态写法」，据此又推出「jepa 只剩噪音」，**后半句是错的**。第九轮真正新增的 65 个仓**全部是 `jepa`、全部 ★0、0 个 ★≥3**，但其中 **26 个报告级、11 个 7d 活跃**，且全轮前两名都在这里：`sahiltolani30/learn-a-world` **30d≥100 / 7d≥100**、`500mhzClub/Go2-JEPA-Navigation` **30d≥100 / 7d=52**。**star 与 commits 在这支上反相关 —— 追随 JEPA 线只能按 commits 排，按 star 会全部漏掉。`jepa` 该留，但应与 `vision language action` 分开排序。**
+
+### 16c. 🔴 第九轮：`PER_TERM_CAP=25` 是抽样低估 3.85× 的直接原因
+
+`scan.py` 的 `PER_TERM_CAP=25` 按 star 排序取样，本轮只核了 **76/234**。补全后：
+
+| 指标 | scan 抽样（76 仓） | 全量（230 仓） | 倍数 |
+|---|---|---|---|
+| 报告级 | 20 | **77** | **3.85×** |
+| 其中 7d 活跃 | 11 | **31** | 2.8× |
+| 来自「抽样丢弃」部分的报告级 | — | **57/77 = 74%** | — |
+| 来自「抽样丢弃」部分的 7d 活跃 | — | **25/31 = 81%** | — |
+
+**未核验的 159 个里 `stars>=5` 有 0 个** —— star 排序把整个 ★0 长尾整条切掉，而报告级和活跃度的四分之三都藏在里面。**这是「按 star 分配核验预算会饿死 star 天然低的整个域」的第三次复现，第一次量化到「75% 的报告级被切掉」。core quota 5,000/h 足够全量，`PER_TERM_CAP` 存在的唯一理由是省时间，代价是把绝大多数信号藏起来 —— 直接删掉。**
 
 ### 17. 🟢 加密侧「空」第三次被推翻，这次是全量
 
@@ -143,6 +161,9 @@ timestamp: 2026-10-25T07:05:00Z
 # Citations
 
 - 第九轮快照 `output/ghradar/out9full.json`（234 幸存 / 3,461 原始）· `audit.log` · 全量核验 `full9.py`（230/234）· 候选重建 `cards9.py` · 对照第八轮 `out8.json`（178 幸存，dry-run 未落 seen）· 词表口径 `terms9.py` → `terms9.json`
+- 第八轮：`output/ghradar/out8.json`（178 幸存 / 2,817 原始）· 全量核验 `verify8.py`（174/178）· 词表口径 `terms8.json` · 目录树 `tree8.py` · 加密复核 `cry8.json` · `logs/2026-10-25#github-radar`
+- 第七轮：`output/ghradar/full7.py` → `full7.json`（1,251 仓）+ `full7b.py` → `full7b.json`（332 仓）· 污染量化 `contam7.py` · 词表饱和 `terms7.py`
+- 第六轮：`output/ghradar/cry_verify6.py` · `decay6.py` · `robact6.py` · `agentfile6.py` · `wam6.py`
 - 第八轮快照 `output/ghradar/out8.json`（178 幸存 / 2,817 原始）· `audit8.log` · 全量核验 `verify8.py`（174/178 = 97.8%）· 词表口径 `terms8.json` · 分析 `an8.py` / `deep8.py` / `tree8.py` · 加密侧复核 `cry8.py` → `cry8.json`
 - 第七轮快照 `output/ghradar/out7.json`（332 新增 / 3,441 原始）· `audit7.log` · 全量核验 `full7.json`（1,251）+ `full7b.json`（332）· 污染量化 `contam7.py` · 词表饱和 `terms7.py` → `terms7.json` · 汇总 `all7.py` / `an7.py` / `final7.py`
 - 第六轮快照 `output/ghradar/out6.json`（1,251 幸存 / 2,427 原始）· `audit6.log`

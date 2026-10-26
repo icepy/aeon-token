@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-25T08:09:17Z
+timestamp: 2026-10-26T00:15:00Z
 ---
 
 # Lessons learned — archive
@@ -43,7 +43,7 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 
 **纪律：任何增量型链上变量（`totalSupply`、`balanceOf`、导管余额）要下「走平/通缩」判断，先取 ≥3 个跨度不同的点（15m / 1h / 6h / 24h / 48h）看形状；单点重复一律只写「本轮未见变化」。** 区块时间戳必须断言（本轮 24h 窗口第一次搜索下界太窄，落回 80,000s 而不是 86,400s，−2.65% 是错的口径，修正后 −3.80%）。
 
-**配套判据**：mint 事件用 `Transfer(from=0x0)` 抓，burn 用 `Transfer(to=0x0)`，且必须跑判别力控制（故意改 1 字符 topic0 应回 0）。本轮控制真 171 / 假 0，证明那 171 条里确实包含这笔。
+**配套判据**：mint 事件用 `Transfer(from=0x0)` 抓，burn 用 `Transfer(to=0x0)`，且必须跑判别力控制（故意改 1 字符 topic0 应回 0）。本轮控制真 171 / 假 0，证明那 171 条里确实包含这笔。[source: logs/2026-10-25#price-alert]
 
 ### 大额 mint 看收款地址的 nonce 与铸前余额，别看金额
 
@@ -109,11 +109,22 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 
 ## 过滤器设计
 
+- **🔴 换词/换词表口径前，先量两个候选口径的 `total_count` 与重叠度，不能只看污染率。** 2026-10-25 `github-radar` 第八轮实测，同一次「缩写→全称」动作在两个词上结果相反：
+  - `vla` → `vision language action`：缩写 3,696 命中、污染 **22.0%**；全称 205 命中、污染 **1.4%**、报告级 **47**，且**两口径几乎不重叠**（全称 205 里有 138 个是 `vla` 从没抓到的）。仓库名多为合成词（`smolvla` / `InfraVLA` / `Q-VLA-Forge`），GitHub 按词切分，独立 `vla` token 打不中，而 description 写的正是全称。**污染和漏检同时解决。**
+  - `jepa` → `joint embedding predictive`：**654 → 35，损失 94.6%。** JEPA 是固定家族缩写，仓库名一律 `jepa-*`，没人把全称写进 name/description。
+  **判据：分界不是「缩写脏不脏」，而是术语在生态里实际怎么被书写 —— 类别通名（VLA）全称是主流，专有家族缩写（JEPA）缩写是主流。** 只看污染率会把两个词推往相反的正确方向。 [source: logs/2026-10-25#github-radar]
+- **🔴 共享脚手架簇：owner 黑名单与 `owner≥3仓` 在结构上都抓不到。** 2026-10-25 第八轮，7d 榜首 `AdrienBarrau/jepa-world-model-from-scratch`（30d=46 / 7d=30）是陷阱 —— 同名仓出现在 **8 个不同 owner** 下（第九轮仍剩 4 个），**description 逐字相同、根目录相同、commit message 逐字相同**。每个 owner 只有 1 仓，所以两条规则全部失效。**新增可审计判据：同 repo 名跨 owner ≥3 且 desc 前 80 字符相同 → 判脚手架，一次搜索即可，无需额外 API。** [source: logs/2026-10-25#github-radar]
+- **🔴 EXCL 必须同时查仓库名，不能只查 description。** 2026-10-25 第八轮实测 4 个名字含 `awesome`/`website`/`page` 但 desc 不带的全漏，其中 `ishandutta2007/Awesome-Vision-Language-Action-Models`（30d=10）**直接进了报告级**；另有 7 个页面形态（`index.html` + 无代码目录）进报告级。**判据：EXCL 同时查 `repo.split("/")[-1]` 与 description；`*-website`/`*-page`/`*-showcase` 后缀同理。** [source: logs/2026-10-25#github-radar]
+- **🔴 `pages` 规则用「体量小」做条件，在巨型静态站上是反的。** 2026-10-25 第七、九轮：加 `not language` 豁免后，`*.github.io` 里 <300KB **但有 language** 的仓被放行（3 个，反向泄露）；第九轮又发现 **19 个页形态幸存、9 个进报告级，最大 304,228KB**（`le-wam/le-wam.github.io` 297MB、`morphact-website` 99MB）。**判据改为「名字像页 / 后缀像页」单条件成立即丢，或改用「根目录无 src/contracts/crates 且 language ∈ {HTML,CSS,JS,TS}」。`size` 与 `language` 都不能单独当豁免。** [source: logs/2026-10-25#github-radar]
+- **🔴 已合并 ≠ 已生效：refactor 会基于旧副本把修复静默删掉。** 2026-10-25 `arxiv-radar`：PR #8（10-24 11:20:09Z 合并）给 `CARRIER_MARKET` 追加 8 个词；26 分钟后的 `0e85bfd8`（11:46:07Z，「Refactor term handling」）基于**早于 PR #8 的旧副本**改动，把 8 个词连注释一起删掉，`main` 上退回到 5 词。**实测代价：90 天窗里会丢 1 篇真论文、0 噪声（`2608.13271` 只写 `distributed ledger`/`block creator`/`transaction ordering`），且表现成「零命中」。**
+  **判据：`gh pr view --json state,mergedAt` 说 MERGED 只证明合并过；必须对照文件本体（`skills/arxiv-radar/SKILL.md:120`）与 commit 历史。单看 PR 状态会误判已生效，单看文件会误判 PR 没合 —— 两者对不上才定位得到覆盖它的那次 commit。** 另注：本仓库是 shallow clone，`git log` 只有 1 个合成快照提交，**判断 skill 变更必须走 `gh api /commits?path=…`**。 [source: logs/2026-10-25#arxiv-radar]
 - **carrier / 领域过滤器必须按簇配，不能全局一套。** 2026-10-24 `arxiv-radar` 实测：一套链上 carrier（`blockchain` / `token` / `validator` …）套在「具身/机器人数据」词上，**90 天窗 20 篇全被丢，20 篇一个链上词都不含**；而少数「幸存」的反而靠同形异义（`token`=GAP tokens、`validator`=validator-passed 环境、`network`=agentic robot network）混进来。**真货全丢、噪声全进 —— 方向是反的。** 症状表现成「零命中」，跟「话题死」无法区分。改法：按词分域给 carrier（`CARRIER_BY_TERM`），90 天窗幸存 0 → 21、ZK 零噪声。**判据：过滤器丢掉的样本要全量抽检，不能只看幸存者 —— 只看幸存者会得到「过滤器工作正常」的完全错误结论。**
 - **小众域的过滤器不要"顺手放宽"。** 同一次里试过给 ZK 域加 `proof`/`circuit`/`prover`，会把纯复杂度理论、ZK Proofs of Quantumness、点加硬件加速等 8 条理论/硬件论文捞回来。**同一个放宽动作，在机器人域是纠错、在 ZK 域是引噪** —— 必须逐域验精度，不能统一推。
 - **「抽样核查」不能按结果排序取前 N。** 2026-10-25 `github-radar` 实测：skill 自带 audit 对「创建时间最新的 25 个」查 30 天提交，60 天窗下这 25 个全部落在最近两天、全部 ★0 —— **铁律「判真伪只看 commits」在默认实现下永远碰不到 ★≥10 的那 162 个仓。** 症状是审计日志看起来完整（有 commits30d 列、有 stale 标记），但核验对象全是噪声。**任何按排序截断的抽样，都要先问「这个排序跟我要判的属性相关吗」；不相关就换个入口（本轮改成 10 月新建 ★≥5 + 更早 ★≥50，共 120 仓）。**
 - **`total_count` 覆盖率连续两轮钉在 32.1% = 窗口化已经到头。** `github-radar` 17 词 × 3 窗，7,551 → 2,426。要真覆盖只能按 `created:` 逐日切片，或换 `sort=updated` 取活跃面。**覆盖率 <50% 的词（本轮 `vla` 7.9% / `world model` 21.4% / `jepa` 44.3%）任何绝对数字都不能引用** —— 这一条已连续两轮成立，不是偶发。
 - **脏词噪声率会随轮次上升，不会自己变好。** `data availability` 130 命中过 carrier 仅 5（**3.8%**，次轮 8%），`intent-based` 120 → 10（**8.3%**，次轮 10%）。**同一个词连续多轮越测越脏 = 该词在平台上已彻底语义漂移**，此时继续调 carrier 是徒劳，只能删词或换 topic 路由。
+- **🔴 `scan` 的「真零命中」把「全已见」误判成废词，而这个误判恰好会误导删词。** 2026-10-25 第七轮：`per_term` 只数新幸存者，有了 `seen` 基线后某词命中若全部已见 → `per_term=0` → 审计打「⚠️ 真零命中」，本轮因此报了 12 个「真零」词。**逐词单查 60 天 `total_count` 后 12 个全部非空**（`data availability`=126、`intent-based`=116、`egocentric`=141、`sim-to-real`=166、`world action model`=99…）。**汇总口径要分成 A 查询失败 / B 真零命中 / C 全已见 / D 有新增 四类。「本轮无新增」= 该窗口已采尽，不是该词废了。** 这条直接推翻前六轮反复出现的「这 4 个加密词该删」——它们有 126/116/6/2 个仓，是被 `seen` 吃掉了。 [source: logs/2026-10-25#github-radar]
+- **🔴 `seen` 基线的有效性 = 「上一次非 dry-run」的幸存集，不是「上一次跑过」。** 2026-10-25 第九轮：第八轮是 dry-run（178 幸存但未落盘），于是本轮 169/234 = **72.2% 是重复回捞**；「新增 238 条 seen」是假象，与上轮快照求差后真正新增只有 65。**判据：报「新增 N」前必须与上一轮快照文件求差，不能只看 `seen` 增量。同一天密集重跑时，若前一轮是 dry-run，下一轮的有效新增要除以 ~3.6。** [source: logs/2026-10-25#github-radar]
 - **🔴 黑名单文件带行内注释 = 黑名单完全失效，而且日志会显示 farm=0（看起来像"本轮没有农场"）。** 2026-10-25 第四轮实测：`memory/github-farms.txt` 写成 `maxamin              # 3 仓全建 10-23…`，而 `scan.py` 的解析是 `{l.strip().lower() for l in open(...) if l.strip() and not l.startswith("#")}` —— **只跳过以 `#` 开头的行，不剥行内注释**。结果解析出 3 个 key：`"maxamin              # 3 仓全建..."`、`"nirholas             # 60 天建 100 个仓..."`、`"openmakerprojects    # 10 个仓全是..."`，**没有一个能匹配真实 owner，命中 0 个仓**。三轮都还在讨论 `maxamin` 该不该进黑名单，其实进了也从来没生效。**判据：任何"读取黑名单 / 白名单 / 配置"的代码，必须回读它解析出的 key 集合本身，不能只看"过滤后没有命中"——空集和没命中长得一模一样。改法：`l.split("#")[0].strip()`。**
 - **🔴 「owner ≥3 仓 = 农场」这条硬规则会误杀正经研究组，而且和黑名单文件里写死的判据自相矛盾。** 2026-10-25 实测：`farm_hit` 判掉 4 个 30 天 ≥5 提交的活仓 —— `rzc156/dreamforge`（★130 / 21 提交 / 建 10-12）、`liaohello/GigaWorld-Policy-Sim2Real`（18 提交）、`Roboparty/P-BFM`（★95 / 745MB / 10 提交）、`NEBULIS-Lab/D-JEPA`（★32 / 66MB / 68 提交）。**这四个都是单一大工程 + 两个小附属仓的结构，正是研究组的常态。** `github-farms.txt` 开头明写「只是一个 owner 有 3+ 个仓**不够** —— 要三者同时成立（结构同质 + 跨赛道 + 提交极少）」，但 `scan.py` 只实现了第一条。**判据：规则文档和代码实现要逐条对照；"≥N 就判"这种单阈值规则，等于把文档里的另外两条判据静默丢掉。**
 - **「报告级」的排序键本身会制造一个假的量级错觉：`commits_30d` 撞 `per_page=100` 上限。** 本轮 `rokbenko/quackd`、`OpenInterpretability/ekbasis`、`kaarelkaarelson/lingbot-world-v2-realtime` 等 6 个仓全部显示 `100`，实际是 **≥100**。**任何分页计数都必须显式标注是下限**，否则"100 提交"会被下游当成精确值去比大小。
@@ -124,7 +135,7 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **🔴 30 天提交数是"这个月写了多少"，不是"现在还在写" —— 两个指标会给出相反结论，而且一半的仓会翻面。** 2026-10-25 第六轮实测：加密侧 ≥5 提交/30d 的 19 仓里 **10 个近 7 天零提交**（`zig-zkml` 30d=100 → 7d=0、`openinstinct-qwen` 51→0、`AIRcoin` 33→0、`stellar-slipguard` 30→0、`swap-RFQ` 24→0）；机器人侧 ≥10 提交的 51 仓里 **20 个近 7 天零提交**（`EvoBot` ★128/100→0、`ekbasis` ★19/100→0、`EasyWAM` ★382/30→0、`UniWAM` ★135/20→0）。**只看 30d 会把"上个月爆了一波"读成"这个团队在持续建设"。判据：任何"有人在写代码"的结论，必须同时报 30d 与 7d 两个数；7d=0 而 30d 很高的仓，是"爆完即停"不是"还在写"。** 注意 7d=0 也不等于废弃（可能只是在写论文），但**至少不能说它"现在有人在写"**。
 - **🔴 核验预算截断对「小域」和「大域」的影响不是同比例 —— 会让小域看起来完全死掉。** 2026-10-25 第六轮实测：前六轮都记「加密侧测量过的空，唯一活仓 `vearl`」。真相是 **35 个加密仓里 34 个 ★0–2，全部落在 `CHK_CAP=250` 之外**（`todo` 先按 ★>=5 全取，再按创建时间补，加密侧小词在时间序上全被机器人侧挤掉）。补齐后 **18 个 ≥5 提交**。**判据：按 star 优先分配核验预算，会让「star 天然低的整个域」被系统性饿死，而 star 在加密侧本来就低（不是质量低）。任何按 star 排序的抽样，都要按域分别报核验覆盖率；跨域比较前先确认两侧核验完整度相同。**
 - **🔴 根目录的 `AGENTS.md` / `CLAUDE.md` / `.clinerules` 是「单人 + agent」的指纹，能把「高提交」和「团队投入」分开。** 2026-10-25 第六轮实测：加密侧 ≥5 提交的 18 仓里 **10 个（56%）** 含这类文件，机器人侧 ≥20 提交的 21 仓只有 **2 个（10%）**；`itzebe/intent-pay` 的提交作者里直接有 `openhands-agent`（4/10 提交）。**这与同轮「加密侧 47% 爆完即停」互相印证：一个人用 agent 两周搭完就放着。** 判据：`contents` API 拿根目录列表，与 `agents.md`/`claude.md`/`.clinerules`/`.agents`/`.cursorrules` 求交集 —— **一次调用就能把"agent 批量产出"从"团队工程"里分出来，比读提交历史便宜。** 注意这不是农场：结构不跨赛道、不批量建仓，农场黑名单抓不到它。
-- **🔴 单个 409 空仓会把整个认证态打掉，后续全部退化成未认证。** 2026-10-25 第六轮实测：`gh_get` 的降级条件是 `r.returncode != 0`，`repos/{r}/commits` 对空仓返回 **409「Git Repository is empty」** 也满足它，于是 `GH = False`，后面每一次调用都走未认证 urllib（60/h）。铁律写着「429 和 409 必须分开」，代码只在**返回值**里分了（`"empty" if "409" in err`），**降级判断里没分**。**判据：区分"数据为空"和"端点坏了"必须发生在所有重试/降级逻辑之前 —— 分类结果要能阻止降级，不能只是贴个标签。**
+- **🔴 单个 409 空仓会把整个认证态打掉，后续全部退化成未认证。** 2026-10-25 第六轮实测：`gh_get` 的降级条件是 `r.returncode != 0`，`repos/{r}/commits` 对空仓返回 **409「Git Repository is empty」** 也满足它，于是 `GH = False`，后面每一次调用都走未认证 urllib（60/h）。铁律写着「429 和 409 必须分开」，代码只在**返回值**里分了（`"empty" if "409" in err`），**降级判断里没分**。**判据：区分"数据为空"和"端点坏了"必须发生在所有重试/降级逻辑之前 —— 分类结果要能阻止降级，不能只是贴个标签。** 第七轮修复后回归：27 个 409 全部正确分类、0 降级。 [source: logs/2026-10-25#github-radar]
 - **🔴 「高提交数」和「是代码仓」在同一个排序里无法区分 —— 聚合器/排行站/课程项目都能刷出 100 提交。** 2026-10-25 第六轮实测：`namastex888/dehype` **30d=100** 但它是「AI 论文与仓库实时排行站」；`cooperwooley/diamond-cs2-v2` **30d=100 且 7d=100** 但是 CS2 课程项目；`kf953741/kf953741` 20 提交是个人主页仓；`adeeb10abbas/same-goal-different-words` 16 提交是 CoRL workshop 的 Svelte 项目站。**光看 `commits_30d` 排序，这五个会排在最前面。判据：`commits > N` 之后还要看根目录形态（`src/`/`contracts/`/`crates/` vs `app.py`/纯 HTML/Svelte）、`language` 与 `size` 是否匹配。**
 
 ## 行情取数形状（DeFiLlama / CoinGecko）
