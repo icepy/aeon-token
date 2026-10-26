@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-26T00:15:00Z
+timestamp: 2026-10-26T23:45:00Z
 ---
 
 # Lessons learned — archive
@@ -223,6 +223,9 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **词表写「机制」，不写「项目名」。** `XMAQUINA` 全期零命中（`all:` / `abs:` / `ti:` 全试过，不是窗口问题）；`NOTE` 是常用英文词，90 天 223 条命中里过完 carrier 的 13 条全是 `A note on ...` / `Clinical Notes` / `Community Notes`。唯一可用的是 `Pearl Blockchain`（且必须带 `Blockchain` 后缀，裸词 `Pearl` 90 天 13 条里只有 1 条相关）。**名字交给下一条通道。**
 - **0 命中要分三类，先排除前两类再谈结论。** ①收录滞后（看「窗口内最新收录日期」，早 3 天以上就是）②`seen` 挡掉（`raw_term` 有数、`per_term` 是 0）③carrier 误杀（`raw_term` 有数、`carrier` 丢弃数异常高）—— **只有第③类是真 bug。**
 - **加新领域的词必须同时配 carrier 并登记进 `CARRIER_BY_TERM`。** 只加词不配 carrier，会重演机器人簇 20 篇静默误杀。词和 carrier 必须成对出现。词表总量控制在 15–25 个。
+- **🟢 换长窗口首跑会一次性推出「沉积层」，次跑即进稳态 —— 这是正常的，不是异常。** 2026-10-26 30d 窗实测：第一次跑原始 62 / 幸存 26，`seen` 78→104；同口径第二次跑**原始仍是 62（逐词相同）、幸存归零**。**判据：原始量不变而幸存归零 = 那批全进了 `seen`，不是查询坏了、也不是索引回退。** 换窗或加词前要先想清楚是否接受这一次性洪水（90d + vK 加词那次是 27 条）。
+- **🔴 词干化会把单词查询污染成完全无关的语义 —— `staking` 精度 1/9 = 11%。** 9 条原始命中里 8 条是 LLM「high-stakes decision」类论文（词干化后 `stakes` 命中）。**这是「写长短语不写单词」在 `staking` 上的第三次实证（前两次 MEV / liquidation）**；`zero-knowledge` 这类带连字符的复合词不受影响。**动作顺序：换写法 → 降级 → 删词，不许跳级。**
+- **🔴 查询失败会静默伪装成「零命中」，且脚本无重试时最危险。** 2026-10-26 60d 轮 24 词里 **16 个（66.7%）死于 429/超时**，主循环只有单次 `urlopen(timeout=20)`、异常即 `continue` —— 失败词不进真零分类，只在 `failed_t` 留一行。补扫（3 次重试 + 45s 超时 + 词间 8s）16 词全部成功、新增幸存 0，**证明那轮 14 条是真全集**。**判据：有 `failed_t` 就不可下「零命中」结论，必须先补扫。** 60d 窗的 429 概率显著高于 30d。
 - **查 API 要 `id_list=` 拿单篇详情**（`.../api/query?id_list=2610.27530`），比翻 `search_query` 结果稳。
 
 

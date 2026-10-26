@@ -1,14 +1,56 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 十五轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化）
+description: github-radar 十七轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、carrier 误杀率对照组）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-26T15:20:00Z
+timestamp: 2026-10-26T23:40:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十五轮（2026-10-26）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十七轮（2026-10-26）实证。
+
+## 第十七轮（2026-10-26，60 天窗，probe，dry-run）—— carrier 误杀率首次有同口径对照组：50% vs 50%，无差异
+
+本轮 `var=dry-run days:60 probe`，窗口 `2026-08-27..2026-10-26`，18 词 × **窗自适应（整窗 17 / 拆 3 子窗 1）**。原始 **3818** → 幸存 **51** → 报告级 **11**。核验全量 51/51，耗时 302s。
+
+### 36. 🟢 carrier 误杀率有对照组后归零 —— 第十六轮的「误杀率偏高」作废
+
+脚本首次同时打出两侧：**丢弃侧**仓名自带词表词 346 个（owner 去重 327），核 149 个 → 近 7 天存活 **74/149 = 50%**；**放行侧**幸存者核 24 → **12/24 = 50%**。
+
+**同一比例。** 第十六轮按 12 个样本粗估的「误杀率一半到四分之三、明显偏高」站不住 —— 那个估法没有对照，而「活着」在这个池子里本来就是 50% 的基线。**结论：carrier 不构成对活仓的额外误杀，不放宽。** 这是「抽样前先算分母、量误杀率必须有对照组」这条判据第一次真正执行完。
+
+### 37. 🔴 新回归：自适应开窗省了 2/3 搜索调用，代价是覆盖率跌破 95%
+
+开窗从 `18 × 3 子窗` 改为「整窗 17 / 拆窗 1」（`WIN_SPLIT_TOTAL=1000`，`scan.py:366`）。**`sim2real` 52.7%、`restaking` 83.3% 首次跌破 95%。**
+
+手工复量排除封顶：`sim2real`（`created:>2026-08-27`）`total_count=163`，第 1 页 100 条 + 第 2 页 63 条，**两页零重叠、并集正好 163** —— GitHub 侧完全可分页取尽，52.7% 不是仓库封顶。差额来自整窗单次查询的 `total_count`（169）与实际 `items`（89）不一致。
+
+**口径升级：撞顶 66.5% 不可引用（第十四轮），查询侧 total/items 不一致造成的 52.7% 同样不可引用。** 单轮一个样本，先记不改代码。
+
+### 38. ✅ probe 第三判据（`thematic`）首轮全额生效 —— 3 个假阳性全部拦下
+
+`uniview`(19/18) 仍 `cohesive=true` 但 `thematic=false`（主题词 `hikvision`×5 / `dahua`×4）→ 被词表语义挡掉；`senku` / `pouw` / `eidolon` / `physguard` 本轮全 `cohesive=false`（`pouw` 主题词不再取到 `content`，GLUE 剔除生效）。第十六轮 3 个假阳性回归通过，本轮 **0 个同主题真簇**。
+
+## 第十六轮（2026-10-26，60 天窗，probe，dry-run）—— carrier 丢弃名单上线；同窗口复跑 = 完全重复
+
+本轮 `var=dry-run days:60 probe`。原始 **4004** → 幸存 **49** → 报告级 **10**，与第十五轮（4001 / 49 / 10）逐项几乎相同。
+
+### 39. ✅ 第十五轮记的「carrier 是唯一不落名单的规则」已进代码 —— 审计完整性 3/5 → 5/5
+
+`output/ghradar/dropped.json` = `{carrier: [886 个 repo], short_desc: [744 个]}`。**「每条丢弃规则都要能被审计」这条铁律第一次全量兑现。**
+
+### 40. ⚠️ 拿到 `dropped.json` 第一件事是算分母，不是抽样
+
+我这次先抽了 12 个才去数 190/886 的总量 —— **顺序反了，抽样比例是在不知道总体规模的情况下定的**，直接导致第十六轮的粗估被第十七轮推翻。**新数据集到手：先报总量与分母，再定抽样。**
+
+### 41. 🟡 `cohesive` 不充分 —— probe 判据的第三次修正
+
+`cohesive=true` 只量「簇内自洽」，不量「是否是我们这个词」。本轮 3 个 cohesive 候选全假：`senku` 主题词只有 `with`×11（**连接词不在 `STOPWORDS`**）、`uniview` 是海康大华 NVR、`pouw` 撞荷兰语「货运」。→ **`total` 小是必要、`cohesive` 也不充分，还需第三条：主题词落在我们词表语义内。**
+
+### 42. 🟢 第十五轮留的 `PhysGuard` 悬念关闭：不是占名，是同名死仓
+
+`Data-Driven-Computational-Geotechnics/PhysGuard` created 10-25、pushed 10-26、Python（活着）；`ZhouChaunge/PhysGuard` created 04-30、**pushed 2026-05-05，停摆 5 个多月**。「提前占名 / 搬运」假设不成立。
 
 ## 第十五轮（2026-10-26，60 天窗，probe，dry-run）—— 翻页修好，幸存 4→49；下一处同型缺陷是 carrier 的措辞假设
 
@@ -446,6 +488,9 @@ carrier 本轮丢 123 个。只看 carrier 一条规则，120 个 `world model` 
 12. **「同窗口跑两次得同一组数字 = 曲线可复用」是错的推论。** WAM 84 → 99 的差是口径差（增量均匀摊在 9/9 周、三天零新建、10-23 后零新建）；同一天跑两次只证明环境一致。**复现性要换轮次 + 写明筛选口径。** 第六轮做到了：99 仓 / 94 owner、逐周 6/10/7/9/19/20/7/12/9，与第五轮**逐周完全一致**。
 
 # Citations
+
+- 第十七轮快照 `output/ghradar/out.dry.json`（51 幸存 / 3,818 原始）· `dropped.json`（carrier 877 / short_desc 695 / carrier_named_uniq 327 / carrier_named_alive_7d 74）· `clusters.json` · `audit.log` · `scan.py:366`（`WIN_SPLIT_TOTAL`）· 手工复量 `sim2real` 两页并集 163 · `logs/2026-10-26#github-radar（第十七轮`
+- 第十六轮快照 `output/ghradar/out.dry.json`（49 幸存 / 4,004 原始）· `dropped.json`（首次全量落仓名）· `scan.py:73-78`（STOPWORDS）· `scan.py:283-300`（cluster_cohesion）· `logs/2026-10-26#github-radar（第十六轮`
 
 - 第十四轮快照 `output/ghradar/out.dry.json`（4 幸存 / 3,474 原始，窗口 `2026-08-27..2026-10-26`）· `audit.log` · `clusters.json` · `scan.py` **未改** · probe 簇 profile `/tmp/gh14_probe.py` · 跨窗词表 + 30–60 区间 `/tmp/gh14_terms.py` · 区间活仓死因复算 `/tmp/gh14_band.py` · carrier 堆 7d `/tmp/gh14_carrier7.py` · 逐词覆盖率 `/tmp/gh14_cov.py` · **MAXPAGE 撞顶复现 `/tmp/gh14_cut.py`** · `logs/2026-10-26#github-radar（第十四轮`
 - 第十一轮快照 `output/ghradar/out.json`（70 幸存 / 2,236 原始，窗口 `2026-09-26..2026-10-26`）· `audit.log` · `report.md` · `scan.py` **未改** · 窗口拆解 `diff11.py` · 根目录 `tree11full.py` → `tree11full.json`（70/70）· 词分布 `agg11.py` · SuperMimic 簇 `cluster11.py` → `cluster11.json`（55 仓全量核验）+ `probe11b.py` → `probe11b.json` · 形态抽查 `shape11.py` · agent 指纹 `fp11.py` → `fp11.json` · `logs/2026-10-26#github-radar（第十一轮`

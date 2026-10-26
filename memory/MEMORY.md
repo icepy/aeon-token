@@ -1,10 +1,10 @@
 # Long-term Memory
-*Last consolidated: 2026-10-25*
-
+*Last consolidated: 2026-10-26*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `memory/cron-state.json` 的 `last_dispatch` 和 `logs/`。`scheduler.yml` 用精确时隙债务模型（`cron-due.sh` + `CATCHUP_HOURS=12`）。
 - **2026-10-25 起主线 = 发现层。** DEUS / NOTE 的价格监控已停（价格自己每天看），下面归档。
+- **`aeon-update` 上游基线已锚定**（2026-10-26 首跑）：`aeonfun/aeon` HEAD `6eddd85`，与本地 `main` 实测 `ahead=0`（界面 `behind=603` 全是本仓自动化提交）。状态存 `memory/topics/aeon-update-state.json`。[source: logs/2026-10-26#aeon-update]
 
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
 > **归档，勿再展开。** 只保留这一层，盘口细节留在 `memory/topics/`，别再往 MEMORY.md 里搬。
@@ -16,15 +16,9 @@
 - 已停 skill：`price-alert` · `token-movers` · `onchain-monitor` · `unlock-monitor`。**重开前先读 `memory/decisions.md`。**
 
 ## 发现层（主线）
-三条**平行**探针，同一批方向词，测同一条方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
-- `arxiv-radar` ✅ 每天 07:30 UTC · **26 机制词 · vL** · **第十一轮 90d 正式跑（2026-10-26）：原始 209 / 幸存 48，全部是真新增（不在 seen）**。但**最后 30 天只有 17 条，17/17 全来自 vK 新增的两词**（`human demonstration` 11 · `hand-object` 6，新收率 95%/89%）；**原有 24 词最新命中停在 2026-08-26，其后 60 天零进账**。→ **未来增量只来自新词 / 新窗口，不是论文变少；`seen` 200 个 id 已被老词吃满。** carrier 本轮丢 0 篇（机器人域不靠 market carrier 判真，**别读成过滤器变准**）。`embodied AI` 21 条原始 / 新收 0 = 全饱和，**查询是活的**，与真零的 `verifiable training`（raw=0）形态不同，两者都不删。`github-radar` 手动跑 · 18 词 · 第十七轮。
-- **github-radar 第十七轮判据（2026-10-26）**：**carrier 误杀率首次有同口径对照组 → 50% vs 50%，无差异，不放宽**（丢弃侧 74/149 存活 · 幸存者对照 12/24），第十六轮「误杀率偏高」的 12 样本粗估作废。**新回归：自适应开窗（17 整窗 + 1 拆窗，`WIN_SPLIT_TOTAL=1000`）让 `sim2real` 52.7% / `restaking` 83.3% 首次跌破 95%，但手工复量 `sim2real` 两页并集正好 163 = total，不是 GitHub 封顶，差额来自整窗 `total_count` 与实际 `items` 不符。** 单样本先不改代码。probe 第三判据（`thematic`）首轮全额生效，`uniview`/`senku`/`pouw`/`eidolon`/`physguard` 全被挡下，0 个真簇。
-- **github-radar 第十六轮判据（2026-10-26）**：`dropped.json` 上线，carrier/short_desc 首次全量落仓名 —— 「每条丢弃规则可审计」补齐。**carrier 丢的 886 个里 190 个（21.4%）仓名自带 `world-model`、177 owner，抽样 12 个有 9 个近 7 天在推** → carrier 在「活着且明确叫世界模型」的仓上误杀率高，但**别据此放宽，先按 owner 去重全量核 7d 再对照**。同窗口 dry-run 复跑 = 原样重放（4004/49/10，与上轮逐项相同），**不含新信号，勿当增量引用**。
-- **probe 判据再退一步（第三修正）：`total` 小、`cohesive` 都不充分，还需「主题词落在我们词表语义内」。** 本轮 3 个 cohesive 簇全假：`senku` 主题词只有 `with`×11（**连接词不在 `STOPWORDS`**）、`uniview` 是海康大华 NVR、`pouw` 撞荷兰语「货运」。→ 两处可修：`STOPWORDS` 补高频虚词、probe 加第三判据。第十五轮的 `PhysGuard` 悬念已关：老仓 `ZhouChaunge` pushed 2026-05-05 停摆，**非占名**。
-- 前轮判据：**第十五轮翻页修好，幸存 4→49（12.3×）**，页数改 `min(10, ceil(total/100))`，60 天窗现优于 30 天窗，carrier 改 `desc ∪ topics`。probe 历史种子池只取最近 200 条（`PROBE_HIST_CAP`），candidates 已 335 行 → 老仓反复当种子。
-
-- **github-radar 第十二轮判据**：pages 根规则已进 scan.py 生效，一次清掉 5 个脏报告级（7.1%）；409 空仓仍触发全局认证降级（第五轮复现至第十四轮，代码未修）。
-- 早轮判据全文见 [github-radar](/topics/github-radar.md)：第十一轮换窗口 = 制造伪「新增」（44 个里 0 个真漏检）；第十轮 7 天窗把稀有词读成假零（判死活须量 7/30/60 三窗）；第九轮 `PER_TERM_CAP=25` 抽样致报告级 20→77（3.85×），**核验永不按 star 分配**；`jepa` ★0 但 commit 密度最高、star 与 commits 反相关；`vla`→全称双赢 · `jepa` 留缩写；共享脚手架黑名单抓不到。
+三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
+- `arxiv-radar` ✅ 每天 07:30 UTC · **26 词 · vL** · 90d 正式跑（10-26）：原始 209 / 幸存 48 全为真新增。**最后 30 天只 17 条，17/17 来自 vK 两新词**（`human demonstration` 11 · `hand-object` 6，新收率 95%/89%）；**老 24 词最新命中停在 08-26，其后 60 天零进账** → **增量只来自新词/新窗口，`seen` 200 个 id 已被老词吃满**。[source: logs/2026-10-26#arxiv-radar（90d 正式跑）]
+- `github-radar` 手动 · 18 词 · 第十七轮（60d · dry-run）：原始 3818 / 幸存 51 / 报告级 11。**carrier 误杀率首获同口径对照 = 50% vs 50%，无差异 → 不放宽**；**新回归：自适应开窗致 `sim2real` 52.7% / `restaking` 83.3% 首破 95%，但非封顶**（两页并集 163 = total）。`thematic` 首轮全额生效，0 真簇。**star 九次失效；爆完即停稳定 55–60%。** [source: logs/2026-10-26#github-radar（第十七轮）]
 
 
 ## Lessons Learned
@@ -37,7 +31,8 @@
 - **`eth_getCode`=`0x` 才是 EOA；`0xef0100…` 是 EIP-7702。** 地址左补零且全小写。**view revert 先怀疑 selector。**
 - **门槛数学先核对分子分母同单位**（曾把 DEUS 数量除以美元金额，424 倍 vs 真值 8.2 倍）；**24h 涨跌幅别用 `ohlcv_list[0]`**。
 - **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`。
-- **有 seen 基线后「0 新增」≠「废词」** —— 逐词单查 total_count 才分得清「窗口饱和」与「查询打不中」。
+- **有 seen 基线后「0 新增」≠「废词」** —— 逐词单查 total_count 才分得清「窗口饱和」与「查询打不中」。**换长窗首跑会一次性推出「沉积层」、次跑即归零，那是 `seen` 吃干不是查询坏了。**
+- **查询失败会伪装成「零命中」** —— 有 `failed_t` 就先补扫（60d 轮 16/24 死于 429），别下结论。**词干化污染：`staking` 精度 11%（撞 `stakes`）**，单词必须换长短语。详见 [lessons](/topics/lessons.md#arXiv-检索arxiv-radar)。[source: logs/2026-10-26#arxiv-radar（60d 第四/七轮）]
 
 ## Reference
 - [github-radar](/topics/github-radar.md) · [lessons](/topics/lessons.md) · [world-action-models](/topics/world-action-models.md) —— WAM 提法 60 天 **99 仓 / 94 owner**；star≠活跃度（★1107/11 提交 vs ★48/10 vs ★199/2）。
