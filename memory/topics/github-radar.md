@@ -1,14 +1,55 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 十四轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化）
+description: github-radar 十五轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-26T14:40:00Z
+timestamp: 2026-10-26T15:20:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十四轮（2026-10-26）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十五轮（2026-10-26）实证。
+
+## 第十五轮（2026-10-26，60 天窗，probe，dry-run）—— 翻页修好，幸存 4→49；下一处同型缺陷是 carrier 的措辞假设
+
+本轮 `var=dry-run days:60 probe`，窗口 `2026-08-27..2026-10-26`。原始 **4001** → 幸存 **49** → 报告级 **10**。核验全量 49/49，耗时 388s。
+
+### 35. ✅ `MAXPAGE` 撞顶已修，且逐仓可验 —— 第十四轮判据当场兑现
+
+`MAXPAGE=3` 降级为「曾撞顶」探测器，实际页数 = `min(MAXPAGE_HARD=10, ceil(total/100))`（`scan.py:303`）。审计自报三个撞顶子窗（`world model` 513 / 497 / 416）并自动加页。
+
+**硬证据（本轮新测）：** 第三子窗 `2026-08-27..2026-09-16`（total=416）star 排序下，`SunCCNY/Embodied-AI` 在**第 4 页** —— 旧 `MAXPAGE=3` 永远取不到，新逻辑取到并进报告级（★0、30d=54、7d=9）。`world model` 覆盖率 66.5% → **≥95%**。**「60 天窗比 30 天窗覆盖率低」作废，60 天窗现在更可用。**
+
+### 36. 🔴 下一处同型缺陷：carrier 假设「desc/topics 里得有机器人词」
+
+carrier 已从 desc 改为 `desc ∪ topics`（`scan.py:336`），本轮 **886 个**被 carrier 丢（22.1%，最大单条规则），其中 **16 个靠 topics 放行**，含报告级第一 `latent-horizon/pytorch-world`（★2、30d=85、7d=47）。
+
+**但两个字段都没有 carrier 词的活仓仍整条丢。标本 `colorHur/world-model-lab`：** ★1、Python、`pushed_at` 距开跑 5 小时、不在 `seen`、7d 满。topics 是 `latent-dynamics / model-based-reinforcement-learning / reliable-horizon / reproducible-research / rollout / world-model`，desc 全句无 `embodied/robot/vla/manipulation/sim2real/teleop/egocentric/action/policy/rlbench/lerobot`。**离线 exec `scan.py` 常量重放确认 DROP，且实测它在子窗第 1 页就被取回 —— 单因 carrier，不是翻页。**
+
+**判据：carrier 的语义是「这个词得配机器人语境才算数」，而世界模型正在往「可复现的 rollout 评测」这类纯 ML 措辞漂移 —— 这是词表级问题，不是参数级。别盲改**（参照 `jepa`→全称 654→35 的灾难，缺「命中率 / 误杀率」双向度量前不动）。
+
+### 37. ⚠️ 可审计性缺口：carrier 与 short_desc 是唯一不落名单的两条丢弃规则
+
+`seen / excl / neg / pages / scaffold` 全打印具体仓名；`carrier` 只累加计数（`drop["carrier"] += 1`），**丢掉谁无从查**。铁律「每条丢弃规则都要能被审计」在代码里只兑现 3/5。**下一轮要量 carrier 误杀率，必须先补 `carrier_dropped` 列表 —— 否则每次都得离线重放并重算全套过滤器。**
+
+**本条对应的自查纠错（防重犯）：** 我曾按「不在 `audit.log` 里 = 不在 carrier 丢弃堆」推了一版，是错的 —— 脚本只打印 carrier 的**放行**名单（`scan.py:575`）。**「审计里没有」≠「没被丢弃」，必须用 total_count 实测页位次才能定论。**
+
+### 38. probe token 泛化仍未修，且这次最像真簇的也是假的
+
+`eidolon` total=98 / owners=74，热仓第一 `Sallyn0225/eidolon-sc`（★242、30d/7d 都满、57MB Python）—— profile 确认是**《偶像大师 闪耀色彩》AI 角色对话分身**，与 world model / embodied 零关系。`senku`（54/40）第一是分子对接实验室工具。**`total` 小只是必要条件，簇内同主题才是充分条件**（`physguard` 已复现三次）。
+
+**新发现的次生缺陷：** `load_history(limit=PROBE_HIST_CAP=200)` 只取最近 200 条，而 `memory/github-candidates.md` 已 335 行 / 321 个仓 → 老仓在窗口内反复当种子，更老的永远不出现。
+
+### 39. star 第七次失效 + 爆完即停首次跌出区间
+
+幸存 49 里 **★0 有 41 个**、★≥5 仅 4 个，最高 ★25（`UCSC-VLAA/ALPS`，30d=1，星与提交完全反向）。报告级 10 里 9 个是 ★0–2。
+
+**爆完即停 4/10 = 40%**，首次跌出稳定四轮的 55–60%。**别当趋势读**：分母从 32 掉到 10，小样本不稳，需连续两轮同窗口才能下判断。
+
+### 40. 两条待观察形态（各有 1 个样本，不写规则）
+
+- **大厂组织号首次进报告级**：`alibaba-damo-academy/RynnUnify`（★15、7/7）。前十四轮报告级全是个人 / 实验室个人号。盯下一轮是否复现。
+- **「无 language + 根目录全是 .yaml/.md」的评测集仓**：`humanai2026/3D_Affordance`（129KB、`language=null`、根目录 13 个 `SWM_*.yaml` / `.md`、无 `src`/`package.json`/`pyproject.toml`）。**按第十二轮「无代码骨架 → 页」它该丢，但它不是页，是提示词/评测集仓** —— 与 `scaffold` 相邻但不同类。1/49 的样本量不够定判据。
 
 ## 第十四轮（2026-10-26，60 天窗，probe，dry-run）—— 「60 天更全」是反的：`MAXPAGE` 撞顶取代 `PER_TERM_CAP` 成为新的静默丢失源
 

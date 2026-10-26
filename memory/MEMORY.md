@@ -17,10 +17,10 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一条方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
-- `arxiv-radar` ✅ 每天 07:30 UTC · 20 机制词 · 已修两轮 carrier 误杀。`github-radar` 手动跑 · 18 词 · 第十四轮。
-- **github-radar 第十四轮判据（2026-10-26）**：**60 天窗比 30 天窗覆盖率更低** —— `sort=stars` 每子窗撞 `MAXPAGE=3`（300 个），而 `world model` 单子窗 416–509 个，覆盖率掉到 66.5%，幸存 4（上轮 65）。
-- **这是第九轮 `PER_TERM_CAP` 3.85× 同型缺陷换了载体（cap 从「每词 25」变成「每子窗 300」）。修好之前别再用 60 天窗。** 区间活仓 31 个里 26 个（84%）死在 carrier ——「carrier 改为 desc 或 topics 任一命中」再不进代码每轮继续损失。
-- probe 种子池修法已生效（幸存 0 也能跑满 36 个种子），但 token 泛化未修：`physguard` total=3 却是 3 个不相干的仓，**`total` 小只是必要条件，簇内同主题才是充分条件**。
+- `arxiv-radar` ✅ 每天 07:30 UTC · 20 机制词 · 已修两轮 carrier 误杀。`github-radar` 手动跑 · 18 词 · 第十五轮。
+- **github-radar 第十五轮判据（2026-10-26）**：**翻页修好，幸存 4→49（12.3×）**。`MAXPAGE=3` 降级为「曾撞顶」探测器，页数改 `min(10, ceil(total/100))`；`world model` 覆盖率 66.5%→≥95%，**60 天窗现在比 30 天窗可用**。carrier 也从 desc 改成 `desc ∪ topics`（886 丢里 16 个靠 topics 放行，含报告级第一 `latent-horizon/pytorch-world` 85/47）。
+- **下一处同型缺陷：carrier 要求 desc/topics 带机器人词，世界模型已往纯 ML 措辞漂移** —— `colorHur/world-model-lab`（★1、7d 满、pushed 5 小时前）两个字段都没有 → 整条丢（离线重放确认）。**别盲改，先补 `carrier_dropped` 名单**：carrier 是本轮最大单条规则（886，22.1%），却是唯一不落名单的，违反「每条丢弃规则都可审计」。
+- probe token 泛化仍未修，且这次连最像真簇的也假：`eidolon` total=98/owners=74 第一名是偶像大师 AI 对话分身。**`total` 小只是必要条件，簇内同主题才是充分条件**。历史种子池只取最近 200 条（`PROBE_HIST_CAP`），candidates 已 335 行 → 老仓反复当种子。
 
 - **github-radar 第十二轮判据**：pages 根规则已进 scan.py 生效，一次清掉 5 个脏报告级（7.1%）；409 空仓仍触发全局认证降级（第五轮复现至第十四轮，代码未修）。
 - 早轮判据全文见 [github-radar](/topics/github-radar.md)：第十一轮换窗口 = 制造伪「新增」（44 个里 0 个真漏检）；第十轮 7 天窗把稀有词读成假零（判死活须量 7/30/60 三窗）；第九轮 `PER_TERM_CAP=25` 抽样致报告级 20→77（3.85×），**核验永不按 star 分配**；`jepa` ★0 但 commit 密度最高、star 与 commits 反相关；`vla`→全称双赢 · `jepa` 留缩写；共享脚手架黑名单抓不到。
