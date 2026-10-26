@@ -2,22 +2,25 @@
 """github-radar 扫描器（静态文件 —— 模型只调用，不重写）。
 
 用法:
-    python3 skills/github-radar/scan.py "dry-run days:60"
+    python3 skills/github-radar/scan.py "days:30"
+    python3 skills/github-radar/scan.py "days:30 probe"      # 额外跑簇反查
 
 var token（空格分隔，可组合）:
     dry-run   跳过 notify、不写 seen
     days:N    扫描窗口，默认 30
     min:N     star 地板，默认 0
     chk:N     核验门槛（仅在幸存数超 CHK_CAP 时启用），默认 5
+    probe     对报告级 top-10 做仓名 token 反查，找被词表漏掉的派生簇
 
-产物（文件名固定，别改成 scan10.py / audit10.log）:
+产物（文件名固定，别改成 scan11.py / audit11.log）:
     output/ghradar/out.json       全部幸存者
     output/ghradar/audit.log      审计（同时打到 stdout）
     output/ghradar/report.md      通知正文
+    output/ghradar/clusters.json  仅 probe 时
     memory/github-seen.json       非 dry-run 才写
     memory/github-candidates.md   非 dry-run 才追加
 """
-import json, os, subprocess, sys, threading, time
+import json, os, re, subprocess, sys, threading, time
 import urllib.error, urllib.parse, urllib.request
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
@@ -25,6 +28,7 @@ from datetime import datetime, timedelta, timezone
 
 OUTD = "output/ghradar"
 OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
+CLUSTERS = OUTD + "/clusters.json"
 SEEN = "memory/github-seen.json"
 CARDS = "memory/github-candidates.md"
 FARMS = "memory/github-farms.txt"
@@ -36,9 +40,21 @@ NOTIFY_TOP = 30
 MAXPAGE = 3
 SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-showcase")
 SCAFFOLD_MIN = 3
-SEARCH_MIN_GAP = 2.1   # search 限速 30/min，两次搜索之间至少隔这么久
-VERIFY_WORKERS = 8     # 核验并发（core quota 5000/h，与 search 是独立池）
-VERIFY_BUDGET = 900    # 核验墙钟预算（秒）；超预算的标 unverified，不违反「全量」
+SEARCH_MIN_GAP = 2.1   # search 限速 30/min
+VERIFY_WORKERS = 8     # 核验 / 根目录检查并发（core quota 5000/h）
+VERIFY_BUDGET = 900    # 核验墙钟预算（秒）；超预算的标 unverified
+PROBE_TOP = 10         # probe: 取报告级前 N 个做反查
+PROBE_MAXTOK = 12      # probe: 最多反查多少个 token
+
+# 根目录里有这些 = 真代码仓（用来否掉"页形态"）
+CODE_SKELETON = {"src", "tests", "test", "pyproject.toml", "package.json",
+                 "cargo.toml", "contracts", "crates", "app", "lib", "makefile",
+                 "setup.py", "requirements.txt", "cmake", "go.mod", "build.gradle"}
+# 反查时不该当专名的通用 token
+STOPWORDS = set("""world model models data robot robots learning sim sim2real agent
+agents lab labs ai repo code page site github io project paper papers reproduce
+reproduction experiments experiment baseline baselines implementation demo
+official release training framework system systems control policy""".split())
 
 # ── 词表：`#` 开头是注释 ──────────────────────────────────────────
 TERMS = [t.strip() for t in """
@@ -88,10 +104,12 @@ EXCL = ["awesome", "tutorial", "course", "survey", "cheatsheet", "roadmap",
 
 # ── var ───────────────────────────────────────────────────────────
 var = sys.argv[1] if len(sys.argv) > 1 else ""
-DRY, DAYS, MIN, CHK, UNKNOWN = False, 30, 0, 5, []
+DRY, DAYS, MIN, CHK, PROBE, UNKNOWN = False, 30, 0, 5, False, []
 for tok in var.split():
     if tok == "dry-run":
         DRY = True
+    elif tok == "probe":
+        PROBE = True
     elif tok.startswith("days:"):
         DAYS = int(tok.split(":", 1)[1] or 30)
     elif tok.startswith("min:"):
@@ -122,6 +140,8 @@ step = DAYS / NWIN
 WINS = ["%s..%s" % ((now - timedelta(days=step * (i + 1))).strftime("%Y-%m-%d"),
                     (now - timedelta(days=step * i)).strftime("%Y-%m-%d"))
         for i in range(NWIN)]
+FULLWIN = "%s..%s" % ((now - timedelta(days=DAYS)).strftime("%Y-%m-%d"),
+                      now.strftime("%Y-%m-%d"))
 
 GH_LOCK = threading.Lock()
 GH = [True]
@@ -186,10 +206,10 @@ def commits_since(rid, days):
 # ── 扫描 ──────────────────────────────────────────────────────────
 out, raw = [], 0
 drop = {"seen": 0, "excl": 0, "archived": 0, "short_desc": 0, "carrier": 0,
-        "neg": 0, "pages": 0, "farm": 0, "fail": 0}
+        "neg": 0, "pages": 0, "pages_root": 0, "farm": 0, "fail": 0}
 hit, qfail, cov = {}, [], {}
 raw_term, new_term = {}, {}
-page_dropped, neg_dropped = [], []
+page_dropped, neg_dropped, root_dropped = [], [], []
 
 for term in TERMS:
     total, got, failed = 0, 0, False
@@ -273,6 +293,27 @@ for nm, lst in byname.items():
                     c["scaffold"] = True; scaffold.append(c["repo"])
 out = [c for c in out if not c.get("scaffold")]
 
+# ── pages 根目录规则（第三次独立复现后固化）──
+# index.html + .nojekyll 且根目录无任何代码骨架 → 页。体积不做豁免。
+def is_page_repo(rid):
+    data, _ = gh_get("repos/%s/contents" % rid)
+    if not isinstance(data, list):
+        return False
+    names = {str(x.get("name", "")).lower() for x in data}
+    return ("index.html" in names and ".nojekyll" in names
+            and not (names & CODE_SKELETON))
+
+if out:
+    with ThreadPoolExecutor(max_workers=VERIFY_WORKERS) as ex:
+        flags = list(ex.map(is_page_repo, [c["repo"] for c in out]))
+    kept = []
+    for c, isp in zip(out, flags):
+        if isp:
+            drop["pages_root"] += 1; root_dropped.append(c["repo"])
+        else:
+            kept.append(c)
+    out = kept
+
 # ── 核验：幸存数不超上限就**全量**；并发 + 墙钟预算 ──
 if len(out) <= CHK_CAP:
     todo = list(out)
@@ -296,8 +337,7 @@ DEADLINE = time.time() + VERIFY_BUDGET
 
 def verify_one(c):
     if time.time() > DEADLINE:
-        c["unverified"] = True
-        return
+        c["unverified"] = True; return
     n30, st = commits_since(c["repo"], 30)
     if st == "empty":
         c["maybe_empty"] = True; return
@@ -338,6 +378,42 @@ rep = sorted([c for c in out if reportable(c)],
 os.makedirs(OUTD, exist_ok=True)
 json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
+# ── probe：报告级 top-N 仓名 token 反查，找词表漏掉的派生簇 ──
+# 判据：同一个 token 出现在 >=3 个不同 owner 的仓名里 → 报簇。
+# 注意必须**反向**做 —— 直接从幸存者里抽专名抓不到 SuperMimic（55 仓里只有 2 个进幸存者）。
+cluster_report = []
+if PROBE and rep:
+    toks = Counter()
+    for c in rep[:PROBE_TOP]:
+        for tk in re.split(r"[-_./]", c["repo"].split("/")[-1].lower()):
+            if len(tk) >= 4 and tk not in STOPWORDS and not tk.isdigit():
+                toks[tk] += 1
+    for tk, _ in toks.most_common(PROBE_MAXTOK):
+        res, err = search('"%s" in:name,description created:%s fork:false'
+                          % (tk, FULLWIN))
+        if res is None:
+            continue
+        items = res.get("items", [])
+        owners = {(i.get("owner") or {}).get("login", "") for i in items}
+        if len(owners) < SCAFFOLD_MIN:
+            continue
+        seen_here = {c["repo"] for c in out}
+        fresh = [i["full_name"] for i in items if i["full_name"] not in seen_here]
+        hot = []
+        for i in items[:12]:
+            n30, st = commits_since(i["full_name"], 30)
+            if st == "ok" and n30 and n30 >= REPORT_COMMITS:
+                n7, _ = commits_since(i["full_name"], 7)
+                hot.append({"repo": i["full_name"], "stars": i.get("stargazers_count", 0),
+                            "commits_30d": n30, "commits_7d": n7})
+        hot.sort(key=lambda x: (-(x["commits_7d"] or 0), -x["commits_30d"]))
+        cluster_report.append({"token": tk, "total": res.get("total_count", 0),
+                               "owners": len(owners), "not_in_out": len(fresh),
+                               "hot": hot[:8]})
+    cluster_report.sort(key=lambda x: (-len(x["hot"]), -x["owners"]))
+    json.dump(cluster_report, open(CLUSTERS, "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+
 def fmt(c):
     return "%s ★%d 30d=%s%s 7d=%s%s" % (
         c["repo"], c["stars"],
@@ -354,10 +430,10 @@ with_new = [t for t in TERMS if new_term.get(t, 0) > 0]
 L = ["扫 %d 词 × %d 窗 × %d 页 | 原始 %d | 幸存 %d | 报告级 %d | var=%r"
      % (len(TERMS), NWIN, MAXPAGE, raw, len(out), len(rep), var),
      "丢弃 seen=%d excl=%d archived=%d short_desc=%d carrier=%d neg=%d "
-     "pages=%d scaffold=%d farm=%d fail=%d"
+     "pages=%d pages_root=%d scaffold=%d farm=%d fail=%d"
      % (drop["seen"], drop["excl"], drop["archived"], drop["short_desc"],
-        drop["carrier"], drop["neg"], drop["pages"], len(scaffold),
-        drop["farm"], drop["fail"]),
+        drop["carrier"], drop["neg"], drop["pages"], drop["pages_root"],
+        len(scaffold), drop["farm"], drop["fail"]),
      "核验 %d/%d (%.1f%%) · 模式 %s · 黑名单 %d owner"
      % (len(todo), len(out), 100.0 * len(todo) / max(len(out), 1),
         verify_mode, len(farms)),
@@ -390,8 +466,11 @@ if neg_dropped:
     L.append("ℹ️ 被 NEG 规则丢弃 %d 个: %s" % (len(neg_dropped),
                                               " · ".join(neg_dropped[:12])))
 if page_dropped:
-    L.append("ℹ️ 被 pages 规则丢弃 %d 个: %s"
+    L.append("ℹ️ 被 pages 后缀规则丢弃 %d 个: %s"
              % (len(page_dropped), " · ".join("%s(%dKB)" % p for p in page_dropped[:12])))
+if root_dropped:
+    L.append("ℹ️ 被 pages 根目录规则丢弃 %d 个（index.html+.nojekyll 且无代码骨架）: %s"
+             % (len(root_dropped), " · ".join(root_dropped[:12])))
 vt = Counter(c["term"] for c in todo)
 L.append("逐词核验数: " + " · ".join("%s=%d" % (k, vt.get(k, 0)) for k in
                                      sorted(TERMS, key=lambda x: -vt.get(x, 0))))
@@ -416,6 +495,13 @@ cand = {o: n for o, n in owner_n.items() if n >= 3}
 if cand:
     L.append("ℹ️ 候选农场（owner≥3，需人工判）: " +
              " · ".join("%s=%d" % kv for kv in cand.items()))
+if cluster_report:
+    L.append("ℹ️ probe 反查（token → owner 数 / 不在幸存者 / 簇内活跃）:")
+    for cl in cluster_report[:6]:
+        L.append("  `%s` total=%d owners=%d 未见过=%d | %s"
+                 % (cl["token"], cl["total"], cl["owners"], cl["not_in_out"],
+                    " · ".join("%s(%s/%s)" % (h["repo"], h["commits_30d"],
+                                              h["commits_7d"]) for h in cl["hot"][:4])))
 for c in rep[:25]:
     L.append("  " + fmt(c))
 
