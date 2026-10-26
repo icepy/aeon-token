@@ -18,6 +18,7 @@ var token（空格分隔，可组合）:
     output/ghradar/audit.log      审计（同时打到 stdout）
     output/ghradar/report.md      通知正文
     output/ghradar/clusters.json  probe 时**必定重写**（空也写，好区分"没跑"和"跑了没货"）
+    output/ghradar/dropped.json   **全量**丢弃名单（carrier / short_desc），每次重写
     memory/github-seen.json       非 dry-run 才写
     memory/github-candidates.md   非 dry-run 才追加
 
@@ -33,12 +34,14 @@ OUTD = "output/ghradar"
 OUT, OUT_DRY = OUTD + "/out.json", OUTD + "/out.dry.json"
 AUD, REPORT = OUTD + "/audit.log", OUTD + "/report.md"
 CLUSTERS = OUTD + "/clusters.json"
+DROPPED = OUTD + "/dropped.json"
 SEEN = "memory/github-seen.json"
 CARDS = "memory/github-candidates.md"
 FARMS = "memory/github-farms.txt"
 
 # output/ghradar/ 里只允许这些名字；其余每次开跑前删掉。`keep*` 前缀可跨轮保留。
-KEEP = {"out.json", "out.dry.json", "audit.log", "report.md", "clusters.json"}
+KEEP = {"out.json", "out.dry.json", "audit.log", "report.md", "clusters.json",
+        "dropped.json"}
 
 CHK_CAP = 2000         # 幸存数 <= 这个值 → 全量核验，一个不漏
 PER_TERM_CAP = 40      # 只在超上限时才启用（超上限时按词保底）
@@ -278,9 +281,9 @@ raw_term, new_term, seen_term = {}, {}, {}
 page_dropped, neg_dropped, root_dropped = [], [], []
 carrier_topic_only, desc_topic_only = [], []      # 两条放行路径，单独记账
 capped = []                                       # 曾经会撞 3 页上限的子窗
-# carrier / short_desc 丢掉的仓 —— probe 的第四顺位种子（活仓常躺在这里）
-drop_names = []
-DROP_NAMES_CAP = 400
+# carrier / short_desc 丢掉的仓 —— **全量**存（可审计性 + probe 的第四顺位种子）。
+# 之前只累加计数，是本轮唯一两条不落仓名的丢弃规则（第十五轮判据 37）。
+carrier_dropped, short_desc_dropped = [], []
 
 for term in TERMS:
     total, got, failed = 0, 0, False
@@ -339,8 +342,7 @@ for term in TERMS:
                 if len(desc) < 25:
                     if not topics:
                         drop["short_desc"] += 1
-                        if len(drop_names) < DROP_NAMES_CAP:
-                            drop_names.append((it.get("pushed_at") or "", rid))
+                        short_desc_dropped.append((it.get("pushed_at") or "", rid))
                         continue
                     desc_topic_only.append(rid)     # 空/短 desc 靠 topics 放行
                 if any(x in lowall for x in EXCL):
@@ -348,8 +350,7 @@ for term in TERMS:
                 need = CARRIER_BY_TERM.get(term)
                 if need and not any(c in blob_t for c in need):
                     drop["carrier"] += 1
-                    if len(drop_names) < DROP_NAMES_CAP:
-                        drop_names.append((it.get("pushed_at") or "", rid))
+                    carrier_dropped.append((it.get("pushed_at") or "", rid))
                     continue
                 if need and not any(c in desc.lower() for c in need):
                     carrier_topic_only.append(rid)  # 只靠 topics 过的 carrier
@@ -474,6 +475,10 @@ os.makedirs(OUTD, exist_ok=True)
 # dry-run 不覆盖 out.json —— 否则一次 0 幸存就会把上一轮的真快照写成 "[]"
 SNAP = OUT_DRY if DRY else OUT
 json.dump(out, open(SNAP, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+# 全量丢弃名单，每次无条件重写（空也写）—— 让「carrier 误杀率」可直接算，不必离线重放
+json.dump({"carrier": [r for _, r in carrier_dropped],
+           "short_desc": [r for _, r in short_desc_dropped]},
+          open(DROPPED, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 # ── probe：反查找词表漏掉的专名簇 ──
 # 种子池必须是「报告级 → 幸存 → 历史报告级 → 本轮丢弃堆」四级。
@@ -481,6 +486,7 @@ json.dump(out, open(SNAP, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 # 顺序必须是「先反查、再排序」—— 按 token 在种子里出现几次排会漏掉
 # SuperMimic（它只出现 1 次，被 capstone/recall 这类通用词挤掉）。
 # 专名判据：反查 total 小 + owner 密度高 + 簇内有高 commit 仓。
+drop_names = sorted(carrier_dropped + short_desc_dropped, reverse=True)
 cluster_report = []
 probe_stat = {"rep": 0, "out": 0, "hist": 0, "drop": 0, "tok": 0, "done": 0,
               "seeds": 0}
@@ -488,7 +494,7 @@ if PROBE:
     srcs = (("rep", [c["repo"] for c in rep]),
             ("out", [c["repo"] for c in out]),
             ("hist", load_history()),
-            ("drop", [r for _, r in sorted(drop_names, reverse=True)]))
+            ("drop", [r for _, r in drop_names]))
     seeds = []
     for tag, lst in srcs:
         n0 = len(seeds)
@@ -578,6 +584,18 @@ if carrier_topic_only:
 if desc_topic_only:
     L.append("ℹ️ 空/短 desc 靠 topics 放行 %d 个: %s"
              % (len(desc_topic_only), " · ".join(desc_topic_only[:12])))
+if carrier_dropped:
+    L.append("ℹ️ 被 carrier 规则丢弃 %d 个（desc 与 topics 均无 carrier 词）"
+             "—— 全量在 dropped.json，最近 20: %s"
+             % (len(carrier_dropped),
+                " · ".join("%s(%s)" % (r, p[:10])
+                           for p, r in sorted(carrier_dropped, reverse=True)[:20])))
+if short_desc_dropped:
+    L.append("ℹ️ 被 short_desc 规则丢弃 %d 个（len(desc)<25 且无 topics）"
+             "—— 全量在 dropped.json，最近 20: %s"
+             % (len(short_desc_dropped),
+                " · ".join("%s(%s)" % (r, p[:10])
+                           for p, r in sorted(short_desc_dropped, reverse=True)[:20])))
 if UNKNOWN:
     L.append("⚠️ 未识别 var token（会被静默忽略）: " + " · ".join(UNKNOWN))
 if failed_t:

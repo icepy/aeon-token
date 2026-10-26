@@ -35,13 +35,13 @@ metadata:
 
 ## 铁律
 
-- **预算是铁律：全程 ≤ 15 次工具调用。** 第十四轮实测 48 次；213 次 = 30 分钟超时（脚本只占几百秒，其余全是模型往返，每次调用重读 ~53k 上下文）。旁路探测走 `probe`，别每轮现写脚本。
-- **产物文件名固定**（`out.json` / `out.dry.json` / `audit.log` / `report.md` / `clusters.json`）。**轮次号写进日志内容，不要写进文件名。**
-- **`output/ghradar/` 由脚本自己清，不用你手动删。** 每次开跑前它会把目录里不在上面五个名字内的文件删掉，并把这行打进审计（`🧹 清理 …`）。想跨轮保留某个文件，文件名以 `keep` 开头。
+- **预算是铁律：全程 ≤ 15 次工具调用。** 第十四轮 24 次、第十五轮 17 次；213 次 = 30 分钟超时（脚本只占几百秒，其余全是模型往返，每次调用重读 ~53k 上下文）。旁路探测走 `probe`，别每轮现写脚本。
+- **产物文件名固定**（`out.json` / `out.dry.json` / `audit.log` / `report.md` / `clusters.json` / `dropped.json`）。**轮次号写进日志内容，不要写进文件名。**
+- **`output/ghradar/` 由脚本自己清，不用你手动删。** 每次开跑前它会把目录里不在上面六个名字内的文件删掉，并把这行打进审计（`🧹 清理 …`）。想跨轮保留某个文件，文件名以 `keep` 开头。
 - **旁路脚本不进 `output/ghradar/`。** 要留档的判据写进 `memory/logs/${today}.md`；真需要临时脚本，放这个目录也行，下一轮会被自动删掉 —— 所以别指望它跨轮存在。
 - **不要重写脚本。** 只有改过滤器时才 Edit `scan.py`。
 - **核验宁可全量。幸存数 ≤ 上限时，一个都别漏。** 实证：`PER_TERM_CAP=25` 按 star 排序，只核了 76/234，报告级被低估 3.85×。
-- **分页按 `total_count` 动态取**（`min(10, ceil(total/100))`；10 页 = GitHub search 1000 条封顶）。**长窗不再静默丢仓** —— 撞顶子窗会进审计。旧固定 3 页 = 300 个硬上限，`world model` 单子窗 416–509 时覆盖率掉到 66.5%，第十四轮因此把 60 天窗读成「幸存 4」。
+- **分页按 `total_count` 动态取**（`min(10, ceil(total/100))`；10 页 = GitHub search 1000 条封顶）。**长窗不再静默丢仓** —— 撞顶子窗会进审计。第十五轮实证：修好后幸存 4→49（12.3×），`world model` 覆盖率 66.5%→100%。
 - **star 排序会切掉 ★0 长尾。** 实证第十一轮：幸存 70 个里 ★≥5 只有 1 个、全轮最高 ★7，报告级 35 里 34 个是 ★0。**只要机制词还在，star 就不该出现在排序或采样里。**
 - **star 与 commits 可能反相关。** 跟这一支只能按 commits 读。
 - **换词前先量两个口径：total_count + 重叠度。不能只看污染率。** `vla`→全称双赢；`jepa`→全称灾难（654→35）。**分界不是「缩写脏不脏」，是这个术语在生态里实际怎么被书写。**
@@ -58,15 +58,15 @@ metadata:
 - **30 天提交高 ≠ 现在在写。** 必须同时看近 7 天 —— 实测跨窗稳定在 55–60% 爆完即停。
 - **高提交数 ≠ 代码仓。** 看 `language` 字段与根目录形态。
 - **`commits=100` 是 `per_page` 上限**，标 `≥100`。
-- **限速要重试，不能放弃。429（限速）和 409（真空仓）必须分开 —— 404 / 409 不再触发认证降级（已进代码）。** gh 掉线次数、末次原因、冷却期间未认证调用次数都进审计。
+- **限速要重试，不能放弃。429（限速）和 409（真空仓）必须分开 —— 404 / 409 不再触发认证降级（已进代码，第十五轮回归通过）。** gh 掉线次数、末次原因、冷却期间未认证调用次数都进审计。
 - **description 越像论文，越要查 commits。**
 - **只匹配 `in:name,description`，不要 readme。**
-- **脏词必须配 carrier**（`world model`）。**discard 量大 ≠ 误杀大**（第十一轮 carrier 丢 479 个，是最大单条规则，但没重放就不能算净算）。**carrier 判据 = desc ∪ topics 任一命中**；`EXCL` 仍只看 name+desc（否则放走 awesome 列表仓）。`len(desc)<25` 留逃生口：只有**无 topics** 才丢（空 desc 靠 topics 可放行，单独记账）。第十四轮量化：区间 31 个活仓里 26 个死在旧 carrier（含 `TencentARC/WorldCrafter` ★538）。
+- **脏词必须配 carrier**（`world model`）。**discard 量大 ≠ 误杀大**（第十一轮 carrier 丢 479 个，是最大单条规则，但没重放就不能算净算）。**carrier 判据 = desc ∪ topics 任一命中**；`EXCL` 仍只看 name+desc（否则放走 awesome 列表仓）。`len(desc)<25` 留逃生口：只有**无 topics** 才丢。**注意 carrier 假设「得有机器人词」，而世界模型正往纯 ML 措辞漂移 —— `colorHur/world-model-lab` 因 desc/topics 全无机器人词被丢（第十五轮）。放宽前先用 `dropped.json` 量误杀率。**
 - **覆盖率必须报。** <50% 的绝对数不可引用；撞顶的 66.5% 同样是采样后验，不是真实覆盖率。
 - **`template` / `demo` / `sniper` = 练手仓库或农场。**
-- **站点仓按后缀无条件丢**（`.github.io` / `-page` / `-site` / `-website` / `-homepage` / `-showcase` / `-docs`）—— 体量不是判据。**同名仓**才需要「体量小 + 无 language」两个条件。
+- **站点仓按后缀无条件丢**（`.github.io` / `-page` / `-site` / `-website` / `-homepage` / `-showcase` / `-docs`）—— 体量不是判据。**同名仓**才需要「体量小 + 无 language」两个条件。`-docs` 是这组里最弱的一条，盯一轮有没有带 `language` 的仓被误丢。
 - **纯静态站还有第二种形态**：根目录 `index.html` + `.nojekyll` 且无任何代码骨架（`src`/`tests`/`pyproject.toml`/`package.json`/…）→ 页。第十/十一轮三次独立命中（含 39MB、115MB），已进代码。
-- **每条丢弃规则都要能被审计。** 四类归因行固定进审计：曾撞页上限的子窗 · carrier 靠 topics 放行数 · 空/短 desc 靠 topics 放行数 · probe 各来源种子数。
+- **每条丢弃规则都要能被审计。** 四类归因行固定进审计：曾撞页上限的子窗 · carrier 靠 topics 放行数 · 空/短 desc 靠 topics 放行数 · probe 各来源种子数。**`carrier` 与 `short_desc` 的丢弃名单全量落 `output/ghradar/dropped.json`**（此前是唯一两条不落仓名的规则）。
 - **农场只认黑名单。**
 - **报「零命中」必须分开写四类。**
 - **不做判断。** 只给仓库 + 一句话 + 链接 + star + 30 天 / 7 天提交数。
@@ -78,12 +78,12 @@ metadata:
 - `memory/github-seen.json` · `memory/github-farms.txt`（**黑名单，行内可带 `#` 注释**）
 
 写（脚本自己写，模型不用管）：
-- `output/ghradar/out.json` · `audit.log` · `report.md`（`probe` 时另有 `clusters.json`）
+- `output/ghradar/out.json` · `audit.log` · `report.md` · `dropped.json`（`probe` 时另有 `clusters.json`）
 - `output/ghradar/out.dry.json` —— `dry-run` 时快照写这里，**不覆盖 `out.json`**（否则一次 0 幸存就会把上一轮的真快照写成 `[]`）
 - `memory/github-seen.json`（全部幸存者，`dry-run` 不写）
 - `memory/github-candidates.md`（只写报告级，`dry-run` 不写）
 - 通知：只在报告级 > 0 且非 `dry-run` 时发，最多 `NOTIFY_TOP` 条
-- 清：开跑前删掉 `output/ghradar/` 里除上述五个名字外的文件（`keep*` 前缀除外），删了什么打进审计
+- 清：开跑前删掉 `output/ghradar/` 里除上述六个名字外的文件（`keep*` 前缀除外），删了什么打进审计
 
 ## Steps
 
