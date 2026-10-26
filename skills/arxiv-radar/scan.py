@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""arxiv-radar 扫描器。vI
+"""arxiv-radar 扫描器。vJ
 
-vI 尚未跑过，本版折入两处收尾（名字严格化、check 截断提示），版本号不跳。
+vJ = vI + 一处 schema 变更（hits.tsv 加「窗口」列）。vI 未跑过，故 vI 可跳过。
+vI 折入的收尾（名字严格化、check 截断提示）在本版同样生效。
 
 用法:
     python3 skills/arxiv-radar/scan.py "days:30"
@@ -21,11 +22,14 @@ var token（空格分隔，可组合）:
   `notify:script` 是兜底（人手动跑、或模型那轮没跟上时）。
 
 产物（文件名固定）:
-    output/arxiv/out.json     全部幸存者
+    output/arxiv/out.json     全部幸存者（每条含 window）
     output/arxiv/audit.log    审计（同时打到 stdout）
     output/arxiv/report.md    通知正文（脚本写机械版，模型覆写中文版）
     memory/arxiv-seen.json    非 dry-run 才写
-    memory/arxiv-hits.tsv     非 dry-run 才追加（日期 / 裸 id / 名字，append-only）
+    memory/arxiv-hits.tsv     非 dry-run 才追加，**列序固定：日期 / 裸 id / 名字 / 窗口**
+                              「窗口」= 该行被发现时的窗口天数；>30 即补历史口径（填洞），
+                              不代表当天有新叙事。2026-10-26 之前的旧行只有 3 列，
+                              第 4 列缺失 = 未知（含第九轮那批 60d 补历史）。
 
 失败必须能与「零命中」区分：查询失败重试 3 次（429 单独退避），仍失败进「未测到」；
 连续 3 个词全失败 → 熔断，剩余词进「未尝试」。两者都不是零命中。
@@ -36,7 +40,7 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
-VERSION = "vI"
+VERSION = "vJ"
 
 OUTD = "output/arxiv"
 OUT, AUD, REPORT = OUTD + "/out.json", OUTD + "/audit.log", OUTD + "/report.md"
@@ -85,6 +89,9 @@ for tok in var.split():
         UNKNOWN.append(tok)
 
 T0 = time.time()
+# 窗口 > 30 = 补历史口径（填历史洞），推送与审计都要标出来，别被读成方向升温
+BACKFILL = DAYS > 30
+BACK_TAG = "（补历史口径）" if BACKFILL else ""
 
 # ── 词表：`#` 开头是注释。写「持仓依赖的机制」，不是持仓的名字 ──────
 # 只查 ti:（标题）—— 标题是作者自己的定位，摘要里什么都有。
@@ -409,7 +416,8 @@ def absorb(root, term):
                 dropped["carrier"].append((pub, title[:72]))
             continue
         # vI：裸 id 进记录 —— hits.tsv 的键必须和 labels.tsv 同构，否则 join 不上
-        rec = {"id": aid, "term": term, "terms": [term],
+        # vJ：window 进记录 —— 区分「当天新发现」和「补历史填洞」
+        rec = {"id": aid, "term": term, "terms": [term], "window": DAYS,
                "name": guess_name(title, summ, known),
                "title": title, "published": pub, "link": "https://arxiv.org/abs/%s" % aid,
                "carrier": next(c for c in carrier if c in blob)}
@@ -443,7 +451,7 @@ def cross_probe(term):
 ok, perr = preflight()
 if not ok:
     print("🛑 preflight 失败: %s" % perr, file=sys.stderr)
-    L = ["arxiv-radar %s · preflight 失败 · 窗口 %d 天" % (VERSION, DAYS),
+    L = ["arxiv-radar %s · preflight 失败 · 窗口 %d 天%s" % (VERSION, DAYS, BACK_TAG),
          "原因: %s" % perr,
          "未测到（试过但失败）: 全部 %d 词" % len(TERMS),
          "未尝试（熔断跳过）: 0",
@@ -521,8 +529,8 @@ for t in zero_t:
         real_w.append(t)
 
 # ── 审计 ──────────────────────────────────────────────────────────
-L = ["arxiv-radar %s · 窗口 %d 天 · 词 %d · 原始 %d · 幸存 %d · var=%r"
-     % (VERSION, DAYS, len(TERMS), raw, len(out), var),
+L = ["arxiv-radar %s · 窗口 %d 天%s · 词 %d · 原始 %d · 幸存 %d · var=%r"
+     % (VERSION, DAYS, BACK_TAG, len(TERMS), raw, len(out), var),
      "丢弃 seen(记忆)=%d · seen(本轮重复)=%d · EXCL=%d · carrier=%d · 查询失败=%d"
      % (drop["seen_mem"], drop["seen_dup"], drop["excl"], drop["carrier"], drop["fail"])]
 
@@ -586,6 +594,9 @@ for c in out[:25]:
     L.append("  %s [%s] %s%s" % (c["published"], "+".join(c["terms"]), c["title"][:88],
                                  (" · 名字=%s" % c["name"]) if c["name"] else ""))
 
+if not DRY and out:
+    L.append("hits 流水: 追加 %d 行（列序 日期/键/名字/窗口，窗口=%d）" % (len(out), DAYS))
+
 if not out and not with_new:
     if drop["excl"] or drop["carrier"]:
         L.append("ℹ️ 本轮 0 幸存，**但不是 seen 吃干了**：有 %d 条穿过了 seen 却全死在过滤器"
@@ -608,18 +619,19 @@ if not DRY:
         json.dump(dict(list(merged.items())[:2000]),   # merged 新的在前，取头
                   open(SEEN, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     if out:
-        # vI：第三列写裸 id（不是 URL）—— 必须和 labels.tsv 的键同构才能 join
+        # vI：第二列写裸 id（不是 URL）—— 必须和 labels.tsv 的键同构才能 join
+        # vJ：第四列写窗口 —— 补历史的行不该被读成当天新叙事
         old = open(HITS, encoding="utf-8").read() if os.path.exists(HITS) else ""
         with open(HITS, "w", encoding="utf-8") as f:
             f.write(old)
             if old and not old.endswith("\n"):
                 f.write("\n")
             for c in out:
-                f.write("%s\t%s\t%s\n" % (now.strftime("%Y-%m-%d"), c["id"],
-                                          c["name"] or c["title"][:40]))
+                f.write("%s\t%s\t%s\t%d\n" % (now.strftime("%Y-%m-%d"), c["id"],
+                                              c["name"] or c["title"][:40], c["window"]))
 
 if out:
-    R = ["**arxiv-radar** · 窗口 %d 天 · 幸存 %d" % (DAYS, len(out)), ""]
+    R = ["**arxiv-radar** · 窗口 %d 天%s · 幸存 %d" % (DAYS, BACK_TAG, len(out)), ""]
     for c in out[:NOTIFY_TOP]:
         nm = ("`%s` " % c["name"]) if c["name"] else ""
         R.append("- %s%s [%s] · %s · %s" % (nm, c["title"][:110],
