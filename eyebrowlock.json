@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-26T12:06:35.349424767Z",
+  "generatedAt": "2026-10-26T12:10:41.597132081Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -200,7 +200,7 @@
         },
         {
           "path": "scan.py",
-          "hash": "859c72d920fe671f0ce541032e1cfd436bf97cc4451b46fbf05ec4ac3e245bad"
+          "hash": "66c5c503f3884c422c0509bcbd7408fdcecedaf984b499b45969b5ad24c0c857"
         }
       ],
       "findings": [
@@ -223,7 +223,7 @@
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-7fc7afd6fa6c01ad86123baa15242305777f49b703be8bde3b224acc5a606967",
+      "contentHash": "sha256-7c461cf1884c8e926b270b1fbd7b4b2de5c3a7234d288c7a1a25ab6698f629f8",
       "discoveredFrom": "skills/arxiv-radar/SKILL.md"
     },
     {
