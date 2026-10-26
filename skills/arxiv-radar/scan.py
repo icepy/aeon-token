@@ -11,9 +11,12 @@ var token（空格分隔，可组合）:
 查询失败会重试 3 次（429 单独退避）；仍失败则进「未测到」分类，
 **绝不能被读成零命中** —— 旧写法单次 urlopen 异常即 continue，是 66.7% 静默失败的原因。
 
-零命中 ≠「可考虑删词」：脚本对**窗口内零命中**的词自动跨 30/60 天量
-opensearch:totalResults，只有 30d 与 60d 同时为 0 才判真零；跨窗查询本身失败
-（-1）单独归为「存疑」，不按真零读。窄窗 + 索引滞后会把稀有词系统性读成假零。
+零命中 ≠「可考虑删词」：脚本对**窗口内零命中**的词自动跨窗量 opensearch:totalResults，
+跨窗档 = (30,60,90) 中所有 > DAYS 的值（窄窗制造假零，必须回退到更宽的窗）。
+只有全部跨窗档都为 0 才判真零；跨窗查询本身失败（-1）单独归为「存疑」，不按真零读。
+
+窗口只决定成本与冗余，不决定语义 —— 30d 是生产口径（arxiv 索引滞后 ~5 天，
+7d 窗只剩 2 天余量）；days:60 是改词表/改 carrier 时的补历史诊断窗。
 
 通知归属：正文归**模型**。脚本不会翻译英文标题，也不会"按簇分组"，
 所以默认只写 output/arxiv/report.md 的机械列表，由模型覆写成中文后发。
@@ -67,6 +70,10 @@ for tok in var.split():
         CHECK = tok.split(":", 1)[1].strip()
     else:
         UNKNOWN.append(tok)
+
+# 跨窗档必须严格大于 DAYS —— 否则那一档就是 win 列的副本，白花请求还假装是两个证据。
+# days:30 → (60, 90) · days:60 → (90,) · days:90+ → ()（退化成窗口内判真零）
+CROSS_WINDOWS = tuple(d for d in (30, 60, 90) if d > DAYS)
 
 T0 = time.time()
 
@@ -299,7 +306,7 @@ for term in TERMS:
         hit_ids[aid] = rec
         per_term[term] = per_term.get(term, 0) + 1
 
-    # 窗口内零命中 → 跨 30/60 天量真实 total_count，避免把「窗口太短」读成「真零」
+    # 窗口内零命中 → 跨更宽的档量真实 total_count，避免把「窗口太短」读成「真零」
     if raw_term.get(term, 0) == 0:
         for d in CROSS_WINDOWS:
             cross.setdefault(term, {})[d] = total_of(q, d, 1)[0]
@@ -320,13 +327,15 @@ with_new = [t for t in TERMS if per_term.get(t, 0) > 0]
 cz_short, cz_real, cz_unk = [], [], []
 for t in truly_zero:
     c = cross.get(t) or {}
-    c30, c60 = c.get(30), c.get(60)
-    if c30 in (None, -1) or c60 in (None, -1):
+    vals = [c.get(d) for d in CROSS_WINDOWS]
+    if any(v in (None, -1) for v in vals):
         cz_unk.append(t)
-    elif c30 > 0 or c60 > 0:
+    elif any((v or 0) > 0 for v in vals):
         cz_short.append(t)
     else:
         cz_real.append(t)
+
+CW_TXT = "/".join("%dd" % d for d in CROSS_WINDOWS) or "(无跨窗档)"
 
 L = ["扫 %d 词 | 窗口 %s | 原始 %d | 幸存 %d | var=%r"
      % (len(TERMS), win, raw, len(out), var),
@@ -336,6 +345,8 @@ L = ["扫 %d 词 | 窗口 %s | 原始 %d | 幸存 %d | var=%r"
      % (len(failed_t), len(truly_zero), len(saturated), len(with_new)),
      "窗口内最新收录日期: %s   ← 比今天早 3 天以上即索引滞后，不是零命中"
      % (newest or "(无)"),
+     "跨窗档 %s（只取 > %dd 的档；等宽档是 win 列的副本，不重复量）"
+     % (CW_TXT, DAYS),
      "耗时 扫描 %.0fs（含重试 %.0fs）· 总 %.0fs"
      % (T_RUN, RETRY_SPENT[0], time.time() - T0)]
 if UNKNOWN:
@@ -347,18 +358,21 @@ if failed_t:
              % (len(failed_t),
                 " · ".join("%s=%s" % (t, fail_reason.get(t, "?")) for t in failed_t[:6])))
 if truly_zero:
-    L.append("⚠️ 窗口内零命中 %d 个 —— 已跨窗量 total_count（win=%dd / 30d / 60d）："
-             % (len(truly_zero), DAYS))
-    for t in truly_zero:
-        c = cross.get(t) or {}
-        c30, c60 = c.get(30), c.get(60)
-        v = ("跨窗查询失败 → 存疑，别删" if t in cz_unk else
-             "窗口太短 → 非真零，别删" if t in cz_short else
-             "真零（30d/60d 皆 0）→ 可考虑删词")
-        L.append("   %s: win=%d 30d=%s 60d=%s → %s"
-                 % (t, raw_term.get(t, 0), c30, c60, v))
-    L.append("   └ 小结: 窗口太短 %d · 真零 %d · 跨窗失败 %d"
-             % (len(cz_short), len(cz_real), len(cz_unk)))
+    if not CROSS_WINDOWS:
+        L.append("⚠️ 窗口内零命中 %d 个（无更宽档可退，按真零读）: %s"
+                 % (len(truly_zero), " · ".join(truly_zero)))
+    else:
+        L.append("⚠️ 窗口内零命中 %d 个 —— 已跨窗量 total_count（win=%dd / %s）："
+                 % (len(truly_zero), DAYS, CW_TXT))
+        for t in truly_zero:
+            c = cross.get(t) or {}
+            body = " ".join("%dd=%s" % (d, c.get(d)) for d in CROSS_WINDOWS)
+            v = ("跨窗查询失败 → 存疑，别删" if t in cz_unk else
+                 "窗口太短 → 非真零，别删" if t in cz_short else
+                 "真零（%s 皆 0）→ 可考虑删词" % CW_TXT)
+            L.append("   %s: win=%d %s → %s" % (t, raw_term.get(t, 0), body, v))
+        L.append("   └ 小结: 窗口太短 %d · 真零 %d · 跨窗失败 %d"
+                 % (len(cz_short), len(cz_real), len(cz_unk)))
 if saturated:
     L.append("ℹ️ 全已见（饱和，**别删**）: " + " · ".join(
         "%s(raw=%d)" % (t, raw_term[t]) for t in saturated))
