@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-26T04:50:46.048612467Z",
+  "generatedAt": "2026-10-26T05:19:13.90759903Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -687,11 +687,11 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "6eeb5cc93df7c7b5b92185a5720334984d05d988671e32bb99f67f28c3add348"
+          "hash": "4524c573279e6a1b47ed0de08e5189789467fae5d99be402adcbf3966a9dc4c2"
         },
         {
           "path": "scan.py",
-          "hash": "3f224caddfd0688579d44f2a5710cc49566760ebd14e90e9e99980c19bb7d595"
+          "hash": "0f9e3b8de372811fa48bc518e60da67755e995fc8b17dc9c3dd6edbeb03f9573"
         }
       ],
       "findings": [
@@ -700,8 +700,8 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 20,
-          "snippet": "import json, os, subprocess, sys, threading, time",
+          "line": 23,
+          "snippet": "import json, os, re, subprocess, sys, threading, time",
           "explanation": "uses a process-execution primitive"
         },
         {
@@ -709,7 +709,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 136,
+          "line": 156,
           "snippet": "r = subprocess.run([\"gh\", \"api\", path], capture_output=True,",
           "explanation": "uses a process-execution primitive"
         },
@@ -718,12 +718,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 455,
+          "line": 541,
           "snippet": "r = subprocess.run([\"./notify\", \"-f\", REPORT], capture_output=True, text=True)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-a0ae61e888070ddd7b7ef836eb0cf81415e95a8bd013fc2be339ca3773ccba0d",
+      "contentHash": "sha256-5d9b49ede176ee02a9b5c7b96bb791f261306949ef9d5c113ac8e0ba382c0e57",
       "discoveredFrom": "skills/github-radar/SKILL.md"
     },
     {
