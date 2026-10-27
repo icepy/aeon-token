@@ -1,6 +1,6 @@
 ---
 name: narrative-brief
-description: 检查 Grok 自动化 crypto-narrative-brief-3day 写入的 narratives.md，有新内容才推送，推送前按整份哈希和重复标签去重。
+description: 检查 Grok 自动化 crypto-narrative-brief-3day 写入的 narratives.md，有新内容才推送，推送前按每节 sha256 和重复标签去重。
 metadata:
   title: Narrative Brief
   category: crypto
@@ -17,7 +17,9 @@ metadata:
 
 转发层。判断在 Grok 自动化 `crypto-narrative-brief-3day` 里已经做完，写进 `memory/topics/narratives.md`。本 skill 只回答一件事：这份正文是不是新的，是就原样推过来。
 
-**默认不启用。** 不写进 `aeon.yml`。测过之后由人工设 `enabled: true`。建议排班周一、周四 10:00 与 16:00（Asia/Shanghai），cron `0 2,8 * * 1,4`（UTC）。
+**已启用，每天一次。** `aeon.yml` 里 `enabled: true, schedule: "0 8 * * *"`（UTC）= 北京时间 16:00，错开 `arxiv-radar`（07:30）与 `github-radar`（07:45）。**不写 `var`**（走 metadata 的空串）。
+
+选每天而不是每周：UNCHANGED 轮几乎零成本（一次 curl、一次哈希，不发通知、不写 seen、只落一行日志），而每周排班会在跨周末留出 3 天以上空档 —— 对一份 3 天窗口的 brief 太钝。
 
 **不改 `narratives.md`。** 那个文件归 Grok。覆盖写还是改成 append，都不在这里动。
 
@@ -25,13 +27,15 @@ metadata:
 
 - **预算：全程 1 次工具调用。** 就是下面那条 python。digest 在 stdout，正文也在 stdout。不要再 Read 文件、不要 `cat`、不要自己抓 URL。
 - **不许现写 `python3 -c`。** 去重、哈希、空文件、已推过，全在 `check.py`。
-- **不要重写脚本。** 只有去重规则错了才 Edit `check.py`。
+- **不要重写脚本。** 只有去重规则错了才 Edit `check.py`。改完先跑一次 `--self-test`（零网络、30+ 断言，覆盖去重幂等、dry-run 隔离、notify 缺失→pending→commit-sent）；它自带 `--root` / `--file` 可以在临时目录里跑全流程。
 - **不要改写通知。** 脚本拼好的正文就是推送正文。不要缩写、不要加观点、不要重排。
 - **空的、只有日期的、整份已经推过的：脚本不发，你也不要补发。** 正常就是安静。
-- **同一节里重复的「标签」只留先出现的一条。** 另一节里的同名标签留下。`变化` / `反身性` / `对我持仓的意义` 不是标签，不许删。
-- **已推过按整份哈希记**，在 `memory/narrative-brief-seen.json`。近 3 天日志里 `推送: yes` 的 sha 也算推过。`dry-run` 不算。
+- **同一【】节里重复的「标签」只留先出现的一条。** 另一【】节里的同名标签留下。`变化` / `反身性` / `对我持仓的意义` 不是标签，不许删。
+- **同一日期节内，去掉编号后正文完全相同的条目只留一条**（跨【】节也算）；**不同日期节之间不并**。
+- **`标签：` 是全角冒号，承重。** Grok 若改成半角 `标签:`，`ITEM_RE` 不匹配 → 去重与重编号**静默失效**（条目不报错、直接透传）。
+- **已推过按每节的 sha256 记**，在 `memory/narrative-brief-seen.json`。近 3 天日志里 `推送: yes` 的 sha 也算推过。`dry-run` 不算。
 - **文件里按日期切开。** 只推没见过的那几节。Grok 改成 append 之后，旧节不会再推一次。
-- **日期节超过 4：只在 stdout 记一笔，不删。** 删最旧一节是 Grok 的事。
+- **日期节超过 4：只在 stdout 打一行，不落日志，也不删。** 删最旧一节是 Grok 的事。
 - **产物文件名固定**（`report.md` / `report.dry.md` / `pending.json`）。
 - **日志脚本已经写入。** 不要再追加一节 `### narrative-brief`。
 
@@ -103,3 +107,6 @@ python3 skills/narrative-brief/check.py --commit-sent
 | `结果: EMPTY` | 没有正文 | 不发 |
 | `结果: DRY` | dry-run | 不发 |
 | `结果: FETCH_FAIL` | 远程和本地都没有 | 不发 |
+| `commit-sent: N` | 补记 pending 入库（日志写 `结果: COMMIT_SENT`） | 不重发 |
+
+**未实现（已定，别去找）**：stdout 应有一行「距上次推送: N 天」，超过 5 天打 ⚠️。`seen` 里已经存着 `notified_at`，但 `check.py` 目前只写不读。补上之前，Grok 静默停摆会和「今天没新内容」长得一模一样。
