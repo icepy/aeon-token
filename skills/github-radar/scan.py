@@ -10,17 +10,21 @@ var token（空格分隔，可组合）:
     days:N    扫描窗口，默认 30
     min:N     star 地板，默认 0
     chk:N     核验门槛（仅在幸存数超 CHK_CAP 时启用），默认 5
-    probe     对种子仓名 token 做反查，找词表漏掉的专名簇
+    probe     强制跑专名簇反查（否则按 memory/ghradar-probe-last.txt 戳，≥7 天自动跑）
+    --full    打全文审计到 stdout（默认只打 digest；全文永远落 audit.log）
+
+probe 窗口固定 PROBE_WIN=60 天，**不跟 run 窗口**（它问的是「名字在不在积累」）。
 
 产物（文件名固定，别改成 scan14.py / audit14.log）:
     output/ghradar/out.json       全部幸存者（非 dry-run）
     output/ghradar/out.dry.json   全部幸存者（dry-run；空数组不许覆盖上一轮真快照）
-    output/ghradar/audit.log      审计（同时打到 stdout）
-    output/ghradar/report.md      通知正文
+    output/ghradar/audit.log      审计全文（同时按 digest/full 打到 stdout）
+    output/ghradar/report.md      通知正文（中文）
     output/ghradar/clusters.json  probe 时**必定重写**（空也写，好区分"没跑"和"跑了没货"）
     output/ghradar/dropped.json   **全量**丢弃名单（carrier / short_desc）+ carrier 存活对照
     memory/github-seen.json       非 dry-run 才写
     memory/github-candidates.md   非 dry-run 才追加
+    memory/ghradar-probe-last.txt probe 成功且非 dry-run 才写戳
 
 开跑前会清理 output/ghradar/：只保留上面这几个名字（`keep*` 前缀除外）。
 """
@@ -30,7 +34,7 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 
-VERSION = "gh-v1"        # 一版一投的版本锚点；印在审计首行
+VERSION = "gh-v2"        # 一版一投的版本锚点；印在审计首行
 
 OUTD = "output/ghradar"
 OUT, OUT_DRY = OUTD + "/out.json", OUTD + "/out.dry.json"
@@ -40,6 +44,7 @@ DROPPED = OUTD + "/dropped.json"
 SEEN = "memory/github-seen.json"
 CARDS = "memory/github-candidates.md"
 FARMS = "memory/github-farms.txt"
+PROBE_STAMP = "memory/ghradar-probe-last.txt"
 
 # output/ghradar/ 里只允许这些名字；其余每次开跑前删掉。`keep*` 前缀可跨轮保留。
 KEEP = {"out.json", "out.dry.json", "audit.log", "report.md", "clusters.json",
@@ -67,6 +72,9 @@ PROBE_BUDGET = 240     # probe / carrier 并发阶段墙钟预算（秒）
 CARRIER_PROBE_CAP = 150  # carrier 误杀抽核上限（owner 去重后）
 PROBE_MAXTOK = 28      # probe: 最多反查多少个 token
 PROBE_MAX_TOTAL = 600  # probe: 反查 total 超过这个 → 判为通用词，不是专名
+PROBE_WIN = 60         # probe 窗口（天）。**独立于 run 窗口** —— 7 天窗下真簇与撞名
+                       # 都在噪声底下面；名字在不在积累是周/月尺度的事。
+PROBE_EVERY = 7        # probe 到期天数（戳判；跑挂不写戳 → 次日自愈）
 # probe 历史种子池大小。**必须 ≈ hist 配额**，否则只有最近几条能当种子：
 # 第十五轮实测 candidates 已 335 行 / 321 仓，只取最近 200 条 → 实际只有最近 24 条进池。
 PROBE_HIST_POOL = 24
@@ -168,12 +176,14 @@ EXCL = ["awesome", "tutorial", "course", "survey", "cheatsheet", "roadmap",
 
 # ── var ───────────────────────────────────────────────────────────
 var = sys.argv[1] if len(sys.argv) > 1 else ""
-DRY, DAYS, MIN, CHK, PROBE, UNKNOWN = False, 30, 0, 5, False, []
+DRY, DAYS, MIN, CHK, PROBE, FULL, UNKNOWN = False, 30, 0, 5, False, False, []
 for tok in var.split():
     if tok == "dry-run":
         DRY = True
     elif tok == "probe":
         PROBE = True
+    elif tok == "--full":
+        FULL = True
     elif tok.startswith("days:"):
         DAYS = int(tok.split(":", 1)[1] or 30)
     elif tok.startswith("min:"):
@@ -199,8 +209,11 @@ if os.path.exists(SEEN):
         seen = {}
 
 now = datetime.now(timezone.utc)
+TODAY = now.strftime("%Y-%m-%d")
 FMT = "%Y-%m-%dT%H:%M:%S+00:00"          # `created:` 收 ISO8601，秒粒度
 FULLWIN = "%s..%s" % ((now - timedelta(days=DAYS)).strftime(FMT), now.strftime(FMT))
+PROBE_FULLWIN = "%s..%s" % ((now - timedelta(days=PROBE_WIN)).strftime(FMT),
+                            now.strftime(FMT))
 
 def subwindows(n, days):
     """把 [now-days, now] 等分 n 个不重叠子窗（秒粒度）。只是二分的起点。"""
@@ -217,6 +230,29 @@ def split_window(w):
     if mid in (lo_s, hi_s):
         return None
     return [lo_s + ".." + mid, mid + ".." + hi_s]
+
+def round_no():
+    """轮次号：按 candidates.md 里的分节数 + 1。dry-run 不追加，所以是预估。"""
+    if not os.path.exists(CARDS):
+        return 1
+    try:
+        txt = open(CARDS, encoding="utf-8").read()
+    except Exception:
+        return 1
+    return len(re.findall(r"^## .*github-radar", txt, re.M)) + 1
+
+def probe_due():
+    """(是否该跑 probe, 原因)。显式 `probe` 无视戳；戳缺失/坏/≥PROBE_EVERY 天 → 跑。
+    跑挂不写戳 → 次日自愈。dry-run 不写戳，所以会连着跑。"""
+    if PROBE:
+        return True, "显式"
+    try:
+        last = datetime.strptime(
+            open(PROBE_STAMP, encoding="utf-8").read().strip()[:10], "%Y-%m-%d").date()
+    except Exception:
+        return True, "无戳/戳坏"
+    age = (now.date() - last).days
+    return (age >= PROBE_EVERY), ("戳 %d 天" % age)
 
 # ── 清理：output/ghradar/ 只留固定产物 ──
 # 前 13 轮在这儿攒了 150 个一次性旁路脚本和中间 json。靠代码强制清，
@@ -632,12 +668,14 @@ json.dump({"carrier": [r for _, r in carrier_dropped],
 # ③ 主题词落在 THEME_LEXICON 语义内（`thematic`）。只有 ① 会误报（eidolon/senku/
 # physguard 全是撞名）；只有 ①② 也会误报（第十六轮 3 个 cohesive 簇全假，主题词是
 # with / content / hikvision 这类胶水词或非本线专名）。
+# 窗口固定 PROBE_WIN，**不跟 run 窗口** —— 名字在不在积累是周/月尺度的事。
 # 阶段 1 串行反查（受 SEARCH_MIN_GAP 约束）；阶段 2 并发核热仓 commits。
+RUN_PROBE, PROBE_WHY = probe_due()
 drop_names = sorted(carrier_dropped + short_desc_dropped, reverse=True)
 cluster_report = []
 probe_stat = {"rep": 0, "out": 0, "hist": 0, "drop": 0, "tok": 0, "done": 0,
               "seeds": 0, "hot": 0, "hot_quiet": 0}
-if PROBE:
+if RUN_PROBE:
     srcs = (("rep", [c["repo"] for c in rep]),
             ("out", [c["repo"] for c in out]),
             ("hist", load_history()),
@@ -661,7 +699,7 @@ if PROBE:
     pending = []
     for tk in toks[:PROBE_MAXTOK]:
         res, err = search('"%s" in:name,description created:%s fork:false'
-                          % (tk, FULLWIN))
+                          % (tk, PROBE_FULLWIN))
         if res is None:
             continue
         total = res.get("total_count", 0)
@@ -714,6 +752,12 @@ if PROBE:
     # **无条件重写** —— 空数组也要写，否则上一轮的 clusters.json 会冒充本轮结果
     json.dump(cluster_report, open(CLUSTERS, "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
+    # 戳只在「跑了 + 非 dry-run」时写；跑挂不写 → 次日自愈
+    if not DRY:
+        try:
+            open(PROBE_STAMP, "w", encoding="utf-8").write(TODAY + "\n")
+        except OSError:
+            pass
 
 def fmt(c):
     return "%s ★%d 30d=%s%s 7d=%s%s" % (
@@ -721,7 +765,7 @@ def fmt(c):
         "≥100" if c.get("commits_30d_ge") else c.get("commits_30d"),
         " [爆完即停]" if c.get("burst_only") else "",
         "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"),
-        "" if c.get("language") else " [无language]")
+        "" if c.get("language") else " [无语言]")
 
 failed_t = list(qfail)
 truly_zero = [t for t in TERMS if t not in qfail and raw_term.get(t, 0) == 0]
@@ -730,170 +774,186 @@ with_new = [t for t in TERMS if new_term.get(t, 0) > 0]
 sat_seen = [t for t in saturated if seen_term.get(t, 0) > 0]
 sat_loss = [t for t in saturated if seen_term.get(t, 0) == 0]
 
-L = ["github-radar %s · 扫 %d 词 × 二分至一页（单窗 %d / 需拆窗 %d · 二分 %d 次 · "
-     "搜索调用 %d）| 原始 %d | 幸存 %d | 报告级 %d | var=%r"
-     % (VERSION, len(TERMS), win_whole, win_split, SPLIT_N[0], SEARCH_N[0],
-        raw, len(out), len(rep), var),
-     "快照 %s%s" % (SNAP, "（dry-run 不覆盖 out.json）" if DRY else ""),
-     "丢弃 seen=%d excl=%d archived=%d short_desc=%d carrier=%d neg=%d "
-     "pages=%d pages_root=%d scaffold=%d farm=%d fail=%d"
-     % (drop["seen"], drop["excl"], drop["archived"], drop["short_desc"],
-        drop["carrier"], drop["neg"], drop["pages"], drop["pages_root"],
-        len(scaffold), drop["farm"], drop["fail"]),
-     "核验 %d/%d (%.1f%%) · 模式 %s · 黑名单 %d owner"
-     % (len(todo), len(out), 100.0 * len(todo) / max(len(out), 1),
-        verify_mode, len(farms)),
-     "词表四分类 —— 查询失败 %d / 真零 %d / 全已见(饱和) %d / 有新增 %d"
-     % (len(failed_t), len(truly_zero), len(saturated), len(with_new)),
-     "耗时 搜索 %.0fs · 核验 %.0fs · 总 %.0fs"
-     % (T_SEARCH, T_VERIFY, time.time() - T0)]
+# 审计分两层：L = 全文（永远落 audit.log）；D = digest（默认打 stdout）。
+# `--full` 时 stdout 打 L。要补字段就补 digest，别让模型去补工具调用。
+L, D = [], []
+def A(line, d=False):
+    L.append(line)
+    if d:
+        D.append(line)
+
+A("github-radar %s · 第 %d 轮%s · 扫 %d 词 × 二分至一页（单窗 %d / 需拆窗 %d · "
+  "二分 %d 次 · 搜索调用 %d）| 原始 %d | 幸存 %d | 报告级 %d | var=%r"
+  % (VERSION, round_no(), "（dry-run 不递增）" if DRY else "", len(TERMS),
+     win_whole, win_split, SPLIT_N[0], SEARCH_N[0], raw, len(out), len(rep), var),
+  d=True)
+A("全文 %s%s" % (AUD, "" if FULL else "（stdout 只打 digest；加 --full 打全文）"), d=True)
+A("快照 %s%s" % (SNAP, "（dry-run 不覆盖 out.json）" if DRY else ""), d=True)
+A("丢弃 seen=%d excl=%d archived=%d short_desc=%d carrier=%d neg=%d "
+  "pages=%d pages_root=%d scaffold=%d farm=%d fail=%d"
+  % (drop["seen"], drop["excl"], drop["archived"], drop["short_desc"],
+     drop["carrier"], drop["neg"], drop["pages"], drop["pages_root"],
+     len(scaffold), drop["farm"], drop["fail"]), d=True)
+A("核验 %d/%d (%.1f%%) · 模式 %s · 黑名单 %d owner"
+  % (len(todo), len(out), 100.0 * len(todo) / max(len(out), 1),
+     verify_mode, len(farms)), d=True)
+A("词表四分类 —— 查询失败 %d / 真零 %d / 全已见(饱和) %d / 有新增 %d"
+  % (len(failed_t), len(truly_zero), len(saturated), len(with_new)), d=True)
+A("耗时 搜索 %.0fs · 核验 %.0fs · 总 %.0fs"
+  % (T_SEARCH, T_VERIFY, time.time() - T0), d=True)
 if cleaned:
-    L.append("🧹 清理 output/ghradar/ 历史文件 %d 个（只留 %s；`keep*` 前缀可跨轮保留）: %s"
-             % (len(cleaned), " / ".join(sorted(KEEP)),
-                " · ".join(cleaned[:12]) + (" …" if len(cleaned) > 12 else "")))
+    A("🧹 清理 output/ghradar/ 历史文件 %d 个（只留 %s；`keep*` 前缀可跨轮保留）: %s"
+      % (len(cleaned), " / ".join(sorted(KEEP)),
+         " · ".join(cleaned[:12]) + (" …" if len(cleaned) > 12 else "")))
 if capped:
-    L.append("ℹ️ 子窗自身 total>%d 且已到二分上限（该叶子窗有截断）%d 个: %s"
-             % (WIN_TARGET, len(capped),
-                " · ".join("%s@%s(total=%d)" % c for c in capped[:8])))
+    A("ℹ️ 子窗自身 total>%d 且已到二分上限（该叶子窗有截断）%d 个: %s"
+      % (WIN_TARGET, len(capped),
+         " · ".join("%s@%s(total=%d)" % c for c in capped[:8])), d=True)
 if carrier_topic_only:
-    L.append("ℹ️ carrier 只靠 topics 放行 %d 个（desc 里没有 carrier 词）: %s"
-             % (len(carrier_topic_only), " · ".join(carrier_topic_only[:12])))
+    A("ℹ️ carrier 只靠 topics 放行 %d 个（desc 里没有 carrier 词）: %s"
+      % (len(carrier_topic_only), " · ".join(carrier_topic_only[:12])))
 if desc_topic_only:
-    L.append("ℹ️ 空/短 desc 靠 topics 放行 %d 个: %s"
-             % (len(desc_topic_only), " · ".join(desc_topic_only[:12])))
+    A("ℹ️ 空/短 desc 靠 topics 放行 %d 个: %s"
+      % (len(desc_topic_only), " · ".join(desc_topic_only[:12])))
 if carrier_dropped:
-    L.append("ℹ️ 被 carrier 规则丢弃 %d 个（desc 与 topics 均无 carrier 词）"
-             "—— 全量在 dropped.json，最近 20: %s"
-             % (len(carrier_dropped),
-                " · ".join("%s(%s)" % (r, p[:10])
-                           for p, r in sorted(carrier_dropped, reverse=True)[:20])))
-    L.append("ℹ️ carrier 误杀口径（对照，不下结论）：丢弃里仓名自带词表词 %d 个，"
-             "owner 去重 %d 个，本轮核 %d 个 → 近 7 天存活 %d/%d = %s"
-             % (len(carrier_named), len(carrier_named_uniq), len(CARRIER_ALIVE),
-                car_alive, len(CARRIER_ALIVE),
-                "%.0f%%" % (100.0 * car_alive / len(CARRIER_ALIVE))
-                if CARRIER_ALIVE else "n/a"))
-    L.append("   对照（放行的幸存者，已核 %d）：近 7 天存活 %d/%d = %s"
-             % (len(_ctrl), ctrl_alive, len(_ctrl),
-                "%.0f%%" % (100.0 * ctrl_alive / len(_ctrl)) if _ctrl else "n/a"))
+    A("ℹ️ 被 carrier 规则丢弃 %d 个（desc 与 topics 均无 carrier 词）"
+      "—— 全量在 dropped.json，最近 20: %s"
+      % (len(carrier_dropped),
+         " · ".join("%s(%s)" % (r, p[:10])
+                    for p, r in sorted(carrier_dropped, reverse=True)[:20])))
+    A("ℹ️ carrier 误杀口径（对照，不下结论）：丢弃里仓名自带词表词 %d 个，"
+      "owner 去重 %d 个，本轮核 %d 个 → 近 7 天存活 %d/%d = %s"
+      % (len(carrier_named), len(carrier_named_uniq), len(CARRIER_ALIVE),
+         car_alive, len(CARRIER_ALIVE),
+         "%.0f%%" % (100.0 * car_alive / len(CARRIER_ALIVE))
+         if CARRIER_ALIVE else "n/a"), d=True)
+    A("   对照（放行的幸存者，已核 %d）：近 7 天存活 %d/%d = %s"
+      % (len(_ctrl), ctrl_alive, len(_ctrl),
+         "%.0f%%" % (100.0 * ctrl_alive / len(_ctrl)) if _ctrl else "n/a"), d=True)
 if short_desc_dropped:
-    L.append("ℹ️ 被 short_desc 规则丢弃 %d 个（len(desc)<25 且无 topics）"
-             "—— 全量在 dropped.json，最近 20: %s"
-             % (len(short_desc_dropped),
-                " · ".join("%s(%s)" % (r, p[:10])
-                           for p, r in sorted(short_desc_dropped, reverse=True)[:20])))
+    A("ℹ️ 被 short_desc 规则丢弃 %d 个（len(desc)<25 且无 topics）"
+      "—— 全量在 dropped.json，最近 20: %s"
+      % (len(short_desc_dropped),
+         " · ".join("%s(%s)" % (r, p[:10])
+                    for p, r in sorted(short_desc_dropped, reverse=True)[:20])))
 if UNKNOWN:
-    L.append("⚠️ 未识别 var token（会被静默忽略）: " + " · ".join(UNKNOWN))
+    A("⚠️ 未识别 var token（会被静默忽略）: " + " · ".join(UNKNOWN), d=True)
 if failed_t:
-    L.append("⚠️ 查询失败（不是零命中）: " + " · ".join(failed_t))
+    A("⚠️ 查询失败（不是零命中）: " + " · ".join(failed_t), d=True)
 if truly_zero:
-    L.append("⚠️ 真零命中（total=0，可考虑删词）: " + " · ".join(truly_zero))
+    A("⚠️ 真零命中（total=0，可考虑删词）: " + " · ".join(truly_zero), d=True)
 if saturated:
     # 「饱和」这个标签本身是混的：new_term 只在全部过滤器跑完之后才自增，
     # 所以「被 carrier/short_desc 丢光」和「真被 seen 吸收」会落进同一类。必须拆开。
-    L.append("ℹ️ 饱和（raw>0 且 0 新增）%d —— 其中真被 seen 吸收 %d 个（**别删**）: %s"
-             % (len(saturated), len(sat_seen),
-                " · ".join("%s(raw=%d seen=%d)" % (t, raw_term[t], seen_term[t])
-                           for t in sat_seen)))
+    A("ℹ️ 饱和（raw>0 且 0 新增）%d —— 其中真被 seen 吸收 %d 个（**别删**）: %s"
+      % (len(saturated), len(sat_seen),
+         " · ".join("%s(raw=%d seen=%d)" % (t, raw_term[t], seen_term[t])
+                    for t in sat_seen)), d=True)
     if sat_loss:
-        L.append("   └ 全是过滤损耗 %d 个（seen=0，**不是饱和**，别按饱和读）: %s"
-                 % (len(sat_loss), " · ".join("%s(raw=%d)" % (t, raw_term[t])
-                                              for t in sat_loss)))
-L.append("词表返回/新收/已见: " + " · ".join(
+        A("   └ 全是过滤损耗 %d 个（seen=0，**不是饱和**，别按饱和读）: %s"
+          % (len(sat_loss), " · ".join("%s(raw=%d)" % (t, raw_term[t])
+                                       for t in sat_loss)), d=True)
+A("词表返回/新收/已见: " + " · ".join(
     "%s=%d/%d/%d" % (t, raw_term.get(t, 0), new_term.get(t, 0), seen_term.get(t, 0))
-    for t in sorted(TERMS, key=lambda x: -raw_term.get(x, 0))))
+    for t in sorted(TERMS, key=lambda x: -raw_term.get(x, 0))), d=True)
 if gh_lost[0]:
-    L.append("⚠️ gh 认证曾掉线 %d 次（末次原因: %s）；已按 %ds 冷却自动重试，"
-             "冷却期间 %d 次调用走未认证通道（配额低、数据一致）"
-             % (GH_LOST_N[0], GH_LAST_ERR[0] or "(未记录)", GH_COOLDOWN, GH_UNAUTH[0]))
+    A("⚠️ gh 认证曾掉线 %d 次（末次原因: %s）；已按 %ds 冷却自动重试，"
+      "冷却期间 %d 次调用走未认证通道（配额低、数据一致）"
+      % (GH_LOST_N[0], GH_LAST_ERR[0] or "(未记录)", GH_COOLDOWN, GH_UNAUTH[0]), d=True)
 low = {k: v for k, v in cov.items() if v < 95}
 if low:
-    L.append("⚠️ 覆盖率 <95%%（叶子窗截断或 total_count 不准，绝对数不可引用）: " +
-             " · ".join("%s=%.1f%%" % kv for kv in low.items()))
+    A("⚠️ 覆盖率 <95%%（叶子窗截断或 total_count 不准，绝对数不可引用）: " +
+      " · ".join("%s=%.1f%%" % kv for kv in low.items()), d=True)
 if scaffold:
-    L.append("ℹ️ 共享脚手架（同短名跨≥%d owner 且 desc 前缀同）%d 个: %s"
-             % (SCAFFOLD_MIN, len(scaffold), " · ".join(scaffold[:12])))
+    A("ℹ️ 共享脚手架（同短名跨≥%d owner 且 desc 前缀同）%d 个: %s"
+      % (SCAFFOLD_MIN, len(scaffold), " · ".join(scaffold[:12])))
 if neg_dropped:
-    L.append("ℹ️ 被 NEG 规则丢弃 %d 个: %s" % (len(neg_dropped),
-                                              " · ".join(neg_dropped[:12])))
+    A("ℹ️ 被 NEG 规则丢弃 %d 个: %s" % (len(neg_dropped),
+                                       " · ".join(neg_dropped[:12])))
 if page_dropped:
-    L.append("ℹ️ 被 pages 后缀规则丢弃 %d 个: %s"
-             % (len(page_dropped), " · ".join("%s(%dKB)" % p for p in page_dropped[:12])))
+    A("ℹ️ 被 pages 后缀规则丢弃 %d 个: %s"
+      % (len(page_dropped), " · ".join("%s(%dKB)" % p for p in page_dropped[:12])))
 if root_dropped:
-    L.append("ℹ️ 被 pages 根目录规则丢弃 %d 个（index.html+.nojekyll 且无代码骨架）: %s"
-             % (len(root_dropped), " · ".join(root_dropped[:12])))
+    A("ℹ️ 被 pages 根目录规则丢弃 %d 个（index.html+.nojekyll 且无代码骨架）: %s"
+      % (len(root_dropped), " · ".join(root_dropped[:12])))
 vt = Counter(c["term"] for c in todo)
-L.append("逐词核验数: " + " · ".join("%s=%d" % (k, vt.get(k, 0)) for k in
-                                     sorted(TERMS, key=lambda x: -vt.get(x, 0))))
+A("逐词核验数: " + " · ".join("%s=%d" % (k, vt.get(k, 0)) for k in
+                              sorted(TERMS, key=lambda x: -vt.get(x, 0))))
 uv = [c["repo"] for c in todo if c.get("unverified")]
 if uv:
-    L.append("⚠️ 未核验（限速或超预算，勿当空仓）%d: %s" % (len(uv), " · ".join(uv[:12])))
+    A("⚠️ 未核验（限速或超预算，勿当空仓）%d: %s" % (len(uv), " · ".join(uv[:12])), d=True)
 stale = [c["repo"] for c in todo if c.get("stale")]
 if stale:
-    L.append("⚠️ 30 天零提交（star 在骗人）%d: %s" % (len(stale), " · ".join(stale[:15])))
+    A("⚠️ 30 天零提交（star 在骗人）%d: %s" % (len(stale), " · ".join(stale[:15])), d=True)
 burst = [c["repo"] for c in todo if c.get("burst_only")]
 if burst:
-    L.append("⚠️ 爆完即停（30d 有量 / 7d 归零）%d: %s"
-             % (len(burst), " · ".join(burst[:15])))
+    A("⚠️ 爆完即停（30d 有量 / 7d 归零）%d: %s"
+      % (len(burst), " · ".join(burst[:15])), d=True)
 nol = [c["repo"] for c in todo if c.get("no_lang")]
 if nol:
-    L.append("⚠️ 无 language 字段（疑似非代码仓）%d: %s"
-             % (len(nol), " · ".join(nol[:12])))
+    A("⚠️ 无 language 字段（疑似非代码仓）%d: %s"
+      % (len(nol), " · ".join(nol[:12])), d=True)
 empty = [c["repo"] for c in todo if c.get("maybe_empty")]
 if empty:
-    L.append("⚠️ 空仓（409）: " + " · ".join(empty))
+    A("⚠️ 空仓（409）: " + " · ".join(empty), d=True)
 cand = {o: n for o, n in owner_n.items() if n >= 3}
 if cand:
-    L.append("ℹ️ 候选农场（owner≥3，需人工判）: " +
-             " · ".join("%s=%d" % kv for kv in cand.items()))
-if PROBE:
-    L.append("ℹ️ probe 种子 %d（报告级 %d / 幸存 %d / 历史 %d / 丢弃堆 %d）→ "
-             "候选 token %d → 已反查 %d · 热仓核验 %d（未达门槛 %d）· "
-             "clusters.json 已重写（空也写）"
-             % (probe_stat["seeds"], probe_stat["rep"], probe_stat["out"],
-                probe_stat["hist"], probe_stat["drop"], probe_stat["tok"],
-                probe_stat["done"], probe_stat["hot"], probe_stat["hot_quiet"]))
+    A("ℹ️ 候选农场（owner≥3，需人工判）: " +
+      " · ".join("%s=%d" % kv for kv in cand.items()))
+if RUN_PROBE:
+    A("ℹ️ probe 触发（%s）· 窗口 %d 天（不跟 run 窗口）· 种子 %d"
+      "（报告级 %d / 幸存 %d / 历史 %d / 丢弃堆 %d）→ 候选 token %d → 已反查 %d · "
+      "热仓核验 %d（未达门槛 %d）· clusters.json 已重写%s"
+      % (PROBE_WHY, PROBE_WIN, probe_stat["seeds"], probe_stat["rep"],
+         probe_stat["out"], probe_stat["hist"], probe_stat["drop"],
+         probe_stat["tok"], probe_stat["done"], probe_stat["hot"],
+         probe_stat["hot_quiet"],
+         "" if DRY else " · 戳已写"), d=True)
     if not probe_stat["seeds"]:
-        L.append("   ⚠️ 种子为 0 —— 本轮 probe 无从反查，不是「没有簇」")
+        A("   ⚠️ 种子为 0 —— 本轮 probe 无从反查，不是「没有簇」", d=True)
     else:
         ours = [c for c in cluster_report
                 if not c["generic"] and c["cohesive"] and c["thematic"]]
         near = [c for c in cluster_report
                 if not c["generic"] and c["cohesive"] and not c["thematic"]]
         alias = [c for c in cluster_report if not c["generic"] and not c["cohesive"]]
-        L.append("ℹ️ probe 反查 —— 小 total 候选（≤%d）。**同主题**=簇内 desc 有跨仓重复词"
-                 "**且主题词落在词表语义内**；**近似**=簇内自洽但主题词不是本线的；"
-                 "**异质**=各写各的（撞名嫌疑）。给证据，不下结论。" % PROBE_MAX_TOTAL)
+        A("ℹ️ probe 反查 —— 小 total 候选（≤%d）。**同主题**=簇内 desc 有跨仓重复词"
+          "**且主题词落在词表语义内**；**近似**=簇内自洽但主题词不是本线的；"
+          "**异质**=各写各的（撞名嫌疑）。给证据，不下结论。" % PROBE_MAX_TOTAL, d=True)
         for cl in ours[:8]:
-            L.append("  ✅ `%s` total=%d owners=%d%s 未在幸存者=%d 主题词=%s | %s"
-                     % (cl["token"], cl["total"], cl["owners"],
-                        " [一人多仓]" if cl["one_man"] else "", cl["not_in_out"],
-                        ",".join("%s×%d" % (w, c) for w, c in cl["theme"][:5]),
-                        " · ".join("%s(%s/%s)" % (h["repo"], h["commits_30d"],
-                                                  h["commits_7d"]) for h in cl["hot"][:3])))
+            A("  ✅ `%s` total=%d owners=%d%s 未在幸存者=%d 主题词=%s | %s"
+              % (cl["token"], cl["total"], cl["owners"],
+                 " [一人多仓]" if cl["one_man"] else "", cl["not_in_out"],
+                 ",".join("%s×%d" % (w, c) for w, c in cl["theme"][:5]),
+                 " · ".join("%s(%s/%s)" % (h["repo"], h["commits_30d"],
+                                           h["commits_7d"]) for h in cl["hot"][:3])),
+              d=True)
         if near:
-            L.append("  ⚠️ 近似（同主题但主题词不在词表语义内，仍可能是撞名）%d 个: %s"
-                     % (len(near), " · ".join(
-                         "`%s`(total=%d,owners=%d,主题词=%s)"
-                         % (c["token"], c["total"], c["owners"],
-                            ",".join(w for w, _ in c["theme"][:3])) for c in near[:8])))
+            A("  ⚠️ 近似（同主题但主题词不在词表语义内，仍可能是撞名）%d 个: %s"
+              % (len(near), " · ".join(
+                  "`%s`(total=%d,owners=%d,主题词=%s)"
+                  % (c["token"], c["total"], c["owners"],
+                     ",".join(w for w, _ in c["theme"][:3])) for c in near[:8])), d=True)
         if alias:
-            L.append("  ⚠️ 撞名嫌疑（异质，各写各的）%d 个: %s" % (len(alias),
-                     " · ".join("%s(total=%d,owners=%d)" % (c["token"], c["total"],
-                                                            c["owners"])
-                                for c in alias[:8])))
+            A("  ⚠️ 撞名嫌疑（异质，各写各的）%d 个: %s" % (len(alias),
+              " · ".join("%s(total=%d,owners=%d)" % (c["token"], c["total"],
+                                                     c["owners"])
+                         for c in alias[:8])), d=True)
         gen = [c for c in cluster_report if c["generic"]][:5]
         if gen:
-            L.append("  （通用词，反查噪声）: " + " · ".join(
-                "%s(total=%d)" % (c["token"], c["total"]) for c in gen))
+            A("  （通用词，反查噪声）: " + " · ".join(
+                "%s(total=%d)" % (c["token"], c["total"]) for c in gen), d=True)
+else:
+    A("ℹ️ probe 跳过（%s < %d 天）—— clusters.json 未重写，是上次结果，别当本轮"
+      % (PROBE_WHY, PROBE_EVERY), d=True)
 for c in rep[:25]:
-    L.append("  " + fmt(c))
+    A("  " + fmt(c), d=True)
 
 open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
-print("\n".join(L))
+print("\n".join(L if FULL else D))
 
 # ── 落盘 / 通知 ───────────────────────────────────────────────────
-stamp = now.strftime("%Y-%m-%d")
+stamp = TODAY
 if not DRY and hit:
     merged = {k: stamp for k in hit}
     merged.update(seen)
@@ -904,7 +964,7 @@ if not DRY and hit:
     with open(CARDS, "a", encoding="utf-8") as f:
         f.write("\n## %s · github-radar（报告级 %d）\n" % (stamp, len(rep)))
         for c in rep:
-            f.write("- [%s](%s) ★%d · 30d=%s 7d=%s%s · `%s` · %s\n"
+            f.write("- [%s](%s) ★%d · 30天=%s · 7天=%s%s · `%s` · %s\n"
                     % (c["repo"], c["url"], c["stars"],
                        "≥100" if c.get("commits_30d_ge") else c["commits_30d"],
                        "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"),
@@ -912,10 +972,10 @@ if not DRY and hit:
                        c["term"], c["desc"][:100]))
 
 if rep:
-    R = ["**github-radar** · 窗口 %d 天 · 报告级 %d · 7d 活跃 %d"
+    R = ["**github-radar** · 窗口 %d 天 · 报告级 %d · 近 7 天活跃 %d"
          % (DAYS, len(rep), sum(1 for c in rep if c.get("commits_7d"))), ""]
     for c in rep[:NOTIFY_TOP]:
-        R.append("- [%s](%s) ★%d · 30d=%s 7d=%s%s · `%s` · %s"
+        R.append("- [%s](%s) ★%d · 30天=%s · 7天=%s%s · 词 `%s` · %s"
                  % (c["repo"], c["url"], c["stars"],
                     "≥100" if c.get("commits_30d_ge") else c["commits_30d"],
                     "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"),
