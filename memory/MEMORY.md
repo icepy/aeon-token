@@ -1,5 +1,5 @@
 # Long-term Memory
-*Last consolidated: 2026-10-26*
+*Last consolidated: 2026-10-27*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `memory/cron-state.json` 的 `last_dispatch` 和 `logs/`。`scheduler.yml` 用精确时隙债务模型（`cron-due.sh` + `CATCHUP_HOURS=12`）。
@@ -18,7 +18,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
 - `arxiv-radar` ✅ 每天 07:30 UTC · **26 词 · vL** · 90d 正式跑（10-26）：原始 209 / 幸存 48 全为真新增。**最后 30 天只 17 条，17/17 来自 vK 两新词**（`human demonstration` 11 · `hand-object` 6，新收率 95%/89%）；**老 24 词最新命中停在 08-26，其后 60 天零进账** → **增量只来自新词/新窗口，`seen` 200 个 id 已被老词吃满**。[source: logs/2026-10-26#arxiv-radar（90d 正式跑）]
-- `github-radar` 手动 · 18 词 · 第十七轮（60d · dry-run）：原始 3818 / 幸存 51 / 报告级 11。**carrier 误杀率首获同口径对照 = 50% vs 50%，无差异 → 不放宽**；**新回归：自适应开窗致 `sim2real` 52.7% / `restaking` 83.3% 首破 95%，但非封顶**（两页并集 163 = total）。`thematic` 首轮全额生效，0 真簇。**star 九次失效；爆完即停稳定 55–60%。** [source: logs/2026-10-26#github-radar（第十七轮）]
+- `github-radar` cron 07:45 UTC · 18 词 · gh-v3。第二十一轮（10-27，7d dry-run）路径通，报告级 1。跑完交付见 SKILL「跑完交付」。v4（supermimic）本轮 probe 跳过，未碰。[source: logs/2026-10-27#github-radar（第二十一轮）]
 
 
 ## Lessons Learned
