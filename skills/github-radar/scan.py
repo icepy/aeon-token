@@ -34,7 +34,7 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 
-VERSION = "gh-v2"        # 一版一投的版本锚点；印在审计首行
+VERSION = "gh-v3"        # 一版一投的版本锚点；印在审计首行
 
 OUTD = "output/ghradar"
 OUT, OUT_DRY = OUTD + "/out.json", OUTD + "/out.dry.json"
@@ -62,7 +62,11 @@ WIN_MAX = 200          # 单个词最多在飞多少个子窗（= 搜索调用�
 WIN_MAX_DEPTH = 7      # 子窗二分深度上限（防退化窗空转）
 WIN_MIN_SPLIT = 3      # 整窗探针失败时的保守初始子窗数
 SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-showcase",
-               "-docs")
+               "-docs", "-web", "_web")
+# `-web`/`_web` 是第十九轮补的：`brain-labbb/RFW_A_web` 的 desc 自述
+# "RFW-A project website"，后缀却不在名单里被当报告级放行。这条是**无条件丢**，
+# 所以另开 WEB_SUFFIX 计量，看会不会过杀真代码仓；过杀就退回 EXCL（desc 侧）那条窄路。
+WEB_SUFFIX = ("-web", "_web")
 SCAFFOLD_MIN = 3
 SEARCH_MIN_GAP = 2.1   # search 限速 30/min
 VERIFY_WORKERS = 6     # 核验并发（core quota 5000/h，但并发太高会触发二级限流）
@@ -378,7 +382,9 @@ def cluster_cohesion(items, token):
     **`total` 小只是必要条件，簇内同主题也只是必要条件** —— 第十六轮 3 个 cohesive
     簇全假，因为"主题词"可能是 with / content 这类胶水词。所以主题词还必须落在
     THEME_LEXICON 里（由调用方判 `thematic`）。
-    阈值 max(3, ceil(n/5)) 是首版，下一轮用真实分布校准。"""
+    阈值 max(3, ceil(n/5)) 是首版，下一轮用真实分布校准。
+    **已知洞（第十九轮确认）**：真簇（supermimic 61 仓）恰恰是各仓各写各的 desc，
+    13 个仓共享同一个词的门槛过不去 → 被误判为异质。这是 v4 要动的点。"""
     n = len(items)
     if n < 2:
         return False, []
@@ -399,7 +405,7 @@ drop = {"seen": 0, "excl": 0, "archived": 0, "short_desc": 0, "carrier": 0,
         "neg": 0, "pages": 0, "pages_root": 0, "farm": 0, "fail": 0}
 hit, qfail, cov = {}, [], {}
 raw_term, new_term, seen_term = {}, {}, {}
-page_dropped, neg_dropped, root_dropped = [], [], []
+page_dropped, neg_dropped, root_dropped, web_dropped = [], [], [], []
 carrier_topic_only, desc_topic_only = [], []      # 两条放行路径，单独记账
 capped = []                                       # 二分到顶仍超一页的叶子窗（有截断）
 win_whole, win_split = 0, 0                       # 自适应窗口：单窗 / 需拆窗 的词数
@@ -474,7 +480,10 @@ for term in TERMS:
             # 站点仓：按后缀**无条件**丢 —— 体量不是判据（304MB 静态站照样是站）
             if short.lower().endswith(SITE_SUFFIX):
                 drop["pages"] += 1
-                page_dropped.append((rid, size_kb)); continue
+                page_dropped.append((rid, size_kb))
+                if short.lower().endswith(WEB_SUFFIX):
+                    web_dropped.append(rid)      # 新后缀单独计量，便于判过杀
+                continue
             # 同名仓：可能是真代码仓（UniWAM/UniWAM），也可能是个人主页
             if (short.lower() == owner.lower() and size_kb < 300
                     and not lang):
@@ -809,6 +818,9 @@ if capped:
     A("ℹ️ 子窗自身 total>%d 且已到二分上限（该叶子窗有截断）%d 个: %s"
       % (WIN_TARGET, len(capped),
          " · ".join("%s@%s(total=%d)" % c for c in capped[:8])), d=True)
+if web_dropped:
+    A("ℹ️ 新后缀 -web/_web 命中 %d 个（无条件丢；看会不会过杀真代码仓）: %s"
+      % (len(web_dropped), " · ".join(web_dropped[:12])), d=True)
 if carrier_topic_only:
     A("ℹ️ carrier 只靠 topics 放行 %d 个（desc 里没有 carrier 词）: %s"
       % (len(carrier_topic_only), " · ".join(carrier_topic_only[:12])))
