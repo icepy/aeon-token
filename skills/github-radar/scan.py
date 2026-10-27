@@ -907,7 +907,7 @@ if not DRY and hit:
             f.write("- [%s](%s) ★%d · 30d=%s 7d=%s%s · `%s` · %s\n"
                     % (c["repo"], c["url"], c["stars"],
                        "≥100" if c.get("commits_30d_ge") else c["commits_30d"],
-                       "≥100" if c.get("commits_7d_ge") else c["commits_7d", "-"],
+                       "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"),
                        " [爆完即停]" if c.get("burst_only") else "",
                        c["term"], c["desc"][:100]))
 
@@ -918,7 +918,7 @@ if rep:
         R.append("- [%s](%s) ★%d · 30d=%s 7d=%s%s · `%s` · %s"
                  % (c["repo"], c["url"], c["stars"],
                     "≥100" if c.get("commits_30d_ge") else c["commits_30d"],
-                    "≥100" if c.get("commits_7d_ge") else c["commits_7d", "-"],
+                    "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"),
                     " [爆完即停]" if c.get("burst_only") else "",
                     c["term"], c["desc"][:100]))
     open(REPORT, "w", encoding="utf-8").write("\n".join(R) + "\n")
