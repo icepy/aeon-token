@@ -238,6 +238,23 @@
         "writes_external_host",
         "sends_notifications"
       ]
+    },
+    {
+      "repo": "NurstarK/lazybrief",
+      "name": "Lazybrief",
+      "description": "Overnight do-it-later inbox: dump links, notes and todos all day; a local Gemma (via Ollama) sorts them overnight into a five-line morning brief through ./notify. No keys, no per-token cost, nothing leaves the machine. Self-hosted runner or local run only.",
+      "author": "NurstarK",
+      "license": "MIT",
+      "homepage": "https://github.com/NurstarK/lazybrief",
+      "category": "productivity",
+      "trust_level": "community",
+      "skills": [
+        "lazybrief"
+      ],
+      "secrets_required": [],
+      "capabilities": [
+        "sends_notifications"
+      ]
     }
   ]
 }
