@@ -17,6 +17,8 @@ metadata:
 
 转发层。判断在 Grok 自动化 `crypto-narrative-brief-3day` 里已经做完，写进 `memory/topics/narratives.md`。本 skill 只回答一件事：这份正文是不是新的，是就原样推过来。
 
+**默认不启用。** 不写进 `aeon.yml`。测过之后由人工设 `enabled: true`。建议排班周一、周四 10:00 与 16:00（Asia/Shanghai），cron `0 2,8 * * 1,4`（UTC）。
+
 **不改 `narratives.md`。** 那个文件归 Grok。覆盖写还是改成 append，都不在这里动。
 
 ## 铁律
