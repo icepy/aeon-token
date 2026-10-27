@@ -211,11 +211,16 @@ CARRIER_BY_TERM = {
 }
 
 def carrier_for(term, q=""):
-    """取这个词实际会用的 carrier 表：term 精确命中映射优先，其次用已拼好的
-    查询串兜一次，最后落默认表。与 absorb() 取表方式完全一致 —— 保证
-    「报表」与「过滤器」同源。"""
-    return (CARRIER_BY_TERM.get(term) or CARRIER_BY_TERM.get(q)
-            or CARRIER_CRYPTO)
+    """取这个词实际会用的 carrier 表。term 精确命中 → q 精确命中 → 短名兜底
+    （反查映射键的短形 / 查询形）→ 默认表。与 absorb() 取表方式完全一致。"""
+    if term in CARRIER_BY_TERM:
+        return CARRIER_BY_TERM[term]
+    if q in CARRIER_BY_TERM:
+        return CARRIER_BY_TERM[q]
+    for t, c in CARRIER_BY_TERM.items():
+        if short_term(t) == term or q_of(t) == q:
+            return c
+    return CARRIER_CRYPTO
 
 
 def carrier_label(carrier):
