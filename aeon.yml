@@ -167,6 +167,7 @@ skills:
   # --- 自定义 skill ---
   arxiv-radar: { enabled: true, schedule: "30 7 * * *"}
   github-radar: { enabled: true, schedule: "45 7 * * *" }
+  narrative-brief: { enabled: true, schedule: "0 2,8 * * 1,4", var: "" } # 周一/四 10:00 与 16:00 上海。转发 Grok crypto-narrative-brief-3day 写入的 narratives.md，空或已推过不发。
   
   # --- Fallback (must be last) ---
   heartbeat: { enabled: true, schedule: "0 8 * * *", var: "" } # ambient fleet-health check (default) — surfaces anything worth attention. var: empty=ambient check | <area>=ambient focused on that area | brief[:<area>]=priority brief (3 things to focus on, why now, what moved; folds in priority-brief)
