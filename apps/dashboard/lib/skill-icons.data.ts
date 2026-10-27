@@ -51,7 +51,6 @@ export const SKILL_ICONS: Record<string, string> = {
   "mention-radar": "<circle cx='12' cy='12' r='4'/><path d='M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8'/>",
   "miroshark-matchday": "<circle cx='12' cy='12' r='9'/><path d='M12 6.2l4.5 3.3-1.7 5.3H9.2l-1.7-5.3z'/><path d='M12 6.2V2.5M16.5 9.5l3.6-1.1M14.8 14.8l2.2 3M9.2 14.8l-2.2 3M7.5 9.5L3.9 8.4'/>",
   "monitor-polymarket": "<path d='M16 16l3-8 3 8c-.9.7-1.9 1-3 1s-2.1-.3-3-1z'/><path d='M2 16l3-8 3 8c-.9.7-1.9 1-3 1s-2.1-.3-3-1z'/><path d='M7 21h10'/><path d='M12 3v18'/><path d='M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2'/>",
-  "narrative-brief": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>",
   "narrative-convergence": "<path d='M4 4l7 7'/><path d='M20 4l-7 7'/><path d='M12 11v9'/><circle cx='12' cy='11' r='1.6' fill='currentColor' stroke='none'/>",
   "narrative-tracker": "<path d='M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1'/><path d='M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1'/><path d='M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1'/>",
   "onchain-monitor": "<path d='M9 17H7A5 5 0 0 1 7 7h2'/><path d='M15 7h2a5 5 0 1 1 0 10h-2'/><path d='M8 12h8'/>",
