@@ -6,7 +6,7 @@
     python3 skills/github-radar/scan.py "days:60 probe"      # 额外跑专名簇反查
 
 var token（空格分隔，可组合）:
-    dry-run   跳过 notify、不写 seen、**不覆盖 out.json**（改写 out.dry.json）
+    dry-run   跳过 notify、不写 seen、**不覆盖 out.json / report.md**（快照改写 out.dry.json）
     days:N    扫描窗口，默认 30
     min:N     star 地板，默认 0
     chk:N     核验门槛（仅在幸存数超 CHK_CAP 时启用），默认 5
@@ -19,7 +19,7 @@ probe 窗口固定 PROBE_WIN=60 天，**不跟 run 窗口**（它问的是「名
     output/ghradar/out.json       全部幸存者（非 dry-run）
     output/ghradar/out.dry.json   全部幸存者（dry-run；空数组不许覆盖上一轮真快照）
     output/ghradar/audit.log      审计全文（同时按 digest/full 打到 stdout）
-    output/ghradar/report.md      通知正文（中文）
+    output/ghradar/report.md      通知正文（中文；dry-run 不写，避免盖掉上一轮正式报告）
     output/ghradar/clusters.json  probe 时**必定重写**（空也写，好区分"没跑"和"跑了没货"）
     output/ghradar/dropped.json   **全量**丢弃名单（carrier / short_desc）+ carrier 存活对照
     memory/github-seen.json       非 dry-run 才写
@@ -853,7 +853,8 @@ if UNKNOWN:
 if failed_t:
     A("⚠️ 查询失败（不是零命中）: " + " · ".join(failed_t), d=True)
 if truly_zero:
-    A("⚠️ 真零命中（total=0，可考虑删词）: " + " · ".join(truly_zero), d=True)
+    A("⚠️ 真零命中（total=0，窗 %d 天；单窗为零不删，跨 7/30/60 都是 0 才谈删词）: %s"
+      % (DAYS, " · ".join(truly_zero)), d=True)
 if saturated:
     # 「饱和」这个标签本身是混的：new_term 只在全部过滤器跑完之后才自增，
     # 所以「被 carrier/short_desc 丢光」和「真被 seen 吸收」会落进同一类。必须拆开。
@@ -983,7 +984,7 @@ if not DRY and hit:
                        " [爆完即停]" if c.get("burst_only") else "",
                        c["term"], c["desc"][:100]))
 
-if rep:
+if rep and not DRY:
     R = ["**github-radar** · 窗口 %d 天 · 报告级 %d · 近 7 天活跃 %d"
          % (DAYS, len(rep), sum(1 for c in rep if c.get("commits_7d"))), ""]
     for c in rep[:NOTIFY_TOP]:
@@ -1000,5 +1001,7 @@ if not DRY and rep and os.path.exists("./notify"):
     print("notify: %s" % ((r.stdout or r.stderr or "ok").strip()[:200]))
 else:
     print("notify: 跳过（%s）" % ("dry-run" if DRY else "报告级 0"))
+if DRY and rep:
+    print("report.md: 跳过（dry-run 不覆盖）")
 print("STATUS: GITHUB_RADAR_OK · 幸存 %d · 报告级 %d · 总耗时 %.0fs"
       % (len(out), len(rep), time.time() - T0))
