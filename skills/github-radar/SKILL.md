@@ -101,7 +101,7 @@ digest 里已经有：口径 / 漏斗 / 逐词四分类 / 报告级 + desc / pro
 
 写（脚本自己写，模型不用管）：
 - `output/ghradar/out.json` · `audit.log` · `report.md` · `dropped.json`（`probe` 时另有 `clusters.json`）
-- `output/ghradar/out.dry.json` —— `dry-run` 时快照写这里，**不覆盖 `out.json`**
+- `output/ghradar/out.dry.json` —— `dry-run` 时快照写这里，**不覆盖 `out.json`，也不覆盖 `report.md`**
 - `memory/github-seen.json`（全部幸存者，`dry-run` 不写）
 - `memory/github-candidates.md`（只写报告级，`dry-run` 不写）
 - 通知：只在报告级 > 0 且非 `dry-run` 时发，最多 `NOTIFY_TOP` 条
@@ -123,5 +123,14 @@ python3 skills/github-radar/scan.py "${var}"
 
 ### 3. 输出
 
-- 通知正文由脚本写进 `output/ghradar/report.md` 并发出去
-- 只给仓库 + 一句话 + 链接 + star + 30d/7d，不做判断
+- 通知正文由脚本写进 `output/ghradar/report.md` 并发出去。`dry-run` 不写 `report.md`。
+- 只给仓库 + 一句话 + 链接 + star + 30d/7d，不做判断。
+
+### 4. 跑完交付
+
+最终输出在日志之外，必须另给操作者两块，每块几行：
+
+- **下一步** — 下一轮跑什么、改不改脚本。本轮没踩到的已知洞不夹带。
+- **你要处理的** — 只有人能定的事（删词、这条仓算不算你的题、要不要合并）。没有就写「这轮不用你处理」。
+
+改脚本只根据本轮结果里已经出现的缺陷。词表动作仍是三级：换写法 → 降级为低频 → 删词。不升 `VERSION`，除非这版行为要单独在飞；`gh-v4` 留给 `supermimic` 正样本。本地 `dry-run` 改写的 `audit.log` / `dropped.json` / `out.dry.json` 不提交，跑完还原。
