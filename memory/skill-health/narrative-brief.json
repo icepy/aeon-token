@@ -1,18 +1,21 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-10-27T06:52:28Z",
-  "quality_score": 2,
-  "assessment": "结构与中文表达达标，但引用可疑：同一条 @cz_abhi / @KeithTradeSmith 推文被反复挂到互不相关的叙事上，x.com 链接和 GitHub 来源路径无法核实，且建议统一为观望/跟随类套话，按规则封顶 2 分。",
-  "flags": [
-    "unverifiable_claim",
-    "generic_content"
-  ],
-  "avg_score": 2,
+  "last_analyzed": "2026-10-27T08:01:29Z",
+  "quality_score": 3,
+  "assessment": "Legitimate no-op run: remote narratives.md fetched successfully (http=200, 5601 bytes), single known section already pushed, correctly suppressed notification per the 'don't bother me when nothing changed' constraint; concrete metadata reported but no new intelligence produced.",
+  "flags": [],
+  "avg_score": 2.5,
   "history": [
     {
       "date": "2026-10-27",
       "score": 2,
       "ts": "2026-10-27T06:52:28Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-27",
+      "score": 3,
+      "ts": "2026-10-27T08:01:29Z",
       "harness": "claude"
     }
   ]
