@@ -1,14 +1,14 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 十七轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、carrier 误杀率对照组）
+description: github-radar 二十二轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、carrier 误杀率对照组、窗口是流量旋钮）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-26T23:40:00Z
+timestamp: 2026-10-27T23:40:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。十七轮（2026-10-26）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十二轮（2026-10-27）实证。
 
 ## 第十七轮（2026-10-26，60 天窗，probe，dry-run）—— carrier 误杀率首次有同口径对照组：50% vs 50%，无差异
 
@@ -487,8 +487,39 @@ carrier 本轮丢 123 个。只看 carrier 一条规则，120 个 `world model` 
 
 12. **「同窗口跑两次得同一组数字 = 曲线可复用」是错的推论。** WAM 84 → 99 的差是口径差（增量均匀摊在 9/9 周、三天零新建、10-23 后零新建）；同一天跑两次只证明环境一致。**复现性要换轮次 + 写明筛选口径。** 第六轮做到了：99 仓 / 94 owner、逐周 6/10/7/9/19/20/7/12/9，与第五轮**逐周完全一致**。
 
+## 第十八—二十二轮（2026-10-27，90d → 7d）—— 窗口是流量旋钮的算术证据；SITE_SUFFIX 补 `-web`
+
+10-27 一天跑了五轮：第十八轮 90d dry-run（5403/662/64）、第十九轮 7d probe 非 dry-run（455/34/10，首次写 seen）、第二十轮 90d 非 dry-run（5404/629/54）、第二十一/二十二轮 7d dry-run 冒烟（459/4/1、461/6/1）。
+
+### 43. 🟢 「窗口是流量旋钮，不是语义轴」第二次拿到算术证据
+
+第十八轮 90d dry-run 报告级 **64**；第十九轮 7d 写进 `seen` 的恰好 **34 个幸存者 / 10 个报告级**；第二十轮同口径 90d 正式跑 → 幸存 **−33**、报告级 **−10**，且第十九轮那 10 个（`Xeon87` · `maclong01/AGE` · `harshvtomar/robomotion-ai` · `brain-labbb/RFW_A_web` · `AbdelStark/verifiable-inference-ethereum` · `Kostov0129` · `alibaba-damo-academy/RynnUnify` · `SoroushK93` · `DU525` · `skywhite1024/paper-git`）**全部消失**。
+
+**差值完全由 `seen` 吸收解释，不是扫描回归。** 第一次证据是第十六轮同窗口复跑。**推论：90d 跟在 7d 之后跑，增量基本被吃干 —— 日跑回 7 天窗，90d 只用于加词/补历史。**
+
+### 44. 🔴 `scan.py` 尾部崩溃 ≠ 本轮没产出 —— 脚本、产物、stdout 三者会互相撒谎
+
+第十八轮 `scan.py:910` / `:921` 把 `c.get("commits_7d", "-")` 写成 `c["commits_7d", "-"]`（元组当 key 下标）。**扫描、核验、写 `out.dry.json` / `dropped.json` / `audit.log` 全部跑完之后**才在「落盘 / 通知」段抛 `KeyError`，于是 `report.md` 与 `github-candidates.md` 用的是上一轮的陈旧内容，而 stdout 看起来像「跑挂了」—— 那轮实际已算出 662/64。**判据：脚本尾部崩溃先看 `out.*.json` 的 mtime 再判，不要凭 stdout 重跑。** 已开 PR #14（已 MERGED）。
+
+### 45. ✅ SITE_SUFFIX 缺口已修，且没观察到过杀
+
+第十九轮发现 `brain-labbb/RFW_A_web`（desc 明写 "RFW-A project website"）因 `_web` 不在 `-page/-site/-website/-homepage/-showcase/-docs` 名单里被放行。第二十轮补上 `-web`/`_web`，命中 1 个 `Kr1sJFU/Enuma-web` 无条件丢，**过杀 0**（仅 1 例，样本不足）。
+
+### 46. 🟢 dry-run 不再覆盖 `report.md`；真零改为跨窗判定
+
+第二十二轮验证：`report.md` / `seen` / 戳 / `out.json` / `clusters.json` 的 md5 与跑前一致，stdout 打出 `report.md: 跳过（dry-run 不覆盖）`。真零行改为「单窗为零不删，跨 7/30/60 都是 0 才谈删词」—— 直接兑现第十轮判据 18。
+
+### 47. 🟡 `supermimic` 簇维持判假：多 owner 单仓同样不构成趋势
+
+probe 反查（首次非 dry-run）：种子 67 → 候选 token 96 → 反查 28 · 热仓核验 202。唯一真簇 `teleop`（total=550 / owners=98 / 未在幸存者 100 / 主题词 `teleoperation`×20），**但 `teleoperation` 已在词表且 raw=45，收益只是缩写书写形态 → 建议作 carrier 别名，不单开词条。** `supermimic` 61 仓 / 61 owner 与第十六轮 55 仓簇同规模，**一 owner 一仓判撞名**（「单 owner 多仓不构成趋势」的镜面对称）。
+
+### 48. ⚠️ 判据缺口：无 language 字段 ≠ 非代码仓，需 `gh api contents` 才能归因
+
+第十九轮 `Xeon87/Agentic_Robot_Sim2Real_Experiment_Platform` 22 commits 全在近 7 天但无 language，**疑似论文配套实验仓，预算内未补调用核实**。同轮 `paper-git` 形态再次印证「30d=39 但 7d=3」——30 天提交高 ≠ 现在在写。
+
 # Citations
 
+- 第十八—二十二轮 `logs/2026-10-27#github-radar（第十八轮` … `#（第二十二轮`）· `scan.py:910,921`（tuple-index bug）· PR #14 · `memory/github-seen.json`（186 增补 34）· `memory/ghradar-probe-last.txt` = 2026-10-27
 - 第十七轮快照 `output/ghradar/out.dry.json`（51 幸存 / 3,818 原始）· `dropped.json`（carrier 877 / short_desc 695 / carrier_named_uniq 327 / carrier_named_alive_7d 74）· `clusters.json` · `audit.log` · `scan.py:366`（`WIN_SPLIT_TOTAL`）· 手工复量 `sim2real` 两页并集 163 · `logs/2026-10-26#github-radar（第十七轮`
 - 第十六轮快照 `output/ghradar/out.dry.json`（49 幸存 / 4,004 原始）· `dropped.json`（首次全量落仓名）· `scan.py:73-78`（STOPWORDS）· `scan.py:283-300`（cluster_cohesion）· `logs/2026-10-26#github-radar（第十六轮`
 

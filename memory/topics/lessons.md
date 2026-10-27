@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-26T23:45:00Z
+timestamp: 2026-10-27T23:45:00Z
 ---
 
 # Lessons learned — archive
@@ -143,6 +143,9 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **DeFiLlama `/v2/chains` 已不再返回 `change_1d` / `change_7d`。** 2026-10-23 实测 421 条记录里 0 条带这两个字段。任何"直接取字段"的代码都会给每条链算出 `0.00%` 并显示成"全部持平"——一个静默的假阴性。链级涨跌要走 `/v2/historicalChainTvl/{chain}` 自己按日快照算。
 - **CoinGecko `/global` 的 `market_cap_change_percentage_24h_usd` 不可信。** 2026-10-23 该字段报 −3.83%，而用同一批 `/coins/markets` 前 20 名反推只有 −0.07%，且 BTC/ETH/SOL 24h 全在 ±0.15% 内（Coinbase 现货交叉验证 $81,582 vs CoinGecko $81,634）。要用总市值变动就用 top-N 加权重算，别引用这个聚合字段。
 - **链级 TVL 跳变先怀疑"上新"，别当净流入。** Hyperliquid L1 的 7d 显示 +122%，实际是 10-21 单日 chainTVL 从 $1.02B 阶跃到 $2.49B（协议收录变化），而 Hyperliquid Bridge *协议本身* 7d 是 −0.17%。任何链级异动都要下钻到协议级 `chainTvls` 才会发现。
+- **🔴 跨 series 做 diff 必须按日期对齐取键，不能各取尾部两个点。** 2026-10-27 `defi-overview` 复算 Uniswap V4 的 per-chain 日差时用了「各自 series 的最后两个点」而不是「同两个日期」，得出一串 −$0.003B 的假小数，**差点把真实的 −21.6%（BSC 腿 −$278M）判成快照伪影**；改成按日期取键后才对上 −$329M。**判别式：per-chain delta 的总和必须等于 aggregate delta，不等就是对齐错了。**
+- **🔴 单腿读数恰为 0 → 先当快照缺口，不要当流出。** 2026-10-27 同一轮三个实例：OKX 24h −40.3%（Bitcoin 腿 $11.93B → **$0.00** → $11.96B，Litecoin/Polkadot/Aptos 同时归零）、LayerZero V2 的 Polygon 腿 −$478M（比整条 Polygon 链的 −$41M 还大）、DEX `change_1d` +40.3%（与自家 `totalDataChart` 的 −3.6% **符号相反**）。**三者几小时内全部自愈。判据：单腿归零 + 兄弟腿同时归零 + 聚合量对不上，三条任一成立就重取一次再下结论。**
+- **聚合 API 的字段类型会变，`or 0` 兜不住类型错。** 2026-10-27 实测：Polymarket `predictions.binnedConfidence` 可能是 `None` 而不是缺键（`or 0` 可兜）；DeFiLlama `chainTvls` 的值**不全是 dict**（部分是 float），首版直接 `AttributeError`。**读第三方聚合 JSON 先 `type()` 采样，不要照着文档写。**
 - **百分比过滤器必须配绝对额地板。** 「fees 7d 涨 >20% 且 TVL 7d <+5%」这条筛出了 Aave V2（+39.4%）——其 7d 手续费总额只有 **$37,212**。纯百分比会把灰尘当信号。加 `total7d >= $1M`。
 - **APY 高不代表可投。** Uniswap V3 的 USDC-WETH 池 `apyBase` 22% 过了所有"real yield"过滤（无 reward、非 outlier、置信度 3），但那是做市 LP 的手续费，不是无风险利率。报告里必须标"LP, not passive"，否则下游会把它当稳定币收益。
 - **跨 series 做 diff 必须先按日期对齐，不能各取尾部（2026-10-27 新增，花了三次返工）。** DeFiLlama 的 `chainTvls` 每条子 series 的采样时间点不一定相同。用 `tot[-1] - tot[-2]` 各取自series尾部时，得到的是两个**不同日期**的差，Uniswap V4 就这样被算出一堆 −$0.003B 的假小数，差点把真实的 −21.6% 判成伪影。正确做法是先把每条 series 转成 `{date: value}`，**按同一对日期键取值**再相减。判别式：per-chain delta 总和必须等于 aggregate delta；对不上就是取错了日期，不是数据坏了。
@@ -229,6 +232,11 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **🟢 换长窗口首跑会一次性推出「沉积层」，次跑即进稳态 —— 这是正常的，不是异常。** 2026-10-26 30d 窗实测：第一次跑原始 62 / 幸存 26，`seen` 78→104；同口径第二次跑**原始仍是 62（逐词相同）、幸存归零**。**判据：原始量不变而幸存归零 = 那批全进了 `seen`，不是查询坏了、也不是索引回退。** 换窗或加词前要先想清楚是否接受这一次性洪水（90d + vK 加词那次是 27 条）。
 - **🔴 词干化会把单词查询污染成完全无关的语义 —— `staking` 精度 1/9 = 11%。** 9 条原始命中里 8 条是 LLM「high-stakes decision」类论文（词干化后 `stakes` 命中）。**这是「写长短语不写单词」在 `staking` 上的第三次实证（前两次 MEV / liquidation）**；`zero-knowledge` 这类带连字符的复合词不受影响。**动作顺序：换写法 → 降级 → 删词，不许跳级。**
 - **🔴 查询失败会静默伪装成「零命中」，且脚本无重试时最危险。** 2026-10-26 60d 轮 24 词里 **16 个（66.7%）死于 429/超时**，主循环只有单次 `urlopen(timeout=20)`、异常即 `continue` —— 失败词不进真零分类，只在 `failed_t` 留一行。补扫（3 次重试 + 45s 超时 + 词间 8s）16 词全部成功、新增幸存 0，**证明那轮 14 条是真全集**。**判据：有 `failed_t` 就不可下「零命中」结论，必须先补扫。** 60d 窗的 429 概率显著高于 30d。
+- **🟢 零命中要按**跨窗**归档，不是按本轮窗口判死 —— 7 个词全落「窗口太短」档的那一轮，一个删词候选都没有。** 2026-10-27 30d 轮零命中 7 词，跨窗量：`verifiable inference`(60d=0/90d=1) · `verifiable computation`(1/1) · `light client`(1/1) · `restaking`(0/1) · `MEV`(3/5) · `RWA`(1/2) · `robot manipulation data`(2/2)。**无一个「跨窗皆 0」→ 无删词候选、无换写法候选。加密侧 6 词全在此档，只是 30 天窗没货，不是死词。**
+- **🔴 饱和词要配「最新发布日期」判降温，没有这一列只能看见 `seen` 吃干。** 2026-10-27 `vM` 首次实战 maxpub 列：12 个饱和词 raw 最新发布**全部落在 10-06 ~ 10-23**，即全在近 30 天内 → **12 个全是「话题活着、seen 吃干」，无一个该降温。** 最旧 `embodied data` / `proof of training` = 10-06（21 天，未过 60 天线）。**判据：饱和 ≠ 降温；降温要看最新发布日期离今天多远，不看新收数。**
+- **🟡 「低频 ≠ 死词」成立，但「写作已被覆盖」那句判断会单独被证伪。** 2026-10-27：`verifiable training` 上轮被结清进低频探针（理由是全期仅 9 篇、写法被 `proof of training` 覆盖），本轮 raw=1 **且新收=1**（`WebUniverse` 2610.33149 标题写的是 `Verified Training Data`，落在前者而非后者）。**单轮 1 条不足以抬回主表；但下一次再开火就该移出 LOW_FREQ —— 低频词的复归判据是「连续两轮开火」，不是单轮。**
+- **新词红利期有明确的结束信号：raw 仍在、新收归零。** 2026-10-27 `human demonstration` raw=12 / 新收 0、`hand-object` 6/0（首轮是 95% / 89% 新收率）。**这不是查询坏了 —— raw 仍有数且逐词相同，是 `seen` 吃满。判据：新词首轮看新收率，次轮起 raw 不变而新收归零即红利期结束，增量要回老词找。** 与「换长窗首跑推沉积层、次跑归零」同型。
+- **🔴 同一形态连续两轮落在「未分类」= 标签缺口，不是污染 —— 该加标签而不是过滤。** 2026-10-26 / 10-27 连续两轮，`ti:"consensus" AND cat:cs.DC` 两条命中全是 AI 中介/LLM agent 的多方验证共识，`directions.md` 规则 4 明写该加标签。**判据：东西对、格子不够 → 扩受控表；东西不对 → 才动过滤器。两者的动作方向相反。**
 - **查 API 要 `id_list=` 拿单篇详情**（`.../api/query?id_list=2610.27530`），比翻 `search_query` 结果稳。
 
 
