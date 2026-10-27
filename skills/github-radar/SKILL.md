@@ -47,7 +47,7 @@ metadata:
 - **旁路脚本不进 `output/ghradar/`。** 要留档的判据写进 `memory/logs/${today}.md`。
 - **不要重写脚本。** 只有改过滤器时才 Edit `scan.py`。
 - **核验宁可全量。幸存数 ≤ 上限时，一个都别漏。** 实证：`PER_TERM_CAP=25` 按 star 排序，只核了 76/234，报告级被低估 3.85×。7 天窗下幸存量本身很小（个位数），全量是廉价的。
-- **分页按 `total_count` 动态取**（`min(10, ceil(total/100))`）。**7 天窗下几乎不触发** —— 旧 300 个硬上限只在大窗口下才咬人（第十五轮：修好后幸存 4→49，`world model` 覆盖率 66.5%→100%）。撞顶子窗仍进审计。
+- **分页：subdivide-to-one-page。** 整窗探针只定初始子窗数 `ceil(total/100)`，之后每个子窗**只取 page 1**；子窗自身 `total` 仍超一页就对半再分，切到 ≤ 一页为止。**7 天窗下几乎不拆** —— 旧的固定 300 条硬上限只在大窗口下才咬人（第十五轮：修好后幸存 4→49，`world model` 覆盖率 66.5%→100%）。**长窗（`total>1000`）曾比短窗更瞎**（上轮实测 `sim2real` 52.7% / `restaking` 83.3%），这条修的就是它。到二分上限仍超一页的叶子窗进审计（`capped`）。
 - **star 排序会切掉 ★0 长尾。** 实证第十一轮：幸存 70 个里 ★≥5 只有 1 个、全轮最高 ★7，报告级 35 里 34 个是 ★0。**只要机制词还在，star 就不该出现在排序或采样里。**
 - **star 与 commits 可能反相关。** 跟这一支只能按 commits 读。
 - **换词前先量两个口径：total_count + 重叠度。不能只看污染率。** `vla`→全称双赢；`jepa`→全称灾难（654→35）。**分界不是「缩写脏不脏」，是这个术语在生态里实际怎么被书写。**
@@ -72,7 +72,7 @@ metadata:
 - **description 越像论文，越要查 commits。**
 - **只匹配 `in:name,description`，不要 readme。**
 - **脏词必须配 carrier**（`world model`）。**discard 量大 ≠ 误杀大**。**carrier 判据 = desc ∪ topics 任一命中**；`EXCL` 仍只看 name+desc。`len(desc)<25` 留逃生口：只有**无 topics** 才丢。**误杀率自动量**：`dropped.json` 全量落名单，digest 打 `carrier_named_uniq` / `carrier_named_alive_7d` + 幸存者对照。**放宽前先看这两行，别盲改。**
-- **覆盖率必须报。** <50% 的绝对数不可引用；撞顶的百分比是采样后验，不是真实覆盖率。
+- **覆盖率必须报。** <50% 的绝对数不可引用；覆盖率是「叶子窗取满比例」，不是真实总量。
 - **`template` / `demo` / `sniper` = 练手仓库或农场。**
 - **站点仓按后缀无条件丢**（`.github.io` / `-page` / `-site` / `-website` / `-homepage` / `-showcase` / `-docs`）—— 体量不是判据。**同名仓**才需要「体量小 + 无 language」两个条件。
 - **纯静态站还有第二种形态**：根目录 `index.html` + `.nojekyll` 且无任何代码骨架 → 页。

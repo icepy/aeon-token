@@ -30,6 +30,8 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 
+VERSION = "gh-v1"        # 一版一投的版本锚点；印在审计首行
+
 OUTD = "output/ghradar"
 OUT, OUT_DRY = OUTD + "/out.json", OUTD + "/out.dry.json"
 AUD, REPORT = OUTD + "/audit.log", OUTD + "/report.md"
@@ -47,11 +49,13 @@ CHK_CAP = 2000         # 幸存数 <= 这个值 → 全量核验，一个不漏
 PER_TERM_CAP = 40      # 只在超上限时才启用（超上限时按词保底）
 REPORT_COMMITS = 5
 NOTIFY_TOP = 30
-MAXPAGE = 3            # 旧口径；现在只用来判"曾经会撞顶"，真正的页数按 total 动态算
-MAXPAGE_HARD = 10      # 动态页数上限（GitHub search 深翻页在 1000 条处封顶）
-# 整窗 total ≤ 这个值 → 不拆窗（单窗即可取全）。拆 3 子窗的唯一理由是深翻页 1000 条封顶，
-# 不撞顶时拆窗纯浪费 3 倍搜索调用（第十六轮：18 词里只有 world model 会撞顶）。
-WIN_SPLIT_TOTAL = MAXPAGE_HARD * 100
+# 分页口径：subdivide-to-one-page。GitHub search 深翻页在 1000 条处封顶，所以
+# 「整窗不拆 + 翻到 10 页」在长窗下必然截断（长窗比短窗更瞎）。改成：子窗只取一页，
+# 子窗自身 total 仍超一页就对半再分 —— 覆盖率跟结果总数走，不再撞 1000 天花板。
+WIN_TARGET = 100       # 每个子窗只取一页（= GitHub search 单页硬上限）→ 子窗容量 = 100
+WIN_MAX = 200          # 单个词最多在飞多少个子窗（= 搜索调用上限，防超长窗打爆）
+WIN_MAX_DEPTH = 7      # 子窗二分深度上限（防退化窗空转）
+WIN_MIN_SPLIT = 3      # 整窗探针失败时的保守初始子窗数
 SITE_SUFFIX = (".github.io", "-page", "-site", "-website", "-homepage", "-showcase",
                "-docs")
 SCAFFOLD_MIN = 3
@@ -195,13 +199,24 @@ if os.path.exists(SEEN):
         seen = {}
 
 now = datetime.now(timezone.utc)
-NWIN = 3
-step = DAYS / NWIN
-WINS = ["%s..%s" % ((now - timedelta(days=step * (i + 1))).strftime("%Y-%m-%d"),
-                    (now - timedelta(days=step * i)).strftime("%Y-%m-%d"))
-        for i in range(NWIN)]
-FULLWIN = "%s..%s" % ((now - timedelta(days=DAYS)).strftime("%Y-%m-%d"),
-                      now.strftime("%Y-%m-%d"))
+FMT = "%Y-%m-%dT%H:%M:%S+00:00"          # `created:` 收 ISO8601，秒粒度
+FULLWIN = "%s..%s" % ((now - timedelta(days=DAYS)).strftime(FMT), now.strftime(FMT))
+
+def subwindows(n, days):
+    """把 [now-days, now] 等分 n 个不重叠子窗（秒粒度）。只是二分的起点。"""
+    span = timedelta(days=days)
+    return ["%s..%s" % ((now - span * ((i + 1) / n)).strftime(FMT),
+                        (now - span * (i / n)).strftime(FMT))
+            for i in range(n)]
+
+def split_window(w):
+    """把 "lo..hi" 对半切；切不动（已到秒下限）返回 None。"""
+    lo_s, hi_s = w.split("..")
+    lo = datetime.strptime(lo_s, FMT); hi = datetime.strptime(hi_s, FMT)
+    mid = (lo + (hi - lo) / 2).strftime(FMT)
+    if mid in (lo_s, hi_s):
+        return None
+    return [lo_s + ".." + mid, mid + ".." + hi_s]
 
 # ── 清理：output/ghradar/ 只留固定产物 ──
 # 前 13 轮在这儿攒了 150 个一次性旁路脚本和中间 json。靠代码强制清，
@@ -278,14 +293,16 @@ def gh_get(path):
             last = str(ex); time.sleep(3)
     return None, last
 
+SEARCH_N = [0]             # 搜索调用计数（进审计，便于发现子窗爆炸）
 _last_search = [0.0]
 def search(q, page=1):
     gap = SEARCH_MIN_GAP - (time.time() - _last_search[0])
     if gap > 0:
         time.sleep(gap)
     _last_search[0] = time.time()
+    SEARCH_N[0] += 1
     qs = urllib.parse.urlencode({"q": q, "sort": "stars", "order": "desc",
-                                 "per_page": "100", "page": str(page)})
+                                 "per_page": str(WIN_TARGET), "page": str(page)})
     return gh_get("search/repositories?" + qs)
 
 def commits_since(rid, days):
@@ -348,8 +365,9 @@ hit, qfail, cov = {}, [], {}
 raw_term, new_term, seen_term = {}, {}, {}
 page_dropped, neg_dropped, root_dropped = [], [], []
 carrier_topic_only, desc_topic_only = [], []      # 两条放行路径，单独记账
-capped = []                                       # 曾经会撞 3 页上限的窗口/子窗
-win_whole, win_split = 0, 0                       # 自适应窗口：整窗 / 拆 3 子窗 的词数
+capped = []                                       # 二分到顶仍超一页的叶子窗（有截断）
+win_whole, win_split = 0, 0                       # 自适应窗口：单窗 / 需拆窗 的词数
+SPLIT_N = [0]                                     # 二分次数
 # carrier / short_desc 丢掉的仓 —— **全量**存（可审计性 + probe 的第四顺位种子）。
 # 之前只累加计数，是本轮唯一两条不落仓名的丢弃规则（第十五轮判据 37）。
 carrier_dropped, short_desc_dropped = [], []
@@ -358,98 +376,103 @@ for term in TERMS:
     total, got, failed = 0, 0, False
     raw_term[term] = 0; new_term[term] = 0; seen_term[term] = 0
     neg = NEG_BY_TERM.get(term, [])
-    # 先探一次整窗 total 决定窗数。拆 3 子窗的唯一理由是深翻页在 1000 条封顶；
-    # 不撞顶时拆窗纯浪费 3 倍搜索调用（第十六轮：18 词里只有 world model 会撞顶）。
+    # 先探一次整窗 total 定初始子窗数。subdivide-to-one-page：每个子窗只取 page 1，
+    # 于是不再撞「深翻页 1000 条封顶」—— 原来长窗（total>1000）比短窗更瞎。
     q_whole = ('"%s" in:name,description created:%s fork:false stars:>=%d'
                % (term, FULLWIN, MIN))
     whole_res, _ = search(q_whole, 1)
-    if whole_res is not None and whole_res.get("total_count", 0) <= WIN_SPLIT_TOTAL:
-        term_wins = [FULLWIN]; win_whole += 1
+    if whole_res is None:
+        nwin = WIN_MIN_SPLIT; win_split += 1
     else:
-        term_wins = WINS; win_split += 1
-    for w in term_wins:
-        q = ('"%s" in:name,description created:%s fork:false stars:>=%d'
-             % (term, w, MIN))
-        pages, page = 1, 1
-        # 整窗单窗时复用刚才那一次探测结果，别重复请求
-        pre = whole_res if (w == FULLWIN and whole_res is not None) else None
-        while page <= pages:
-            if pre is not None:
-                res, err = pre, None; pre = None
-            else:
-                res, err = search(q, page)
-            if res is None:
-                print("! %s @%s p%d: %s" % (term, w, page, err), file=sys.stderr)
-                drop["fail"] += 1; failed = True; break
-            if page == 1:
-                t = res.get("total_count", 0)
-                total += t
-                # 动态页数。原来固定 MAXPAGE=3 页 = 300 个硬上限，窗口一长就静默截断：
-                # 第十四轮 world model 单子窗 total=509，只取到 300，覆盖率 66.5%，
-                # 且丢掉的不是被过滤器判掉，是根本没取回来（sort=stars 在 ★0 堆里约等于随机切）。
-                pages = min(MAXPAGE_HARD, max(1, (t + 99) // 100))
-                if t > MAXPAGE * 100:
-                    capped.append((term, w, t))
-            items = res.get("items", [])
-            got += len(items); raw_term[term] += len(items)
-            for it in items:
-                raw += 1
-                rid = it["full_name"]
-                owner = (it.get("owner") or {}).get("login", "")
-                short = rid.split("/")[-1]
-                if rid in seen:
-                    drop["seen"] += 1; seen_term[term] += 1; continue
-                if rid in hit:
-                    hit[rid]["terms"].append(term)
-                    drop["seen"] += 1; seen_term[term] += 1; continue
-                if it.get("archived"):
-                    drop["archived"] += 1; continue
-                lang = it.get("language")
-                lowall = (rid + " " + (it.get("description") or "")).lower()
-                if neg and any(x in lowall for x in neg):
-                    drop["neg"] += 1; neg_dropped.append(rid); continue
-                size_kb = it.get("size", 0)
-                # 站点仓：按后缀**无条件**丢 —— 体量不是判据（304MB 静态站照样是站）
-                if short.lower().endswith(SITE_SUFFIX):
-                    drop["pages"] += 1
-                    page_dropped.append((rid, size_kb)); continue
-                # 同名仓：可能是真代码仓（UniWAM/UniWAM），也可能是个人主页
-                if (short.lower() == owner.lower() and size_kb < 300
-                        and not lang):
-                    drop["pages"] += 1
-                    page_dropped.append((rid, size_kb)); continue
-                desc = (it.get("description") or "").strip()
-                topics = [str(x).lower() for x in (it.get("topics") or [])]
-                # carrier 用 desc ∪ topics；EXCL 仍只看 name+desc（否则会放走 awesome 列表仓）
-                blob_t = (desc + " " + " ".join(topics)).lower()
-                if len(desc) < 25:
-                    if not topics:
-                        drop["short_desc"] += 1
-                        short_desc_dropped.append((it.get("pushed_at") or "", rid))
-                        continue
-                    desc_topic_only.append(rid)     # 空/短 desc 靠 topics 放行
-                if any(x in lowall for x in EXCL):
-                    drop["excl"] += 1; continue
-                need = CARRIER_BY_TERM.get(term)
-                if need and not any(c in blob_t for c in need):
-                    drop["carrier"] += 1
-                    carrier_dropped.append((it.get("pushed_at") or "", rid))
+        nwin = max(1, min(WIN_MAX, -(-whole_res.get("total_count", 0) // WIN_TARGET)))
+        if nwin == 1:
+            win_whole += 1
+        else:
+            win_split += 1
+    # 队列元素 (窗口, 深度)。初始 nwin 等分只是起点；任何子窗自身 total 仍超一页
+    # 就对半再分，切到 ≤一页为止 —— 子窗日期不均匀（周中/周末、发布潮）也吃不掉覆盖率。
+    if nwin == 1 and whole_res is not None:
+        queue = [(FULLWIN, 0)]; reuse_root = True
+    else:
+        queue = [(w, 0) for w in subwindows(nwin, DAYS)]; reuse_root = False
+    while queue:
+        w, depth = queue.pop(0)
+        if reuse_root:
+            res, err = whole_res, None; reuse_root = False
+        else:
+            q = ('"%s" in:name,description created:%s fork:false stars:>=%d'
+                 % (term, w, MIN))
+            res, err = search(q, 1)
+        if res is None:
+            print("! %s @%s: %s" % (term, w, err), file=sys.stderr)
+            drop["fail"] += 1; failed = True; continue
+        t = res.get("total_count", 0)
+        kids = split_window(w)
+        if (t > WIN_TARGET and kids and depth < WIN_MAX_DEPTH
+                and len(queue) + 2 <= WIN_MAX):
+            queue.extend((k, depth + 1) for k in kids)
+            SPLIT_N[0] += 1
+            continue                  # 父窗丢弃，由两个子窗覆盖（免得 total 重复计）
+        total += t
+        if t > WIN_TARGET:
+            capped.append((term, w, t))   # 到顶了还超一页 → 该叶子窗有截断
+        items = res.get("items", [])
+        got += len(items); raw_term[term] += len(items)
+        for it in items:
+            raw += 1
+            rid = it["full_name"]
+            owner = (it.get("owner") or {}).get("login", "")
+            short = rid.split("/")[-1]
+            if rid in seen:
+                drop["seen"] += 1; seen_term[term] += 1; continue
+            if rid in hit:
+                hit[rid]["terms"].append(term)
+                drop["seen"] += 1; seen_term[term] += 1; continue
+            if it.get("archived"):
+                drop["archived"] += 1; continue
+            lang = it.get("language")
+            lowall = (rid + " " + (it.get("description") or "")).lower()
+            if neg and any(x in lowall for x in neg):
+                drop["neg"] += 1; neg_dropped.append(rid); continue
+            size_kb = it.get("size", 0)
+            # 站点仓：按后缀**无条件**丢 —— 体量不是判据（304MB 静态站照样是站）
+            if short.lower().endswith(SITE_SUFFIX):
+                drop["pages"] += 1
+                page_dropped.append((rid, size_kb)); continue
+            # 同名仓：可能是真代码仓（UniWAM/UniWAM），也可能是个人主页
+            if (short.lower() == owner.lower() and size_kb < 300
+                    and not lang):
+                drop["pages"] += 1
+                page_dropped.append((rid, size_kb)); continue
+            desc = (it.get("description") or "").strip()
+            topics = [str(x).lower() for x in (it.get("topics") or [])]
+            # carrier 用 desc ∪ topics；EXCL 仍只看 name+desc（否则会放走 awesome 列表仓）
+            blob_t = (desc + " " + " ".join(topics)).lower()
+            if len(desc) < 25:
+                if not topics:
+                    drop["short_desc"] += 1
+                    short_desc_dropped.append((it.get("pushed_at") or "", rid))
                     continue
-                if need and not any(c in desc.lower() for c in need):
-                    carrier_topic_only.append(rid)  # 只靠 topics 过的 carrier
-                if owner.lower() in farms:
-                    drop["farm"] += 1; continue
-                out.append({"term": term, "terms": [term], "repo": rid,
-                            "owner": owner, "url": it["html_url"],
-                            "stars": it.get("stargazers_count", 0),
-                            "created": (it.get("created_at") or "")[:10],
-                            "topics": topics[:6],
-                            "size_kb": size_kb, "language": lang,
-                            "desc": " ".join(desc.split())[:140]})
-                hit[rid] = out[-1]; new_term[term] += 1
-            if len(items) < 100:
-                break
-            page += 1
+                desc_topic_only.append(rid)     # 空/短 desc 靠 topics 放行
+            if any(x in lowall for x in EXCL):
+                drop["excl"] += 1; continue
+            need = CARRIER_BY_TERM.get(term)
+            if need and not any(c in blob_t for c in need):
+                drop["carrier"] += 1
+                carrier_dropped.append((it.get("pushed_at") or "", rid))
+                continue
+            if need and not any(c in desc.lower() for c in need):
+                carrier_topic_only.append(rid)  # 只靠 topics 过的 carrier
+            if owner.lower() in farms:
+                drop["farm"] += 1; continue
+            out.append({"term": term, "terms": [term], "repo": rid,
+                        "owner": owner, "url": it["html_url"],
+                        "stars": it.get("stargazers_count", 0),
+                        "created": (it.get("created_at") or "")[:10],
+                        "topics": topics[:6],
+                        "size_kb": size_kb, "language": lang,
+                        "desc": " ".join(desc.split())[:140]})
+            hit[rid] = out[-1]; new_term[term] += 1
     if failed and not got:
         qfail.append(term)
     if total:
@@ -707,9 +730,10 @@ with_new = [t for t in TERMS if new_term.get(t, 0) > 0]
 sat_seen = [t for t in saturated if seen_term.get(t, 0) > 0]
 sat_loss = [t for t in saturated if seen_term.get(t, 0) == 0]
 
-L = ["扫 %d 词 × 窗自适应（整窗 %d / 拆 3 子窗 %d；整窗 total>%d 才拆）"
-     "| 原始 %d | 幸存 %d | 报告级 %d | var=%r"
-     % (len(TERMS), win_whole, win_split, WIN_SPLIT_TOTAL, raw, len(out), len(rep), var),
+L = ["github-radar %s · 扫 %d 词 × 二分至一页（单窗 %d / 需拆窗 %d · 二分 %d 次 · "
+     "搜索调用 %d）| 原始 %d | 幸存 %d | 报告级 %d | var=%r"
+     % (VERSION, len(TERMS), win_whole, win_split, SPLIT_N[0], SEARCH_N[0],
+        raw, len(out), len(rep), var),
      "快照 %s%s" % (SNAP, "（dry-run 不覆盖 out.json）" if DRY else ""),
      "丢弃 seen=%d excl=%d archived=%d short_desc=%d carrier=%d neg=%d "
      "pages=%d pages_root=%d scaffold=%d farm=%d fail=%d"
@@ -728,8 +752,8 @@ if cleaned:
              % (len(cleaned), " / ".join(sorted(KEEP)),
                 " · ".join(cleaned[:12]) + (" …" if len(cleaned) > 12 else "")))
 if capped:
-    L.append("ℹ️ 曾撞 %d 页上限的窗口/子窗 %d 个（已按 total 动态加页，最多 %d 页）: %s"
-             % (MAXPAGE, len(capped), MAXPAGE_HARD,
+    L.append("ℹ️ 子窗自身 total>%d 且已到二分上限（该叶子窗有截断）%d 个: %s"
+             % (WIN_TARGET, len(capped),
                 " · ".join("%s@%s(total=%d)" % c for c in capped[:8])))
 if carrier_topic_only:
     L.append("ℹ️ carrier 只靠 topics 放行 %d 个（desc 里没有 carrier 词）: %s"
@@ -784,7 +808,7 @@ if gh_lost[0]:
              % (GH_LOST_N[0], GH_LAST_ERR[0] or "(未记录)", GH_COOLDOWN, GH_UNAUTH[0]))
 low = {k: v for k, v in cov.items() if v < 95}
 if low:
-    L.append("⚠️ 覆盖率 <95%%（撞顶或 total_count 不准，绝对数不可引用）: " +
+    L.append("⚠️ 覆盖率 <95%%（叶子窗截断或 total_count 不准，绝对数不可引用）: " +
              " · ".join("%s=%.1f%%" % kv for kv in low.items()))
 if scaffold:
     L.append("ℹ️ 共享脚手架（同短名跨≥%d owner 且 desc 前缀同）%d 个: %s"
@@ -883,7 +907,7 @@ if not DRY and hit:
             f.write("- [%s](%s) ★%d · 30d=%s 7d=%s%s · `%s` · %s\n"
                     % (c["repo"], c["url"], c["stars"],
                        "≥100" if c.get("commits_30d_ge") else c["commits_30d"],
-                       "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"),
+                       "≥100" if c.get("commits_7d_ge") else c["commits_7d", "-"],
                        " [爆完即停]" if c.get("burst_only") else "",
                        c["term"], c["desc"][:100]))
 
@@ -894,7 +918,7 @@ if rep:
         R.append("- [%s](%s) ★%d · 30d=%s 7d=%s%s · `%s` · %s"
                  % (c["repo"], c["url"], c["stars"],
                     "≥100" if c.get("commits_30d_ge") else c["commits_30d"],
-                    "≥100" if c.get("commits_7d_ge") else c.get("commits_7d", "-"),
+                    "≥100" if c.get("commits_7d_ge") else c["commits_7d", "-"],
                     " [爆完即停]" if c.get("burst_only") else "",
                     c["term"], c["desc"][:100]))
     open(REPORT, "w", encoding="utf-8").write("\n".join(R) + "\n")
