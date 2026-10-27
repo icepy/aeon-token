@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-27T00:54:00.770295545Z",
+  "generatedAt": "2026-10-27T00:54:30.018741669Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -419,11 +419,11 @@
         },
         {
           "path": "project/package-lock.json",
-          "hash": "802709eb0d24ec8cd3886f1fa00ec446547b917839ad79e1b465a9762347c993"
+          "hash": "fa24c62be2450602755c7466c6a5adcf5f0c11602145c471dac91405a29868a9"
         },
         {
           "path": "project/package.json",
-          "hash": "1ac11b4b86922fbafc2d98af5bb42803122a4262717be9c11cee5da5e35a8326"
+          "hash": "a9a6bdda60a6728a0233835f48845bb8fd093991c2b1c27d51dd48e4e5438f3b"
         },
         {
           "path": "project/remotion.config.ts",
@@ -473,7 +473,7 @@
           "explanation": "contains consent-bypass or prompt-injection language"
         }
       ],
-      "contentHash": "sha256-f8fabf91f8f55449afe0d3e98d7b154a33e3ed5d932f1a3f6382e1a12919e51f",
+      "contentHash": "sha256-513a22bbccdf9dc99879af0d17a28552b0a7c51883acc0eccb4dd536555f4108",
       "discoveredFrom": "skills/remotion/SKILL.md"
     },
     {
