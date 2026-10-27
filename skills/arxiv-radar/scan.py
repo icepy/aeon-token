@@ -209,7 +209,24 @@ CARRIER_BY_TERM = {
     "automated market maker": CARRIER_BASE + CARRIER_MARKET,
     'cat:cs.CR AND ti:"MEV"': CARRIER_BASE + CARRIER_MARKET,
 }
-DOMAIN = CARRIER_BASE + CARRIER_ROBOT + CARRIER_MARKET
+
+def carrier_for(term, q=""):
+    """取这个词实际会用的 carrier 表：term 精确命中映射优先，其次用已拼好的
+    查询串兜一次，最后落默认表。与 absorb() 取表方式完全一致 —— 保证
+    「报表」与「过滤器」同源。"""
+    return (CARRIER_BY_TERM.get(term) or CARRIER_BY_TERM.get(q)
+            or CARRIER_CRYPTO)
+
+
+def carrier_label(carrier):
+    """表名，只用于审计打印。CARRIER_ROBOT / CARRIER_CRYPTO 是模块级单例，
+    身份比较即可；market 那两个值是即时拼的 list，落 else。"""
+    if carrier is CARRIER_ROBOT:
+        return "robot"
+    if carrier is CARRIER_CRYPTO:
+        return "crypto"
+    return "base+market"
+
 # 只对 title 判，且只留这两个：benchmark 是论文自称，不该丢
 EXCL = ["survey", "tutorial"]
 STOP = set("""a an the on of in for with from and or to at by as is are was were
@@ -364,6 +381,7 @@ def do_check():
         print("⚠️ 不在词表，但像是词表某条的截断 —— 确认 check: 是最后一个 token")
     print()
     print("窗口   total  已见/100  领域命中  前 3 条标题")
+    carrier = carrier_for(CHECK, q)          # q = q_of(CHECK) 该函数开头已有
     for d in (7, 30, 60, 90):
         tot, ents = total_of(q, d)
         if tot < 0:
@@ -375,7 +393,7 @@ def do_check():
         for e in ents:
             blob = (" ".join(e.find("a:title", NS).text.split()) + " " +
                     " ".join(e.find("a:summary", NS).text.split())).lower()
-            if any(c in blob for c in DOMAIN):
+            if any(c in blob for c in carrier):
                 dom += 1
         print("%4dd   %5d  %5s/%-3d  %3s/%-3d   %s"
               % (d, tot, old, len(ids), dom, len(ents),
@@ -384,7 +402,7 @@ def do_check():
         time.sleep(REQUEST_GAP)
     print()
     print("读法: 已见/100 低 = 能带来新条目；领域命中低 = 会污染。"
-          "领域命中用 DOMAIN 词算，偏乐观 30-50%，真精度靠前 3 条标题人眼读。")
+          "领域命中用该词实际使用的 carrier 表算，偏乐观 30-50%，真精度靠前 3 条标题人眼读。")
     sys.exit(0)
 
 # ── 扫描 ──────────────────────────────────────────────────────────
@@ -399,13 +417,13 @@ skipped_t = []
 fail_reason = {}
 cross = {}            # 零命中词的跨窗 total_count；-1 = 该档查询失败
 dropped = {"excl": [], "carrier": []}   # 丢掉的名字 —— 审计里唯一能看见误杀的地方
-DROPPED_CAP = 12
+DROPPED_CAP = 200
 
 def absorb(root, term):
     """把一次成功取回的结果吃进 out/raw/drop。返回该次取回条数。"""
     global raw, newest
     n = 0
-    carrier = CARRIER_BY_TERM.get(term, CARRIER_CRYPTO)
+    carrier = carrier_for(term)
     for e in root.findall("a:entry", NS):
         n += 1
         raw += 1
@@ -436,7 +454,8 @@ def absorb(root, term):
         if not any(c in blob for c in carrier):
             drop["carrier"] += 1
             if len(dropped["carrier"]) < DROPPED_CAP:
-                dropped["carrier"].append((pub, title[:72]))
+                dropped["carrier"].append(
+                    (term, carrier_label(carrier), pub, title[:72]))
             continue
         # vI：裸 id 进记录 —— hits.tsv 的键必须和 labels.tsv 同构，否则 join 不上
         # vJ：window 进记录 —— 区分「当天新发现」和「补历史填洞」
@@ -581,6 +600,11 @@ L.append("六分类（单位=词）: 未测到(试过失败)=%d · 未尝试(熔
          % (len(failed_t), len(skipped_t), len(zero_t), len(lf_t),
             len(saturated), len(with_new)))
 
+unmapped = [t for t in TERMS if t not in CARRIER_BY_TERM] if not NAMES_MODE else []
+if unmapped:
+    L.append("未配 carrier 表的词 %d 个（走默认 crypto 表，仅登记不报错）: %s"
+             % (len(unmapped), " · ".join(short_term(t) for t in unmapped)))
+
 if failed_t:
     L.append("未测到（**不是零命中**）: " + " · ".join(
         "%s(%s)" % (t, fail_reason.get(t, "?")[:28]) for t in failed_t))
@@ -615,9 +639,14 @@ if saturated:
 
 for k in ("excl", "carrier"):
     if dropped[k]:
-        L.append("丢弃名单 %s（前 %d）:" % (k, DROPPED_CAP))
-        for pub, ti in dropped[k]:
-            L.append("   %s  %s" % (pub, ti))
+        L.append("丢弃名单 %s（前 %d，共 %d）:" % (k, DROPPED_CAP, drop[k]))
+        for rec in dropped[k]:
+            if len(rec) == 4:
+                t_, lab, pub, ti = rec
+                L.append("   %s  [%s · %s]  %s" % (pub, lab, short_term(t_), ti))
+            else:
+                pub, ti = rec
+                L.append("   %s  %s" % (pub, ti))
 
 L.append("词表原始/新收: " + " · ".join(
     "%s=%d/%d" % (k, v, per_term.get(k, 0)) for k, v in
