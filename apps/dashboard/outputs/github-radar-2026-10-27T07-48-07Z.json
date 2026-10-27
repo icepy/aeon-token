@@ -1,0 +1,151 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 2 · 近 7 天活跃 2"
+      },
+      "children": [
+        "stats",
+        "sep1",
+        "repo1",
+        "sep2",
+        "repo2"
+      ]
+    },
+    "stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-report",
+        "stat-active"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "7 天"
+      }
+    },
+    "stat-report": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "2"
+      }
+    },
+    "stat-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "2"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo1-link",
+        "repo1-meta",
+        "repo1-keyword",
+        "repo1-desc"
+      ]
+    },
+    "repo1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ripl/last-millimeter",
+        "href": "https://github.com/ripl/last-millimeter",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo1-meta": {
+      "type": "Text",
+      "props": {
+        "text": "30天=6 · 7天=6",
+        "variant": "caption"
+      }
+    },
+    "repo1-keyword": {
+      "type": "Badge",
+      "props": {
+        "text": "sim-to-real",
+        "variant": "outline"
+      }
+    },
+    "repo1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Real-to-Sim-to-Real at the Last Millimeter: precise insertion on a low-cost robot arm.",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo2-link",
+        "repo2-meta",
+        "repo2-keyword",
+        "repo2-desc"
+      ]
+    },
+    "repo2-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "bettercalljerry04-maker/bettercalljerry04-maker",
+        "href": "https://github.com/bettercalljerry04-maker/bettercalljerry04-maker",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo2-meta": {
+      "type": "Text",
+      "props": {
+        "text": "30天=6 · 7天=6",
+        "variant": "caption"
+      }
+    },
+    "repo2-keyword": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "outline"
+      }
+    },
+    "repo2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Jerry_codemen | Embodied AI and robotics at Standard Robotics | LLM, VLA, RL, and World Models",
+        "variant": "body"
+      }
+    }
+  }
+}

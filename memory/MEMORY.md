@@ -18,7 +18,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
 - `arxiv-radar` ✅ 每天 07:30 UTC · **26 词 · vM** · 10-27 日跑（30d）：原始 95 / 幸存 10。**vK 两新词红利期结束**（`human demonstration` raw=12 新收 0 · `hand-object` 6/0），增量转回 `egocentric`(22/2)。**12 个饱和词 raw 最新发布日期全在近 30 天内 → 全别删**（vM 的 maxpub 列首次实战，`embodied data`/`proof of training` 最旧 = 10-06）。零命中 7 词跨窗**全档「窗口太短」**，无删词候选。**`verifiable training` 从 LOW_FREQ 开火 1 条（`WebUniverse`），下一次开火即移出低频。**[source: logs/2026-10-27#arxiv-radar（第二十七轮）]
-- `github-radar` cron 07:45 UTC · 18 词 · gh-v3。第二十一轮（10-27，7d dry-run）路径通，报告级 1。跑完交付见 SKILL「跑完交付」。v4（supermimic）本轮 probe 跳过，未碰。[source: logs/2026-10-27#github-radar（第二十一轮）]
+- `github-radar` cron 07:45 UTC · 18 词 · gh-v3。第 8 轮（10-27，7d 正式跑）原始 462 / 幸存 7 / 报告级 2（`ripl/last-millimeter` sim-to-real · `bettercalljerry04-maker` world model，均 ★0、30d=6/7d=6）。7 幸存全为当日新建、star 全 0 —— star 不进排序再验证。四分类：失败 0 / 真零 2 / 饱和 11 / 有新增 5。probe 未到期跳过。[source: logs/2026-10-27#github-radar（第 8 轮）]
 
 
 ## Lessons Learned

@@ -1,10 +1,13 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-27T02:20:59Z",
-  "quality_score": 3,
-  "assessment": "结构化完成：31 个仓库带链接、活跃度数值与关键词，来源可回溯；但指标口径（30天/7天=？是提交、star 还是推送）未定义，★0 仓库与两个新闻聚合仓未过滤，超过半数条目无行动价值，整体是原始清单而非“看完就能决定”的判断，与策略中避免长文/要求可执行的要求相悖，且与 DEUS 仓位目标无关。",
-  "flags": [],
-  "avg_score": 3.45,
+  "last_analyzed": "2026-10-27T07:48:06Z",
+  "quality_score": 2,
+  "assessment": "仅返回两个 ★0 仓库，其中一个是以用户名命名的 profile README 类仓库，明显是搜索噪声；无星标、无信号说明，对时机判断零帮助。",
+  "flags": [
+    "low_quality",
+    "generic_content"
+  ],
+  "avg_score": 3.38,
   "history": [
     {
       "date": "2026-10-25",
@@ -124,6 +127,12 @@
       "date": "2026-10-27",
       "score": 3,
       "ts": "2026-10-27T02:20:59Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-27",
+      "score": 2,
+      "ts": "2026-10-27T07:48:06Z",
       "harness": "claude"
     }
   ]

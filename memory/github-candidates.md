@@ -401,3 +401,7 @@
 - [123tthh/Isaac-Robot-Simulation](https://github.com/123tthh/Isaac-Robot-Simulation) ★0 · 30天=5 · 7天=0 [爆完即停] · `teleoperation` · A reproducible Isaac Sim 5.1 based simulation framework for R1 dual-arm robot control, RGB-D percept
 - [CAI-1994/shape-control](https://github.com/CAI-1994/shape-control) ★0 · 30天=5 · 7天=0 [爆完即停] · `sim-to-real` · We present a Siamese‑Mamba‑driven sim‑to‑real shape‑control solution for a 7‑DoF integrated TMVR con
 - [gzee3184/senku_wm](https://github.com/gzee3184/senku_wm) ★0 · 30天=5 · 7天=0 [爆完即停] · `world model` · Senku: a self-supervised world model with a global latent and state tokens, for planning from pixels
+
+## 2026-10-27 · github-radar（报告级 2）
+- [ripl/last-millimeter](https://github.com/ripl/last-millimeter) ★0 · 30天=6 · 7天=6 · `sim-to-real` · Real-to-Sim-to-Real at the Last Millimeter: precise insertion on a low-cost robot arm.
+- [bettercalljerry04-maker/bettercalljerry04-maker](https://github.com/bettercalljerry04-maker/bettercalljerry04-maker) ★0 · 30天=6 · 7天=6 · `world model` · Jerry_codemen | Embodied AI and robotics at Standard Robotics | LLM, VLA, RL, and World Models
