@@ -1,13 +1,32 @@
-**github-radar** · 窗口 60 天 · 报告级 11 · 7d 活跃 7
+**github-radar** · 窗口 90 天 · 报告级 64 · 7d 活跃 43
 
-- [latent-horizon/pytorch-world](https://github.com/latent-horizon/pytorch-world) ★2 · 30d=85 7d=47 · `world model` · World Models Library for PyTorch
-- [humanai2026/3D_Affordance](https://github.com/humanai2026/3D_Affordance) ★0 · 30d=21 7d=16 · `world model` · 3D/4D Spatial Reasoning, Physical & Social Affordance, URDF Kinematic Timelines, and Human-Verified 
-- [SunCCNY/Embodied-AI](https://github.com/SunCCNY/Embodied-AI) ★0 · 30d=54 7d=9 · `world model` · Projects in Embodied-AI, humanoid robots, and world modeling in Applied and Embodied AI Laboratory.
-- [alibaba-damo-academy/RynnUnify](https://github.com/alibaba-damo-academy/RynnUnify) ★15 · 30d=7 7d=7 · `world model` · Agentic Embodied Intelligence via Reciprocal VLM Reasoning and World Modeling
-- [Kostov0129/Piper_Alicia_teleoperation](https://github.com/Kostov0129/Piper_Alicia_teleoperation) ★0 · 30d=6 7d=6 · `teleoperation` · Local browser interface for Alicia-DL to PiPER teleoperation with connection checks and guarded cont
+- [Anhao1314/go2w-locomotion](https://github.com/Anhao1314/go2w-locomotion) ★8 · 30d=92 7d=68 · `sim2real` · Joint-level RL locomotion for Unitree Go2/Go2W — Isaac Lab, Sim2Real, ONNX deployment, C++ control s
+- [joyjeet-singh/rwm](https://github.com/joyjeet-singh/rwm) ★0 · 30d=≥100 7d=47 · `world model` · Independent CPU reproduction of the Robotic World Model (arXiv:2501.10100) and its uncertainty-aware
+- [latent-horizon/pytorch-world](https://github.com/latent-horizon/pytorch-world) ★2 · 30d=85 7d=39 · `world model` · World Models Library for PyTorch
+- [jagerknight10/localised-egocentric-vision](https://github.com/jagerknight10/localised-egocentric-vision) ★0 · 30d=29 7d=29 · `egocentric` · Exploring whether hand-focused egocentric vision can label actions accurately with less computation.
+- [Aitherium/awpredict](https://github.com/Aitherium/awpredict) ★0 · 30d=≥100 7d=25 · `jepa` · Predict what your environment does next, and how surprised you were — LeWM JEPA + MLP engines behind
+- [EricC430/teleoperation_pick_place](https://github.com/EricC430/teleoperation_pick_place) ★0 · 30d=≥100 7d=22 · `teleoperation` · 以模仿學習（LeRobot + ACT）讓裝在移動平台上的機器手臂，在室外光線與背景變化下定點撿拾垃圾。
+- [Xeon87/Agentic_Robot_Sim2Real_Experiment_Platform](https://github.com/Xeon87/Agentic_Robot_Sim2Real_Experiment_Platform) ★0 · 30d=22 7d=22 · `sim2real` · LLM-agent-driven manipulation on the NERO 7-DOF arm. A GPT agent plans and executes egg pick-and-pla
+- [maclong01/AGE](https://github.com/maclong01/AGE) ★1 · 30d=20 7d=20 · `jepa` · JEPA-GRAG: Adaptive-masking for Graph Embedding in Graph Retrieval-Augmented Generation
+- [harshvtomar/robomotion-ai](https://github.com/harshvtomar/robomotion-ai) ★0 · 30d=19 7d=19 · `teleoperation` · Simulation-only robotic arm digital twin with 3D joint control, analytical kinematics, virtual pick-
+- [sizhet/Subject-Predicate-Object-Structural-Intelligence](https://github.com/sizhet/Subject-Predicate-Object-Structural-Intelligence) ★0 · 30d=22 7d=18 · `world model` · Subject–Predicate–Object Structural Intelligence (SPO-SI) - Subject-Centric World Models, Governed A
+- [faraz-369/SafeLite](https://github.com/faraz-369/SafeLite) ★5 · 30d=24 7d=17 · `robot manipulation` · Language-Conditioned Robotic Manipulation via Lightweight LLM Agents.The repository is designed to s
+- [humanai2026/3D_Affordance](https://github.com/humanai2026/3D_Affordance) ★0 · 30d=24 7d=17 · `world model` · 3D/4D Spatial Reasoning, Physical & Social Affordance, URDF Kinematic Timelines, and Human-Verified 
+- [Extended-reality-Lab/quest-shadow-hand-teleop](https://github.com/Extended-reality-Lab/quest-shadow-hand-teleop) ★1 · 30d=38 7d=16 · `teleoperation` · MuJoCo simulation of a robot arm and hand for VR teleoperation research at Oregon State (in progress
+- [chanwaijye/PRS-PM-2026-09-15-AIS08-GRP-12-TheEyes](https://github.com/chanwaijye/PRS-PM-2026-09-15-AIS08-GRP-12-TheEyes) ★0 · 30d=74 7d=12 · `robot manipulation` · The Eyes - real-time multi-view RGB-D perception for tabletop robot manipulation. NUS-ISS MTech AI S
+- [Iva5858/juan_learns_to_walk](https://github.com/Iva5858/juan_learns_to_walk) ★1 · 30d=36 7d=12 · `sim-to-real` · A 2 kg, 8-servo biped that learns to walk with reinforcement learning: MuJoCo simulation, PPO, sim-t
+- [SILVIO-ZHENG/VLA_RL_collect_data](https://github.com/SILVIO-ZHENG/VLA_RL_collect_data) ★0 · 30d=12 7d=12 · `teleoperation` · Human-in-the-loop teleoperation and data collection for AGIBOT G2A, with VLA deployment, trajectory 
+- [AbdelStark/verifiable-inference-ethereum](https://github.com/AbdelStark/verifiable-inference-ethereum) ★0 · 30d=10 7d=10 · `verifiable inference` · Ethereum EVM and Solidity verification stack for SASH verifiable LLM inference
+- [Kostov0129/Piper_Alicia_teleoperation](https://github.com/Kostov0129/Piper_Alicia_teleoperation) ★0 · 30d=9 7d=9 · `teleoperation` · Local browser interface for Alicia-DL to PiPER teleoperation with connection checks and guarded cont
+- [brain-labbb/RFW_A_web](https://github.com/brain-labbb/RFW_A_web) ★0 · 30d=8 7d=8 · `sim-to-real` · RFW-A project website: 400K articulated assets, procedural generators, directed editing, and sim-to-
+- [SunCCNY/Embodied-AI](https://github.com/SunCCNY/Embodied-AI) ★0 · 30d=54 7d=7 · `world model` · Projects in Embodied-AI, humanoid robots, and world modeling in Applied and Embodied AI Laboratory.
+- [GoodLuck-123/autoNews](https://github.com/GoodLuck-123/autoNews) ★1 · 30d=29 7d=7 · `world model` · Automated daily AI & Tech intelligence agent. Tracks Embodied AI, World Models, LLMs, Infra, 3D Visi
+- [VmythV/frontier-future-news](https://github.com/VmythV/frontier-future-news) ★0 · 30d=25 7d=7 · `world model` · Verified bilingual news archive for AI agents, embodied AI, and world models
+- [alibaba-damo-academy/RynnUnify](https://github.com/alibaba-damo-academy/RynnUnify) ★19 · 30d=7 7d=7 · `world model` · Agentic Embodied Intelligence via Reciprocal VLM Reasoning and World Modeling
+- [infinity510/delto-inhand-manipulation](https://github.com/infinity510/delto-inhand-manipulation) ★0 · 30d=≥100 7d=6 · `sim-to-real` · Autonomous In-Hand Dexterous Manipulation on the Delto-3F Gripper via Deep Reinforcement Learning wi
+- [mukunda-k/egosg-lpds](https://github.com/mukunda-k/egosg-lpds) ★0 · 30d=8 7d=6 · `egocentric` · Egocentric Scene Graph and LPDS from streaming egocentric video, with step-localization and HD-EPIC 
+- [07-amruta/VLM-Robotic-Manipulation](https://github.com/07-amruta/VLM-Robotic-Manipulation) ★0 · 30d=19 7d=5 · `robot manipulation` · VLM-based task planning and autonomous robotic manipulation using ROS 2, MoveIt 2, RGB-D perception,
+- [SoroushK93/progress-influence-valve-sim](https://github.com/SoroushK93/progress-influence-valve-sim) ★0 · 30d=5 7d=5 · `robot manipulation` · Illustrative valve simulations of progress influence for robot manipulation under ship motion
 - [DU525/paired-counterfactual-eval](https://github.com/DU525/paired-counterfactual-eval) ★0 · 30d=5 7d=5 · `world model` · Paired-counterfactual evaluation for world models: does the model add value over a strong baseline, 
-- [pacifai/pouw](https://github.com/pacifai/pouw) ★0 · 30d=23 7d=2 · `proof of useful work` · A verifier for proof of useful work (PoUW) on vLLM inference matrix multiplies
-- [dialgop/eidolon](https://github.com/dialgop/eidolon) ★0 · 30d=9 7d=0 [爆完即停] · `world model` · An experimental framework for memory, attention, world models, self-models, and embodied cognition.
-- [nehith23/phone-push-world-model](https://github.com/nehith23/phone-push-world-model) ★1 · 30d=7 7d=0 [爆完即停] · `world model` · Phone videos of my own tabletop pushes train a small world model that plans pushes for a simulated F
-- [Elaybarnoam/action-conditioned-visual-world-model](https://github.com/Elaybarnoam/action-conditioned-visual-world-model) ★0 · 30d=6 7d=0 [爆完即停] · `world model` · Complete visual world-model research project: CNN/GRU dynamics, multistep training, data scaling, ap
-- [gzee3184/senku_wm](https://github.com/gzee3184/senku_wm) ★0 · 30d=5 7d=0 [爆完即停] · `world model` · Senku: a self-supervised world model with a global latent and state tokens, for planning from pixels
+- [arjmandi/assay](https://github.com/arjmandi/assay) ★1 · 30d=87 7d=4 · `world model` · ASSAY, a reasoning harness with a world model the agent can address, grounded on predictions for act
+- [OAndrei314/physical-ai-data-factory-sim](https://github.com/OAndrei314/physical-ai-data-factory-sim) ★1 · 30d=9 7d=4 · `world model` · Deterministic physical-AI validation scenario generator for world-model and hardware-policy testing

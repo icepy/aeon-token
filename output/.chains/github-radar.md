@@ -1,47 +1,58 @@
-## github-radar 第十七轮（`dry-run days:60 probe`）
+Done. Now the report.
 
-**口径**：18 词 · 窗自适应（整窗 17 / 拆 3 子窗 1）· 窗口 `2026-08-27..2026-10-26` · star 地板 0 · 核验全量 51/51（100%）· 耗时 302s（搜索 151s）。dry-run：seen 未写，未发通知。
+## github-radar · 第十八轮（90 天窗 · dry-run）
 
-**漏斗**：原始 **3818** → 丢 seen 1774 / excl 236 / archived 2 / short_desc 695 / carrier 877 / neg 86 / pages 83 / pages_root 0 / scaffold 0 / farm 14 / fail 0 → 幸存 **51** → 报告级 **11**。
+**漏斗**：原始 5403 → 幸存 662 → **报告级 64**（7d 活跃 43）。核验 662/662 = 100% 全量。
 
-### 报告级（11）
+**四分类**：查询失败 0 · 真零 0 · 饱和 2（`robotics data engine`、`maximal extractable value`，别删）· 有新增 16。覆盖率仅 `restaking` 91.7%，其余满覆盖。
 
-- [latent-horizon/pytorch-world](https://github.com/latent-horizon/pytorch-world) ★2 · 30d=85 7d=47 · `world model` · World Models Library for PyTorch
-- [humanai2026/3D_Affordance](https://github.com/humanai2026/3D_Affordance) ★0 · 30d=21 7d=16 · `world model` · 3D/4D 空间推理、物理与社会可供性、URDF 运动学时序
-- [SunCCNY/Embodied-AI](https://github.com/SunCCNY/Embodied-AI) ★0 · 30d=54 7d=9 · `world model` · 应用与具身 AI 实验室的项目集
-- [alibaba-damo-academy/RynnUnify](https://github.com/alibaba-damo-academy/RynnUnify) ★15 · 30d=7 7d=7 · `world model` · 互为 VLM 推理的 agentic 具身智能
-- [Kostov0129/Piper_Alicia_teleoperation](https://github.com/Kostov0129/Piper_Alicia_teleoperation) ★0 · 30d=6 7d=6 · `teleoperation` · Alicia-DL ↔ PiPER 遥操作的本地浏览器界面
-- [DU525/paired-counterfactual-eval](https://github.com/DU525/paired-counterfactual-eval) ★0 · 30d=5 7d=5 · `world model` · 世界模型的配对反事实评测
-- [pacifai/pouw](https://github.com/pacifai/pouw) ★0 · 30d=23 7d=2 · `proof of useful work` · vLLM 推理矩阵乘的 PoUW 验证器
-- [dialgop/eidolon](https://github.com/dialgop/eidolon) ★0 · 30d=9 7d=0 [爆完即停] · `world model`
-- [nehith23/phone-push-world-model](https://github.com/nehith23/phone-push-world-model) ★1 · 30d=7 7d=0 [爆完即停] · `world model`
-- [Elaybarnoam/action-conditioned-visual-world-model](https://github.com/Elaybarnoam/action-conditioned-visual-world-model) ★0 · 30d=6 7d=0 [爆完即停] · `world model`
-- [gzee3184/senku_wm](https://github.com/gzee3184/senku_wm) ★0 · 30d=5 7d=0 [爆完即停] · `world model`
+**报告级 64 条**（按 7d 提交排序，`NOTIFY_TOP` 前 30）：
 
-### 判据级发现
+| # | repo | ★ | 30d | 7d | 词 | 一句话 |
+|---|---|---|---|---|---|---|
+| 1 | Anhao1314/go2w-locomotion | 8 | 92 | 68 | sim2real | Unitree Go2/Go2W 关节级 RL，Isaac Lab + ONNX 部署 |
+| 2 | joyjeet-singh/rwm | 0 | ≥100 | 47 | world model | 机器人世界模型的 CPU 独立复现（arXiv:2501.10100） |
+| 3 | latent-horizon/pytorch-world | 2 | 85 | 39 | world model | PyTorch 世界模型库 |
+| 4 | jagerknight10/localised-egocentric-vision | 0 | 29 | 29 | egocentric | 手部第一视角能否低成本高精度标动作 |
+| 5 | Aitherium/awpredict | 0 | ≥100 | 25 | jepa | LeWM JEPA + MLP 预测环境下一步与惊讶度 |
+| 6 | EricC430/teleoperation_pick_place | 0 | ≥100 | 22 | teleoperation | LeRobot+ACT，移动臂室外光线下捡垃圾 |
+| 7 | Xeon87/Agentic_Robot_Sim2Real_Experiment_Platform | 0 | 22 | 22 | sim2real | GPT agent 驱 NERO 7-DOF 抓蛋 [无language] |
+| 8 | maclong01/AGE | 1 | 20 | 20 | jepa | JEPA-GRAG 图检索增强 |
+| 9 | harshvtomar/robomotion-ai | 0 | 19 | 19 | teleoperation | 纯仿真机械臂数字孪生，解析运动学 |
+| 10 | sizhet/Subject-Predicate-Object-Structural-Intelligence | 0 | 22 | 18 | world model | SPO-SI 主体中心世界模型 [无language] |
+| 11 | faraz-369/SafeLite | 5 | 24 | 17 | robot manipulation | 轻量 LLM agent 语言条件操作 |
+| 12 | humanai2026/3D_Affordance | 0 | 24 | 17 | world model | 3D/4D 空间推理 + 物理社会可供性 [无language] |
+| 13 | Extended-reality-Lab/quest-shadow-hand-teleop | 1 | 38 | 16 | teleoperation | OSU 的 VR 遥操 MuJoCo 手+臂 |
+| 14 | chanwaijye/PRS-PM-...-TheEyes | 0 | 74 | 12 | robot manipulation | 桌面操作的多视角 RGB-D 实时感知（NUS-ISS） |
+| 15 | Iva5858/juan_learns_to_walk | 1 | 36 | 12 | sim-to-real | 2kg 8 舵机双足 PPO 学走路 |
+| 16 | SILVIO-ZHENG/VLA_RL_collect_data | 0 | 12 | 12 | teleoperation | AGIBOT G2A 人在回路数采 + VLA 部署 |
+| 17 | AbdelStark/verifiable-inference-ethereum | 0 | 10 | 10 | verifiable inference | SASH 可验证 LLM 推理的 EVM 验证栈 |
+| 18 | Kostov0129/Piper_Alicia_teleoperation | 0 | 9 | 9 | teleoperation | Alicia-DL→PiPER 浏览器遥操界面 |
+| 19 | brain-labbb/RFW_A_web | 0 | 8 | 8 | sim-to-real | 40 万关节资产 + 程序化生成 + sim-to-real |
+| 20 | SunCCNY/Embodied-AI | 0 | 54 | 7 | world model | 应用与具身 AI 实验室项目集 |
+| 21 | GoodLuck-123/autoNews | 1 | 29 | 7 | world model | 每日具身 AI / 世界模型情报 agent |
+| 22 | VmythV/frontier-future-news | 0 | 25 | 7 | world model | 双语 AI agent / 世界模型新闻存档 |
+| 23 | alibaba-damo-academy/RynnUnify | 19 | 7 | 7 | world model | VLM 互推 + 世界建模的 agentic 具身智能 |
+| 24 | infinity510/delto-inhand-manipulation | 0 | ≥100 | 6 | sim-to-real | Delto-3F 夹爪灵巧手内操作 |
+| 25 | mukunda-k/egosg-lpds | 0 | 8 | 6 | egocentric | 流式第一视角视频的场景图 + LPDS |
+| 26 | 07-amruta/VLM-Robotic-Manipulation | 0 | 19 | 5 | robot manipulation | ROS 2 + MoveIt 2 的 VLM 任务规划 |
+| 27 | SoroushK93/progress-influence-valve-sim | 0 | 5 | 5 | robot manipulation | 船体晃动下的阀门操作仿真 |
+| 28 | DU525/paired-counterfactual-eval | 0 | 5 | 5 | world model | 世界模型配对反事实评估 |
+| 29 | arjmandi/assay | 1 | 87 | 4 | world model | agent 可寻址世界模型的推理框架 |
+| 30 | OAndrei314/physical-ai-data-factory-sim | 1 | 9 | 4 | world model | 物理 AI 确定性验证场景生成器 |
 
-**① carrier 误杀率第一次有了同口径对照组 —— 50% 对 50%，没有差异，不放宽。**
-脚本新打两行：丢弃侧仓名自带词表词 346 个（owner 去重 327），本轮核 **149** → 近 7 天存活 **74/149 = 50%**；放行的幸存者侧核 24 → **12/24 = 50%**。第十六轮按 12 个样本估的「误杀率一半到四分之三、偏高」**站不住** —— 那个估法没有对照，而「活着」在这个池子里本来就是 50% 基线。第十六轮那条「先按 owner 去重全量核 7d 再对照」执行完毕，结论是**不改规则**。
+31–64 中值得单独点的：`RadixRootMind/RadixQuantVLA` ★90（VLA 后训练量化）· `alibaba-damo-academy/RynnUnify` ★19 · `physicalreasoning/causal-jepa` ★9（JEPA 预测的**否定结果**）· `robodreamer/embodied-policy-lab` ★8（LIBERO/RoboCasa 上对比 VLA 与 WAM）· `pacifai/pouw`（vLLM 推理上 PoUW 验证器）· `gzee3184/senku_wm`。
 
-**② 新回归：自适应开窗省了搜索调用，但两个词首次跌破覆盖率线。**
-上次提交的审计头是 `18 词 × 3 窗`，本轮是 `整窗 17 / 拆 3 子窗 1`（`WIN_SPLIT_TOTAL=1000`，`scan.py:366`）。代价立刻显形：`sim2real` **52.7%**、`restaking` **83.3%**，其余 16 词 ≥95%。
-我手工复量 `sim2real`（`created:>2026-08-27`）：GitHub 侧 `total_count=163`，第 1 页 100 条 + 第 2 页 63 条，**两页零重叠、并集正好 163** —— 即完全可分页取尽，**52.7% 不是仓库封顶**。差额来自整窗单次查询的 `total_count`（169）与实际 `items`（89）不一致，属审计已标注的「total_count 不准」类。**单轮一个样本，先记不改 —— 下轮同口径再量一次才谈得上回退。**
+**关键判据**：报告级 ★0 占 44/64（69%），**star 第十次失效**。**carrier 误杀对照 56% vs 57%，差 1pp，不放宽**（第二次复现第十七轮结论）。爆完即停占 21/64（33%）。新面孔（created ≥ 10-20）仅 10 个——90 天窗下绝大多数是存量大仓在活跃。
 
-**③ probe 第三判据（`thematic`）首轮全额生效，本轮 0 个真簇。**
-28 个候选里 `uniview`(19/18) 仍 `cohesive=true` 但 `thematic=false`（主题词 `hikvision`×5 / `dahua`×4，海康大华 NVR 工具）→ 被词表语义挡下；`senku`(55/41) · `pouw`(31/24) · `eidolon`(98/74) · `physguard`(3/3) 本轮全 `cohesive=false`（`pouw` 已不再取到 `content`，GLUE 剔除生效）。**第十六轮那 3 个假阳性全部被拦下，回归通过。**
-
-**④ 四分类（分开写）**：查询失败 **0** / 真零 **0** / 全已见(饱和) **11** / 有新增 **7**。饱和 11 个 raw 全 >0 且新收 0，逐个确认仍是被 seen 吸收（`jepa` 656/308 · `teleoperation` 416/321 · `robot manipulation` 283/225 · `world action model` 95/91 等），**不删**。有新增 7：`world model` 45 · `teleoperation` 1 · `vision language action` 1 · `sim-to-real` 1 · `egocentric` 1 · `data availability` 1 · `proof of useful work` 1。
-
-**⑤ 与上次提交的报告只差 1 个新面孔**：`Kostov0129/Piper_Alicia_teleoperation`。其余 10 个逐项同前轮 —— 同窗口 dry-run 复跑语义不变，**不含新信号，别当增量引用**。
-
-**⑥ star 第九次失效**：报告级 11 个里 9 个 ★0–1，全轮最高仍不在报告级。
-**⑦ 加密侧继续 0 报告级**：两个加密词各 1 个新收，`pacifai/pouw` 是唯一加密仓且 7d 继续走低（2）。
-**⑧ 审计完整性维持 5/5**：`dropped.json` 落 `{carrier:877, short_desc:695, carrier_named_uniq:327, carrier_named_alive_7d:74}`；carrier 靠 topics 放行 16 · 短 desc 靠 topics 放行 1 · 撞页 5 个子窗逐条打印。
+**顺带修了个真 bug**：`scan.py:910/:921` 写成 `c["commits_7d", "-"]`，元组当 key 下标，必然 `KeyError` —— 而且崩在**所有工作完成之后**，`report.md` 会留上一轮的陈旧内容。PR #14 已开。
 
 ## Summary
 
-- **执行**：`python3 skills/github-radar/scan.py "dry-run days:60 probe"`，一次跑完，`scan.py` 未改动。
-- **产物**（脚本自写，均在 `output/ghradar/`）：`out.dry.json`（51 幸存）· `audit.log` · `report.md`（报告级 11）· `dropped.json` · `clusters.json`。`out.json` 仍为上次的 `[]`（dry-run 不覆盖）。
-- **文件修改**：`memory/logs/2026-10-26.md` 追加 `### github-radar（第十七轮）` 与 `under the hood` 两节；`memory/MEMORY.md` 新增第十七轮判据一行。
-- **未发通知**（dry-run），`memory/github-seen.json` 未写。
-- **待办**：下轮同口径复量 `sim2real` / `restaking` 覆盖率 —— 若再次 <95%，回退 `WIN_SPLIT_TOTAL` 自适应开窗（或对 `total_count` 与 `items` 不一致的词强制拆窗）。本轮调用 34 次超预算 2.3×，下轮把 `git show` 合并调用压到 20 次内。
+- 执行 `python3 skills/github-radar/scan.py "dry-run days:90"`：原始 5403 / 幸存 662 / 报告级 64，662/662 全量核验，354 秒。
+- **修复**：`skills/github-radar/scan.py` 两处 `c["commits_7d", "-"]` → `c.get("commits_7d", "-")`。首轮因此崩溃，重跑后 `STATUS: GITHUB_RADAR_OK`。
+- **PR #14** — https://github.com/icepy/aeon-token/pull/14（分支 `fix/github-radar-commits-7d-keyerror`），代码改动，待审。
+- **日志**：`memory/logs/2026-10-27.md`（第十八轮判据记录），已提交 `a804864` 并推送到 main。
+- **产物**：`output/ghradar/out.dry.json`（662 条快照）· `dropped.json` · `audit.log` · `report.md`。
+- **未发通知** — dry-run，脚本按设计跳过。
+- **待办**：① 合并 PR #14；② `memory/ghradar-probe-last.txt` 不存在，probe 已逾期（`clusters.json` 是 10-26 残留，本轮不可用），下次非 dry-run 轮需显式带 `probe`；③ 本轮 dry-run 不写 `seen`，同窗口复跑只是原样重放，要有增量需跑非 dry-run 的 7 天窗。
