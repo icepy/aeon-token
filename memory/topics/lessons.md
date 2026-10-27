@@ -145,6 +145,9 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **链级 TVL 跳变先怀疑"上新"，别当净流入。** Hyperliquid L1 的 7d 显示 +122%，实际是 10-21 单日 chainTVL 从 $1.02B 阶跃到 $2.49B（协议收录变化），而 Hyperliquid Bridge *协议本身* 7d 是 −0.17%。任何链级异动都要下钻到协议级 `chainTvls` 才会发现。
 - **百分比过滤器必须配绝对额地板。** 「fees 7d 涨 >20% 且 TVL 7d <+5%」这条筛出了 Aave V2（+39.4%）——其 7d 手续费总额只有 **$37,212**。纯百分比会把灰尘当信号。加 `total7d >= $1M`。
 - **APY 高不代表可投。** Uniswap V3 的 USDC-WETH 池 `apyBase` 22% 过了所有"real yield"过滤（无 reward、非 outlier、置信度 3），但那是做市 LP 的手续费，不是无风险利率。报告里必须标"LP, not passive"，否则下游会把它当稳定币收益。
+- **跨 series 做 diff 必须先按日期对齐，不能各取尾部（2026-10-27 新增，花了三次返工）。** DeFiLlama 的 `chainTvls` 每条子 series 的采样时间点不一定相同。用 `tot[-1] - tot[-2]` 各取自series尾部时，得到的是两个**不同日期**的差，Uniswap V4 就这样被算出一堆 −$0.003B 的假小数，差点把真实的 −21.6% 判成伪影。正确做法是先把每条 series 转成 `{date: value}`，**按同一对日期键取值**再相减。判别式：per-chain delta 总和必须等于 aggregate delta；对不上就是取错了日期，不是数据坏了。
+- **`/overview/dexs` 的 `change_1d` 会和它自己的 `totalDataChart` 打架（2026-10-27 实测）。** 前者报 +40.3%，后者给出 10-26 $8.40B → 10-27 $8.10B（**−3.6%，符号相反**）。原因是聚合量里 43% 落在 top-10 之外，新收录场馆（Manifest Trade、BisonFi、Tessera V）一进来就把总数抬高，`change_1d` 算的是"含今日新收录"的对比，`totalDataChart` 算的是同口径历史序列。**判据：两者符号不一致时，一律信 `totalDataChart`，并在报告里写明口径冲突。**
+- **单腿归零 = 快照缺口，不是流出，而且会自己恢复（2026-10-27 OKX 实例）。** OKX 报 −40.3%（$30.33B → $18.09B），下钻 `chainTvls` 发现是 **Bitcoin 腿 $11.93B → $0.00**，Litecoin/Polkadot/Aptos 同时归零，其余腿分毫未动；隔几小时刷新全部恢复、总量回到 $30.11B。**判别式：跌幅集中在若干整条链腿上、且这些腿读数恰为 0，而不是均匀下滑 → 数据缺口。** 同类还需查 live 时间戳与 snapshot 时间戳的差（OKX 首尾两点相隔 11 小时）。LayerZero V2 的 Polygon 腿 −$478M（比整条 Polygon 链跌幅还大）是同一个病。
 
 ## Keyless Base reads
 

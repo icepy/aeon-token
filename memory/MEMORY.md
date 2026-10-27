@@ -30,6 +30,7 @@
 - **买单真伪只认一条：终点地址余额升高且留住。** 新钱要 −1h/−6h/−24h/−7d/−30d 全 0；单池「N 买 / 0 卖」常是同秒双池套利的一半。
 - **`eth_getCode`=`0x` 才是 EOA；`0xef0100…` 是 EIP-7702。** 地址左补零且全小写。**view revert 先怀疑 selector。**
 - **门槛数学先核对分子分母同单位**（曾把 DEUS 数量除以美元金额，424 倍 vs 真值 8.2 倍）；**24h 涨跌幅别用 `ohlcv_list[0]`**。
+- **跨 series 做 diff 必须先按日期对齐**（各取尾部 = 两个不同日期的差；判别式：per-chain delta 总和必须等于 aggregate）；**`/overview/dexs` 的 `change_1d` 会和自家 `totalDataChart` 打架时一律信后者**；**单腿读数恰为 0 → 快照缺口不是流出，几小时后会自己恢复**（OKX −40% 实例，10-27）。
 - **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`。
 - **有 seen 基线后「0 新增」≠「废词」** —— 逐词单查 total_count 才分得清「窗口饱和」与「查询打不中」。**换长窗首跑会一次性推出「沉积层」、次跑即归零，那是 `seen` 吃干不是查询坏了。**
 - **查询失败会伪装成「零命中」** —— 有 `failed_t` 就先补扫（60d 轮 16/24 死于 429），别下结论。**词干化污染：`staking` 精度 11%（撞 `stakes`）**，单词必须换长短语。详见 [lessons](/topics/lessons.md#arXiv-检索arxiv-radar)。[source: logs/2026-10-26#arxiv-radar（60d 第四/七轮）]
