@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-27T04:30:58.708804578Z",
+  "generatedAt": "2026-10-27T04:45:08.431749873Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -880,6 +880,59 @@
       ],
       "contentHash": "sha256-b32301e3c0fe9678be3420c007162a6cf2dd4e3908f8f4ec64ba4f7f516206e1",
       "discoveredFrom": "skills/inbox-triage/SKILL.md"
+    },
+    {
+      "id": "534633ac410b227b",
+      "tool": "aeon",
+      "scope": "project:.",
+      "type": "skill",
+      "name": "narrative-brief",
+      "source": {
+        "kind": "local",
+        "ref": "skills/narrative-brief"
+      },
+      "capabilities": {},
+      "files": [
+        {
+          "path": "SKILL.md",
+          "hash": "ca3d092ce583882a39bdca3f806372f2efcb42d45c22098bf194a959cdd8af5e"
+        },
+        {
+          "path": "check.py",
+          "hash": "defcc87619513b75a211d96312f56dd8b8ea96727aeb61a2c6d046d55bfb4f6d"
+        }
+      ],
+      "findings": [
+        {
+          "ruleId": "EXEC-PRIMITIVE",
+          "severity": "medium",
+          "owasp": "ASK-03",
+          "file": "check.py",
+          "line": 29,
+          "snippet": "import subprocess",
+          "explanation": "uses a process-execution primitive"
+        },
+        {
+          "ruleId": "EXEC-PRIMITIVE",
+          "severity": "medium",
+          "owasp": "ASK-03",
+          "file": "check.py",
+          "line": 219,
+          "snippet": "proc = subprocess.run(",
+          "explanation": "uses a process-execution primitive"
+        },
+        {
+          "ruleId": "EXEC-PRIMITIVE",
+          "severity": "medium",
+          "owasp": "ASK-03",
+          "file": "check.py",
+          "line": 522,
+          "snippet": "proc = subprocess.run([notify_bin, \"-f\", target], capture_output=True, text=True)",
+          "explanation": "uses a process-execution primitive"
+        }
+      ],
+      "contentHash": "sha256-d51f123fc754d988a9773fb39536912c23e648ba7f5f335051b853886e4e0152",
+      "discoveredFrom": "skills/narrative-brief/SKILL.md"
     },
     {
       "id": "564d8f38dcfa4c55",
