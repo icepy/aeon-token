@@ -1,0 +1,799 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "叙事简报",
+        "description": "2026-10-26 · 来源：Grok 自动化 crypto-narrative-brief-3day"
+      },
+      "children": [
+        "meta-stack",
+        "sep-1",
+        "h-crypto",
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "sep-2",
+        "h-tech",
+        "t1",
+        "t2",
+        "t3",
+        "sep-3",
+        "h-us",
+        "u1",
+        "u2",
+        "u3",
+        "sep-4",
+        "h-notes",
+        "n1",
+        "n2",
+        "n3"
+      ]
+    },
+    "meta-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "meta-src",
+        "meta-src-link",
+        "meta-date"
+      ]
+    },
+    "meta-src": {
+      "type": "Text",
+      "props": {
+        "text": "原文：",
+        "variant": "muted"
+      }
+    },
+    "meta-src-link": {
+      "type": "Link",
+      "props": {
+        "label": "icepy/aeon-token · memory/topics/narratives.md",
+        "href": "https://github.com/icepy/aeon-token/blob/main/memory/topics/narratives.md"
+      }
+    },
+    "meta-date": {
+      "type": "Text",
+      "props": {
+        "text": "26/10/2026",
+        "variant": "caption"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-crypto": {
+      "type": "Heading",
+      "props": {
+        "text": "【加密线】",
+        "level": "h2"
+      }
+    },
+    "c1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "c1-h",
+        "c1-acct",
+        "c1-links",
+        "c1-mention",
+        "c1-rev",
+        "c1-score"
+      ]
+    },
+    "c1-h": {
+      "type": "Heading",
+      "props": {
+        "text": "1. 比特币在8万美元附近横盘震荡，人们在等本周美联储决定，怕破位也怕错过反弹。",
+        "level": "h3"
+      }
+    },
+    "c1-acct": {
+      "type": "Text",
+      "props": {
+        "text": "账号：@0xBossman @Roman_Trading @MylesGinvest",
+        "variant": "body"
+      }
+    },
+    "c1-links": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c1-l1",
+        "c1-l2"
+      ]
+    },
+    "c1-l1": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @0xBossman",
+        "href": "https://x.com/0xBossman/status/2114524898416545925"
+      }
+    },
+    "c1-l2": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @Roman_Trading",
+        "href": "https://x.com/Roman_Trading/status/2114522022537789528"
+      }
+    },
+    "c1-mention": {
+      "type": "Badge",
+      "props": {
+        "text": "提及量：增长",
+        "variant": "secondary"
+      }
+    },
+    "c1-rev": {
+      "type": "Text",
+      "props": {
+        "text": "反向：已经在8万上方横盘超过35天，历史上这种无聊往往是牛市中期而非见顶。",
+        "variant": "body"
+      }
+    },
+    "c1-score": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c1-heat",
+        "c1-trend",
+        "c1-stage",
+        "c1-sent",
+        "c1-act"
+      ]
+    },
+    "c1-heat": {
+      "type": "Stat",
+      "props": {
+        "label": "热度",
+        "value": "4"
+      }
+    },
+    "c1-trend": {
+      "type": "Badge",
+      "props": {
+        "text": "趋势→",
+        "variant": "outline"
+      }
+    },
+    "c1-stage": {
+      "type": "Badge",
+      "props": {
+        "text": "阶段上升",
+        "variant": "default"
+      }
+    },
+    "c1-sent": {
+      "type": "Badge",
+      "props": {
+        "text": "情绪混",
+        "variant": "secondary"
+      }
+    },
+    "c1-act": {
+      "type": "Badge",
+      "props": {
+        "text": "操作建议观望",
+        "variant": "outline"
+      }
+    },
+    "c2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "c2-h",
+        "c2-acct",
+        "c2-links",
+        "c2-mention",
+        "c2-rev",
+        "c2-score"
+      ]
+    },
+    "c2-h": {
+      "type": "Heading",
+      "props": {
+        "text": "2. Hyperliquid的HYPE被看作本周期最重要的链上交易基础设施叙事，但价格最近显得比以前重。",
+        "level": "h3"
+      }
+    },
+    "c2-acct": {
+      "type": "Text",
+      "props": {
+        "text": "账号：@AltcoinSherpa @MBxxvv @yasu0x1",
+        "variant": "body"
+      }
+    },
+    "c2-links": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c2-l1",
+        "c2-l2"
+      ]
+    },
+    "c2-l1": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @AltcoinSherpa",
+        "href": "https://x.com/AltcoinSherpa/status/2114422043823235448"
+      }
+    },
+    "c2-l2": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @MBxxvv",
+        "href": "https://x.com/MBxxvv/status/2114514084687499560"
+      }
+    },
+    "c2-mention": {
+      "type": "Badge",
+      "props": {
+        "text": "提及量：增长",
+        "variant": "secondary"
+      }
+    },
+    "c2-rev": {
+      "type": "Text",
+      "props": {
+        "text": "反向：价格弱不代表业务坏，使用和收入如果还在，就可能是低估。",
+        "variant": "body"
+      }
+    },
+    "c2-score": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c2-heat",
+        "c2-trend",
+        "c2-stage",
+        "c2-sent",
+        "c2-act"
+      ]
+    },
+    "c2-heat": {
+      "type": "Stat",
+      "props": {
+        "label": "热度",
+        "value": "4"
+      }
+    },
+    "c2-trend": {
+      "type": "Badge",
+      "props": {
+        "text": "趋势→",
+        "variant": "outline"
+      }
+    },
+    "c2-stage": {
+      "type": "Badge",
+      "props": {
+        "text": "阶段上升",
+        "variant": "default"
+      }
+    },
+    "c2-sent": {
+      "type": "Badge",
+      "props": {
+        "text": "情绪混",
+        "variant": "secondary"
+      }
+    },
+    "c2-act": {
+      "type": "Badge",
+      "props": {
+        "text": "操作建议跟随",
+        "variant": "outline"
+      }
+    },
+    "c3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "c3-h",
+        "c3-acct",
+        "c3-links",
+        "c3-mention",
+        "c3-rev",
+        "c3-score"
+      ]
+    },
+    "c3-h": {
+      "type": "Heading",
+      "props": {
+        "text": "3. 隐私币再次被提起，ZEC和XMR有人认为数据平台都在排名看。",
+        "level": "h3"
+      }
+    },
+    "c3-acct": {
+      "type": "Text",
+      "props": {
+        "text": "账号：@JettMonroe0x @BigCheds @0x_Agency",
+        "variant": "body"
+      }
+    },
+    "c3-links": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c3-l1",
+        "c3-l2"
+      ]
+    },
+    "c3-l1": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @JettMonroe0x",
+        "href": "https://x.com/JettMonroe0x/status/2114520896132039166"
+      }
+    },
+    "c3-l2": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @cz_abhi",
+        "href": "https://x.com/cz_abhi/status/2113471554843709496"
+      }
+    },
+    "c3-mention": {
+      "type": "Badge",
+      "props": {
+        "text": "提及量：小众",
+        "variant": "outline"
+      }
+    },
+    "c3-rev": {
+      "type": "Text",
+      "props": {
+        "text": "反向：隐私叙事往往是短期热点，缺乏持续使用增长容易回潮。",
+        "variant": "body"
+      }
+    },
+    "c3-score": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c3-heat",
+        "c3-trend",
+        "c3-stage",
+        "c3-sent",
+        "c3-act"
+      ]
+    },
+    "c3-heat": {
+      "type": "Stat",
+      "props": {
+        "label": "热度",
+        "value": "3"
+      }
+    },
+    "c3-trend": {
+      "type": "Badge",
+      "props": {
+        "text": "趋势↑",
+        "variant": "outline"
+      }
+    },
+    "c3-stage": {
+      "type": "Badge",
+      "props": {
+        "text": "阶段萌芽",
+        "variant": "default"
+      }
+    },
+    "c3-sent": {
+      "type": "Badge",
+      "props": {
+        "text": "情绪混",
+        "variant": "secondary"
+      }
+    },
+    "c3-act": {
+      "type": "Badge",
+      "props": {
+        "text": "操作建议抢先",
+        "variant": "outline"
+      }
+    },
+    "c4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "c4-h",
+        "c4-acct",
+        "c4-links",
+        "c4-mention",
+        "c4-rev",
+        "c4-score"
+      ]
+    },
+    "c4-h": {
+      "type": "Heading",
+      "props": {
+        "text": "4. 真实资产上链（RWA）和代币化仍在被提，但不是最热的。",
+        "level": "h3"
+      }
+    },
+    "c4-acct": {
+      "type": "Text",
+      "props": {
+        "text": "账号：@cz_abhi @CashXman @CryptoRob35",
+        "variant": "body"
+      }
+    },
+    "c4-links": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c4-l1",
+        "c4-l2"
+      ]
+    },
+    "c4-l1": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @cz_abhi",
+        "href": "https://x.com/cz_abhi/status/2113471554843709496"
+      }
+    },
+    "c4-l2": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @CryptoRob35",
+        "href": "https://x.com/CryptoRob35/status/2114346693647085673"
+      }
+    },
+    "c4-mention": {
+      "type": "Badge",
+      "props": {
+        "text": "提及量：小众",
+        "variant": "outline"
+      }
+    },
+    "c4-rev": {
+      "type": "Text",
+      "props": {
+        "text": "反向：实际落地产品少，大多是概念宣传。",
+        "variant": "body"
+      }
+    },
+    "c4-score": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c4-heat",
+        "c4-trend",
+        "c4-stage",
+        "c4-sent",
+        "c4-act"
+      ]
+    },
+    "c4-heat": {
+      "type": "Stat",
+      "props": {
+        "label": "热度",
+        "value": "2"
+      }
+    },
+    "c4-trend": {
+      "type": "Badge",
+      "props": {
+        "text": "趋势→",
+        "variant": "outline"
+      }
+    },
+    "c4-stage": {
+      "type": "Badge",
+      "props": {
+        "text": "阶段萌芽",
+        "variant": "default"
+      }
+    },
+    "c4-sent": {
+      "type": "Badge",
+      "props": {
+        "text": "情绪多",
+        "variant": "secondary"
+      }
+    },
+    "c4-act": {
+      "type": "Badge",
+      "props": {
+        "text": "操作建议观望",
+        "variant": "outline"
+      }
+    },
+    "c5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "c5-h",
+        "c5-acct",
+        "c5-links",
+        "c5-mention",
+        "c5-rev",
+        "c5-score"
+      ]
+    },
+    "c5-h": {
+      "type": "Heading",
+      "props": {
+        "text": "5. 迷因币从纯炒作转向声称有交易所、手续费等“实用”故事。",
+        "level": "h3"
+      }
+    },
+    "c5-acct": {
+      "type": "Text",
+      "props": {
+        "text": "账号：@0x_Agency @cz_abhi",
+        "variant": "body"
+      }
+    },
+    "c5-links": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c5-l1",
+        "c5-l2"
+      ]
+    },
+    "c5-l1": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @0x_Agency",
+        "href": "https://x.com/0x_Agency/status/2113873960848805984"
+      }
+    },
+    "c5-l2": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @cz_abhi",
+        "href": "https://x.com/cz_abhi/status/2113471554843709496"
+      }
+    },
+    "c5-mention": {
+      "type": "Badge",
+      "props": {
+        "text": "提及量：饱和",
+        "variant": "destructive"
+      }
+    },
+    "c5-rev": {
+      "type": "Text",
+      "props": {
+        "text": "反向：绝大多数迷因仍是短期流动性驱动，“实用”多为营销话术。",
+        "variant": "body"
+      }
+    },
+    "c5-score": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "c5-heat",
+        "c5-trend",
+        "c5-stage",
+        "c5-sent",
+        "c5-act"
+      ]
+    },
+    "c5-heat": {
+      "type": "Stat",
+      "props": {
+        "label": "热度",
+        "value": "3"
+      }
+    },
+    "c5-trend": {
+      "type": "Badge",
+      "props": {
+        "text": "趋势↓",
+        "variant": "outline"
+      }
+    },
+    "c5-stage": {
+      "type": "Badge",
+      "props": {
+        "text": "阶段见顶",
+        "variant": "destructive"
+      }
+    },
+    "c5-sent": {
+      "type": "Badge",
+      "props": {
+        "text": "情绪自我安慰",
+        "variant": "secondary"
+      }
+    },
+    "c5-act": {
+      "type": "Badge",
+      "props": {
+        "text": "操作建议忽略",
+        "variant": "outline"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-tech": {
+      "type": "Heading",
+      "props": {
+        "text": "【科技线】",
+        "level": "h2"
+      }
+    },
+    "t1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "t1-h",
+        "t1-acct",
+        "t1-links",
+        "t1-mention",
+        "t1-rev",
+        "t1-score"
+      ]
+    },
+    "t1-h": {
+      "type": "Heading",
+      "props": {
+        "text": "1. 开源模型追上闭源，Kimi、MiniMax、Meta Muse、DeepSeek等本周有新动作。",
+        "level": "h3"
+      }
+    },
+    "t1-acct": {
+      "type": "Text",
+      "props": {
+        "text": "账号：@onmanjrekar @saavoji @izuchatel",
+        "variant": "body"
+      }
+    },
+    "t1-links": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "t1-l1",
+        "t1-l2"
+      ]
+    },
+    "t1-l1": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @onmanjrekar",
+        "href": "https://x.com/onmanjrekar/status/2114366415687840181"
+      }
+    },
+    "t1-l2": {
+      "type": "Link",
+      "props": {
+        "label": "推文 · @izuchatel",
+        "href": "https://x.com/izuchatel/status/2113724114905296951"
+      }
+    },
+    "t1-mention": {
+      "type": "Badge",
+      "props": {
+        "text": "提及量：增长",
+        "variant": "secondary"
+      }
+    },
+    "t1-rev": {
+      "type": "Text",
+      "props": {
+        "text": "反向：基准分数提升不等于实际产品能用，许多还停在实验室。",
+        "variant": "body"
+      }
+    },
+    "t1-score": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "t1-heat",
+        "t1-trend",
+        "t1-stage",
+        "t1-sent",
+        "t1-act"
+      ]
+    },
+    "t1-heat": {
+      "type": "Stat",
+      "props": {
+        "label": "热度",
+        "value": "4"
+      }
+    },
+    "t1-trend": {
+      "type": "Badge",
+      "props": {
+        "text": "趋势↑↑",
+        "variant": "default"
+      }
+    },
+    "t1-stage": {
+      "type": "Badge",
+      "props": {
+        "text": "阶段上升",
+        "variant": "default"
+      }
+    },
+    "t1-sent": {
+      "type": "Badge",
+      "props": {
+        "text": "情绪多",
+        "variant": "secondary"
+      }
+    },
+    "t1-act": {
+      "type": "Badge",
+      "props": {
+        "text": "操作建议跟随",
+        "variant": "outline"
+      }
+    }
+  }
+}
