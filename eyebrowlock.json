@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-27T06:49:23.919133507Z",
+  "generatedAt": "2026-10-27T07:04:30.65771948Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -895,7 +895,7 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "3a9172207131d574a77deccb3373ff77f051011980fdaee037686b1651cb06fb"
+          "hash": "f030d4da1c22ad817f12771fd722be38c2ffdf73781ebd658734bea0db866892"
         },
         {
           "path": "check.py",
@@ -931,7 +931,7 @@
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-59cecb83795255d62f861d1172b123ff8240a88313ea17433cc23c2b79e291f7",
+      "contentHash": "sha256-5f8677470b0562a13151270a66e47f6713a23f1104cae0c577a0de39b6f1c26b",
       "discoveredFrom": "skills/narrative-brief/SKILL.md"
     },
     {
