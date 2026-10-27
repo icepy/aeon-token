@@ -1,0 +1,594 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "defi-overview — Crypto 2026-10-27 — chop",
+        "description": "DeFi Mixed: three dimensions, none exceeding ±2% in the same direction | conviction low"
+      },
+      "children": [
+        "takeHeading",
+        "takeStack",
+        "sep1",
+        "tvlHeading",
+        "tvlStat",
+        "tvlStack",
+        "sep2",
+        "chainsHeading",
+        "chainsTable",
+        "sep3",
+        "moversHeading",
+        "movers1",
+        "movers2",
+        "movers3",
+        "movers4",
+        "alertOkx",
+        "sep4",
+        "feesHeading",
+        "feesTable",
+        "sep5",
+        "feesBeatHeading",
+        "feesBeat1",
+        "feesBeat2",
+        "sep6",
+        "dexHeading",
+        "dexStat",
+        "dexNote",
+        "sep7",
+        "stablesHeading",
+        "stablesStat",
+        "stablesText",
+        "sep8",
+        "realYieldHeading",
+        "realYieldText",
+        "realYieldList",
+        "sep9",
+        "incentiveHeading",
+        "incentive1",
+        "incentive2",
+        "sep10",
+        "macroHeading",
+        "macroGrid",
+        "sep11",
+        "polyHeading",
+        "polyStat",
+        "polyProgress",
+        "polyText",
+        "sep12",
+        "sourcesText"
+      ]
+    },
+    "takeHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Take",
+        "level": "h3"
+      }
+    },
+    "takeStack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "takeBTC",
+        "takeFG"
+      ]
+    },
+    "takeBTC": {
+      "type": "Text",
+      "props": {
+        "text": "BTC $79,787 (−0.65%), but breadth collapsed to 5/20 (24h and 7d both 5) — yesterday's divergence of \"24h repaired, 7d not repaired\" has disappeared; both windows are equally bad.",
+        "variant": "body"
+      }
+    },
+    "takeFG": {
+      "type": "Text",
+      "props": {
+        "text": "F&G 50 → 48, third consecutive decline (54→50→48).",
+        "variant": "body"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "tvlHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "TVL",
+        "level": "h3"
+      }
+    },
+    "tvlStat": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$87.77B",
+        "delta": "−1.00% 24h / −2.75% 7d / −8.79% 30d",
+        "trend": "down"
+      }
+    },
+    "tvlStack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "tvlText"
+      ]
+    },
+    "tvlText": {
+      "type": "Text",
+      "props": {
+        "text": "30d slope steepened from −7.77% to −8.79%.",
+        "variant": "muted"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "chainsHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Top chains",
+        "level": "h3"
+      }
+    },
+    "chainsTable": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "#",
+          "Chain",
+          "TVL",
+          "7d",
+          "1d",
+          "Note"
+        ],
+        "rows": [
+          [
+            "1",
+            "Ethereum",
+            "$48.19B",
+            "−2.53%",
+            "−0.77%",
+            ""
+          ],
+          [
+            "2",
+            "Base",
+            "$6.01B",
+            "−2.27%",
+            "+0.21%",
+            "Only top-3 chain with 1d positive"
+          ],
+          [
+            "3",
+            "Solana",
+            "$5.68B",
+            "−3.29%",
+            "",
+            ""
+          ]
+        ]
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "moversHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Movers",
+        "level": "h3"
+      }
+    },
+    "movers1": {
+      "type": "Text",
+      "props": {
+        "text": "↓ BSC −4.99% ($5.79B → $5.50B) — Uniswap V4's Binance leg alone pulled $278M",
+        "variant": "body"
+      }
+    },
+    "movers2": {
+      "type": "Text",
+      "props": {
+        "text": "↓ Polygon −5.56% ($0.73B → $0.69B) — no single attribution; max drop among ≥$30M protocols only −3.08%; broad contraction",
+        "variant": "body"
+      }
+    },
+    "movers3": {
+      "type": "Text",
+      "props": {
+        "text": "↑ Upshift +10.70% ($394M → $435M) — Stellar leg +$41.6M single deposit",
+        "variant": "body"
+      }
+    },
+    "movers4": {
+      "type": "Text",
+      "props": {
+        "text": "↑ Arbitrum +2.13% 1d / +6.27% 7d — strongest 7d among top-10 chains",
+        "variant": "body"
+      }
+    },
+    "alertOkx": {
+      "type": "Alert",
+      "props": {
+        "title": "Exclusion (important)",
+        "message": "OKX −40.3% is a data gap, not an outflow. Bitcoin leg $11.93B → $0.00 → $11.96B; Litecoin/Polkadot/Aptos simultaneously zeroed then fully recovered; total back to $30.11B. Not included in movers.",
+        "type": "warning"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "feesHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Fees leaders (24h)",
+        "level": "h3"
+      }
+    },
+    "feesTable": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "#",
+          "Protocol",
+          "Fees 24h",
+          "Change",
+          "Note"
+        ],
+        "rows": [
+          [
+            "1",
+            "Tether",
+            "$17.26M",
+            "−0.6% vs 7d avg",
+            ""
+          ],
+          [
+            "2",
+            "Circle USDC",
+            "$6.82M",
+            "−1.0%",
+            ""
+          ],
+          [
+            "3",
+            "PumpSwap",
+            "$3.08M",
+            "+24.2% 1d",
+            ""
+          ],
+          [
+            "4",
+            "Hyperliquid Perps",
+            "$2.73M",
+            "+61.3% 1d / +13.3% 7d",
+            "Only double-positive in top six"
+          ]
+        ]
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "feesBeatHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Fees beating TVL",
+        "level": "h3"
+      }
+    },
+    "feesBeat1": {
+      "type": "Text",
+      "props": {
+        "text": "• Polymarket International — fees +49.9% / TVL +1.0% (7d)",
+        "variant": "body"
+      }
+    },
+    "feesBeat2": {
+      "type": "Text",
+      "props": {
+        "text": "• Morpho Blue — fees +22.0% / TVL +1.6% — still growing fees on $11.25B scale",
+        "variant": "body"
+      }
+    },
+    "sep6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "dexHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "DEX vol (24h)",
+        "level": "h3"
+      }
+    },
+    "dexStat": {
+      "type": "Stat",
+      "props": {
+        "label": "DEX volume 24h (reported)",
+        "value": "$8.40B",
+        "delta": "+40.3%",
+        "trend": "up"
+      }
+    },
+    "dexNote": {
+      "type": "Text",
+      "props": {
+        "text": "But this number is not trustworthy: DeFiLlama's own daily series shows 10-26 $8.40B → 10-27 $8.10B (−3.6%, opposite sign). 43% of aggregated volume is outside top-10; Manifest Trade +169% 7d, BisonFi, Tessera V and other new venues are propping up the number. Read it as −3.6%.",
+        "variant": "body"
+      }
+    },
+    "sep7": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stablesHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Stables",
+        "level": "h3"
+      }
+    },
+    "stablesStat": {
+      "type": "Stat",
+      "props": {
+        "label": "Stablecoin supply",
+        "value": "$303.33B",
+        "delta": "+0.01% 24h / −0.41% 7d",
+        "trend": "up"
+      }
+    },
+    "stablesText": {
+      "type": "Text",
+      "props": {
+        "text": "Yesterday's −0.04% turned positive, but the cushion did not return. RLUSD +5.03%, pUSD +4.84%, USDS +1.46%; satUSD −13.38%, crvUSD −4.12%.",
+        "variant": "body"
+      }
+    },
+    "sep8": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "realYieldHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Real yield (sustainable, ≥$10M, 314 pools after filtering)",
+        "level": "h3"
+      }
+    },
+    "realYieldText": {
+      "type": "Text",
+      "props": {
+        "text": "Real yield pools:",
+        "variant": "muted"
+      }
+    },
+    "realYieldList": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "ry1",
+        "ry2",
+        "ry3",
+        "ry4"
+      ]
+    },
+    "ry1": {
+      "type": "Text",
+      "props": {
+        "text": "• WETH-USDT (Uniswap V3, ETH) — 32.2% apyBase, $87.9M, has IL",
+        "variant": "body"
+      }
+    },
+    "ry2": {
+      "type": "Text",
+      "props": {
+        "text": "• APXUSD (apyx, ETH) — 13.05% apyBase, $152.0M, single-asset no IL, stablecoin",
+        "variant": "body"
+      }
+    },
+    "ry3": {
+      "type": "Text",
+      "props": {
+        "text": "• SUSDAT (saturn, ETH) — 12.85% apyBase, $43.6M, single-asset no IL",
+        "variant": "body"
+      }
+    },
+    "ry4": {
+      "type": "Text",
+      "props": {
+        "text": "• HGRAM (hipo, TON) — 16.01% apyBase, $12.0M, non-stablecoin",
+        "variant": "body"
+      }
+    },
+    "sep9": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "incentiveHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Incentive yield (points / emissions, ≥$25M, 64 pools)",
+        "level": "h3"
+      }
+    },
+    "incentive1": {
+      "type": "Text",
+      "props": {
+        "text": "• CVXCRV (Convex, ETH) — 15.8% entirely from $CVX rewards ($46.8M)",
+        "variant": "body"
+      }
+    },
+    "incentive2": {
+      "type": "Text",
+      "props": {
+        "text": "• SDCRV (Stake DAO, ETH) — 14.6% entirely from rewards ($39.6M)",
+        "variant": "body"
+      }
+    },
+    "sep10": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "macroHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Macro",
+        "level": "h3"
+      }
+    },
+    "macroGrid": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "md"
+      },
+      "children": [
+        "macroBTC",
+        "macroETH",
+        "macroSOL",
+        "macroFG",
+        "macroBreadth",
+        "macroDominance"
+      ]
+    },
+    "macroBTC": {
+      "type": "Stat",
+      "props": {
+        "label": "BTC",
+        "value": "$79,787",
+        "delta": "−0.65%",
+        "trend": "down"
+      }
+    },
+    "macroETH": {
+      "type": "Stat",
+      "props": {
+        "label": "ETH",
+        "value": "$2,312.88",
+        "delta": "−0.77%",
+        "trend": "down"
+      }
+    },
+    "macroSOL": {
+      "type": "Stat",
+      "props": {
+        "label": "SOL",
+        "value": "$100.04",
+        "delta": "−1.56%",
+        "trend": "down"
+      }
+    },
+    "macroFG": {
+      "type": "Stat",
+      "props": {
+        "label": "F&G",
+        "value": "48",
+        "delta": "Neutral (yesterday 50)",
+        "trend": "down"
+      }
+    },
+    "macroBreadth": {
+      "type": "Stat",
+      "props": {
+        "label": "Breadth",
+        "value": "5/20",
+        "trend": "neutral"
+      }
+    },
+    "macroDominance": {
+      "type": "Stat",
+      "props": {
+        "label": "BTC Dominance",
+        "value": "60.01%",
+        "trend": "neutral"
+      }
+    },
+    "sep11": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "polyHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "Hot market: \"Fed holds rates at October meeting\"",
+        "level": "h3"
+      }
+    },
+    "polyStat": {
+      "type": "Stat",
+      "props": {
+        "label": "YES",
+        "value": "92.7%",
+        "delta": "$3.76M volume",
+        "trend": "down"
+      }
+    },
+    "polyProgress": {
+      "type": "Progress",
+      "props": {
+        "value": 92.7,
+        "max": 100,
+        "label": "YES probability"
+      }
+    },
+    "polyText": {
+      "type": "Text",
+      "props": {
+        "text": "Fell from yesterday's 94.8%; rate hike +25bp moved from 4.5% → 7.5%. Meeting in two days; hawkish repricing slightly.",
+        "variant": "body"
+      }
+    },
+    "sep12": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sourcesText": {
+      "type": "Text",
+      "props": {
+        "text": "sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail | var: none",
+        "variant": "caption"
+      }
+    }
+  }
+}
