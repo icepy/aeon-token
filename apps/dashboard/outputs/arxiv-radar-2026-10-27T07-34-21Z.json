@@ -1,0 +1,272 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 幸存 10 · 原始 95"
+      },
+      "children": [
+        "stats",
+        "sep1",
+        "h-embodied",
+        "embodied-grid",
+        "sep2",
+        "h-verifiable",
+        "verifiable-grid",
+        "sep3",
+        "h-zk",
+        "zk-grid",
+        "sep4",
+        "h-consensus",
+        "consensus-note",
+        "consensus-grid",
+        "sep5",
+        "h-pending",
+        "pending-grid"
+      ]
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-survived",
+        "stat-original"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      }
+    },
+    "stat-survived": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "10"
+      }
+    },
+    "stat-original": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "95"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-embodied": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据",
+        "level": "h3"
+      }
+    },
+    "embodied-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 1,
+        "gap": "sm"
+      },
+      "children": [
+        "sl-zerohlm",
+        "sl-huge",
+        "sl-exe",
+        "sl-roboreason"
+      ]
+    },
+    "sl-zerohlm": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Zero-HLM — 不用真实机器人数据的人形 loco-manipulation 泛化",
+        "href": "https://arxiv.org/abs/2610.35075",
+        "source": "arXiv"
+      }
+    },
+    "sl-huge": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HuGe — 用第一视角经验扩规模的人形通用 VLA",
+        "href": "https://arxiv.org/abs/2610.34186",
+        "source": "arXiv"
+      }
+    },
+    "sl-exe": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EXE — 第一视角跨本体预训练，因子化隐动作接 VLA",
+        "href": "https://arxiv.org/abs/2610.33685",
+        "source": "arXiv"
+      }
+    },
+    "sl-roboreason": {
+      "type": "StoryLink",
+      "props": {
+        "title": "RoboReason — 可扩规模的数据生成，提升机器人相关 VLM 推理",
+        "href": "https://arxiv.org/abs/2610.33778",
+        "source": "arXiv"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-verifiable": {
+      "type": "Heading",
+      "props": {
+        "text": "可验证计算",
+        "level": "h3"
+      }
+    },
+    "verifiable-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 1,
+        "gap": "sm"
+      },
+      "children": [
+        "sl-webuniverse"
+      ]
+    },
+    "sl-webuniverse": {
+      "type": "StoryLink",
+      "props": {
+        "title": "WebUniverse — 为 agentic web 开发扩规模“已验证训练数据”（verifiable training 低频探针首次开火）",
+        "href": "https://arxiv.org/abs/2610.33149",
+        "source": "arXiv"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-zk": {
+      "type": "Heading",
+      "props": {
+        "text": "零知识",
+        "level": "h3"
+      }
+    },
+    "zk-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 1,
+        "gap": "sm"
+      },
+      "children": [
+        "sl-zk"
+      ]
+    },
+    "sl-zk": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Post-Quantum Perfect Zero-Knowledge Arguments for NP From Any One-Way Permutation — 单向量子安全 ZK，NP 全覆盖",
+        "href": "https://arxiv.org/abs/2610.33185",
+        "source": "arXiv"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-consensus": {
+      "type": "Heading",
+      "props": {
+        "text": "共识（两条都落 ?，非链上共识）",
+        "level": "h3"
+      }
+    },
+    "consensus-note": {
+      "type": "Badge",
+      "props": {
+        "text": "两条都落 ?，非链上共识",
+        "variant": "outline"
+      }
+    },
+    "consensus-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 1,
+        "gap": "sm"
+      },
+      "children": [
+        "sl-verifiers",
+        "sl-mpi"
+      ]
+    },
+    "sl-verifiers": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Who Verifies the Verifiers? — AI 中介的网页信息验证，语义共识 + 问责",
+        "href": "https://arxiv.org/abs/2610.33587",
+        "source": "arXiv"
+      }
+    },
+    "sl-mpi": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Deterministic Security Runtime for LLM Agents on MPI/HPC — 每个 rank 的共识治理式监督",
+        "href": "https://arxiv.org/abs/2610.33318",
+        "source": "arXiv"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-pending": {
+      "type": "Heading",
+      "props": {
+        "text": "待定 ?",
+        "level": "h3"
+      }
+    },
+    "pending-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 1,
+        "gap": "sm"
+      },
+      "children": [
+        "sl-east",
+        "sl-podrope"
+      ]
+    },
+    "sl-east": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EAST — 数字孪生里注入故障做 embodied AI 安全测试",
+        "href": "https://arxiv.org/abs/2610.34358",
+        "source": "arXiv"
+      }
+    },
+    "sl-podrope": {
+      "type": "StoryLink",
+      "props": {
+        "title": "POD-RoPE — 按物理观测分布做的旋转位置编码",
+        "href": "https://arxiv.org/abs/2610.33745",
+        "source": "arXiv"
+      }
+    }
+  }
+}

@@ -1,627 +1,132 @@
 [
  {
-  "id": "2608.13078",
-  "term": "zero-knowledge",
+  "id": "2610.33149",
+  "term": "verifiable training",
   "terms": [
-   "zero-knowledge"
+   "verifiable training"
   ],
-  "window": 90,
-  "name": "",
-  "title": "Deterministic Johnson--Lindenstrauss Projections from Pisot $β$-Transformations for Zero-Knowledge Private Routing",
-  "published": "2026-08-13",
-  "link": "https://arxiv.org/abs/2608.13078",
-  "carrier": "proof"
- },
- {
-  "id": "2608.07063",
-  "term": "zero-knowledge",
-  "terms": [
-   "zero-knowledge"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Soft Redaction of Image Provenance via Zero-Knowledge Proofs",
-  "published": "2026-08-07",
-  "link": "https://arxiv.org/abs/2608.07063",
-  "carrier": "proof"
- },
- {
-  "id": "2608.24622",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
-  "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Scalable datacenter replication with mostly-synchronous consensus on hardware",
-  "published": "2026-08-25",
-  "link": "https://arxiv.org/abs/2608.24622",
-  "carrier": "protocol"
- },
- {
-  "id": "2608.17998",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
-  "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Multivalued Consensus: General Adversaries Require More Communication",
-  "published": "2026-08-18",
-  "link": "https://arxiv.org/abs/2608.17998",
-  "carrier": "protocol"
- },
- {
-  "id": "2609.00392",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
-  "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Operation-Type-Aware Client Routing for Leader-Based Consensus Datastores",
-  "published": "2026-08-11",
-  "link": "https://arxiv.org/abs/2609.00392",
-  "carrier": "protocol"
- },
- {
-  "id": "2608.11034",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
-  "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
-  ],
-  "window": 90,
-  "name": "SCOUT",
-  "title": "SCOUT: Symmetric Consensus Outlier Detection for Failure Localization in LLM Pre-Training",
-  "published": "2026-08-11",
-  "link": "https://arxiv.org/abs/2608.11034",
-  "carrier": "protocol"
- },
- {
-  "id": "2608.01934",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
-  "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
-  ],
-  "window": 90,
-  "name": "BFT",
-  "title": "Diagnosing High-Performance BFT Consensus via Mixture Modeling of Block Time Distributions",
-  "published": "2026-08-03",
-  "link": "https://arxiv.org/abs/2608.01934",
-  "carrier": "deployment"
- },
- {
-  "id": "2607.28957",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
-  "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Beyond Byzantine: An Organizational Consensus Algorithm for Self-Interested Agents Under Information Asymmetry",
-  "published": "2026-07-31",
-  "link": "https://arxiv.org/abs/2607.28957",
-  "carrier": "protocol"
- },
- {
-  "id": "2608.25269",
-  "term": "RWA",
-  "terms": [
-   "RWA"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "RWA-PoB: A Credential-Based Proof-of-Backing Framework for Tokenized U.S. Treasury Products",
-  "published": "2026-08-26",
-  "link": "https://arxiv.org/abs/2608.25269",
-  "carrier": "token"
- },
- {
-  "id": "2608.22449",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "EMPIRE",
-  "title": "EMPIRE: Explicit Manipulation Planning as a Learnable Intermediate Representation for Egocentric Hand-Motion Forecasting",
-  "published": "2026-08-23",
-  "link": "https://arxiv.org/abs/2608.22449",
-  "carrier": "manipulation"
- },
- {
-  "id": "2608.15060",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "EgoTac",
-  "title": "EgoTac: In-the-wild Tactile Prediction from Egocentric Vision",
-  "published": "2026-08-15",
-  "link": "https://arxiv.org/abs/2608.15060",
-  "carrier": "robot"
- },
- {
-  "id": "2608.13014",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO",
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "EgoPHI",
-  "title": "EgoPHI: Estimating 3D Hand-Object Contact and Force from Egocentric Vision",
-  "published": "2026-08-13",
-  "link": "https://arxiv.org/abs/2608.13014",
-  "carrier": "simulation"
- },
- {
-  "id": "2608.12515",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Can Vision-Language Models Assess Proxemic Risk from Egocentric Robot Images?",
-  "published": "2026-08-12",
-  "link": "https://arxiv.org/abs/2608.12515",
-  "carrier": "robot"
- },
- {
-  "id": "2608.12122",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "HandEdit",
-  "title": "HandEdit: A Unified Benchmark for Egocentric Human-to-Robot Dexterous Hand Image Editing",
-  "published": "2026-08-12",
-  "link": "https://arxiv.org/abs/2608.12122",
-  "carrier": "robotic"
- },
- {
-  "id": "2608.08285",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "CAptuRe",
-  "title": "Ego-OSCAR: Egocentric Open source Stereo CAptuRe System",
-  "published": "2026-08-08",
-  "link": "https://arxiv.org/abs/2608.08285",
-  "carrier": "dataset"
- },
- {
-  "id": "2608.04196",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "SiMDex",
-  "title": "SiMDex: Mining Similar Egocentric Videos for Cross-Embodiment Dexterous Manipulation",
-  "published": "2026-08-04",
-  "link": "https://arxiv.org/abs/2608.04196",
-  "carrier": "robot"
- },
- {
-  "id": "2608.03387",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "RoboReact",
-  "title": "RoboReact: Agentic Skill Distillation from Generated Egocentric Videos for Generalizable Whole-Body Manipulation",
-  "published": "2026-08-04",
-  "link": "https://arxiv.org/abs/2608.03387",
-  "carrier": "robot"
- },
- {
-  "id": "2608.00652",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Assistant Placement Aria: A Benchmark for Egocentric Placement Assistance",
-  "published": "2026-08-01",
-  "link": "https://arxiv.org/abs/2608.00652",
-  "carrier": "robotic"
- },
- {
-  "id": "2607.26985",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "SymmGrid",
-  "title": "SymmGrid: Super-Scaling On-Robot Learning with Parallelized Symmetries and Egocentric-Exocentric Visual Perception",
-  "published": "2026-07-29",
-  "link": "https://arxiv.org/abs/2607.26985",
-  "carrier": "robot"
- },
- {
-  "id": "2608.14207",
-  "term": "ti:\"data generation\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"data generation\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "MMUSV-Sim: A Perception-Oriented Simulation and Data-Generation Platform for Multi-USV Cooperative Perception",
-  "published": "2026-08-14",
-  "link": "https://arxiv.org/abs/2608.14207",
-  "carrier": "simulation"
- },
- {
-  "id": "2608.07106",
-  "term": "ti:\"data generation\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"data generation\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "LiDAR",
-  "title": "Synthetic LiDAR Data Generation and Deterministic Downsampling for Point Cloud Classification on the Edge",
-  "published": "2026-08-07",
-  "link": "https://arxiv.org/abs/2608.07106",
-  "carrier": "simulation"
- },
- {
-  "id": "2610.32094",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "TTT",
-  "title": "TTT in VLA Models: Exploring Training with Human Demonstrations",
+  "window": 30,
+  "name": "WebUniverse",
+  "title": "WebUniverse: Scaling Verified Training Data for Agentic Web Development",
   "published": "2026-10-23",
-  "link": "https://arxiv.org/abs/2610.32094",
-  "carrier": "robot"
+  "link": "https://arxiv.org/abs/2610.33149",
+  "carrier": "production"
  },
  {
-  "id": "2610.29997",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
+  "id": "2610.33185",
+  "term": "zero-knowledge",
   "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
+   "zero-knowledge"
   ],
-  "window": 90,
-  "name": "DONIC",
-  "title": "DONIC: Generalist Dexterous Bimanual Tracking Control from Human Demonstrations",
-  "published": "2026-10-21",
-  "link": "https://arxiv.org/abs/2610.29997",
-  "carrier": "robot"
- },
- {
-  "id": "2610.20351",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
+  "window": 30,
   "name": "",
-  "title": "Human Demonstrations as Post-Training Data for Any Robot Body: Retargeting the Object, Not the Hand",
-  "published": "2026-10-14",
-  "link": "https://arxiv.org/abs/2610.20351",
-  "carrier": "robot"
+  "title": "Post-Quantum Perfect Zero-Knowledge Arguments for NP From Any One-Way Permutation",
+  "published": "2026-10-23",
+  "link": "https://arxiv.org/abs/2610.33185",
+  "carrier": "commitment"
  },
  {
-  "id": "2610.17802",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
+  "id": "2610.33587",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
   "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
+   "ti:\"consensus\" AND cat:cs.DC"
   ],
-  "window": 90,
+  "window": 30,
   "name": "",
-  "title": "Beyond the End-Effector: Learning Whole-Arm Contact Manipulation from Human Demonstrations",
-  "published": "2026-10-13",
-  "link": "https://arxiv.org/abs/2610.17802",
+  "title": "Who Verifies the Verifiers? Accountable Semantic Consensus for AI-Mediated Web Information Verification",
+  "published": "2026-10-24",
+  "link": "https://arxiv.org/abs/2610.33587",
+  "carrier": "protocol"
+ },
+ {
+  "id": "2610.33318",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
+  "terms": [
+   "ti:\"consensus\" AND cat:cs.DC"
+  ],
+  "window": 30,
+  "name": "LLM",
+  "title": "A Deterministic Security Runtime for LLM Agents on MPI and Batch-Scheduled HPC Systems: Consensus-Governed, Hardware-Rooted Supervision of Every Rank",
+  "published": "2026-10-23",
+  "link": "https://arxiv.org/abs/2610.33318",
+  "carrier": "node"
+ },
+ {
+  "id": "2610.35075",
+  "term": "robot data",
+  "terms": [
+   "robot data"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Zero-HLM: Generalizable Humanoid Loco-Manipulation without Real Robot Data",
+  "published": "2026-10-26",
+  "link": "https://arxiv.org/abs/2610.35075",
   "carrier": "robot"
  },
  {
-  "id": "2610.15769",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
+  "id": "2610.34358",
+  "term": "embodied AI",
   "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
+   "embodied AI"
   ],
-  "window": 90,
-  "name": "Hand2Robot",
-  "title": "Hand2Robot: Object-Centric 4D Hand Reconstruction from Human Demonstrations for Robotics",
-  "published": "2026-10-11",
-  "link": "https://arxiv.org/abs/2610.15769",
+  "window": 30,
+  "name": "EAST",
+  "title": "EAST: Embodied AI Safety Testing via Systematic Fault Injection in Digital Twins",
+  "published": "2026-10-25",
+  "link": "https://arxiv.org/abs/2610.34358",
+  "carrier": "robot"
+ },
+ {
+  "id": "2610.33745",
+  "term": "embodied AI",
+  "terms": [
+   "embodied AI"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "POD-RoPE: Rotary Position Encoding over Physical Observation Distributions for Embodied AI",
+  "published": "2026-10-24",
+  "link": "https://arxiv.org/abs/2610.33745",
+  "carrier": "robot"
+ },
+ {
+  "id": "2610.34186",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "HuGe",
+  "title": "HuGe: Scaling Humanoid Generalist Vision-Language-Action Models with Egocentric Experience",
+  "published": "2026-10-25",
+  "link": "https://arxiv.org/abs/2610.34186",
+  "carrier": "robot"
+ },
+ {
+  "id": "2610.33685",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "EXE",
+  "title": "EXE: Egocentric Cross-Embodiment Pretraining via Factorized Latent Actions for VLA Models",
+  "published": "2026-10-24",
+  "link": "https://arxiv.org/abs/2610.33685",
+  "carrier": "robot"
+ },
+ {
+  "id": "2610.33778",
+  "term": "ti:\"data generation\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"data generation\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "RoboReason",
+  "title": "RoboReason: Boosting Robotics-Relevant VLM Reasoning Through Scalable Data Generation",
+  "published": "2026-10-24",
+  "link": "https://arxiv.org/abs/2610.33778",
   "carrier": "robotic"
- },
- {
-  "id": "2610.13119",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "Human2Dex",
-  "title": "Human2Dex: Dexterous Robot Learning from Wrist-Centric Human Demonstrations",
-  "published": "2026-10-09",
-  "link": "https://arxiv.org/abs/2610.13119",
-  "carrier": "robot"
- },
- {
-  "id": "2610.12470",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "Dex-One2Many",
-  "title": "Dex-One2Many: Learning Dexterous Manipulation from a Single Human Demonstration",
-  "published": "2026-10-08",
-  "link": "https://arxiv.org/abs/2610.12470",
-  "carrier": "robot"
- },
- {
-  "id": "2610.04363",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "TacOT",
-  "title": "TacOT: Learning Contact-Rich Dexterous Manipulation from Human Demonstrations via Tactile-Guided Optimal Transport",
-  "published": "2026-10-03",
-  "link": "https://arxiv.org/abs/2610.04363",
-  "carrier": "robot"
- },
- {
-  "id": "2609.35375",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "From Pixel to Poses: Object-centric Tool Manipulation Learning from Human Demonstrations",
-  "published": "2026-09-28",
-  "link": "https://arxiv.org/abs/2609.35375",
-  "carrier": "robotic"
- },
- {
-  "id": "2609.34724",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "DexWeave",
-  "title": "DexWeave: Learning Dexterous Humanoid Loco-Manipulation from Human Demonstrations",
-  "published": "2026-09-28",
-  "link": "https://arxiv.org/abs/2609.34724",
-  "carrier": "robot"
- },
- {
-  "id": "2609.34182",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Unified Visual-Tactile-Action Modeling from Human Demonstrations for Dexterous Manipulation",
-  "published": "2026-09-28",
-  "link": "https://arxiv.org/abs/2609.34182",
-  "carrier": "robot"
- },
- {
-  "id": "2609.24660",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "Touch2Robot",
-  "title": "Touch2Robot: Robot Touch in the Human Demonstration Loop",
-  "published": "2026-09-21",
-  "link": "https://arxiv.org/abs/2609.24660",
-  "carrier": "robot"
- },
- {
-  "id": "2609.24093",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Dexterous Robot Manipulation from Human Demonstrations via Contact-Anchored Retargeting and Residual Policy Learning",
-  "published": "2026-09-21",
-  "link": "https://arxiv.org/abs/2609.24093",
-  "carrier": "robot"
- },
- {
-  "id": "2609.21107",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Learning Scene-Aware Humanoid Locomotion through 3D Clutter from Immersive Human Demonstrations",
-  "published": "2026-09-17",
-  "link": "https://arxiv.org/abs/2609.21107",
-  "carrier": "robot"
- },
- {
-  "id": "2609.05892",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "A4A",
-  "title": "A4A: Cross-Embodiment Transfer of Action-Oriented 4D Affordances from Human Demonstrations",
-  "published": "2026-09-05",
-  "link": "https://arxiv.org/abs/2609.05892",
-  "carrier": "robot"
- },
- {
-  "id": "2608.14028",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "AdvDex",
-  "title": "AdvDex: Learning Dexterous Manipulation from Human Demonstrations via Joint-Aligned Actions and Adversarial Learning",
-  "published": "2026-08-14",
-  "link": "https://arxiv.org/abs/2608.14028",
-  "carrier": "robot"
- },
- {
-  "id": "2608.09127",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "High Fidelity Capture, Reconstruction, and Transfer of Human Demonstrations for Robot-Assisted Bathing",
-  "published": "2026-08-10",
-  "link": "https://arxiv.org/abs/2608.09127",
-  "carrier": "robotic"
- },
- {
-  "id": "2608.06221",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Robot Learning from Human Demonstrations: Handwritten Alphabet Trajectories and Human-Likeness Evaluation",
-  "published": "2026-08-06",
-  "link": "https://arxiv.org/abs/2608.06221",
-  "carrier": "robotic"
- },
- {
-  "id": "2607.26809",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Practice Makes Policies: Bootstrapping and Consolidating Robotic Capabilities from Zero Human Demonstrations",
-  "published": "2026-07-29",
-  "link": "https://arxiv.org/abs/2607.26809",
-  "carrier": "robotic"
- },
- {
-  "id": "2610.27995",
-  "term": "ti:\"hand-object\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Learning Tactile-Aware Hand Representations from Human Hand-Object Interaction Data",
-  "published": "2026-10-20",
-  "link": "https://arxiv.org/abs/2610.27995",
-  "carrier": "robotic"
- },
- {
-  "id": "2610.27242",
-  "term": "ti:\"hand-object\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "EmbodyHOI",
-  "title": "EmbodyHOI: Embodiment-Aware Generation of Hand-Object Interactions for Humanoid Dexterous Manipulation",
-  "published": "2026-10-19",
-  "link": "https://arxiv.org/abs/2610.27242",
-  "carrier": "robot"
- },
- {
-  "id": "2610.26759",
-  "term": "ti:\"hand-object\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Tactile In-Hand Object Rotation: A Comparative Study of Hand Morphology in Simulation and Hardware",
-  "published": "2026-10-19",
-  "link": "https://arxiv.org/abs/2610.26759",
-  "carrier": "manipulation"
- },
- {
-  "id": "2610.19089",
-  "term": "ti:\"hand-object\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "DexMimic",
-  "title": "DexMimic: A Generalist Dexterous Hand-Object Tracking Policy via Value-Guided Reset Allocation",
-  "published": "2026-10-13",
-  "link": "https://arxiv.org/abs/2610.19089",
-  "carrier": "robotic"
- },
- {
-  "id": "2610.10855",
-  "term": "ti:\"hand-object\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "OmniHOI",
-  "title": "OmniHOI: Dexterous Hand-Object Interaction from Monocular Human Video",
-  "published": "2026-10-07",
-  "link": "https://arxiv.org/abs/2610.10855",
-  "carrier": "robot"
- },
- {
-  "id": "2610.05180",
-  "term": "ti:\"hand-object\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "VICON",
-  "title": "VICON: Visual-Inertial-Contact based Hand-Object Tracking for Manipulation Datasets",
-  "published": "2026-10-04",
-  "link": "https://arxiv.org/abs/2610.05180",
-  "carrier": "manipulation"
- },
- {
-  "id": "2609.25619",
-  "term": "ti:\"hand-object\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "HOM",
-  "title": "Relative Contact Velocity-Controlled Hand-Object Mechanism for Dexterous Tool Manipulation",
-  "published": "2026-09-22",
-  "link": "https://arxiv.org/abs/2609.25619",
-  "carrier": "robotic"
- },
- {
-  "id": "2609.13761",
-  "term": "ti:\"hand-object\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 90,
-  "name": "",
-  "title": "Learning In-Hand Object Reaching to General 6D Poses",
-  "published": "2026-09-12",
-  "link": "https://arxiv.org/abs/2609.13761",
-  "carrier": "manipulation"
  }
 ]

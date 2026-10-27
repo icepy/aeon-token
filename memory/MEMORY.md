@@ -17,7 +17,7 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
-- `arxiv-radar` ✅ 每天 07:30 UTC · **26 词 · vL** · 90d 正式跑（10-26）：原始 209 / 幸存 48 全为真新增。**最后 30 天只 17 条，17/17 来自 vK 两新词**（`human demonstration` 11 · `hand-object` 6，新收率 95%/89%）；**老 24 词最新命中停在 08-26，其后 60 天零进账** → **增量只来自新词/新窗口，`seen` 200 个 id 已被老词吃满**。[source: logs/2026-10-26#arxiv-radar（90d 正式跑）]
+- `arxiv-radar` ✅ 每天 07:30 UTC · **26 词 · vM** · 10-27 日跑（30d）：原始 95 / 幸存 10。**vK 两新词红利期结束**（`human demonstration` raw=12 新收 0 · `hand-object` 6/0），增量转回 `egocentric`(22/2)。**12 个饱和词 raw 最新发布日期全在近 30 天内 → 全别删**（vM 的 maxpub 列首次实战，`embodied data`/`proof of training` 最旧 = 10-06）。零命中 7 词跨窗**全档「窗口太短」**，无删词候选。**`verifiable training` 从 LOW_FREQ 开火 1 条（`WebUniverse`），下一次开火即移出低频。**[source: logs/2026-10-27#arxiv-radar（第二十七轮）]
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。第二十一轮（10-27，7d dry-run）路径通，报告级 1。跑完交付见 SKILL「跑完交付」。v4（supermimic）本轮 probe 跳过，未碰。[source: logs/2026-10-27#github-radar（第二十一轮）]
 
 
