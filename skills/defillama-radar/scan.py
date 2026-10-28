@@ -313,8 +313,10 @@ L = ["defillama-radar %s · var=%r" % (VERSION, var),
      % len(out)]
 
 if SEEN_BROKEN:
-    L.append("   ⚠️ seen 解析失败（%s）· 已备份到 %s 并重灌 —— 上轮及更早的 notified 记录已丢"
-             % (SEEN_ERR, SEENBAK))
+    recovery = ("dry-run 未备份正式 seen，仅重灌 dry 快照" if DRY else
+                "已备份到 %s 并重灌" % SEENBAK)
+    L.append("   ⚠️ seen 解析失败（%s）· %s —— 上轮及更早的 notified 记录已丢"
+             % (SEEN_ERR, recovery))
 
 low = [c for c in CHAINS if chain_hits[c] < CHAIN_MIN_HITS and c not in CHAIN_TWINS]
 if low:
