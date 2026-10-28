@@ -1,3 +1,6 @@
 # 机制/链名优先 —— 项目名在 arXiv 里多半不存在
 Pearl Blockchain
+Note Systems
+Robinhood Chain
 S-DAMM
+USDG
