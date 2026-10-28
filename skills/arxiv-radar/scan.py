@@ -210,6 +210,8 @@ CARRIER_BY_TERM = {
     'cat:cs.CR AND ti:"MEV"': CARRIER_BASE + CARRIER_MARKET,
 }
 
+CARRIER_FALLBACK = []
+
 def carrier_for(term, q=""):
     """取这个词实际会用的 carrier 表。term 精确命中 → q 精确命中 → 短名兜底
     （反查映射键的短形 / 查询形）→ 默认表。与 absorb() 取表方式完全一致。"""
@@ -219,6 +221,8 @@ def carrier_for(term, q=""):
         return CARRIER_BY_TERM[q]
     for t, c in CARRIER_BY_TERM.items():
         if short_term(t) == term or q_of(t) == q:
+            if term not in CARRIER_FALLBACK:
+                CARRIER_FALLBACK.append(term)
             return c
     return CARRIER_CRYPTO
 
@@ -385,8 +389,10 @@ def do_check():
     if CHECK not in TERMS and any(t.startswith(CHECK + " ") for t in TERMS):
         print("⚠️ 不在词表，但像是词表某条的截断 —— 确认 check: 是最后一个 token")
     print()
-    print("窗口   total  已见/100  领域命中  前 3 条标题")
     carrier = carrier_for(CHECK, q)          # q = q_of(CHECK) 该函数开头已有
+    print("carrier 表: %s%s" % (carrier_label(carrier),
+                                "（短名兜底命中）" if CHECK in CARRIER_FALLBACK else ""))
+    print("窗口   total  已见/100  领域命中  前 3 条标题")
     for d in (7, 30, 60, 90):
         tot, ents = total_of(q, d)
         if tot < 0:
@@ -609,6 +615,10 @@ unmapped = [t for t in TERMS if t not in CARRIER_BY_TERM] if not NAMES_MODE else
 if unmapped:
     L.append("未配 carrier 表的词 %d 个（走默认 crypto 表，仅登记不报错）: %s"
              % (len(unmapped), " · ".join(short_term(t) for t in unmapped)))
+
+if CARRIER_FALLBACK:
+    L.append("   carrier 短名兜底命中 %d 个: %s"
+             % (len(CARRIER_FALLBACK), " · ".join(CARRIER_FALLBACK)))
 
 if failed_t:
     L.append("未测到（**不是零命中**）: " + " · ".join(
