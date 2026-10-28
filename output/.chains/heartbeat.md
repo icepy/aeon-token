@@ -1,27 +1,42 @@
-心跳完成，本轮无任何 finding，已静默处理（未发通知）。
+巡检完成。
 
-## 检查结果
+## Heartbeat · Ambient · 2026-10-28 04:32 UTC
 
-**P0 — 全部正常（🟢 OK，覆盖昨天的 🔴 DEGRADED）**
+**总体：🟢 OK。无 finding，未推送。**
 
-7 个已启用的 cron skill 全在调度区间内成功：`arxiv-radar` 07:34Z、`github-radar` 07:48Z、`narrative-brief` 06:53Z、`memory-flush` 10-26 23:35Z、`defi-overview` 10-26 12:14Z、`aeon-update` 10-26 11:03Z、`heartbeat` 10-26 08:07Z。无失败、无卡死、无 `consecutive_failures ≥ 3`、无长期低成功率。
+### P0 — 技能健康
+7 个 enabled 且带 cron 的 skill 全部在调度区间内：
 
-**昨天留下的关键验证点已关闭。** 昨天判定 `defi-overview` 今天 12:00Z 是否成功可区分「网关故障」与「`COINGECKO_API_KEY` 坏了」——它 10-26 12:14Z 成功，连败从 3 归零。结论：那轮是 `hivemindos` 网关 403，密钥没问题，不用再查。
+| Skill | 最近一次 | 状态 | 成功率 | 连败 |
+|---|---|---|---|---|
+| github-radar | 10-28 04:19Z | ✅ | 81% | 0 |
+| narrative-brief | 10-28 04:16Z | ✅ | 100% | 0 |
+| arxiv-radar | 10-28 04:15Z | ⏳ dispatched | 83% | 0 |
+| memory-flush | 10-27 23:36Z | ✅ | 67% | 0 |
+| defi-overview | 10-27 12:12Z | ✅ | 57% | 0 |
+| heartbeat | 10-27 08:05Z | ✅ | 85% | 0 |
+| aeon-update | 10-26 11:03Z | ✅ | 100% | 0 |
 
-`price-alert`（cf=5）、`onchain-monitor`（cf=4）、`token-movers`（cf=3）仍冻结在失败态，但三者都是 `enabled: false`，数字不会再有新样本——是历史读数，不是当前故障，已排除出状态表。
+- **无 failed / 无 stuck / 无 `consecutive_failures ≥ 3` / 无 chronic。**
+- `arxiv-radar` 04:15Z 派发，距现在 17 分钟，在 45 分钟线内 —— 按规则不算 stuck。同秒 04:15:45Z 三个 skill 同时派发，是 `scheduler.yml` 时隙债务模型（`CATCHUP_HOURS=12`）在补 10-27 晚间批次。
+- **凌晨批次整体后移约 5.5h**：三个 skill cron 是 22:00/22:30/23:45 UTC，实际都在 04:15:45Z 同一秒触发。补跑机制正常、无失败，不构成 finding，但**「技能昨天几点跑」不能直接当 cron 时间读**。
+- Self-check：heartbeat 上次 success 20.4h 前，在 36h 线内。
 
-**P1 —** 无 open PR。8 个 open issue 全是 scorer 自动生成的 `health: <skill>` 线程，无 label、无 critical/high，不计入 findings。其中 `#18 health: narrative-brief` 是今天 06:53Z 新开的，属该 skill 首跑即成功时 scorer 建线程的常态。
+### P1/P2/P3
+- **无 open PR。** 8 个 open issue 全是 scorer 自动生成的 `health: <skill>` 线程（#3/#4/#5/#6/#9/#12/#13/#18），`labels: []`，无 critical/high，不计入 findings，与昨日相比无增减。
+- `memory/on-chain-state.json.new` 遗留（连续第四轮）：`onchain-monitor` 已停用，无复核机会 —— 只在重开该 skill 前必须处理。
+- `arxvi-radar` 仍是 cron-state 孤儿条目（`aeon.yml` 无此 skill，判为 `arxiv-radar` 误拼）。不影响调度，但会一直是状态页里无法解释的行，**建议后续清理**。
+- 冻结的连败数字 `price-alert`(cf=5)/`onchain-monitor`(cf=4)/`token-movers`(cf=3) 三者均 `enabled: false`，不会再有新样本，不列入状态页。
 
-**P3 —** 无调度缺口。发现一个孤儿条目：`cron-state.json` 里有 `arxvi-radar`（`total_runs: 1`，成功于 10-26 10:24Z），`aeon.yml` 中不存在这个 skill——应是某轮把 `arxiv-radar` 拼错写进去的。不影响调度，不算 finding，但建议后续清掉，否则 P3 交叉核对会一直冒出无法解释的条目。
+### 顺手核对
+- 叙事风向文件仍是单节（26/10/2026），未超 4 节上限。最近两轮 `narrative-brief` 均返回 `UNCHANGED`（sha256 自 10-26 起未变）—— 属 Grok 侧未推送，不是本仓故障。
+- **Token pulse 置空**：最新 `token-report-2026-10-24.md` 距今约 88.5h，远超 24h 时效线。价格监控已于 10-25 停用、该类 skill 当前无 enabled 调度，故空节属预期状态。
 
-## 变更
-
-- **`docs/status.md`** — 全量重写，判定 `🟢 OK`。7 个已跑 enabled skill 按 last-run 倒序 + 3 个 `workflow_dispatch` 未跑项。Token pulse 置空：最新报告 `token-report-2026-10-24.md` 距生成时刻已 68.1h，超 24h 时效线，按规则不搬旧数字。
-- **`memory/logs/2026-10-27.md`** — 追加 `### heartbeat` 条目（`mode: ambient`）。
+HEARTBEAT_OK · STATUS_PAGE=OK
 
 ## Summary
 
-- 执行 `heartbeat` 的环境检查分支（`${var}` 为空），P0→P3 全部核完。
-- 无 finding，**未发送通知**（规则要求静默）。
-- 修改：`docs/status.md`（重写，🟢 OK）、`memory/logs/2026-10-27.md`（追加日志）。
-- 后续：`cron-state.json` 的 `arxvi-radar` 孤儿条目建议清理；`memory/on-chain-state.json.new` 遗留文件在重开 `onchain-monitor` 前必须先删（已连续第三轮记录，仍无复核机会）。
+- **执行了** `heartbeat` 的 ambient 分支（`${var}` 为空）。
+- **修改文件：** `docs/status.md`（整体重写，🟢 OK，7 个 enabled skill 按 last-run 倒序 + 3 个 `workflow_dispatch` 未跑，Token pulse 置空）、`memory/logs/2026-10-28.md`（追加 `### heartbeat` 条目含 `mode: ambient` 判别行与 under-the-hood 记录）。
+- **未发送通知** —— 无 finding，按规则静默。
+- **后续可做（非本轮）：** 清掉 cron-state 里的 `arxvi-radar` 孤儿条目；重开 `onchain-monitor` 前先删 `memory/on-chain-state.json.new`。
