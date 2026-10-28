@@ -69,6 +69,7 @@ metadata:
 - **高提交数 ≠ 代码仓。** 看 `language` 字段与根目录形态。
 - **`commits=100` 是 `per_page` 上限**，标 `≥100`。
 - **限速要重试，不能放弃。429（限速）和 409（真空仓）必须分开 —— 404 / 409 不触发认证降级（已进代码）。** gh 掉线次数、末次原因、未认证调用次数都进 digest 末行。
+- **`_DEGRADED` 时不动词表、不动 `EXCL`。** 日志写清末次原因与掉线次数，等下一轮；同一原因连续两轮才升级给人。限流是 gh 侧的事，不是词表的事。
 - **description 越像论文，越要查 commits。**
 - **只匹配 `in:name,description`，不要 readme。**
 - **脏词必须配 carrier**（`world model`）。**discard 量大 ≠ 误杀大**。**carrier 判据 = desc ∪ topics 任一命中**；`EXCL` 仍只看 name+desc。`len(desc)<25` 留逃生口：只有**无 topics** 才丢。**误杀率自动量**：`dropped.json` 全量落名单，digest 打 `carrier_named_uniq` / `carrier_named_alive_7d` + 幸存者对照。**放宽前先看这两行，别盲改。**
