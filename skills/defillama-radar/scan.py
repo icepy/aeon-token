@@ -1,0 +1,352 @@
+#!/usr/bin/env python3
+"""defillama-radar 扫描器。dl-v1
+
+第二层（名字）通道：扫 DefiLlama 上白名单链新出现的协议，只出名字与地板字段。
+不做方向映射、不做判断、不写候选卡。
+
+用法:
+    python3 skills/defillama-radar/scan.py "dry-run"
+    python3 skills/defillama-radar/scan.py "mark-sent"
+
+var token（空格分隔）:
+    dry-run       跳过 notify；不写 memory/；改读/写 seen.dry.json 与 out.dry.json
+    mark-sent     把 out.json 里那些 notified 仍为 null 的 id 标成今天
+    notify:script 让脚本自己发通知（默认不发，正文归模型）
+
+notified 四态: null=待报 / "YYYY-MM-DD"=已报 / "filtered"=首次就没过过滤 / "baseline"=基线轮
+可报集合 = notified is None。失败必须能与「零可报」区分。
+"""
+import json
+import os
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.request
+from datetime import datetime, timezone
+
+VERSION = "dl-v1"
+OUTD = "output/defillama"
+OUT = OUTD + "/out.json"
+OUTDRY = OUTD + "/out.dry.json"
+AUD = OUTD + "/audit.log"
+REPORT = OUTD + "/report.md"
+SEENDRY = OUTD + "/seen.dry.json"
+SEEN = "memory/defillama-seen.json"
+NAMES = "memory/universe-names.txt"
+API = "https://api.llama.fi/protocols"
+
+ATTEMPTS = 3
+TIMEOUT = 45
+NOTIFY_TOP = 30
+SEEN_CAP = 12000
+CHAIN_MIN_HITS = 3
+EXCL_CATEGORY = {"CEX", "Chain"}
+
+# 链白名单（人维护）。拼写以 /protocols 为准，不是 /v2/chains 的显示名。
+# 两组孪生：BSC↔Binance（chainId 56）、OP Mainnet↔Optimism。两条都收，防命名漂移。
+CHAINS = ["Ethereum", "Base", "Solana", "Arbitrum", "Ink",
+          "Binance", "BSC", "Optimism", "OP Mainnet",
+          "Hyperliquid L1", "Robinhood Chain"]
+CHAIN_TWINS = {"BSC": "Binance", "Binance": "BSC",
+               "OP Mainnet": "Optimism", "Optimism": "OP Mainnet"}
+TWIN_PAIRS = [("BSC", "Binance"), ("OP Mainnet", "Optimism")]   # 每对只判一次
+
+var = sys.argv[1] if len(sys.argv) > 1 else ""
+DRY = SEND = MARK = False
+UNKNOWN = []
+for tok in var.split():
+    if tok == "dry-run":
+        DRY = True
+    elif tok == "mark-sent":
+        MARK = True
+    elif tok == "notify:script":
+        SEND = True
+    elif tok:
+        UNKNOWN.append(tok)
+
+TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+T0 = time.time()
+
+
+def load_seen(path):
+    if not os.path.exists(path):
+        return {}
+    try:
+        d = json.load(open(path, encoding="utf-8"))
+        return d if isinstance(d, dict) else {}
+    except Exception:
+        return {}
+
+
+def save_seen(d, path):
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    json.dump(d, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+
+def load_names():
+    if not os.path.exists(NAMES):
+        return []
+    return [l.strip() for l in open(NAMES, encoding="utf-8")
+            if l.strip() and not l.startswith("#")]
+
+
+def fetch():
+    """返回 (payload, err)。payload 为 None 即失败 —— 失败必须能与零可报区分。"""
+    last = ""
+    for i in range(ATTEMPTS):
+        try:
+            req = urllib.request.Request(
+                API, headers={"User-Agent": "defillama-radar/%s" % VERSION})
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+                data = json.loads(r.read().decode("utf-8"))
+                if isinstance(data, list):
+                    return data, ""
+                return None, "返回不是数组"
+        except urllib.error.HTTPError as he:
+            last = "HTTP %s" % he.code
+            if he.code not in (429, 500, 502, 503, 504):
+                return None, last
+            wait = min(10 * (i + 1), 25)
+        except Exception as ex:
+            last = str(ex)[:90]
+            wait = min(5 * (i + 1), 20)
+        if i < ATTEMPTS - 1:
+            print("  ↻ 重试 %d/%d（%s，等 %ds）" % (i + 1, ATTEMPTS, last, wait),
+                  file=sys.stderr, flush=True)
+            time.sleep(wait)
+    return None, last
+
+
+def mark_ids(ids):
+    """只把 notified 仍为 null 的改成今天。返回改了几条。"""
+    seen = load_seen(SEEN)
+    n = 0
+    for i in ids:
+        rec = seen.get(i)
+        if isinstance(rec, dict) and rec.get("notified") is None:
+            rec["notified"] = TODAY
+            n += 1
+    save_seen(seen, SEEN)
+    return n
+
+
+def mark_sent():
+    if DRY:
+        print("mark-sent 在 dry-run 下不可用（memory/ 未写）")
+        sys.exit(1)
+    if not os.path.exists(OUT):
+        print("没有 %s，先跑一次正式轮" % OUT)
+        sys.exit(1)
+    try:
+        rows = json.load(open(OUT, encoding="utf-8"))
+    except Exception as ex:
+        print("读 %s 失败: %s" % (OUT, ex))
+        sys.exit(1)
+    n = mark_ids([str(c.get("id")) for c in rows if isinstance(c, dict)])
+    print("mark-sent: 标记 %d 条为已通知（%s）" % (n, TODAY))
+    sys.exit(0)
+
+
+if MARK:
+    mark_sent()
+
+# ── seen ──────────────────────────────────────────────────────────
+if DRY:
+    seen = load_seen(SEENDRY) if os.path.exists(SEENDRY) else load_seen(SEEN)
+else:
+    seen = load_seen(SEEN)
+BASELINE = len(seen) == 0
+known = load_names()
+
+drop = {"noid": 0, "seen": 0, "parent": 0, "category": 0, "chain": 0}
+chain_hits = {c: 0 for c in CHAINS}
+out = []
+new_ids = {}
+retry = 0
+
+os.makedirs(OUTD, exist_ok=True)
+
+
+def rec_of(p, pid, hit):
+    name = p.get("name") or ""
+    blob = (name + " " + (p.get("description") or "")).lower()
+    return {
+        "id": pid,
+        "name": name,
+        "slug": p.get("slug"),
+        "chains": hit,
+        "tvl": p.get("tvl"),
+        "category": p.get("category"),
+        "listedAt": p.get("listedAt"),
+        "url": p.get("url"),
+        "description": " ".join((p.get("description") or "").split())[:110],
+        "misrepresentedTokens": p.get("misrepresentedTokens"),
+        "wrongLiquidity": p.get("wrongLiquidity"),
+        "in_names": any(k.lower() in blob or name.lower() in k.lower()
+                        for k in known),
+    }
+
+
+payload, err = fetch()
+
+if payload is None:
+    L = ["defillama-radar %s · 拉取失败 · var=%r" % (VERSION, var),
+         "原因: %s" % err,
+         "丢弃 无id=0 · seen=0 · parent=0 · category=0 · 链白名单=0 · 拉取失败=1",
+         "全量 0 · 新增 id 0（可报 0 / 过滤标记 0）· 重报（上轮未通知）0 · 本次通知 跳过（失败）",
+         "判据: DefiLlama 侧降级，不是白名单的问题，别据此改词或改链。"]
+    open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
+    print("\n".join(L))
+    print("STATUS: DEFILLAMA_RADAR_DEGRADED · 原始 0 · 可报 0 · 总耗时 %.0fs"
+          % (time.time() - T0))
+    sys.exit(0)
+
+# ── 遍历 ──────────────────────────────────────────────────────────
+for p in payload:
+    if not isinstance(p, dict):
+        drop["noid"] += 1
+        continue
+    pid = str(p.get("id") or "")
+    chains_all = p.get("chains") or []
+    if not isinstance(chains_all, list):
+        chains_all = []
+    for ch in chains_all:
+        if ch in chain_hits:
+            chain_hits[ch] += 1
+    if not pid:
+        drop["noid"] += 1
+        continue
+
+    hit = [c for c in chains_all if c in CHAINS]
+    rec_seen = seen.get(pid)
+    if isinstance(rec_seen, dict):
+        drop["seen"] += 1
+        if rec_seen.get("notified") is not None:
+            continue                      # 已报 / filtered / baseline，永不重报
+        # 上轮没通知成的重报候选，仍要过过滤
+        if p.get("parentProtocol"):
+            drop["parent"] += 1
+            continue
+        if p.get("category") in EXCL_CATEGORY:
+            drop["category"] += 1
+            continue
+        if not hit:
+            drop["chain"] += 1
+            continue
+        retry += 1
+        out.append(rec_of(p, pid, hit))
+        continue
+
+    if p.get("parentProtocol"):
+        drop["parent"] += 1
+        new_ids[pid] = "filtered"
+        continue
+    if p.get("category") in EXCL_CATEGORY:
+        drop["category"] += 1
+        new_ids[pid] = "filtered"
+        continue
+    if not hit:
+        drop["chain"] += 1
+        new_ids[pid] = "filtered"
+        continue
+    new_ids[pid] = None
+    out.append(rec_of(p, pid, hit))
+
+# ── 审计 ──────────────────────────────────────────────────────────
+new_ok = sum(1 for v in new_ids.values() if v is None)
+new_filtered = len(new_ids) - new_ok
+sent = "跳过（%s）" % ("dry-run" if DRY else ("基线轮" if BASELINE else "零可报"))
+
+L = ["defillama-radar %s · var=%r" % (VERSION, var),
+     "丢弃 无id=%d · seen=%d · parent=%d · category=%d · 链白名单=%d · 拉取失败=0"
+     % (drop["noid"], drop["seen"], drop["parent"], drop["category"], drop["chain"]),
+     "全量 %d · 新增 id %d（可报 %d / 过滤标记 %d）· 重报（上轮未通知）%d · 本次通知 %s"
+     % (len(payload), len(new_ids), new_ok, new_filtered, retry, sent),
+     "基线轮=%s" % BASELINE,
+     "链命中: " + " · ".join("%s=%d" % (c, chain_hits[c]) for c in CHAINS),
+     "单侧读数: 加密侧 %d / AI 侧 0（本源只有加密，别把高命中读成词表变准）"
+     % len(out)]
+
+low = [c for c in CHAINS if chain_hits[c] < CHAIN_MIN_HITS and c not in CHAIN_TWINS]
+if low:
+    L.append("   ⚠️ 链名可能拼错或已改名: " + " · ".join(low))
+for a, b in TWIN_PAIRS:
+    if chain_hits.get(a, 0) == 0 and chain_hits.get(b, 0) == 0:
+        L.append("   ⚠️ 整组 0 命中，疑似已改名: %s / %s" % (a, b))
+if UNKNOWN:
+    L.append("未识别 token: " + " ".join(UNKNOWN))
+if BASELINE:
+    L.append("基线轮：%d 条入 seen，不出报告。" % len(payload))
+
+for c in out[:25]:
+    L.append("  %s · %s · tvl=%s · %s · %s%s"
+             % (c["name"], "/".join(c["chains"]), c["tvl"], c["category"],
+                c["listedAt"] or "-", ("  ★清单内" if c["in_names"] else "")))
+
+if not out and not BASELINE:
+    L.append("ℹ️ 本轮可报 0 = 结构性（无新增 / 全部被过滤 / 已通知过），不是故障。")
+
+open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
+print("\n".join(L))
+
+# ── 落盘 ──────────────────────────────────────────────────────────
+merged = dict(seen)
+if BASELINE:
+    for p in payload:
+        pid = str(p.get("id") or "") if isinstance(p, dict) else ""
+        if pid:
+            merged[pid] = {"first": TODAY, "notified": "baseline"}
+else:
+    for pid, st in new_ids.items():
+        merged[pid] = {"first": TODAY, "notified": st}
+
+ordered = {}
+for pid in new_ids:
+    if pid in merged:
+        ordered[pid] = merged[pid]
+for k, v in merged.items():
+    if k not in ordered:
+        ordered[k] = v
+ordered = dict(list(ordered.items())[:SEEN_CAP])
+
+if DRY:
+    json.dump(out, open(OUTDRY, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    save_seen(ordered, SEENDRY)
+    L2 = "快照: %s（dry-run 不覆盖 out.json，也不写 memory/）" % OUTDRY
+else:
+    json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    save_seen(ordered, SEEN)
+    L2 = "seen 写入 %d 条（新增 %d）" % (len(ordered), len(new_ids))
+
+# ── 报告 + 通知 ───────────────────────────────────────────────────
+if out and not DRY and not BASELINE:
+    R = ["**defillama-radar** · 可报 %d" % len(out), ""]
+    for c in out[:NOTIFY_TOP]:
+        R.append("- %s · %s · TVL $%.0f · %s · %s"
+                 % (c["name"], "/".join(c["chains"]), (c["tvl"] or 0),
+                    c["category"] or "-", c["url"] or "-"))
+    open(REPORT, "w", encoding="utf-8").write("\n".join(R) + "\n")
+
+if DRY or BASELINE or not out:
+    print("notify: 跳过（%s）" % ("dry-run" if DRY else
+                                ("基线轮" if BASELINE else "零可报")))
+elif SEND:
+    if os.path.exists("./notify"):
+        r = subprocess.run(["./notify", "-f", REPORT],
+                           capture_output=True, text=True)
+        if r.returncode == 0:
+            n = mark_ids([c["id"] for c in out])
+            print("notify: 已发送 · 标记 %d 条" % n)
+        else:
+            print("notify: 发送失败（%s）—— 未标记，下轮自动重报"
+                  % (r.stderr or r.stdout or "").strip()[:160])
+    else:
+        print("notify: ./notify 不存在，未发 —— 下轮自动重报")
+else:
+    print("notify: **未发** —— 覆写 %s 为中文，然后：./notify -f %s" % (REPORT, REPORT))
+    print("        发成功后跑：python3 skills/defillama-radar/scan.py \"mark-sent\"")
+
+print("%s · 全量 %d · 可报 %d · 总耗时 %.0fs"
+      % (L2, len(payload), len(out), time.time() - T0))
+print("STATUS: DEFILLAMA_RADAR_OK · 原始 %d · 可报 %d" % (len(payload), len(out)))
