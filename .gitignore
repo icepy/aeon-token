@@ -86,3 +86,6 @@ skills/remotion/project/props.json
 !/output/articles/.gitkeep
 /output/*notify*.md
 /output/xai-*.json
+
+# defillama-radar dry-run 快照（不提交）
+output/defillama/*.dry.json

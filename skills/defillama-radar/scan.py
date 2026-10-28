@@ -188,15 +188,15 @@ if SENDNOW:
     send()
 
 # ── seen ──────────────────────────────────────────────────────────
-if DRY:
-    seen, SEEN_ERR = load_seen(SEENDRY) if os.path.exists(SEENDRY) else load_seen(SEEN)
-else:
-    seen, SEEN_ERR = load_seen(SEEN)
+SEEN_SRC = SEENDRY if (DRY and os.path.exists(SEENDRY)) else SEEN
+seen, SEEN_ERR = load_seen(SEEN_SRC)
 BASELINE = len(seen) == 0
 SEEN_BROKEN = bool(SEEN_ERR)
+BAKED = False
 if SEEN_BROKEN and not DRY:
     try:
         os.replace(SEEN, SEENBAK)          # 留证据，再让本轮重灌覆盖
+        BAKED = True
     except Exception:
         pass
 known = load_names()
@@ -313,10 +313,21 @@ L = ["defillama-radar %s · var=%r" % (VERSION, var),
      % len(out)]
 
 if SEEN_BROKEN:
-    recovery = ("dry-run 未备份正式 seen，仅重灌 dry 快照" if DRY else
-                "已备份到 %s 并重灌" % SEENBAK)
-    L.append("   ⚠️ seen 解析失败（%s）· %s —— 上轮及更早的 notified 记录已丢"
-             % (SEEN_ERR, recovery))
+    if not DRY:
+        if BAKED:
+            recovery = "已备份到 %s 并重灌" % SEENBAK
+            tail = " —— 上轮及更早的 notified 记录已丢"
+        else:
+            recovery = "备份失败，原文件仍在 %s 未动" % SEEN
+            tail = " —— 本轮写入即覆盖，上轮及更早的 notified 记录已丢"
+    elif SEEN_SRC == SEEN:
+        recovery = "dry-run 未备份，坏的是正式 seen，本轮没写盘"
+        tail = " —— 正式 seen 还在盘上但已读不出，下次非 dry-run 会被备份后重灌"
+    else:
+        recovery = "dry-run 未备份，坏的只是 dry 快照，正式 seen 未受影响"
+        tail = ""
+    L.append("   ⚠️ seen 解析失败（%s）· %s%s"
+             % (SEEN_ERR, recovery, tail))
 
 low = [c for c in CHAINS if chain_hits[c] < CHAIN_MIN_HITS and c not in CHAIN_TWINS]
 if low:
