@@ -163,6 +163,7 @@ if os.path.exists(NAMES_FILE):
 
 # 跨窗档 = 所有比本轮窗口更宽的档。比窗口窄的档等于重复量同一件事。
 CROSS_WINDOWS = tuple(d for d in (30, 60, 90) if d > DAYS)
+CROSS_EMPTY = not CROSS_WINDOWS      # days>=90 时没有更宽档，跨窗结论不存在
 
 # ── carrier ───────────────────────────────────────────────────────
 # carrier 必须按词分域 —— 一组链上词会把「具身/机器人」整簇误杀。
@@ -571,8 +572,11 @@ lf_t = [t for t in TERMS if t in LOW_FREQ and t not in skipped_t
 saturated = [t for t in TERMS if raw_term.get(t, 0) > 0 and per_term.get(t, 0) == 0]
 with_new = [t for t in TERMS if per_term.get(t, 0) > 0]
 
-short_w, real_w, unk_w = [], [], []
+short_w, real_w, unk_w, widest_w = [], [], [], []
 for t in zero_t:
+    if CROSS_EMPTY:
+        widest_w.append(t)
+        continue
     cs = [cross.get(t, {}).get(d) for d in CROSS_WINDOWS]
     if not cs or any(c is None for c in cs):
         unk_w.append(t)
@@ -628,10 +632,13 @@ if skipped_t:
 if rescued:
     L.append("补扫救回 %d 个: %s" % (len(rescued), " · ".join(rescued)))
 
-for t in short_w + real_w + unk_w:
-    L.append("   %s: win=%d %s" % (
-        t, raw_term.get(t, 0),
-        " ".join("%dd=%s" % (d, cross.get(t, {}).get(d)) for d in CROSS_WINDOWS)))
+for t in short_w + real_w + unk_w + widest_w:
+    if CROSS_EMPTY:
+        L.append("   %s: win=%d（无更宽档）" % (t, raw_term.get(t, 0)))
+    else:
+        L.append("   %s: win=%d %s" % (
+            t, raw_term.get(t, 0),
+            " ".join("%dd=%s" % (d, cross.get(t, {}).get(d)) for d in CROSS_WINDOWS)))
 if short_w:
     L.append("   └ 窗口太短（跨窗有命中）→ **非真零，别删** %d 个: %s"
              % (len(short_w), " · ".join(short_w)))
@@ -640,6 +647,9 @@ if real_w:
              % (len(real_w), " · ".join(real_w)))
 if unk_w:
     L.append("   └ 跨窗查询失败（存疑，先别删）%d 个: %s" % (len(unk_w), " · ".join(unk_w)))
+if widest_w:
+    L.append("   └ 已是最宽窗口（%dd），无更宽档可比 → **先换写法**，别直接判死 %d 个: %s"
+             % (DAYS, len(widest_w), " · ".join(widest_w)))
 if lf_t:
     L.append("低频探针（已降级，别删）: " + " · ".join(lf_t))
 if saturated:
