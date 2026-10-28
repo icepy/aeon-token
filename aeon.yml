@@ -165,9 +165,10 @@ skills:
   weekly-aeoncard: { enabled: false, schedule: "workflow_dispatch", var: "" } # weekly token-consumption recap card (SVG) from memory/token-usage.csv. var: window + delivery control
   
   # --- 自定义 skill ---
-  arxiv-radar: { enabled: true, schedule: "30 7 * * *"}
-  github-radar: { enabled: true, schedule: "45 7 * * *" }
-  narrative-brief: { enabled: true, schedule: "0 8 * * *" }
+  arxiv-radar: { enabled: true, schedule: "0 22 * * *" }
+  github-radar: { enabled: true, schedule: "30 22 * * *" }
+  defillama-radar: { enabled: false, schedule: "0 23 * * *" }
+  narrative-brief: { enabled: true, schedule: "45 23 * * *" }
   
   # --- Fallback (must be last) ---
   heartbeat: { enabled: true, schedule: "0 8 * * *", var: "" } # ambient fleet-health check (default) — surfaces anything worth attention. var: empty=ambient check | <area>=ambient focused on that area | brief[:<area>]=priority brief (3 things to focus on, why now, what moved; folds in priority-brief)
