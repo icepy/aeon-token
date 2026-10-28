@@ -90,7 +90,7 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 
 ## 判据（读数怎么读）
 
-- **`基线轮=True` 且 seen 文件本来就在** = 不正常。seen 文件存在但解析失败时，脚本会把它备份到 `memory/defillama-seen.broken.json`、审计打 `⚠️ seen 解析失败`、`STATUS` 走 `DEFILLAMA_RADAR_DEGRADED`，然后按基线轮重灌。**看到这个 ⚠️ 要进日志的判据级发现，写清丢了哪一轮的记录。**
+- **`基线轮=True` 且 seen 文件本来就在** = 不正常。seen 文件存在但解析失败时，审计打 `⚠️ seen 解析失败`、`STATUS` 走 `DEFILLAMA_RADAR_DEGRADED`，然后按基线轮重灌。**非 dry-run 才会把坏文件备份到 `memory/defillama-seen.broken.json`；dry-run 不写 `memory/`，只重灌 `out.dry.json` / `seen.dry.json` 快照。** dry-run 下看到这个 ⚠️ 要当真——没有 `seen.dry.json` 时读的就是正式 seen，说明正式 seen 本身坏了，别当快照噪声放过。**看到这个 ⚠️ 要进日志的判据级发现，写清丢了哪一轮的记录。**
 - `STATUS: ..._DEGRADED` 有两种来源：拉取失败、seen 损坏。两种都必须写进日志，不许只写「本轮 0」。
 - 正常日可报应接近 0。可报忽然上三位数，先查 seen 有没有被重灌，再怀疑词表。
 
@@ -101,7 +101,7 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 写（脚本自己写，模型不用管）：
 - `output/defillama/out.json`（非 dry-run，只放可报集合）· `out.dry.json` · `seen.dry.json` · `audit.log`
 - `memory/defillama-seen.json`（非 dry-run 才写）
-- `memory/defillama-seen.broken.json`（只在 seen 损坏时备份一次）
+- `memory/defillama-seen.broken.json`（只在 seen 损坏时备份一次；dry-run 不备份）
 
 写（**模型写**）：`output/defillama/report.md` 的中文稿
 
