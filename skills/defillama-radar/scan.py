@@ -38,7 +38,7 @@ REPORT = OUTD + "/report.md"
 SEENDRY = OUTD + "/seen.dry.json"
 SEEN = "memory/defillama-seen.json"
 SEENBAK = "memory/defillama-seen.broken.json"
-NAMES = "memory/universe-names.txt"
+NAMES = "memory/defillama-names.txt"
 API = "https://api.llama.fi/protocols"
 
 ATTEMPTS = 3
@@ -212,7 +212,6 @@ os.makedirs(OUTD, exist_ok=True)
 
 def rec_of(p, pid, hit):
     name = p.get("name") or ""
-    blob = (name + " " + (p.get("description") or "")).lower()
     return {
         "id": pid,
         "name": name,
@@ -225,7 +224,7 @@ def rec_of(p, pid, hit):
         "description": " ".join((p.get("description") or "").split())[:110],
         "misrepresentedTokens": p.get("misrepresentedTokens"),
         "wrongLiquidity": p.get("wrongLiquidity"),
-        "in_names": any(k.lower() in blob or name.lower() in k.lower()
+        "in_names": any(k.lower() in name.lower() or name.lower() in k.lower()
                         for k in known),
     }
 

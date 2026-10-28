@@ -1,0 +1,3 @@
+# defillama-radar 专属：持仓 / 关注清单。只 match 协议自己的 name，不 match 描述。
+Pearl Blockchain
+S-DAMM

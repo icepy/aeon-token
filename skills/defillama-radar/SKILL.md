@@ -96,7 +96,7 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 
 ## Config
 
-读：`scan.py` 的 `CHAINS` · `memory/defillama-seen.json` · `memory/universe-names.txt`
+读：`scan.py` 的 `CHAINS` · `memory/defillama-seen.json` · `memory/defillama-names.txt`（本清单只 match 协议 name，不 match 描述；`arxiv-radar` 用的是另一个 `memory/universe-names.txt`，两份互不影响）
 
 写（脚本自己写，模型不用管）：
 - `output/defillama/out.json`（非 dry-run，只放可报集合）· `out.dry.json` · `seen.dry.json` · `audit.log`
