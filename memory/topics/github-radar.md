@@ -1,14 +1,14 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 二十二轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、carrier 误杀率对照组、窗口是流量旋钮）
+description: github-radar 二十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、carrier 误杀率对照组、窗口是流量旋钮）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-27T23:40:00Z
+timestamp: 2026-10-28T18:10:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十二轮（2026-10-27）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十三轮（2026-10-28）实证。
 
 ## 第十七轮（2026-10-26，60 天窗，probe，dry-run）—— carrier 误杀率首次有同口径对照组：50% vs 50%，无差异
 
@@ -517,8 +517,30 @@ probe 反查（首次非 dry-run）：种子 67 → 候选 token 96 → 反查 2
 
 第十九轮 `Xeon87/Agentic_Robot_Sim2Real_Experiment_Platform` 22 commits 全在近 7 天但无 language，**疑似论文配套实验仓，预算内未补调用核实**。同轮 `paper-git` 形态再次印证「30d=39 但 7d=3」——30 天提交高 ≠ 现在在写。
 
+## 第二十三轮（2026-10-28，7 天窗，非 dry-run）—— star 第 12 次失效；「本周新建 + 当周爆完」成为报告级主体
+
+本轮 `var=days:7`，18 词，`gh-v3`，核验 21/21 = 100%。原始 **460** → 幸存 **21** → 报告级 **8**。丢弃 seen=189 · excl=33 · short_desc=80 · carrier=103 · neg=13 · pages=18 · pages_root=0 · farm=3 · fail=0。
+
+### 49. 🔴 star 第 12 次失效，且这次失效的形态变了：报告级 8 个 ★全 0，除 `marionette` 外 **30d == 7d**
+
+八个报告级仓的 `commits_30d` 与 `commits_7d` 逐项相等（`marionette` ≥100/≥100、`aura3d` 54/54、`operator-layer-ros2` 16/16、`AegisAgent` 12/12、`jepa-game-agent` 10/10、`TheLiaoGroup/WorldModel` 9/9、`roverlink-ros2` 6/6、`YHFone/supermimic-mjlab` 5/5）。**30d==7d 的意思是「所有提交都落在最近 7 天」—— 这是本周新建仓、当周爆完，不是老仓回温。** 以往 star 失效表现为「高 star 仓其实很旧」，本轮表现为「报告级整体是新建仓」，判据不同：**看到 30d==7d 就该问「这个仓存在多久」，而不是「它有多活跃」。**
+
+### 50. 🔴 `data availability` 连续两轮 raw=16 / seen=0，数字一字未变 —— 这是过滤损耗，不是饱和
+
+第 8 轮与第 9 轮（相隔一天）该词原始命中都是 **16**，幸存 0，`seen` 命中 0。**原始量逐字相同 + seen 命中为 0 → 这 16 条被某条丢弃规则整批吃掉，从未进过 `seen`。** 按四分类它属于「过滤损耗」，**绝不能读成「已饱和」**（饱和的定义是 `seen` 吃干，即 raw 有数而 seen 也命中有数）。下一轮 `--full` 看 `audit.log` 定位是哪条规则（候选：carrier / short_desc）。
+
+### 51. 🟡 7 天窗不足以判词死活，且状态会在相邻两轮之间来回翻
+
+`robotics data engine` 上一轮是「全已见饱和 1/1」，本轮跌回**真零**；`proof of useful work` 连续两轮真零。**同一个词在两轮之间从「饱和」翻成「真零」，说明 7 天窗的读数本身就在噪声区间内** —— 判词死活必须走 30/60 天窗量 `total_count`，7 天窗只报当日四分类，不写死活结论。
+
+### 52. 🟢 carrier 误杀对照首次两侧都满格：46/46 与 18/18，仍无差异
+
+丢弃侧仓名自带词表词 46 个、近 7 天存活 **46/46 = 100%**；放行侧幸存者 **18/18 = 100%**。**两侧都顶到 100% 时这个对照失去分辨力**（分母太小、且 7 天窗下几乎所有仓都活着）—— 结论只能是「本轮未观察到误杀」，不能反推 carrier 规则安全。前几轮 54%/45%、56%/57% 才是有效读数。
+
+
 # Citations
 
+- 第二十三轮（10-28 第 9 轮）`logs/2026-10-28#github-radar（第 9 轮 · 7 天窗 · 非 dry-run）` · `report.md` · `audit.log` · `memory/github-seen.json`
 - 第十八—二十二轮 `logs/2026-10-27#github-radar（第十八轮` … `#（第二十二轮`）· `scan.py:910,921`（tuple-index bug）· PR #14 · `memory/github-seen.json`（186 增补 34）· `memory/ghradar-probe-last.txt` = 2026-10-27
 - 第十七轮快照 `output/ghradar/out.dry.json`（51 幸存 / 3,818 原始）· `dropped.json`（carrier 877 / short_desc 695 / carrier_named_uniq 327 / carrier_named_alive_7d 74）· `clusters.json` · `audit.log` · `scan.py:366`（`WIN_SPLIT_TOTAL`）· 手工复量 `sim2real` 两页并集 163 · `logs/2026-10-26#github-radar（第十七轮`
 - 第十六轮快照 `output/ghradar/out.dry.json`（49 幸存 / 4,004 原始）· `dropped.json`（首次全量落仓名）· `scan.py:73-78`（STOPWORDS）· `scan.py:283-300`（cluster_cohesion）· `logs/2026-10-26#github-radar（第十六轮`

@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-10-23T00:00:00Z
+timestamp: 2026-10-28T18:20:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -34,6 +34,23 @@ Keep the distinction that made the original finding easy to misread:
 wrong: all three were only enabled in `aeon.yml` at 2026-10-23 09:01Z and their first slot had not
 yet arrived. **Before judging a skill "never dispatched", check the `aeon.yml` change time for that
 skill's line.** `token-movers` first ran 2026-10-23 12:00Z (single-token on NOTE).
+
+## Catch-up bursts collapse the clock — "when did it run" is not "when is its cron"
+
+`scheduler.yml` uses a slot-debt model (`cron-due.sh` + `CATCHUP_HOURS=12`), so a batch missed
+overnight is replayed **all at once**. On 2026-10-28 three skills whose crons sit at 22:00 / 22:30 /
+23:45 UTC all fired in the same second, `04:15:45Z` — roughly 5.5 h late but back-to-back.
+
+- **Never read "skill X ran at HH:MM" as its cron time**, and never treat a cluster of same-second
+  dispatches as an anomaly or a duplicate-spawn bug. Check `last_dispatch` in
+  `memory/cron-state.json` and the `CATCHUP_HOURS` window before calling it a finding.
+- A dispatch with no state write-back within ~45 min is `⏳ in flight`, not `failed` — the window is
+  wide enough to absorb a 130 s scan plus retries.
+- **Orphan entries in `cron-state.json` persist forever.** `arxvi-radar` (a one-off successful run on
+  10-26, `total_runs: 1`) matches no skill in `aeon.yml` — a typo for `arxiv-radar` from some past
+  dispatch. It never affects scheduling, but it keeps showing up as an unexplainable row whenever the
+  status page cross-checks cron state against the skill list. Delete it when a write path is handy.
+
 
 ## Watchlist rationale
 
