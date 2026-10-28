@@ -8,15 +8,8 @@ narratives http=200 bytes=5601 source=remote reason=ok
 notify: 跳过（已推过）
 ```
 
-**下一步** — 没有。不要改 `check.py`。
-
-**你要处理的** — 这轮不用你处理。
+- **下一步** — 没有。不要改 `check.py`。
+- **你要处理的** — 这轮不用你处理。
 
 ## Summary
-
-- 执行 `skills/narrative-brief/check.py`（单次工具调用，符合 skill 铁律）。
-- 抓取 `narratives.md` 成功（`http=200`，5601 字节，`source=remote`，`reason=ok`）。
-- 文件内 1 个日期节（26/10/2026），sha256 `893626e5…` 已在 `memory/narrative-brief-seen.json` 中，无新内容。
-- 结果 `UNCHANGED`：未发通知、未写 seen、未覆盖 `report.md`、未产生 `pending.json`。
-- 文件/配置改动：无。记忆与日志由脚本自行处理，未手工追加 `### narrative-brief`。
-- 后续动作：无。
+本轮 `narrative-brief` 结果为 **UNCHANGED**：远端 `memory/topics/narratives.md` 抓取正常（http=200，5601 字节，`source=remote`），全文只有 1 个日期节（26/10/2026），其 sha256 已在 seen 中记录过，因此未发通知、未改写正文。没有新建或修改文件；`check.py` 未作任何改动。无需人工跟进。
