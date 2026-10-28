@@ -6,12 +6,13 @@
 
 用法:
     python3 skills/defillama-radar/scan.py "dry-run"
+    python3 skills/defillama-radar/scan.py "send"
     python3 skills/defillama-radar/scan.py "mark-sent"
 
 var token（空格分隔）:
-    dry-run       跳过 notify；不写 memory/；改读/写 seen.dry.json 与 out.dry.json
-    mark-sent     把 out.json 里那些 notified 仍为 null 的 id 标成今天
-    notify:script 让脚本自己发通知（默认不发，正文归模型）
+    dry-run   跳过通知；不写 memory/；改读/写 seen.dry.json 与 out.dry.json
+    send      发送 output/defillama/report.md，成功后把 out.json 里的 id 标成已通知
+    mark-sent 只标记、不发送（手动发过之后用）
 
 notified 四态: null=待报 / "YYYY-MM-DD"=已报 / "filtered"=首次就没过过滤 / "baseline"=基线轮
 可报集合 = notified is None。失败必须能与「零可报」区分。
@@ -53,15 +54,15 @@ CHAIN_TWINS = {"BSC": "Binance", "Binance": "BSC",
 TWIN_PAIRS = [("BSC", "Binance"), ("OP Mainnet", "Optimism")]   # 每对只判一次
 
 var = sys.argv[1] if len(sys.argv) > 1 else ""
-DRY = SEND = MARK = False
+DRY = MARK = SENDNOW = False
 UNKNOWN = []
 for tok in var.split():
     if tok == "dry-run":
         DRY = True
     elif tok == "mark-sent":
         MARK = True
-    elif tok == "notify:script":
-        SEND = True
+    elif tok == "send":
+        SENDNOW = True
     elif tok:
         UNKNOWN.append(tok)
 
@@ -118,6 +119,16 @@ def fetch():
     return None, last
 
 
+def out_ids():
+    if not os.path.exists(OUT):
+        return []
+    try:
+        rows = json.load(open(OUT, encoding="utf-8"))
+    except Exception:
+        return []
+    return [str(c.get("id")) for c in rows if isinstance(c, dict)]
+
+
 def mark_ids(ids):
     """只把 notified 仍为 null 的改成今天。返回改了几条。"""
     seen = load_seen(SEEN)
@@ -135,21 +146,38 @@ def mark_sent():
     if DRY:
         print("mark-sent 在 dry-run 下不可用（memory/ 未写）")
         sys.exit(1)
-    if not os.path.exists(OUT):
-        print("没有 %s，先跑一次正式轮" % OUT)
+    ids = out_ids()
+    if not ids:
+        print("没有 %s 或为空，先跑一次正式轮" % OUT)
         sys.exit(1)
-    try:
-        rows = json.load(open(OUT, encoding="utf-8"))
-    except Exception as ex:
-        print("读 %s 失败: %s" % (OUT, ex))
+    print("mark-sent: 标记 %d 条为已通知（%s）" % (mark_ids(ids), TODAY))
+    sys.exit(0)
+
+
+def send():
+    """发 report.md，成功才标记 —— 发送与标记是同一个动作，不靠人记。"""
+    if DRY:
+        print("send 在 dry-run 下不可用（memory/ 未写）")
         sys.exit(1)
-    n = mark_ids([str(c.get("id")) for c in rows if isinstance(c, dict)])
-    print("mark-sent: 标记 %d 条为已通知（%s）" % (n, TODAY))
+    if not os.path.exists(REPORT):
+        print("没有 %s —— 先跑一次正式轮，并把中文稿写进去" % REPORT)
+        sys.exit(1)
+    if not os.path.exists("./notify"):
+        print("notify: ./notify 不存在，未发 —— 未标记，下轮自动重报")
+        sys.exit(1)
+    r = subprocess.run(["./notify", "-f", REPORT], capture_output=True, text=True)
+    if r.returncode != 0:
+        print("notify: 发送失败（%s）—— 未标记，下轮自动重报"
+              % (r.stderr or r.stdout or "").strip()[:160])
+        sys.exit(1)
+    print("send: 已发送 · 标记 %d 条" % mark_ids(out_ids()))
     sys.exit(0)
 
 
 if MARK:
     mark_sent()
+if SENDNOW:
+    send()
 
 # ── seen ──────────────────────────────────────────────────────────
 if DRY:
@@ -319,7 +347,7 @@ else:
     save_seen(ordered, SEEN)
     L2 = "seen 写入 %d 条（新增 %d）" % (len(ordered), len(new_ids))
 
-# ── 报告 + 通知 ───────────────────────────────────────────────────
+# ── 机械版报告（模型随后覆写为中文）──────────────────────────────
 if out and not DRY and not BASELINE:
     R = ["**defillama-radar** · 可报 %d" % len(out), ""]
     for c in out[:NOTIFY_TOP]:
@@ -331,21 +359,10 @@ if out and not DRY and not BASELINE:
 if DRY or BASELINE or not out:
     print("notify: 跳过（%s）" % ("dry-run" if DRY else
                                 ("基线轮" if BASELINE else "零可报")))
-elif SEND:
-    if os.path.exists("./notify"):
-        r = subprocess.run(["./notify", "-f", REPORT],
-                           capture_output=True, text=True)
-        if r.returncode == 0:
-            n = mark_ids([c["id"] for c in out])
-            print("notify: 已发送 · 标记 %d 条" % n)
-        else:
-            print("notify: 发送失败（%s）—— 未标记，下轮自动重报"
-                  % (r.stderr or r.stdout or "").strip()[:160])
-    else:
-        print("notify: ./notify 不存在，未发 —— 下轮自动重报")
 else:
-    print("notify: **未发** —— 覆写 %s 为中文，然后：./notify -f %s" % (REPORT, REPORT))
-    print("        发成功后跑：python3 skills/defillama-radar/scan.py \"mark-sent\"")
+    print("notify: **未发** —— 把 %s 覆写成中文（协议信息中文、其余英文），然后："
+          % REPORT)
+    print("        python3 skills/defillama-radar/scan.py \"send\"")
 
 print("%s · 全量 %d · 可报 %d · 总耗时 %.0fs"
       % (L2, len(payload), len(out), time.time() - T0))

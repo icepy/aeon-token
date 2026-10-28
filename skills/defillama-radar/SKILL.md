@@ -13,7 +13,7 @@ metadata:
     - sends_notifications
 ---
 
-> **${var}** — 可选，空格分隔。`dry-run` 跳过 notify、不写 `memory/`；`mark-sent` 标记已通知；`notify:script` 让脚本自己发通知（默认不发）。**原样传给脚本，不要自己解析。**
+> **${var}** — 可选，空格分隔。`dry-run` 跳过 notify、不写 `memory/`；`send` 发送并标记；`mark-sent` 只标记。**原样传给脚本，不要自己解析。**
 
 第二层（名字）的第一条通道。与 `arxiv-radar` / `github-radar` **平行，不是它们的下游**。
 
@@ -33,7 +33,7 @@ metadata:
 
 DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lido` / `SSV Network` / `LayerZero V2` / `Robinhood` 都没有）。所以新度**只能靠全量 id 求差**：`memory/defillama-seen.json` 存全量 id，本轮差集即新增。
 
-**seen 存全量 id，不筛链。** 两个理由：加链时不产生历史洪水；协议从非白名单链扩张过来时靠 `filtered` 标记挡住，不会被当成新。
+**seen 存全量 id，不筛链。** 同一个协议跨多条链仍是同一个 `id`，所以"多链上同一个协议"天然只算一次。
 
 ## `notified` 四态
 
@@ -64,9 +64,10 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 - 不读 `output/arxiv` / `output/ghradar`。
 - 基线轮（seen 为空）只入 seen、不出报告。
 - 报告级 0 时不发通知、**不重写 `report.md`**。
+- **发送与标记是同一个动作**：只有 `send` 成功才标 `notified`，不许先标后发。
 - 产物文件名固定（`out.json` / `out.dry.json` / `seen.dry.json` / `audit.log` / `report.md`）。轮次号只进日志内容。
 - 本 skill 不产方向标签，没有写 labels 这一步。
-- 全部输出简体中文。
+- 全部输出简体中文；**通知正文里协议信息（名字、类目、一句话）用中文，其余可英文**。
 
 ## Config
 
@@ -76,7 +77,7 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 - `output/defillama/out.json`（非 dry-run，只放可报集合）· `out.dry.json` · `seen.dry.json` · `audit.log`
 - `memory/defillama-seen.json`（非 dry-run 才写）
 
-写（**模型写**）：`output/defillama/report.md`（中文稿）+ 通知
+写（**模型写**）：`output/defillama/report.md` 的中文稿
 
 ## Steps
 
@@ -88,15 +89,24 @@ python3 skills/defillama-radar/scan.py "${var}"
 
 审计全文打在 stdout，不用再 `cat` 回去。
 
-### 2. 写通知（可报 > 0 且非 dry-run）
+### 2. 写中文稿并发（可报 > 0 且非 dry-run）
 
-覆写 `report.md` 为中文（按链分组：名字 + TVL + 类目 + 链接，不做判断），同一条 bash 里发：
+脚本已把 `report.md` 写成机械版。覆写为中文：
 
-```bash
-./notify -f output/defillama/report.md
+```
+**defillama-radar** · 可报 3
+
+**Base**
+- 某协议 — 一句话中文描述 · TVL $12,400 · [链接]
 ```
 
-发出成功后再跑一次 `python3 skills/defillama-radar/scan.py "mark-sent"`。**没发成功就别 mark**——下一轮会自动重报。
+协议信息中文，其余（字段标签、链名、数字）可英文。**不做判断**，不写"值得看"。然后：
+
+```bash
+python3 skills/defillama-radar/scan.py "send"
+```
+
+`send` 成功即自动标记；失败不标记，下一轮自动重报。**发失败别手动 `mark-sent`。**
 
 ### 3. 写日志
 
