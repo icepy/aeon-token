@@ -91,7 +91,8 @@
         "arxiv-radar": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>",
         "github-radar": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>",
         "security": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>",
-        "narrative-brief": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>"
+        "narrative-brief": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>",
+        "defillama-radar": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>"
     },
     "action-converter": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>",
     "aeon-doctor": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>",

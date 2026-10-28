@@ -23,6 +23,7 @@ export const SKILL_ICONS: Record<string, string> = {
   "create-prove": "<path d='M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z'/><path d='m9 12 2 2 4-4'/>",
   "create-skill": "<path d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z'/><path d='M14 2v4a2 2 0 0 0 2 2h4'/><path d='M9 15h6'/><path d='M12 18v-6'/>",
   "defi-overview": "<circle cx='8' cy='8' r='6'/><path d='M18.1 10.4A6 6 0 1 1 10.3 18'/><path d='M7 6h1v4'/><path d='M16.7 13.9l.7.7-2.8 2.8'/>",
+  "defillama-radar": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>",
   "deploy-prototype": "<path d='M12 13v8'/><path d='M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2'/><path d='M8 17l4-4 4 4'/>",
   "deploy-uni-hook": "<path d='M17 4h-3'/><path d='M14 4a1 1 0 0 0-2 0v8a4 4 0 0 1-8 0v-1'/><path d='M1 11l3 3 3-3'/>",
   "digest": "<path d='M8 6h13M8 12h13M8 18h13'/><path d='M3 6h.01M3 12h.01M3 18h.01'/>",

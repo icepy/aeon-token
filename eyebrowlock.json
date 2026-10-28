@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-27T12:56:59.090501608Z",
+  "generatedAt": "2026-10-28T06:09:34.693910141Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -1048,6 +1048,50 @@
       ],
       "contentHash": "sha256-175f76ef87530fe342f4051ed8d2666e9465e38d07f4cff8e580011b777ccede",
       "discoveredFrom": "skills/feature/SKILL.md"
+    },
+    {
+      "id": "5993edb4c1c386c4",
+      "tool": "aeon",
+      "scope": "project:.",
+      "type": "skill",
+      "name": "defillama-radar",
+      "source": {
+        "kind": "local",
+        "ref": "skills/defillama-radar"
+      },
+      "capabilities": {},
+      "files": [
+        {
+          "path": "SKILL.md",
+          "hash": "9b0b4e77b7457772ea927e9eeb9f797f6fda5359761d32a4558fcf9984a0c428"
+        },
+        {
+          "path": "scan.py",
+          "hash": "6bdf7376a0f6c341109145680fdc1e21bc02e440b464bbadf82fe998f9ac4452"
+        }
+      ],
+      "findings": [
+        {
+          "ruleId": "EXEC-PRIMITIVE",
+          "severity": "medium",
+          "owasp": "ASK-03",
+          "file": "scan.py",
+          "line": 21,
+          "snippet": "import subprocess",
+          "explanation": "uses a process-execution primitive"
+        },
+        {
+          "ruleId": "EXEC-PRIMITIVE",
+          "severity": "medium",
+          "owasp": "ASK-03",
+          "file": "scan.py",
+          "line": 336,
+          "snippet": "r = subprocess.run([\"./notify\", \"-f\", REPORT],",
+          "explanation": "uses a process-execution primitive"
+        }
+      ],
+      "contentHash": "sha256-773b8816df73ed8f26e584c5d6827937dfcd63fa1bd555fcec79a769169223a2",
+      "discoveredFrom": "skills/defillama-radar/SKILL.md"
     },
     {
       "id": "59f9b4255f2a886a",
