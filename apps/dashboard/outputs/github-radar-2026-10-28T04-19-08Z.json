@@ -1,0 +1,608 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 8 · 近 7 天活跃 8"
+      },
+      "children": [
+        "heading",
+        "grid-stats",
+        "sep1",
+        "repo1",
+        "repo2",
+        "repo3",
+        "repo4",
+        "repo5",
+        "repo6",
+        "repo7",
+        "repo8"
+      ]
+    },
+    "heading": {
+      "type": "Heading",
+      "props": {
+        "text": "github-radar · 近 7 天雷达报告",
+        "level": "h2"
+      }
+    },
+    "grid-stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat-report",
+        "stat-active"
+      ]
+    },
+    "stat-report": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "8"
+      }
+    },
+    "stat-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "8"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo1-link",
+        "repo1-badges",
+        "repo1-desc"
+      ]
+    },
+    "repo1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "theinstancelabs/marionette",
+        "href": "https://github.com/theinstancelabs/marionette",
+        "source": "GitHub"
+      }
+    },
+    "repo1-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo1-b1",
+        "repo1-b2",
+        "repo1-b3",
+        "repo1-b4"
+      ]
+    },
+    "repo1-b1": {
+      "type": "Badge",
+      "props": {
+        "text": "★0",
+        "variant": "outline"
+      }
+    },
+    "repo1-b2": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=≥100",
+        "variant": "secondary"
+      }
+    },
+    "repo1-b3": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=≥100",
+        "variant": "secondary"
+      }
+    },
+    "repo1-b4": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "default"
+      }
+    },
+    "repo1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "iPhones as teleoperation inputs: per-phone ARKit pose and button streams relayed to robot consumers",
+        "variant": "body"
+      }
+    },
+    "repo2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo2-link",
+        "repo2-badges",
+        "repo2-desc"
+      ]
+    },
+    "repo2-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "parammadan/aura3d",
+        "href": "https://github.com/parammadan/aura3d",
+        "source": "GitHub"
+      }
+    },
+    "repo2-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo2-b1",
+        "repo2-b2",
+        "repo2-b3",
+        "repo2-b4"
+      ]
+    },
+    "repo2-b1": {
+      "type": "Badge",
+      "props": {
+        "text": "★0",
+        "variant": "outline"
+      }
+    },
+    "repo2-b2": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=54",
+        "variant": "secondary"
+      }
+    },
+    "repo2-b3": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=54",
+        "variant": "secondary"
+      }
+    },
+    "repo2-b4": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "default"
+      }
+    },
+    "repo2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Uncertainty-aware perception, drift monitoring and world-model planning for simulated industrial man",
+        "variant": "body"
+      }
+    },
+    "repo3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo3-link",
+        "repo3-badges",
+        "repo3-desc"
+      ]
+    },
+    "repo3-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "mohamedharhash/operator-layer-ros2",
+        "href": "https://github.com/mohamedharhash/operator-layer-ros2",
+        "source": "GitHub"
+      }
+    },
+    "repo3-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo3-b1",
+        "repo3-b2",
+        "repo3-b3",
+        "repo3-b4"
+      ]
+    },
+    "repo3-b1": {
+      "type": "Badge",
+      "props": {
+        "text": "★0",
+        "variant": "outline"
+      }
+    },
+    "repo3-b2": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=16",
+        "variant": "secondary"
+      }
+    },
+    "repo3-b3": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=16",
+        "variant": "secondary"
+      }
+    },
+    "repo3-b4": {
+      "type": "Badge",
+      "props": {
+        "text": "robot manipulation",
+        "variant": "default"
+      }
+    },
+    "repo3-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Rehearse-before-execute safety gate for learned robot policies. ROS 2, simulation-in-the-loop, sim-t",
+        "variant": "body"
+      }
+    },
+    "repo4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo4-link",
+        "repo4-badges",
+        "repo4-desc"
+      ]
+    },
+    "repo4-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Lakshmikanth-3/AegisAgent",
+        "href": "https://github.com/Lakshmikanth-3/AegisAgent",
+        "source": "GitHub"
+      }
+    },
+    "repo4-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo4-b1",
+        "repo4-b2",
+        "repo4-b3",
+        "repo4-b4"
+      ]
+    },
+    "repo4-b1": {
+      "type": "Badge",
+      "props": {
+        "text": "★0",
+        "variant": "outline"
+      }
+    },
+    "repo4-b2": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=12",
+        "variant": "secondary"
+      }
+    },
+    "repo4-b3": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=12",
+        "variant": "secondary"
+      }
+    },
+    "repo4-b4": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "default"
+      }
+    },
+    "repo4-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Enterprise treasury agent: reconciles each invoice across supplier, ERP and treasury data in Zetaris",
+        "variant": "body"
+      }
+    },
+    "repo5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo5-link",
+        "repo5-badges",
+        "repo5-desc"
+      ]
+    },
+    "repo5-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "nunenuh/jepa-game-agent",
+        "href": "https://github.com/nunenuh/jepa-game-agent",
+        "source": "GitHub"
+      }
+    },
+    "repo5-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo5-b1",
+        "repo5-b2",
+        "repo5-b3",
+        "repo5-b4"
+      ]
+    },
+    "repo5-b1": {
+      "type": "Badge",
+      "props": {
+        "text": "★0",
+        "variant": "outline"
+      }
+    },
+    "repo5-b2": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=10",
+        "variant": "secondary"
+      }
+    },
+    "repo5-b3": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=10",
+        "variant": "secondary"
+      }
+    },
+    "repo5-b4": {
+      "type": "Badge",
+      "props": {
+        "text": "jepa",
+        "variant": "default"
+      }
+    },
+    "repo5-desc": {
+      "type": "Text",
+      "props": {
+        "text": "A JEPA agent that lives inside a game world (Craftax): predicts, remembers, picks goals, acts",
+        "variant": "body"
+      }
+    },
+    "repo6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo6-link",
+        "repo6-badges",
+        "repo6-desc"
+      ]
+    },
+    "repo6-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "TheLiaoGroup/WorldModel",
+        "href": "https://github.com/TheLiaoGroup/WorldModel",
+        "source": "GitHub"
+      }
+    },
+    "repo6-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo6-b1",
+        "repo6-b2",
+        "repo6-b3",
+        "repo6-b4"
+      ]
+    },
+    "repo6-b1": {
+      "type": "Badge",
+      "props": {
+        "text": "★0",
+        "variant": "outline"
+      }
+    },
+    "repo6-b2": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=9",
+        "variant": "secondary"
+      }
+    },
+    "repo6-b3": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=9",
+        "variant": "secondary"
+      }
+    },
+    "repo6-b4": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "default"
+      }
+    },
+    "repo6-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Data and analysis code for Reaction world models trained on reported successes fail silently.",
+        "variant": "body"
+      }
+    },
+    "repo7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo7-link",
+        "repo7-badges",
+        "repo7-desc"
+      ]
+    },
+    "repo7-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ADHU-ADHU/roverlink-ros2",
+        "href": "https://github.com/ADHU-ADHU/roverlink-ros2",
+        "source": "GitHub"
+      }
+    },
+    "repo7-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo7-b1",
+        "repo7-b2",
+        "repo7-b3",
+        "repo7-b4"
+      ]
+    },
+    "repo7-b1": {
+      "type": "Badge",
+      "props": {
+        "text": "★0",
+        "variant": "outline"
+      }
+    },
+    "repo7-b2": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=6",
+        "variant": "secondary"
+      }
+    },
+    "repo7-b3": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=6",
+        "variant": "secondary"
+      }
+    },
+    "repo7-b4": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "default"
+      }
+    },
+    "repo7-desc": {
+      "type": "Text",
+      "props": {
+        "text": "PC-to-robot ROS 2 teleoperation, teach-and-return control and LiDAR frontier exploration on a differ",
+        "variant": "body"
+      }
+    },
+    "repo8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo8-link",
+        "repo8-badges",
+        "repo8-desc"
+      ]
+    },
+    "repo8-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "YHFone/supermimic-mjlab",
+        "href": "https://github.com/YHFone/supermimic-mjlab",
+        "source": "GitHub"
+      }
+    },
+    "repo8-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo8-b1",
+        "repo8-b2",
+        "repo8-b3",
+        "repo8-b4"
+      ]
+    },
+    "repo8-b1": {
+      "type": "Badge",
+      "props": {
+        "text": "★0",
+        "variant": "outline"
+      }
+    },
+    "repo8-b2": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=5",
+        "variant": "secondary"
+      }
+    },
+    "repo8-b3": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=5",
+        "variant": "secondary"
+      }
+    },
+    "repo8-b4": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "default"
+      }
+    },
+    "repo8-desc": {
+      "type": "Text",
+      "props": {
+        "text": "SuperMimic: humanoid whole-body control with one differentiable world model — implementation on mjla",
+        "variant": "body"
+      }
+    }
+  }
+}

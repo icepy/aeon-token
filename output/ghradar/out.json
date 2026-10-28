@@ -2,130 +2,387 @@
  {
   "term": "robot manipulation",
   "terms": [
-   "robot manipulation"
+   "robot manipulation",
+   "sim-to-real"
   ],
-  "repo": "yj244-jyt/so3-equivariant-transformer-robot-policy",
-  "owner": "yj244-jyt",
-  "url": "https://github.com/yj244-jyt/so3-equivariant-transformer-robot-policy",
+  "repo": "mohamedharhash/operator-layer-ros2",
+  "owner": "mohamedharhash",
+  "url": "https://github.com/mohamedharhash/operator-layer-ros2",
+  "stars": 0,
+  "created": "2026-10-28",
+  "topics": [],
+  "size_kb": 428,
+  "language": "Python",
+  "desc": "Rehearse-before-execute safety gate for learned robot policies. ROS 2, simulation-in-the-loop, sim-to-real calibration. Topics: ros2 robotic",
+  "commits_30d": 16,
+  "commits_7d": 16
+ },
+ {
+  "term": "robot dataset",
+  "terms": [
+   "robot dataset"
+  ],
+  "repo": "Braid-Robotics/data_visualize",
+  "owner": "Braid-Robotics",
+  "url": "https://github.com/Braid-Robotics/data_visualize",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [],
+  "size_kb": 87,
+  "language": "Python",
+  "desc": "Rerun visualizers for Braid robot datasets (raw / rollout / action chunks)",
+  "commits_30d": 1,
+  "commits_7d": 1
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "shanmukalahari/epuck-teleoperation-webots",
+  "owner": "shanmukalahari",
+  "url": "https://github.com/shanmukalahari/epuck-teleoperation-webots",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [],
+  "size_kb": 474,
+  "language": "Python",
+  "desc": "Python based keyboard teleoperation and camera feedback for the epuck robot in webots.",
+  "commits_30d": 4,
+  "commits_7d": 4
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "chence08/g1-pico-teleop",
+  "owner": "chence08",
+  "url": "https://github.com/chence08/g1-pico-teleop",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [],
+  "size_kb": 154,
+  "language": "Python",
+  "desc": "Native PICO teleoperation, Inspire hands, and RealSense dataset recording for Unitree G1; x86 Linux workstation.",
+  "commits_30d": 2,
+  "commits_7d": 2
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "ketanshrirao05/FY-2026-27-Project",
+  "owner": "ketanshrirao05",
+  "url": "https://github.com/ketanshrirao05/FY-2026-27-Project",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [],
+  "size_kb": 15105,
+  "language": null,
+  "desc": "DE10-Nano FPGA robotic arm teleoperation with joystick TX, six-servo RX, Firebase, build guides and source packages.",
+  "commits_30d": 2,
+  "commits_7d": 2,
+  "no_lang": true
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "Secant1998/mujoco-teleop-sim",
+  "owner": "Secant1998",
+  "url": "https://github.com/Secant1998/mujoco-teleop-sim",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [],
+  "size_kb": 13940,
+  "language": "Python",
+  "desc": "Standalone MuJoCo teleoperation simulator with Piper, UR5e, Lite 6, task scenes and Telebot P2P V2 virtual edge integration.",
+  "commits_30d": 1,
+  "commits_7d": 1
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "theinstancelabs/marionette",
+  "owner": "theinstancelabs",
+  "url": "https://github.com/theinstancelabs/marionette",
   "stars": 0,
   "created": "2026-10-27",
   "topics": [
-   "diffusion-policy",
-   "equivariant-neural-networks",
-   "reproducibility",
-   "robot-manipulation",
-   "se3",
-   "so3"
+   "arkit",
+   "iphone",
+   "robotics",
+   "ros2",
+   "teleoperation"
   ],
-  "size_kb": 15285,
-  "language": null,
-  "desc": "Reproducible SO(3)-equivariant Transformer experiments for robot manipulation policies",
-  "commits_30d": 3,
-  "commits_7d": 3,
-  "no_lang": true
+  "size_kb": 2137,
+  "language": "JavaScript",
+  "desc": "iPhones as teleoperation inputs: per-phone ARKit pose and button streams relayed to robot consumers (ROS 2 bridge included)",
+  "commits_30d": 100,
+  "commits_30d_ge": true,
+  "commits_7d": 100,
+  "commits_7d_ge": true
  },
  {
   "term": "teleoperation",
   "terms": [
    "teleoperation"
   ],
-  "repo": "Beluggin/multimodal-teleoperation",
-  "owner": "Beluggin",
-  "url": "https://github.com/Beluggin/multimodal-teleoperation",
+  "repo": "ADHU-ADHU/roverlink-ros2",
+  "owner": "ADHU-ADHU",
+  "url": "https://github.com/ADHU-ADHU/roverlink-ros2",
   "stars": 0,
   "created": "2026-10-27",
   "topics": [],
-  "size_kb": 0,
-  "language": null,
-  "desc": "A multimodal instruction pipeline for small robots",
-  "commits_30d": 1,
-  "commits_7d": 1,
-  "no_lang": true
+  "size_kb": 22950,
+  "language": "Python",
+  "desc": "PC-to-robot ROS 2 teleoperation, teach-and-return control and LiDAR frontier exploration on a differential-drive platform.",
+  "commits_30d": 6,
+  "commits_7d": 6
  },
  {
   "term": "teleoperation",
   "terms": [
    "teleoperation"
   ],
-  "repo": "AgilexOpensource/lookie_control",
-  "owner": "AgilexOpensource",
-  "url": "https://github.com/AgilexOpensource/lookie_control",
+  "repo": "ilyessaadna10/g1-arm-retargeting",
+  "owner": "ilyessaadna10",
+  "url": "https://github.com/ilyessaadna10/g1-arm-retargeting",
   "stars": 0,
   "created": "2026-10-27",
-  "topics": [],
-  "size_kb": 0,
-  "language": null,
-  "desc": "ROS 2 control and teleoperation packages for the Lookie robot.",
+  "topics": [
+   "humanoid",
+   "imitation-learning",
+   "inverse-kinematics",
+   "mediapipe",
+   "motion-retargeting",
+   "mujoco"
+  ],
+  "size_kb": 1778,
+  "language": "Python",
+  "desc": "Webcam teleoperation of the Unitree G1 arms in MuJoCo: MediaPipe pose, numerical IK on the real model (0.4 deg mean error, 3 ms), joint traj",
   "commits_30d": 1,
-  "commits_7d": 1,
-  "no_lang": true
+  "commits_7d": 1
  },
  {
   "term": "sim-to-real",
   "terms": [
    "sim-to-real"
   ],
-  "repo": "ripl/last-millimeter",
-  "owner": "ripl",
-  "url": "https://github.com/ripl/last-millimeter",
+  "repo": "eappel07/Ball-Holder",
+  "owner": "eappel07",
+  "url": "https://github.com/eappel07/Ball-Holder",
   "stars": 0,
-  "created": "2026-10-27",
+  "created": "2026-10-28",
   "topics": [],
-  "size_kb": 4918,
-  "language": "HTML",
-  "desc": "Real-to-Sim-to-Real at the Last Millimeter: precise insertion on a low-cost robot arm.",
-  "commits_30d": 6,
-  "commits_7d": 6
+  "size_kb": 0,
+  "language": null,
+  "desc": "Trained a PPL Reinforcement Learning model in MujoCo to balance a ball. Sim-to-real, creating device that will continuously balance a ball d",
+  "maybe_empty": true
  },
  {
   "term": "world model",
   "terms": [
    "world model"
   ],
-  "repo": "bettercalljerry04-maker/bettercalljerry04-maker",
-  "owner": "bettercalljerry04-maker",
-  "url": "https://github.com/bettercalljerry04-maker/bettercalljerry04-maker",
-  "stars": 0,
+  "repo": "gaoxiang12/ga-wm",
+  "owner": "gaoxiang12",
+  "url": "https://github.com/gaoxiang12/ga-wm",
+  "stars": 3,
   "created": "2026-10-27",
   "topics": [],
-  "size_kb": 592,
-  "language": "Python",
-  "desc": "Jerry_codemen | Embodied AI and robotics at Standard Robotics | LLM, VLA, RL, and World Models",
-  "commits_30d": 6,
-  "commits_7d": 6
+  "size_kb": 0,
+  "language": null,
+  "desc": "Geometry aware world model for VLA tasks",
+  "maybe_empty": true
  },
  {
   "term": "world model",
   "terms": [
    "world model"
   ],
-  "repo": "weijiawang2003/LeWM-PushT-Audit",
-  "owner": "weijiawang2003",
-  "url": "https://github.com/weijiawang2003/LeWM-PushT-Audit",
+  "repo": "TheLiaoGroup/WorldModel",
+  "owner": "TheLiaoGroup",
+  "url": "https://github.com/TheLiaoGroup/WorldModel",
   "stars": 0,
   "created": "2026-10-27",
   "topics": [],
-  "size_kb": 105,
+  "size_kb": 83981,
   "language": "Python",
-  "desc": "LeWM/PushT world-model interface and rollout audits with DINO-WM-derived action normalization, portable offline checks, and honest control r",
-  "commits_30d": 2,
-  "commits_7d": 2
+  "desc": "Data and analysis code for Reaction world models trained on reported successes fail silently.",
+  "commits_30d": 9,
+  "commits_7d": 9
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "YHFone/supermimic-mjlab",
+  "owner": "YHFone",
+  "url": "https://github.com/YHFone/supermimic-mjlab",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [
+   "bptt",
+   "humanoid",
+   "model-based-rl",
+   "motion-tracking",
+   "mujoco",
+   "mujoco-warp"
+  ],
+  "size_kb": 16961,
+  "language": "Python",
+  "desc": "SuperMimic: humanoid whole-body control with one differentiable world model — implementation on mjlab / MuJoCo Warp",
+  "commits_30d": 5,
+  "commits_7d": 5
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "parammadan/aura3d",
+  "owner": "parammadan",
+  "url": "https://github.com/parammadan/aura3d",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [],
+  "size_kb": 60288,
+  "language": "Python",
+  "desc": "Uncertainty-aware perception, drift monitoring and world-model planning for simulated industrial manipulation (UR10e + FANUC M-710iC/50)",
+  "commits_30d": 54,
+  "commits_7d": 54
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "tamzid2001/sceneproof",
+  "owner": "tamzid2001",
+  "url": "https://github.com/tamzid2001/sceneproof",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [
+   "ai-verification",
+   "meta-hackathon",
+   "muse-spark",
+   "robotics",
+   "sam-3",
+   "world-models"
+  ],
+  "size_kb": 27,
+  "language": "Python",
+  "desc": "SceneProof — counterfactual world-model verifier for robotics & embodied AI. Segment it, intervene, prove it. Built for the Meta Global AI D",
+  "commits_30d": 3,
+  "commits_7d": 3
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "Lakshmikanth-3/AegisAgent",
+  "owner": "Lakshmikanth-3",
+  "url": "https://github.com/Lakshmikanth-3/AegisAgent",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [],
+  "size_kb": 1082,
+  "language": "TypeScript",
+  "desc": "Enterprise treasury agent: reconciles each invoice across supplier, ERP and treasury data in Zetaris, shares evidence through the Meterless ",
+  "commits_30d": 12,
+  "commits_7d": 12
+ },
+ {
+  "term": "world action model",
+  "terms": [
+   "world action model"
+  ],
+  "repo": "X-EraAI/e05",
+  "owner": "X-EraAI",
+  "url": "https://github.com/X-EraAI/e05",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [],
+  "size_kb": 0,
+  "language": null,
+  "desc": "E0.5 is a member of the VWA family of world-action models.",
+  "maybe_empty": true
  },
  {
   "term": "jepa",
   "terms": [
    "jepa"
   ],
-  "repo": "weijiawang2003/JEPA4M",
-  "owner": "weijiawang2003",
-  "url": "https://github.com/weijiawang2003/JEPA4M",
+  "repo": "nunenuh/jepa-game-agent",
+  "owner": "nunenuh",
+  "url": "https://github.com/nunenuh/jepa-game-agent",
   "stars": 0,
   "created": "2026-10-27",
   "topics": [],
-  "size_kb": 108,
+  "size_kb": 92,
   "language": "Python",
-  "desc": "Predictive representation learning for verified symbolic search: exact environments, PyTorch models, bounded search, and controlled evaluati",
+  "desc": "A JEPA agent that lives inside a game world (Craftax): predicts, remembers, picks goals, acts",
+  "commits_30d": 10,
+  "commits_7d": 10
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Guhanxue/p3-medical-world-models",
+  "owner": "Guhanxue",
+  "url": "https://github.com/Guhanxue/p3-medical-world-models",
+  "stars": 0,
+  "created": "2026-10-28",
+  "topics": [],
+  "size_kb": 384,
+  "language": "Python",
+  "desc": "Patient, Place, Prior (P³): What Counts as Personalization in Medical World Models? — P³ and Cancer JEPA research code.",
+  "commits_30d": 1,
+  "commits_7d": 1
+ },
+ {
+  "term": "egocentric",
+  "terms": [
+   "egocentric"
+  ],
+  "repo": "EgoOneLabs/Ego-Capture",
+  "owner": "EgoOneLabs",
+  "url": "https://github.com/EgoOneLabs/Ego-Capture",
+  "stars": 0,
+  "created": "2026-10-22",
+  "topics": [],
+  "size_kb": 4212,
+  "language": "Kotlin",
+  "desc": "Egocentric stereo vision and IMU data collection system",
+  "commits_30d": 1,
+  "commits_7d": 1
+ },
+ {
+  "term": "restaking",
+  "terms": [
+   "restaking"
+  ],
+  "repo": "unodev-core/restake-router-defi",
+  "owner": "unodev-core",
+  "url": "https://github.com/unodev-core/restake-router-defi",
+  "stars": 0,
+  "created": "2026-10-27",
+  "topics": [],
+  "size_kb": 110,
+  "language": null,
+  "desc": "Restake DeFi router smart contract",
   "commits_30d": 2,
-  "commits_7d": 2
+  "commits_7d": 2,
+  "no_lang": true
  }
 ]

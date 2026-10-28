@@ -1,13 +1,13 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-27T07:48:06Z",
+  "last_analyzed": "2026-10-28T04:19:07Z",
   "quality_score": 2,
-  "assessment": "仅返回两个 ★0 仓库，其中一个是以用户名命名的 profile README 类仓库，明显是搜索噪声；无星标、无信号说明，对时机判断零帮助。",
+  "assessment": "Ran a 7-day keyword scan and returned 8 repos with commit-activity and keyword metadata, but every hit is a ★0 repo with no traction, descriptions are truncated mid-sentence, there is no filtering, ranking rationale, or insight — a raw dump rather than signal — and it is written in English despite the operator's 一律简体中文 rule.",
   "flags": [
     "low_quality",
     "generic_content"
   ],
-  "avg_score": 3.38,
+  "avg_score": 3.32,
   "history": [
     {
       "date": "2026-10-25",
@@ -133,6 +133,12 @@
       "date": "2026-10-27",
       "score": 2,
       "ts": "2026-10-27T07:48:06Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-28",
+      "score": 2,
+      "ts": "2026-10-28T04:19:07Z",
       "harness": "claude"
     }
   ]
