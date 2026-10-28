@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-28T09:37:23.992963453Z",
+  "generatedAt": "2026-10-28T09:57:12.189492186Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -196,7 +196,7 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "ebedc3315f80ff46bbd858060690cc9c9cf4abc61a63c1fa3150638498778841"
+          "hash": "ecac3b20655a58b00b19a575728f04f8dafc0a5115135a5a0cd8134fa0b16675"
         },
         {
           "path": "scan.py",
@@ -223,7 +223,7 @@
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-8f9700ae714fa32b51db08394788bdd7745ae063d610e700fc74b13ef0f65be8",
+      "contentHash": "sha256-8a2f1bdb91343d2ddc627d6c6b38f96de8ecb37ad1f13f7807ed3e6918f775ec",
       "discoveredFrom": "skills/arxiv-radar/SKILL.md"
     },
     {
@@ -711,7 +711,7 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "d7b4ad6e478add919e989ed48960022d537345e4b2f4de861f1a7f799b4da7c0"
+          "hash": "5642332acd53a177f3e464608b299a7dd0faa836e525a21d33f1edd203deb73f"
         },
         {
           "path": "scan.py",
@@ -747,7 +747,7 @@
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-93b926050d8202e917403a3952e54fc5df37a4cd0084f7bae2f1cd478fc8a543",
+      "contentHash": "sha256-039e6e4fb0a84249b84de85e902235f48f5504d2edc4906db310bb40955c733a",
       "discoveredFrom": "skills/github-radar/SKILL.md"
     },
     {
