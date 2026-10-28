@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-28T06:18:41.855792125Z",
+  "generatedAt": "2026-10-28T06:43:57.242663955Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -1063,11 +1063,11 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "74c289507d02596082a827af9e9e7ba2ec64254e0bfff57bc1a2ec3a9e38f32f"
+          "hash": "bbaebf73eb7bba6d9f5f9b57781a89546bd9fb58ea3f728d24015853531c0103"
         },
         {
           "path": "scan.py",
-          "hash": "97d85099830842466ce36c1192ab2258e30116af467d7d08ee6e2853900b2a34"
+          "hash": "3fb617e61edaa8c922cb1f9945d8c6ada90ea7a7afef194f818cf208c0c9c204"
         }
       ],
       "findings": [
@@ -1076,7 +1076,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 22,
+          "line": 25,
           "snippet": "import subprocess",
           "explanation": "uses a process-execution primitive"
         },
@@ -1085,12 +1085,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 168,
+          "line": 176,
           "snippet": "r = subprocess.run([\"./notify\", \"-f\", REPORT], capture_output=True, text=True)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-fa2575a3a296e0f8c9a5b258ab1aa16819835e6f407fc302d2e85ff172f9e6d4",
+      "contentHash": "sha256-d3c80b9f361d7265b63a8350484ecd14c566568ef31b1f666910bf6a673fdb4e",
       "discoveredFrom": "skills/defillama-radar/SKILL.md"
     },
     {
