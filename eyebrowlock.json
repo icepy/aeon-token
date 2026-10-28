@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-28T08:44:57.77811421Z",
+  "generatedAt": "2026-10-28T09:23:39.805592721Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -200,7 +200,7 @@
         },
         {
           "path": "scan.py",
-          "hash": "d514bfaed73383e7d7d7d88806a7348bb3f40d2346c4eac642477a004074452a"
+          "hash": "8a9c66dd433d706345bcb0ac835a8194973f0ee016745064979e5a0a705caba7"
         }
       ],
       "findings": [
@@ -218,12 +218,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 719,
+          "line": 729,
           "snippet": "r = subprocess.run([\"./notify\", \"-f\", REPORT], capture_output=True, text=True)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-4d44deac89a07f789cf5f2c4543f3977678ed88973211627706fd62fdfcad8ee",
+      "contentHash": "sha256-683a4426bd367ab0cf0938c598312bf6bfd2f24824bb4411889471d63a9f265c",
       "discoveredFrom": "skills/arxiv-radar/SKILL.md"
     },
     {
