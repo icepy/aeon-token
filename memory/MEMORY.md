@@ -4,6 +4,7 @@
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `memory/cron-state.json` 的 `last_dispatch` 和 `logs/`。`scheduler.yml` 用精确时隙债务模型（`cron-due.sh` + `CATCHUP_HOURS=12`）。
 - **2026-10-25 起主线 = 发现层。** DEUS / NOTE 的价格监控已停（价格自己每天看），下面归档。
+- **2026-10-28 `defillama-radar` 首跑 = 基线轮**（`dl-v1`）：8859 条全量入 seen，可报 0、未发通知。之后新度靠全量 id 求差。**`★清单内` 无判别力**（103 命中里 96 条是描述撞 `Robinhood Chain`/`USDG`）。待办：`Interface` 类目是否进 `EXCL_CATEGORY`。[source: logs/2026-10-28#defillama-radar]
 - **`aeon-update` 上游基线已锚定**（2026-10-26 首跑）：`aeonfun/aeon` HEAD `6eddd85`，与本地 `main` 实测 `ahead=0`（界面 `behind=603` 全是本仓自动化提交）。状态存 `memory/topics/aeon-update-state.json`。[source: logs/2026-10-26#aeon-update]
 
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
