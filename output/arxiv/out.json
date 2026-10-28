@@ -1,132 +1,54 @@
 [
  {
-  "id": "2610.33149",
-  "term": "verifiable training",
-  "terms": [
-   "verifiable training"
-  ],
-  "window": 30,
-  "name": "WebUniverse",
-  "title": "WebUniverse: Scaling Verified Training Data for Agentic Web Development",
-  "published": "2026-10-23",
-  "link": "https://arxiv.org/abs/2610.33149",
-  "carrier": "production"
- },
- {
-  "id": "2610.33185",
-  "term": "zero-knowledge",
-  "terms": [
-   "zero-knowledge"
-  ],
-  "window": 30,
-  "name": "",
-  "title": "Post-Quantum Perfect Zero-Knowledge Arguments for NP From Any One-Way Permutation",
-  "published": "2026-10-23",
-  "link": "https://arxiv.org/abs/2610.33185",
-  "carrier": "commitment"
- },
- {
-  "id": "2610.33587",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
-  "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
-  ],
-  "window": 30,
-  "name": "",
-  "title": "Who Verifies the Verifiers? Accountable Semantic Consensus for AI-Mediated Web Information Verification",
-  "published": "2026-10-24",
-  "link": "https://arxiv.org/abs/2610.33587",
-  "carrier": "protocol"
- },
- {
-  "id": "2610.33318",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
-  "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
-  ],
-  "window": 30,
-  "name": "LLM",
-  "title": "A Deterministic Security Runtime for LLM Agents on MPI and Batch-Scheduled HPC Systems: Consensus-Governed, Hardware-Rooted Supervision of Every Rank",
-  "published": "2026-10-23",
-  "link": "https://arxiv.org/abs/2610.33318",
-  "carrier": "node"
- },
- {
-  "id": "2610.35075",
-  "term": "robot data",
-  "terms": [
-   "robot data"
-  ],
-  "window": 30,
-  "name": "",
-  "title": "Zero-HLM: Generalizable Humanoid Loco-Manipulation without Real Robot Data",
-  "published": "2026-10-26",
-  "link": "https://arxiv.org/abs/2610.35075",
-  "carrier": "robot"
- },
- {
-  "id": "2610.34358",
-  "term": "embodied AI",
-  "terms": [
-   "embodied AI"
-  ],
-  "window": 30,
-  "name": "EAST",
-  "title": "EAST: Embodied AI Safety Testing via Systematic Fault Injection in Digital Twins",
-  "published": "2026-10-25",
-  "link": "https://arxiv.org/abs/2610.34358",
-  "carrier": "robot"
- },
- {
-  "id": "2610.33745",
-  "term": "embodied AI",
-  "terms": [
-   "embodied AI"
-  ],
-  "window": 30,
-  "name": "",
-  "title": "POD-RoPE: Rotary Position Encoding over Physical Observation Distributions for Embodied AI",
-  "published": "2026-10-24",
-  "link": "https://arxiv.org/abs/2610.33745",
-  "carrier": "robot"
- },
- {
-  "id": "2610.34186",
+  "id": "2610.37619",
   "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
    "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "HuGe",
-  "title": "HuGe: Scaling Humanoid Generalist Vision-Language-Action Models with Egocentric Experience",
-  "published": "2026-10-25",
-  "link": "https://arxiv.org/abs/2610.34186",
+  "name": "",
+  "title": "Perceiving and Predicting Dynamic Sports: Spatiotemporal Intelligence in Vision Models for Egocentric Tennis Video",
+  "published": "2026-10-27",
+  "link": "https://arxiv.org/abs/2610.37619",
   "carrier": "robot"
  },
  {
-  "id": "2610.33685",
+  "id": "2610.37509",
   "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
    "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "EXE",
-  "title": "EXE: Egocentric Cross-Embodiment Pretraining via Factorized Latent Actions for VLA Models",
-  "published": "2026-10-24",
-  "link": "https://arxiv.org/abs/2610.33685",
+  "name": "",
+  "title": "Ego-CEVR: Learning Cross-Embodiment Visual Representations from Human Egocentric Videos",
+  "published": "2026-10-27",
+  "link": "https://arxiv.org/abs/2610.37509",
   "carrier": "robot"
  },
  {
-  "id": "2610.33778",
-  "term": "ti:\"data generation\" AND cat:cs.RO",
+  "id": "2610.36859",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
-   "ti:\"data generation\" AND cat:cs.RO"
+   "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "RoboReason",
-  "title": "RoboReason: Boosting Robotics-Relevant VLM Reasoning Through Scalable Data Generation",
-  "published": "2026-10-24",
-  "link": "https://arxiv.org/abs/2610.33778",
+  "name": "ActiveAlign",
+  "title": "ActiveAlign: Aligning Egocentric Manipulation via Active Perception",
+  "published": "2026-10-27",
+  "link": "https://arxiv.org/abs/2610.36859",
+  "carrier": "robot"
+ },
+ {
+  "id": "2610.37652",
+  "term": "ti:\"hand-object\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"hand-object\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Pushing Dexterity and Safety for In-Hand Object Pose Reaching That Works Remarkably Well",
+  "published": "2026-10-27",
+  "link": "https://arxiv.org/abs/2610.37652",
   "carrier": "robotic"
  }
 ]

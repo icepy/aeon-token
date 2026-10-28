@@ -1,0 +1,227 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 原始 98 · 幸存 4"
+      },
+      "children": [
+        "header",
+        "note",
+        "sep1",
+        "h1",
+        "g1",
+        "sep2",
+        "h2",
+        "p4",
+        "sep3",
+        "h3",
+        "grid",
+        "note2"
+      ]
+    },
+    "header": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b-window",
+        "b-raw",
+        "b-surv",
+        "b-idx"
+      ]
+    },
+    "b-window": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 30 天",
+        "variant": "outline"
+      },
+      "children": []
+    },
+    "b-raw": {
+      "type": "Badge",
+      "props": {
+        "text": "原始 98",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "b-surv": {
+      "type": "Badge",
+      "props": {
+        "text": "幸存 4",
+        "variant": "default"
+      },
+      "children": []
+    },
+    "b-idx": {
+      "type": "Badge",
+      "props": {
+        "text": "索引 2026-10-27",
+        "variant": "outline"
+      },
+      "children": []
+    },
+    "note": {
+      "type": "Text",
+      "props": {
+        "text": "索引最新 2026-10-27（周二，距今 1 天），节律正常。本轮 4 条全部集中在同一天。",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "第一视角感知",
+        "level": "h2"
+      },
+      "children": []
+    },
+    "g1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "p1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ego-CEVR — 从人类第一视角视频学跨本体视觉表征",
+        "href": "https://arxiv.org/abs/2610.37509",
+        "source": "arXiv",
+        "score": "2610.37509"
+      },
+      "children": []
+    },
+    "p2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ActiveAlign — 主动感知对齐第一视角操作",
+        "href": "https://arxiv.org/abs/2610.36859",
+        "source": "arXiv",
+        "score": "2610.36859"
+      },
+      "children": []
+    },
+    "p3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Egocentric Tennis Video — 第一视角网球视频中的时空动态感知与预测",
+        "href": "https://arxiv.org/abs/2610.37619",
+        "source": "arXiv",
+        "score": "2610.37619"
+      },
+      "children": []
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "h2": {
+      "type": "Heading",
+      "props": {
+        "text": "灵巧操作",
+        "level": "h2"
+      },
+      "children": []
+    },
+    "p4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "In-Hand Object Pose Reaching — 兼顾灵巧度与安全的在手物体姿态到达",
+        "href": "https://arxiv.org/abs/2610.37652",
+        "source": "arXiv",
+        "score": "2610.37652"
+      },
+      "children": []
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "h3": {
+      "type": "Heading",
+      "props": {
+        "text": "单侧读数",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "s1": {
+      "type": "Stat",
+      "props": {
+        "label": "egocentric · raw 25",
+        "value": "3",
+        "delta": "新收（本轮唯一多头）",
+        "trend": "up"
+      },
+      "children": []
+    },
+    "s2": {
+      "type": "Stat",
+      "props": {
+        "label": "hand-object · raw 7",
+        "value": "1",
+        "delta": "新收",
+        "trend": "up"
+      },
+      "children": []
+    },
+    "s3": {
+      "type": "Stat",
+      "props": {
+        "label": "加密侧 · 7 词",
+        "value": "0",
+        "delta": "全零",
+        "trend": "neutral"
+      },
+      "children": []
+    },
+    "note2": {
+      "type": "Text",
+      "props": {
+        "text": "加密侧 7 词全零（跨窗有命中，窗口太短，非死词）",
+        "variant": "caption"
+      },
+      "children": []
+    }
+  }
+}

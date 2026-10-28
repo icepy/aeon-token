@@ -167,3 +167,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-10-28,narrative-brief,claude-opus-5-5,6796,726,85632,0
 2026-10-28,github-radar,claude-opus-5-5,44376,8970,373120,0
 2026-10-28,heartbeat,claude-opus-5-5,76827,32093,1385728,0
+2026-10-28,arxiv-radar,claude-opus-5-5,2508,589,138624,0

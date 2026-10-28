@@ -1,5 +1,5 @@
 # Long-term Memory
-*Last consolidated: 2026-10-27*
+*Last consolidated: 2026-10-28*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `memory/cron-state.json` 的 `last_dispatch` 和 `logs/`。`scheduler.yml` 用精确时隙债务模型（`cron-due.sh` + `CATCHUP_HOURS=12`）。
@@ -17,7 +17,7 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
-- `arxiv-radar` ✅ 每天 07:30 UTC · **26 词 · vM** · 10-27（30d）原始 95 / 幸存 10。**vK 两新词红利期结束**（`human demonstration` 12/0 · `hand-object` 6/0），增量转回 `egocentric`(22/2)。12 饱和词最新发布全在近 30 天 → 全别删；零命中 7 词跨窗全档「窗口太短」。待办：`consensus` 同形两轮 → 加 `多智能体验证` 标签。[source: logs/2026-10-27#arxiv-radar（第二十七轮）]
+- `arxiv-radar` ✅ 每天 07:30 UTC · **26 词 · vM** · 10-28（30d）原始 98 / 幸存 4。**`第一视角感知` 首次被真实流量填上**（`egocentric` 25/3，17 个饱和词里唯一多头）；`hand-object` 7/1 补上 `灵巧操作` 首条实证；14 加密词全零（跨窗有命中，连两轮「窗口太短」）。开跑前遇 **arXiv IP 级 429**（首次 `ARXIV_RADAR_DEGRADED`），静默冷却 12 分钟恢复。待办：`consensus` 同形三轮 → 加 `多智能体验证` 标签。[source: logs/2026-10-28#arxiv-radar（第二十八轮）]
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。10-27 连跑五轮：7d 正式原始 462→幸存 7→报告级 2；90d 正式 5404→629→54。**日跑回 7 天窗，90d 只在加词/补历史时用** —— 90d 跟在 7d 后跑，增量全被 `seen` 吃干（第二次拿到算术证据）。star 第 10/11 次失效（报告级 ~70% 是 ★0）。[source: logs/2026-10-27#github-radar（第二十轮）]
 
 
