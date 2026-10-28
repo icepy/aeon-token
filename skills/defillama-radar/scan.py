@@ -16,6 +16,9 @@ var token（空格分隔）:
 
 notified 四态: null=待报 / "YYYY-MM-DD"=已报 / "filtered"=首次就没过过滤 / "baseline"=基线轮
 可报集合 = notified is None。失败必须能与「零可报」区分。
+
+seen 文件存在但读不出来 ≠ 首次运行：前者是损坏。损坏时先备份原文件、审计打 ⚠️、
+STATUS 走 DEGRADED，然后按基线轮重灌 —— 不许静默当首次跑。
 """
 import json
 import os
@@ -34,6 +37,7 @@ AUD = OUTD + "/audit.log"
 REPORT = OUTD + "/report.md"
 SEENDRY = OUTD + "/seen.dry.json"
 SEEN = "memory/defillama-seen.json"
+SEENBAK = "memory/defillama-seen.broken.json"
 NAMES = "memory/universe-names.txt"
 API = "https://api.llama.fi/protocols"
 
@@ -42,10 +46,11 @@ TIMEOUT = 45
 NOTIFY_TOP = 30
 SEEN_CAP = 12000
 CHAIN_MIN_HITS = 3
-EXCL_CATEGORY = {"CEX", "Chain"}
+EXCL_CATEGORY = {"CEX", "Chain", "Interface"}
 
 # 链白名单（人维护）。拼写以 /protocols 为准，不是 /v2/chains 的显示名。
 # 两组孪生：BSC↔Binance（chainId 56）、OP Mainnet↔Optimism。两条都收，防命名漂移。
+# 加链后必须删 memory/defillama-seen.json 重做基线，否则该链已有协议一条都不会报。
 CHAINS = ["Ethereum", "Base", "Solana", "Arbitrum", "Ink",
           "Binance", "BSC", "Optimism", "OP Mainnet",
           "Hyperliquid L1", "Robinhood Chain"]
@@ -71,13 +76,16 @@ T0 = time.time()
 
 
 def load_seen(path):
+    """返回 (dict, err)。err 非空 = 文件在、但读不出来（损坏），与「文件不存在」区分。"""
     if not os.path.exists(path):
-        return {}
+        return {}, ""
     try:
         d = json.load(open(path, encoding="utf-8"))
-        return d if isinstance(d, dict) else {}
-    except Exception:
-        return {}
+    except Exception as ex:
+        return {}, (str(ex)[:60] or "解析失败")
+    if not isinstance(d, dict):
+        return {}, "顶层不是对象"
+    return d, ""
 
 
 def save_seen(d, path):
@@ -131,7 +139,7 @@ def out_ids():
 
 def mark_ids(ids):
     """只把 notified 仍为 null 的改成今天。返回改了几条。"""
-    seen = load_seen(SEEN)
+    seen, _ = load_seen(SEEN)
     n = 0
     for i in ids:
         rec = seen.get(i)
@@ -181,10 +189,16 @@ if SENDNOW:
 
 # ── seen ──────────────────────────────────────────────────────────
 if DRY:
-    seen = load_seen(SEENDRY) if os.path.exists(SEENDRY) else load_seen(SEEN)
+    seen, SEEN_ERR = load_seen(SEENDRY) if os.path.exists(SEENDRY) else load_seen(SEEN)
 else:
-    seen = load_seen(SEEN)
+    seen, SEEN_ERR = load_seen(SEEN)
 BASELINE = len(seen) == 0
+SEEN_BROKEN = bool(SEEN_ERR)
+if SEEN_BROKEN and not DRY:
+    try:
+        os.replace(SEEN, SEENBAK)          # 留证据，再让本轮重灌覆盖
+    except Exception:
+        pass
 known = load_names()
 
 drop = {"noid": 0, "seen": 0, "parent": 0, "category": 0, "chain": 0}
@@ -224,6 +238,8 @@ if payload is None:
          "丢弃 无id=0 · seen=0 · parent=0 · category=0 · 链白名单=0 · 拉取失败=1",
          "全量 0 · 新增 id 0（可报 0 / 过滤标记 0）· 重报（上轮未通知）0 · 本次通知 跳过（失败）",
          "判据: DefiLlama 侧降级，不是白名单的问题，别据此改词或改链。"]
+    if SEEN_BROKEN:
+        L.append("   ⚠️ 同时 seen 解析失败（%s），本轮未重灌 —— 下次成功跑会被当基线轮" % SEEN_ERR)
     open(AUD, "w", encoding="utf-8").write("\n".join(L) + "\n")
     print("\n".join(L))
     print("STATUS: DEFILLAMA_RADAR_DEGRADED · 原始 0 · 可报 0 · 总耗时 %.0fs"
@@ -296,6 +312,10 @@ L = ["defillama-radar %s · var=%r" % (VERSION, var),
      "单侧读数: 加密侧 %d / AI 侧 0（本源只有加密，别把高命中读成词表变准）"
      % len(out)]
 
+if SEEN_BROKEN:
+    L.append("   ⚠️ seen 解析失败（%s）· 已备份到 %s 并重灌 —— 上轮及更早的 notified 记录已丢"
+             % (SEEN_ERR, SEENBAK))
+
 low = [c for c in CHAINS if chain_hits[c] < CHAIN_MIN_HITS and c not in CHAIN_TWINS]
 if low:
     L.append("   ⚠️ 链名可能拼错或已改名: " + " · ".join(low))
@@ -360,10 +380,11 @@ if DRY or BASELINE or not out:
     print("notify: 跳过（%s）" % ("dry-run" if DRY else
                                 ("基线轮" if BASELINE else "零可报")))
 else:
-    print("notify: **未发** —— 把 %s 覆写成中文（协议信息中文、其余英文），然后："
-          % REPORT)
+    print("notify: **未发** —— 把 %s 覆写成中文（协议信息中文、其余英文），然后：" % REPORT)
     print("        python3 skills/defillama-radar/scan.py \"send\"")
 
 print("%s · 全量 %d · 可报 %d · 总耗时 %.0fs"
       % (L2, len(payload), len(out), time.time() - T0))
-print("STATUS: DEFILLAMA_RADAR_OK · 原始 %d · 可报 %d" % (len(payload), len(out)))
+print("STATUS: DEFILLAMA_RADAR_%s · 原始 %d · 可报 %d%s"
+      % ("DEGRADED" if SEEN_BROKEN else "OK", len(payload), len(out),
+         " · 原因=seen 损坏重灌" if SEEN_BROKEN else ""))

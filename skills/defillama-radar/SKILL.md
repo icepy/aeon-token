@@ -35,6 +35,8 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 
 **seen 存全量 id，不筛链。** 同一个协议跨多条链仍是同一个 `id`，所以"多链上同一个协议"天然只算一次。
 
+**seen 命中就跳过，不看过不过滤。** 所以已入库的协议永远不会再进报告——包括当时被链白名单挡掉的那些。
+
 ## `notified` 四态
 
 | 值 | 含义 | 再报？ |
@@ -45,6 +47,22 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 | `"baseline"` | 基线轮批量入表 | 不会 |
 
 入库那一刻逐条定死：被任一桶丢掉写 `filtered`，全通过写 `null`。**`filtered` 永不回退、永不补报。** 可报集合 = `notified is None`。
+
+基线轮把**全量**（不只是可报的）写成 `baseline`，所以那 6105 条被过滤掉的也一起钉死了。推论：
+
+- **补 `chains` 不补报。** 一个 `chains=[]` 的协议后来接上主网，仍然是 `baseline`，进不来。
+- **加链不回溯。** 往 `CHAINS` 加一条新链，该链上已有协议一条都不会报，全都在 seen 里。
+
+## 加链 = 必须重做基线
+
+往 `CHAINS` 加链（或改任何会让旧 `filtered` 变可报的过滤器）之后：
+
+1. 删 `memory/defillama-seen.json`
+2. 手动 dispatch 一轮
+3. 确认审计里 `基线轮=True`、有 `⚠️` 之外无异常
+4. 这一轮不出报告、不发通知，属预期
+
+不删就直接跑，加链等于没加，而且不会有任何报错。
 
 ## 词表与白名单在哪
 
@@ -58,16 +76,23 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 - **只信 `chains` 数组。** `chain` 字段常是 `Multi-Chain`，不许拿它过滤。
 - **不设 TVL 地板、不排 TVL。** TVL=0 也报——地板是第三层的活儿。
 - **`parentProtocol` 存在即丢。** 版本号铺开是最大噪声源。
-- `category` ∈ `EXCL_CATEGORY`（CEX / Chain）丢。
+- `category` ∈ `EXCL_CATEGORY`（CEX / Chain / Interface）丢。
 - `listedAt` 缺失记 `null`，不猜、不回填。
 - 不做方向映射（`category` 原样带）；不做判断；**不写候选卡**（卡留第三层）。
 - 不读 `output/arxiv` / `output/ghradar`。
 - 基线轮（seen 为空）只入 seen、不出报告。
+- **加链后必须删 seen 重做基线**（见上节）。
 - 报告级 0 时不发通知、**不重写 `report.md`**。
 - **发送与标记是同一个动作**：只有 `send` 成功才标 `notified`，不许先标后发。
 - 产物文件名固定（`out.json` / `out.dry.json` / `seen.dry.json` / `audit.log` / `report.md`）。轮次号只进日志内容。
 - 本 skill 不产方向标签，没有写 labels 这一步。
 - 全部输出简体中文；**通知正文里协议信息（名字、类目、一句话）用中文，其余可英文**。
+
+## 判据（读数怎么读）
+
+- **`基线轮=True` 且 seen 文件本来就在** = 不正常。seen 文件存在但解析失败时，脚本会把它备份到 `memory/defillama-seen.broken.json`、审计打 `⚠️ seen 解析失败`、`STATUS` 走 `DEFILLAMA_RADAR_DEGRADED`，然后按基线轮重灌。**看到这个 ⚠️ 要进日志的判据级发现，写清丢了哪一轮的记录。**
+- `STATUS: ..._DEGRADED` 有两种来源：拉取失败、seen 损坏。两种都必须写进日志，不许只写「本轮 0」。
+- 正常日可报应接近 0。可报忽然上三位数，先查 seen 有没有被重灌，再怀疑词表。
 
 ## Config
 
@@ -76,6 +101,7 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 写（脚本自己写，模型不用管）：
 - `output/defillama/out.json`（非 dry-run，只放可报集合）· `out.dry.json` · `seen.dry.json` · `audit.log`
 - `memory/defillama-seen.json`（非 dry-run 才写）
+- `memory/defillama-seen.broken.json`（只在 seen 损坏时备份一次）
 
 写（**模型写**）：`output/defillama/report.md` 的中文稿
 
@@ -85,33 +111,3 @@ DefiLlama 没有可靠的创建时间：`listedAt` 大面积缺失（实测 `Lid
 
 ```bash
 python3 skills/defillama-radar/scan.py "${var}"
-```
-
-审计全文打在 stdout，不用再 `cat` 回去。
-
-### 2. 写中文稿并发（可报 > 0 且非 dry-run）
-
-脚本已把 `report.md` 写成机械版。覆写为中文：
-
-```
-**defillama-radar** · 可报 3
-
-**Base**
-- 某协议 — 一句话中文描述 · TVL $12,400 · [链接]
-```
-
-协议信息中文，其余（字段标签、链名、数字）可英文。**不做判断**，不写"值得看"。然后：
-
-```bash
-python3 skills/defillama-radar/scan.py "send"
-```
-
-`send` 成功即自动标记；失败不标记，下一轮自动重报。**发失败别手动 `mark-sent`。**
-
-### 3. 写日志
-
-往 `memory/logs/${today}.md` 追加一节 `### defillama-radar（第 N 轮）`：口径 + 漏斗（四桶分开写）+ 链命中 + 单侧读数 + 你自己的判据级发现。可报为 0 就只写一行。
-
-### 4. 输出
-
-给：`VERSION` · 全量 · 四桶 · 链命中 · 单侧读数 · 可报明细 · 待办。**只做发现，不做判断。**
