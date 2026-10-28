@@ -1,6 +1,6 @@
-defillama-radar dl-v1 · var=''
+defillama-radar dl-v1 · var='dry-run'
 丢弃 无id=0 · seen=8859 · parent=0 · category=0 · 链白名单=0 · 拉取失败=0
-全量 8859 · 新增 id 0（可报 0 / 过滤标记 0）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+全量 8859 · 新增 id 0（可报 0 / 过滤标记 0）· 重报（上轮未通知）0 · 本次通知 跳过（dry-run）
 基线轮=False
 链命中: Ethereum=1891 · Base=912 · Solana=465 · Arbitrum=1044 · Ink=33 · Binance=1145 · BSC=0 · Optimism=392 · OP Mainnet=0 · Hyperliquid L1=210 · Robinhood Chain=292
 单侧读数: 加密侧 0 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
