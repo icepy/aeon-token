@@ -1,0 +1,656 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Crypto — 2026-10-28 · chop（low）",
+        "description": "defi-overview 2026-10-28（23:15Z 复跑）| DeFi Mixed：TVL 剔除假涨后 −1.6%，量 +13%"
+      },
+      "children": [
+        "h1",
+        "conv-badge",
+        "sep1",
+        "take-head",
+        "take-text",
+        "sep2",
+        "pos-head",
+        "pos-text",
+        "sep3",
+        "tvl-head",
+        "tvl-stat",
+        "tvl-alert",
+        "chains-head",
+        "chains-table",
+        "sep4",
+        "movers-head",
+        "movers-note",
+        "movers-table",
+        "sep5",
+        "fees-head",
+        "fees-table",
+        "sep6",
+        "fees-beat-head",
+        "fees-beat-text",
+        "sep7",
+        "dex-head",
+        "dex-stat",
+        "dex-text",
+        "dex-top",
+        "sep8",
+        "stables-head",
+        "stables-stat",
+        "stables-text",
+        "sep9",
+        "realyield-head",
+        "realyield-table",
+        "sep10",
+        "incentive-head",
+        "incentive-table",
+        "sep11",
+        "macro-head",
+        "macro-grid",
+        "sep12",
+        "pred-head",
+        "pred-text",
+        "pred-progress",
+        "pred-fomc-head",
+        "pred-fomc-text",
+        "pred-progress2",
+        "sep13",
+        "sources-text",
+        "warn-head",
+        "warn1",
+        "warn2"
+      ]
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "Crypto — 2026-10-28（23:15Z 复跑）",
+        "level": "h1"
+      }
+    },
+    "conv-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "chop（conviction low）",
+        "variant": "secondary"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "take-head": {
+      "type": "Heading",
+      "props": {
+        "text": "Take",
+        "level": "h2"
+      }
+    },
+    "take-text": {
+      "type": "Text",
+      "props": {
+        "text": "chop — BTC $81,206（+0.50%），24h 广度 17/20，但 7d 只剩 3/20、F&G 卡在 51 一动不动。绿的是平盘日，不是拐点。",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "pos-head": {
+      "type": "Heading",
+      "props": {
+        "text": "仓位",
+        "level": "h2"
+      }
+    },
+    "pos-text": {
+      "type": "Text",
+      "props": {
+        "text": "DEFI_MONITOR_NO_CONFIG —— on-chain-watches.yml 无 type: pool/position，无仓可查。",
+        "variant": "muted"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "tvl-head": {
+      "type": "Heading",
+      "props": {
+        "text": "TVL",
+        "level": "h2"
+      }
+    },
+    "tvl-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$88.67B",
+        "delta": "+0.75% 24h / −3.07% 7d / −7.70% 30d",
+        "trend": "up"
+      }
+    },
+    "tvl-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "+0.75% 是假数",
+        "message": "Bitcoin 链一夜跳 +$1.99B（4.29→6.27B），但 85 个非 CEX Bitcoin 腿合计只 +$113M（+0.31%），全聚合只涨 $0.66B。剔掉 Bitcoin 链，实际 −1.59%。",
+        "type": "warning"
+      }
+    },
+    "chains-head": {
+      "type": "Heading",
+      "props": {
+        "text": "Top chains（1d / 7d）",
+        "level": "h3"
+      }
+    },
+    "chains-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "#",
+          "链",
+          "TVL",
+          "1d",
+          "7d",
+          "备注"
+        ],
+        "rows": [
+          [
+            "1",
+            "Ethereum",
+            "$46.37B",
+            "−3.86%",
+            "−7.67%",
+            "30 天最大单日跌幅"
+          ],
+          [
+            "2",
+            "Bitcoin",
+            "$6.27B",
+            "+46.42%",
+            "+41.52%",
+            "← 覆盖缺口，见图注"
+          ],
+          [
+            "3",
+            "Base",
+            "$6.08B",
+            "+0.81%",
+            "−2.89%",
+            "—"
+          ]
+        ]
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "movers-head": {
+      "type": "Heading",
+      "props": {
+        "text": "Movers",
+        "level": "h2"
+      }
+    },
+    "movers-note": {
+      "type": "Text",
+      "props": {
+        "text": "非 CEX；CEX 整层仍作废",
+        "variant": "caption"
+      }
+    },
+    "movers-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "方向",
+          "项目",
+          "变化",
+          "规模",
+          "备注"
+        ],
+        "rows": [
+          [
+            "↑",
+            "SunSwap V4",
+            "+25.65%",
+            "$0.107B→$0.135B",
+            "Tron 单链，无公告"
+          ],
+          [
+            "↓",
+            "SUNSwap V3",
+            "−30.60%",
+            "$0.216B→$0.150B",
+            "同链同项目，V3→V4 迁移"
+          ],
+          [
+            "↑",
+            "Aero Slipstream",
+            "+11.45%",
+            "$0.106B→$0.118B",
+            "Base 腿主导，7d +3421% 是新上池"
+          ],
+          [
+            "↓",
+            "Anemoy Capital",
+            "−16.02%",
+            "$0.283B→$0.238B",
+            "纯 Ethereum RWA 单腿"
+          ],
+          [
+            "↓",
+            "Spark Savings",
+            "−10.97%",
+            "$1.58B→$1.41B",
+            "ETH $973M + Arbitrum $310M 双降"
+          ]
+        ]
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "fees-head": {
+      "type": "Heading",
+      "props": {
+        "text": "Fees leaders（24h）",
+        "level": "h2"
+      }
+    },
+    "fees-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "#",
+          "协议",
+          "24h 费用",
+          "vs 7d 均值"
+        ],
+        "rows": [
+          [
+            "1",
+            "Tether",
+            "$17.26M",
+            "−0.3%"
+          ],
+          [
+            "2",
+            "Circle USDC",
+            "$6.80M",
+            "−1.0%"
+          ],
+          [
+            "3",
+            "PumpSwap",
+            "$3.00M",
+            "−1.5%"
+          ]
+        ]
+      }
+    },
+    "fees-beat-head": {
+      "type": "Heading",
+      "props": {
+        "text": "Fees 跑赢 TVL（7d）",
+        "level": "h3"
+      }
+    },
+    "fees-beat-text": {
+      "type": "Text",
+      "props": {
+        "text": "Morpho Blue — 费用 +24.31% / TVL −1.58% —— 唯一活口",
+        "variant": "body"
+      }
+    },
+    "sep6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "dex-head": {
+      "type": "Heading",
+      "props": {
+        "text": "DEX vol（24h）",
+        "level": "h2"
+      }
+    },
+    "dex-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "DEX 24h 量",
+        "value": "$7.97B",
+        "delta": "+13.0%",
+        "trend": "up"
+      }
+    },
+    "dex-text": {
+      "type": "Text",
+      "props": {
+        "text": "+13.0% vs 10-27 $7.05B，+6.4% vs 7d 均值 $7.49B —— 四轮来第一个真涨日",
+        "variant": "body"
+      }
+    },
+    "dex-top": {
+      "type": "Text",
+      "props": {
+        "text": "top: Uniswap V4 $1.089B（+16.1%）· Uniswap V3 $0.933B（−6.9%）· PancakeSwap V3 $0.592B（−7.8%）",
+        "variant": "caption"
+      }
+    },
+    "sep7": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stables-head": {
+      "type": "Heading",
+      "props": {
+        "text": "Stables",
+        "level": "h2"
+      }
+    },
+    "stables-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Stables 总量",
+        "value": "$302.64B",
+        "delta": "−0.02% 24h / −0.61% 7d",
+        "trend": "down"
+      }
+    },
+    "stables-text": {
+      "type": "Text",
+      "props": {
+        "text": "第三个周净负。USDD −15.53% 到 $1.50B（周内从 $1.776B 掉下来，非首现，不是新脱锚）",
+        "variant": "body"
+      }
+    },
+    "sep8": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "realyield-head": {
+      "type": "Heading",
+      "props": {
+        "text": "Real yield（可持续，≥$10M，已过滤）",
+        "level": "h2"
+      }
+    },
+    "realyield-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "池子",
+          "链",
+          "apyBase",
+          "TVL",
+          "7d 均值"
+        ],
+        "rows": [
+          [
+            "WETH-USDT（Uniswap V3）",
+            "ETH",
+            "38.38%",
+            "$89M",
+            "28.98%"
+          ],
+          [
+            "APXUSD（Apyx）",
+            "ETH",
+            "13.06%",
+            "$153M",
+            "12.95%"
+          ],
+          [
+            "ONYC（Onre）",
+            "Solana",
+            "11.02%",
+            "$292M",
+            "11.02%"
+          ]
+        ]
+      }
+    },
+    "sep9": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "incentive-head": {
+      "type": "Heading",
+      "props": {
+        "text": "Incentive yield（points / emissions，≥$25M）",
+        "level": "h2"
+      }
+    },
+    "incentive-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "池子",
+          "链",
+          "apy",
+          "TVL",
+          "备注"
+        ],
+        "rows": [
+          [
+            "CVXCRV（Convex）",
+            "ETH",
+            "15.04%",
+            "$49M",
+            "全靠 $CRV/$CVX/frxETH 奖励"
+          ],
+          [
+            "USDS（Sky Lending）",
+            "ETH",
+            "8.18%",
+            "$160M",
+            "8.18% 全是奖励"
+          ]
+        ]
+      }
+    },
+    "sep10": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "macro-head": {
+      "type": "Heading",
+      "props": {
+        "text": "Macro",
+        "level": "h2"
+      }
+    },
+    "macro-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6",
+        "m7"
+      ]
+    },
+    "m1": {
+      "type": "Stat",
+      "props": {
+        "label": "BTC",
+        "value": "$81,206",
+        "delta": "+0.50% / 7d −4.21%",
+        "trend": "up"
+      }
+    },
+    "m2": {
+      "type": "Stat",
+      "props": {
+        "label": "ETH",
+        "value": "$2,358",
+        "delta": "+0.48% / −5.54%",
+        "trend": "up"
+      }
+    },
+    "m3": {
+      "type": "Stat",
+      "props": {
+        "label": "SOL",
+        "value": "$102.44",
+        "delta": "+1.27%",
+        "trend": "up"
+      }
+    },
+    "m4": {
+      "type": "Stat",
+      "props": {
+        "label": "F&G",
+        "value": "51",
+        "delta": "Neutral，昨 51 平",
+        "trend": "neutral"
+      }
+    },
+    "m5": {
+      "type": "Stat",
+      "props": {
+        "label": "广度",
+        "value": "17/20",
+        "delta": "7d 3/20",
+        "trend": "up"
+      }
+    },
+    "m6": {
+      "type": "Stat",
+      "props": {
+        "label": "BTC 占比",
+        "value": "59.46%",
+        "delta": "+0.05pp",
+        "trend": "up"
+      }
+    },
+    "m7": {
+      "type": "Badge",
+      "props": {
+        "text": "chop",
+        "variant": "outline"
+      }
+    },
+    "sep11": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "pred-head": {
+      "type": "Heading",
+      "props": {
+        "text": "预测市场",
+        "level": "h2"
+      }
+    },
+    "pred-text": {
+      "type": "Text",
+      "props": {
+        "text": "以色列大选三席占成交量前五 ——「Netanyahu 任下任总理」YES 50.5%（$5.86M，量第一）",
+        "variant": "body"
+      }
+    },
+    "pred-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 50.5,
+        "max": 100,
+        "label": "Netanyahu 任下任总理 — YES 50.5%（$5.86M，量第一）"
+      }
+    },
+    "pred-fomc-head": {
+      "type": "Heading",
+      "props": {
+        "text": "FOMC 定价",
+        "level": "h3"
+      }
+    },
+    "pred-fomc-text": {
+      "type": "Text",
+      "props": {
+        "text": "10 月 FOMC 已结算：不变息 100%；12 月盘口反过来定价 加息 25bp 79.0%。",
+        "variant": "body"
+      }
+    },
+    "pred-progress2": {
+      "type": "Progress",
+      "props": {
+        "value": 79,
+        "max": 100,
+        "label": "12 月加息 25bp — 79.0%"
+      }
+    },
+    "sep12": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sources-text": {
+      "type": "Text",
+      "props": {
+        "text": "sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（第 6 轮 400）| var: none",
+        "variant": "caption"
+      }
+    },
+    "warn-head": {
+      "type": "Heading",
+      "props": {
+        "text": "两条口径警告",
+        "level": "h2"
+      }
+    },
+    "warn1": {
+      "type": "Alert",
+      "props": {
+        "title": "1. /overview/dexs 的 total24h 滞后一个日历日",
+        "message": "字段 $7.059B 精确等于图表 10-27 的 $7.053B、total48hto24h $8.418B 等于 10-26。字段的 change_1d −16.14% 算的是 10-26→10-27，不是今天。今日真值走图表：+13.0%。",
+        "type": "warning"
+      }
+    },
+    "warn2": {
+      "type": "Alert",
+      "props": {
+        "title": "2. 昨天 DEX 数据是盘中截取",
+        "message": "昨天日志里 DEX「$5.99B / −1.86%」是盘中截取未走完的 10-27 桶，该日完成为 $7.053B。别拿昨天的量跟今天比。",
+        "type": "warning"
+      }
+    }
+  }
+}
