@@ -1,52 +1,53 @@
-基线轮完成，无信号可报，未发通知（符合 SKILL「基线轮不出报告」）。
+MEMORY.md now within all caps (7898 B / 53 lines / no line >300). Skill produced zero reportable items, so per the skill's rule no notification is sent. Final report:
 
-# defillama-radar · 第 1 轮（基线轮）
+## defillama-radar · 第 2 轮
 
-**VERSION** `dl-v1` · var 为空 · 单次请求 `https://api.llama.fi/protocols` · 耗时 0s
-`STATUS: DEFILLAMA_RADAR_OK · 原始 8859 · 可报 0`
+**`VERSION: dl-v1`** · var 为空 · 单请求 `https://api.llama.fi/protocols` · 1s
 
-## 全量
-payload 8859 条协议，**id 无重复**（8859 distinct / 8859 行），无空 id。`memory/defillama-seen.json` 首建，8859 条全部 `notified="baseline"`。
+### 全量与四桶
 
-## 四桶（分开写）
-| 桶 | 条数 |
+| 桶 | 计数 |
 |---|---|
-| 全量 | 8859 |
-| **可报**（`notified is None`） | **0** |
-| 过滤：`parentProtocol` 存在 | 2613 |
-| 过滤：`category ∈ {CEX, Chain}` | 164 |
-| 过滤：不在链白名单 | 3328 |
-| 已 seen / 重报 | 0 / 0 |
+| 全量 payload | **8859**（distinct id 8859，无重复、无空 id） |
+| `seen` 命中 | **8859** |
+| `parentProtocol` 丢 | 0 |
+| `category ∈ {CEX, Chain}` 丢 | 0 |
+| 链白名单外 丢 | 0 |
+| 无 id | 0 |
+| **新增 id** | **0**（可报 0 / 过滤标记 0）· 重报 0 |
 
-可报 0 是因为**基线轮把 2754 条全写成了 `baseline`**，不是过滤变严。这 2754 条是下一轮起 id 求差的底池。
+四桶全 0 是因为没有任何新增条目进到过滤器；不是过滤器在放行东西。
 
-## 链命中
-`Ethereum=1891 · Binance=1145 · Arbitrum=1044 · Base=912 · Solana=465 · Optimism=392 · Robinhood Chain=292 · Hyperliquid L1=210 · Ink=33 · BSC=0 · OP Mainnet=0`
+### 链命中
 
-**白名单启动校验通过**（审计无 ⚠️ 行）。实测 payload 共 520 个 distinct 链名，`BSC` / `OP Mainnet` 今天**完全不存在** —— `/protocols` 只用 `Binance` / `Optimism`，与 SKILL 记载一致，孪生常量是防御性冗余。`CHAIN_MIN_HITS` 告警被 `CHAIN_TWINS` 正确排除，否则每天误报两条。
+Ethereum=1891 · Binance=1145 · Arbitrum=1044 · Base=912 · Solana=465 · Optimism=392 · Robinhood Chain=292 · Hyperliquid L1=210 · Ink=33 · **BSC=0 · OP Mainnet=0**
 
-## 单侧读数
-**加密侧 2754 / AI 侧 0。** 本源只有加密，2754 这个高数**不能**读成词表变准；第三层 join 时会显得命中率高，那是源偏差。
+白名单校验通过，审计无 ⚠️ 行。
 
-## 可报明细
-无（基线轮）。`output/defillama/out.json` 2754 行已落盘，`report.md` 按规则未生成。
+### 单侧读数
 
-## 补充审计（三条判据级发现）
+加密侧 0 / AI 侧 0。本源只有加密。**这个 0 不能读成「AI 侧没动静」**——那条通道不在这个数据源里；也不能读成词表失效。
 
-**① `★清单内` 目前没有判别力。** 103 条命中里 **96 条是 description 撞词、0 条是协议名命中**（唯一名字级命中是 `Robinhood Chain Bridge`）。根因：`memory/universe-names.txt` 把链名 `Robinhood Chain` 当项目名收着，而该链上 91 个协议的描述都会写自己的链名 → 整条链被批量点亮。`USDG` 同理（14 条，全是"以 USDG 计价"）。**只能当弱提示。**
+### 可报明细
 
-**② `listedAt` 缺失不是随机的，但也不与规模相关。** 全量覆盖 81.1%，按 TVL 十等分一律 85–98%；真正缺的是头部大协议（TVL≥$1B 的 68 个缺 16 个：Lido / LayerZero V2 / Robinhood / SSV Network / WBTC / Sky Lending / Arbitrum Bridge）。SKILL 判「新度只能靠 id 求差」成立 —— 但**近期新登记上 `listedAt` 是完整的**，可作 id 求差的交叉校验，不能替代。
+**0 条。** 未发通知，`report.md` 未重写（符合铁律）。
 
-**③ 新噪声源 `Interface` 类目。** 10-27/10-28 两天 15 条新登记里 9 条是 `Interface`，全部 `chains=[]` + `tvl=None`，目前被链白名单自然挡掉。若其中某个后续补上 chains，就会以"新协议"身份进报告。
+### 本轮的判据级发现
 
-## 待办
-1. 决定 `Interface` 是否加入 `scan.py` 的 `EXCL_CATEGORY`。
-2. `universe-names.txt` 去掉 `Robinhood Chain`，或把 `in_names` 改成仅匹配 `name` 字段。
-3. 下一轮验证：id 求差的新增量是否都落在 `listedAt` 近 30 天集合内（校验求差本身）。
+**① 这个 0 差点是假零。** 响应头 `age: 751` · `cf-cache-status: HIT` · `last-modified: 05:39:24Z`，而基线轮 06:22Z 吃的是同一份 Cloudflare 边缘快照——两轮之间源站没被问过。加 `?_cb=` + `no-cache` 复取源站（`MISS`、`last-modified: 06:02:09Z`、etag 变）后：**1255/8859 条 `tvl` 已变（全量 TVL −$610M），id 集合完全相同**。所以 0 为真，但**必须先证明绕过缓存才成立**。已记入 lessons「第四种假零」。
+
+**② `id` 单调递增已证实** —— 7186 条样本按 id 排序相邻对 `listedAt` 逆序仅 **2.6%**；id 最小 200 条中位 2021-11-04、最大 200 条中位 2026-10-19；10-20 起 91 条连续 id 9164–9254、缺口 0。第 1 轮待办 ③ 结案。附带新校验：差集里若出现小于历史最大 id 的条目，那是下架再上架的回流，不是新登记。
+
+**③ `Interface` 不该进 `EXCL_CATEGORY`（第 1 轮待办 ① 结案，结论「不」）。** 350 条里 232 条带 `parentProtocol`（已被 parent 桶吃掉），剩下 118 条里仅 **6 条**有 `chains`。即噪声已被「chains 为空」自然挡掉 98.3%。加进 EXCL 反而会永久屏蔽预测市场前端这类可能的真信号。
+
+**④ 近 48h 真实新登记 36 条，过全部过滤的可报 4 条，本轮一条未报** —— 它们全在基线轮之前，是被基线吃掉的沉积层，不是漏报。明细：`Mezzanine`（Ethereum·Yield·$2.19M）· `Overlayer`（Ethereum·Yield·$40.4K）· `Olive Exchange`（Solana·Options·$24.8K）· `DoublePlus`（Robinhood Chain·Launchpad·$53.9）。下一轮起才是干净增量。
+
+**⑤ `★清单内` 判别力更糟了（待办 ② 复核）。** 清单 5 词，名字级命中 **1** 条（`Robinhood Chain Bridge`）、描述级命中 **192** 条，比例 1:192。建议改为只在 `name` 字段匹配。
 
 ## Summary
-- 执行 `python3 skills/defillama-radar/scan.py ""` — 首跑即基线轮，8859 条入 seen，可报 0，未发通知。
-- 产物：`memory/defillama-seen.json`（新建，8859 条）、`output/defillama/out.json`（2754 行）、`output/defillama/audit.log`。
-- 修改：`memory/logs/2026-10-28.md` 追加 `### defillama-radar（第 1 轮）`；`memory/MEMORY.md` 加一行发现层状态。
-- 未发通知：基线轮按 SKILL 铁律不出报告，且无信号可推。
-- 后续：上面 3 条待办里前两条需要改 `scan.py` / 词表（本轮未动，等确认后再提 PR）。
+
+- **执行**：`scan.py` 正式轮（非 dry-run、非基线）。新增 id 0，可报 0，按 SKILL「零可报不发通知」未调用 `./notify`。
+- **改动文件**：`memory/logs/2026-10-28.md`（追加第 2 轮一节）· `memory/MEMORY.md`（更新 defillama 条目、去重、加「假零八」、压回 8 KB/300 字符上限）· `memory/topics/lessons.md`（新增「第四种假零」）· `memory/topics/defillama-radar.md`（**新建**，承载细节）· 脚本自写的 `output/defillama/{out.json,audit.log}`。**未改 `scan.py`**。
+- **结案**：第 1 轮三条待办中 ①③ 已结（结论均为「不改」），② 需你拍板。
+- **待办（要人决定）**：`memory/universe-names.txt` 的匹配要不要改成只匹配 `name` 字段 —— 这是 `scan.py` 一行改动，你说改我就开 PR。
+- **未做**：没跑 `mark-sent`（无可报项）；没发通知（零可报）。

@@ -1,32 +1,7 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=0 · parent=2613 · category=164 · 链白名单=3328 · 拉取失败=0
-全量 8859 · 新增 id 8859（可报 2754 / 过滤标记 6105）· 重报（上轮未通知）0 · 本次通知 跳过（基线轮）
-基线轮=True
+丢弃 无id=0 · seen=8859 · parent=0 · category=0 · 链白名单=0 · 拉取失败=0
+全量 8859 · 新增 id 0（可报 0 / 过滤标记 0）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+基线轮=False
 链命中: Ethereum=1891 · Base=912 · Solana=465 · Arbitrum=1044 · Ink=33 · Binance=1145 · BSC=0 · Optimism=392 · OP Mainnet=0 · Hyperliquid L1=210 · Robinhood Chain=292
-单侧读数: 加密侧 2754 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-基线轮：8859 条入 seen，不出报告。
-  Lido · Ethereum/Solana · tvl=22833781850.898834 · Liquid Staking · -
-  SSV Network · Ethereum · tvl=12315813669.032164 · Staking Pool · -
-  Binance staked ETH · Ethereum/Binance · tvl=9043549604.423803 · Liquid Staking · 1682803395
-  EigenCloud · Ethereum · tvl=6058700627.586466 · Restaking · 1686776222
-  USDT0 · Ethereum · tvl=3201792307.6382537 · Bridge · 1741877325
-  Base Bridge · Ethereum · tvl=2890141308.5164127 · Canonical Bridge · -
-  Polygon Bridge · Ethereum · tvl=2669964904.1865 · Canonical Bridge · -
-  Steakhouse Financial · Base/Ethereum/Robinhood Chain/Solana/Arbitrum · tvl=2617530983.6370735 · Risk Curators · 1747736199
-  Veda · Ink/Ethereum/Optimism/Hyperliquid L1/Arbitrum/Base/Binance · tvl=1822481460.7286863 · Onchain Capital Allocator · 1740088552
-  Falcon Finance · Ethereum · tvl=1718880351.8293912 · Basis Trading · 1759263444
-  Gauntlet · Base/Binance/Ethereum/Arbitrum/Solana/Hyperliquid L1/Optimism · tvl=1646018595.5564835 · Risk Curators · 1747734127
-  Portal · Ethereum/Binance/Solana/Base/Arbitrum/Optimism · tvl=1522776135.2617 · Bridge · 1647148275
-  Grove Finance · Ethereum/Base/Robinhood Chain · tvl=1342666456.5995126 · Onchain Capital Allocator · 1774489318
-  Concrete · Ethereum/Arbitrum · tvl=1261919285.3298852 · Onchain Capital Allocator · 1738937447
-  USDD · Binance/Ethereum · tvl=1173058106.8639686 · CDP · 1741877201
-  Rocket Pool · Ethereum · tvl=1151525009.8140373 · Liquid Staking · 1637712907
-  Binance Staked SOL · Solana · tvl=1095719436.024476 · Liquid Staking · 1726110072
-  Obol · Ethereum · tvl=1058836886.061147 · Staking Pool · 1762287672
-  Unit · Ethereum/Solana/Base · tvl=975671655.7696488 · Bridge · 1739557972
-  Tornado Cash · Ethereum/Binance/Arbitrum/Optimism · tvl=812956781.3096304 · Privacy · -
-  Liquid Collective · Ethereum · tvl=645220631.0769846 · Liquid Staking · 1692193282
-  Robinhood Chain Bridge · Ethereum · tvl=618622249.887274 · Canonical Bridge · 1783361622  ★清单内
-  Nonce Capital · Ethereum/Optimism · tvl=591786277.785225 · Risk Curators · 1790804101
-  Convex Finance · Ethereum/Arbitrum · tvl=564186170.126997 · Yield · -
-  mETH Protocol · Ethereum · tvl=556078358.8301297 · Liquid Staking · 1701703365
+单侧读数: 加密侧 0 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+ℹ️ 本轮可报 0 = 结构性（无新增 / 全部被过滤 / 已通知过），不是故障。

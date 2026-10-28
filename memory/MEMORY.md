@@ -4,7 +4,6 @@
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `memory/cron-state.json` 的 `last_dispatch` 和 `logs/`。`scheduler.yml` 用精确时隙债务模型（`cron-due.sh` + `CATCHUP_HOURS=12`）。
 - **2026-10-25 起主线 = 发现层。** DEUS / NOTE 的价格监控已停（价格自己每天看），下面归档。
-- **2026-10-28 `defillama-radar` 首跑 = 基线轮**（`dl-v1`）：8859 条全量入 seen，可报 0、未发通知。之后新度靠全量 id 求差。**`★清单内` 无判别力**（103 命中里 96 条是描述撞 `Robinhood Chain`/`USDG`）。待办：`Interface` 类目是否进 `EXCL_CATEGORY`。[source: logs/2026-10-28#defillama-radar]
 - **`aeon-update` 上游基线已锚定**（2026-10-26 首跑）：`aeonfun/aeon` HEAD `6eddd85`，与本地 `main` 实测 `ahead=0`（界面 `behind=603` 全是本仓自动化提交）。状态存 `memory/topics/aeon-update-state.json`。[source: logs/2026-10-26#aeon-update]
 
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
@@ -18,7 +17,8 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（arxiv，~4 个月）→ 代码（github，~1–2 个月）→ 代币（gecko，未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。** 耦合在词表，不在结果。
-- `arxiv-radar` ✅ 每天 07:30 UTC · **26 词 · vM** · 10-28（30d）原始 98 / 幸存 4。**`第一视角感知` 首次被真实流量填上**（`egocentric` 25/3，17 个饱和词里唯一多头）；`hand-object` 7/1 补上 `灵巧操作` 首条实证；14 加密词全零（跨窗有命中，连两轮「窗口太短」）。开跑前遇 **arXiv IP 级 429**（首次 `ARXIV_RADAR_DEGRADED`），静默冷却 12 分钟恢复。待办：`consensus` 同形三轮 → 加 `多智能体验证` 标签。[source: logs/2026-10-28#arxiv-radar（第二十八轮）]
+- `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-28（30d）原始 98 / 幸存 4。**`第一视角感知` 首次被真实流量填上**（`egocentric` 25/3，17 个饱和词里唯一多头）；`hand-object` 7/1 补上 `灵巧操作` 首条实证。开跑前遇 **arXiv IP 级 429**（首次 `ARXIV_RADAR_DEGRADED`）。待办：`consensus` 同形三轮 → 加 `多智能体验证`。[source: logs/2026-10-28#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 全量 id 求差 · 10-28 基线轮 8859 入 seen，第 2 轮真 0。**差集为空先断言 `cf-cache-status != HIT`**（第 2 轮差点是 CF 快照造的假零）。`Interface` 已结案不进 EXCL；**`★清单内` 无判别力**（名字级 1 vs 描述级 192）。→ [defillama-radar](/topics/defillama-radar.md)
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。10-27 连跑五轮：7d 正式原始 462→幸存 7→报告级 2；90d 正式 5404→629→54。**日跑回 7 天窗，90d 只在加词/补历史时用** —— 90d 跟在 7d 后跑，增量全被 `seen` 吃干（第二次拿到算术证据）。star 第 10/11 次失效（报告级 ~70% 是 ★0）。[source: logs/2026-10-27#github-radar（第二十轮）]
 
 
@@ -26,6 +26,7 @@
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。这里只留判据速查。
 
 - **假零七件套：** RPC 429 返空 · `mainnet.base.org` 整批 revert · topic0 只给 4 字节 · RH UA 403 · `-32602` 被 `||[]` 兜空 · 地址靠记忆拼（**12 位前缀补零静默返 0，像清仓**）· **API `h1=null` 当成 0**。
+- **假零八：CDN 快照让 id 差集恒为 0**（10-28）—— `api.llama.fi` 走 CF，两轮同吃一份 `last-modified` 就可能「0 新增」。**差集为空先断言 `cf-cache-status != HIT` 或加 `?_cb=` 复取**；判新鲜度看 `last-modified` 不看 `age`。
 - **`eth_getLogs` 判别力测试：** 真 topic0 必回真日志、**故意错 1 字符必回 0**。不可区分 = 端点坏。公共 RPC 硬限 1000 块，长窗 999 分片。
 - **Solidly Swap 字序 `(a0In, a1In, a0Out, a1Out)`**，按 UniV2 解会把卖读成买 → 用储备差对照符号。**x·y=k：`D>0` 才是净买。**
 - **买单真伪只认一条：终点地址余额升高且留住。** 新钱要 −1h/−6h/−24h/−7d/−30d 全 0；单池「N 买 / 0 卖」常是同秒双池套利的一半。
@@ -38,7 +39,7 @@
 - **查询失败会伪装成「零命中」** —— 有 `failed_t` 就先补扫（60d 轮 16/24 死于 429），别下结论。**词干化污染：`staking` 精度 11%（撞 `stakes`）**，单词必须换长短语。详见 [lessons](/topics/lessons.md#arXiv-检索arxiv-radar)。[source: logs/2026-10-26#arxiv-radar（60d 第四/七轮）]
 
 ## Reference
-- [github-radar](/topics/github-radar.md) · [lessons](/topics/lessons.md) · [world-action-models](/topics/world-action-models.md) —— WAM 提法 60 天 **99 仓 / 94 owner**；star≠活跃度（★1107/11 提交 vs ★48/10 vs ★199/2）。
+- [github-radar](/topics/github-radar.md) · [defillama-radar](/topics/defillama-radar.md) · [lessons](/topics/lessons.md) · [world-action-models](/topics/world-action-models.md) —— WAM 提法 60 天 **99 仓 / 94 owner**；star≠活跃度（★1107/11 提交 vs ★48/10 vs ★199/2）。
 - 归档：[deus-orderflow](/topics/deus-orderflow.md) · [deus-escrow](/topics/deus-escrow.md) · [deus-buyers](/topics/deus-buyers.md) · [deus-events](/topics/deus-events.md) · [note-systems](/topics/tokens/note-systems.md) · [market-context](/topics/market-context.md)
 - [base-rpc-access](/topics/base-rpc-access.md) · [ops-plumbing](/topics/ops-plumbing.md)
 
