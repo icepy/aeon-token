@@ -18,7 +18,7 @@
 
 - `memory/logs/` —— 每轮的审计结论
 - `memory/decisions.md` —— 已想清楚的决定，防推翻
-- `memory/candidates/` —— 第一层产出的候选词
+- 候选词 —— 目前落在 `memory/github-candidates.md`；目标形态是 `memory/candidates/`（待建）
 
 **名字清单不在交接面上。** 每个通道自己一份（`memory/universe-names.txt` 归 arxiv、`memory/defillama-names.txt` 归 defillama），因为两边吃法相反：arxiv 拿它当标题查询词、每词一次 API，defillama 拿它当本地子串、要短名。共用一份，改哪边都得拿另一边的尺子量一遍。
 
