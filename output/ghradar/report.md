@@ -1,10 +1,18 @@
-**github-radar** · 窗口 7 天 · 报告级 8 · 近 7 天活跃 8
+**github-radar** · 窗口 30 天 · 报告级 16 · 近 7 天活跃 16
 
-- [theinstancelabs/marionette](https://github.com/theinstancelabs/marionette) ★0 · 30天=≥100 · 7天=≥100 · 词 `teleoperation` · iPhones as teleoperation inputs: per-phone ARKit pose and button streams relayed to robot consumers 
-- [parammadan/aura3d](https://github.com/parammadan/aura3d) ★0 · 30天=54 · 7天=54 · 词 `world model` · Uncertainty-aware perception, drift monitoring and world-model planning for simulated industrial man
-- [mohamedharhash/operator-layer-ros2](https://github.com/mohamedharhash/operator-layer-ros2) ★0 · 30天=16 · 7天=16 · 词 `robot manipulation` · Rehearse-before-execute safety gate for learned robot policies. ROS 2, simulation-in-the-loop, sim-t
-- [Lakshmikanth-3/AegisAgent](https://github.com/Lakshmikanth-3/AegisAgent) ★0 · 30天=12 · 7天=12 · 词 `world model` · Enterprise treasury agent: reconciles each invoice across supplier, ERP and treasury data in Zetaris
-- [nunenuh/jepa-game-agent](https://github.com/nunenuh/jepa-game-agent) ★0 · 30天=10 · 7天=10 · 词 `jepa` · A JEPA agent that lives inside a game world (Craftax): predicts, remembers, picks goals, acts
-- [TheLiaoGroup/WorldModel](https://github.com/TheLiaoGroup/WorldModel) ★0 · 30天=9 · 7天=9 · 词 `world model` · Data and analysis code for Reaction world models trained on reported successes fail silently.
-- [ADHU-ADHU/roverlink-ros2](https://github.com/ADHU-ADHU/roverlink-ros2) ★0 · 30天=6 · 7天=6 · 词 `teleoperation` · PC-to-robot ROS 2 teleoperation, teach-and-return control and LiDAR frontier exploration on a differ
-- [YHFone/supermimic-mjlab](https://github.com/YHFone/supermimic-mjlab) ★0 · 30天=5 · 7天=5 · 词 `world model` · SuperMimic: humanoid whole-body control with one differentiable world model — implementation on mjla
+- [Brigada-Inginerilor-Amarati/Q2-JEPA](https://github.com/Brigada-Inginerilor-Amarati/Q2-JEPA) ★0 · 30天=31 · 7天=31 · 词 `jepa` · Dual-quantum visual world model that predicts multimodal plausible futures from short video clips
+- [SudharshanSuman/Understanding-the-Prompt-to-Robot](https://github.com/SudharshanSuman/Understanding-the-Prompt-to-Robot) ★0 · 30天=25 · 7天=25 · 词 `robot manipulation` · Understanding the Prompt to Robot: natural-language robotic manipulation (prompt -> tokens -> task -
+- [ADHU-ADHU/mobile-robot-platform-ros2](https://github.com/ADHU-ADHU/mobile-robot-platform-ros2) ★0 · 30天=13 · 7天=13 · 词 `teleoperation` · A mobile robot built from scratch with ROS 2: hardware and sensor integration, PC-to-robot teleopera
+- [mzlumi/mit-robotic-manipulation-perception-to-grasp](https://github.com/mzlumi/mit-robotic-manipulation-perception-to-grasp) ★0 · 30天=11 · 7天=11 · 词 `robot manipulation` · MIT 6.4210/6.4212 Robotic Manipulation (Prof. Russ Tedrake and Prof. Tomas Lozano-Perez), problem se
+- [hetu-project/pearl-pouw-analysis](https://github.com/hetu-project/pearl-pouw-analysis) ★0 · 30天=9 · 7天=9 · 词 `proof of useful work` · Independent, reproducible analysis of Pearl’s Proof-of-Useful-Work (cuPOW): source-level notes, prob
+- [raulcastar/MARE-Dataset-Baselines](https://github.com/raulcastar/MARE-Dataset-Baselines) ★0 · 30天=8 · 7天=8 · 词 `sim-to-real` · Segmentation and depth baselines for the MARE Lunar Rover Dataset: U-Net, DeepLabV3+, SegFormer and 
+- [ffen0007-collab/EchoWorld-WorldModel-Lab](https://github.com/ffen0007-collab/EchoWorld-WorldModel-Lab) ★0 · 30天=7 · 7天=7 · 词 `world model` · Action-conditioned visual world modeling for AI-native gameplay
+- [ssbbiin/Async-VLA-Limo](https://github.com/ssbbiin/Async-VLA-Limo) ★0 · 30天=7 · 7天=7 · 词 `vision language action` · Asynchronous Vision-Language-Action pipeline with Gemma and ROS2 for AgileX LIMO Pro
+- [utkarsh01221/ARIA-4-LLM-Driven-Robotic-Manipulation](https://github.com/utkarsh01221/ARIA-4-LLM-Driven-Robotic-Manipulation) ★0 · 30天=6 · 7天=6 · 词 `robot manipulation` · LLM-driven robotic manipulation using computer vision, voice commands, inverse kinematics and worksp
+- [Lolotun/ur3-vr-teleoperation](https://github.com/Lolotun/ur3-vr-teleoperation) ★0 · 30天=6 · 7天=6 · 词 `teleoperation` · 
+- [DivyomSrivastava/Bumper_Bot](https://github.com/DivyomSrivastava/Bumper_Bot) ★0 · 30天=14 · 7天=5 · 词 `teleoperation` · A ROS 2-based differential-drive mobile robot project featuring robot modeling with URDF/Xacro, Gaze
+- [d4vid-le/proteus-wm](https://github.com/d4vid-le/proteus-wm) ★0 · 30天=5 · 7天=5 · 词 `jepa` · A personal JEPA world-model experiment.
+- [SiMi723/egocentric-data-collection-ops-dashboard](https://github.com/SiMi723/egocentric-data-collection-ops-dashboard) ★0 · 30天=5 · 7天=5 · 词 `egocentric` · Interactive dashboard for monitoring synthetic egocentric data collection operations.
+- [chendi-Shi/feedbackbench](https://github.com/chendi-Shi/feedbackbench) ★0 · 30天=13 · 7天=4 · 词 `jepa` · Reproducible CPU VLA research: SmolVLA action-cache and flow-step experiments, LIBERO evidence, and 
+- [alibaba-damo-academy/RynnWorld-Latent](https://github.com/alibaba-damo-academy/RynnWorld-Latent) ★11 · 30天=16 · 7天=3 · 词 `world model` · RynnWorld-Latent: A Cross-Embodiment World Model Conditioned on Universal Latent Actions
+- [chinmay-5/doc-ock](https://github.com/chinmay-5/doc-ock) ★0 · 30天=5 · 7天=3 · 词 `teleoperation` · Vision-based hand teleoperation for the SO-101 robotic arm using MediaPipe, OpenCV, ROS 2 Jazzy, and

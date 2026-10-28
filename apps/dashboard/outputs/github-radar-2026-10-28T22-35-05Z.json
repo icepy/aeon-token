@@ -1,0 +1,506 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 30 天 · 报告级 16 · 近 7 天活跃 16"
+      },
+      "children": [
+        "header-stack",
+        "sep1",
+        "repos"
+      ]
+    },
+    "header-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-report",
+        "stat-active"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      }
+    },
+    "stat-report": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "16"
+      }
+    },
+    "stat-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "16"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repos": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8",
+        "r9",
+        "r10",
+        "r11",
+        "r12",
+        "r13",
+        "r14",
+        "r15",
+        "r16"
+      ]
+    },
+    "r1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l1",
+        "d1"
+      ]
+    },
+    "l1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Brigada-Inginerilor-Amarati/Q2-JEPA",
+        "href": "https://github.com/Brigada-Inginerilor-Amarati/Q2-JEPA",
+        "source": "词 jepa",
+        "score": "★0 · 30天=31 · 7天=31"
+      }
+    },
+    "d1": {
+      "type": "Text",
+      "props": {
+        "text": "Dual-quantum visual world model that predicts multimodal plausible futures from short video clips",
+        "variant": "caption"
+      }
+    },
+    "r2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l2",
+        "d2"
+      ]
+    },
+    "l2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SudharshanSuman/Understanding-the-Prompt-to-Robot",
+        "href": "https://github.com/SudharshanSuman/Understanding-the-Prompt-to-Robot",
+        "source": "词 robot manipulation",
+        "score": "★0 · 30天=25 · 7天=25"
+      }
+    },
+    "d2": {
+      "type": "Text",
+      "props": {
+        "text": "Understanding the Prompt to Robot: natural-language robotic manipulation (prompt -> tokens -> task -",
+        "variant": "caption"
+      }
+    },
+    "r3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l3",
+        "d3"
+      ]
+    },
+    "l3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ADHU-ADHU/mobile-robot-platform-ros2",
+        "href": "https://github.com/ADHU-ADHU/mobile-robot-platform-ros2",
+        "source": "词 teleoperation",
+        "score": "★0 · 30天=13 · 7天=13"
+      }
+    },
+    "d3": {
+      "type": "Text",
+      "props": {
+        "text": "A mobile robot built from scratch with ROS 2: hardware and sensor integration, PC-to-robot teleopera",
+        "variant": "caption"
+      }
+    },
+    "r4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l4",
+        "d4"
+      ]
+    },
+    "l4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "mzlumi/mit-robotic-manipulation-perception-to-grasp",
+        "href": "https://github.com/mzlumi/mit-robotic-manipulation-perception-to-grasp",
+        "source": "词 robot manipulation",
+        "score": "★0 · 30天=11 · 7天=11"
+      }
+    },
+    "d4": {
+      "type": "Text",
+      "props": {
+        "text": "MIT 6.4210/6.4212 Robotic Manipulation (Prof. Russ Tedrake and Prof. Tomas Lozano-Perez), problem se",
+        "variant": "caption"
+      }
+    },
+    "r5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l5",
+        "d5"
+      ]
+    },
+    "l5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "hetu-project/pearl-pouw-analysis",
+        "href": "https://github.com/hetu-project/pearl-pouw-analysis",
+        "source": "词 proof of useful work",
+        "score": "★0 · 30天=9 · 7天=9"
+      }
+    },
+    "d5": {
+      "type": "Text",
+      "props": {
+        "text": "Independent, reproducible analysis of Pearl’s Proof-of-Useful-Work (cuPOW): source-level notes, prob",
+        "variant": "caption"
+      }
+    },
+    "r6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l6",
+        "d6"
+      ]
+    },
+    "l6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "raulcastar/MARE-Dataset-Baselines",
+        "href": "https://github.com/raulcastar/MARE-Dataset-Baselines",
+        "source": "词 sim-to-real",
+        "score": "★0 · 30天=8 · 7天=8"
+      }
+    },
+    "d6": {
+      "type": "Text",
+      "props": {
+        "text": "Segmentation and depth baselines for the MARE Lunar Rover Dataset: U-Net, DeepLabV3+, SegFormer and ",
+        "variant": "caption"
+      }
+    },
+    "r7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l7",
+        "d7"
+      ]
+    },
+    "l7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ffen0007-collab/EchoWorld-WorldModel-Lab",
+        "href": "https://github.com/ffen0007-collab/EchoWorld-WorldModel-Lab",
+        "source": "词 world model",
+        "score": "★0 · 30天=7 · 7天=7"
+      }
+    },
+    "d7": {
+      "type": "Text",
+      "props": {
+        "text": "Action-conditioned visual world modeling for AI-native gameplay",
+        "variant": "caption"
+      }
+    },
+    "r8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l8",
+        "d8"
+      ]
+    },
+    "l8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ssbbiin/Async-VLA-Limo",
+        "href": "https://github.com/ssbbiin/Async-VLA-Limo",
+        "source": "词 vision language action",
+        "score": "★0 · 30天=7 · 7天=7"
+      }
+    },
+    "d8": {
+      "type": "Text",
+      "props": {
+        "text": "Asynchronous Vision-Language-Action pipeline with Gemma and ROS2 for AgileX LIMO Pro",
+        "variant": "caption"
+      }
+    },
+    "r9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l9",
+        "d9"
+      ]
+    },
+    "l9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "utkarsh01221/ARIA-4-LLM-Driven-Robotic-Manipulation",
+        "href": "https://github.com/utkarsh01221/ARIA-4-LLM-Driven-Robotic-Manipulation",
+        "source": "词 robot manipulation",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "d9": {
+      "type": "Text",
+      "props": {
+        "text": "LLM-driven robotic manipulation using computer vision, voice commands, inverse kinematics and worksp",
+        "variant": "caption"
+      }
+    },
+    "r10": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l10"
+      ]
+    },
+    "l10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Lolotun/ur3-vr-teleoperation",
+        "href": "https://github.com/Lolotun/ur3-vr-teleoperation",
+        "source": "词 teleoperation",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "r11": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l11",
+        "d11"
+      ]
+    },
+    "l11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DivyomSrivastava/Bumper_Bot",
+        "href": "https://github.com/DivyomSrivastava/Bumper_Bot",
+        "source": "词 teleoperation",
+        "score": "★0 · 30天=14 · 7天=5"
+      }
+    },
+    "d11": {
+      "type": "Text",
+      "props": {
+        "text": "A ROS 2-based differential-drive mobile robot project featuring robot modeling with URDF/Xacro, Gaze",
+        "variant": "caption"
+      }
+    },
+    "r12": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l12",
+        "d12"
+      ]
+    },
+    "l12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "d4vid-le/proteus-wm",
+        "href": "https://github.com/d4vid-le/proteus-wm",
+        "source": "词 jepa",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "d12": {
+      "type": "Text",
+      "props": {
+        "text": "A personal JEPA world-model experiment.",
+        "variant": "caption"
+      }
+    },
+    "r13": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l13",
+        "d13"
+      ]
+    },
+    "l13": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SiMi723/egocentric-data-collection-ops-dashboard",
+        "href": "https://github.com/SiMi723/egocentric-data-collection-ops-dashboard",
+        "source": "词 egocentric",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "d13": {
+      "type": "Text",
+      "props": {
+        "text": "Interactive dashboard for monitoring synthetic egocentric data collection operations.",
+        "variant": "caption"
+      }
+    },
+    "r14": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l14",
+        "d14"
+      ]
+    },
+    "l14": {
+      "type": "StoryLink",
+      "props": {
+        "title": "chendi-Shi/feedbackbench",
+        "href": "https://github.com/chendi-Shi/feedbackbench",
+        "source": "词 jepa",
+        "score": "★0 · 30天=13 · 7天=4"
+      }
+    },
+    "d14": {
+      "type": "Text",
+      "props": {
+        "text": "Reproducible CPU VLA research: SmolVLA action-cache and flow-step experiments, LIBERO evidence, and ",
+        "variant": "caption"
+      }
+    },
+    "r15": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l15",
+        "d15"
+      ]
+    },
+    "l15": {
+      "type": "StoryLink",
+      "props": {
+        "title": "alibaba-damo-academy/RynnWorld-Latent",
+        "href": "https://github.com/alibaba-damo-academy/RynnWorld-Latent",
+        "source": "词 world model",
+        "score": "★11 · 30天=16 · 7天=3"
+      }
+    },
+    "d15": {
+      "type": "Text",
+      "props": {
+        "text": "RynnWorld-Latent: A Cross-Embodiment World Model Conditioned on Universal Latent Actions",
+        "variant": "caption"
+      }
+    },
+    "r16": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "l16",
+        "d16"
+      ]
+    },
+    "l16": {
+      "type": "StoryLink",
+      "props": {
+        "title": "chinmay-5/doc-ock",
+        "href": "https://github.com/chinmay-5/doc-ock",
+        "source": "词 teleoperation",
+        "score": "★0 · 30天=5 · 7天=3"
+      }
+    },
+    "d16": {
+      "type": "Text",
+      "props": {
+        "text": "Vision-based hand teleoperation for the SO-101 robotic arm using MediaPipe, OpenCV, ROS 2 Jazzy, and",
+        "variant": "caption"
+      }
+    }
+  }
+}

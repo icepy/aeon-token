@@ -173,3 +173,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-10-28,defillama-radar,claude-opus-5-5,37803,25860,2290432,0
 2026-10-28,memory-flush,claude-opus-5-5,240248,51584,8148864,0
 2026-10-28,arxiv-radar,claude-opus-5-5,89442,5694,302208,0
+2026-10-28,github-radar,claude-opus-5-5,105954,11705,692224,0
