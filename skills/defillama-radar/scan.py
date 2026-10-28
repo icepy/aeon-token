@@ -224,8 +224,7 @@ def rec_of(p, pid, hit):
         "description": " ".join((p.get("description") or "").split())[:110],
         "misrepresentedTokens": p.get("misrepresentedTokens"),
         "wrongLiquidity": p.get("wrongLiquidity"),
-        "in_names": any(k.lower() in name.lower() or name.lower() in k.lower()
-                        for k in known),
+        "in_names": any(k.lower() in name.lower() for k in known),
     }
 
 
