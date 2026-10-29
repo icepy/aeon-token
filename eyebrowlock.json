@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-29T02:47:48.866742339Z",
+  "generatedAt": "2026-10-29T03:13:26.412072846Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -894,11 +894,11 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "0afa85e9e3b7f73f2eb3503c600d55d44895dad77e05109cb75b09266ab7acef"
+          "hash": "9a641131959f783b9d4eeab055f077c68fbd0264f11419dedb2b4ac3b9b03b52"
         },
         {
           "path": "check.py",
-          "hash": "defcc87619513b75a211d96312f56dd8b8ea96727aeb61a2c6d046d55bfb4f6d"
+          "hash": "813e4e8d911974613d808f3bd26487391ea1242b908a0bfdd810da4e890499c4"
         }
       ],
       "findings": [
@@ -916,7 +916,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "check.py",
-          "line": 219,
+          "line": 222,
           "snippet": "proc = subprocess.run(",
           "explanation": "uses a process-execution primitive"
         },
@@ -925,12 +925,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "check.py",
-          "line": 522,
+          "line": 525,
           "snippet": "proc = subprocess.run([notify_bin, \"-f\", target], capture_output=True, text=True)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-86181be79f283413b3fdd64030c72691d6bc6cef075a61f71bbc8026d56c0033",
+      "contentHash": "sha256-106757994b15213608d24ad042344ebe9066423b2dbff9a89d518a93e43f423e",
       "discoveredFrom": "skills/narrative-brief/SKILL.md"
     },
     {
