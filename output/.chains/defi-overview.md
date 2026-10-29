@@ -1,53 +1,50 @@
-ℹ️ Crypto 2026-10-28 · chop（low）
+*Crypto — 2026-10-29* — risk-off（conviction medium）| DeFi Mixed：价格与广度同跌，稳定币首现净流出
 
-*Crypto — 2026-10-28（23:15Z 复跑）* — chop（conviction low）| DeFi Mixed：TVL 剔除假涨后 −1.6%，量 +13%
+*TVL:* $88.35B（−0.11% 24h, −4.00% 7d, −7.35% 30d）
+⚠️ 这 −0.11% 是两笔反向误差相抵：12 个 ETH 计价协议虚增 +$2.85B，剔掉后 **−1.16%（−$2.67B）**。详见末行脚注。
 
-*Take:* chop — BTC $81,206（+0.50%），24h 广度 17/20，但 7d 只剩 3/20、F&G 卡在 51 一动不动。绿的是平盘日，不是拐点。
+*Top chains*
+1. Ethereum — $46.50B（+0.93%）
+2. Bitcoin — $6.13B（−3.58%）
+3. Base — $6.10B（−1.00%）
+Tron $5.72B（+5.54%）· Solana $5.55B（−2.58%）· BSC $5.36B（−2.70%）
 
-*仓位* DEFI_MONITOR_NO_CONFIG —— `on-chain-watches.yml` 无 `type: pool/position`，无仓可查。
+*Movers*
+↑ Hyperliquid L1 +10.66%（$2.49B → $2.76B）— 全链唯一放量，HYPE +13.03%
+↑ Tron +5.54%（$5.42B → $5.72B）— TRX +5.61%，4/20 广度里的孤岛
+↓ Anemoy Capital −56.85%（$0.244B → $0.103B）— RWA 信贷赎回，非价格下跌
+↓ Aave Horizon RWA −24.70%（$0.249B → $0.188B）— 同链条，RWA 借贷集中退场
 
-*TVL:* $88.67B（+0.75% 24h / −3.07% 7d / −7.70% 30d）
-⚠️ *+0.75% 是假数*：Bitcoin 链一夜跳 +$1.99B（4.29→6.27B），但 85 个非 CEX Bitcoin 腿合计只 +$113M（+0.31%），全聚合只涨 $0.66B。**剔掉 Bitcoin 链，实际 −1.59%。**
+*Fees leaders (24h)*
+1. Tether — $17.26M（−0.2% vs 7d 均值）
+2. Circle USDC — $6.80M（−0.6%）
+3. PumpSwap — $2.91M（−2.2%）
 
-*Top chains（1d / 7d）*
-1. Ethereum — $46.37B（−3.86% / −7.67%）30 天最大单日跌幅
-2. Bitcoin — $6.27B（+46.42% / +41.52%）← 覆盖缺口，见图注
-3. Base — $6.08B（+0.81% / −2.89%）
+*Fees beating TVL*
+• Maple — fees +439% / TVL −10.4%（7d）— 退出资产的费用不落 TVL
+• Raydium AMM — fees +43.9% / TVL −3.5%（7d）— 甩卖抬周转
+• Uniswap V3 — fees +24.8% / TVL −4.2%（7d）— 同上
 
-*Movers（非 CEX；CEX 整层仍作废）*
-↑ SunSwap V4 +25.65%（$0.107B→$0.135B）— Tron 单链，无公告
-↓ SUNSwap V3 −30.60%（$0.216B→$0.150B）— 同链同项目，V3→V4 迁移
-↑ Aero Slipstream +11.45%（$0.106B→$0.118B）— Base 腿主导，7d +3421% 是新上池
-↓ Anemoy Capital −16.02%（$0.283B→$0.238B）— 纯 Ethereum RWA 单腿
-↓ Spark Savings −10.97%（$1.58B→$1.41B）— ETH $973M + Arbitrum $310M 双降
+*DEX vol (24h):* $10.38B（+26.9% vs 10-28，+40.5% vs 7d 均值）top: Uniswap V3 $1.98B、Uniswap V4 $1.33B、Aero Slipstream $0.67B
 
-*Fees leaders（24h）*
-1. Tether — $17.26M（−0.3% vs 7d 均值）
-2. Circle USDC — $6.80M（−1.0%）
-3. PumpSwap — $3.00M（−1.5%）
+*Stables:* $300.52B（−0.70% 24h, −1.40% 7d）— **USDT 单日 −1.05%（−$1.90B）**；USDD −12.41% 连续第四跌；SoFiUSD −14.59%
 
-*Fees 跑赢 TVL（7d）*
-• Morpho Blue — 费用 +24.31% / TVL −1.58% —— 唯一活口
+*Real yield (sustainable, ≥$10M, filtered)*
+• APXUSD (Apyx, ETH) — 13.10% apyBase（$0.15B）
+• USDC (Fluid Lending, ETH) — 8.57% apyBase（$0.13B）
+• REUSD (Re, ETH) — 6.79% apyBase（$0.35B）
 
-*DEX vol（24h）：* $7.97B（+13.0% vs 10-27 $7.05B，+6.4% vs 7d 均值 $7.49B）—— 四轮来第一个真涨日
-top: Uniswap V4 $1.089B（+16.1%）· Uniswap V3 $0.933B（−6.9%）· PancakeSwap V3 $0.592B（−7.8%）
+*Incentive yield (points / emissions, ≥$25M)*
+• USDG (Kamino, Solana) — 32.4% apy via $USDG（$0.05B）
+• STEAKUSDG (Morpho, Robinhood Chain) — 26.2%，其中 22.4% 是奖励（$0.54B）
 
-*Stables:* $302.64B（−0.02% 24h / −0.61% 7d）—— 第三个周净负。**USDD −15.53% 到 $1.50B**（周内从 $1.776B 掉下来，非首现，不是新脱锚）
+*Macro:* BTC $78,881（−2.78%/7d −3.11%）/ ETH $2,270（−3.62%）/ SOL $96.91（−5.27%）· F&G 51（Neutral，昨 51 未动）· 广度 **4/20** green 24h（昨 17/20）、7/20 green 7d（昨 3/20）· hot market: "民主党拿下众议院" YES 92.5%
 
-*Real yield（可持续，≥$10M，已过滤）*
-• WETH-USDT（Uniswap V3, ETH）— 38.38% apyBase（$89M TVL，IL 有，30d 均值 28.98%）
-• APXUSD（Apyx, ETH）— 13.06% apyBase（$153M，单腿稳定币，30d 均值 12.95%）
-• ONYC（Onre, Solana）— 11.02% apyBase（$292M，单腿，30d 均值 11.02%）
+*今天真正变了的三件事*
+1. **广度反转。** 24h 17/20 → 4/20，7d 3/20 → 7/20。两个窗口六轮来首次同向，昨天的「红周里的绿日」判断作废。
+2. **BTC 破 $80k。** $81,206 → $78,881。ETH −3.62%、SOL −5.27%，是全线 beta，不是 BTC 单腿。
+3. **稳定币由平转负。** −0.02% → −0.70%（−$2.12B）。昨天的「日内平、周内在漏」今天漏到了日内。
 
-*Incentive yield（points / emissions，≥$25M）*
-• CVXCRV（Convex, ETH）— 15.04% 全靠 $CRV/$CVX/frxETH 奖励（$49M）
-• USDS（Sky Lending, ETH）— 8.18% apy，其中 8.18% 全是奖励（$160M）
+⚠️ *LST 那 +6.3% 是假的*：Lido WETH 数量 9,711,381 → 9,712,785（+0.014%）、ether.fi +0.07%、StakeWise +0.02%，而 USD TVL 跳 +5.7%~+7.4%。/protocols 给 Lido 隐含 $2,495/ETH，现货 $2,263 —— 价格基准陈旧，不是资金流入。
 
-*Macro:* BTC $81,206（+0.50% / 7d −4.21%）· ETH $2,358（+0.48% / −5.54%）· SOL $102.44（+1.27%）· F&G 51（Neutral，昨 51 平）· 广度 17/20（7d 3/20）· BTC 占比 59.46%（+0.05pp）
-*预测市场：* 以色列大选三席占成交量前五 ——「Netanyahu 任下任总理」YES 50.5%（$5.86M，量第一）。**10 月 FOMC 已结算：不变息 100%**；12 月盘口反过来定价 **加息 25bp 79.0%**。
-
-_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（第 6 轮 400）| var: none_
-
-*两条口径警告*
-1. `/overview/dexs` 的 `total24h` 滞后一个日历日 —— 字段 $7.059B 精确等于图表 **10-27** 的 $7.053B、`total48hto24h` $8.418B 等于 **10-26**。字段的 `change_1d` −16.14% 算的是 10-26→10-27，不是今天。今日真值走图表：+13.0%。
-2. 昨天日志里 DEX「$5.99B / −1.86%」是盘中截取未走完的 10-27 桶，该日完成为 $7.053B。别拿昨天的量跟今天比。
+_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（连续第七轮 400）| var: none_
