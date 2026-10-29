@@ -6,6 +6,16 @@
       "sha256": "893626e545ef75a6f660f94ef1a1b3bb8ea46b60b02f16d9b615c25d3e4d284a",
       "date": "26/10/2026",
       "notified_at": "2026-10-27T06:52:01Z"
+    },
+    {
+      "sha256": "34e22328977c77aec1b3cd19e4a9f43405b47595ea4c2bed3e3b914f9490d71d",
+      "date": "",
+      "notified_at": "2026-10-29T02:46:20Z"
+    },
+    {
+      "sha256": "26391a19e9df98f26007945dd4eac8e498a1f2d498002e58a39b7ad3080df9f8",
+      "date": "29/10/2026",
+      "notified_at": "2026-10-29T02:46:20Z"
     }
   ]
 }
