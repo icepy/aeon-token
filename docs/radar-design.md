@@ -22,6 +22,12 @@
 
 **名字清单不在交接面上。** 每个通道自己一份（`memory/universe-names.txt` 归 arxiv、`memory/defillama-names.txt` 归 defillama），因为两边吃法相反：arxiv 拿它当标题查询词、每词一次 API，defillama 拿它当本地子串、要短名。共用一份，改哪边都得拿另一边的尺子量一遍。
 
+## 术语
+
+- **probe** 只指 `github-radar` 里那个拿仓名反查、产候选词的动作，属第一层。别的 skill 里同名但不产候选词的，一律不叫 probe。
+- **cross-window** 指零命中词的跨宽档 total_count 量法（arxiv 的 `cross_windows()`），属第二层判据辅助。
+- **信息探针** 指整个系统，是比喻，不是某个函数。
+
 ## 通则
 
 - **窗口只决定成本，不决定语义。** 任何依赖窗口的判据，必须同时声明「无更宽档时怎么办」。
