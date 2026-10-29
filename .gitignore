@@ -92,3 +92,6 @@ output/defillama/*.dry.json
 
 # arxiv-radar dry-run 快照（不提交）
 output/arxiv/*.dry.json
+
+# github-radar dry-run 快照（不提交）
+output/ghradar/*.dry.json
