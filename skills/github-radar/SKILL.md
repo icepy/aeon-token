@@ -57,7 +57,7 @@ metadata:
 - **窄窗会把稀有词系统性读成「真零」** —— 判词表死活必须跨 7/30/60 三个窗口量 total_count。
 - **同窗口连跑会读出「幸存 0」。** 非 `dry-run` 把幸存者写进 `seen` 之后，同窗口再跑必然 0 —— 那是算术。**dry-run 不写 seen，所以同窗口 dry-run 复跑 = 原样重放，数字不含新信号。**
 - **词表对新生专名是全盲的（结构性，与窗口无关）。** 实证：`SuperMimic` 55 仓簇，18 词只捞到 2 个。**修法是反向做**：拿仓名 token 反查 —— 就是 `probe`。
-- **`probe` 的定位是「候选词发现」，不是「仓库发现」。** 它索引的是**名字**（词表索引的是机制）。产物是「这几个名字在积累，考虑加进监控」，不是「今天多了几个仓」。所以它挂周跑、挂在比对层，不进日跑输出。
+- **`probe` 的定位是「候选词发现」，不是「仓库发现」。** 它索引的是**名字**（词表索引的是机制）。产物是「这几个名字在积累，考虑加进监控」，不是「今天多了几个仓」。**它不单独发通知、不单独再搜一轮** —— 跟方向段共用同一次抓取。结果只进 digest、日志、`memory/gh-probe-cards.md` 与候选词文件，**不进 telegram 正文**。
 - **`probe` 判真簇要三条，缺一不可：① `total` 小；② 簇内同主题（`cohesive`）；③ 主题词落在 `THEME_LEXICON` 语义内（`thematic`）。** 前两条全中也还是假 —— 第十六轮 3 个非通用且 cohesive 的候选**3/3 全假**（`senku` 主题词只有 `with`×11、`uniview` 是海康大华 NVR、`pouw` 撞荷兰语货运）。脚本已把 `GLUE` 剔出主题词。**看着像专名不代表是我们的题。**
 - **`probe` 跑 60 天窗，不跟日跑窗口。** 它问的是「这个名字在积累吗」= 周/月尺度；7 天窗下真簇 6 仓 vs 撞名 4 仓，**都在噪声底下面，判不出**。`PROBE_WIN=60` 必须独立于 run 窗口。
 - **`probe` 到期用 `memory/ghradar-probe-last.txt` 戳判（≥7 天），`dry-run` 不写戳，显式带 `probe` 时无视戳。** 跑挂不写戳 → 次日自愈。
@@ -107,6 +107,9 @@ digest 里已经有：口径 / 漏斗 / 逐词四分类 / 报告级 + desc / pro
 - `memory/github-seen.json`（全部幸存者，`dry-run` 不写）
 - `memory/github-candidates.md`（只写报告级，`dry-run` 不写）
 - 通知：只在报告级 > 0 且非 `dry-run` 时发，最多 `NOTIFY_TOP` 条
+- `memory/gh-probe-cards.md` —— `probe` 时按簇追加，一簇一行：短名 / `owner` 数 / `repo` 数 / `cohesive` / `thematic` / 首次日期 / 状态
+- `memory/gh-probe-terms.txt` —— `probe` 时把过完三条件的候选词追加进去，带日期与 `owner` 数。**人点头后才进 `TERMS`，脚本不自动改词表**
+- 上面两份文件不存在时，由 Step 2 的 `probe` 小节先建出带表头的空文件（建表命令在那里，这里不重复）
 - 清：开跑前删掉 `output/ghradar/` 里除上述六个名字外的文件（`keep*` 前缀除外）
 
 ## Steps
@@ -123,9 +126,25 @@ python3 skills/github-radar/scan.py "${var}"
 
 往 `memory/logs/${today}.md` 追加一节 `### github-radar（第 N 轮）`：口径 + 漏斗 + 四分类（**必须分开写**）+ 你自己的判据级发现。报告级为 0 就只写一行。digest 的行可以直接抄。
 
+跑 `probe` 时，日志里 `probe` 单独起一节，别混进方向节；同一节里用 `bash >>` 把簇追加进 `memory/gh-probe-cards.md`、把候选词追加进候选词文件。都是追加，不 Read 后 Edit，不额外占调用。建表与追加合在同一批 bash，先兜底建文件再追加。
+
+**逐簇从 digest 的 `probe` 段抄值，一簇一组，全部写在同一批 bash 里，不按簇分批调用。** digest 里的 `total=` 就是 repo 数、`owners=` 就是 owner 数，别对调。`cohesive` 与 `thematic` digest 只给判定不给数值，过了就都写 `1`、没过写 `0`。`today` 用 `${today}`。0 簇就只跑两条建表行，不写 `printf`。
+
+```bash
+[ -f memory/gh-probe-cards.md ] || printf '# probe 簇卡\n\n| 短名 | owner 数 | repo 数 | cohesive | thematic | 首次 | 状态 |\n|---|---|---|---|---|---|---|\n' > memory/gh-probe-cards.md
+[ -f memory/gh-probe-terms.txt ] || printf '# probe 候选词（人点头后进 TERMS）\n\n| 词 | 日期 | owner 数 | 状态 |\n|---|---|---|---|\n' > memory/gh-probe-terms.txt
+
+short=supermimic owners=7 repos=9 cohesive=1 thematic=1 term=supermimic
+printf '| %s | %s | %s | %s | %s | %s | %s |\n' "$short" "$owners" "$repos" "$cohesive" "$thematic" "${today}" "待定" >> memory/gh-probe-cards.md
+printf '| %s | %s | %s | %s |\n' "$term" "${today}" "$owners" "待定" >> memory/gh-probe-terms.txt
+
+# 第二簇就再赋值一组、再两行 printf，仍在同一批
+```
+
 ### 3. 输出
 
-- 通知正文由脚本写进 `output/ghradar/report.md` 并发出去。`dry-run` 不写 `report.md`。
+- 通知正文由脚本写进 `output/ghradar/report.md` 并发出去。`dry-run` 不写 `report.md`（该文件可能留着上一轮的旧版，验收看它的 mtime 有没有变，不要拿「文件不存在」当判据）。
+- **一条通知，只有方向段。** `probe` 命中不进通知正文，也不发第二条 —— 要看就去 `memory/gh-probe-cards.md`。仓库详情留在卡里，通知里不重复。
 - 只给仓库 + 一句话 + 链接 + star + 30d/7d，不做判断。
 
 ### 4. 跑完交付
@@ -134,5 +153,6 @@ python3 skills/github-radar/scan.py "${var}"
 
 - **下一步** — 下一轮跑什么、改不改脚本。本轮没踩到的已知洞不夹带。
 - **你要处理的** — 只有人能定的事（删词、这条仓算不算你的题、要不要合并）。没有就写「这轮不用你处理」。
+  - 本轮 `probe` 若有候选词，逐条列出（词 / `owner` 数 / `repo` 数 / `cohesive` / `thematic`），问要不要进 `TERMS`。**不自动改词表。** 没有候选词就并入「这轮不用你处理」。
 
 改脚本只根据本轮结果里已经出现的缺陷。词表动作仍是三级：换写法 → 降级为低频 → 删词。不升 `VERSION`，除非这版行为要单独在飞；`gh-v4` 留给 `supermimic` 正样本。本地 `dry-run` 改写的 `audit.log` / `dropped.json` / `out.dry.json` 不提交，跑完还原。
