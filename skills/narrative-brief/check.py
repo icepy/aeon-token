@@ -94,10 +94,13 @@ def split_briefs(text):
         briefs.append({"date": date, "body": body})
 
     for line in lines:
-        if DATE_RE.fullmatch(line.strip()):
+        cand = line.strip()
+        if cand.startswith("## "):
+            cand = cand[3:].strip()
+        if DATE_RE.fullmatch(cand):
             if seen_date or any(x.strip() for x in buf):
                 flush()
-            date = line.strip()
+            date = cand
             buf = []
             seen_date = True
             continue
@@ -592,6 +595,12 @@ def self_test():
 
     check("date only is empty", split_briefs("26/10/2026\n") == [])
     check("blank is empty", split_briefs("  \n") == [])
+
+    hdr = "## 2026-10-29\n\n29/10/2026\n\n【加密线】\n\n1. 标签：甲\n"
+    hb = split_briefs(hdr)
+    check("## header merges with date line", len(hb) == 1 and hb[0]["date"] == "29/10/2026", str(hb))
+    check("## header not in body", "##" not in hb[0]["body"], hb[0]["body"])
+    check("## header only is empty", split_briefs("## 2026-10-29\n\n") == [])
 
     two = "26/10/2026\n\n【加密线】\n\n1. 标签：旧\n\n29/10/2026\n\n【加密线】\n\n1. 标签：新\n"
     parts = split_briefs(two)

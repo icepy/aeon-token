@@ -38,6 +38,7 @@ metadata:
 - **同一日期节内，去掉编号后正文完全相同的条目只留一条**（跨【】节也算）；**不同日期节之间不并**。
 - **`标签：` 是全角冒号，承重。** Grok 若改成半角 `标签:`，`ITEM_RE` 不匹配 → 去重与重编号**静默失效**（条目不报错、直接透传）。
 - **已推过按每节的 sha256 记**，在 `memory/narrative-brief-seen.json`。近 3 天日志里 `推送: yes` 的 sha 也算推过。`dry-run` 不算。
+- **改 `split_briefs` / `canonical` 的规范化方式会让所有 sha 位移。** 改完必须把新 sha 补进 `memory/narrative-brief-seen.json`（`date` 照抄、`notified_at` 填改的时间），否则下一轮会把已推过的整份重推一遍。先 `--file memory/topics/narratives.md` 跑一遍确认 `新: 0` 再提交。
 - **文件里按日期切开。** 只推没见过的那几节。Grok 改成 append 之后，旧节不会再推一次。
 - **日期节超过 4：只在 stdout 打一行，不落日志，也不删。** 删最旧一节是 Grok 的事。
 - **产物文件名固定**（`report.md` / `report.dry.md` / `pending.json`）。
