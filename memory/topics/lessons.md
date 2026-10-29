@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-10-27T23:45:00Z
+timestamp: 2026-10-29T00:18:00Z
 ---
 
 # Lessons learned — archive
@@ -101,6 +101,10 @@ MEMORY.md carries the one-line form of each lesson. This file holds the detail.
 **判据（本轮实测）**：加 cache-buster `?_cb=<ts>` + `Cache-Control: no-cache` → `cf-cache-status: MISS`、`last-modified: 06:02:09Z`（前进 23 分钟）、`etag` 变了、**1255/8859 条的 `tvl` 变了（全量 TVL −$610M）**，但 **id 集合完全相同**。所以「0 新增」这次是真的，只是**必须先证明自己绕过了缓存才能采信**。
 
 **纪律**：任何「差集为空」的结论，先打一次响应头并断言 `cf-cache-status != HIT`（或 `age` 远小于两轮间隔）。`seen` 存的是 id 集合，缓存只影响**新登记延迟最多 ~30 分钟**，不影响正确性 —— 但会让「0 新增」在缓存窗口内**无信息量**，不能当「今日无新协议」的证据写进日志。
+
+**⚠️ 上述「不影响正确性」已被 2026-10-29 证伪 —— 缓存会让报告直接漏条目。** 那天首跑吃 `HIT` / `last-modified 23:02:27Z`，只出 1 条；源站复取（`MISS` / `23:38:07Z`）还有 4 条 `id` 不在 seen，而它们的 `listedAt` 是 **21:50–22:00Z —— 比那个 HIT 对象自己的 `last-modified` 还早一个多小时**。所以 **`last-modified` 不能界定 payload 完整性**：一个 HIT 对象可以挂着新 `last-modified`、内容是更早的一份。
+
+**升级后纪律**：可报 > 0 时同样要做一次 cache-busted 复取，比对 `set(源站 id) - set(seen)` 与 `out.json` 的 id；不等就等 `last-modified` 换新后重跑再发。**判新度只认「对源站的 id 差集」，不认响应头。** 当天另有正面证据：首跑把 `Megawatt Markets` 落成 `notified=None`，缓存换新后第二轮走「重报」通道自动补回 —— 中途换新能自愈。[source: logs/2026-10-29#defillama-radar]
 
 **配套正面证据：`id` 是按登记顺序单调递增的。** 7186 条有 `listedAt` 的样本里，按 id 排序的相邻对 `listedAt` 逆序仅 **2.6%**；id 最小 200 条中位 2021-11-04、最大 200 条中位 2026-10-19；10-20 起 91 条连续 id 9164–9254、**缺口 0**。所以「id 求差」确实是新度的正确代理，且可用「新增 id 是否严格大于上一轮最大 id」做**独立校验**：若差集里出现小于历史最大 id 的条目，那不是新登记，是旧条目回流（DefiLlama 会下架再上架）。
 

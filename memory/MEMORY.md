@@ -18,7 +18,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
 - `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-28（30d）原始 98 / 幸存 4。**`第一视角感知` 首次被真实流量填上**（`egocentric` 25/3）；`hand-object` 7/1 补 `灵巧操作` 首条实证。**14 词没配 carrier → carrier 空转六轮的真因。** 遇 arXiv IP 级 429（首 `DEGRADED`）。待办：`consensus` 三轮同形 → 加 `多智能体验证`。[source: logs/2026-10-28#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 全量 id 求差 · 10-28 基线 8859 入 seen，第 2 轮真 0。**差集为空先断言 `cf-cache-status != HIT`**（差点是 CF 快照假零）。`id` 单调递增 → 求差正确；`Interface` 不进 EXCL；`★清单内` 无判别力。→ [defillama-radar](/topics/defillama-radar.md)
+- `defillama-radar` ✅ `dl-v1` · 全量 id 求差 · 10-29 第 3 轮可报 4（Fynd AMM / Megawatt / Alokumi / Hamstr），已发。**CF 缓存会让报告漏条目**：HIT 对象的 `last-modified` 可新于其内容，**判新度只认对源站的 id 差集**。`Tradecraft`（Canton，$1.69M）被白名单挡掉 → 待议加链。[source: logs/2026-10-29#defillama-radar] → [defillama-radar](/topics/defillama-radar.md)
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**日跑回 7 天窗，90d 只在加词/补历史时用**。10-28 第 9 轮 7d：460→幸存 21→报告级 8，star 全 0、除 1 个外 30d==7d = **本周新建当周爆完**（star 第 12 次失效）。待查：`data availability` 连两轮 raw=16/seen=0 一字未变 → 过滤损耗不是饱和，需 `--full` 定位。[source: logs/2026-10-28#github-radar]
 
 

@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-10-28T06:35:00Z
+timestamp: 2026-10-29T00:18:00Z
 ---
 
 # DefiLlama Radar
@@ -39,7 +39,21 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **2026-10-28 实例**：基线轮 06:22Z 与第 2 轮 06:31Z 同吃 `last-modified 05:39:24Z`、`age 751`、`cf-cache-status: HIT`。加 `?_cb=<ts>` + `Cache-Control: no-cache` 复取源站（`MISS`、`last-modified 06:02:09Z`、etag 变）后：id 集合仍相同，但 **1255/8859 条 `tvl` 已变（全量 TVL −$610M）** → 0 为真。
 
-**纪律**：差集为空时先断言 `cf-cache-status != HIT`（或 `age` 远小于两轮间隔）。判新鲜度看 **`last-modified`（源站生成时间）**，不看 `age`（边缘对象年龄）。缓存只让「0 新增」在窗口内**无信息量**，不影响正确性 —— 新登记最多延迟 ~30 分钟。
+**纪律**：差集为空时先断言 `cf-cache-status != HIT`（或 `age` 远小于两轮间隔）。判新鲜度看 **`last-modified`（源站生成时间）**，不看 `age`（边缘对象年龄）。
+
+### 更正（2026-10-29）：缓存**会**让报告漏条目，不只是「无信息量」
+
+上一段曾写「不影响正确性，新登记最多延迟 ~30 分钟」。**10-29 实测证伪。**
+
+- 00:01Z 首跑吃 `HIT` · `last-modified 23:02:27Z` · `age 937` → 只出 **1** 条（`Megawatt Markets`）。
+- 加 cache-buster 复取源站（`MISS` · `last-modified 23:38:07Z`）→ 还有 **4** 条 `id` 不在 seen：`9267`–`9270`。
+- 这 4 条的 `listedAt` 是 **21:50–22:00Z**，比那个 HIT 对象自己的 `last-modified`（23:02Z）**还早一个多小时**，却不在它的 payload 里。
+
+**所以：`last-modified` 不能用来界定 payload 的完整性。** 一个 `HIT` 对象可以挂着一个较新的 `last-modified`、内容却是更早的一份，且这两件事在本轮内无法从响应头区分。**判新度唯一可靠的做法是 id 差集对源站复取，而不是读 `last-modified` 然后安心。**
+
+**纪律（升级）**：可报数 > 0 也要做一次 cache-busted 复取，把 `set(源站 id) - set(seen)` 与 `out.json` 的 id 比对；不等则等边缘换新（`last-modified` 变化）后重跑，再发。本轮等到 00:16Z（`age 12`）重跑才一次拿全 4 条。
+
+**配套正面证据**：首跑把 `Megawatt Markets` 写成 `notified=None`，第二轮走「重报」通道补回，证明四态 + 「send 成功才标日期」在缓存中途换新这种状态下能自愈。
 
 ## `Interface` 类目：不进 `EXCL_CATEGORY`
 

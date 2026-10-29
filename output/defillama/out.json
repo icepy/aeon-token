@@ -1,1 +1,69 @@
-[]
+[
+ {
+  "id": "9267",
+  "name": "Fynd AMM",
+  "slug": "fynd-amm",
+  "chains": [
+   "Robinhood Chain",
+   "Base",
+   "Binance",
+   "Ethereum"
+  ],
+  "tvl": 72463.46974354275,
+  "category": "Dexs",
+  "listedAt": 1793224209,
+  "url": "https://swap.fynd.xyz/pools",
+  "description": "Fynd AMM is a pool extension that plugs into any type of AMM. For every trade, its proprietary mechanism scans",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9260",
+  "name": "Megawatt Markets",
+  "slug": "megawatt-markets",
+  "chains": [
+   "Arbitrum"
+  ],
+  "tvl": 2704.332465406836,
+  "category": "Derivatives",
+  "listedAt": 1793210458,
+  "url": "",
+  "description": "Onchain order-book exchange for daily electricity futures on 7 US power markets.",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9268",
+  "name": "Alokumi",
+  "slug": "alokumi",
+  "chains": [
+   "Solana"
+  ],
+  "tvl": 1603.0533876749955,
+  "category": "Liquidity Automation",
+  "listedAt": 1793224525,
+  "url": "",
+  "description": "LP Agents for Meteora DLMM on Solana. Users write their LP rules in plain words (or copy a smart-money wallet)",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9270",
+  "name": "Hamstr",
+  "slug": "hamstr",
+  "chains": [
+   "Base"
+  ],
+  "tvl": 108.94179363215571,
+  "category": "Yield Aggregator",
+  "listedAt": 1793224807,
+  "url": "",
+  "description": "Park dollars or ETH, earn interest in Bitcoin. Hamstr lends deposits on Aave V3 and swaps only the yield into ",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ }
+]
