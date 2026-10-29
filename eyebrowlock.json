@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-28T10:01:10.224442081Z",
+  "generatedAt": "2026-10-29T02:26:28.004910263Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -110,14 +110,13 @@
         "network": [
           "api.resend.com",
           "cloudflare-dns.com",
-          "dns.google",
-          "github.com"
+          "dns.google"
         ]
       },
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "2f4f8e71b719d7fc0adae62afdd6aeef0446ff0c60bc4da0b1e8d11e68cd31a4"
+          "hash": "d3d8173c1fb39d8ec4b04100a5a252316c533a3de276af17e151f1206bb669ea"
         },
         {
           "path": "riva.md",
@@ -135,7 +134,7 @@
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-74ef94c9fcba984a896b568a36b3ef98b40a72f6487a2a607e9d3d8430b1c743",
+      "contentHash": "sha256-009a72b65b62d0264add15e1c76cafffb1355992ab4823b9c3b6027a2d7764b1",
       "discoveredFrom": "skills/vuln-scanner/SKILL.md"
     },
     {
@@ -1867,6 +1866,10 @@
       },
       "files": [
         {
+          "path": "README.md",
+          "hash": "b83ed138f22c91b6de948064931013ec77d08437297e4bfb37a28ed4822b11a7"
+        },
+        {
           "path": "SKILL.md",
           "hash": "7bd9c496734eea866de8209fc96b54e12060382d54f2c7e0e95db6ec076ec0ff"
         },
@@ -1887,7 +1890,7 @@
           "hash": "2300653056e64107c579d22d52f2fcfb5ecbd7f5996b8fc636747d5e6e78ba41"
         }
       ],
-      "contentHash": "sha256-bebafe7533cae6623aebeb7c0e734e5aecb3641e6b771d0460b4ee8a1146d722",
+      "contentHash": "sha256-959af4e1dcb40f8753506b13ad05a799c7b9698e69e4b1d9b12649deb74faf56",
       "discoveredFrom": "skills/sc-audit/SKILL.md"
     },
     {
