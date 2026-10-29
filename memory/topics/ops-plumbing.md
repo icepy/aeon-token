@@ -52,6 +52,24 @@ overnight is replayed **all at once**. On 2026-10-28 three skills whose crons si
   status page cross-checks cron state against the skill list. Delete it when a write path is handy.
 
 
+## A skill's frontmatter `var:` default is NOT injected into the run
+
+Every skill declares a `var:` default in its frontmatter (e.g. `skills/github-radar/SKILL.md:7` →
+`var: "days:7"`), and the body reads "default 7". **That value never reaches `$var` at runtime.**
+An unset `var` arrives empty, so the skill falls through to *whatever the script hardcodes* —
+`skills/github-radar/scan.py:184` sets `DAYS = 30`. `scan.py:193` only overrides it when `days:N` is
+explicitly passed.
+
+Consequence: the belief "github-radar runs daily on a 7-day window" was never true on the dispatch
+path. The 7-day runs that got recorded were manual `days:7` invocations from inside a run. Round 9
+(7d) and round 10 (30d) are therefore **not comparable** — the 2106 → 35 → 16 funnel in round 10 was
+produced by a different window, not by a change in the topic.
+
+- **Check the script's default, not the frontmatter's, when reasoning about what a scheduled run
+  actually measured.** Frontmatter `var:` is documentation and a default for the *manual* path.
+- Any cross-round comparison that changes window must state the window in the same breath as the
+  numbers. A funnel delta across two windows is a window effect until proven otherwise.
+
 ## Watchlist rationale
 
 Base watches sit at $200/$250. NOTE watches sit at $500 — deliberately low because NOTE events are

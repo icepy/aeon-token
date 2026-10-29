@@ -1,37 +1,39 @@
-整理完成，MEMORY.md 在预算内。以下是本轮记录：
+Flush complete. Watermark stamped, MEMORY.md within budget.
 
-## memory-flush · 2026-10-28
+## memory-flush — 2026-10-28 → 2026-10-29
 
-**扫描窗口** `2026-10-27 → 2026-10-28`。8 个日志文件，未轮转（阈值 45）。
+**扫描窗口**：2 个日志文件（`2026-10-28.md` 272 行 / `2026-10-29.md` 60 行），无 >14 天缺口，日志轮转归档 0 个月（9 个日文件，阈值 45）。
 
-### 提升到长期记忆
+### 本轮最重要的发现：`github-radar` 的「7 天窗」从未在调度链路上生效
 
-**github-radar 第 9 轮**（此前只散在日志里）→ `memory/topics/github-radar.md` 新增「第二十三轮」一节，四条判据（#49–#52）：
+`skills/github-radar/SKILL.md:7` 声明 `var: "days:7"`、正文也写「默认 7」，但 `scan.py:184` 的 `DAYS` 默认值是 **30**，`scan.py:193` 只在显式传 `days:N` 时才覆盖。**frontmatter 的 `var:` 不注入运行环境** —— 第 9 轮那个「7 天窗」是运行内手动传参的结果，不是日跑默认行为。
 
-- **star 第 12 次失效，但形态变了**：报告级 8 个 ★全 0，且除 `marionette` 外 `commits_30d == commits_7d`。这说明「所有提交都在近 7 天」，即**本周新建、当周爆完**，不是老仓回温。判据从「它有多活跃」改成「它存在多久」。
-- `data availability` 连两轮 raw=16 / seen=0、数字一字未变 → 是**过滤损耗**不是饱和（饱和要求 `seen` 命中有数），下一轮 `--full` 定位。
-- 7 天窗不足以判词死活：`robotics data engine` 相邻两轮从「饱和 1/1」翻成真零。
-- carrier 误杀对照两侧都顶到 100%（46/46、18/18）时**失去分辨力**——只能记「未观察到误杀」，不能反推规则安全。
+这条直接作废了 MEMORY.md 里「日跑回 7 天窗」的结论，也意味着第 9 轮（7d）与第 10 轮（30d）的数字**不可相减**。已写进 [ops-plumbing](/topics/ops-plumbing.md) 新节，并并入 MEMORY.md 的调度那条。
 
-**lessons.md** 增 3 条、合并 3 组重复：
+### MEMORY.md 变更
 
-- arXiv **IP 级 429**：诊断法是打一条无日期条件的查询——无窗 200 + 有窗 429/503 = 限流不是故障。degraded 分支 `sys.exit(0)` 不写 `out.json`，重跑前必须 `stat` 产物 mtime。
-- **某过滤器长期「0 丢弃」先查有多少输入真经过它** —— carrier 空转六轮的真因是 26 词里 14 个没配 `CARRIER_BY_TERM`。这条同时作废此前「零假阴本身有价值」的表述。
-- **标签缺口被真实流量填上 = 扩受控表**，不是改过滤器。
-- 合并：跨 series 日期对齐（原 3 条同义）、单腿归零（2 条）、DEX 口径冲突（补 10-28 第二次复现）。
+| 项 | 变化 |
+|---|---|
+| 起点 | 8,275 B / 54 行（**已超预算 83 B**） |
+| 中途 | 8,472 B（改写涨的） |
+| 收尾 | **8,045 B / 53 行**，无超 300 字符行 |
 
-**ops-plumbing.md** 新增「补跑时移」一节：三个 cron 22:00/22:30/23:45 UTC 的技能在 10-28 同一秒 `04:15:45Z` 触发，**「昨天几点跑」不能当 cron 时间读**；孤儿 `arxvi-radar` 条目说明。
+三条状态行全部推到最新轮：`arxiv-radar` 第 29 轮、`defillama-radar` 第 3 轮、`github-radar` 第 10 轮。字节回收全部靠压缩，没有整节下沉：删掉 DEUS 归档段里与 Reference 段**重复的五条 topic 链接**（−230 B），`defi-overview` 那条 lesson 的后半本就全文在 `lessons.md`（#168/#170），MEMORY 只留判据 + 指针（−250 B）。
 
-**decisions.md** 给 10-28 那条「carrier 只当摄像头」加了限定。
+### topic 增补
+
+- **[github-radar](/topics/github-radar.md) 新增第二十四轮（#53–#56）** —— ①`data availability` 悬案结案：「两轮数字一字未变」**是窗口假象的指纹**（7d 窗把 57 压成 16），不是哪条规则在吃；②carrier 误杀对照**跨窗口比必得假信号**（本轮 36% vs 97%，上轮 100%/100%）；③`proof of useful work` 30d 窗首次产出，与 defillama 词表 `Pearl Blockchain` 同源 = **两条通道首次交集**；④第 9 轮 `30d==7d`「本周新建当周爆完」是 7 天窗产物，不是 10 月末的普遍形态。旧的 #50 已标注「被 #53 推翻」，原文保留存档误判链。
+- **[lessons](/topics/lessons.md) 增补 3 条** —— 窗口截断假象 + 跨窗口对照失效；`EXCL` 不进 seen = 漏斗常数项；`有新增0 + 全已见19` = 纯 saturated 轮不是断流轮。
+- **[defillama-radar](/topics/defillama-radar.md) 新增白名单漏口一节** —— `Tradecraft`（Canton）TVL $1,688,251，比同轮 4 条可报项加起来还大 20 倍；记下「加链必须同时删 seen 重做基线，否则等于没加」。
 
 ### 剪枝
 
-`gh pr list --state open` = `[]`；`--state all` 八条全 MERGED。MEMORY.md 无待合 PR 条目可删。`defillama-radar` 那个 topic 自建立起**从未登记进 index**（孤儿），已补；github-radar 行从「二十二轮」更新到「二十三轮」。
+`gh pr list --state open` 与 `--search "improve:"` **均返回 `[]`**，无待合 PR 段。`narratives.md` 现 2 节，未超 4 节上限，无需清理。
 
-### 预算
+## Summary
 
-起点 7,898 → 中途一度 8,647（超 455）→ 回落到 **8,175 字节 / 54 行，无超 300 字符行**（余量 17 字节）。行数比「~50」多 4 行。
-
-已 `stamp` 写入 watermark `2026-10-28`。
-
-**未处理**：`memory/topics/` 下 10 个 `.py` 临时脚本与 100KB 的 `price-alert-state.json.bak` 仍是 price-alert 停用遗留，删除要走 PR；`memory/on-chain-state.json.new` 连续第五轮挂着，只在重开 `onchain-monitor` 前需处理。
+- 执行 `memory-flush`，窗口 2026-10-28 → 2026-10-29，读 2 个日志文件，无 clamp。
+- 修改 `memory/MEMORY.md`（8,275 → 8,045 B，54 → 53 行，预算内）、`memory/topics/github-radar.md`（+第二十四轮 #53–#56，修正 #50）、`memory/topics/lessons.md`（+3 条，合并 1 条）、`memory/topics/defillama-radar.md`（+Canton 漏口）、`memory/topics/ops-plumbing.md`（+`var:` 不注入）、`memory/logs/2026-10-29.md`（本 skill 日志）。
+- 已 `stamp`：watermark 2026-10-29，MEMORY.md 镜像同步。
+- **未通知** —— 无触发条件，按 STRATEGY「正常别吵我」静默。
+- 待办（延续，未动）：`memory/topics/` 下 10 个 `.py` 临时脚本与 `price-alert-state.json.bak`（100KB）需走 PR 删除；`memory/on-chain-state.json.new` 只在重开 `onchain-monitor` 前处理；`github-radar` 是否把 `days:7` 写进 `aeon.yml` 的调度参数（或把 `scan.py` 默认值改成 7）需要拍板 —— 当前状态是文档与实现对不上。

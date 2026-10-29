@@ -525,9 +525,9 @@ probe 反查（首次非 dry-run）：种子 67 → 候选 token 96 → 反查 2
 
 八个报告级仓的 `commits_30d` 与 `commits_7d` 逐项相等（`marionette` ≥100/≥100、`aura3d` 54/54、`operator-layer-ros2` 16/16、`AegisAgent` 12/12、`jepa-game-agent` 10/10、`TheLiaoGroup/WorldModel` 9/9、`roverlink-ros2` 6/6、`YHFone/supermimic-mjlab` 5/5）。**30d==7d 的意思是「所有提交都落在最近 7 天」—— 这是本周新建仓、当周爆完，不是老仓回温。** 以往 star 失效表现为「高 star 仓其实很旧」，本轮表现为「报告级整体是新建仓」，判据不同：**看到 30d==7d 就该问「这个仓存在多久」，而不是「它有多活跃」。**
 
-### 50. 🔴 `data availability` 连续两轮 raw=16 / seen=0，数字一字未变 —— 这是过滤损耗，不是饱和
+### 50. 🔴 `data availability` 连续两轮 raw=16 / seen=0 —— **结论已于第二十四轮推翻，见 #53**
 
-第 8 轮与第 9 轮（相隔一天）该词原始命中都是 **16**，幸存 0，`seen` 命中 0。**原始量逐字相同 + seen 命中为 0 → 这 16 条被某条丢弃规则整批吃掉，从未进过 `seen`。** 按四分类它属于「过滤损耗」，**绝不能读成「已饱和」**（饱和的定义是 `seen` 吃干，即 raw 有数而 seen 也命中有数）。下一轮 `--full` 看 `audit.log` 定位是哪条规则（候选：carrier / short_desc）。
+第 8 轮与第 9 轮（相隔一天）该词原始命中都是 **16**，幸存 0，`seen` 命中 0。当时判为「过滤损耗」。**10-29 第 10 轮换 30 天窗后 raw 立刻变 57 / seen=1 —— 真因是窗口把 57 压成 16，不是任何丢弃规则。** 原文保留以存档误判：当时「raw 逐字相同 + seen 命中 0 → 被某条规则整批吃掉」的推理链本身没错，错在**没有先问「这个 16 是不是窗口的函数」**。
 
 ### 51. 🟡 7 天窗不足以判词死活，且状态会在相邻两轮之间来回翻
 
@@ -538,8 +538,37 @@ probe 反查（首次非 dry-run）：种子 67 → 候选 token 96 → 反查 2
 丢弃侧仓名自带词表词 46 个、近 7 天存活 **46/46 = 100%**；放行侧幸存者 **18/18 = 100%**。**两侧都顶到 100% 时这个对照失去分辨力**（分母太小、且 7 天窗下几乎所有仓都活着）—— 结论只能是「本轮未观察到误杀」，不能反推 carrier 规则安全。前几轮 54%/45%、56%/57% 才是有效读数。
 
 
+## 第二十四轮（2026-10-29，**30 天窗**，非 dry-run）—— 口径偏差：7 天窗从未在调度链路生效
+
+本轮 `var=''`，但 **digest 自报窗口 30 天**。查证：`skills/github-radar/SKILL.md:7` 写 `var: "days:7"`、正文写「默认 7」，而 `scan.py:184` 的 `DAYS` 默认值是 **30**（`scan.py:193` 只有显式传 `days:N` 才覆盖）。**frontmatter 的 `var` 不注入运行环境，所以第 9 轮报的「7 天窗」是手动传 `days:7` 的结果，不是默认行为 —— 「日跑回 7 天窗」这条 MEMORY 结论在调度链路上从未成立。** 本轮数字与第 9 轮**不可直接相减**。
+
+漏斗：原始 **2106** → 幸存 **35** → 报告级 **16**。丢弃 seen=979 · excl=138 · archived=1 · short_desc=389 · carrier=434 · neg=56 · pages=57 · pages_root=4 · scaffold=0 · farm=13 · fail=0。18 词 × 二分（单窗 13 / 需拆窗 5 · 二分 4 次 · 搜索调用 45）· 核验 35/35 = 100% · 141s。
+
+### 53. 🔴 `data availability` 悬案结案：**「两轮数字一字未变」本身就是窗口假象的指纹**
+
+30 天窗下该词 raw=**57** / seen=1；7 天窗下（第 8/9 轮）raw=**16** / seen=0。同一批仓在 7 天窗里反复被查出来又被同一条规则丢掉，读数看起来像「完全没变」。**判据：相邻两轮同一词的 raw 逐字相同，先怀疑窗口把分布截断了，而不是先怀疑某条规则。** 数学上，7 天窗对 `total_count` 是个截断函数 —— 上游总量远大于窗口内命中时，窗口内数字会一直顶在同一个饱和值上。
+
+### 54. 🔴 carrier 误杀对照**跨窗口比必得假信号**：本轮丢弃侧 36% vs 放行侧 97%，不是 carrier 回归
+
+丢弃侧仓名自带词表词 **53/148 = 36%**（近 7 天存活），放行侧 **34/35 = 97%** —— 看着像 carrier 在杀活仓。但**第 9 轮 7 天窗下两侧都是 100%**：7 天窗里「近 7 天存活」对几乎所有仓都恒为真，对照没有分辨力；30 天窗把三周前的老仓带进丢弃侧，天然存活率就低。**纪律：这个对照只能在同窗口内比。跨窗口比较得到的是窗口效应，不是规则效应。** 本轮不下结论、不改 carrier。
+
+### 55. 🟢 「窗口太短制造假零」第 N 次复现，且两条通道开始交集
+
+`proof of useful work` 上两轮 7 天窗连续读**真零**，本轮 30 天窗首次产出新收 2（`hetu-project/pearl-pouw-analysis` 等）。该词与 `defillama-radar` 词表里的 `Pearl Blockchain` 同源 —— **发现层两条通道（代码 / 部署）首次出现同一方向上的交集**，值得后续跟踪是否构成确认信号。
+
+### 56. 🔴 大厂组织号第二次进报告级，且是同一个 org；star 第 13 次失效
+
+`alibaba-damo-academy/RynnWorld-Latent`（★11，30d=16 / 7d=3）与第 9 轮的 `alibaba-damo-academy/RynnUnify`（★15，7/7）同属一个组织号。第十五轮记的「大厂组织号进报告级」从单样本升到 2 个。**报告级 16 个里 15 个 ★0** —— star 排序第 13 次失效。
+
+另：**16 个全部 7d>0**，与第 9 轮「除 1 个外 30d==7d」形态相反。30 天窗把「还在写」的老仓捞回一部分，与第十二轮判据（窗口是提前量/覆盖率取舍轴，不是质量轴）一致 —— **第 9 轮 `30d==7d` 的「本周新建当周爆完」是 7 天窗产物，不是 10 月末的普遍形态。**
+
+形态告警：无 language 7 个（`Motphys/.github` 是 `.github` 仓，本身不是代码仓）· 爆完即停仅 1 个（`UTSA-VIRLab/EgoBalanceFormer`）· pages 根规则丢 4 个 · NEG 丢 56 个（全是印尼语 `jepang` 撞词，规则生效）· `maximal extractable value` 30d=0，与 topic 记录的 7d=0/30d=0/60d=2 一致，按铁律不删。
+
+probe 跳过（戳 1 天 < 7 天），`clusters.json` 仍是上次结果。通知已发（报告级 16 > 0，队列 `1793226830-5084-8292.json`）。本轮无改词、无改脚本。
+
 # Citations
 
+- 第二十四轮（10-29 第 10 轮，30d）`logs/2026-10-28#github-radar（第 10 轮 · **30 天窗** · 非 dry-run）` · `skills/github-radar/scan.py:184,193` · `skills/github-radar/SKILL.md:7` · `memory/github-seen.json`
 - 第二十三轮（10-28 第 9 轮）`logs/2026-10-28#github-radar（第 9 轮 · 7 天窗 · 非 dry-run）` · `report.md` · `audit.log` · `memory/github-seen.json`
 - 第十八—二十二轮 `logs/2026-10-27#github-radar（第十八轮` … `#（第二十二轮`）· `scan.py:910,921`（tuple-index bug）· PR #14 · `memory/github-seen.json`（186 增补 34）· `memory/ghradar-probe-last.txt` = 2026-10-27
 - 第十七轮快照 `output/ghradar/out.dry.json`（51 幸存 / 3,818 原始）· `dropped.json`（carrier 877 / short_desc 695 / carrier_named_uniq 327 / carrier_named_alive_7d 74）· `clusters.json` · `audit.log` · `scan.py:366`（`WIN_SPLIT_TOTAL`）· 手工复量 `sim2real` 两页并集 163 · `logs/2026-10-26#github-radar（第十七轮`
