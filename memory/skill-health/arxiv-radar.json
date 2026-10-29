@@ -1,10 +1,10 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-10-28T22:04:34Z",
-  "quality_score": 4,
-  "assessment": "Zero-survivor scan correctly stayed silent per threshold rules; output is specific, auditable, and in Chinese with a full funnel, cross-window table, and file ledger — verifiable process work, though nothing actionable surfaced this round and the archived report is longer than the operator's brevity preference.",
+  "last_analyzed": "2026-10-29T22:04:33Z",
+  "quality_score": 3,
+  "assessment": "干净的无命中扫描，漏斗六分类与跨窗一致性论证细致、数字充分；但全文没有任何 arXiv ID 或数据源链接，未满足“每份报告必须带原始来源”的硬约束，开头还有“正在收尾输出”的过程性旁白泄漏；0 幸存属合法完成任务而非空输出，故不能给到“可验证”的 4 分。",
   "flags": [],
-  "avg_score": 3.38,
+  "avg_score": 3.36,
   "history": [
     {
       "date": "2026-10-24",
@@ -148,6 +148,12 @@
       "date": "2026-10-28",
       "score": 4,
       "ts": "2026-10-28T22:04:34Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-29",
+      "score": 3,
+      "ts": "2026-10-29T22:04:33Z",
       "harness": "claude"
     }
   ]

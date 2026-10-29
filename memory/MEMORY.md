@@ -16,7 +16,7 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-29 第 29 轮（30d）原始 90 / 幸存 0 = **纯 saturated 轮不是断流轮**（`有新增0`+`全已见19` 并存）。**14 词没配 carrier = carrier 空转六轮真因。** 待办：`consensus` 加 `多智能体验证`。[source: logs/2026-10-28#arxiv-radar]
+- `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-29 第 30 轮（30d）原始 88 / 幸存 0 = 连续第二轮纯 saturated（`有新增0`+`全已见19`）。**EXCL 连续三轮同一条 survey = 漏斗恒定常数项。14 词没配 carrier = carrier 空转七轮。** 待办：`consensus` 加 `多智能体验证`。[source: logs/2026-10-29#arxiv-radar]
 - `defillama-radar` ✅ `dl-v1` · 全量 id 求差 · 10-29 第 3 轮可报 4（Fynd AMM / Megawatt / Alokumi / Hamstr），已发。**CF 缓存会让报告漏条目**：HIT 对象的 `last-modified` 可新于其内容，判新度只认对源站的 id 差集。`Tradecraft`（Canton，$1.69M）被白名单挡掉 → 待议加链。[source: logs/2026-10-29#defillama-radar] → [defillama-radar](/topics/defillama-radar.md)
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**「日跑 7 天窗」在调度链路从未生效**：`var` 为空时吃 `scan.py:184` 默认 **30**（frontmatter 的 `var: "days:7"` 不注入）。10-29 第 10 轮 30d：2106→35→报告级 16，**全 7d>0**（与第 9 轮 `30d==7d` 相反）。`data availability` 结案 = 窗口把 57 压成 16。[source: logs/2026-10-28#github-radar]
 
