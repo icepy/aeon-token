@@ -1,0 +1,304 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 30 天 · 报告级 6 · 近 7 天活跃 5"
+      },
+      "children": [
+        "summaryStack",
+        "sep1",
+        "repoList"
+      ]
+    },
+    "summaryStack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "statWindow",
+        "statReports",
+        "statActive"
+      ]
+    },
+    "statWindow": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      },
+      "children": []
+    },
+    "statReports": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "6"
+      },
+      "children": []
+    },
+    "statActive": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "5"
+      },
+      "children": []
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "repoList": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "repo1",
+        "repo2",
+        "repo3",
+        "repo4",
+        "repo5",
+        "repo6"
+      ]
+    },
+    "repo1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo1Link",
+        "repo1Badge",
+        "repo1Desc"
+      ]
+    },
+    "repo1Link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "D-Robotics-AI-Lab/RTPolicy",
+        "href": "https://github.com/D-Robotics-AI-Lab/RTPolicy",
+        "source": "GitHub",
+        "score": "★0 · 30天=28 · 7天=28"
+      },
+      "children": []
+    },
+    "repo1Badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词 robot manipulation",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "repo1Desc": {
+      "type": "Text",
+      "props": {
+        "text": "RTPolicy: Real-Time (32.9 Hz) Multi-View Visuomotor Policy for Robotic Manipulation on Edge Devices",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "repo2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo2Link",
+        "repo2Badge",
+        "repo2Desc"
+      ]
+    },
+    "repo2Link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "kabilankb/nebius-claw-microduck-isaaclab",
+        "href": "https://github.com/kabilankb/nebius-claw-microduck-isaaclab",
+        "source": "GitHub",
+        "score": "★0 · 30天=19 · 7天=19"
+      },
+      "children": []
+    },
+    "repo2Badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词 sim-to-real",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "repo2Desc": {
+      "type": "Text",
+      "props": {
+        "text": "NemoClaw agents on Nebius Token Factory that train the MicroDuck in Isaac Lab and deploy it sim-to-r",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "repo3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo3Link",
+        "repo3Badge",
+        "repo3Desc"
+      ]
+    },
+    "repo3Link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Anya-Louni/sim-to-hand",
+        "href": "https://github.com/Anya-Louni/sim-to-hand",
+        "source": "GitHub",
+        "score": "★0 · 30天=11 · 7天=11"
+      },
+      "children": []
+    },
+    "repo3Badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词 robot manipulation",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "repo3Desc": {
+      "type": "Text",
+      "props": {
+        "text": "LLM-planned robot manipulation in a browser MuJoCo sim, with sim-state and vision verification and r",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "repo4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo4Link",
+        "repo4Badge",
+        "repo4Desc"
+      ]
+    },
+    "repo4Link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "yued2013-hash/supermimic-lafan1-reproduction",
+        "href": "https://github.com/yued2013-hash/supermimic-lafan1-reproduction",
+        "source": "GitHub",
+        "score": "★0 · 30天=5 · 7天=5"
+      },
+      "children": []
+    },
+    "repo4Badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词 world model",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "repo4Desc": {
+      "type": "Text",
+      "props": {
+        "text": "SuperMimic reproduction study: world models and BPTT, RTX4090, 40 full LAFAN1 sequences, FP32 eviden",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "repo5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo5Link",
+        "repo5Badge",
+        "repo5Desc"
+      ]
+    },
+    "repo5Link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "krishyadav25/networked-robot-teleoperation",
+        "href": "https://github.com/krishyadav25/networked-robot-teleoperation",
+        "source": "GitHub",
+        "score": "★0 · 30天=8 · 7天=1"
+      },
+      "children": []
+    },
+    "repo5Badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词 teleoperation",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "repo5Desc": {
+      "type": "Text",
+      "props": {
+        "text": "Networked Teleoperation of a Robot through Shell Commands",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "repo6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo6Link",
+        "repo6Badge",
+        "repo6Desc"
+      ]
+    },
+    "repo6Link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Anthony-ZC/steam_frame_teleoperation",
+        "href": "https://github.com/Anthony-ZC/steam_frame_teleoperation",
+        "source": "GitHub",
+        "score": "★0 · 30天=7 · 7天=0"
+      },
+      "children": []
+    },
+    "repo6Badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词 teleoperation",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "repo6Desc": {
+      "type": "Text",
+      "props": {
+        "text": "Getting Steam Frame controller information (pose, button, hand skeleton) for robot teleoperation",
+        "variant": "muted"
+      },
+      "children": []
+    }
+  }
+}

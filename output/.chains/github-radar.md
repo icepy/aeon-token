@@ -1,18 +1,8 @@
-**github-radar** · 窗口 30 天 · 报告级 16 · 近 7 天活跃 16
+**github-radar** · 窗口 30 天 · 报告级 6 · 近 7 天活跃 5
 
-- [Brigada-Inginerilor-Amarati/Q2-JEPA](https://github.com/Brigada-Inginerilor-Amarati/Q2-JEPA) ★0 · 30天=31 · 7天=31 · 词 `jepa` · Dual-quantum visual world model that predicts multimodal plausible futures from short video clips
-- [SudharshanSuman/Understanding-the-Prompt-to-Robot](https://github.com/SudharshanSuman/Understanding-the-Prompt-to-Robot) ★0 · 30天=25 · 7天=25 · 词 `robot manipulation` · Understanding the Prompt to Robot: natural-language robotic manipulation (prompt -> tokens -> task -
-- [ADHU-ADHU/mobile-robot-platform-ros2](https://github.com/ADHU-ADHU/mobile-robot-platform-ros2) ★0 · 30天=13 · 7天=13 · 词 `teleoperation` · A mobile robot built from scratch with ROS 2: hardware and sensor integration, PC-to-robot teleopera
-- [mzlumi/mit-robotic-manipulation-perception-to-grasp](https://github.com/mzlumi/mit-robotic-manipulation-perception-to-grasp) ★0 · 30天=11 · 7天=11 · 词 `robot manipulation` · MIT 6.4210/6.4212 Robotic Manipulation (Prof. Russ Tedrake and Prof. Tomas Lozano-Perez), problem se
-- [hetu-project/pearl-pouw-analysis](https://github.com/hetu-project/pearl-pouw-analysis) ★0 · 30天=9 · 7天=9 · 词 `proof of useful work` · Independent, reproducible analysis of Pearl’s Proof-of-Useful-Work (cuPOW): source-level notes, prob
-- [raulcastar/MARE-Dataset-Baselines](https://github.com/raulcastar/MARE-Dataset-Baselines) ★0 · 30天=8 · 7天=8 · 词 `sim-to-real` · Segmentation and depth baselines for the MARE Lunar Rover Dataset: U-Net, DeepLabV3+, SegFormer and 
-- [ffen0007-collab/EchoWorld-WorldModel-Lab](https://github.com/ffen0007-collab/EchoWorld-WorldModel-Lab) ★0 · 30天=7 · 7天=7 · 词 `world model` · Action-conditioned visual world modeling for AI-native gameplay
-- [ssbbiin/Async-VLA-Limo](https://github.com/ssbbiin/Async-VLA-Limo) ★0 · 30天=7 · 7天=7 · 词 `vision language action` · Asynchronous Vision-Language-Action pipeline with Gemma and ROS2 for AgileX LIMO Pro
-- [utkarsh01221/ARIA-4-LLM-Driven-Robotic-Manipulation](https://github.com/utkarsh01221/ARIA-4-LLM-Driven-Robotic-Manipulation) ★0 · 30天=6 · 7天=6 · 词 `robot manipulation` · LLM-driven robotic manipulation using computer vision, voice commands, inverse kinematics and worksp
-- [Lolotun/ur3-vr-teleoperation](https://github.com/Lolotun/ur3-vr-teleoperation) ★0 · 30天=6 · 7天=6 · 词 `teleoperation` · 
-- [DivyomSrivastava/Bumper_Bot](https://github.com/DivyomSrivastava/Bumper_Bot) ★0 · 30天=14 · 7天=5 · 词 `teleoperation` · A ROS 2-based differential-drive mobile robot project featuring robot modeling with URDF/Xacro, Gaze
-- [d4vid-le/proteus-wm](https://github.com/d4vid-le/proteus-wm) ★0 · 30天=5 · 7天=5 · 词 `jepa` · A personal JEPA world-model experiment.
-- [SiMi723/egocentric-data-collection-ops-dashboard](https://github.com/SiMi723/egocentric-data-collection-ops-dashboard) ★0 · 30天=5 · 7天=5 · 词 `egocentric` · Interactive dashboard for monitoring synthetic egocentric data collection operations.
-- [chendi-Shi/feedbackbench](https://github.com/chendi-Shi/feedbackbench) ★0 · 30天=13 · 7天=4 · 词 `jepa` · Reproducible CPU VLA research: SmolVLA action-cache and flow-step experiments, LIBERO evidence, and 
-- [alibaba-damo-academy/RynnWorld-Latent](https://github.com/alibaba-damo-academy/RynnWorld-Latent) ★11 · 30天=16 · 7天=3 · 词 `world model` · RynnWorld-Latent: A Cross-Embodiment World Model Conditioned on Universal Latent Actions
-- [chinmay-5/doc-ock](https://github.com/chinmay-5/doc-ock) ★0 · 30天=5 · 7天=3 · 词 `teleoperation` · Vision-based hand teleoperation for the SO-101 robotic arm using MediaPipe, OpenCV, ROS 2 Jazzy, and
+- [D-Robotics-AI-Lab/RTPolicy](https://github.com/D-Robotics-AI-Lab/RTPolicy) ★0 · 30天=28 · 7天=28 · 词 `robot manipulation` · RTPolicy: Real-Time (32.9 Hz) Multi-View Visuomotor Policy for Robotic Manipulation on Edge Devices
+- [kabilankb/nebius-claw-microduck-isaaclab](https://github.com/kabilankb/nebius-claw-microduck-isaaclab) ★0 · 30天=19 · 7天=19 · 词 `sim-to-real` · NemoClaw agents on Nebius Token Factory that train the MicroDuck in Isaac Lab and deploy it sim-to-r
+- [Anya-Louni/sim-to-hand](https://github.com/Anya-Louni/sim-to-hand) ★0 · 30天=11 · 7天=11 · 词 `robot manipulation` · LLM-planned robot manipulation in a browser MuJoCo sim, with sim-state and vision verification and r
+- [yued2013-hash/supermimic-lafan1-reproduction](https://github.com/yued2013-hash/supermimic-lafan1-reproduction) ★0 · 30天=5 · 7天=5 · 词 `world model` · SuperMimic reproduction study: world models and BPTT, RTX4090, 40 full LAFAN1 sequences, FP32 eviden
+- [krishyadav25/networked-robot-teleoperation](https://github.com/krishyadav25/networked-robot-teleoperation) ★0 · 30天=8 · 7天=1 · 词 `teleoperation` · Networked Teleoperation of a Robot through Shell Commands
+- [Anthony-ZC/steam_frame_teleoperation](https://github.com/Anthony-ZC/steam_frame_teleoperation) ★0 · 30天=7 · 7天=0 [爆完即停] · 词 `teleoperation` · Getting Steam Frame controller information (pose, button, hand skeleton) for robot teleoperation
