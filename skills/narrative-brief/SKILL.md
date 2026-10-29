@@ -17,7 +17,9 @@ metadata:
 
 转发层。判断在 Grok 自动化 `crypto-narrative-brief-3day` 里已经做完，写进 `memory/topics/narratives.md`。本 skill 只回答一件事：这份正文是不是新的，是就原样推过来。
 
-**已启用，每天一次。** `aeon.yml` 里 `enabled: true, schedule: "0 8 * * *"`（UTC）= 北京时间 16:00，错开 `arxiv-radar`（07:30）与 `github-radar`（07:45）。**不写 `var`**（走 metadata 的空串）。
+**已启用，每天一次。** `aeon.yml` 里 `enabled: true, schedule: "15 1 * * *"`（UTC）= 北京时间 09:15。**不写 `var`**（走 metadata 的空串）。
+
+**为什么是 09:15。** 正文由 Grok 自动化 `crypto-narrative-brief-3day` 写，写入时刻不受本仓控制。2026-10-29 实测：本 skill 在 23:46Z（07:46 北京）跑时文件还是旧节，Grok 在 00:50Z（08:50 北京）才写入 —— 跑在写之前，那一天静默丢掉。挪到 09:15 后正常写入都已落盘。Grok 若更晚，当天仍会漏，但下一轮会因该节 sha 未入 `seen` 判 NEW 补推，最多晚一天，不会永久丢。代价是 09:15 晚于 09:00 的看简报时间，narrative 要 09:20 左右才到。
 
 选每天而不是每周：UNCHANGED 轮几乎零成本（一次 curl、一次哈希，不发通知、不写 seen、只落一行日志），而每周排班会在跨周末留出 3 天以上空档 —— 对一份 3 天窗口的 brief 太钝。
 
