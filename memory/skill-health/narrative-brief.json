@@ -1,9 +1,11 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-10-28T23:46:23Z",
-  "quality_score": 4,
-  "assessment": "干净的 UNCHANGED 空转：正确按“触发才推送”原则跳过 notify，带原始数据源（http=200/5601 字节/sha256），并额外指出静默停摆与“无新内容”无法区分的真实运维风险；无虚构内容。",
-  "flags": [],
+  "last_analyzed": "2026-10-29T02:46:43Z",
+  "quality_score": 3,
+  "assessment": "Well-organized narrative digest with a useful changes/reflexivity/holdings-impact section, but its bulk restates tweet topics without any numbers, and it never ties back to DEUS trigger levels or actionable timing — a research artifact, not a decision aid.",
+  "flags": [
+    "generic_content"
+  ],
   "avg_score": 3,
   "history": [
     {
@@ -28,6 +30,12 @@
       "date": "2026-10-28",
       "score": 4,
       "ts": "2026-10-28T23:46:23Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-29",
+      "score": 3,
+      "ts": "2026-10-29T02:46:43Z",
       "harness": "claude"
     }
   ]
