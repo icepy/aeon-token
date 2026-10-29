@@ -76,8 +76,8 @@
     "last_error": "hivemindos: API Error: Claude's response exceeded the 128000 output token maximum. To configure this behavior, set the CLAUDE_CODE_MAX_OUTPUT_TOKENS env"
   },
   "arxiv-radar": {
-    "last_dispatch": "2026-10-28T22:00:45Z",
-    "last_status": "success",
+    "last_dispatch": "2026-10-29T22:00:49Z",
+    "last_status": "dispatched",
     "last_success": "2026-10-28T22:04:37Z",
     "total_runs": 31,
     "total_successes": 26,
