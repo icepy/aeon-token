@@ -494,8 +494,11 @@ def scan_term(term, attempts=ATTEMPTS, tag=""):
             break
     return n, ""
 
-def cross_probe(term):
-    """窗口内零命中 → 跨更宽的档量真实 total_count，别把「窗口太短」读成「真零」。"""
+def cross_windows(term):
+    """窗口内零命中 → 跨更宽的档量真实 total_count，别把「窗口太短」读成「真零」。
+
+    名字里不带 probe：**与 github-radar 的 probe 不是一回事** —— 那个拿仓名反查
+    产候选词（第一层），这个只给零命中词量更宽档（第二层判据辅助）。"""
     if raw_term.get(term, 0) == 0 and term not in failed_t:
         for d in CROSS_WINDOWS:
             cross.setdefault(term, {})[d] = total_of(q_of(term), d)[0]
@@ -562,7 +565,7 @@ if failed_t:
 # 零命中词 → 跨窗量
 for term in TERMS:
     if term not in skipped_t:
-        cross_probe(term)
+        cross_windows(term)
 
 # ── 分类（六类分开记；计数单位是「词」，漏斗的单位是「条」）──────────
 zero_t = [t for t in TERMS if t not in failed_t and t not in skipped_t

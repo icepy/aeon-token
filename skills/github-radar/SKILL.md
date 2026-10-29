@@ -13,7 +13,7 @@ metadata:
     - sends_notifications
 ---
 
-> **${var}** — 可选，空格分隔，可组合。`dry-run` 跳过 notify；`days:N` 换窗口（**默认 7**）；`min:N` 换 star 地板（**默认 0**）；`chk:N` 换核验门槛（默认 5）；`probe` 强制跑专名簇反查（否则脚本按 7 天到期自动跑）；`--full` 打全文审计（默认只打 digest）。**原样传给脚本，不要自己解析。**
+> **${var}** — 可选，空格分隔，可组合。`dry-run` 跳过 notify；`days:N` 换窗口（**默认 7**）；`min:N` 换 star 地板（**默认 0**）；`chk:N` 换核验门槛（默认 5）；`probe` 强制跑专名簇反查（**dry-run 下默认不跑，要验 probe 必须显式带 `probe`**；非 dry-run 才按 7 天到期自动跑）；`--full` 打全文审计（默认只打 digest）。**原样传给脚本，不要自己解析。**
 
 发现层第二条通道。**与 `arxiv-radar` 平行，不是它的下游。**
 
@@ -61,6 +61,7 @@ metadata:
 - **`probe` 判真簇要三条，缺一不可：① `total` 小；② 簇内同主题（`cohesive`）；③ 主题词落在 `THEME_LEXICON` 语义内（`thematic`）。** 前两条全中也还是假 —— 第十六轮 3 个非通用且 cohesive 的候选**3/3 全假**（`senku` 主题词只有 `with`×11、`uniview` 是海康大华 NVR、`pouw` 撞荷兰语货运）。脚本已把 `GLUE` 剔出主题词。**看着像专名不代表是我们的题。**
 - **`probe` 跑 60 天窗，不跟日跑窗口。** 它问的是「这个名字在积累吗」= 周/月尺度；7 天窗下真簇 6 仓 vs 撞名 4 仓，**都在噪声底下面，判不出**。`PROBE_WIN=60` 必须独立于 run 窗口。
 - **`probe` 到期用 `memory/ghradar-probe-last.txt` 戳判（≥7 天），`dry-run` 不写戳，显式带 `probe` 时无视戳。** 跑挂不写戳 → 次日自愈。
+- **`dry-run` 默认不跑 `probe`。** dry-run 不写戳，不设这道闸就会在调别的规则时天天白跑一轮反查。要验 probe 就显式带 `probe`。**闸的顺序是「显式 → dry-run → 戳」，不许把 dry-run 挪到戳后面。**
 - **`probe` 报簇必须同时给 `owner` 数与 `repo` 数。** 单 owner 多仓（一人铺开几个仓）不构成趋势。
 - **共享脚手架 owner 黑名单抓不到**。判据：同短名跨 ≥3 owner 且 desc 前 80 字符相同。
 - **EXCL 要同时查仓库名和 description。**

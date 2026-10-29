@@ -10,7 +10,8 @@ var token（空格分隔，可组合）:
     days:N    扫描窗口，默认 30
     min:N     star 地板，默认 0
     chk:N     核验门槛（仅在幸存数超 CHK_CAP 时启用），默认 5
-    probe     强制跑专名簇反查（否则按 memory/ghradar-probe-last.txt 戳，≥7 天自动跑）
+    probe     强制跑专名簇反查。dry-run 下**默认不跑**，要验 probe 必须显式带 probe；
+              非 dry-run 才按 memory/ghradar-probe-last.txt 戳，≥7 天自动跑
     --full    打全文审计到 stdout（默认只打 digest；全文永远落 audit.log）
 
 probe 窗口固定 PROBE_WIN=60 天，**不跟 run 窗口**（它问的是「名字在不在积累」）。
@@ -247,9 +248,14 @@ def round_no():
 
 def probe_due():
     """(是否该跑 probe, 原因)。显式 `probe` 无视戳；戳缺失/坏/≥PROBE_EVERY 天 → 跑。
-    跑挂不写戳 → 次日自愈。dry-run 不写戳，所以会连着跑。"""
+    跑挂不写戳 → 次日自愈。
+    **dry-run 默认不跑**：dry-run 不写戳，以前会天天连着跑，调别的规则时白烧反查
+    预算（每次最多 28 token / 240 秒）。要验 probe 就显式带 `probe`。
+    闸的顺序是「显式 → dry-run → 戳」，dry-run 必须短路在戳之前，否则旧戳会绕过闸。"""
     if PROBE:
         return True, "显式"
+    if DRY:
+        return False, "dry-run 默认不跑"
     try:
         last = datetime.strptime(
             open(PROBE_STAMP, encoding="utf-8").read().strip()[:10], "%Y-%m-%d").date()
@@ -957,8 +963,12 @@ if RUN_PROBE:
             A("  （通用词，反查噪声）: " + " · ".join(
                 "%s(total=%d)" % (c["token"], c["total"]) for c in gen), d=True)
 else:
-    A("ℹ️ probe 跳过（%s < %d 天）—— clusters.json 未重写，是上次结果，别当本轮"
-      % (PROBE_WHY, PROBE_EVERY), d=True)
+    if PROBE_WHY.startswith("dry-run"):
+        A("ℹ️ probe 跳过（dry-run 默认不跑，要验 probe 显式带 `probe`）"
+          "—— clusters.json 未重写，是上次结果，别当本轮", d=True)
+    else:
+        A("ℹ️ probe 跳过（%s < %d 天）—— clusters.json 未重写，是上次结果，别当本轮"
+          % (PROBE_WHY, PROBE_EVERY), d=True)
 for c in rep[:25]:
     A("  " + fmt(c), d=True)
 
