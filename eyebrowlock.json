@@ -3438,6 +3438,30 @@
       ],
       "contentHash": "sha256-fead703d79cbd78a27855b2ad567ffac6af3ace93470055bc9e32d45c26458a5",
       "discoveredFrom": "skills/aeon-update/SKILL.md"
+    },
+    {
+      "id": "53303e97a714e88e",
+      "tool": "aeon",
+      "scope": "project:.",
+      "type": "skill",
+      "name": "github-filing-registry",
+      "source": {
+        "kind": "local",
+        "ref": "skills/github-filing-registry"
+      },
+      "capabilities": {
+        "network": [
+          "api.github.com"
+        ]
+      },
+      "files": [
+        {
+          "path": "SKILL.md",
+          "hash": "b95b9c6d984ff6eb0404559092b2d20d089986784255df96b86fefaa9f87c8a0"
+        }
+      ],
+      "contentHash": "sha256-b95b9c6d984ff6eb0404559092b2d20d089986784255df96b86fefaa9f87c8a0",
+      "discoveredFrom": "skills/github-filing-registry/SKILL.md"
     }
   ]
 }
