@@ -1,0 +1,358 @@
+{
+  "root": "root",
+  "state": {},
+  "elements": {
+    "root": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 幸存 5（原始 88；seen 82 / EXCL 1 / carrier 0）"
+      },
+      "children": [
+        "stats",
+        "sep-1",
+        "sec-embodied",
+        "sep-2",
+        "sec-ego",
+        "sep-3",
+        "sec-consensus",
+        "sep-4",
+        "sec-reading"
+      ]
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-survivors",
+        "stat-raw",
+        "stat-seen",
+        "stat-excl",
+        "stat-carrier"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      }
+    },
+    "stat-survivors": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "5"
+      }
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "88"
+      }
+    },
+    "stat-seen": {
+      "type": "Stat",
+      "props": {
+        "label": "seen",
+        "value": "82"
+      }
+    },
+    "stat-excl": {
+      "type": "Stat",
+      "props": {
+        "label": "EXCL",
+        "value": "1"
+      }
+    },
+    "stat-carrier": {
+      "type": "Stat",
+      "props": {
+        "label": "carrier",
+        "value": "0"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-embodied": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "heading-embodied",
+        "badge-embodied",
+        "item-umi",
+        "item-robotic",
+        "item-cura"
+      ]
+    },
+    "heading-embodied": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据",
+        "level": "h3"
+      }
+    },
+    "badge-embodied": {
+      "type": "Badge",
+      "props": {
+        "text": "[方向]：具身数据",
+        "variant": "secondary"
+      }
+    },
+    "item-umi": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-umi",
+        "desc-umi"
+      ]
+    },
+    "sl-umi": {
+      "type": "StoryLink",
+      "props": {
+        "title": "UMI-Live",
+        "href": "https://arxiv.org/abs/2610.39385",
+        "source": "arXiv"
+      }
+    },
+    "desc-umi": {
+      "type": "Text",
+      "props": {
+        "text": "开源双臂 UMI 全栈：自研硬件把相机 + LiDAR-惯性 + 板载算力 + 供电做进一体，野外免外部设备采集演示",
+        "variant": "caption"
+      }
+    },
+    "item-robotic": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-robotic",
+        "desc-robotic"
+      ]
+    },
+    "sl-robotic": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Robotic Data Inoculation",
+        "href": "https://arxiv.org/abs/2610.39054",
+        "source": "arXiv"
+      }
+    },
+    "desc-robotic": {
+      "type": "Text",
+      "props": {
+        "text": "用示范数据“接种”策略，针对覆盖度不足导致的误差复利与 OOD 漂移",
+        "variant": "caption"
+      }
+    },
+    "item-cura": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-cura",
+        "desc-cura"
+      ]
+    },
+    "sl-cura": {
+      "type": "StoryLink",
+      "props": {
+        "title": "CuraEval",
+        "href": "https://arxiv.org/abs/2610.38221",
+        "source": "arXiv"
+      }
+    },
+    "desc-cura": {
+      "type": "Text",
+      "props": {
+        "text": "混合技能机器人数据的示范筛选评测框架：分数数学分析 + 对比基线，专治各家人审口径不一",
+        "variant": "caption"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-ego": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "heading-ego",
+        "badge-ego",
+        "item-ego"
+      ]
+    },
+    "heading-ego": {
+      "type": "Heading",
+      "props": {
+        "text": "第一视角感知",
+        "level": "h3"
+      }
+    },
+    "badge-ego": {
+      "type": "Badge",
+      "props": {
+        "text": "[方向]：第一视角感知/具身数据",
+        "variant": "secondary"
+      }
+    },
+    "item-ego": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-ego",
+        "desc-ego"
+      ]
+    },
+    "sl-ego": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoContact",
+        "href": "https://arxiv.org/abs/2610.39167",
+        "source": "arXiv"
+      }
+    },
+    "desc-ego": {
+      "type": "Text",
+      "props": {
+        "text": "大规模第一视角数据集，评“该在哪里接触物体”这种物理智能的泛化与精度",
+        "variant": "caption"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-consensus": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "heading-consensus",
+        "badge-consensus",
+        "item-consensus"
+      ]
+    },
+    "heading-consensus": {
+      "type": "Heading",
+      "props": {
+        "text": "机制 · 共识动力学",
+        "level": "h3"
+      }
+    },
+    "badge-consensus": {
+      "type": "Badge",
+      "props": {
+        "text": "[方向]：? 受控表未覆盖",
+        "variant": "secondary"
+      }
+    },
+    "item-consensus": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-consensus",
+        "desc-consensus"
+      ]
+    },
+    "sl-consensus": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Nearly-Optimal Time-Sample Trade-off in Consensus Dynamics",
+        "href": "https://arxiv.org/abs/2610.40562",
+        "source": "arXiv"
+      }
+    },
+    "desc-consensus": {
+      "type": "Text",
+      "props": {
+        "text": "h-Majority：每轮独立采样 h 个节点取众数，证明样本量与收敛时间的近最优权衡",
+        "variant": "caption"
+      }
+    },
+    "sep-4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-reading": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "reading-label",
+        "reading-badges"
+      ]
+    },
+    "reading-label": {
+      "type": "Text",
+      "props": {
+        "text": "单侧读数",
+        "variant": "muted"
+      }
+    },
+    "reading-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-enc",
+        "badge-robot"
+      ]
+    },
+    "badge-enc": {
+      "type": "Badge",
+      "props": {
+        "text": "加密词 1",
+        "variant": "outline"
+      }
+    },
+    "badge-robot": {
+      "type": "Badge",
+      "props": {
+        "text": "机器人词 4",
+        "variant": "outline"
+      }
+    }
+  }
+}

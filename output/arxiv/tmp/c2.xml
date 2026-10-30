@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/ltwQ4+NG6CipDGLnlcmLnAgxAr0</id>
+  <title>arXiv Query: search_query=&amp;id_list=2609.32985,2609.31302,2609.03063&amp;start=0&amp;max_results=3</title>
+  <updated>2026-10-30T22:05:18Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=3&amp;id_list=2609.32985,2609.31302,2609.03063" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>3</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32985v1</id>
+    <title>Simple and Fast Signature-Free Blockchain Consensus</title>
+    <updated>2026-09-26T22:34:20Z</updated>
+    <link href="https://arxiv.org/abs/2609.32985v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32985v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Signature-free protocols avoid the cost of post-quantum signatures. We present two simple signature-free blockchain consensus protocols for eventual synchrony with optimal good-case commit latency (three message delays for \(f&lt;n/3\) and two for \(f&lt;n/5\)), optimistic responsiveness, a block time of only two message delays without speculation, and \(O(n^2)\) communication per view. They instantiate Generic Simplex, a blockchain consensus construction parameterized by a new abstraction called view agreement. The same construction also captures Simplex, Minimmit, and a new synchronous signature-free protocol with optimal good-case commit latency of two message delays for \(f&lt;n/4\).</summary>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T22:34:20Z</published>
+    <arxiv:primary_category term="cs.DC"/>
+    <author>
+      <name>Giuliano Losa</name>
+    </author>
+    <author>
+      <name>Xuechao Wang</name>
+    </author>
+    <author>
+      <name>Zhuolun Xiang</name>
+    </author>
+    <author>
+      <name>Qianyu Yu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.03063v1</id>
+    <title>Fully Fluctuating Sleepy Consensus from Minimal Assumptions</title>
+    <updated>2026-09-02T18:36:19Z</updated>
+    <link href="https://arxiv.org/abs/2609.03063v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.03063v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Bitcoin's proof-of-work (PoW)-based protocol is remarkable for how little it asks of its participants. Not only can miners take breaks from work whenever they please, but it is almost unique in offering a path of contrition: corrupt miners can reclaim honest status simply by resuming mining on the longest chain. The protocol only requires that honest miners hold the majority of computational power at any given time. Analogous proof-of-stake (PoS) protocols, usually formalized via the sleepy model of Pass and Shi (2017), have fallen short of matching this robustness. In fact, sleepy consensus protocols in the plain PKI model must heavily restrict fluctuations in adversarial participation over time. The recent work of Efron, Neu, and Pitassi (2025) enables fully fluctuating participation in the sleepy model by introducing the external adversary model. Their protocol, however, relies on verifiable delay functions (VDFs), a strong cryptographic primitive that somewhat resembles PoW, by assuming that the adversary cannot compute sequential work significantly faster than honest nodes.
+  In this work, we design a sleepy consensus protocol for fully fluctuating participation with an external adversary under an honest majority, from minimal assumptions: a public key infrastructure (PKI) and a verifiable random function (VRF). In particular, we make no VDF or hardware assumptions. Our key technique is graded wakeness, a novel primitive that allows nodes to form consistent opinions on which other nodes are awake. We further extend our protocol to handle uncorruption, where corrupt nodes return to honesty. This extension requires only a mild additional assumption on the unpredictability of VRF outputs for liveness.</summary>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-02T18:36:19Z</published>
+    <arxiv:primary_category term="cs.DC"/>
+    <author>
+      <name>Javier Nieto</name>
+    </author>
+    <author>
+      <name>Yuval Efron</name>
+    </author>
+    <author>
+      <name>Joachim Neu</name>
+    </author>
+    <author>
+      <name>Ling Ren</name>
+    </author>
+    <arxiv:doi>10.4230/LIPIcs.DISC.2026.44</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.4230/LIPIcs.DISC.2026.44" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.31302v2</id>
+    <title>KCensus: Synthesizing Latency-Optimal Consensus Fast Paths (Extended Version)</title>
+    <updated>2026-09-28T01:48:58Z</updated>
+    <link href="https://arxiv.org/abs/2609.31302v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.31302v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Strongly consistent geo-replication often relies on fast paths to reduce latency in the common case of no failures or contention. Existing fast-path schemes, however, are ad hoc and restrictive: each corresponds to a point in a broad design space shaped by network topology, workload, and latency objective, so no single scheme works best across settings. This paper looks at fast-path schemes from a new perspective, as mechanisms that spread knowledge about proposals. With this view, we identify a fundamental condition on the spread of knowledge for a fast-path scheme to work. We then introduce KCensus, a framework that turns this condition into an optimization problem, synthesizing new fast-path schemes that are optimal for a given setting. We use KCensus to build a geo-replicated key-value store and evaluate it across AWS regions. Our system outperforms competing protocols, with up to 16% lower average latency.</summary>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T14:11:57Z</published>
+    <arxiv:comment>38 pages, 15 figures. Extended version of the paper to appear in the 22nd European Conference on Computer Systems (EuroSys '27), Rabat, Morocco. Includes appendices with full correctness and optimality proofs</arxiv:comment>
+    <arxiv:primary_category term="cs.DC"/>
+    <author>
+      <name>Clément Burgelin</name>
+    </author>
+    <author>
+      <name>Antoine Murat</name>
+    </author>
+    <author>
+      <name>Gal Sela</name>
+    </author>
+    <author>
+      <name>Marcos K. Aguilera</name>
+    </author>
+    <author>
+      <name>Rachid Guerraoui</name>
+    </author>
+    <arxiv:doi>10.1145/3842654.3848528</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3842654.3848528" title="doi"/>
+  </entry>
+</feed>

@@ -1,1 +1,67 @@
-[]
+[
+ {
+  "id": "2610.40562",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
+  "terms": [
+   "ti:\"consensus\" AND cat:cs.DC"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Nearly-Optimal Time-Sample Trade-off in Consensus Dynamics",
+  "published": "2026-10-29",
+  "link": "https://arxiv.org/abs/2610.40562",
+  "carrier": "node"
+ },
+ {
+  "id": "2610.39385",
+  "term": "robot data",
+  "terms": [
+   "robot data"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "UMI-Live for In-The-Wild Bimanual Robotics Data Collection",
+  "published": "2026-10-29",
+  "link": "https://arxiv.org/abs/2610.39385",
+  "carrier": "robotic"
+ },
+ {
+  "id": "2610.39054",
+  "term": "robot data",
+  "terms": [
+   "robot data"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Robotic Data Inoculation",
+  "published": "2026-10-28",
+  "link": "https://arxiv.org/abs/2610.39054",
+  "carrier": "robotic"
+ },
+ {
+  "id": "2610.38221",
+  "term": "robot data",
+  "terms": [
+   "robot data"
+  ],
+  "window": 30,
+  "name": "CuraEval",
+  "title": "CuraEval: Evaluating Demonstration Curation on Mixed-Skill Robot Data",
+  "published": "2026-10-28",
+  "link": "https://arxiv.org/abs/2610.38221",
+  "carrier": "robot"
+ },
+ {
+  "id": "2610.39167",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "EgoContact",
+  "title": "EgoContact: Evaluating Physical Intelligence with Egocentric Video",
+  "published": "2026-10-29",
+  "link": "https://arxiv.org/abs/2610.39167",
+  "carrier": "robotic"
+ }
+]

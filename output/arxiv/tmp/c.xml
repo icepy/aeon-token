@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/VW0T2NNV9j2HJ3hpIqNm5g6ug6k</id>
+  <title>arXiv Query: search_query=&amp;id_list=2610.32803,2610.30114&amp;start=0&amp;max_results=2</title>
+  <updated>2026-10-30T22:04:47Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=2&amp;id_list=2610.32803,2610.30114" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>2</opensearch:itemsPerPage>
+  <opensearch:totalResults>2</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2610.32803v1</id>
+    <title>Quantum Cadence: Post-Quantum Consensus with Multiple Concurrent Proposers</title>
+    <updated>2026-10-23T15:41:14Z</updated>
+    <link href="https://arxiv.org/abs/2610.32803v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.32803v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The consensus protocols of most high-performance blockchains use quorum certificates, which bundle the signatures of a quorum of validators. Signature schemes such as BLS can aggregate the signatures of a whole quorum into a single short signature, which keeps these certificates small. A large-scale quantum computer would break these schemes, and no post-quantum scheme with comparable aggregate size and aggregation time is known. Without aggregation, a certificate holds one large post-quantum signature per member of the quorum, so it becomes infeasible for each validator to broadcast certificates, as modern consensus protocols often require.
+  We present Quantum Cadence, a post-quantum consensus protocol with multiple concurrent proposers that avoids certificates altogether: every validator counts quorums among the messages it has received itself. Its safety and liveness do not even depend on signatures, although we add signatures to obtain accountability. Quantum Cadence builds on Cadence and replaces its slot consensus, Chorus, with Quantum Chorus, which keeps the optimal fast-path latency of Chorus: dissemination followed by two rounds of votes. When its fast path fails, Quantum Chorus runs Coda, our signature-free Byzantine agreement for multiple proposers. We also outline how the Conductor, which schedules the slots of Cadence, can be adapted to Quantum Cadence. In simulations with 200 validators, Quantum Chorus has a latency comparable to that of Chorus and scales better with the number of proposers.</summary>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-23T15:41:14Z</published>
+    <arxiv:comment>35 pages, 3 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.DC"/>
+    <author>
+      <name>Mohammad Mussadiq Jalalzai</name>
+    </author>
+    <author>
+      <name>Tobias Klenze</name>
+    </author>
+    <author>
+      <name>Jovan Komatovic</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.30114v1</id>
+    <title>The End of Consensus Research?</title>
+    <updated>2026-10-21T17:55:19Z</updated>
+    <link href="https://arxiv.org/abs/2610.30114v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.30114v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Consensus is a fundamental problem in distributed computing and at the core of state machine replication (SMR). Despite decades of active human research, discovering practical low-latency solutions to the problem is still open, as it requires combining protocol knowledge, correctness reasoning, implementation, and experimental evaluation. We report on how AI helped us discover A-greement, a new consensus protocol for geo-replicated state machines that significantly outperforms state-of-the-art solutions. Averaged across six deployments with 5 or 9 replicas, A-greement reduces the mean latency of a geo-distributed key-value store over the fastest baseline by 12.2% and 33.3% on write-heavy and read-heavy workloads, respectively, and matches the fastest baseline on read-only workloads. A-greement combines lease-authorized local reads, direct client learning for leader-ordered writes, and a fast fixed-quorum per-key write path, selected according to network topology and workload. At the heart of our discovery lies AI-greement, an agent harness for the "autonomous" discovery, implementation, experimentation, and verification of candidate protocols. AI-greement integrates (1) a concept-oriented protocol knowledge base, (2) a modular implementation skeleton, and (3) a Lean-based verification framework with reusable safety definitions, reference specifications, and proofs. AI-greement is of independent interest: its Lean formalization uncovers several previously unreported vulnerabilities in existing consensus protocols, and it provides guidelines on how domain-specific harnesses can turn general-purpose coding agents into effective tools for (distributed) computing research. Yet we argue that human consensus experts remain essential before, during, and after the search: agents reshape the researcher's role rather than end consensus research.</summary>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-21T17:55:19Z</published>
+    <arxiv:comment>39 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.DC"/>
+    <author>
+      <name>Clément Burgelin</name>
+    </author>
+    <author>
+      <name>Rachid Guerraoui</name>
+    </author>
+    <author>
+      <name>Zicong Hong</name>
+    </author>
+    <author>
+      <name>Yinan Hu</name>
+    </author>
+    <author>
+      <name>Anne-Marie Kermarrec</name>
+    </author>
+    <author>
+      <name>Rafael Pires</name>
+    </author>
+    <author>
+      <name>Rasmus Moorits Veski</name>
+    </author>
+    <author>
+      <name>Martijn de Vos</name>
+    </author>
+  </entry>
+</feed>

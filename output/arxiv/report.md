@@ -1,33 +1,14 @@
-# arxiv-radar · 第二十九轮
+**arxiv-radar** · 窗口 30 天 · 幸存 5（原始 88；seen 82 / EXCL 1 / carrier 0）
 
-- 窗口：30 天 · 词表 26 词 · `vM`
-- 漏斗：原始 **90** → 幸存 **0**
-- 丢弃：seen(记忆) 89 · seen(本轮重复) 0 · EXCL 1 · carrier 0 · 查询失败 0
-- 索引最新收录：2026-10-27（距今 1 天）— 节律正常
-- 六分类（单位=词）：未测到(试过失败) 0 · 未尝试(熔断跳过) 0 · 窗口内零命中 7 · 低频探针 0 · 全已见(饱和) 19 · 有新增 **0**
+**具身数据**（[方向]：具身数据）
+- `UMI-Live` — 开源双臂 UMI 全栈：自研硬件把相机 + LiDAR-惯性 + 板载算力 + 供电做进一体，野外免外部设备采集演示 · https://arxiv.org/abs/2610.39385
+- `Robotic Data Inoculation` — 用示范数据"接种"策略，针对覆盖度不足导致的误差复利与 OOD 漂移 · https://arxiv.org/abs/2610.39054
+- `CuraEval` — 混合技能机器人数据的示范筛选评测框架：分数数学分析 + 对比基线，专治各家人审口径不一 · https://arxiv.org/abs/2610.38221
 
-## 本轮无幸存论文
+**第一视角感知**（[方向]：第一视角感知/具身数据）
+- `EgoContact` — 大规模第一视角数据集，评"该在哪里接触物体"这种物理智能的泛化与精度 · https://arxiv.org/abs/2610.39167
 
-不是断流：19 个饱和词的 raw 最新发布日期全部落在 10-06 ~ 10-27（`egocentric` 停在 10-27），流量仍在进来，全部已被 `seen` 吃掉。
+**机制 · 共识动力学**（[方向]：`?` 受控表未覆盖）
+- `Nearly-Optimal Time-Sample Trade-off in Consensus Dynamics` — h-Majority：每轮独立采样 h 个节点取众数，证明样本量与收敛时间的近最优权衡 · https://arxiv.org/abs/2610.40562
 
-## 唯一 EXCL（每轮恒定常数项，不进 seen）
-
-- 2026-10-02 `From bits to atoms: A survey of cross-layer safety in Embodied AI` — survey，连续第三轮同一条
-
-## 零命中 7 词 · 跨窗全部「窗口太短」
-
-| 词 | 本轮 | 60d | 90d |
-|---|---|---|---|
-| `verifiable inference` | 0 | 0 | 1 |
-| `verifiable computation` | 0 | 1 | 1 |
-| `light client` | 0 | 1 | 1 |
-| `restaking` | 0 | 0 | 1 |
-| `cat:cs.CR AND ti:"MEV"` | 0 | 3 | 5 |
-| `RWA` | 0 | 1 | 2 |
-| `robot manipulation data` | 0 | 2 | 2 |
-
-跨窗有命中 → **非真零，不许删**。连续第二轮无一「跨窗皆 0」→ 无删词候选、无换写法候选。
-
-## 本轮动作
-
-无新增词 · 无删词 · 无改 carrier · labels 未写（幸存 0）· notify 未发（幸存 0）
+单侧读数：加密词 1 / 机器人词 4

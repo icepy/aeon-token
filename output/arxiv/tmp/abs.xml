@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/8laPMEhaZsSSuXIRcBMllJOw+fw</id>
+  <title>arXiv Query: search_query=&amp;id_list=2610.40562,2610.39385,2610.39054,2610.38221,2610.39167&amp;start=0&amp;max_results=5</title>
+  <updated>2026-10-30T22:03:47Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=5&amp;id_list=2610.40562,2610.39385,2610.39054,2610.38221,2610.39167" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>5</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2610.39167v1</id>
+    <title>EgoContact: Evaluating Physical Intelligence with Egocentric Video</title>
+    <updated>2026-10-29T01:57:52Z</updated>
+    <link href="https://arxiv.org/abs/2610.39167v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.39167v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Egocentric video has emerged as one of the most scalable sources of data for learning generalizable manipulation priors. Yet, despite its growing use in pretraining robotic policies, it has been underutilized as a validation tool for physical intelligence, a key component of which is understanding where to make contact with an object to achieve an intended interaction. We present EgoContact, a large-scale egocentric dataset for evaluating the generalizability and precision of learned manipulation priors through future contact-point prediction. EgoContact contains 22.5K manually verified interaction events, each with a pre-contact observation, semantic intent, and pixel-precise contact locations. We find that current methods often struggle to predict precise interaction contacts and sometimes fail to localize the target object in diverse, in-the-wild scenes, even when allowed multiple predictions. Furthermore, we demonstrate the usefulness of EgoContact's annotated interactions for robotic manipulation: simply using EgoContact as the memory bank of an existing affordance-transfer policy improves grasp success from 14.2% to 31.2% in simulation and from 16% to 58% on a real robot.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-29T01:57:52Z</published>
+    <arxiv:comment>Project page: https://egocontact.github.io</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Adam Deryło</name>
+    </author>
+    <author>
+      <name>Alexey Gavryushin</name>
+    </author>
+    <author>
+      <name>Daniel Cremers</name>
+    </author>
+    <author>
+      <name>Marc Pollefeys</name>
+    </author>
+    <author>
+      <name>Xi Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.39385v1</id>
+    <title>UMI-Live for In-The-Wild Bimanual Robotics Data Collection</title>
+    <updated>2026-10-29T05:18:16Z</updated>
+    <link href="https://arxiv.org/abs/2610.39385v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.39385v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Universal Manipulation Interface (UMI) devices allow human experts to demonstrate tasks for robot learning without teleoperating physical robots. Using these demonstrations as training data still requires a consistent hardware setup, calibration, and data processing. We present UMI-Live, a full-stack open-source bimanual UMI system for in-the-wild data collection. We design our custom UMI-Live hardware to integrate camera and LiDAR--inertial sensing, onboard compute, and power, without external tracking equipment or calibration within the collection environment. We implement a simple user interface for recording data while an asynchronous pipeline performs parallel SLAM reconstruction and publishes training-ready datasets. We also release software that supports dual-YAM teleoperation and VLA policy training and inference. We validate UMI-Live data quality by fine-tuning $π_{0.5}$ and MolmoAct2, achieving success rates of 10/10 and 8/10, respectively on a bimanual pick-and-place task. Furthermore, we release 40 hours of UMI-Live data across three tasks, and complete hardware designs, software, and reproduction guides at our $\href{https://umi-live.github.io/}{\text{project website}}$.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-29T05:18:16Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Govind Velamoor</name>
+    </author>
+    <author>
+      <name>Adrian Lin</name>
+    </author>
+    <author>
+      <name>Sam Jung</name>
+    </author>
+    <author>
+      <name>Spencer Mateega</name>
+    </author>
+    <author>
+      <name>Brandon Y. Yang</name>
+    </author>
+    <author>
+      <name>Amish Sethi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.39054v1</id>
+    <title>Robotic Data Inoculation</title>
+    <updated>2026-10-28T23:31:24Z</updated>
+    <link href="https://arxiv.org/abs/2610.39054v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.39054v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Modern robot learning systems feed on high-quality demonstration data, and their performance hinges on coverage. Without good coverage, small errors compound and the policy can quickly go into out-of-distribution states from which it cannot recover. Yet there is no principled way of collecting high-coverage data, and data collection often relies on heuristic instructions to human operators. Purely online reinforcement learning (RL) explores at the cost of safety and sample efficiency, while DAgger-style interventions require the policy to fail by chance before a human can correct it. In this paper, we ask instead whether we can modify how the robot behaves during data collection to collect more useful data. We propose Data Inoculation (DI), a shared-control framework in which a human provide closed-loop teleoperation commands while a residual policy perturbs these commands. The residual policy is trained online, on the growing dataset, with the same reward-maximizing objective later used for policy extraction, so its perturbations steer data collection toward the deviations a policy trained on the data would make. These perturbations expose the robot to a wider range of states, while the human's continuous corrections provide recovery demonstrations, "inoculating" the dataset against the learner's future mistakes while the human remains in control. On three challenging real-world robotic tasks, DI consistently improves or matches the success rate of policies trained with both behavioral cloning and offline RL, showing DI as an effective data collection strategy for improving downstream policy performance.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-28T23:31:24Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Qiyang Li</name>
+    </author>
+    <author>
+      <name>Zhiyuan Zhou</name>
+    </author>
+    <author>
+      <name>Charles Xu</name>
+    </author>
+    <author>
+      <name>Sergey Levine</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.40562v1</id>
+    <title>Nearly-Optimal Time-Sample Trade-off in Consensus Dynamics</title>
+    <updated>2026-10-29T17:41:23Z</updated>
+    <link href="https://arxiv.org/abs/2610.40562v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.40562v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>How does the number of sampled opinions affect the time required to reach consensus in distributed consensus dynamics? We study the synchronous $h$-\textsf{Majority}, in which every node independently samples $h$ nodes uniformly at random with replacement in each round and adopts a most frequent sampled opinion, breaking ties uniformly at random. We show that $h$-\textsf{Majority} achieves the nearly-optimal trade-off between the sample size and the consensus time, among a broad class of consensus dynamics. In particular, we prove the following results.
+  For every sample size $h \ge 3$ and for every initial configuration, we prove that the process reaches consensus with high probability within $\widetilde{O}\left(1+\min\left\{\frac{1}{\min\{h^2p_{\max},1\}},\frac{\sqrt{n}}{h}\right\}\right)$ rounds, where $n$ is the number of nodes and $p_{\max}$ is the largest initial fraction of nodes supporting any single opinion. This is the first bound on the consensus time for $h$-\textsf{Majority} that holds for every $h\ge3$ and every initial configuration.
+  When the initially most popular opinion has a sufficiently large lead over every other opinion, we show that all nodes adopt this opinion with high probability within $O(\log n/\min\{h^2p_{\max},1\})$ rounds.
+  We establish a matching lower bound up to polylogarithmic factors for any fixed update rule that treats all opinions symmetrically and that selects either a sampled opinion or the node's current opinion.</summary>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DS" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.PR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-29T17:41:23Z</published>
+    <arxiv:primary_category term="cs.DC"/>
+    <author>
+      <name>Francesco d'Amore</name>
+    </author>
+    <author>
+      <name>Joel Rybicki</name>
+    </author>
+    <author>
+      <name>Nobutaka Shimizu</name>
+    </author>
+    <author>
+      <name>Takeharu Shiraga</name>
+    </author>
+    <author>
+      <name>Robin Vacus</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.38221v1</id>
+    <title>CuraEval: Evaluating Demonstration Curation on Mixed-Skill Robot Data</title>
+    <updated>2026-10-28T03:19:23Z</updated>
+    <link href="https://arxiv.org/abs/2610.38221v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.38221v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Robot imitation learning uses demonstrations from operators of varying skill, but selecting training data remains challenging. Existing methods score demonstrations using smoothness, diversity, or estimated influence on policy performance, but differences in selection and evaluation protocols make it difficult to determine whether they outperform simple baselines. We introduce \textbf{CuraEval}, a framework combining mathematical analysis of demonstration scores with controlled comparisons against fixed size-matched random subsets and full-data training on mixed-skill robomimic data using Diffusion Policy and BC-RNN. We show that the evaluated PSD score depends only on episode length and squared position magnitudes, and produces nearly the same ranking as episode length on \textit{square} ($ρ=0.999$). With Diffusion Policy, selecting the shortest 50\% of demonstrations improves \textit{square} success from 70.7\% under random selection to 76.5\%. Compared with random selection, our adapted geometric-entropy LOO selector reduces success at 25\% retention from 94.7\% to 74.0\% on \textit{can} and achieves 41.7\% on \textit{square}, below the mean success rates of all three independently sampled random subsets (59.8--62.5\%). On the same 3 \textit{square} Diffusion Policy training seeds, length-based selection at 75\% retention improves success over full-data training from 76.7\% to 86.7\% under the original protocol, but lowers it from 80.5\% to 79.5\% after checkpoint reporting, rollout count, and evaluation seed change jointly. No evaluated curated condition significantly outperforms full-data training after Holm correction, although confidence intervals still permit useful gains. Code is available at https://github.com/jiuyixu25/CuraEval.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-28T03:19:23Z</published>
+    <arxiv:comment>Accepted by the CoRL 2026 Workshop "Oops, I Erred". 10 pages, 2 figures, 2 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Jiuyi Xu</name>
+    </author>
+    <author>
+      <name>Meida Chen</name>
+    </author>
+    <author>
+      <name>Yang Ye</name>
+    </author>
+    <author>
+      <name>Yangming Shi</name>
+    </author>
+  </entry>
+</feed>

@@ -16,7 +16,7 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-29 第 30 轮（30d）原始 88 / 幸存 0 = 连续第二轮纯 saturated。**EXCL 连续三轮同一条 survey = 漏斗常数项。14 词没配 carrier = carrier 空转七轮。** 待办：`consensus` 加 `多智能体验证`。[source: logs/2026-10-29#arxiv-radar]
+- `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-30 第 31 轮（30d）原始 88 / 幸存 5 = 加密 1 / 机器人 4。**EXCL 连续四轮同一条 survey = 漏斗常数项；carrier 空转八轮（14 词无表）。** 新待办：`consensus` 撞分布式共识理论 —— **cat:cs.DC 不分链上/理论**，幸存 `2610.40562` 已打 `?`。`?` 占比 14.9% 首次算出。[source: logs/2026-10-30#arxiv-radar]
 - `defillama-radar` ✅ `dl-v1` · id 求差 · 10-30 第 4 轮 8880 / 新增 7 / 可报 1（GongFu，RH Chain，TVL $0）。**CF 缓存会漏条目** → 判新度只认对源站 id 差集。**新噪声源 = 空 `chains`**：全量 17.4% / 近 3 天登记 65.5%，3 条真业务被挡 → 观察后议旁路。[source: logs/2026-10-30#defillama-radar] → [topic](/topics/defillama-radar.md)
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**「日跑 7 天窗」在调度链路从未生效**：`var` 为空吃 `scan.py:184` 默认 30（frontmatter 的 `var:` 不注入）。第 11 轮 30d：2075→29→6（全 ★0）。**丢弃侧存活 35% vs 放行 96%，同窗两轮复现 = carrier 偏严，非窗口假象。**[source: logs/2026-10-29#github-radar]
 
