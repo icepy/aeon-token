@@ -185,3 +185,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-10-29,github-radar,claude-opus-5-5,62915,8963,368128,0
 2026-10-29,defi-overview,claude-opus-5-5,158615,176347,14618624,0
 2026-10-30,defillama-radar,claude-opus-5-5,35150,16367,1298944,0
+2026-10-30,heartbeat,claude-opus-5-5,39348,14403,584960,0
