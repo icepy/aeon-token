@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-29T06:41:04.844150463Z",
+  "generatedAt": "2026-10-30T07:24:38.649726319Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -2666,6 +2666,30 @@
       "discoveredFrom": "skills/anatomy/SKILL.md"
     },
     {
+      "id": "b347fb9b4763a46f",
+      "tool": "aeon",
+      "scope": "project:.",
+      "type": "skill",
+      "name": "github-filing-registry",
+      "source": {
+        "kind": "local",
+        "ref": "skills/github-filing-registry"
+      },
+      "capabilities": {},
+      "files": [
+        {
+          "path": "SKILL.md",
+          "hash": "b95b9c6d984ff6eb0404559092b2d20d089986784255df96b86fefaa9f87c8a0"
+        },
+        {
+          "path": "filing-registry",
+          "hash": "25e1ce16a27d284049230e63471b47532bb847d8f9c72aef0507a9c9a971f0e0"
+        }
+      ],
+      "contentHash": "sha256-d21bb1bbb94701091bbc3dacd7351874c774e1f6d54851a36007bcd7a391f729",
+      "discoveredFrom": "skills/github-filing-registry/SKILL.md"
+    },
+    {
       "id": "b36aee0061d7b8b5",
       "tool": "aeon",
       "scope": "project:.",
@@ -3438,30 +3462,6 @@
       ],
       "contentHash": "sha256-fead703d79cbd78a27855b2ad567ffac6af3ace93470055bc9e32d45c26458a5",
       "discoveredFrom": "skills/aeon-update/SKILL.md"
-    },
-    {
-      "id": "53303e97a714e88e",
-      "tool": "aeon",
-      "scope": "project:.",
-      "type": "skill",
-      "name": "github-filing-registry",
-      "source": {
-        "kind": "local",
-        "ref": "skills/github-filing-registry"
-      },
-      "capabilities": {
-        "network": [
-          "api.github.com"
-        ]
-      },
-      "files": [
-        {
-          "path": "SKILL.md",
-          "hash": "b95b9c6d984ff6eb0404559092b2d20d089986784255df96b86fefaa9f87c8a0"
-        }
-      ],
-      "contentHash": "sha256-b95b9c6d984ff6eb0404559092b2d20d089986784255df96b86fefaa9f87c8a0",
-      "discoveredFrom": "skills/github-filing-registry/SKILL.md"
     }
   ]
 }

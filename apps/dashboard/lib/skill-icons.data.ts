@@ -72,6 +72,7 @@ export const SKILL_ICONS: Record<string, string> = {
   "sc-audit": "<path d='M12 2 5 5v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V5z'/><path d='M13 10a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0'/><path d='M12.4 11.8 15 14.4'/>",
   "schedule-ads": "<path d='M3 11l18-5v12L3 14z'/><path d='M11.6 16.8a3 3 0 1 1-5.8-1.6'/>",
   "search-skill": "<circle cx='11' cy='11' r='8'/><path d='M21 21l-4.3-4.3'/>",
+  "security": "<path d='M5 3h9l5 5v13H5z'/><path d='M14 3v5h5'/><path d='M8 12h7'/><path d='M8 16h5'/>",
   "self-improve": "<path d='M3 12a9 9 0 0 1 9-9 9.8 9.8 0 0 1 6.7 2.7L21 8'/><path d='M21 3v5h-5'/><path d='M21 12a9 9 0 0 1-9 9 9.8 9.8 0 0 1-6.7-2.7L3 16'/><path d='M8 16H3v5'/>",
   "send-email": "<rect x='2' y='4' width='20' height='16' rx='2'/><path d='M22 7l-9 5.7a1.9 1.9 0 0 1-2 0L2 7'/>",
   "seo-audit": "<circle cx='10' cy='10' r='7'/><path d='M21 21l-5.2-5.2'/><path d='M7 11.5v-1M10 11.5v-3M13 11.5v-2'/>",
