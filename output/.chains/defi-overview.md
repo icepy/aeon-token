@@ -1,50 +1,53 @@
-*Crypto — 2026-10-29* — risk-off（conviction medium）| DeFi Mixed：价格与广度同跌，稳定币首现净流出
+*Crypto — 2026-10-30* — risk-off（conviction high）| DeFi Verdict: Risk-off
 
-*TVL:* $88.35B（−0.11% 24h, −4.00% 7d, −7.35% 30d）
-⚠️ 这 −0.11% 是两笔反向误差相抵：12 个 ETH 计价协议虚增 +$2.85B，剔掉后 **−1.16%（−$2.67B）**。详见末行脚注。
+*Take:* 连跌第三日，情绪终于补跌。BTC $76,892（−2.50%），F&G 从 51 跳到 **30（Fear）**，DeFi TVL −4.60% 而价格只解释 -1.1pp。
+*Conviction: high* — 价格/广度/TVL/情绪四项首次同向；唯一反向是 24h 广度回到 10/20 绿（窄口径轮动，非复苏）。
+
+*TVL:* $84.47B（−4.60% 24h，−6.11% 7d，−11.31% 30d）
 
 *Top chains*
-1. Ethereum — $46.50B（+0.93%）
-2. Bitcoin — $6.13B（−3.58%）
-3. Base — $6.10B（−1.00%）
-Tron $5.72B（+5.54%）· Solana $5.55B（−2.58%）· BSC $5.36B（−2.70%）
+1. Ethereum — $43.69B（−5.66% 1d / −11.57% 7d）
+2. Bitcoin — $6.01B（−4.16%）；7d +38% 是覆盖缺口，第 5 次复现，不作数
+3. Base — $5.81B（−4.22%）
 
 *Movers*
-↑ Hyperliquid L1 +10.66%（$2.49B → $2.76B）— 全链唯一放量，HYPE +13.03%
-↑ Tron +5.54%（$5.42B → $5.72B）— TRX +5.61%，4/20 广度里的孤岛
-↓ Anemoy Capital −56.85%（$0.244B → $0.103B）— RWA 信贷赎回，非价格下跌
-↓ Aave Horizon RWA −24.70%（$0.249B → $0.188B）— 同链条，RWA 借贷集中退场
+↑ Hyperliquid L1 +8.44%（$2.44B → $2.65B）— 前 8 链里唯一 1d/7d 双正（7d +10.39%）
+↓ Ethereum −5.66%（$46.31B → $43.69B）— 13/14 条主要链同跌，血流成河
+
+*协议层*
+↓ Aave V3 −7.71%（−$1.25B，7d −11.14%）— 借贷 TVL 跌得比抵押品快 = 真去杠杆，不只是重定价
+↑ LayerZero V2 +3.83%（$15.76B → $16.37B）— 前五里唯一绿
 
 *Fees leaders (24h)*
-1. Tether — $17.26M（−0.2% vs 7d 均值）
-2. Circle USDC — $6.80M（−0.6%）
-3. PumpSwap — $2.91M（−2.2%）
+1. Tether — $16.99M（−1.5% vs 7d 均值）
+2. Titan Builder — $14.91M（**新增覆盖，非真需求**）
+3. Flashbots — $13.73M（同上）
 
 *Fees beating TVL*
-• Maple — fees +439% / TVL −10.4%（7d）— 退出资产的费用不落 TVL
-• Raydium AMM — fees +43.9% / TVL −3.5%（7d）— 甩卖抬周转
-• Uniswap V3 — fees +24.8% / TVL −4.2%（7d）— 同上
+• Uniswap V3 — fees 7d **+502%** / TVL 7d −6.34% — 量能真实跑赢存量
+• Maple — fees +602.5% / TVL −5.90%
 
-*DEX vol (24h):* $10.38B（+26.9% vs 10-28，+40.5% vs 7d 均值）top: Uniswap V3 $1.98B、Uniswap V4 $1.33B、Aero Slipstream $0.67B
+*DEX vol (24h):* **$18.13B**（+10.7% vs 10-29，**+145.8% vs 7d 均值 $7.38B**）
+top: Uniswap V3 $4.05B · Uniswap V4 $2.15B · PancakeSwap V3 $1.24B
+> 昨天 10-29 的 $10.38B 收盘后被上修到 **$16.37B（+58%）**。今日量能已用三个独立口径验证为真：无新增协议腿（+3 条仅 $16M）、pool 级数据同向 2.58×、两次抓取字节一致。**成交集中在抵押品对**（USDC-WETH、USDC-USDT、WBTC-USDT），稳定币池占 24.1% —— 这是清算换仓，不是吸筹。
 
-*Stables:* $300.52B（−0.70% 24h, −1.40% 7d）— **USDT 单日 −1.05%（−$1.90B）**；USDD −12.41% 连续第四跌；SoFiUSD −14.59%
+*Stables:* $300.07B（−0.41%，昨 −0.70% 减速）
+USDC **+0.63%（+$0.45B）**，三轮来首次净流入；USDT −0.36%。跌幅集中在 RWA/代币化：BUIDL −7.93%、RLUSD −7.24%、PYUSD −6.75%
 
-*Real yield (sustainable, ≥$10M, filtered)*
-• APXUSD (Apyx, ETH) — 13.10% apyBase（$0.15B）
-• USDC (Fluid Lending, ETH) — 8.57% apyBase（$0.13B）
-• REUSD (Re, ETH) — 6.79% apyBase（$0.35B）
+*Real yield（可持续，≥$10M，已过滤）*
+• WSOL-USDC (Raydium, Solana) — 17.64% apyBase（$20.2M）
+• USDC (Ember, Ethereum) — 14.45% apyBase（$17.9M）
+• TRX (TR Energy, Tron) — 11.21% apyBase（$89.5M）
 
-*Incentive yield (points / emissions, ≥$25M)*
-• USDG (Kamino, Solana) — 32.4% apy via $USDG（$0.05B）
-• STEAKUSDG (Morpho, Robinhood Chain) — 26.2%，其中 22.4% 是奖励（$0.54B）
+*Incentive yield（奖励占比 ≥20%，≥$25M）*
+• USDC-RLUSD (Curve, Ethereum) — 21.26% apy，其中奖励 4.68%
+• CVXCRV (Convex, Ethereum) — 17.39% apy，奖励 17.39%（纯排放）
 
-*Macro:* BTC $78,881（−2.78%/7d −3.11%）/ ETH $2,270（−3.62%）/ SOL $96.91（−5.27%）· F&G 51（Neutral，昨 51 未动）· 广度 **4/20** green 24h（昨 17/20）、7/20 green 7d（昨 3/20）· hot market: "民主党拿下众议院" YES 92.5%
+*Macro:* BTC $76,892（−2.50%/7d −5.43%）/ ETH $2,233.59（−1.56%/7d −6.81%）/ SOL $95.78（−1.11%） · F&G **30 Fear**（昨 51） · 广度 10/20 绿（7d 仅 7/20）
+*热市场:* 「共和党拿下众议院」YES **6.5%**（昨 7.5%，liquidity $6.26M）——中期选举五条占满政经量榜前五，体育盘反而抢了成交额第一，说明加密方向性押注很薄。
 
-*今天真正变了的三件事*
-1. **广度反转。** 24h 17/20 → 4/20，7d 3/20 → 7/20。两个窗口六轮来首次同向，昨天的「红周里的绿日」判断作废。
-2. **BTC 破 $80k。** $81,206 → $78,881。ETH −3.62%、SOL −5.27%，是全线 beta，不是 BTC 单腿。
-3. **稳定币由平转负。** −0.02% → −0.70%（−$2.12B）。昨天的「日内平、周内在漏」今天漏到了日内。
+*你的仓位（顺带一提）*
+DEUS $0.014955（24h **+6.39%**），距一级 $0.025 触发位还有 +67%，距 $0.012 恐慌位还有 −19.8%。今日大盘普跌它逆势涨 —— 但 24h 成交量仅 **$21.5k**，薄到没有指针意义，别把这个 +6.4% 当信号。
+→ xDEUS 5 天冷却期**未启动**，因为回本线 $0.041 还差 +174%。今天不需要做任何动作。
 
-⚠️ *LST 那 +6.3% 是假的*：Lido WETH 数量 9,711,381 → 9,712,785（+0.014%）、ether.fi +0.07%、StakeWise +0.02%，而 USD TVL 跳 +5.7%~+7.4%。/protocols 给 Lido 隐含 $2,495/ETH，现货 $2,263 —— 价格基准陈旧，不是资金流入。
-
-_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（连续第七轮 400）| var: none_
+_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（连续第 8 轮 400 全挂） | var: none_
