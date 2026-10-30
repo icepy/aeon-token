@@ -566,8 +566,34 @@ probe 反查（首次非 dry-run）：种子 67 → 候选 token 96 → 反查 2
 
 probe 跳过（戳 1 天 < 7 天），`clusters.json` 仍是上次结果。通知已发（报告级 16 > 0，队列 `1793226830-5084-8292.json`）。本轮无改词、无改脚本。
 
+## 第二十五轮（2026-10-29，**30 天窗**，非 dry-run）—— `var` 默认值仍未生效；carrier 偏严从「猜测」升为「可复现判据」
+
+`scan.py ""` → var 为空，**继续吃 `scan.py:184` 的 30 天默认**（第 10 轮同一根因，见 [ops-plumbing](/topics/ops-plumbing.md)）。digest 自报「窗口 30 天」与 SKILL 正文「默认 7」仍互相矛盾，属代码改动待 PR。
+
+漏斗：原始 **2075** → 幸存 **29** → 报告级 **6**（**全 ★0**，star 第 14 次失效）。丢弃 seen=975 · excl=137 · archived=1 · short_desc=382 · carrier=423 · neg=56 · pages=59 · pages_root=0 · scaffold=0 · farm=13 · fail=0。18 词 × 二分至一页（单窗 13 / 需拆窗 5 · 二分 4 次 · 搜索 45）· 核验 29/29 = 100% · 137s。
+
+### 57. 🔴 carrier 误杀对照在同窗口内复现反向差 —— 第 10 轮的「窗口效应」解释被排除
+
+丢弃侧仓名自带词表词存活率 **35%（52/148）** vs 放行侧 **96%（27/28）**；第 10 轮是 **36%（53/148）vs 97%（34/35）**。**两轮同为 30 天窗、参数相同，数字几乎重合** —— 第 10 轮曾用「跨窗口比必得假信号」把这 35% 打掉，本轮证明那个解释不适用：**这不是窗口假象，是 carrier 表偏严的真信号。** 本轮仍不改表（铁律：改前先抽检两行、走 PR），但结论从「猜测」升级为「可复现判据」。
+
+### 58. 🔴 第 10 轮把 `data availability` 记成「窗口压成 16」只对了一半
+
+本轮该词 raw=**56** / seen=**1** / 新收 **0**，与第 10 轮 raw=57 同量级 —— 但 **seen 只吃到 1 个**。那 56 个仓绝大多数既不是被 seen 吃掉的（那才叫饱和），也不是窗口压的，**是被某条丢弃规则常年挡在门外**。第 10 轮只追了 35 个幸存者的来源，没追这 56 个的去向。**新判据：`有新增=0` 且 `seen 命中 < raw 的 5%` 时不许记成「饱和」，必须单独归因到具体丢弃规则。** 同类可疑项：`intent-based`（55/3）。
+
+### 59. 🔴 幸存 35 → 29、报告级 16 → 6 是 `seen` 算术，不是流量下降
+
+逐词 raw 与第 10 轮同量级（`world model` 770 vs 763 · `jepa` 348 vs 341 · `teleoperation` 226 vs 219）。上轮 35 个幸存者全写进 `seen`，本轮 6 个被吸收。**同窗口连跑不可作趋势读。**
+
+逐词新收：world model +5 · teleoperation +5 · vision language action +5 · sim-to-real +4 · jepa +3 · robot manipulation +3 · egocentric +2 · world action model +1 · robot dataset +1。
+饱和 8 词：embodied data(8/4) · sim2real(82/46) · robotics data engine(1/1) · verifiable inference(6/5) · proof of useful work(8/8) · data availability(56/1) · restaking(4/3) · intent-based(55/3)。
+真零 1：`maximal extractable value`（30d total=0，连续第二轮；topic 记 60d=2，按铁律单窗为零不删）。
+
+形态告警：无 language 3 个 · 空仓 409 1 个（`FVL-Repo/VLA-Pro`）· 爆完即停 1 个（`Anthony-ZC/steam_frame_teleoperation` 30d=7/7d=0）· pages 根规则 0 · farm 13 · NEG 56（印尼语 `jepang` 撞词）。
+probe 跳过（2 天 < 7 天），`clusters.json` 未重写。通知已发（报告级 6 > 0，队列 `1793313222-4612-21051.json`）。本轮无改词、无改脚本、无改 EXCL。
+
 # Citations
 
+- 第二十五轮（10-29 第 11 轮，30d）`logs/2026-10-29#github-radar（第 11 轮 · **30 天窗** · 非 dry-run）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184,193` · `memory/github-seen.json`
 - 第二十四轮（10-29 第 10 轮，30d）`logs/2026-10-28#github-radar（第 10 轮 · **30 天窗** · 非 dry-run）` · `skills/github-radar/scan.py:184,193` · `skills/github-radar/SKILL.md:7` · `memory/github-seen.json`
 - 第二十三轮（10-28 第 9 轮）`logs/2026-10-28#github-radar（第 9 轮 · 7 天窗 · 非 dry-run）` · `report.md` · `audit.log` · `memory/github-seen.json`
 - 第十八—二十二轮 `logs/2026-10-27#github-radar（第十八轮` … `#（第二十二轮`）· `scan.py:910,921`（tuple-index bug）· PR #14 · `memory/github-seen.json`（186 增补 34）· `memory/ghradar-probe-last.txt` = 2026-10-27

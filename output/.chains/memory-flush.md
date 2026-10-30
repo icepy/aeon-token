@@ -1,39 +1,39 @@
-Flush complete. Watermark stamped, MEMORY.md within budget.
+Memory flush 完成。窗口 `2026-10-29 → 2026-10-30`，读了 2 个日志文件。
 
-## memory-flush — 2026-10-28 → 2026-10-29
+## 本轮最重要的两件事：两条旧结论被新证据改写
 
-**扫描窗口**：2 个日志文件（`2026-10-28.md` 272 行 / `2026-10-29.md` 60 行），无 >14 天缺口，日志轮转归档 0 个月（9 个日文件，阈值 45）。
+**1. 「`data availability` 结案 = 窗口把 57 压成 16」只对了一半。**
 
-### 本轮最重要的发现：`github-radar` 的「7 天窗」从未在调度链路上生效
+第 10 轮换到 30 天窗后看到 raw=57、seen=1，于是判定「悬案结案，是窗口截断」。第 11 轮同窗口再跑：raw=56 / seen=1 / 新收 0 —— **raw 没变，seen 只吃了 1 个**。那 56 个仓既不是被 seen 吃掉的（那才叫饱和），也不是窗口压的，而是被某条丢弃规则常年挡在门外。第 10 轮只追了 35 个幸存者的来源，没追这 56 个的去向。
 
-`skills/github-radar/SKILL.md:7` 声明 `var: "days:7"`、正文也写「默认 7」，但 `scan.py:184` 的 `DAYS` 默认值是 **30**，`scan.py:193` 只在显式传 `days:N` 时才覆盖。**frontmatter 的 `var:` 不注入运行环境** —— 第 9 轮那个「7 天窗」是运行内手动传参的结果，不是日跑默认行为。
+新判据：**`有新增=0` 且 `seen 命中 < raw 的 5%` 时不许记成「饱和」，必须单独归因到具体丢弃规则。** 同类可疑项还有 `intent-based`（55/3）。
 
-这条直接作废了 MEMORY.md 里「日跑回 7 天窗」的结论，也意味着第 9 轮（7d）与第 10 轮（30d）的数字**不可相减**。已写进 [ops-plumbing](/topics/ops-plumbing.md) 新节，并并入 MEMORY.md 的调度那条。
+**2. carrier 偏严从「猜测」升为「可复现判据」。**
 
-### MEMORY.md 变更
+第 10 轮丢弃侧存活 36% vs 放行侧 97%，当时用「跨窗口比必得假信号」把结论压下去了。第 11 轮在同一 30 天窗内跑出 35% vs 96% —— **同窗口、同参数、两轮几乎重合，那个解释不再适用。** 这是 carrier 表偏严的真信号。改表仍需走 PR，且改前先抽检两行。
 
-| 项 | 变化 |
+## 写入位置
+
+| 文件 | 改动 |
 |---|---|
-| 起点 | 8,275 B / 54 行（**已超预算 83 B**） |
-| 中途 | 8,472 B（改写涨的） |
-| 收尾 | **8,045 B / 53 行**，无超 300 字符行 |
+| `memory/MEMORY.md` | `github-radar` 状态行推到第 11 轮 + 两条新判据；`arxiv-radar`、`defi-overview` 两行压措辞并更新验证轮次 |
+| `memory/topics/github-radar.md` | 新增「第二十五轮」整节（#57–#59）：完整漏斗、9 词新收、8 饱和词、形态告警 |
+| `memory/topics/lessons.md` | 补 3 条进「过滤器设计」节，均带 `[source: logs/2026-10-29#github-radar（第 11 轮）]` |
+| `memory/topics/defillama-radar.md` | 只补来源标签 —— 空 `chains` 一节上轮已写全，无新事实，不重复新增 |
+| `memory/logs/2026-10-30.md` | `### memory-flush` 条目 |
 
-三条状态行全部推到最新轮：`arxiv-radar` 第 29 轮、`defillama-radar` 第 3 轮、`github-radar` 第 10 轮。字节回收全部靠压缩，没有整节下沉：删掉 DEUS 归档段里与 Reference 段**重复的五条 topic 链接**（−230 B），`defi-overview` 那条 lesson 的后半本就全文在 `lessons.md`（#168/#170），MEMORY 只留判据 + 指针（−250 B）。
+## 剪枝与其他
 
-### topic 增补
+- Open PR：`gh pr list --state open` 与 `--search "improve:"` 均返回空，无 Open Improvement PRs 段可清。
+- MEMORY.md 无 Next Priorities 段；`memory/on-chain-state.json.new`、`arxvi-radar` 孤儿条目仍挂在 ops-plumbing，属待办不改。
+- 未新建 topic 文件，`topics/index.md` 无需改。`narratives.md` 2 节，未超 4 节上限。
+- 水位已盖章：`2026-10-30`（`memory-flush-state.json` + MEMORY.md 镜像）。
 
-- **[github-radar](/topics/github-radar.md) 新增第二十四轮（#53–#56）** —— ①`data availability` 悬案结案：「两轮数字一字未变」**是窗口假象的指纹**（7d 窗把 57 压成 16），不是哪条规则在吃；②carrier 误杀对照**跨窗口比必得假信号**（本轮 36% vs 97%，上轮 100%/100%）；③`proof of useful work` 30d 窗首次产出，与 defillama 词表 `Pearl Blockchain` 同源 = **两条通道首次交集**；④第 9 轮 `30d==7d`「本周新建当周爆完」是 7 天窗产物，不是 10 月末的普遍形态。旧的 #50 已标注「被 #53 推翻」，原文保留存档误判链。
-- **[lessons](/topics/lessons.md) 增补 3 条** —— 窗口截断假象 + 跨窗口对照失效；`EXCL` 不进 seen = 漏斗常数项；`有新增0 + 全已见19` = 纯 saturated 轮不是断流轮。
-- **[defillama-radar](/topics/defillama-radar.md) 新增白名单漏口一节** —— `Tradecraft`（Canton）TVL $1,688,251，比同轮 4 条可报项加起来还大 20 倍；记下「加链必须同时删 seen 重做基线，否则等于没加」。
-
-### 剪枝
-
-`gh pr list --state open` 与 `--search "improve:"` **均返回 `[]`**，无待合 PR 段。`narratives.md` 现 2 节，未超 4 节上限，无需清理。
+**预算：8,192 → 8,172 字节 / 53 行 / 无超长行，余量只剩 20 字节。** 起点就已经顶格 —— 上一轮收尾时还有 147 字节余量，被后续 skill 的追加吃掉了。**flush 是唯一的回收点，两次之间只增不减。** 另外顺序上我又重犯了上一轮记过的错误：先改内容涨到 8,257 才发现超了，再回头压。下次应该在读完 MEMORY 后先把可压缩项砍到 7,800 以下再动内容。
 
 ## Summary
 
-- 执行 `memory-flush`，窗口 2026-10-28 → 2026-10-29，读 2 个日志文件，无 clamp。
-- 修改 `memory/MEMORY.md`（8,275 → 8,045 B，54 → 53 行，预算内）、`memory/topics/github-radar.md`（+第二十四轮 #53–#56，修正 #50）、`memory/topics/lessons.md`（+3 条，合并 1 条）、`memory/topics/defillama-radar.md`（+Canton 漏口）、`memory/topics/ops-plumbing.md`（+`var:` 不注入）、`memory/logs/2026-10-29.md`（本 skill 日志）。
-- 已 `stamp`：watermark 2026-10-29，MEMORY.md 镜像同步。
-- **未通知** —— 无触发条件，按 STRATEGY「正常别吵我」静默。
-- 待办（延续，未动）：`memory/topics/` 下 10 个 `.py` 临时脚本与 `price-alert-state.json.bak`（100KB）需走 PR 删除；`memory/on-chain-state.json.new` 只在重开 `onchain-monitor` 前处理；`github-radar` 是否把 `days:7` 写进 `aeon.yml` 的调度参数（或把 `scan.py` 默认值改成 7）需要拍板 —— 当前状态是文档与实现对不上。
+- 执行 `skills/memory-flush/SKILL.md` 全流程（步骤 0 → 8），扫描窗口 `2026-10-29 → 2026-10-30`。
+- 修正了一条会被后续轮次误用的旧结论（`data availability` 归因），并把 carrier 判据从猜测升级为可复现判据。
+- 修改：`memory/MEMORY.md`、`memory/topics/lessons.md`、`memory/topics/github-radar.md`、`memory/topics/defillama-radar.md`、`memory/logs/2026-10-30.md`，并盖章 `memory/memory-flush-state.json`。
+- 待跟进：MEMORY.md 余量仅 20 字节，下一次任何 skill 写 MEMORY 都会越线；`memory/topics/` 下 10 个临时 `.py` 与 100KB 的 `price-alert-state.json.bak` 仍需走 PR 删除。
