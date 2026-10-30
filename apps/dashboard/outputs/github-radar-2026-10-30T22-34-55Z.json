@@ -1,0 +1,261 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 30 天 · 报告级 6 · 近 7 天活跃 6"
+      },
+      "children": [
+        "stats-grid",
+        "sep-1",
+        "repos-stack"
+      ]
+    },
+    "stats-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat-report",
+        "stat-active"
+      ]
+    },
+    "stat-report": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "6"
+      }
+    },
+    "stat-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "6"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repos-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "repo-1-stack",
+        "repo-sep-1",
+        "repo-2-stack",
+        "repo-sep-2",
+        "repo-3-stack",
+        "repo-sep-3",
+        "repo-4-stack",
+        "repo-sep-4",
+        "repo-5-stack",
+        "repo-sep-5",
+        "repo-6-stack"
+      ]
+    },
+    "repo-1-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-1-link",
+        "repo-1-desc"
+      ]
+    },
+    "repo-1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "AlphaChad5000/vibehash",
+        "href": "https://github.com/AlphaChad5000/vibehash",
+        "source": "词 `proof of useful work`",
+        "score": "★0 · 30天=17 · 7天=17"
+      }
+    },
+    "repo-1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Vibe Hash: a proof-of-useful-work cryptocurrency testnet where miners train AI models",
+        "variant": "caption"
+      }
+    },
+    "repo-sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo-2-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-2-link",
+        "repo-2-desc"
+      ]
+    },
+    "repo-2-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Celveen/SE-JEPA",
+        "href": "https://github.com/Celveen/SE-JEPA",
+        "source": "词 `jepa`",
+        "score": "★0 · 30天=25 · 7天=13"
+      }
+    },
+    "repo-2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Continual learning JEPA world model.",
+        "variant": "caption"
+      }
+    },
+    "repo-sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo-3-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-3-link",
+        "repo-3-desc"
+      ]
+    },
+    "repo-3-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Mithilesh1103git/RoboPilot-Sim2Real",
+        "href": "https://github.com/Mithilesh1103git/RoboPilot-Sim2Real",
+        "source": "词 `sim2real`",
+        "score": "★0 · 30天=19 · 7天=13"
+      }
+    },
+    "repo-3-desc": {
+      "type": "Text",
+      "props": {
+        "text": "RoboPilot-Sim2Real is a simulation-first robotics platform for language-guided manipulation, synthet",
+        "variant": "caption"
+      }
+    },
+    "repo-sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo-4-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-4-link",
+        "repo-4-desc"
+      ]
+    },
+    "repo-4-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DNH35/jepa-world-model-from-scratch",
+        "href": "https://github.com/DNH35/jepa-world-model-from-scratch",
+        "source": "词 `world model`",
+        "score": "★0 · 30天=7 · 7天=7"
+      }
+    },
+    "repo-4-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTor",
+        "variant": "caption"
+      }
+    },
+    "repo-sep-4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo-5-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-5-link",
+        "repo-5-desc"
+      ]
+    },
+    "repo-5-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "XBR-1111/tailor",
+        "href": "https://github.com/XBR-1111/tailor",
+        "source": "词 `robot dataset`",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "repo-5-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Refine distributed robot datasets into training-ready data — acceptance, episode-level filtering, de",
+        "variant": "caption"
+      }
+    },
+    "repo-sep-5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo-6-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-6-link",
+        "repo-6-desc"
+      ]
+    },
+    "repo-6-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "LabBuddy26/Labference",
+        "href": "https://github.com/LabBuddy26/Labference",
+        "source": "词 `robot manipulation`",
+        "score": "★0 · 30天=7 · 7天=4"
+      }
+    },
+    "repo-6-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Lab Benchmark for robotic manipulation",
+        "variant": "caption"
+      }
+    }
+  }
+}

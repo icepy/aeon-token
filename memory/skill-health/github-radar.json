@@ -1,10 +1,13 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-10-29T22:34:24Z",
-  "quality_score": 3,
-  "assessment": "结构完整、带链接与 commit 计数的扫描摘要，但全为零星仓库且描述被截断（'sim-to-r'、'and r'），缺少筛选理由与可执行判断。",
-  "flags": [],
-  "avg_score": 3.25,
+  "last_analyzed": "2026-10-30T22:34:54Z",
+  "quality_score": 2,
+  "assessment": "已运行并输出结构化清单，但全是 ★0 的噪声仓库，只堆了关键词与提交数，无筛选理由、无判断、无可用结论；正文未按要求用简体中文，也与 DEUS 仓位/触发价/escrow 情报的优先级毫无关联。",
+  "flags": [
+    "low_quality",
+    "generic_content"
+  ],
+  "avg_score": 3.2,
   "history": [
     {
       "date": "2026-10-25",
@@ -148,6 +151,12 @@
       "date": "2026-10-29",
       "score": 3,
       "ts": "2026-10-29T22:34:24Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-30",
+      "score": 2,
+      "ts": "2026-10-30T22:34:54Z",
       "harness": "claude"
     }
   ]

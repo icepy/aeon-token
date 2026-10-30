@@ -441,3 +441,11 @@
 - [yued2013-hash/supermimic-lafan1-reproduction](https://github.com/yued2013-hash/supermimic-lafan1-reproduction) ★0 · 30天=5 · 7天=5 · `world model` · SuperMimic reproduction study: world models and BPTT, RTX4090, 40 full LAFAN1 sequences, FP32 eviden
 - [krishyadav25/networked-robot-teleoperation](https://github.com/krishyadav25/networked-robot-teleoperation) ★0 · 30天=8 · 7天=1 · `teleoperation` · Networked Teleoperation of a Robot through Shell Commands
 - [Anthony-ZC/steam_frame_teleoperation](https://github.com/Anthony-ZC/steam_frame_teleoperation) ★0 · 30天=7 · 7天=0 [爆完即停] · `teleoperation` · Getting Steam Frame controller information (pose, button, hand skeleton) for robot teleoperation
+
+## 2026-10-30 · github-radar（报告级 6）
+- [AlphaChad5000/vibehash](https://github.com/AlphaChad5000/vibehash) ★0 · 30天=17 · 7天=17 · `proof of useful work` · Vibe Hash: a proof-of-useful-work cryptocurrency testnet where miners train AI models
+- [Celveen/SE-JEPA](https://github.com/Celveen/SE-JEPA) ★0 · 30天=25 · 7天=13 · `jepa` · Continual learning JEPA world model.
+- [Mithilesh1103git/RoboPilot-Sim2Real](https://github.com/Mithilesh1103git/RoboPilot-Sim2Real) ★0 · 30天=19 · 7天=13 · `sim2real` · RoboPilot-Sim2Real is a simulation-first robotics platform for language-guided manipulation, synthet
+- [DNH35/jepa-world-model-from-scratch](https://github.com/DNH35/jepa-world-model-from-scratch) ★0 · 30天=7 · 7天=7 · `world model` · Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTor
+- [XBR-1111/tailor](https://github.com/XBR-1111/tailor) ★0 · 30天=6 · 7天=6 · `robot dataset` · Refine distributed robot datasets into training-ready data — acceptance, episode-level filtering, de
+- [LabBuddy26/Labference](https://github.com/LabBuddy26/Labference) ★0 · 30天=7 · 7天=4 · `robot manipulation` · Lab Benchmark for robotic manipulation
