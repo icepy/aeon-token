@@ -1,24 +1,17 @@
-**defillama-radar** · 2026-10-29 00:16Z · 可报 4
+**defillama-radar** · 2026-10-30 00:02Z · 可报 1
 
-来源：`https://api.llama.fi/protocols` · 源站 `last-modified 23:38:07Z` · `cf-cache-status: MISS` · 全量 8873 条
+来源：`https://api.llama.fi/protocols` · 源站 `last-modified 23:39:19Z` · `cf-cache-status: MISS` · 全量 8880 条（cache-bypass 与 CF HIT 两份 id 集合逐条相同，无漏条目）
 
-**1. Fynd AMM** · DEX · Robinhood Chain/Base/Binance/Ethereum · TVL $72,463 · 登记 10-28 21:50Z · `id 9267`
-AMM 池扩展层：每笔交易扫描竞争池，把费率压到最优竞争池之下抢订单流。
-https://swap.fynd.xyz/pools
+**1. GongFu** · 收益 · Robinhood Chain · TVL $0 · 登记 2026-10-29 17:58Z · `id 9277`
+链上代币锁定：用户把 GF 锁 1–180 天，到期原样取回同一批 GF；上限收益只由一笔固定的、不可提取的储备支付。
+合约 `robinhood:0xFEd6b187F6Da04E2EAe5D3ea89B57129Da62b28A` · `audits: 0`（未审计）· 无站点
 
-**2. Megawatt Markets** · 衍生品 · Arbitrum · TVL $2,704 · 登记 10-28 18:00Z · `id 9260`
-链上订单簿，交易美国 7 个电力市场的日度电力期货。
+**漏斗**：新增 id 7（可报 1 / 过滤 6）· 重报 0 · parent 丢 2 · 类目丢 0 · 链白名单丢 4 · 拉取失败 0 · 基线轮 False
 
-**3. Alokumi** · 流动性自动化 · Solana · TVL $1,603 · 登记 10-28 21:55Z · `id 9268`
-Meteora DLMM 的 LP Agent：自然语言写做市规则，Agent 在非托管金库内跑。
+**被挡掉的 6 条**（记 `filtered`，永不补报）：`Nexus Mutual RWI Vault`（Ethereum，$2.04M，parent）· `Olive Exchange Options`（Solana 期权，parent）· `Faroo`（Pharos 流动性质押，$650K，链不在白名单）· `StonkDrop` / `OmenX` / `OTC`（后者 Solana launchpad —— 三条都 `chains=[]`）
 
-**4. Hamstr** · 收益聚合器 · Base · TVL $109 · 登记 10-28 22:00Z · `id 9270`
-存 USDC/ETH 在 Aave V3 出借，只把收益换成 cbBTC，本金不动。
+**链命中**：Ethereum=1895 · Binance=1145 · Arbitrum=1045 · Base=915 · Solana=466 · Optimism=393 · Robinhood Chain=296 · Hyperliquid L1=212 · Ink=33 · BSC=0 · OP Mainnet=0
 
-**漏斗**：新增 id 4（可报 4 / 过滤 1）· 重报 1（`Megawatt Markets` 上轮未通知，本轮补入）· parent 丢 0 · 类目丢 0 · 链白名单丢 1
+**单侧读数：加密侧 1 / AI 侧 0** —— 本源只有加密侧，这 1 条不构成 AI 方向的任何证据。
 
-**被白名单挡掉**：`Tradecraft`（`id 9269`，DEX，Canton Network，TVL $1,688,251，10-28 21:59Z）—— Canton 不在 `CHAINS`，按铁律记 `filtered`，永不补报。要收这条须加链 + 删 seen 重做基线。
-
-**链命中**：Ethereum=1894 · Binance=1145 · Arbitrum=1045 · Base=915 · Solana=466 · Optimism=392 · Robinhood Chain=294 · Hyperliquid L1=211 · Ink=33 · BSC=0 · OP Mainnet=0
-
-**单侧读数：加密侧 4 / AI 侧 0** —— 本源只有加密侧，这 4 条不构成 AI 方向的任何证据。
+**判据读数（结构性，非本轮故障）**：全量 `chains=[]` 占 1541/8880 = 17.4%，但**近 3 天登记的 58 条里 38 条 `chains=[]`，占 65.5%** —— 新上架协议越来越不带链字段，链白名单这道漏斗对新登记的杀伤在放大。本轮 `OmenX`（预测市场 CLOB）、`OTC`（Solana launchpad）、`StonkDrop`（Robinhood Chain 抽奖）三条有实际业务描述却全被空 `chains` 挡掉。继续观察，若连续几轮保持这个比例，需议是否给空 `chains` 开一条旁路。

@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-10-29T00:18:00Z
+timestamp: 2026-10-30T00:05:00Z
 ---
 
 # DefiLlama Radar
@@ -55,6 +55,8 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **配套正面证据**：首跑把 `Megawatt Markets` 写成 `notified=None`，第二轮走「重报」通道补回，证明四态 + 「send 成功才标日期」在缓存中途换新这种状态下能自愈。
 
+**10-30 复核**：`?_cb=` 源站（`last-modified 23:39:19Z`）与 CF `HIT`（`age 1296`）两份 payload 的 8880 个 id 逐条相同（`only_busted` 与 `only_hit` 均为空集）—— 说明「两份 id 集合相等」是本轮无漏的直接证据，可写进报告；但**相等只说明这一轮没漏，仍不能从事前否定缓存风险**。
+
 ## `Interface` 类目：不进 `EXCL_CATEGORY`
 
 全量 350 条 Interface：
@@ -80,6 +82,21 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 `Canton` 不在 `scan.py` 的 `CHAINS`。同轮可报的 4 条 TVL 分别是 $72,463 / $2,704 / $1,603 / $109 —— **这条比它们全加起来还大 20 倍**。白名单是「只在关心的链上找」的取舍，不是质量判断，但这一条说明漏口在按 TVL 排序时会立刻显形。
 
 **若要收 Canton**：加链 **并且** 删 `memory/defillama-seen.json` 重做基线（否则该 id 已在 seen 里，加链等于没加）。待下周复核。
+
+## 新噪声源：空 `chains`（2026-10-30 首次量化）
+
+链白名单这道漏斗的输入正在变空。
+
+| 口径 | 空 `chains` 占比 |
+|---|---|
+| 全量 8880 条 | 1541 条 = **17.4%** |
+| `listedAt` > 2026-10-27 的 58 条新登记 | 38 条 = **65.5%** |
+
+即**新上架协议里三分之二不带链字段**。第 4 轮（10-30 00:02Z）的 7 条新增里有 3 条因此被挡，且都不是空壳：`OmenX`（预测市场 CLOB，`omenx.com`）· `OTC`（Solana launchpad，创作者费回购代币化股票/Pre-IPO/收益代币）· `StonkDrop`（Robinhood Chain 抽奖，USDG 付费 + drand 抽稀有度）。这三条与 10-28 那批 `Interface`（345 条里 232 条带 parent、118 条里仅 6 条有 chains）**不是同一形态**：那批是空壳前端，这批有描述、有站点、有业务模型。
+
+**为什么现在才显形**：`chains=[]` 过去是「Interface 空壳」的同义词，挡掉它零成本。10-28 起 DefiLlama 上架流程明显不再回填 `chains`，这道漏斗开始连带挡真协议。
+
+**待办（未决，需连续观察）**：连续 2–3 轮记录「新登记中空 chains 占比」，若维持 >50%，需议旁路方案 —— 候选是「`chains=[]` 但 `tvl` 非空或有 `url`」放行，代价是 `Interface` 那 345 条空壳无 url 的仍挡得住、有 url 的会漏进来。**不改规则前先取证，别在单轮上改漏斗。**
 
 ## 已知代价：基线轮吃掉首批沉积层
 

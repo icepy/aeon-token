@@ -1,10 +1,7 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=8869 · parent=0 · category=0 · 链白名单=1 · 拉取失败=0
-全量 8873 · 新增 id 4（可报 3 / 过滤标记 1）· 重报（上轮未通知）1 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=8873 · parent=2 · category=0 · 链白名单=4 · 拉取失败=0
+全量 8880 · 新增 id 7（可报 1 / 过滤标记 6）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1894 · Base=915 · Solana=466 · Arbitrum=1045 · Ink=33 · Binance=1145 · BSC=0 · Optimism=392 · OP Mainnet=0 · Hyperliquid L1=211 · Robinhood Chain=294
-单侧读数: 加密侧 4 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  Fynd AMM · Robinhood Chain/Base/Binance/Ethereum · tvl=72463.46974354275 · Dexs · 1793224209
-  Megawatt Markets · Arbitrum · tvl=2704.332465406836 · Derivatives · 1793210458
-  Alokumi · Solana · tvl=1603.0533876749955 · Liquidity Automation · 1793224525
-  Hamstr · Base · tvl=108.94179363215571 · Yield Aggregator · 1793224807
+链命中: Ethereum=1895 · Base=915 · Solana=466 · Arbitrum=1045 · Ink=33 · Binance=1145 · BSC=0 · Optimism=393 · OP Mainnet=0 · Hyperliquid L1=212 · Robinhood Chain=296
+单侧读数: 加密侧 1 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+  GongFu · Robinhood Chain · tvl=0 · Yield · 1793296697
