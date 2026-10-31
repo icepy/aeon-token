@@ -7,75 +7,74 @@ tags:
   - defi
   - market-context
 resource: https://defillama.com
-timestamp: 2026-10-30T23:05:00Z
+timestamp: 2026-10-31T23:05:00Z
 ---
 
-# Market Context (as of 2026-10-30)
+# Market Context (as of 2026-10-31)
 
-> **Take:** risk-off, now confirmed by sentiment — BTC $76,892 (−2.50%) third straight down day, F&G collapsed 51 → 30 (Fear), and DeFi TVL −4.60% with only ~1.1pp of that explained by price marks. Conviction: high.
+> **Take:** risk-off unwinding into chop — BTC $77,443 (+0.76% 24h) snapped a three-day slide with 14/20 top-caps green, but DEX volume fell a third session ($16.39B → $12.26B → $8.28B) and stablecoins lost another $1.22B. Conviction: medium.
 
 ## Signal Snapshot
-- BTC $76,892 (−2.50% 24h, −5.43% 7d) · dominance 59.09% (−0.43 pp 24h)
-- ETH $2,233.59 (−1.56% 24h, −6.81% 7d) · ETH/BTC 0.02905
-- SOL $95.78 (−1.11% 24h, −7.52% 7d)
-- Total mcap $2.477T top-20 weighted (−1.83% 24h) · DEX vol $18.13B 24h
-- Breadth: 10/20 green 24h · 7/20 green 7d
-- Fear & Greed: 30 (Fear) — yesterday 51 (Neutral)
-- Total DeFi TVL $84.47B (−4.60% 24h, −6.11% 7d, −11.31% 30d)
+- BTC $77,443 (+0.76% 24h, −3.62% 7d) · dominance 62.74% (+0.15 pp 24h)
+- ETH $2,253.17 (+0.87% 24h, −3.64% 7d) · ETH/BTC 0.02910
+- SOL $95.41 (−0.38% 24h, −5.84% 7d)
+- Total mcap $2.488T top-20 weighted (+0.51% 24h) · DEX vol $8.28B (10-31 partial) / $12.26B (10-30 final)
+- Breadth: 14/20 green 24h · 7/20 green 7d
+- Fear & Greed: 30 (Fear) — yesterday 30
+- Total DeFi TVL $84.85B (+1.08% 24h, −5.19% 7d)
 
 ## What Changed Since Last Refresh
-- **F&G broke: 51 → 30, a 21-point drop into Fear.** This is the catch-up yesterday's file explicitly predicted would happen if price kept falling — sentiment finally repriced. First sub-40 print in this file's history.
-- **TVL broke its two-week floor: $88.54B → $84.47B (−4.60%).** Yesterday TVL was flat while price fell; today the loss showed up in the level, not just the valuation basis.
-- **Volume doubled and held: DEX 24h $18.13B vs $8.20B on 10-28 (+121%), and yesterday's bucket was revised $10.38B → $16.37B.** Rising volume into falling price, two sessions running.
-- **Breadth whipsawed back: 4/20 → 10/20 green on 24h** even as BTC fell another 2.5%. Narrow green pockets (LINK +5.9%, BCH +5.2%, XLM +3.1%) inside a red tape — rotation, not recovery.
-- **Stables kept leaking but slower: −$1.23B 24h (−0.41%) vs −$2.12B yesterday.** USDT −$0.65B, but USDC **+$0.45B** — first USDC inflow in three sessions.
+- **The red streak broke, sentiment did not.** BTC +0.76% / ETH +0.87% / 14-of-20 green on 24h, first up day after three straight down — but F&G printed 30 twice running, so the index did not follow price back up.
+- **DEX volume fell a third session and the 10-30 bucket was revised DOWN 32.4%, $18.13B → $12.26B.** This inverts yesterday's file, which recorded 10-29 being revised *up* 57.7%; revisions apply to open buckets in both directions. Volume on completed buckets: 16.39B (10-29) → 12.26B (10-30), and 10-31 is tracking $8.28B.
+- **TVL reversed: +1.08% to $84.85B after −4.60% yesterday.** Led by LayerZero V2 +5.36% (+$877M), Aave V3 +4.02% (+$589M), Morpho Blue +5.00% (+$522M) — lending and bridging re-inflowing, the mirror of yesterday's deleveraging.
+- **TRX −7.93% is the largest top-20 drawdown, and Tron chain TVL −5.58% with JustLend sTRX −8.19% (−$268M).** The "Tron as non-correlated bid" idea from yesterday's file is now dead on both legs.
+- **Stables still leaking: −$1.22B 24h (−0.41%), but USDC +$390M is the second straight inflow.** The drain is concentrated off-shore/tokenized: USDG −6.81%, PYUSD −7.31%, RLUSD −7.35%, BUIDL −4.29%.
 
 ## Active Narratives
-- **Hyperliquid L1 ecosystem** — phase: rising, and now the only chain with positive 7d. Evidence: chain TVL $2.65B (+8.44% 1d, +10.39% 7d) while Ethereum −11.57% and Solana −7.58% on the same window; HYPE $89.04 sits +14.51% 7d against BTC −5.43%.
-- **Deleveraging / liquidation cascade** — phase: peak. Evidence: DEX volume 2.58× its own 7d daily average with stablecoin-pair share at 24.1% of pool volume; top pairs are USDC-WETH, USDC-USDT, WBTC-USDT — collateral being swapped, not accumulated.
-- **Tron as the non-correlated bid** — phase: fading. Evidence: Tron +1.71% 1d / +1.17% 7d is still the only large chain green on both, but TRX itself **−5.60% 24h** — the token leg broke while chain TVL held.
-- **Memecoin rotation** — phase: dead → distibution. Evidence: PEPE-WETH is the #13 pool by volume ($108M, 5.77× its 7d avg) yet PENGU is +5.18% while Super Pepe −15.64% trending — no coherent bid, just churn.
-- **RWA credit unwind** — phase: contained, not spreading. Evidence: Anemoy flat today (+0.05%) after −56.85% yesterday; Aave Horizon RWA −12.40% is the only continuation.
+- **Hyperliquid L1 ecosystem** — phase: rising, still the only chain green on both windows. Evidence: chain TVL $2.62B (+10.00% 7d), HYPE $87.45 (+15.12% 7d) against BTC −3.62%; but TVL −0.78% 1d and HYPE −1.86% 1d is the first same-day softness in six sessions.
+- **Deleveraging / liquidation cascade** — phase: fading. Evidence: DEX volume $12.26B on the 10-30 bucket is −25.2% vs 10-29's $16.39B, and lending TVL reversed from −11.14% (Aave 7d, yesterday) to +4.02% 1d today.
+- **Tron as the non-correlated bid** — phase: dead. Evidence: TRX −7.93% 24h while chain TVL −5.58%; JustLend sTRX −8.19% (−$268M) is the single largest non-CEX TVL loss today.
+- **Privacy bid (ZEC / XMR)** — phase: emerging. Evidence: ZEC $1,250 +4.87% 7d and XMR +1.73% 24h are two of only seven top-20 names green on the week, and both sit in trending.
+- **Memecoin churn** — phase: fading. Evidence: trending is now Super Pepe (+23.9%) and Super Inu (+49.7%) at ranks 880/763 — sub-$50M names, no large-cap participation.
 
 ## Top DeFi Protocols (TVL, 7d change)
-- Lido: $21.73B (−6.19%)
-- LayerZero V2: $16.37B (+1.10%)
-- Aave V3: $15.01B (−11.14%)
-- SSV Network: $11.71B (−6.83%)
-- Morpho Blue: $10.80B (−3.60%)
+- Lido: $21.88B (−3.64%)
+- LayerZero V2: $17.24B (+3.12%)
+- Aave V3: $15.23B (−8.43%)
+- SSV Network: $11.79B (−3.72%)
+- Morpho Blue: $10.96B (−0.55%)
 
 ## Chain Flow (top 3 by TVL, 7d)
-- Ethereum: $43.69B (−11.57%)
-- Bitcoin: $6.01B (+38.31% — coverage artifact, see footer)
-- Base: $5.81B (−5.21%)
+- Ethereum: $44.00B (−10.56%)
+- Bitcoin: $6.13B (+41.53% — coverage artifact, see footer)
+- Base: $5.88B (−3.09%)
 
-Solana $5.40B (−7.58%) · Tron $5.57B (+1.17%) · BSC $5.21B (−9.52%). Notable 1d: Hyperliquid L1 +8.44%, Tron +1.71%, Ethereum −5.66%, Arbitrum −6.25%, BSC −5.81%.
+Solana $5.42B (−5.89%) · Tron $5.33B (−3.60%) · BSC $5.24B (−8.82%). Notable 1d: Bitcoin +2.93%, Sui +2.26%, Avalanche +2.23%, Ethereum +1.75%, Tron −5.58%.
 
 ## Stablecoins
-Total: $300.07B (−0.41% 24h, −1.35% 7d). USDT $180.17B (−0.36%, −1.29%) · USDC $71.81B (**+0.63%**, −0.58%) · USDS $6.44B (−2.64%, −4.61%) · DAI $4.71B (−0.63%, −0.68%) · USDe $4.52B (−0.20%, −2.32%) · USD1 $3.89B (−0.39%, −2.34%). Notable 24h declines are all mid-tier tokenized/RWA names: **RLUSD −7.24%**, **BUIDL −7.93%**, PYUSD −6.75%, USDG −4.24%, SOFID −14.20%, AUSD −10.01%. Gainers small and real: OUSD +7.05%, crvUSD +4.17%, USDai +1.62%.
+Total: $299.59B (−0.41% 24h, −1.41% 7d, −2.35% 30d). USDT $179.72B (−0.38%, −1.54%) · USDC $71.88B (**+0.55%**, +0.02%) · USDS $6.40B (−1.70%, −5.02%) · DAI $4.73B (−0.92%) · USDe $4.50B (−0.73%, −2.13%) · USD1 $3.89B (flat, −2.01%). Biggest 24h drops are tokenized/offshore: **RLUSD −7.35% (−$192M)**, **PYUSD −7.31% (−$223M)**, **USDG −6.81% (−$209M)**, BUIDL −4.29% (−$90M). Only large gainer: USDD +3.32% (+$49M). No depeg — top-6 are all within 1bp of $1.
 
 ## Trending (CoinGecko)
-- Super Pepe (SP) — rank 994, −15.64% — $1.58M volume, sub-$50M mcap, not a market signal
-- Pudgy Penguins (PENGU) — rank 112, +5.18% — $133M volume, the lone memecoin green
-- Bitcoin (BTC) — rank 1, −2.49% — $202B volume, third down day
-- Hyperliquid (HYPE) — rank 10, $89.22, −2.24% but **+14.51% 7d** — the only top-10 name green on the week
-- Chainlink (LINK) — rank 16, +5.72% — $733M volume, strongest large-cap green
-- NEAR (NEAR) — rank 21, +5.44% — $1.03B volume, second strongest large-cap green
+- Super Inu (SI) — rank 763, +49.66% — $23M-scale, pure churn
+- Super Pepe (SP) — rank 880, +23.86% — same cluster, no large-cap read-through
+- Lighter (LIT) — rank 83, +13.26% — perp DEX token, the only rank-<100 green
+- Kinetiq (KNTQ) — rank 185, +16.20% — liquid staking on Hyperliquid, feeds the HYPE trade
+- Canton (CC) — rank 27, −0.43% — unchanged, no signal
 
 ## Prediction Markets (Polymarket, top by 24h vol)
 | Market | YES% | 24h Vol | Liquidity |
 |--------|------|---------|-----------|
-| Republican Party controls House (2026 midterms) | 6.5% | $1,468k | $6,257k |
-| Republican Party controls Senate (2026 midterms) | 29.5% | $1,457k | $3,482k |
-| 2026 Balance of Power: D Senate, D House | 69.5% | $1,231k | $6,297k |
-| 2026 Balance of Power: R Senate, R House | 5.5% | $899k | $5,444k |
-| 2026 Balance of Power: R Senate, D House | 23.5% | $663k | $3,381k |
+| 76ers vs. Hornets (NBA) | 60.5% | $3,178k | $74k |
+| LoL Worlds: HLE vs BLG (G1) | 0.1% | $3,448k | $968k |
+| Democratic Party controls House (2026 midterms) | 94.5% | $1,341k | $8,736k |
+| Michigan Senate — Democrats win | 78.5% | $961k | $462k |
+| Michigan Senate — Republicans win | 20.5% | $903k | $531k |
 
-Market read: the midterms cluster now owns **all five** of the top political slots, and the House legs hardened further — R House 7.5% → **6.5%**, D House 92.5% → **93.5%**. The sports markets (Knicks-76ers $1,534k, Hornets-Wizards $808k) took the #1 and #6 volume slots, which means crypto/political conviction is thin enough that NBA moneylines outrank it. No crypto-specific market cleared the top five for a third straight session.
+Market read: **sports and esports took the #1 and #2 volume slots** — an NBA regular-season game out-traded every political and crypto market on the board. The midterms cluster is hardening further: D House 93.5% → **94.5%**, R House 6.5% → **5.5%**. No crypto-specific market cleared the top ten for a fourth straight session.
 
 ## Implications for Downstream Skills
-- **token-pick:** the deleveraging is mechanical, not narrative — favor **Hyperliquid L1** (only chain green on both 1d and 7d, +10.39% 7d) and avoid lending beta (Aave V3 −11.14% 7d, Morpho −3.60%). Do not read 10/20 breadth as a bottom; it is rotation inside a −5.43% BTC week.
-- **narrative-tracker:** log two phase transitions with today's date — F&G 51→30 (sentiment finally confirming the risk-off call) and RWA-credit unwind going from emerging to **contained** (Anemoy flat after −56.85%).
+- **token-pick:** the bounce is price-only — volume is falling into it and stables are still leaving, so do not treat 14/20 breadth as a regime change. If forced to hold beta, **HYPE/L1** is the only structure still positive on 7d (+15.12%); avoid anything Tron-exposed (TRX −7.93%, sTRX −8.19%). Privacy (ZEC/XMR) is the only new bid with both 7d green and trending presence.
+- **narrative-tracker:** log three transitions — "deleveraging/liquidation cascade" peak → **fading** (volume −25.2% d/d, lending TVL +4.02% 1d); "Tron non-correlated bid" fading → **dead** (TRX −7.93%); "privacy bid" → **emerging** (ZEC +4.87% 7d, XMR +1.73% 24h, both trending).
 
 ## Token Picks Made
 | Date | Token | Price | Thesis |
@@ -84,17 +83,30 @@ Market read: the midterms cluster now owns **all five** of the top political slo
 
 ---
 *Sources — btc/eth: CoinGecko · defi: DeFiLlama · sentiment: alternative.me · markets: Polymarket*
-*Source status: coingecko=ok defillama=ok fng=ok polymarket=ok websearch=fail*
-*Note: **The DEX volume doubling was verified as real, not a coverage artifact — three independent tests.** (1) **No new legs:** the `/overview/dexs` breakdown holds 1,093 (protocol) legs today vs 1,094 on 10-28; the 3 new legs carry only $16.25M total, so the +$8.79B cannot come from expanded coverage. (2) **Independent dataset agrees:** the yields endpoint's pool-level `volumeUsd1d` (a separate ingestion path from `/overview/dexs`) sums to **$6.85B against a 7d daily average of $2.66B = 2.58×**, matching the direction and rough magnitude of the overview series. (3) **Bucket is stable:** two `/overview/dexs` fetches 40 minutes apart return byte-identical values for all six recent buckets. The concentration is collateral, not speculation — the top pools are USDC-WETH ($269M + $268M on two Uniswap V3 fee tiers), USDC-USDT ($229M Fluid), WBTC-USDT ($213M), and stablecoin pools are 24.1% of all pool volume.*
-*Note: **Yesterday's 10-29 bucket was revised $10.384B → $16.375B (+57.7%) after the day closed, while 10-27 and 10-28 did not move at all.** The 10-29 figure written into yesterday's file was an in-progress partial. The correction is upward-real, not fabrication (per the note above), but it means **yesterday's reported "+26.85% vs 10-28" understated the day; the true 10-29 print is +99.6% vs 10-28.** Verdict computed on today's own bucket: 10-30 $18.129B = **+10.7% vs 10-29** and **+145.8% vs the 7d average of $7.38B**. Practical lesson: a same-day bucket read at ~23:00Z is not final and will be revised upward; do not headline the in-progress number.*
-*Note: **The fees +87% is a genuine coverage change, unlike the DEX volume.** Three protocol entries — **Titan Builder ($14.91M), Flashbots ($13.73M), and a bare "Ethereum" entry ($10.96M)** — each report a 7d total barely above their 24h total (ratios 1.16, 1.07, 0.73), the fingerprint of newly-ingested series with no prior history. Together they add $39.6M of a $125.4M day. Excluding those three, fees are roughly $85.8M — still up on the week but nowhere near the headline. **Do not read the fee jump as demand.***
-*Note: **TVL −4.60% is mostly real flow, not price.** ETH fell 1.61% and BTC 2.52% on the day; at a plausible 45% ETH-beta / 15% BTC-beta composition the price-mark effect accounts for only **≈ −1.10%**, leaving **≈ −3.54% as residual flow**. Thirteen of the top fourteen chains by TVL fell. This is the mirror image of yesterday's error, where an artifact *masked* real outflow; today the artifact *unwound* and the outflow surfaced.*
-*Note: **Lido's stale price basis from yesterday is now resolved, and it was worth about −$1.07B of today's drop.** Yesterday's file flagged Lido's implied $/WETH at $2,495 vs a $2,263 spot. Today the series reads an implied **$2,237.39 vs $2,233.59 spot (+0.17%)** — back in line. Across the LST cluster (Lido, Binance staked ETH, ether.fi, Rocket Pool, StakeWise V3, Coinbase Wrapped Staked ETH, Liquid Collective, SparkLend) every implied price now sits within +0.17% of spot, and WETH quantities moved ≤0.1% except SparkLend (+5.92%). **Real spot-basis change for the cluster: −1.59%, not the −12% headline-vs-yesterday figure.***
-*Note: **The Bitcoin chain's +38.31% 7d is the same coverage artifact logged 10-27 through 10-29, now in its fifth consecutive run.** Non-CEX Bitcoin legs moved −1.90% on 10-29 and −4.16% today. The chain series still cannot produce its own jump.*
-*Note: **`/v2/chains` still returns no `change_1d` (0 of 420 entries, third consecutive run).** Every chain delta above is self-computed from `/v2/historicalChainTvl` aligned by date key.*
-*Note: **F&G 51 → 30 is legitimate.** alternative.me rolled a fresh print (next update 3,483s out) reading 30/Fear. Yesterday's file predicted that a sentiment index which refused to move on a −2.8% day would eventually catch up — it did, on the next print. This is why yesterday's conviction was medium and today's is high.*
-*Note: **`/overview/dexs` and `/overview/fees` summary fields are again one calendar day behind** (fourth consecutive run): field `total24h` $16.378B equals the chart's **10-29** bucket ($16.375B), and `total48hto24h` $8.203B equals the **10-28** bucket. All "today" figures above come from the chart's own last bucket, not from the summary fields.*
-*Note: **`/global`'s −4.50% 24h mcap change is not used.** The top-20 market-cap-weighted recompute gives **−1.83%**, consistent with BTC −2.50% / ETH −1.56% / SOL −1.11%. The −4.50% is quoted nowhere in this file.*
-*Note: **The "Incentive yield" classification needed a gate the skill text doesn't have.** The literal filter (`apyReward > 0 AND outlier == false AND tvlUsd >= $25M`) surfaces **ROXUSDCY at 29.32% APY whose reward component is 0.47% — a 1.6% reward share.** Ranking by APY would put a base-yield pool at the top of the points/emissions list. This run added a **reward-share ≥ 20%** gate (46 of 58 survivors), which is what "incentive-driven" is supposed to mean.*
-*Note: **Aave V3 −7.71% 1d / −11.14% 7d is the single most important protocol number today** — $1.25B of TVL left in 24h, the largest non-CEX drop. Lending TVL falling faster than the collateral it lends against indicates deleveraging (borrowers repaying, collateral withdrawn), not just repricing. Morpho Blue −4.52% is the same signal, smaller.*
-*Note: **WebSearch failed both queries for the eighth consecutive run** (`400 All target providers failed`). The Macro Catalysts section is therefore omitted rather than padded — no crypto-native catalyst could be sourced from any tool this run.*
+*Source status: coingecko=ok(key 401 on 2 endpoints, keyless fallback 200) defillama=ok fng=ok polymarket=ok websearch=fail*
+
+*Note: **The 10-30 DEX bucket was revised DOWN 32.4% ($18.129B → $12.258B) — this breaks the "open buckets only get revised up" rule written into yesterday's file.** Yesterday concluded from a single up-revision (+57.7% on 10-29) that in-progress buckets are always understated. Both directions happen: 10-29 has since moved $10.384B → **$16.393B (+57.9%)**, and 10-30 has moved $18.129B → **$12.258B (−32.4%)**. Buckets 10-20 through 10-28 are byte-identical to yesterday. **Correct rule: an open bucket carries revision risk in either direction — quote completed buckets only and never compute change_1d off the current-day bucket.***
+
+*Note: **The volume decline is real and now measured on completed buckets:** 10-28 $8.20B → 10-29 $16.39B → 10-30 $12.26B, with 10-31 tracking $8.28B (partial). Independent confirmation from the yields pipeline (`volumeUsd1d` summed over all 15,954 pools, a separate ingestion path): **$2.572B vs its own 7d daily average of $2.871B = 0.90×** — below average, the opposite of yesterday's 2.58×. First time the two pipelines agree on *decline* rather than surge. Top pools by volume are all stablecoin pairs (USDC-USDT on fluid $242M, uniswap-v4 $236M + $155M, USDT-USDS $154M) at **50.5% of all pool volume** — still collateral churn, at lower intensity.*
+
+*Note: **The +1.08% TVL is mostly real inflow, not price — the mirror image of yesterday.** ETH +0.87% and BTC +0.76%; at a 45% ETH-beta / 15% BTC-beta composition the mark-to-market effect is **≈ +0.50pp**, leaving **≈ +0.58pp residual flow** (+$0.49B). The inflow is concentrated in lending and bridging — LayerZero V2 +$877M, Aave V3 +$589M, Morpho Blue +$522M, exactly the three names that led yesterday's outflow. Offsetting: JustLend sTRX −$268M, SparkLend −$130M, Hyperliquid Bridge −$100M, JustLend V1 −$82M.*
+
+*Note: **Two fresh step-changes in the fee series, and neither is demand.** Lido daily fees jump **$1.486M (10-29) → $9.962M (10-30)**, a 6.7× overnight move while Lido TVL is *flat at +0.65%* — a take-rate cannot multiply 6.7× in a day. Flashbots: **$0.174M → $13.735M (79×)** on 10-29, $13.699M on 10-30. Together +$21.9M of a $110.0M day. Their `total7d/total24h` ratios of **1.96** and **2.06** are the same newly-ingested-series fingerprint logged yesterday for Titan Builder / Flashbots / bare-Ethereum (1.16 / 1.07 / 0.73). A systematic scan flags six such series worth **$28.7M = 26% of the 24h fee total**. **Do not read the fee level as fundamental demand.***
+
+*Note: **`/overview/dexs` and `/overview/fees` summary fields are again one calendar day behind (fifth consecutive run).** DEX `total24h` $12.258B equals the chart's **10-30** bucket; fees `total24h` $109.91M equals the chart's **10-30** bucket ($109.95M) while `total48hto24h` $125.94M equals 10-29 ($125.99M). All "today" figures above come from the chart's own last buckets.*
+
+*Note: **`/v2/chains` returned no `change_1d` on any of 420 entries — fourth consecutive run.** Every chain delta is self-computed from `/v2/historicalChainTvl`, aligned by date key.*
+
+*Note: **The Bitcoin chain's +41.53% 7d is the sixth consecutive run of the same coverage artifact.** The single jump is 10-27 → 10-28: **$4.286B → $6.356B (+48.3%)**, a level step with no matching move in any constituent leg (every Bitcoin-native leg between −0.18% and +1.31% on the day). Since then the chain has drifted *down*: $6.36B → $6.28B → $5.95B → $6.12B. **Ignore the 7d Bitcoin-chain number.***
+
+*Note: **`/global`'s −1.96% 24h mcap change is again not used.** The top-20 market-cap-weighted recompute gives **+0.51%**, consistent with BTC +0.76% / ETH +0.87% / SOL −0.38%. BTC dominance of 62.74% is computed from the top-20 basket and so differs from `/global`'s 59.26% (full universe); the **+0.15pp delta** is what matters, and it reverses yesterday's −0.43pp.*
+
+*Note: **The literal Real-yield ranking is dominated by LP fee income, not lending yield.** Sorted by `apyBase`, the top four are all Uniswap V3/V4 pairs (LINK-WETH 28.63%, UNI-WETH 19.75%, ETH-USDT 17.05%, USDC-WETH 16.68%) whose "base" is realized fee income that will not annualize — `apyMean30d` reads 33.96%, 34.00%, 56.27%, i.e. 1.2–3.3× the current print in the *opposite* direction. Filtering to stablecoin-only singles (no IL, no two-sided exposure) gives a defensible set: Saturn SUSDAT 13.62%, Apyx APXUSD 13.12%, Re REUSDE 11.83%, Sky STUSDS 10.70%, Tori STRUSD 10.16% ($37–152M TVL). Benchmarks: stETH 3.23% (1dΔ −11.8%, largest single-day move in the set), sUSDS 3.80%, sUSDe 5.06%.*
+
+*Note: **Incentive-yield filter again needed the reward-share gate the skill text lacks.** Literal filter (`apyReward > 0 AND outlier == false AND tvlUsd ≥ $25M`) returns 60 pools; adding **reward share ≥ 20%** leaves 51. Without the gate the leaderboard fills with base-yield pools carrying a token dusting.*
+
+*Note: **WebSearch failed both queries for the ninth consecutive run** (`400 All target providers failed`). The Macro Catalysts section is omitted rather than padded.*
+
+*Note: **CoinGecko's injected demo key returned HTTP 401 on `/coins/markets` and `/global`; the keyless public path returned 200 on both, same minute.** `/simple/price` and `/search/trending` worked with the key. Treat the 401 as a dead key, not rate limiting.*
+
+*Note: **DEUS reads $0.01494 (Aerodrome, pool-level), flat vs yesterday's $0.014955.** Total Base-side DEX liquidity across all five pairs is **$635k** and 24h volume **$17.9k** — too thin to read a price from. Distance to the tier-1 $0.025 trigger is +67%, to the $0.041 exit line +174%, and the **$0.012 panic line is 19.7% below**. No action: the xDEUS 5-day unstake clock is still not started and nothing here justifies starting it.*
