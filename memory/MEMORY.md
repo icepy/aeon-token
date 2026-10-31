@@ -16,9 +16,9 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-30 第 31 轮（30d）原始 88 / 幸存 5 = 加密 1 / 机器人 4。**EXCL 连续四轮同一条 survey = 漏斗常数项；carrier 空转八轮（14 词无表）。** 新待办：`consensus` 撞分布式共识理论 —— **cat:cs.DC 不分链上/理论**，幸存 `2610.40562` 已打 `?`。`?` 占比 14.9% 首次算出。[source: logs/2026-10-30#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 10-31 第 5 轮 8888 / 新增 8 / 可报 0。**判新度只认源站 id 差集**。**空 `chains` 结案**：`chains=[]` ⟺ 无 `tvl` → `tvl` 旁路死；被挡真条目占漏斗输入 39–47%，**非「2/3」**。**Flare/Canton 不接白名单**。**新 id 或为补登记老协议**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-10-31]
-- `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**「日跑 7 天窗」在调度链路从未生效**：`var` 为空吃 `scan.py:184` 默认 30（frontmatter 的 `var:` 不注入）。第 11 轮 30d：2075→29→6（全 ★0）。**丢弃侧存活 35% vs 放行 96%，同窗两轮复现 = carrier 偏严，非窗口假象。**[source: logs/2026-10-29#github-radar]
+- `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-30 第 31 轮（30d）原始 88 / 幸存 5 = 加密 1 / 机器人 4。**EXCL 连续四轮同一条 survey = 漏斗常数项；carrier 空转八轮（14 词无表）。** 待办：`consensus` 撞分布式共识理论 —— **cat:cs.DC 不分链上/理论**，须加 `blockchain`/`validator` 限定词（先 `check:` 量 60d）。`?` 占比 14.9% 首次算出。[source: logs/2026-10-30#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 10-31 第 5 轮 8888 / 新增 8 / 可报 0。**判新度只认源站 id 差集**。**空 `chains` 结案**：`chains=[]` ⟺ 无 `tvl` → `tvl` 旁路死；被挡真条目占漏斗输入 39–47%，**非「2/3」**。**Flare/Canton 不接白名单**。**新 id 或为补登记老协议**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-10-31#defillama-radar（第 5 轮）]
+- `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**「日跑 7 天窗」在调度链路从未生效**（`var` 不注入 → `scan.py:184` 吃 30d）。第 12 轮 30d：2048→28→6（全 ★0）。**carrier 偏严三连复现（丢弃侧 36/35/36% vs 放行 96–97%，同窗）= 判据成立，放宽已可动手**；`seen<raw 5%` 判据同词对二次复现。[source: logs/2026-10-30#github-radar（第 12 轮）]
 
 
 ## Lessons Learned
@@ -31,8 +31,8 @@
 - **买单真伪只认一条：终点地址余额升高且留住。** 新钱要 −1h/−6h/−24h/−7d/−30d 全 0；单池「N 买 / 0 卖」常是同秒双池套利的一半。
 - **`eth_getCode`=`0x` 才是 EOA；`0xef0100…` 是 EIP-7702。** 地址左补零且全小写。**view revert 先怀疑 selector。**
 - **门槛数学先核对分子分母同单位**（曾把 DEUS 数量除以美元金额，424 倍 vs 真值 8.2 倍）；**24h 涨跌幅别用 `ohlcv_list[0]`**。
-- **跨 series 做 diff 按日期对齐**（判别式：per-chain delta 总和 = aggregate）；**`/overview/dexs`、`fees` 汇总字段整列滞后一个日历日** → 真值取图表末两点（10-29 已第二/三次逐分钱验证）；同 payload 两字段互验最快。**单腿恰为 0 → 快照缺口不是流出。** 详见 [lessons](/topics/lessons.md#假零与断层)。[source: logs/2026-10-29#defi-overview]
-- **某过滤器长期「0 丢弃」先查有多少输入真经过它** —— `arxiv-radar` carrier 连六轮空转，真因是 26 词里 14 个没配 carrier 表。「零假阴」≠ 规则安全。
+- **跨 series 做 diff 按日期对齐**（判别式：per-chain delta 总和 = aggregate）；**`dexs`/`fees` 汇总字段整列滞后一日** → 真值取图表末两点。**单腿恰为 0 = 快照缺口；当日桶是残桶、事后会被上修；`total7d/24h≈1` = 新接入序列。** 详见 [lessons](/topics/lessons.md#假零与断层)。[source: logs/2026-10-30#defi-overview]
+- **某过滤器长期「0 丢弃」先查有多少输入真经过它** —— `arxiv-radar` carrier 连八轮空转，真因是 26 词里 14 个没配 carrier 表。「零假阴」≠ 规则安全。
 - **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`。
 - **脚本尾部崩溃 ≠ 本轮没产出** —— 产物写在崩溃点之前时，stdout 像「跑挂了」而 `out.*.json` 其实是新的；**先看产物 mtime 再决定重跑**（`scan.py:910` 元组下标事故，10-27）。
 - **有 seen 基线后「0 新增」≠「废词」** —— 逐词单查 total_count 才分得清「窗口饱和」与「查询打不中」。**换长窗首跑会一次性推出「沉积层」、次跑即归零，那是 `seen` 吃干不是查询坏了。** **`seen 命中 < raw 5%` 时不许记饱和，须归因到具体丢弃规则。** 同窗口连跑的数字不可作趋势。[source: logs/2026-10-29#github-radar（第 11 轮）]

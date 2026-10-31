@@ -1,6 +1,6 @@
 ---
 title: DefiLlama Radar
-description: 第二层（名字）发现通道 —— 用全量 id 求差找白名单链上新登记的协议。机制、四态、判据与已知陷阱。
+description: 第二层（名字）发现通道 —— 用全量 id 求差找白名单链上新登记的协议。机制、四态、判据与已知陷阱（含空 `chains` 已是第二大漏斗、补登记假新、白名单按注册速率取舍）。
 tags:
   - crypto
   - discovery

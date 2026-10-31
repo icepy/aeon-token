@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 二十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、carrier 误杀率对照组、窗口是流量旋钮）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-28T18:10:00Z
+timestamp: 2026-10-30T22:40:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -566,6 +566,34 @@ probe 反查（首次非 dry-run）：种子 67 → 候选 token 96 → 反查 2
 
 probe 跳过（戳 1 天 < 7 天），`clusters.json` 仍是上次结果。通知已发（报告级 16 > 0，队列 `1793226830-5084-8292.json`）。本轮无改词、无改脚本。
 
+## 第二十六轮（2026-10-30，**30 天窗**，非 dry-run）—— carrier 偏严三连复现升为结论；新判据二次复现
+
+`scan.py ""` → **第 12 轮「日跑 7 天」仍未生效**（第 10/11 轮同根因，`scan.py:184` 默认 30；frontmatter 的 `var:` 不注入运行环境）。
+
+漏斗：原始 **2048** → 幸存 **28** → 报告级 **6**（**全 ★0**，star 第 15 次失效）。丢弃 seen=957 · excl=133 · archived=1 · short_desc=371 · **carrier=425** · neg=59 · pages=59 · pages_root=2 · scaffold=0 · farm=13 · fail=0。18 词 × 二分至一页（单窗 14 / 需拆窗 4 · 二分 3 次 · 搜索 41）· 核验 **28/28 = 100%** · 134s。
+
+### 60. 🔴🔴 carrier 误杀对照**第三次同窗口反向** —— 由「可复现判据」升为「结论」，已具备动手条件
+
+丢弃侧仓名自带词表词存活率 **36%（53/149）** vs 放行侧 **96%（27/28）**。三轮：**36/97 → 35/96 → 36/96**，重合在 **1 个百分点**内。同一 30 天窗、同参数、三重复现 → **carrier 表偏严不再是假设**。放宽已具备动手条件；本轮仍未改表（铁律：先看两行、不盲改）。
+
+### 61. 🔴 第 11 轮新判据（`seen < raw 5%` 不许记饱和）在**同一对词上原样二次复现**
+
+`data availability` raw=**56** / seen=**1** / 新收 **0**；`intent-based` raw=**54** / seen=**3** / 新收 **0** —— 与第 11 轮（56/1、55/3）**逐值相同**。**同词对数两轮完全一致 = 固定丢弃规则在长期封锁，非偶发**，需归因到 carrier / short_desc / neg 之一。
+
+### 62. `maximal extractable value` 真零连续两轮结束，但属「全是过滤损耗」而非饱和
+
+raw=**1**（前两轮 30d total=0），但该仓 seen=0、新收=0 → digest 单列「全是过滤损耗」。**词未死，不删**（按铁律单窗为零不删，何况本轮已有 raw）。
+
+逐词 raw 与第 11 轮同量级（world model 762 vs 770 · jepa 348 vs 348 · teleoperation 223 vs 226 · robot manipulation 153 vs 157）→ **幸存 29→28 是 `seen` 算术，不是流量变化。**
+
+饱和 7 词：embodied data(8/4) · robotics data engine(1/1) · verifiable inference(6/5) · data availability(56/1) · restaking(4/3) · intent-based(54/3) + `maximal extractable value`（属过滤损耗）。被 seen 真吸收 6 个。
+
+形态告警：**无 language 6**（sanjiaonailao/robot-agent-lab · kanyinorukotan/robot-video-annotation · nikith-roboticsanalysis/Global-Robotics-Market-Intelligence · cervanteslee/GII-Restaurant-Physical-AI · kkt94/self-calibrating-vla · player0718/EgoActionBench —— **近三轮最多**）· 爆完即停 1（K3YB04RD-w4rri0r/egocentric-to-robot）· farm 13 · NEG 59（印尼语 `jepang` 撞词，规则生效）。
+
+报告级 6 全 ★0：AlphaChad5000/vibehash(30d=17/7d=17) · Celveen/SE-JEPA(25/13) · Mithilesh1103git/RoboPilot-Sim2Real(19/13) · DNH35/jepa-world-model-from-scratch(7/7) · LabBuddy26/Labference(7/4) · XBR-1111/tailor(6/6)。**其中 3 个落在 JEPA / sim2real 两个机制词上**，与 `arxiv-radar` 同日第 31 轮的机器人侧聚集同向（只记现象，不做判断）。
+
+probe 跳过（戳 3 天 < 7 天门槛），`clusters.json` 未重写，读到的仍是上轮结果 —— **不作本轮信号**。
+
 ## 第二十五轮（2026-10-29，**30 天窗**，非 dry-run）—— `var` 默认值仍未生效；carrier 偏严从「猜测」升为「可复现判据」
 
 `scan.py ""` → var 为空，**继续吃 `scan.py:184` 的 30 天默认**（第 10 轮同一根因，见 [ops-plumbing](/topics/ops-plumbing.md)）。digest 自报「窗口 30 天」与 SKILL 正文「默认 7」仍互相矛盾，属代码改动待 PR。
@@ -593,6 +621,7 @@ probe 跳过（2 天 < 7 天），`clusters.json` 未重写。通知已发（报
 
 # Citations
 
+- 第二十六轮（10-30 第 12 轮，30d）`logs/2026-10-30#github-radar（第 12 轮 · 30 天窗 · 非 dry-run）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184,193` · `memory/github-seen.json`
 - 第二十五轮（10-29 第 11 轮，30d）`logs/2026-10-29#github-radar（第 11 轮 · **30 天窗** · 非 dry-run）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184,193` · `memory/github-seen.json`
 - 第二十四轮（10-29 第 10 轮，30d）`logs/2026-10-28#github-radar（第 10 轮 · **30 天窗** · 非 dry-run）` · `skills/github-radar/scan.py:184,193` · `skills/github-radar/SKILL.md:7` · `memory/github-seen.json`
 - 第二十三轮（10-28 第 9 轮）`logs/2026-10-28#github-radar（第 9 轮 · 7 天窗 · 非 dry-run）` · `report.md` · `audit.log` · `memory/github-seen.json`
