@@ -1,49 +1,30 @@
-Ambient check complete. No notification sent — nothing needs attention.
+**HEARTBEAT_OK · STATUS_PAGE=OK**
 
-## 心跳巡检 · 2026-10-30 00:31 UTC
+## 巡检结果（ambient，`var` 为空）
 
-**结论：🟢 OK · 静默（无 finding，按规则不推送）**
+**P0 全部干净。** 8 个 enabled 且带 cron 的 skill 都在自己的调度区间内成功，无一失败、无一挂起：
 
-### P0 — 技能健康（全绿）
-8 个 enabled 且带 cron 的 skill 全部在各自调度区间内成功：
+| Skill | 上次成功 (UTC) | 距今 | 成功率 | 连败 |
+|---|---|---|---|---|
+| defillama-radar | 2026-10-31 00:07 | 0.4h | 100% | 0 |
+| defi-overview | 2026-10-30 23:16 | 1.3h | 67% | 0 |
+| github-radar | 2026-10-30 22:35 | 2.0h | 83% | 0 |
+| arxiv-radar | 2026-10-30 22:06 | 2.4h | 85% | 0 |
+| memory-flush | 2026-10-30 18:05 | 6.4h | 73% | 0 |
+| narrative-brief | 2026-10-30 10:01 | 14.5h | 100% | 0 |
+| heartbeat | 2026-10-30 00:32 | 24.0h | 88% | 0 |
+| aeon-update | 2026-10-26 11:03 | 61.5h（周频，未过 2× 周期） | 100% | 0 |
 
-| Skill | 上次成功 | 距现在 |
-|---|---|---|
-| defillama-radar | 10-30 00:03Z | 0.5h |
-| defi-overview | 10-29 23:17Z | 1.2h |
-| github-radar | 10-29 22:34Z | 2.0h |
-| arxiv-radar | 10-29 22:04Z | 2.5h |
-| memory-flush | 10-29 18:05Z | 6.4h |
-| narrative-brief | 10-29 10:01Z | 14.5h |
-| heartbeat | 10-29 00:32Z | 24.0h |
-| aeon-update | 10-26 11:03Z | 61.5h（周频，未过 2× 周期） |
+自检线 36h —— heartbeat 上次成功 24.0h 前，在界内。`defi-overview`(0.67) 与 `memory-flush`(0.73) 的成功率都高于 0.5 的 chronic 线，且连败已归零，属历史包袱不是当前故障。
 
-无 `last_status: failed`、无 stuck（`dispatched` >45min 且历史成功过）、无 `consecutive_failures ≥ 3`、无 chronic（`defi-overview` 成功率 64% 但连败为 0，是历史包袱而非当前故障）。Self-check：heartbeat 距上次成功 24.0h，在 36h 线内。
+**已停用的三个不计数：** `price-alert`(cf=5)、`onchain-monitor`(cf=4)、`token-movers`(cf=3) 都是 `enabled: false`，连败数字冻结在 10-25，没有新样本，不进状态页也不进 findings。
 
-**排除项**：`price-alert`(cf=5) / `onchain-monitor`(cf=4) / `token-movers`(cf=3) 三者 `enabled: false`，连败数字冻结在 10-25，无新样本，不列状态页也不计入 findings —— 这是停用后的正常静默，不是持续故障。
+**P1/P2/P3 无新料。** open PR 零个。8 个 open issue 全是 scorer 自动开的 `health: <skill>` 线程（#3/#4/#5/#6/#9/#12/#13/#18），`labels: []`，无 urgent / critical，与昨天相比既没新增也没关闭。MEMORY.md 无待跟进项。`arxvi-radar` 孤儿条目（runs=1，10-26 成功）仍在 —— 已连报四轮，本轮不重复推送，仍建议从 `cron-state.json` 清掉。`narratives.md` 只有 2 节，未超 4 节上限。
 
-### P1 — PR / Issue
-无 open PR。8 个 open issue 仍是 scorer 自动生成的 `health: <skill>` 线程（#3/#4/#5/#6/#9/#12/#13/#18），全部无 label，无 critical/high。与 10-29 相比无新增、无关闭。
-
-### P2 — 记忆待办
-MEMORY.md 无待跟进项。`memory/on-chain-state.json.new` 遗留物仍在（连续第六轮）—— 所属 `onchain-monitor` 已停用，只在重开前必须处理，本轮不动。
-
-### P3 — 调度缺口
-无。8 个带 cron 的 enabled skill 在 `cron-state.json` 里全有条目。`investigation-report` / `tx-explain` / `sc-audit` 是 `workflow_dispatch`，无 cron 区间，不需调度。
-
-`arxvi-radar` 孤儿条目（runs=1，10-26 成功）仍在 —— 已在 10-27/28/29 连报三轮，本轮不重复推送，仍建议从 `cron-state.json` 清掉。
-
-`memory/topics/narratives.md` 两节，未超 4 节上限，无需清理。
-
-### 状态页
-重写 `docs/status.md` → 总体 🟢 OK，8 个已跑 enabled skill 按 last-run 倒序 + 3 个 `workflow_dispatch` 未跑。Token pulse 置空（最新报告 `token-report-2026-10-24.md` 距今约 96h，远超 24h 时效线；价格监控已于 10-25 停用，属预期空节）。下一跳 `narrative-brief` 10:00 UTC。
-
----
+**未发通知。** 无 finding，按「正常别吵」的规则静默。
 
 ## Summary
-- 执行 `skills/heartbeat/SKILL.md` 默认分支（`var` 为空 → ambient ambient fleet check）
-- 读取 `memory/MEMORY.md`、`memory/logs/2026-10-29.md`、`2026-10-30.md`、`memory/cron-state.json`、`aeon.yml`、`memory/issues/INDEX.md`
-- **修改** `docs/status.md`（整体重写，00:31 UTC 快照；修正了页脚「daily at 08:00 UTC」→ 实测 `30 0 * * *`，即 00:30 UTC）
-- **修改** `memory/logs/2026-10-30.md`（追加 `### heartbeat` 条目，`mode: ambient`）
-- 未发送通知（无 finding）
-- 跟进项（未到 finding，仅记录）：`arxvi-radar` 孤儿条目建议清理；`memory/on-chain-state.json.new` 遗留物留待重开 `onchain-monitor` 前处理
+
+- **做了：** 执行 `skills/heartbeat/SKILL.md` 的 ambient 分支全量检查（P0 失败/挂起/降级/chronic + heartbeat 自检、P1 PR 与 issue、P2 memory 待办、P3 调度缺口），并核对叙事风向文件节数。
+- **文件改动：** 重写 `docs/status.md`（Overall 🟢 OK · Updated 2026-10-31 00:31 UTC · 8 个已跑 skill 按 last-run 倒序 + 3 个 `workflow_dispatch` 未跑 · Token pulse 因最新报告 `token-report-2026-10-24.md` 距今约 120h 超时效线而置空）；向 `memory/logs/2026-10-31.md` 追加 `### heartbeat` 与 `### heartbeat — under the hood` 两节。
+- **需要跟进：** ①`arxvi-radar` 孤儿条目建议从 `memory/cron-state.json` 删除（已报四轮，纯清理动作）；②`memory/on-chain-state.json.new` 遗留物在重开 `onchain-monitor` 前必须处理；③`memory/topics/` 下 10 个 `.py` 临时脚本与 `price-alert-state.json.bak` 待走 PR 删除；④三个停用 skill 的 `health:` issue 线程（#3/#4/#12）可考虑手动关闭，避免继续堆积。
