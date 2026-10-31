@@ -1,23 +1,23 @@
 # Long-term Memory
-*Last consolidated: 2026-10-30*
+*Last consolidated: 2026-10-31*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch` 和 `logs/`。补跑会让整批技能同一秒触发 → **「几点跑」不能当 cron 时间读**；**frontmatter 的 `var:` 默认值不注入运行环境**，不传就走脚本硬编码值（`github-radar` 因此实际跑 30d 而非 7d）；孤儿 `arxvi-radar` 待清。→ [ops-plumbing](/topics/ops-plumbing.md) [source: logs/2026-10-28#github-radar（第 10 轮）]
 - **2026-10-25 起主线 = 发现层。** DEUS / NOTE 的价格监控已停（价格自己每天看），下面归档。
-- **`aeon-update` 上游基线已锚定**（2026-10-26 首跑）：`aeonfun/aeon` HEAD `6eddd85`，本地 `main` 实测 `ahead=0`（`behind=603` 全是本仓自动化提交）。→ `memory/topics/aeon-update-state.json` [source: logs/2026-10-26#aeon-update]
+- **`aeon-update` 上游基线已锚定**（2026-10-26）：`aeonfun/aeon` HEAD `6eddd85`，本地 `ahead=0`（`behind=603` 全是本仓自动化提交）。→ `memory/topics/aeon-update-state.json`
 
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
-> **归档，勿再展开。** 只保留这一层，盘口细节留在 `memory/topics/`，别再往 MEMORY.md 里搬。
+> **归档，勿再展开。** 盘口细节在 `memory/topics/`。
 
 - **DEUS** `0x940A319B75861014A220D9c6c144d108552B089B`（base）· 出口 $0.041，**需提前 5 天 unstake** · `0xbb0f7533` 持 xDEUS #1396 至今未烧 → 那个 5 天 clock 从未启动。
 - **NOTE** 待命 480,000 ≈ $20,400，三钱包 nonce 0 / ETH 0；**扳机 = 第一笔 ETH 入账**。owner 自持 630,000。
-- 停用时的最后读数：NOTE 线性派发 ~40,000/天（schedule #25/#26/#27）；DEUS 24h 净通缩 −12,373.69，连续五轮同数 = 通缩走平。
+- 停用读数：NOTE 线性派发 ~40,000/天；DEUS 24h 净通缩 −12,373.69，五轮同数 = 走平。
 - 已停 skill：`price-alert` · `token-movers` · `onchain-monitor` · `unlock-monitor`。**重开前先读 `memory/decisions.md`。**
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
 - `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-30 第 31 轮（30d）原始 88 / 幸存 5 = 加密 1 / 机器人 4。**EXCL 连续四轮同一条 survey = 漏斗常数项；carrier 空转八轮（14 词无表）。** 新待办：`consensus` 撞分布式共识理论 —— **cat:cs.DC 不分链上/理论**，幸存 `2610.40562` 已打 `?`。`?` 占比 14.9% 首次算出。[source: logs/2026-10-30#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · id 求差 · 10-30 第 4 轮 8880 / 新增 7 / 可报 1（GongFu，RH Chain，TVL $0）。**CF 缓存会漏条目** → 判新度只认对源站 id 差集。**新噪声源 = 空 `chains`**：全量 17.4% / 近 3 天登记 65.5%，3 条真业务被挡 → 观察后议旁路。[source: logs/2026-10-30#defillama-radar] → [topic](/topics/defillama-radar.md)
+- `defillama-radar` ✅ `dl-v1` · 10-31 第 5 轮 8888 / 新增 8 / 可报 0。**判新度只认源站 id 差集**。**空 `chains` 结案**：`chains=[]` ⟺ 无 `tvl` → `tvl` 旁路死；被挡真条目占漏斗输入 39–47%，**非「2/3」**。**Flare/Canton 不接白名单**。**新 id 或为补登记老协议**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-10-31]
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**「日跑 7 天窗」在调度链路从未生效**：`var` 为空吃 `scan.py:184` 默认 30（frontmatter 的 `var:` 不注入）。第 11 轮 30d：2075→29→6（全 ★0）。**丢弃侧存活 35% vs 放行 96%，同窗两轮复现 = carrier 偏严，非窗口假象。**[source: logs/2026-10-29#github-radar]
 
 

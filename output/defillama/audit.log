@@ -1,7 +1,7 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=8873 · parent=2 · category=0 · 链白名单=4 · 拉取失败=0
-全量 8880 · 新增 id 7（可报 1 / 过滤标记 6）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=8880 · parent=7 · category=0 · 链白名单=1 · 拉取失败=0
+全量 8888 · 新增 id 8（可报 0 / 过滤标记 8）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1895 · Base=915 · Solana=466 · Arbitrum=1045 · Ink=33 · Binance=1145 · BSC=0 · Optimism=393 · OP Mainnet=0 · Hyperliquid L1=212 · Robinhood Chain=296
-单侧读数: 加密侧 1 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  GongFu · Robinhood Chain · tvl=0 · Yield · 1793296697
+链命中: Ethereum=1895 · Base=915 · Solana=466 · Arbitrum=1045 · Ink=33 · Binance=1145 · BSC=0 · Optimism=393 · OP Mainnet=0 · Hyperliquid L1=213 · Robinhood Chain=297
+单侧读数: 加密侧 0 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+ℹ️ 本轮可报 0 = 结构性（无新增 / 全部被过滤 / 已通知过），不是故障。

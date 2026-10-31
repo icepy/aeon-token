@@ -1,18 +1,1 @@
-[
- {
-  "id": "9277",
-  "name": "GongFu",
-  "slug": "gongfu",
-  "chains": [
-   "Robinhood Chain"
-  ],
-  "tvl": 0,
-  "category": "Yield",
-  "listedAt": 1793296697,
-  "url": "",
-  "description": "On-chain token locking on Robinhood Chain: users lock GF for 1-180 days and get the same GF back at the end; c",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- }
-]
+[]
