@@ -7,12 +7,14 @@ narratives http=200 bytes=11806 source=remote reason=ok
 结果: UNCHANGED
 notify: 跳过（已推过）
 
-- **下一步** — 没有。没有去改 `check.py`。
-- **你要处理的** — 这轮不用你处理。
+- **下一步** — 没有。不改 `check.py`。
+- **你要处理的** — 这轮不用你处理。（备查：远程文件最近一节仍是 10-29，距今 2 天，属 Grok 侧写入节奏；`check.py` 的「距上次推送: N 天」告警还没实现，所以这只能靠肉眼看 sha 日期。）
 
 ## Summary
-- 按 `skills/narrative-brief/SKILL.md` 执行，只跑了一条命令：`python3 skills/narrative-brief/check.py`。
-- 远程源 `raw.githubusercontent.com/icepy/aeon-token/main/memory/topics/narratives.md` 返回 `http=200` / `11806` 字节，`reason=ok`，未触发本地兜底。
-- 正文共 2 个日期节（29/10/2026、26/10/2026），两节 sha256 均已在 `memory/narrative-brief-seen.json` 或近期日志中记为已推过 → `结果: UNCHANGED`，按规则**不发通知**、不写 seen、不覆盖 `report.md`。
-- 文件创建/修改：无（脚本本轮未写任何产物）。
-- 后续动作：无。
+
+- 执行 `skills/narrative-brief/SKILL.md`：单次 `python3 skills/narrative-brief/check.py ""`。
+- 远程 raw 取数正常：`http=200`、11806 bytes、`source=remote`、`reason=ok`，未触发本地 fallback。
+- 文件共 2 个日期节（29/10、26/10），两份 sha256 均已在 `memory/narrative-brief-seen.json` 中，判定 `UNCHANGED`。
+- 未发 notify（脚本按规则跳过），未写 `report.md`、未改 `narratives.md`、未改脚本。
+- 文件创建/修改：无（日志由脚本自行写入）。
+- 待办：无。已知盲点——Grok 静默停摆与「今天没新内容」在 stdout 上无法区分，需等 `check.py` 补上「距上次推送天数」告警。

@@ -1,10 +1,10 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-10-30T10:01:31Z",
-  "quality_score": 3,
-  "assessment": "合法的 no-op：远程源 http=200/11806 字节并带 sha256 与日期核对，两节均为已推过内容，故按策略正确抑制推送、不写 seen；符合『只在触发时吵我』与『带原始来源』，但内容本身仅为状态判定，实质增量有限。",
+  "last_analyzed": "2026-10-31T10:01:26Z",
+  "quality_score": 4,
+  "assessment": "正确的无操作运行：远程取数正常（http=200、11806 字节），两个日期节均与已推过的 sha256 匹配，因此 notify 被正确跳过；输出带原始来源与哈希，并如实指出 Grok 停摆与无新内容无法区分的盲点——对一次无触发的检查而言，这是干净且可核查的结果。",
   "flags": [],
-  "avg_score": 3.14,
+  "avg_score": 3.25,
   "history": [
     {
       "date": "2026-10-27",
@@ -46,6 +46,12 @@
       "date": "2026-10-30",
       "score": 3,
       "ts": "2026-10-30T10:01:31Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-10-31",
+      "score": 4,
+      "ts": "2026-10-31T10:01:26Z",
       "harness": "claude"
     }
   ]
