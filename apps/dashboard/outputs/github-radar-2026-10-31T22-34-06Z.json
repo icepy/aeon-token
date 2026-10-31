@@ -1,0 +1,357 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 30 天 · 报告级 10 · 近 7 天活跃 10"
+      },
+      "children": [
+        "heading",
+        "statsRow",
+        "sep1",
+        "list"
+      ]
+    },
+    "heading": {
+      "type": "Heading",
+      "props": {
+        "text": "github-radar",
+        "level": "h2"
+      }
+    },
+    "statsRow": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "statWindow",
+        "statReport",
+        "statActive"
+      ]
+    },
+    "statWindow": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天",
+        "trend": "neutral"
+      }
+    },
+    "statReport": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "10",
+        "trend": "neutral"
+      }
+    },
+    "statActive": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "10",
+        "trend": "neutral"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "item1",
+        "item2",
+        "item3",
+        "item4",
+        "item5",
+        "item6",
+        "item7",
+        "item8",
+        "item9",
+        "item10"
+      ]
+    },
+    "item1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl1",
+        "tx1"
+      ]
+    },
+    "sl1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "haeliotang/poieweave",
+        "href": "https://github.com/haeliotang/poieweave",
+        "source": "world model",
+        "score": "★0 · 30天=≥100 · 7天=≥100"
+      }
+    },
+    "tx1": {
+      "type": "Text",
+      "props": {
+        "text": "Autonomous Infrastructure Intelligence: building an open, Rust-first foundation for self-sustaining",
+        "variant": "caption"
+      }
+    },
+    "item2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl2",
+        "tx2"
+      ]
+    },
+    "sl2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "cinephlegm/real-to-sim-reaching-benchmark",
+        "href": "https://github.com/cinephlegm/real-to-sim-reaching-benchmark",
+        "source": "robot manipulation",
+        "score": "★1 · 30天=45 · 7天=45"
+      }
+    },
+    "tx2": {
+      "type": "Text",
+      "props": {
+        "text": "Behavioural Cloning and PPO for dexterous robotic manipulation in Unity ML-Agents.",
+        "variant": "caption"
+      }
+    },
+    "item3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl3",
+        "tx3"
+      ]
+    },
+    "sl3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ayush010104/grpo-robot-manipulation",
+        "href": "https://github.com/Ayush010104/grpo-robot-manipulation",
+        "source": "robot manipulation",
+        "score": "★0 · 30天=30 · 7天=27"
+      }
+    },
+    "tx3": {
+      "type": "Text",
+      "props": {
+        "text": "Diagnosing and fixing GRPO's catastrophic collapse in robot manipulation RL.",
+        "variant": "caption"
+      }
+    },
+    "item4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl4",
+        "tx4"
+      ]
+    },
+    "sl4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "AffanIman01/unmanned-research-lab",
+        "href": "https://github.com/AffanIman01/unmanned-research-lab",
+        "source": "teleoperation",
+        "score": "★0 · 30天=14 · 7天=14"
+      }
+    },
+    "tx4": {
+      "type": "Text",
+      "props": {
+        "text": "USM ME120–CHASING M2 PRO MAX research studio: 3D hardware, ROV recovery, teleoperation and water sim",
+        "variant": "caption"
+      }
+    },
+    "item5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl5",
+        "tx5"
+      ]
+    },
+    "sl5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "d1fang/coloc",
+        "href": "https://github.com/d1fang/coloc",
+        "source": "egocentric",
+        "score": "★0 · 30天=9 · 7天=9"
+      }
+    },
+    "tx5": {
+      "type": "Text",
+      "props": {
+        "text": "CoLoc: Collaborative Long-Term Object Tracking from Multi-Wearer Egocentric Videos",
+        "variant": "caption"
+      }
+    },
+    "item6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl6",
+        "tx6"
+      ]
+    },
+    "sl6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "zhaoweifeng888/auralis-music-world-model",
+        "href": "https://github.com/zhaoweifeng888/auralis-music-world-model",
+        "source": "jepa",
+        "score": "★0 · 30天=7 · 7天=7"
+      }
+    },
+    "tx6": {
+      "type": "Text",
+      "props": {
+        "text": "Auralis: A JEPA-based music world model — research proposal and untrained prototype.",
+        "variant": "caption"
+      }
+    },
+    "item7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl7",
+        "tx7"
+      ]
+    },
+    "sl7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "philopateerrober/CyberArm_5DOF",
+        "href": "https://github.com/philopateerrober/CyberArm_5DOF",
+        "source": "teleoperation",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "tx7": {
+      "type": "Text",
+      "props": {
+        "text": "CyberArm is a high-performance 5-DOF wireless robotic arm controlled via an ESP-NOW smart glove. It",
+        "variant": "caption"
+      }
+    },
+    "item8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl8",
+        "tx8"
+      ]
+    },
+    "sl8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "homura1123/JEPA-Ablation-Study",
+        "href": "https://github.com/homura1123/JEPA-Ablation-Study",
+        "source": "jepa",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "tx8": {
+      "type": "Text",
+      "props": {
+        "text": "Reproduction of JEPA and 27-run grid search ablation study",
+        "variant": "caption"
+      }
+    },
+    "item9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl9",
+        "tx9"
+      ]
+    },
+    "sl9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "hammodesharif-glitch/clip-vs-cvcl-vision-language-models",
+        "href": "https://github.com/hammodesharif-glitch/clip-vs-cvcl-vision-language-models",
+        "source": "egocentric",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "tx9": {
+      "type": "Text",
+      "props": {
+        "text": "Evaluating vision-language models: OpenAI CLIP (ViT-/32) vs CVCL (child-egocentric, Vong et al. 2024",
+        "variant": "caption"
+      }
+    },
+    "item10": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "sl10",
+        "tx10"
+      ]
+    },
+    "sl10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "cair-vinuni/roboworm",
+        "href": "https://github.com/cair-vinuni/roboworm",
+        "source": "world model",
+        "score": "★3 · 30天=90 · 7天=4"
+      }
+    },
+    "tx10": {
+      "type": "Text",
+      "props": {
+        "text": "RoboWorM: Evaluating Movement Realism, Consistency and Acceleration Affects in Embodied Video World",
+        "variant": "caption"
+      }
+    }
+  }
+}

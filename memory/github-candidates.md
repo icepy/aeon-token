@@ -449,3 +449,15 @@
 - [DNH35/jepa-world-model-from-scratch](https://github.com/DNH35/jepa-world-model-from-scratch) ★0 · 30天=7 · 7天=7 · `world model` · Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTor
 - [XBR-1111/tailor](https://github.com/XBR-1111/tailor) ★0 · 30天=6 · 7天=6 · `robot dataset` · Refine distributed robot datasets into training-ready data — acceptance, episode-level filtering, de
 - [LabBuddy26/Labference](https://github.com/LabBuddy26/Labference) ★0 · 30天=7 · 7天=4 · `robot manipulation` · Lab Benchmark for robotic manipulation
+
+## 2026-10-31 · github-radar（报告级 10）
+- [haeliotang/poieweave](https://github.com/haeliotang/poieweave) ★0 · 30天=≥100 · 7天=≥100 · `world model` · Autonomous Infrastructure Intelligence: building an open, Rust-first foundation for self-sustaining 
+- [cinephlegm/real-to-sim-reaching-benchmark](https://github.com/cinephlegm/real-to-sim-reaching-benchmark) ★1 · 30天=45 · 7天=45 · `robot manipulation` · Behavioural Cloning and PPO for dexterous robotic manipulation in Unity ML-Agents.
+- [Ayush010104/grpo-robot-manipulation](https://github.com/Ayush010104/grpo-robot-manipulation) ★0 · 30天=30 · 7天=27 · `robot manipulation` · Diagnosing and fixing GRPO's catastrophic collapse in robot manipulation RL.
+- [AffanIman01/unmanned-research-lab](https://github.com/AffanIman01/unmanned-research-lab) ★0 · 30天=14 · 7天=14 · `teleoperation` · USM ME120–CHASING M2 PRO MAX research studio: 3D hardware, ROV recovery, teleoperation and water sim
+- [d1fang/coloc](https://github.com/d1fang/coloc) ★0 · 30天=9 · 7天=9 · `egocentric` · CoLoc: Collaborative Long-Term Object Tracking from Multi-Wearer Egocentric Videos
+- [zhaoweifeng888/auralis-music-world-model](https://github.com/zhaoweifeng888/auralis-music-world-model) ★0 · 30天=7 · 7天=7 · `jepa` · Auralis: A JEPA-based music world model — research proposal and untrained prototype.
+- [philopateerrober/CyberArm_5DOF](https://github.com/philopateerrober/CyberArm_5DOF) ★0 · 30天=6 · 7天=6 · `teleoperation` · CyberArm is a high-performance 5-DOF wireless robotic arm controlled via an ESP-NOW smart glove. It 
+- [homura1123/JEPA-Ablation-Study](https://github.com/homura1123/JEPA-Ablation-Study) ★0 · 30天=5 · 7天=5 · `jepa` · Reproduction of JEPA and 27-run grid search ablation study
+- [hammodesharif-glitch/clip-vs-cvcl-vision-language-models](https://github.com/hammodesharif-glitch/clip-vs-cvcl-vision-language-models) ★0 · 30天=5 · 7天=5 · `egocentric` · Evaluating vision-language models: OpenAI CLIP (ViT-/32) vs CVCL (child-egocentric, Vong et al. 2024
+- [cair-vinuni/roboworm](https://github.com/cair-vinuni/roboworm) ★3 · 30天=90 · 7天=4 · `world model` · RoboWorM: Evaluating Movement Realism, Consistency and Acceleration Affects in Embodied Video World 
