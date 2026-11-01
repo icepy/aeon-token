@@ -204,3 +204,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-11-01,memory-flush,claude-opus-5-5,127305,60305,9468416,0
 2026-11-01,arxiv-radar,claude-opus-5-5,44365,9559,373504,0
 2026-11-01,github-radar,claude-opus-5-5,51464,8755,417024,0
+2026-11-01,defi-overview,claude-opus-5-5,144669,177028,13287936,0
