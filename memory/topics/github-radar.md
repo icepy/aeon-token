@@ -1,14 +1,14 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 二十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、carrier 误杀率对照组、窗口是流量旋钮）
+description: github-radar 二十七轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率四轮同窗口复现已成结论**、窗口是流量旋钮）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-30T22:40:00Z
+timestamp: 2026-10-31T22:34:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十三轮（2026-10-28）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十七轮（2026-10-31）实证。
 
 ## 第十七轮（2026-10-26，60 天窗，probe，dry-run）—— carrier 误杀率首次有同口径对照组：50% vs 50%，无差异
 
@@ -566,7 +566,33 @@ probe 反查（首次非 dry-run）：种子 67 → 候选 token 96 → 反查 2
 
 probe 跳过（戳 1 天 < 7 天），`clusters.json` 仍是上次结果。通知已发（报告级 16 > 0，队列 `1793226830-5084-8292.json`）。本轮无改词、无改脚本。
 
-## 第二十六轮（2026-10-30，**30 天窗**，非 dry-run）—— carrier 偏严三连复现升为结论；新判据二次复现
+## 第二十七轮（2026-10-31，**30 天窗**，非 dry-run）—— carrier 误杀第四次复现；报告级首次「9/10 机器人侧」
+
+`scan.py ""` → **第 13 轮「日跑 7 天」仍未生效**（`var` 未注入，`scan.py:184` 吃 30d；第 10/11/12 轮同根因，见 [ops-plumbing](/topics/ops-plumbing.md)）。
+
+漏斗：原始 **2049** → 幸存 **34** → 报告级 **10**。丢弃 seen=962 · excl=134 · short_desc=365 · **carrier=426** · neg=58 · pages=57 · farm=13 · fail=0 · archived=0。18 词 × 二分至一页（单窗 13 / 需拆窗 5 · 二分 2 次 · 搜索 41）· 核验 **34/34 = 100%**（全量，无采样偏差）· 黑名单 3 owner。
+
+### 63. 🔴 carrier 误杀对照**第四次同窗口反向** —— 34% vs 97%，判据已无争议
+
+丢弃侧仓名自带词表词 **161 仓 / 159 owner**，核 148，近 7 天存活 **50/148 = 34%**；放行幸存者核 33，存活 **32/33 = 97%**。四轮序列：**36/97 → 35/96 → 36/96 → 34/97**，全部落在 34–36% vs 96–97%。**放宽 carrier 已具备动手条件；本轮仍未改脚本。**
+
+### 64. 🔴 报告级 10 个**全 ★0**（唯一例外 cair-vinuni/roboworm ★3），9/10 落机器人/具身侧
+
+`manipulation` / `teleoperation` / `egocentric` / `JEPA` 四类占满，`world model` 仍是唯一跨加密侧的机制词。与 MEMORY 既有判断「真实产出在 AI/机器人侧，加密侧顺带」同向。**推论（本轮新增）：star 若参与采样排序，会切掉整批（本轮报告级 9 个 ★0）** —— 不是「★0 的质量差」，而是「★0 才是常态、★高是残留」。
+
+### 65. 词表四分类分开写：查询失败 0 · 真零 0 · 饱和 8 · 有新增 10
+
+饱和且真被 seen 吸收 7（**别删**）：embodied data(9/4) · robot dataset(24/21) · robotics data engine(1/1) · proof of useful work(9/9) · data availability(54/1) · restaking(4/3) · intent-based(53/2)。非饱和 1：`maximal extractable value`（raw=1 / seen=0，全是过滤损耗，**不算饱和**）。**`data availability` 与 `intent-based` 第三轮维持 `seen/raw < 5%`**，与第 11/12 轮同形 → 固定丢弃规则在长期封锁，仍未定位到具体规则。
+
+返回/新收/已见前三：world model 762/5/180 · jepa 344/5/152 · teleoperation 229/5/160；长尾 sim2real 80/1/45 · world action model 39/1/35 · verifiable inference 7/1/5。
+
+形态告警：爆完即停 1（gawbi/track-digital-twin）· 无 language 8（近四轮最多，偏非代码仓/论文复现：LLM4Robot-Bench、ElegantVLA、auralis-music-world-model、coloc）· 空仓 409 1。
+
+**载噪点（只记不判）**：`haeliotang/poieweave` 30d/7d 均 ≥100（commits 打满 per_page），Rust，desc = "Autonomous Infrastructure Intelligence"，与 world model 主题可疑 —— 留下轮对照。
+
+probe 跳过（戳 4 天 < 7 天门槛），`clusters.json` 未重写 —— 读到的仍是上次结果，不作本轮信号。
+
+
 
 `scan.py ""` → **第 12 轮「日跑 7 天」仍未生效**（第 10/11 轮同根因，`scan.py:184` 默认 30；frontmatter 的 `var:` 不注入运行环境）。
 
@@ -621,6 +647,7 @@ probe 跳过（2 天 < 7 天），`clusters.json` 未重写。通知已发（报
 
 # Citations
 
+- 第二十七轮（10-31 第 13 轮，30d）`logs/2026-10-31#github-radar（第 13 轮）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184` · `memory/github-seen.json`
 - 第二十六轮（10-30 第 12 轮，30d）`logs/2026-10-30#github-radar（第 12 轮 · 30 天窗 · 非 dry-run）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184,193` · `memory/github-seen.json`
 - 第二十五轮（10-29 第 11 轮，30d）`logs/2026-10-29#github-radar（第 11 轮 · **30 天窗** · 非 dry-run）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184,193` · `memory/github-seen.json`
 - 第二十四轮（10-29 第 10 轮，30d）`logs/2026-10-28#github-radar（第 10 轮 · **30 天窗** · 非 dry-run）` · `skills/github-radar/scan.py:184,193` · `skills/github-radar/SKILL.md:7` · `memory/github-seen.json`
