@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-10-31T00:10:00Z
+timestamp: 2026-11-01T00:40:00Z
 ---
 
 # DefiLlama Radar
@@ -183,8 +183,92 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 可报集合 = `notified is None`。发送与标记是同一个动作 —— 只有 `send` 成功才标。
 
+## 字段级硬证据：description 与 chains 直接矛盾（2026-11-01 第 6 轮）
+
+前几轮只能说「空 `chains` 里有一些**看起来**是真协议的条目」。第 6 轮抓到第一条**不可辩驳**的：
+
+| 协议 | `chains` | description 原文 | 判定 |
+|---|---|---|---|
+| `Daejin` (`id 9287`) | `[]` | "…on **Binance, Ethereum and Solana**" | **确证被挡**，链信息就在 payload 里 |
+| `FusedPad` (`id 9289`) | `[]` | "**Solana** memecoin launchpad on Meteora…" | **确证被挡** |
+| `NABLA` (`id 9286`) | `[]` | "**Solana** trading terminal." | **确证被挡** |
+| `Ride Launchpad` (`id 9288`) | `[]` + `parentProtocol` | — | 该挡（parent 桶） |
+
+四条 listedAt 挤在 10-31 18:54–19:12Z 半小时内。**这不再是「疑似漏报」，是「已确证漏报且原因单一」** —— 缺的字段和它的值同时在响应里。
+
+## description 旁路：比 `url` 分支更优（2026-11-01 实测）
+
+对「空 `chains` + 非 parent + 非 EXCL」群体（全量 770 条），用 description 正则匹配白名单链名 vs 现行 `url` 分支：
+
+| 窗口 | 候选 | 有 `url` | 描述提链 | 两者都有 |
+|---|---|---|---|---|
+| 3d | 6 | 3 | 5 | 2 |
+| 7d | 14 | 10 | 9 | 5 |
+| 30d | 76 | 45 | 33 | 17 |
+| 90d | 137 | 72 | 59 | 27 |
+
+近 30d 相对现行漏斗通过数（80 条）：`url` 分支 +45 → **+39%**；描述分支 +30 → **+38%**。**增量几乎相同，噪声减半：**
+
+| 分支 | 桥类目占比（近 30d） | 误命中 |
+|---|---|---|
+| `url` 非空 | 21/46 = **46%** | 未逐条核 |
+| 描述命中白名单链 | 7/30 = **23%** | **2/30 = 6.7%**（逐条核过） |
+
+描述分支近 30d 类目：`Canonical Bridge` 6 · `Launchpad` 6 · `DEX Aggregator` 5 · `Trading App` 3 · `Prediction Market` 2 · 长尾各 1。
+
+### 关键词表的实测精度
+
+| 词 | 正则 | 结论 |
+|---|---|---|
+| `Ethereum` | `\bethereum\b\|\berc-?20\b\|\beth mainnet\b` | 保留 |
+| `Base` | `\bbase\b` | **保留，但是全表唯一有真实误命中风险的词**（"base layer" / "database"）；本轮 30 条未出现 |
+| `Solana` | `\bsolana\b` | 保留，零误命中 |
+| `Arbitrum` / `Optimism` / `Hyperliquid` / `Robinhood` | 全名 | 保留 |
+| `Binance` | `\bbinance\b\|\bbnb chain\b` | 保留 |
+| `mainnet` / `eth`（裸词） | — | **删掉不影响任何窗口**：strict 与 loose 在 7d/30d/90d 差集全为 0。泛词误报是理论风险，实测 0 |
+
+**已核出的 3 条误命中**（30 条里）：`Snowbridge`（Polkadot 的桥，"between Ethereum and Polkadot"）· `Agglayer`（"Ethereum and the Agglayer chains"）· `Golem Foundation`（Ethereum treasury，不是协议）。都是「提到 Ethereum 但 Ethereum 不是它的链」，靠类目子过滤（Bridge / Foundation）可再削掉两条。
+
+**启用条件（缺一不可）**：① 桥类目子过滤 或 同秒 `listedAt` 批量去重 —— 10-07T13:38:45Z 有 22 条同秒入库、15 条 Cross Chain Bridge；② 明确写入报告「从下一轮起生效」，因为旧 `filtered` 永不回退，**`baseline` + `filtered` 的 8888 条历史条目不会因新旁路复活**。
+
+## 被挡桶拆分：改旁路的收益是加链的 3 倍（2026-11-01）
+
+近 30d 漏斗输入（「通过 + 被挡」，只含带 `listedAt` 的 437 条新登记）：
+
+| 桶 | n | 占输入 |
+|---|---|---|
+| 通过现行漏斗 | 80 | 43.7% |
+| **只被空 `chains` 挡** | **76** | **41.5%** |
+| 只被「链不在白名单」挡 | 27 | 14.8% |
+
+10-31 只算出 bE/in = 39.2%，本轮把「链不在白名单」单独拆出（14.8%）。**推论：加链的收益上限 ~15%，改旁路的上限 ~41%** —— 两者差近 3 倍，继续压旁路，别加链。
+
+## 口径纪律：两个「空 chains 占比」不可混用（2026-11-01 复核）
+
+| 口径 | 读数 | 稳定性 |
+|---|---|---|
+| 全量 `chains=[]` | 1550/8892 = **17.4%** | 10-30 / 10-31 / 11-01 **三轮完全一致** |
+| 带 `listedAt` 子集（81.2% 的条目）内的滚动窗占比 | 3d 70.6% · 7d 65.3% · 30d 63.2% | 三轮同形，缓慢上升 |
+
+滚动窗只覆盖 81.2% 有 `listedAt` 的条目（空 `chains` 群体里只有 37.0% 有 `listedAt`，本身就有选择偏差）。**报「新登记三分之二不带链」时必须标住「带 `listedAt` 子集」这个限定，别与全量 17.4% 混读。**
+
+## 空 `chains` 群体的真实画像（2026-11-01 补充比例）
+
+10-31 只记了绝对数，本轮补上比例：
+
+| 特征 | 读数 |
+|---|---|
+| 空 `chains` 总数 | 1550（全量 17.4%） |
+| 其中 `tvl` 非空 | **0 条**（第三轮确认，`chains=[]` ⟺ `tvl` 缺失） |
+| 其中**有 `url`** | **1295 条 = 83.5%** |
+| 其中带 `listedAt` | 574 条 = 37.0%（对照全量 81.2%） |
+| 去 parent/EXCL 后 | 770 条 |
+
+即这个群体**不是「一无所有」，是「有站点、有描述、无链、无 TVL」** —— 缺的两个字段是同源录入缺口。这正是 `description` 旁路可行的原因：信息在，只是不在 `chains` 里。
+
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-01 第 6 轮；常规 `HIT` 与 `?_cb=` + `no-cache` 两份 payload 各 8892 条 id，etag 均为 `W/"6ae67bf0-903d78"`，差集为空）
 - 实测数据：`https://api.llama.fi/protocols`（2026-10-28 06:31Z 与 06:32Z 两次取数）
 - 机制与铁律：[`skills/defillama-radar/SKILL.md`](/skills/defillama-radar/SKILL.md) · 实现 [`scan.py`](/skills/defillama-radar/scan.py)
 - 同族判据：[lessons · 假零与断层](/topics/lessons.md#假零与断层)

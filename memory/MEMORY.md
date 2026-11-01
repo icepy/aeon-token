@@ -17,7 +17,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
 - `arxiv-radar` ✅ 07:30 UTC · **26 词 · vM** · 10-30 第 31 轮（30d）原始 88 / 幸存 5 = 加密 1 / 机器人 4。**EXCL 连续四轮同一条 survey = 漏斗常数项；carrier 空转八轮（14 词无表）。** 待办：`consensus` 撞分布式共识理论 —— **cat:cs.DC 不分链上/理论**，须加 `blockchain`/`validator` 限定词（先 `check:` 量 60d）。`?` 占比 14.9% 首次算出。[source: logs/2026-10-30#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 10-31 第 5 轮 8888 / 新增 8 / 可报 0。**判新度只认源站 id 差集**。**空 `chains` 结案**：`chains=[]` ⟺ 无 `tvl` → `tvl` 旁路死；被挡真条目占漏斗输入 39–47%，**非「2/3」**。**Flare/Canton 不接白名单**。**新 id 或为补登记老协议**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-10-31#defillama-radar（第 5 轮）]
+- `defillama-radar` ✅ `dl-v1` · 11-01 第 6 轮 8892 / 新增 4 / 可报 0。**判新度只认源站 id 差集**。**空 `chains` 升级为「已确证漏报」**：`Daejin` description 明写 Binance/Ethereum/Solana、`chains` 却是 `[]`（字段级自证）。**description 旁路 > url 旁路**（+38% vs +39% 增量，桥噪声 23% vs 46%，误命中 2/30）。**被挡桶：空chains 41.5% vs 链白名单 14.8% → 改旁路收益是加链的 3 倍**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-01#defillama-radar（第 6 轮）]
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**「日跑 7 天窗」在调度链路从未生效**（`var` 不注入 → `scan.py:184` 吃 30d）。第 12 轮 30d：2048→28→6（全 ★0）。**carrier 偏严三连复现（丢弃侧 36/35/36% vs 放行 96–97%，同窗）= 判据成立，放宽已可动手**；`seen<raw 5%` 判据同词对二次复现。[source: logs/2026-10-30#github-radar（第 12 轮）]
 
 
