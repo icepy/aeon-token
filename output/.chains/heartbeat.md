@@ -1,30 +1,27 @@
-**HEARTBEAT_OK · STATUS_PAGE=OK**
+## Heartbeat — 环境巡检（2026-11-01 00:32 UTC）
 
-## 巡检结果（ambient，`var` 为空）
+**结论：🟢 OK，无发现，未通知。**
 
-**P0 全部干净。** 8 个 enabled 且带 cron 的 skill 都在自己的调度区间内成功，无一失败、无一挂起：
+| 层 | 结果 |
+|---|---|
+| P0 失败/卡死 | 干净。8 个 enabled 且带 cron 的 skill 全在调度区间内成功 |
+| P0 降级 / 长期失败 | 无。`consecutive_failures ≥ 3` 者只剩三个已停用 skill |
+| P1 PR / issue | 1 个 open PR（#21，1.3h，未过 24h 线）；8 个 issue 全是无 severity 的 scorer 自动线程 |
+| P2 memory | 无待跟进项 |
+| P3 调度缺口 | 无 |
 
-| Skill | 上次成功 (UTC) | 距今 | 成功率 | 连败 |
-|---|---|---|---|---|
-| defillama-radar | 2026-10-31 00:07 | 0.4h | 100% | 0 |
-| defi-overview | 2026-10-30 23:16 | 1.3h | 67% | 0 |
-| github-radar | 2026-10-30 22:35 | 2.0h | 83% | 0 |
-| arxiv-radar | 2026-10-30 22:06 | 2.4h | 85% | 0 |
-| memory-flush | 2026-10-30 18:05 | 6.4h | 73% | 0 |
-| narrative-brief | 2026-10-30 10:01 | 14.5h | 100% | 0 |
-| heartbeat | 2026-10-30 00:32 | 24.0h | 88% | 0 |
-| aeon-update | 2026-10-26 11:03 | 61.5h（周频，未过 2× 周期） | 100% | 0 |
+**各 skill 最近一次成功**：`defillama-radar` 00:04Z（0.5h 前）· `defi-overview` 10-31 23:14Z · `github-radar` 22:34Z · `arxiv-radar` 22:04Z · `memory-flush` 18:03Z · `narrative-brief` 10:01Z · `heartbeat` 10-31 00:32Z（24.0h，在 36h 自检线内）· `aeon-update` 10-26 11:03Z（周频，61.5h，未过 2× 周期）。
 
-自检线 36h —— heartbeat 上次成功 24.0h 前，在界内。`defi-overview`(0.67) 与 `memory-flush`(0.73) 的成功率都高于 0.5 的 chronic 线，且连败已归零，属历史包袱不是当前故障。
+**三处已复核但不算故障的地方**：`defi-overview` sr 0.69、`memory-flush` sr 0.75 都高于 chronic 的 0.5 线且 cf=0，是历史包袱不是当前故障；`price-alert`(cf=5)、`onchain-monitor`(cf=4)、`token-movers`(cf=3) 三者 `enabled: false`，连败数字冻结在 10-25，无新样本，不列状态页。
 
-**已停用的三个不计数：** `price-alert`(cf=5)、`onchain-monitor`(cf=4)、`token-movers`(cf=3) 都是 `enabled: false`，连败数字冻结在 10-25，没有新样本，不进状态页也不进 findings。
+**遗留待办（不重复通知，累计第五轮）**：`cron-state.json` 里的 `arxvi-radar` 孤儿条目（runs=1，10-26 成功）建议清掉；`memory/on-chain-state.json.new` 遗留物（第八轮）在重开 `onchain-monitor` 前必须处理。
 
-**P1/P2/P3 无新料。** open PR 零个。8 个 open issue 全是 scorer 自动开的 `health: <skill>` 线程（#3/#4/#5/#6/#9/#12/#13/#18），`labels: []`，无 urgent / critical，与昨天相比既没新增也没关闭。MEMORY.md 无待跟进项。`arxvi-radar` 孤儿条目（runs=1，10-26 成功）仍在 —— 已连报四轮，本轮不重复推送，仍建议从 `cron-state.json` 清掉。`narratives.md` 只有 2 节，未超 4 节上限。
-
-**未发通知。** 无 finding，按「正常别吵」的规则静默。
+**状态页**：已整体重写 `docs/status.md`，verdict `🟢 OK`。Token pulse 置空 —— 最新报告是 `output/articles/token-report-2026-10-24.md`，距今约 144h，远超 24h 时效线，渲染为 `_No recent token data (latest report 2026-10-24)._`。价格监控 10-25 已停用，这个空节属预期。下一跳 `narrative-brief` 10:00 UTC。
 
 ## Summary
 
-- **做了：** 执行 `skills/heartbeat/SKILL.md` 的 ambient 分支全量检查（P0 失败/挂起/降级/chronic + heartbeat 自检、P1 PR 与 issue、P2 memory 待办、P3 调度缺口），并核对叙事风向文件节数。
-- **文件改动：** 重写 `docs/status.md`（Overall 🟢 OK · Updated 2026-10-31 00:31 UTC · 8 个已跑 skill 按 last-run 倒序 + 3 个 `workflow_dispatch` 未跑 · Token pulse 因最新报告 `token-report-2026-10-24.md` 距今约 120h 超时效线而置空）；向 `memory/logs/2026-10-31.md` 追加 `### heartbeat` 与 `### heartbeat — under the hood` 两节。
-- **需要跟进：** ①`arxvi-radar` 孤儿条目建议从 `memory/cron-state.json` 删除（已报四轮，纯清理动作）；②`memory/on-chain-state.json.new` 遗留物在重开 `onchain-monitor` 前必须处理；③`memory/topics/` 下 10 个 `.py` 临时脚本与 `price-alert-state.json.bak` 待走 PR 删除；④三个停用 skill 的 `health:` issue 线程（#3/#4/#12）可考虑手动关闭，避免继续堆积。
+- 执行 `heartbeat` 默认分支（`var` 为空，全量 ambient 检查）。
+- 读取 `memory/cron-state.json`、`memory/issues/INDEX.md`、`aeon.yml`、最近两天日志、`mpTopics/narratives.md`，并用 `gh pr list` / `gh issue list` 核对仓库侧。
+- **修改文件**：`docs/status.md`（整体重写，verdict 🟢 OK）；`memory/logs/2026-11-01.md`（在 `### heartbeat` 标题下追加本轮 ambient 日志）。
+- **未发送通知**：无 finding，按「正常别吵我」的硬约束静默。
+- **需要你决定的两件事**（都不是本轮新发现）：是否清掉 `cron-state.json` 的 `arxvi-radar` 孤儿条目；是否删 `memory/on-chain-state.json.new`。
