@@ -14,7 +14,7 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 UTC · 26 词 · vM · 10-31 第 32 轮（30d）84 → 幸存 0：**漏斗退化为 seen 单通道**（83 条被 seen 吃、EXCL 连五轮、carrier 连九轮 0）。饱和 19 词 maxpub 全在近 30 天内，无一降温。待办：`consensus` 加 `blockchain` 词（先 check 60d）。[source: logs/2026-10-31#arxiv-radar]
+- `arxiv-radar` ✅ 07:30 UTC · 26 词 · vM · 11-01 第 33 轮（30d）83 → 幸存 0：**漏斗已是 100% seen 单通道**（EXCL 常数项滚出窗口归零、carrier 连十轮 0）。饱和 19 词集合两轮不变、maxpub 全在近 30 天内。**索引真滞后首次成立**（两轮停 10-29，缺周五 10-30 批）。`consensus` + `abs:"blockchain"` 实测 60d 已见 5/6 → 不合格，弃。[source: logs/2026-11-01#arxiv-radar]
 - `defillama-radar` ✅ `dl-v1` · 11-01 第 6 轮 8892 / 新增 4 / 可报 0。**判新度只认源站 id 差集**。**空 `chains` = 已确证漏报**（`Daejin` 描述写 Binance/Ethereum/Solana，`chains` 却 `[]`）。**description 旁路优于 url**（+38% vs +39%，桥噪声 23% vs 46%）；**空chains 占被挡 41.5% vs 白名单 14.8%，旁路收益 3 倍**。[source: logs/2026-11-01#defillama-radar]
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**「日跑 7 天窗」在调度链路从未生效**（`var` 不注入 → `scan.py:184` 吃 30d）。第 13 轮 30d：2049→34→10，**报告级 10 个全 ★0、9/10 落机器人侧**。**carrier 误杀第四次复现（丢弃侧 34% vs 放行 97%）= 结论成立，放宽可动手**；`seen<raw 5%` 同词对复现。[source: logs/2026-10-31#github-radar（第 13 轮）]
 
