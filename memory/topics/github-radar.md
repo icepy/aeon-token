@@ -1,14 +1,39 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 二十七轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率四轮同窗口复现已成结论**、窗口是流量旋钮）
+description: github-radar 二十八轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率五轮同窗口复现已成结论**、窗口是流量旋钮、**报告级可全落单一侧**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-10-31T22:34:00Z
+timestamp: 2026-11-01T22:34:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十七轮（2026-10-31）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十八轮（2026-11-01）实证。
+
+## 第二十八轮（2026-11-01，**30 天窗**，非 dry-run）—— 加密侧在报告级归零；新仓潮 vs 持续工程
+
+`scan.py ""` → **第 14 轮「日跑 7 天」仍未生效**（`var` 不注入，`scan.py:184` 吃 30d）。
+
+漏斗：原始 **2046** → 幸存 **31** → 报告级 **12**。丢弃 seen=962 · excl=136 · short_desc=363 · **carrier=428** · neg=55 · pages=57 · pages_root=1 · scaffold=0 · farm=13 · fail=0。18 词 × 二分至一页（单窗 13 / 需拆窗 5 · 二分 3 次 · 搜索 43）· 核验 **31/31 = 100%** · 119s。
+
+### 66. 🔴 报告级首次 100% 落在机器人/具身侧，加密侧零 —— 从「顺带」变「零」
+
+12 个报告级全部落在 `manipulation` / `teleoperation` / `sim-to-real` / `JEPA` / `world model`。上一轮 10 个里还有 1 个旁落，本轮 12/12 全在机器人侧；`restaking` 有 1 条新收但没过报告级。**连续两轮同向 ⇒ 「加密侧在代码通道上确实稀薄」不再是单轮噪声，但仍不能推向「加密没有工程量」—— 只是这个 18 词表 + carrier 组合下测不到。**
+
+### 67. 🟢 `jepa` 是在扩散的写法，`world model` 已饱和
+
+`jepa` 单词贡献 **4/12** 报告级（beeJEPA / ijepa-decoder / jepa-mean-collapse / CT_PhysProb_JEPA），7 天新收 7 条（两轮 5 → 7 上行），返回量第二（340）。**反向对照：`world model` 返回 754 却只新收 5** —— 同一赛道上，老词的返回量被历史 `seen` 吃干，新写法还在扩散。**判据：判断一个方向是否还在长，看「新收/返回」比值，不看返回量。** 这与 [第八轮](#第八轮2026-10-25-0645z--词表改全称vla-成功--jepa-惨败) 的「`jepa` 缩写是主流」一致：全称化会杀掉它，缩写保留才对。
+
+### 68. 🔴 `commits_7d == commits_30d` 在报告级 11/12 上成立 —— 那是新仓潮，不是持续工程
+
+十二个里 11 个两列逐位相同（beeJEPA 36/36、Sim-to-Hand 29/29、lifth-pai 23/23、lunar-trn 19/19、ijepa-decoder 17/17、jepa-mean-collapse 9/9、CT_PhysProb_JEPA 9/9、robolink 6/6、X-model 6/6、wildcat 5/5、acwm 5/5）；只有 H1V3 是 19/3（★4，唯一有 star 的，老仓放缓）。**含义：这批仓全部在最近 7 天内建仓或一次性推完。判活跃度必须同时看两列；单看 30d 会把新仓潮读成「在写」，单看 7d 又会把老仓的周期性提交读成死。** 与第十轮判据（7d=0 而 30d 高 = 爆完即停）互为镜像，两条一起才构成完整判据。
+
+### 69. 🔴 carrier 误杀第五次同窗口复现：32% vs 97%
+
+丢弃侧仓名自带词表词 **160 仓 / 157 owner**，核 146，近 7 天存活 **47/146 = 32%**；放行幸存者核 31，存活 **30/31 = 97%**。五轮序列 **36/97 → 35/96 → 36/96 → 34/97 → 32/97**，全部 32–36% vs 96–97%。**放宽已具备动手条件（本轮仍未改脚本）。**
+
+**载噪点（只记不判）**：`animeshdubey6472/RoboFlow-VLA` 爆完即停；无 language 6 个。
+
 
 ## 第十七轮（2026-10-26，60 天窗，probe，dry-run）—— carrier 误杀率首次有同口径对照组：50% vs 50%，无差异
 
@@ -647,6 +672,7 @@ probe 跳过（2 天 < 7 天），`clusters.json` 未重写。通知已发（报
 
 # Citations
 
+- 第二十八轮（11-01 第 14 轮，30d）`logs/2026-11-01#github-radar（第 14 轮）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184` · `memory/github-seen.json`
 - 第二十七轮（10-31 第 13 轮，30d）`logs/2026-10-31#github-radar（第 13 轮）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184` · `memory/github-seen.json`
 - 第二十六轮（10-30 第 12 轮，30d）`logs/2026-10-30#github-radar（第 12 轮 · 30 天窗 · 非 dry-run）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184,193` · `memory/github-seen.json`
 - 第二十五轮（10-29 第 11 轮，30d）`logs/2026-10-29#github-radar（第 11 轮 · **30 天窗** · 非 dry-run）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184,193` · `memory/github-seen.json`

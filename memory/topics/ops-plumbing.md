@@ -70,6 +70,27 @@ produced by a different window, not by a change in the topic.
 - Any cross-round comparison that changes window must state the window in the same breath as the
   numbers. A funnel delta across two windows is a window effect until proven otherwise.
 
+## Nothing merges PRs — `auto-merge` is off, so a write-mode skill's output can stall indefinitely
+
+`aeon.yml` has `auto-merge: { enabled: false }`. That skill is the only thing in the fleet that would
+merge; with it disabled, **every PR a write-mode skill opens sits until a human merges it.** This is a
+structural stall, not "wait a while".
+
+Observed cost (2026-11-02): `defi-overview` opened #21 (10-31) and #22 (11-01); both went
+`CONFLICTING`/`DIRTY` and neither merged, so `memory/topics/market-context.md` on `main` stayed at
+`timestamp: 2026-10-30T23:05:00Z` — **~73 h stale** while two newer snapshots existed on branches.
+Both were merged by hand on 11-02; the staleness was invisible from the skill itself, which reported
+success each run.
+
+- **Diagnose by reading the target file's `timestamp:` on `main`, not by reading run status.** A
+  write-mode skill can be green every run and still have nothing reach `main`.
+- **Before blaming a script bug for a conflicting PR, reproduce the merge locally** with full history
+  (`git merge-tree --write-tree`) — GitHub's `CONFLICTING` flag and a local merge of `prNN` disagree
+  in practice (#22 showed `CONFLICTING` on GitHub but merged clean locally).
+- **A conflict on a `memory/` file is usually two writers, not two features.** #21's `lessons.md`
+  hunk was superseded by the version `memory-flush` had already merged; the right call was to close
+  it, not to resolve the hunk.
+
 ## Watchlist rationale
 
 Base watches sit at $200/$250. NOTE watches sit at $500 — deliberately low because NOTE events are
@@ -118,3 +139,5 @@ rather than a permission rule:
 - `gh run list` showing `scheduler: cron` with `event: schedule`, `success`, 2026-10-21T10:09:10Z.
 - `scripts/notify_format.py` module docstring (channel limits + Markdown→HTML normalization).
 - `CLAUDE.md` § Tools / § Network & Secrets.
+- `aeon.yml:18` (`auto-merge: enabled: false`) · `git merge-tree --write-tree` exit=1 on PR #21 (`CONFLICT (content): memory/topics/lessons.md`), exit=0 on PR #22 · `memory/topics/market-context.md` `timestamp: 2026-10-30T23:05:00Z` on main, 2026-11-02.
+- `logs/2026-11-02#heartbeat` (both PRs merged by the operator 2026-11-02T09:26Z / 09:29Z).

@@ -9,8 +9,8 @@ Durable knowledge notes live under `memory/topics/`, one concept per markdown fi
 - [price-alert state file contract](/topics/price-alert-state.md) — what each field in `price-alert-state.json` means and why targets must be pre-seeded.
 - [Lessons learned — archive](/topics/lessons.md) — the full detail behind each one-line lesson in MEMORY.md (wallet watch topic filters, keyless RPC, calldata vs chain facts, and when a missing `h1` or a zero-volume hour is *unmeasured* rather than calm).
 - [World Action Models (WAM)](/topics/world-action-models.md) — the 2026 WAM term on GitHub: weekly convergence curve, the paper-repo → engineering-repo split, and why star order is not activity order (★1106 with 11 commits vs ★48 with 10).
-- [github-radar — 实现缺陷与判据](/topics/github-radar.md) — 二十七轮实证的过滤器陷阱：`PER_TERM_CAP` 抽样低估 3.85×、`MAXPAGE` 撞顶静默丢整条、`pages` 两侧误判、缩写→全称只在类别通名上成立（`vla` 赢 / `jepa` 亏 94.6%）、**carrier 误杀率四轮同窗口复现（34–36% vs 96–97%，已升为结论）**、「窗口是流量旋钮不是语义轴」的两次算术证据、**`commits_30d == commits_7d` 意味着「本周新建当周爆完」而非「持续活跃」**、以及「已合并 ≠ 已生效」「脚本尾部崩溃 ≠ 本轮没产出」。
-- [defillama-radar](/topics/defillama-radar.md) — 发现层第三通道（部署并拿到 TVL）：为什么新度只能靠全量 `id` 求差、`id` 单调递增的实测证明、**CDN 快照会让差集恒为 0**（须先断言 `cf-cache-status != HIT`）、`Interface` 类目为何不进 `EXCL_CATEGORY`、以及 `★清单内` 目前只有描述级命中的失效原因。
+- [github-radar — 实现缺陷与判据](/topics/github-radar.md) — 二十八轮实证的过滤器陷阱：`PER_TERM_CAP` 抽样低估 3.85×、`MAXPAGE` 撞顶静默丢整条、`pages` 两侧误判、缩写→全称只在类别通名上成立（`vla` 赢 / `jepa` 亏 94.6%）、**carrier 误杀率五轮同窗口复现（32–36% vs 96–97%，已成结论）**、「窗口是流量旋钮不是语义轴」的两次算术证据、**`commits_30d == commits_7d` 意味着「本周新建当周爆完」而非「持续活跃」**、以及「已合并 ≠ 已生效」「脚本尾部崩溃 ≠ 本轮没产出」。
+- [defillama-radar](/topics/defillama-radar.md) — 发现层第三通道（部署并拿到 TVL）：为什么新度只能靠全量 `id` 求差、`id` 单调递增的实测证明（但**存在永久空洞，`id` 是分配号不是登记号**）、**CDN 快照会让差集恒为 0**（须先断言 `cf-cache-status != HIT`）、`Interface` 类目为何不进 `EXCL_CATEGORY`、**`url` 与 `description` 两条旁路实为同族（去桥后打平，真增量在并集）**、以及同秒批量登记的污染如何伪装成「桥噪声」。
 - [叙事风向](/topics/narratives.md) — 每周一/四由 Grok 更新的市场叙事笔记，判断时参考、不复述。
 
 ## Tokens
