@@ -1,27 +1,29 @@
-## Heartbeat — 环境巡检（2026-11-01 00:32 UTC）
+⚠️ 🟡 HEARTBEAT WATCH — market-context 停更 3 天，两个 PR 卡住
 
-**结论：🟢 OK，无发现，未通知。**
+## 🟡 HEARTBEAT · WATCH
 
-| 层 | 结果 |
+**P1 · PR #21 停滞 25.4h，且两个 defi-overview PR 都卡在 CONFLICTING**
+
+- **#21** `chore(defi-overview): 2026-10-31 宏观快照` — 建于 2026-10-31 23:13Z，**25.4h**，GitHub 判 `CONFLICTING`。真冲突文件 = `memory/topics/lessons.md`（本地 `git merge` 复现：`CONFLICT (content)`）。
+- **#22** `chore(defi-overview): 2026-11-01 宏观快照` — 建于 2026-11-01 23:24Z，**1.1h**（未过 24h 线）。GitHub 也报 `CONFLICTING`，但**本地全量历史下 `git merge` 干净通过，无冲突**。两者不一致，暂按 GitHub 为准但仍不计 finding。
+
+**真正的代价：`market-context.md` 在 main 上已停更 3 天**
+
+| 位置 | 快照日期 |
 |---|---|
-| P0 失败/卡死 | 干净。8 个 enabled 且带 cron 的 skill 全在调度区间内成功 |
-| P0 降级 / 长期失败 | 无。`consecutive_failures ≥ 3` 者只剩三个已停用 skill |
-| P1 PR / issue | 1 个 open PR（#21，1.3h，未过 24h 线）；8 个 issue 全是无 severity 的 scorer 自动线程 |
-| P2 memory | 无待跟进项 |
-| P3 调度缺口 | 无 |
+| main（线上） | **2026-10-30** |
+| PR #21 | 2026-10-31 |
+| PR #22 | 2026-11-01 |
 
-**各 skill 最近一次成功**：`defillama-radar` 00:04Z（0.5h 前）· `defi-overview` 10-31 23:14Z · `github-radar` 22:34Z · `arxiv-radar` 22:04Z · `memory-flush` 18:03Z · `narrative-brief` 10:01Z · `heartbeat` 10-31 00:32Z（24.0h，在 36h 自检线内）· `aeon-update` 10-26 11:03Z（周频，61.5h，未过 2× 周期）。
+- main 上最后一次改动是 `064eb6c`（2026-10-30 23:15Z）。
+- 同期 `memory/logs/` 与 `skill-health/` 的自动提交**正常落在 main**（如 `431c8e4`）—— 只有 `market-context.md` 被 agent 提交到 feature 分支。
+- **机制原因：`aeon.yml` 里 `auto-merge` 是 `enabled: false`**，没有任何东西会合这些 PR。所以不是"等一等就会好"，是**结构性不合并**。
+- 下游消费者 `narrative-convergence`、`idea-pipeline` 当前都 `enabled: false`，暂时无人读这份旧数据 —— 所以没到 🔴。
 
-**三处已复核但不算故障的地方**：`defi-overview` sr 0.69、`memory-flush` sr 0.75 都高于 chronic 的 0.5 线且 cf=0，是历史包袱不是当前故障；`price-alert`(cf=5)、`onchain-monitor`(cf=4)、`token-movers`(cf=3) 三者 `enabled: false`，连败数字冻结在 10-25，无新样本，不列状态页。
+**建议（二选一，需你拍板）**
+1. 手动合 #22（本地可干净合并，合完 main 直接回到 11-01）；#21 因 `lessons.md` 冲突可关掉——main 上已有同内容的更好版本（`双向都有` 那条已在 main）。
+2. 或开 `auto-merge` 让这类日常快照 PR 自愈，但需先确认它不会顺手合掉别的分支。
 
-**遗留待办（不重复通知，累计第五轮）**：`cron-state.json` 里的 `arxvi-radar` 孤儿条目（runs=1，10-26 成功）建议清掉；`memory/on-chain-state.json.new` 遗留物（第八轮）在重开 `onchain-monitor` 前必须处理。
+其余无异常：8 个 enabled 带 cron 的 skill 全部在调度区间内成功，无 failed / stuck / `consecutive_failures ≥ 3` / chronic。8 个 open issue 仍是无 label 的 scorer 健康线程，无 urgent。
 
-**状态页**：已整体重写 `docs/status.md`，verdict `🟢 OK`。Token pulse 置空 —— 最新报告是 `output/articles/token-report-2026-10-24.md`，距今约 144h，远超 24h 时效线，渲染为 `_No recent token data (latest report 2026-10-24)._`。价格监控 10-25 已停用，这个空节属预期。下一跳 `narrative-brief` 10:00 UTC。
-
-## Summary
-
-- 执行 `heartbeat` 默认分支（`var` 为空，全量 ambient 检查）。
-- 读取 `memory/cron-state.json`、`memory/issues/INDEX.md`、`aeon.yml`、最近两天日志、`mpTopics/narratives.md`，并用 `gh pr list` / `gh issue list` 核对仓库侧。
-- **修改文件**：`docs/status.md`（整体重写，verdict 🟢 OK）；`memory/logs/2026-11-01.md`（在 `### heartbeat` 标题下追加本轮 ambient 日志）。
-- **未发送通知**：无 finding，按「正常别吵我」的硬约束静默。
-- **需要你决定的两件事**（都不是本轮新发现）：是否清掉 `cron-state.json` 的 `arxvi-radar` 孤儿条目；是否删 `memory/on-chain-state.json.new`。
+*来源：`memory/cron-state.json` · `aeon.yml` · `gh pr list` · `git merge-tree` / `git merge` 实测 · `memory/topics/market-context.md`*
