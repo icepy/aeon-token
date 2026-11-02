@@ -1,14 +1,11 @@
-**github-radar** · 窗口 30 天 · 报告级 12 · 近 7 天活跃 12
+**github-radar** · 窗口 30 天 · 报告级 9 · 近 7 天活跃 9
 
-- [F1nnSBK/beeJEPA-metaai-hackathon](https://github.com/F1nnSBK/beeJEPA-metaai-hackathon) ★0 · 30天=36 · 7天=36 · 词 `jepa` · Autonomous hive entrance monitoring and active perception edge system combining V-JEPA 2.1 latent su
-- [Anya-Louni/Sim-to-Hand](https://github.com/Anya-Louni/Sim-to-Hand) ★0 · 30天=29 · 7天=29 · 词 `robot manipulation` · LLM-planned robot manipulation in a browser MuJoCo sim, with sim-state and vision verification and r
-- [hoki621/lifth-pai](https://github.com/hoki621/lifth-pai) ★0 · 30天=23 · 7天=23 · 词 `robot manipulation` · VLA-based robot manipulation with LIFTH, ROS 2, Gazebo, Pi0.5, and SmolVLA.
-- [huseyincavusbi/lunar-trn](https://github.com/huseyincavusbi/lunar-trn) ★0 · 30天=19 · 7天=19 · 词 `sim-to-real` · Crater-based terrain-relative navigation (TRN): detection, ellipse fitting, sim-to-real transfer, vi
-- [yaskovdev/ijepa-decoder](https://github.com/yaskovdev/ijepa-decoder) ★0 · 30天=17 · 7天=17 · 词 `jepa` · Unofficial native I-JEPA predictor-to-RGB decoder: pretrained weights, Apple Silicon inference, repr
-- [twoye0/jepa-mean-collapse](https://github.com/twoye0/jepa-mean-collapse) ★0 · 30天=9 · 7天=9 · 词 `jepa` · Investigating mean prediction and representation collapse in Joint-Embedding Predictive Architecture
-- [Nafis878/CT_PhysProb_JEPA](https://github.com/Nafis878/CT_PhysProb_JEPA) ★0 · 30天=9 · 7天=9 · 词 `jepa` · Blackout-Robust Continuous-Time RUL Prediction Pre-Registration and Replication Archive
-- [das-boot65/robolink](https://github.com/das-boot65/robolink) ★0 · 30天=6 · 7天=6 · 词 `teleoperation` · Local robot teleoperation and fault-recovery simulator with a responsive operations console.
-- [Reaper-ai/X-model-from-scratch](https://github.com/Reaper-ai/X-model-from-scratch) ★0 · 30天=6 · 7天=6 · 词 `world model` · Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTor
-- [AspireToCode15/wildcat-label-desk](https://github.com/AspireToCode15/wildcat-label-desk) ★0 · 30天=5 · 7天=5 · 词 `robot manipulation` · Wildcat Label Desk - Automatic data annotator web app for robot manipulation guidelines
-- [danilorar/acwm](https://github.com/danilorar/acwm) ★0 · 30天=5 · 7天=5 · 词 `world model` · Action-conditioned world model
-- [dillonfaulk/H1V3-RobotPolicies](https://github.com/dillonfaulk/H1V3-RobotPolicies) ★4 · 30天=19 · 7天=3 · 词 `sim-to-real` · Reinforcement learning policies trained in NVIDIA Isaac Lab & MuJoCo Warp for robots: asimov-1 (huma
+- [trungdangtapcode/Embodied-Scout-PuppyPi](https://github.com/trungdangtapcode/Embodied-Scout-PuppyPi) ★0 · 30天=71 · 7天=71 · 词 `teleoperation` · Research platform for PuppyPi: visual perception, object tracking, recorded visual memory, and mobil
+- [ravikola02/egoumi](https://github.com/ravikola02/egoumi) ★1 · 30天=28 · 7天=28 · 词 `egocentric` · UMI-style pinch gripper tracked with ArUco markers from an egocentric head camera; capture to LeRobo
+- [Physical-Super-Intelligence/PLUMB_Bench](https://github.com/Physical-Super-Intelligence/PLUMB_Bench) ★0 · 30天=13 · 7天=12 · 词 `robot manipulation` · PLUMB-Bench: A Physically Verified Benchmark for Precise, Generalizable Robot Manipulation
+- [andrewkwizera/Verlet-Robotics-ROS](https://github.com/andrewkwizera/Verlet-Robotics-ROS) ★0 · 30天=10 · 7天=10 · 词 `teleoperation` · For building Verlet Robotics Robot Operating System (ROS). Done this while working on the Low latenc
+- [ChoujiajunStats/Pelagos](https://github.com/ChoujiajunStats/Pelagos) ★0 · 30天=9 · 7天=9 · 词 `jepa` · Underwater cave exploration with Stonefish, OKVIS2, Wavemap, NBVPlanner and JEPA-MPPI.
+- [sdua078/TeleoPro](https://github.com/sdua078/TeleoPro) ★106 · 30天=7 · 7天=5 · 词 `teleoperation` · Teleoperation Like a Pro: any input device, any robot arm
+- [TheLiaoGroup/Recording-policies-confound-prediction-gains-from-exploration-in-reaction-world-models](https://github.com/TheLiaoGroup/Recording-policies-confound-prediction-gains-from-exploration-in-reaction-world-models) ★0 · 30天=5 · 7天=5 · 词 `world model` · Data and code for Recording policies confound prediction gains from exploration in reaction world mo
+- [LeoLi2526/HMotionGPT_project](https://github.com/LeoLi2526/HMotionGPT_project) ★0 · 30天=5 · 7天=5 · 词 `egocentric` · Ring, forearm EMG, and egocentric video data platform for robot VLA research
+- [AlexanderWegenerRobotics/haptic-glove](https://github.com/AlexanderWegenerRobotics/haptic-glove) ★0 · 30天=17 · 7天=4 · 词 `teleoperation` · Force-feedback haptic glove for dexterous teleoperation: ESP32-S3 firmware with current-mode torque 

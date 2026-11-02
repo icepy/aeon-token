@@ -475,3 +475,14 @@
 - [AspireToCode15/wildcat-label-desk](https://github.com/AspireToCode15/wildcat-label-desk) ★0 · 30天=5 · 7天=5 · `robot manipulation` · Wildcat Label Desk - Automatic data annotator web app for robot manipulation guidelines
 - [danilorar/acwm](https://github.com/danilorar/acwm) ★0 · 30天=5 · 7天=5 · `world model` · Action-conditioned world model
 - [dillonfaulk/H1V3-RobotPolicies](https://github.com/dillonfaulk/H1V3-RobotPolicies) ★4 · 30天=19 · 7天=3 · `sim-to-real` · Reinforcement learning policies trained in NVIDIA Isaac Lab & MuJoCo Warp for robots: asimov-1 (huma
+
+## 2026-11-02 · github-radar（报告级 9）
+- [trungdangtapcode/Embodied-Scout-PuppyPi](https://github.com/trungdangtapcode/Embodied-Scout-PuppyPi) ★0 · 30天=71 · 7天=71 · `teleoperation` · Research platform for PuppyPi: visual perception, object tracking, recorded visual memory, and mobil
+- [ravikola02/egoumi](https://github.com/ravikola02/egoumi) ★1 · 30天=28 · 7天=28 · `egocentric` · UMI-style pinch gripper tracked with ArUco markers from an egocentric head camera; capture to LeRobo
+- [Physical-Super-Intelligence/PLUMB_Bench](https://github.com/Physical-Super-Intelligence/PLUMB_Bench) ★0 · 30天=13 · 7天=12 · `robot manipulation` · PLUMB-Bench: A Physically Verified Benchmark for Precise, Generalizable Robot Manipulation
+- [andrewkwizera/Verlet-Robotics-ROS](https://github.com/andrewkwizera/Verlet-Robotics-ROS) ★0 · 30天=10 · 7天=10 · `teleoperation` · For building Verlet Robotics Robot Operating System (ROS). Done this while working on the Low latenc
+- [ChoujiajunStats/Pelagos](https://github.com/ChoujiajunStats/Pelagos) ★0 · 30天=9 · 7天=9 · `jepa` · Underwater cave exploration with Stonefish, OKVIS2, Wavemap, NBVPlanner and JEPA-MPPI.
+- [sdua078/TeleoPro](https://github.com/sdua078/TeleoPro) ★106 · 30天=7 · 7天=5 · `teleoperation` · Teleoperation Like a Pro: any input device, any robot arm
+- [TheLiaoGroup/Recording-policies-confound-prediction-gains-from-exploration-in-reaction-world-models](https://github.com/TheLiaoGroup/Recording-policies-confound-prediction-gains-from-exploration-in-reaction-world-models) ★0 · 30天=5 · 7天=5 · `world model` · Data and code for Recording policies confound prediction gains from exploration in reaction world mo
+- [LeoLi2526/HMotionGPT_project](https://github.com/LeoLi2526/HMotionGPT_project) ★0 · 30天=5 · 7天=5 · `egocentric` · Ring, forearm EMG, and egocentric video data platform for robot VLA research
+- [AlexanderWegenerRobotics/haptic-glove](https://github.com/AlexanderWegenerRobotics/haptic-glove) ★0 · 30天=17 · 7天=4 · `teleoperation` · Force-feedback haptic glove for dexterous teleoperation: ESP32-S3 firmware with current-mode torque 
