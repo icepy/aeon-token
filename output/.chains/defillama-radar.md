@@ -1,36 +1,67 @@
-8,107 bytes, under budget, no line over 300. Run complete — **no notification sent**, since reportable = 0 (per the skill's iron rule).
+本轮已完成。可报 0，未发通知，`report.md` 未重写。
 
-## defillama-radar 第 5 轮（2026-10-31 00:01Z）
+## defillama-radar 第 7 轮 · 2026-11-02
 
-`STATUS: DEFILLAMA_RADAR_OK` · 全量 8888 · 新增 id 8 · **可报 0** · `基线轮=False` · 无 ⚠️
+**STATUS: DEFILLAMA_RADAR_OK · 原始 8899 · 可报 0 · 基线轮=False**
 
-**本轮 0 是结构性的，不是故障。** 8 条新增全部 `filtered`：7 条带 `parentProtocol`，1 条因链不在白名单。
+### 漏斗
 
-**CF 校验（做了两次取数）**：常规请求吃 `HIT`（`last-modified 23:02:24Z`, `age 1722`）；`?_cb=` + no-cache 取到 `MISS`（`last-modified 23:38:18Z`）。两份 payload 各 8888 个 id，双向差集均为空 → 本轮无缓存漏条目。差集 9278–9285 全部 ≤ 最大 id 9285，符合 id 单调。
+| 项 | 读数 |
+|---|---|
+| 全量 | 8899 |
+| seen 命中 | 8892 |
+| 新增 id | 7（可报 0 / 过滤标记 7） |
+| 重报（上轮未通知） | 0 |
+| 桶 | parent 3 · category 1 · 链白名单 3 · 无 id 0 |
 
-**今日 8 条**：`Valantis stHYPE Restaking`($6.13M, Hyperliquid L1, parent) · `The Cellar`(Flare, Synthetics, $5,049) · `FlareBank Lending`(Flare, $1,831, parent) · `Byzanlink Bridge Aggregator` · `Flat Money` / `Defi App` / `Amahub` / `HyperDex Perps Aggregator`（4 条 Perps Aggregator，全 parent）。**两条仅因 Flare 不在白名单被挡。**
+链命中：Ethereum=1895 · Binance=1145 · Arbitrum=1045 · Base=915 · Solana=466 · Optimism=393 · Robinhood Chain=297 · Hyperliquid L1=213 · Ink=33 · **BSC=0 · OP Mainnet=0**（白名单校验通过，孪生常量空转如常）。
 
-### 三条把待办判死的发现
+### 假零校验（可报 0 也照做）
 
-**① 空 `chains` 的候选旁路规则是死的。** 10-30 写在案的是「`chains=[]` 但 `tvl` 非空**或**有 `url`」放行。实测空 `chains` 1546 条，**`tvl` 非空 0 条（0.0%）** —— 两个字段是同一个未完成录入状态的两面。`tvl` 分支命中数恒为 0。只剩 `url` 分支。
+常规请求 `cf-cache-status: HIT`（`last-modified 2026-11-01T23:38:10Z`、`age 382`、etag `W/"6ae7cd62-905a80"`），`?_cb=` + `no-cache` 取到 `MISS` —— **etag 与 last-modified 与 HIT 份完全相同**，两份各 8899 个 id，`only_hit` / `only_miss` 均为空集。连续第四轮正面证据，且本轮 etag 相等比前几轮更强（前几轮都变过）。**本轮 0 可报不是缓存假零。**
 
-**② `url` 分支能加 +39~53%，但近一半是桥的批量噪声。** 近 30 天增量 46 条里 Cross Chain Bridge 13 + Canonical Bridge 8 = **46%**；且 `10-07T13:38:45Z` 同一秒入库 22 条、15 条是跨链桥。要启用必须连桥类目子过滤一起提。
+### 今日 7 条（全 `chains=[]`，全记 `filtered`）
 
-**③ 10-30 的「三分之二」口径要更正。** 空 `chains` 趋势是真的（3d 64.9% / 7d 64.0% / 30d 61.3% / 180d 33.2%，单调），但其中 39.2% 带 `parent`、本来就会被吃掉。**真正只被空 `chains` 挡掉的真条目占漏斗输入 39–47%**（3d 46.7% / 30d 39.2%），不是三分之二。
+| id | 名称 | 类目 | 描述里的链 | 被挡原因 |
+|---|---|---|---|---|
+| 9294 | Highbar | Launchpad | Solana | 链白名单 |
+| 9295 | WenLong | **Interface** | Hyperliquid | category（唯一真该挡） |
+| 9296 | The Standard Reserve | Reserve Currency | **Robinhood Chain** | 链白名单 |
+| 9297 | Uxuy Perps V2 | Derivatives | — | parent#uxuy |
+| 9298 | Scrooge DEX Aggregator | DEX Aggregator | Robinhood | parent#scrooge |
+| 9299 | Scrooge Bridge Aggregator | Bridge Aggregator | Robinhood | parent#scrooge |
+| 9300 | Imperial | Derivatives | **Solana** | 链白名单 |
 
-### 结案两项
+### 判据级发现
 
-- **Canton 不接**（10-29 待办）：过滤后仅 5 条、**$13.7M**（$11.89B 里 $11.87B 是 Gate + Bitget 两个 CEX），近 30 天新登记 1 条。为 `Tradecraft`($1.73M) 付一次全量基线重做不划算。
-- **Flare 同样不接**：过滤后 26 条 $1.25B 看着大，但**近 30 天只登记 2 条**、近 90 天 5 条、近 180 天 7 条 —— ~1–2 条/月，撑不起基线重做。判据从「TVL 大不大」改成「注册速率够不够」。
+**① 推翻上轮结论：`description` 旁路并不优于 `url`。** 11-01 记的「+38% vs +39%、桥噪声 23% vs 46%」是把两个不同分母的结果并排写。同一份 payload、同一套正则、窗口对齐后重算：
 
-另记一条：**新 id 也可能是给老协议补登记** —— `Amahub Perps Aggregator`(9284) 全新 id，但 `listedAt` 早 28 天。作报告措辞时应按 `listedAt` 说话，不按 id。
+| 窗口 | 通过 | 空 `chains` 挡 | url 召回 | url 净 | desc 召回 | desc 净 | 并集净 |
+|---|---|---|---|---|---|---|---|
+| 7d | 8 | 15 | 11 | 11 | 10 | 10 | 15 |
+| 30d | 77 | 76 | **44** | 21 | **31** | 23 | **36** |
+| 90d | 256 | 139 | 73 | 48 | 56 | 47 | 78 |
+
+召回量 url 反而更高；去桥/Foundation 后两者打平。全量 773 条空 `chains` 里 url 命中 586 / desc 命中 190 / **交集 132** —— desc 独有仅 58 条。**两条旁路是同族的，不是替代关系，真增量在并集。**
+
+**② `url` 分支的 46% 桥噪声是一个同秒批污染的单点。** 30d url 分支 44 条里 22 条是桥，其中 **18 条全落在 `listedAt = 1791380325`（10-07T13:38:45Z）同一秒**（Squid / Layerswap / Relay / Snowbridge / Hyperbridge …）。剔除这一秒后 30d 空挡只剩 55 条：url 26（桥 4）、desc 28（桥 4）—— 几乎完全一致。10-31 与 11-01 两轮桥噪声读数差异由此可解释。
+
+**③ id 有整段永久空洞，`id` 是分配号不是登记号。** 本轮差集 9294–9300，而 **9290–9293 四个 id 从未出现在任何一轮 payload、也从未进 seen**。所以「id 连续无缺口」不能当求差校验条件，只能校验方向：差集元素 ≥ 历史最大 id 才是新登记。
+
+**④ 同秒去重可行且代价极低。** 全量 8899 条里只有 28 个 `listedAt` 秒含 ≥3 条，涉及 115 条（1.3%）。按「同秒 ≥3 条整批剔除」即可根除这类批量污染。
+
+### 给下轮的可执行方案
+
+旁路改为 `chains 为空 → (url 非空 OR description 命中白名单链)` 的并集 + 同秒批量去重，不要二选一。**但先接受上限：并集净后 30d 只多 36 个名字、90d 78 个 —— 是「每周多几条可看」的量级，不是能翻转漏斗的量级。** 若今日启用，会救回 Highbar / The Standard Reserve / Imperial 三条；WenLong 仍被 Interface 挡，Uxuy 与 Scrooge 两条仍被 parent 挡。
+
+未发送通知（可报 0 属结构性，按铁律静默）。
 
 ## Summary
 
-- **跑了** `python3 skills/defillama-radar/scan.py ""`：8888 全量 / 新增 8 / 可报 0，未触发 notify（零可报铁律）。
-- **额外取数** 3 次（常规 + cache-busted + 头文件比对），全部走匿名 public GET；无密钥调用。
-- **改动的文件**：`memory/logs/2026-10-31.md`（新建，第 5 轮日志）、`memory/topics/defillama-radar.md`（+5 节，timestamp 更新到 10-31T00:10Z）、`memory/MEMORY.md`（更新 defillama-radar 索引行，并把总量压回 8,107 字节 / 无 >300 字符行）。
-- **脚本产物**：`output/defillama/out.json` = `[]`、`audit.log` 已刷新；`report.md` **按铁律未覆写**，仍是 10-30 那期（mtime 00:01:06，早于本轮 scan 落盘）。
-- **未做**：没有改 `scan.py` 的 `CHAINS` 或过滤器 —— 按铁律「不改规则前先取证」，旁路方案需下轮再验一轮桥类目子过滤的成本。
-- **待办**：①空 `chains` 第三轮读数（用 39.2% 漏斗输入口径）；②查近 30 天「id 新但 `listedAt` 老」是否成批；③白名单下次复核先算注册速率再看 TVL。
-- **工作区**：`memory/` 的改动未提交，留给每轮的自动化 commit 流程；无 PR 需要开（纯数据更新，非代码变更）。
+- 跑了 `skills/defillama-radar/scan.py`（`dl-v1`，第 7 轮，2026-11-02）：全量 8899、新增 7、可报 0、`STATUS: DEFILLAMA_RADAR_OK`、`基线轮=False`、无 ⚠️。
+- 做了 cache-busted 复取（`HIT` vs `MISS`，etag 相同 `W/"6ae7cd62-905a80"`，两份 8899 个 id 逐条相同）→ 确认本轮 0 不是 CDN 假零。
+- **推翻 11-01 的「description 旁路优于 url」结论**：那是不同分母的假比较；真实结论是两条旁路同族、增量在并集（30d +36）。
+- 定位 `url` 分支 46% 桥噪声的来源：10-07T13:38:45Z 一个秒内的 18 条桥批量入库，非常态。
+- 发现 id 存在永久空洞（9290–9293），确立「id 是分配号，只校验方向不校验连续性」。
+- 文件改动：`memory/logs/2026-11-02.md`（新建）、`memory/topics/defillama-radar.md`（重写，推翻旁路结论 + 新增两节）、`memory/MEMORY.md`（就地改写该行，8,149 字节）、`memory/defillama-seen.json`（8900 条，脚本写）、`output/defillama/out.json` + `audit.log`（脚本产物）。未发通知、未重写 `report.md`。
+- 跟进：① `scan.py` 改并集旁路 + 同秒去重；② **仍未确认**「改过滤器不触发基线重做」的语义边界（旧 `filtered` 永不回退，8888 条 baseline/filtered 不会复活）—— 这条从 11-01 挂到现在，改代码前必须先定。

@@ -1,0 +1,345 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "🟡 HEARTBEAT · WATCH",
+        "description": "market-context 停更 3 天，两个 PR 卡住"
+      },
+      "children": [
+        "alert-top",
+        "sep-1",
+        "head-main",
+        "stat-grid",
+        "sep-2",
+        "head-p1",
+        "stack-pr21",
+        "stack-pr22",
+        "sep-3",
+        "head-cost",
+        "table-dates",
+        "sep-4",
+        "stack-bullets",
+        "sep-5",
+        "head-action",
+        "stack-action",
+        "sep-6",
+        "head-rest",
+        "text-rest",
+        "sep-7",
+        "text-source"
+      ]
+    },
+    "alert-top": {
+      "type": "Alert",
+      "props": {
+        "title": "⚠️ 🟡 HEARTBEAT WATCH",
+        "message": "market-context 停更 3 天，两个 PR 卡住",
+        "type": "warning"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "head-main": {
+      "type": "Heading",
+      "props": {
+        "text": "🟡 HEARTBEAT · WATCH",
+        "level": "h2"
+      }
+    },
+    "stat-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-21",
+        "stat-22",
+        "stat-stale"
+      ]
+    },
+    "stat-21": {
+      "type": "Stat",
+      "props": {
+        "label": "PR #21 停滞",
+        "value": "25.4h",
+        "delta": "超过 24h 线",
+        "trend": "down"
+      }
+    },
+    "stat-22": {
+      "type": "Stat",
+      "props": {
+        "label": "PR #22 停滞",
+        "value": "1.1h",
+        "delta": "未过 24h 线",
+        "trend": "neutral"
+      }
+    },
+    "stat-stale": {
+      "type": "Stat",
+      "props": {
+        "label": "market-context 停更",
+        "value": "3 天",
+        "delta": "main 停在 2026-10-30",
+        "trend": "down"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "head-p1": {
+      "type": "Heading",
+      "props": {
+        "text": "P1 · PR #21 停滞 25.4h，且两个 defi-overview PR 都卡在 CONFLICTING",
+        "level": "h3"
+      }
+    },
+    "stack-pr21": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-21",
+        "text-21-title",
+        "text-21-detail"
+      ]
+    },
+    "badge-21": {
+      "type": "Badge",
+      "props": {
+        "text": "CONFLICTING",
+        "variant": "destructive"
+      }
+    },
+    "text-21-title": {
+      "type": "Text",
+      "props": {
+        "text": "#21 chore(defi-overview): 2026-10-31 宏观快照",
+        "variant": "lead"
+      }
+    },
+    "text-21-detail": {
+      "type": "Text",
+      "props": {
+        "text": "建于 2026-10-31 23:13Z，25.4h，GitHub 判 CONFLICTING。真冲突文件 = memory/topics/lessons.md（本地 git merge 复现：CONFLICT (content)）。",
+        "variant": "body"
+      }
+    },
+    "stack-pr22": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-22",
+        "text-22-title",
+        "text-22-detail"
+      ]
+    },
+    "badge-22": {
+      "type": "Badge",
+      "props": {
+        "text": "CONFLICTING（本地无冲突）",
+        "variant": "outline"
+      }
+    },
+    "text-22-title": {
+      "type": "Text",
+      "props": {
+        "text": "#22 chore(defi-overview): 2026-11-01 宏观快照",
+        "variant": "lead"
+      }
+    },
+    "text-22-detail": {
+      "type": "Text",
+      "props": {
+        "text": "建于 2026-11-01 23:24Z，1.1h（未过 24h 线）。GitHub 也报 CONFLICTING，但本地全量历史下 git merge 干净通过，无冲突。两者不一致，暂按 GitHub 为准但仍不计 finding。",
+        "variant": "body"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "head-cost": {
+      "type": "Heading",
+      "props": {
+        "text": "真正的代价：market-context.md 在 main 上已停更 3 天",
+        "level": "h3"
+      }
+    },
+    "table-dates": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "位置",
+          "快照日期"
+        ],
+        "rows": [
+          [
+            "main（线上）",
+            "2026-10-30"
+          ],
+          [
+            "PR #21",
+            "2026-10-31"
+          ],
+          [
+            "PR #22",
+            "2026-11-01"
+          ]
+        ]
+      }
+    },
+    "sep-4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stack-bullets": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "text-b1",
+        "text-b2",
+        "text-b3",
+        "text-b4"
+      ]
+    },
+    "text-b1": {
+      "type": "Text",
+      "props": {
+        "text": "main 上最后一次改动是 064eb6c（2026-10-30 23:15Z）。",
+        "variant": "body"
+      }
+    },
+    "text-b2": {
+      "type": "Text",
+      "props": {
+        "text": "同期 memory/logs/ 与 skill-health/ 的自动提交正常落在 main（如 431c8e4）—— 只有 market-context.md 被 agent 提交到 feature 分支。",
+        "variant": "body"
+      }
+    },
+    "text-b3": {
+      "type": "Text",
+      "props": {
+        "text": "机制原因：aeon.yml 里 auto-merge 是 enabled: false，没有任何东西会合这些 PR。所以不是「等一等就会好」，是结构性不合并。",
+        "variant": "body"
+      }
+    },
+    "text-b4": {
+      "type": "Text",
+      "props": {
+        "text": "下游消费者 narrative-convergence、idea-pipeline 当前都 enabled: false，暂时无人读这份旧数据 —— 所以没到 🔴。",
+        "variant": "body"
+      }
+    },
+    "sep-5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "head-action": {
+      "type": "Heading",
+      "props": {
+        "text": "建议（二选一，需你拍板）",
+        "level": "h3"
+      }
+    },
+    "stack-action": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-opt1",
+        "text-opt1",
+        "badge-opt2",
+        "text-opt2"
+      ]
+    },
+    "badge-opt1": {
+      "type": "Badge",
+      "props": {
+        "text": "选项 1",
+        "variant": "secondary"
+      }
+    },
+    "text-opt1": {
+      "type": "Text",
+      "props": {
+        "text": "1. 手动合 #22（本地可干净合并，合完 main 直接回到 11-01）；#21 因 lessons.md 冲突可关掉——main 上已有同内容的更好版本（「双向都有」那条已在 main）。",
+        "variant": "body"
+      }
+    },
+    "badge-opt2": {
+      "type": "Badge",
+      "props": {
+        "text": "选项 2",
+        "variant": "secondary"
+      }
+    },
+    "text-opt2": {
+      "type": "Text",
+      "props": {
+        "text": "2. 或开 auto-merge 让这类日常快照 PR 自愈，但需先确认它不会顺手合掉别的分支。",
+        "variant": "body"
+      }
+    },
+    "sep-6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "head-rest": {
+      "type": "Heading",
+      "props": {
+        "text": "其余无异常",
+        "level": "h3"
+      }
+    },
+    "text-rest": {
+      "type": "Text",
+      "props": {
+        "text": "其余无异常：8 个 enabled 带 cron 的 skill 全部在调度区间内成功，无 failed / stuck / consecutive_failures ≥ 3 / chronic。8 个 open issue 仍是无 label 的 scorer 健康线程，无 urgent。",
+        "variant": "body"
+      }
+    },
+    "sep-7": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "text-source": {
+      "type": "Text",
+      "props": {
+        "text": "来源：memory/cron-state.json · aeon.yml · gh pr list · git merge-tree / git merge 实测 · memory/topics/market-context.md",
+        "variant": "caption"
+      }
+    }
+  }
+}

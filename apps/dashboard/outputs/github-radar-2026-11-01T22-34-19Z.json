@@ -1,0 +1,405 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 30 天 · 报告级 12 · 近 7 天活跃 12"
+      },
+      "children": [
+        "stats",
+        "sep1",
+        "repos"
+      ]
+    },
+    "stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat_window",
+        "stat_repos",
+        "stat_active"
+      ]
+    },
+    "stat_window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天",
+        "trend": "neutral"
+      }
+    },
+    "stat_repos": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "12",
+        "trend": "neutral"
+      }
+    },
+    "stat_active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "12",
+        "trend": "up"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repos": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "repo1",
+        "repo2",
+        "repo3",
+        "repo4",
+        "repo5",
+        "repo6",
+        "repo7",
+        "repo8",
+        "repo9",
+        "repo10",
+        "repo11",
+        "repo12"
+      ]
+    },
+    "repo1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo1_link",
+        "repo1_desc"
+      ]
+    },
+    "repo1_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "F1nnSBK/beeJEPA-metaai-hackathon",
+        "href": "https://github.com/F1nnSBK/beeJEPA-metaai-hackathon",
+        "source": "词 `jepa`",
+        "score": "★0 · 30天=36 · 7天=36"
+      }
+    },
+    "repo1_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Autonomous hive entrance monitoring and active perception edge system combining V-JEPA 2.1 latent su",
+        "variant": "caption"
+      }
+    },
+    "repo2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo2_link",
+        "repo2_desc"
+      ]
+    },
+    "repo2_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Anya-Louni/Sim-to-Hand",
+        "href": "https://github.com/Anya-Louni/Sim-to-Hand",
+        "source": "词 `robot manipulation`",
+        "score": "★0 · 30天=29 · 7天=29"
+      }
+    },
+    "repo2_desc": {
+      "type": "Text",
+      "props": {
+        "text": "LLM-planned robot manipulation in a browser MuJoCo sim, with sim-state and vision verification and r",
+        "variant": "caption"
+      }
+    },
+    "repo3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo3_link",
+        "repo3_desc"
+      ]
+    },
+    "repo3_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "hoki621/lifth-pai",
+        "href": "https://github.com/hoki621/lifth-pai",
+        "source": "词 `robot manipulation`",
+        "score": "★0 · 30天=23 · 7天=23"
+      }
+    },
+    "repo3_desc": {
+      "type": "Text",
+      "props": {
+        "text": "VLA-based robot manipulation with LIFTH, ROS 2, Gazebo, Pi0.5, and SmolVLA.",
+        "variant": "caption"
+      }
+    },
+    "repo4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo4_link",
+        "repo4_desc"
+      ]
+    },
+    "repo4_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "huseyincavusbi/lunar-trn",
+        "href": "https://github.com/huseyincavusbi/lunar-trn",
+        "source": "词 `sim-to-real`",
+        "score": "★0 · 30天=19 · 7天=19"
+      }
+    },
+    "repo4_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Crater-based terrain-relative navigation (TRN): detection, ellipse fitting, sim-to-real transfer, vi",
+        "variant": "caption"
+      }
+    },
+    "repo5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo5_link",
+        "repo5_desc"
+      ]
+    },
+    "repo5_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "yaskovdev/ijepa-decoder",
+        "href": "https://github.com/yaskovdev/ijepa-decoder",
+        "source": "词 `jepa`",
+        "score": "★0 · 30天=17 · 7天=17"
+      }
+    },
+    "repo5_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Unofficial native I-JEPA predictor-to-RGB decoder: pretrained weights, Apple Silicon inference, repr",
+        "variant": "caption"
+      }
+    },
+    "repo6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo6_link",
+        "repo6_desc"
+      ]
+    },
+    "repo6_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "twoye0/jepa-mean-collapse",
+        "href": "https://github.com/twoye0/jepa-mean-collapse",
+        "source": "词 `jepa`",
+        "score": "★0 · 30天=9 · 7天=9"
+      }
+    },
+    "repo6_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Investigating mean prediction and representation collapse in Joint-Embedding Predictive Architecture",
+        "variant": "caption"
+      }
+    },
+    "repo7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo7_link",
+        "repo7_desc"
+      ]
+    },
+    "repo7_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Nafis878/CT_PhysProb_JEPA",
+        "href": "https://github.com/Nafis878/CT_PhysProb_JEPA",
+        "source": "词 `jepa`",
+        "score": "★0 · 30天=9 · 7天=9"
+      }
+    },
+    "repo7_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Blackout-Robust Continuous-Time RUL Prediction Pre-Registration and Replication Archive",
+        "variant": "caption"
+      }
+    },
+    "repo8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo8_link",
+        "repo8_desc"
+      ]
+    },
+    "repo8_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "das-boot65/robolink",
+        "href": "https://github.com/das-boot65/robolink",
+        "source": "词 `teleoperation`",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "repo8_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Local robot teleoperation and fault-recovery simulator with a responsive operations console.",
+        "variant": "caption"
+      }
+    },
+    "repo9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo9_link",
+        "repo9_desc"
+      ]
+    },
+    "repo9_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Reaper-ai/X-model-from-scratch",
+        "href": "https://github.com/Reaper-ai/X-model-from-scratch",
+        "source": "词 `world model`",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "repo9_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTor",
+        "variant": "caption"
+      }
+    },
+    "repo10": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo10_link",
+        "repo10_desc"
+      ]
+    },
+    "repo10_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "AspireToCode15/wildcat-label-desk",
+        "href": "https://github.com/AspireToCode15/wildcat-label-desk",
+        "source": "词 `robot manipulation`",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "repo10_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Wildcat Label Desk - Automatic data annotator web app for robot manipulation guidelines",
+        "variant": "caption"
+      }
+    },
+    "repo11": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo11_link",
+        "repo11_desc"
+      ]
+    },
+    "repo11_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "danilorar/acwm",
+        "href": "https://github.com/danilorar/acwm",
+        "source": "词 `world model`",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "repo11_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Action-conditioned world model",
+        "variant": "caption"
+      }
+    },
+    "repo12": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo12_link",
+        "repo12_desc"
+      ]
+    },
+    "repo12_link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "dillonfaulk/H1V3-RobotPolicies",
+        "href": "https://github.com/dillonfaulk/H1V3-RobotPolicies",
+        "source": "词 `sim-to-real`",
+        "score": "★4 · 30天=19 · 7天=3"
+      }
+    },
+    "repo12_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Reinforcement learning policies trained in NVIDIA Isaac Lab & MuJoCo Warp for robots: asimov-1 (huma",
+        "variant": "caption"
+      }
+    }
+  }
+}

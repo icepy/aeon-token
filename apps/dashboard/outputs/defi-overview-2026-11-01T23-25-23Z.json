@@ -1,0 +1,170 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "defi-overview — 更正（2026-11-01 快照）",
+        "description": "稳定币流向快照更正与结论"
+      },
+      "children": [
+        "h1",
+        "correction-note",
+        "sep1",
+        "h2-numbers",
+        "stats-grid",
+        "basis-text",
+        "sep2",
+        "h2-conclusion",
+        "breadth-progress",
+        "badges",
+        "conclusion-text"
+      ]
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "更正 — 2026-11-01 快照",
+        "level": "h1"
+      }
+    },
+    "correction-note": {
+      "type": "Alert",
+      "props": {
+        "title": "上一条表述更正",
+        "message": "上一条里「稳定币流出减速到六周最轻」不成立 —— 我只有 10-29 ~ 11-01 三日数据，改口为「三日里最轻」。",
+        "type": "warning"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h2-numbers": {
+      "type": "Heading",
+      "props": {
+        "text": "数值（总数不变：$298.94B）",
+        "level": "h3"
+      }
+    },
+    "stats-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat-total",
+        "stat-usdc",
+        "stat-prevday",
+        "stat-fileline"
+      ]
+    },
+    "stat-total": {
+      "type": "Stat",
+      "props": {
+        "label": "稳定币总数",
+        "value": "$298.94B",
+        "trend": "neutral"
+      }
+    },
+    "stat-usdc": {
+      "type": "Stat",
+      "props": {
+        "label": "USDC 变动（打断两日流入）",
+        "value": "−$246M",
+        "delta": "−$246M",
+        "trend": "down"
+      }
+    },
+    "stat-prevday": {
+      "type": "Stat",
+      "props": {
+        "label": "按 API prevDay 口径",
+        "value": "−$0.92B",
+        "delta": "−0.31%",
+        "trend": "down"
+      }
+    },
+    "stat-fileline": {
+      "type": "Stat",
+      "props": {
+        "label": "按昨日文件 $299.59B 水平线",
+        "value": "−$0.65B",
+        "delta": "−0.22%",
+        "trend": "down"
+      }
+    },
+    "basis-text": {
+      "type": "Text",
+      "props": {
+        "text": "差在基数（滚动 24h vs 昨日收盘），两个都对。USDC −$246M 打断两日流入这条不变。",
+        "variant": "muted"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h2-conclusion": {
+      "type": "Heading",
+      "props": {
+        "text": "结论（不变）",
+        "level": "h3"
+      }
+    },
+    "breadth-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 6,
+        "max": 20,
+        "label": "广度 6/20 塌陷"
+      }
+    },
+    "badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-chop",
+        "badge-breadth",
+        "badge-no-trigger"
+      ]
+    },
+    "badge-chop": {
+      "type": "Badge",
+      "props": {
+        "text": "chop",
+        "variant": "secondary"
+      }
+    },
+    "badge-breadth": {
+      "type": "Badge",
+      "props": {
+        "text": "广度 6/20 塌陷",
+        "variant": "destructive"
+      }
+    },
+    "badge-no-trigger": {
+      "type": "Badge",
+      "props": {
+        "text": "无任何 STRATEGY 阈值触发",
+        "variant": "outline"
+      }
+    },
+    "conclusion-text": {
+      "type": "Text",
+      "props": {
+        "text": "chop，广度 6/20 塌陷，无任何 STRATEGY 阈值触发。",
+        "variant": "body"
+      }
+    }
+  }
+}
