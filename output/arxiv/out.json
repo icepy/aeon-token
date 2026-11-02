@@ -1,1 +1,15 @@
-[]
+[
+ {
+  "id": "2610.41336",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "HandMimicX",
+  "title": "HandMimicX: Learning Human-Like Dexterous Manipulation via an Object-Centric Policy from Egocentric Videos",
+  "published": "2026-10-30",
+  "link": "https://arxiv.org/abs/2610.41336",
+  "carrier": "robotic"
+ }
+]

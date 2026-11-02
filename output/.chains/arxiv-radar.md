@@ -1,68 +1,12 @@
-## arxiv-radar · 第 33 轮
+**arxiv-radar** · 窗口 30 天 · 原始 82 · 幸存 1
 
-**VERSION** vM · **窗口** 30 天 · **词** 26 · **非 dry-run** · `STATUS: ARXIV_RADAR_OK`（144s，无降级、无 429、无熔断）
+**第一视角感知 / 灵巧操作**
+- `HandMimicX` — 用第一视角视频学人形灵巧操作，object-centric 策略 · [2610.41336](https://arxiv.org/abs/2610.41336)
 
-### 漏斗
+---
 
-原始 **83** → 幸存 **0**
+索引最新收录 2026-10-30（周五，距今 3 天）—— 节律正常。
 
-| 丢弃项 | 条数 |
-|---|---|
-| seen（记忆） | 83 |
-| seen（本轮重复） | 0 |
-| EXCL | 0 |
-| carrier | 0 |
-| 查询失败 | 0 |
+窗口内零命中 7 词跨窗复查：`verifiable inference`/`verifiable computation`/`light client`/`restaking`/`MEV`/`RWA`/`robot manipulation data` 在 60–90d 均有命中 → **窗口太短，不是废词**。
 
-### 六分类（单位 = 词）
-
-未测到（试过失败）**0** · 未尝试（熔断跳过）**0** · 窗口内零命中 **7** · 低频探针 **0** · 全已见（饱和）**19** · 有新增 **0**
-
-与第 32 轮逐格相同。
-
-### 幸存者
-
-无。
-
-### 跨窗结论
-
-7 个零命中词全部「窗口太短，别删」，且**逐值与第 30/31/32 轮完全相同**（连续四轮同一档）：
-
-- `verifiable inference` 0 / 0 / 1
-- `verifiable computation` 0 / 1 / 1
-- `light client` 0 / 1 / 1
-- `restaking` 0 / 0 / 1
-- `cat:cs.CR AND ti:"MEV"` 0 / 3 / 5
-- `RWA` 0 / 1 / 2
-- `robot manipulation data` 0 / 2 / 2
-
-（列序：本轮窗口 / 60d / 90d）判词三级仍卡在第 ① 步「换写法」之前。
-
-### 判据级发现
-
-1. **漏斗现在是 100% seen 单通道。** 前五轮恒定 1 条被 EXCL 挡的 `From bits to atoms`（2026-10-02 survey）今天恰好滚出 30d 边界，EXCL 归零。83 条原始里 **83 条全被 seen 吃**，carrier 连续第十轮 0。含义：本通道产出能力完全等于「26 词在窗口内是否产生 unseen 命中」，**改进只能走词表召回，过滤层已无调节空间**。
-
-2. **`consensus` 加 `abs:"blockchain"` 实测不合格，不采用。** 上轮待办已关闭：7d total=0 · 30d total=2（**2/2 已见**）· 60d total=6（**5/6 已见 = 83%**，判据要求 <1/3）· 90d total=8（7/8 已见）。领域命中 6/6、前 3 条标题全是真区块链共识，**精度没问题，问题是拿不到新条目 —— 它是现有 `consensus AND cat:cs.DC` 的子集**。加收窄词只牺牲召回去不掉污染。`consensus` 保留不动（raw=7 饱和、maxpub=10-29 存活）。
-
-3. **索引真滞后首次成立。** 窗口内最新收录仍为 **2026-10-29（周四）**，连续第二轮不动 —— 且缺的正是**周五 10-30 的正常公告批**。上一轮预设的判据本轮触发。待 11-02/11-03 批确认。
-
-4. **单侧读数（每轮必记）：加密词 0 / 机器人词 0。** 连续第二轮双零。零幸存仍归因 seen 饱和，19 个饱和词的最新发布全在 10-06~10-29，**两个方向流量都没消失**。
-
-### 本轮动作
-
-无新增词 · 无删词 · 无改 carrier · 幸存 0 → **不写 labels、不发 notify**。
-
-### 待办
-
-1. 若仍要压 `consensus` 污染，下一候选是 `Byzantine` / `validator`（真机制词，非收窄词）—— 先 `check:` 量 60d 再改。
-2. 14 词未配 carrier 表（`CARRIER_BY_TERM` 代码改动，需 PR）—— 连续三轮未动。
-3. 索引滞后待 11-02/11-03 批确认；若确认写入 lessons。
-4. 本通道已连续两轮六分类逐格相同，若第三轮仍如此，考虑主动加一个新方向词打破饱和。
-
-## Summary
-
-- 执行 `skills/arxiv-radar/scan.py ""`，30d / 26 词，原始 83 → 幸存 0，`ARXIV_RADAR_OK`。
-- 完成上轮待办：`check:ti:"consensus" AND abs:"blockchain"` 实测 60d 已见 5/6（83%），判定不合格并弃用，理由已记录。
-- 幸存 0，按铁律不写 `memory/arxiv-labels.tsv`、不发 `./notify`。
-- 修改文件：`memory/logs/2026-11-01.md`（追加 `### arxiv-radar（第 33 轮）` 一节）、`memory/MEMORY.md`（arxiv-radar 索引行更新，现 8,188 字节 / 51 行 / 无超长行，余 4 字节，下次 flush 需先压）。
-- 后续动作：`Byzantine`/`validator` 写法待量；14 词 carrier 表配置待 PR；索引滞后待 11-02/11-03 确认。
+饱和 18 词 raw 最新发布日期全部落在 10-06 ~ 10-29，话题都活着，只是被 seen 吃掉。
