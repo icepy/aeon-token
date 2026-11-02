@@ -1,1 +1,50 @@
-{"baseline_sha": "6eddd851c65286db36b0524298dec3c16cd401a1", "upstream": "aeonfun/aeon", "last_run": "2026-10-26T11:02:46Z", "last_pr": null, "pending_conflicts": []}
+{
+  "baseline_sha": "ec7a50c7f73ef013905526393847a1ace55de01a",
+  "upstream": "aeonfun/aeon",
+  "last_run": "2026-11-02",
+  "last_pr": "https://github.com/icepy/aeon-token/pull/23",
+  "pending_conflicts": [
+    {
+      "path": ".github/README.md",
+      "reason": "operator-customized",
+      "upstream_commits": [
+        "933fbbd"
+      ]
+    },
+    {
+      "path": "docs/aeon-setup.md",
+      "reason": "operator-customized",
+      "upstream_commits": [
+        "933fbbd",
+        "82c874f"
+      ]
+    },
+    {
+      "path": "docs/assets/hero-animated.svg",
+      "reason": "operator-customized",
+      "upstream_commits": [
+        "933fbbd"
+      ]
+    },
+    {
+      "path": "docs/examples/README.md",
+      "reason": "operator-customized",
+      "upstream_commits": [
+        "933fbbd"
+      ]
+    },
+    {
+      "path": "docs/skill-packs.md",
+      "reason": "operator-customized",
+      "upstream_commits": [
+        "933fbbd"
+      ]
+    }
+  ],
+  "applied": {
+    "added": 0,
+    "updated": 0,
+    "merged": 4,
+    "deleted": 0
+  }
+}
