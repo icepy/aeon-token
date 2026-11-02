@@ -1,0 +1,234 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "aeon-update",
+        "description": "24 commits → PR #23"
+      },
+      "children": [
+        "main"
+      ]
+    },
+    "main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h1",
+        "sub",
+        "stats",
+        "badges",
+        "sep1",
+        "h2",
+        "p1",
+        "files",
+        "h3",
+        "alert1",
+        "p2",
+        "sep2",
+        "h4",
+        "link1",
+        "link2"
+      ]
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "aeon-update — 2026-11-02",
+        "level": "h2"
+      }
+    },
+    "sub": {
+      "type": "Text",
+      "props": {
+        "text": "已同步 24 个上游提交 → PR #23",
+        "variant": "lead"
+      }
+    },
+    "stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat1",
+        "stat2",
+        "stat3"
+      ]
+    },
+    "stat1": {
+      "type": "Stat",
+      "props": {
+        "label": "上游提交",
+        "value": "24",
+        "delta": "+24",
+        "trend": "up"
+      }
+    },
+    "stat2": {
+      "type": "Stat",
+      "props": {
+        "label": "目标 PR",
+        "value": "PR #23",
+        "trend": "neutral"
+      }
+    },
+    "stat3": {
+      "type": "Stat",
+      "props": {
+        "label": "提交区间",
+        "value": "6eddd85..ec7a50c",
+        "trend": "neutral"
+      }
+    },
+    "badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "b1": {
+      "type": "Badge",
+      "props": {
+        "text": "仅推进基线水位线",
+        "variant": "secondary"
+      }
+    },
+    "b2": {
+      "type": "Badge",
+      "props": {
+        "text": "无实质代码变更",
+        "variant": "outline"
+      }
+    },
+    "b3": {
+      "type": "Badge",
+      "props": {
+        "text": "1 项待手工摘录",
+        "variant": "default"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h2": {
+      "type": "Heading",
+      "props": {
+        "text": "上游变更",
+        "level": "h3"
+      }
+    },
+    "p1": {
+      "type": "Text",
+      "props": {
+        "text": "上游 aeonfun/aeon 前进 24 个提交（6eddd85..ec7a50c，10-26 → 11-01）。本 PR 只推进基线水位线，没有实质代码变更 —— 4 个可自动合并的文件合并结果与 main 逐字节相同，这些改动本仓早已吸收。",
+        "variant": "body"
+      }
+    },
+    "files": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ]
+    },
+    "f1": {
+      "type": "Badge",
+      "props": {
+        "text": "aeon.yml",
+        "variant": "outline"
+      }
+    },
+    "f2": {
+      "type": "Badge",
+      "props": {
+        "text": "messages.yml",
+        "variant": "outline"
+      }
+    },
+    "f3": {
+      "type": "Badge",
+      "props": {
+        "text": ".gitignore",
+        "variant": "outline"
+      }
+    },
+    "f4": {
+      "type": "Badge",
+      "props": {
+        "text": "skill-icons.data.ts",
+        "variant": "outline"
+      }
+    },
+    "h3": {
+      "type": "Heading",
+      "props": {
+        "text": "冲突处理",
+        "level": "h3"
+      }
+    },
+    "alert1": {
+      "type": "Alert",
+      "props": {
+        "title": "5 个「冲突」同源，不用逐个处理",
+        "message": "本仓文档写的是 91 skills（fork-only skill 撑起的真值），上游这批提交把 86 改成 87。保持 91 即可。",
+        "type": "info"
+      }
+    },
+    "p2": {
+      "type": "Text",
+      "props": {
+        "text": "唯一值得手工摘：docs/aeon-setup.md 新增的 aeon-connect MCP（0.2.0）与 get-started 插件段落，本仓还没有。",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h4": {
+      "type": "Heading",
+      "props": {
+        "text": "Pull Request",
+        "level": "h3"
+      }
+    },
+    "link1": {
+      "type": "Link",
+      "props": {
+        "label": "PR：https://github.com/icepy/aeon-token/pull/23",
+        "href": "https://github.com/icepy/aeon-token/pull/23"
+      }
+    },
+    "link2": {
+      "type": "Link",
+      "props": {
+        "label": "🔗 https://github.com/icepy/aeon-token/pull/23",
+        "href": "https://github.com/icepy/aeon-token/pull/23"
+      }
+    }
+  }
+}
