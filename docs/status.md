@@ -6,8 +6,8 @@ permalink: /status/
 
 # Agent Status
 
-**Overall:** 🟢 OK
-**Updated:** 2026-11-01 00:32 UTC
+**Overall:** 🟡 WATCH
+**Updated:** 2026-11-02 00:39 UTC
 **Open issues:** 0 filed in tracker (8 unlabelled machine health threads on GitHub)
 **Next scheduled run:** narrative-brief at 10:00 UTC
 
@@ -21,13 +21,13 @@ _No recent token data (latest report 2026-10-24)._
 
 | Skill | Last run | Status | Success rate | Consecutive failures |
 |-------|----------|--------|-------------:|---------------------:|
-| defillama-radar | 2026-11-01 00:04 UTC | ✅ success | 100% | 0 |
-| defi-overview | 2026-10-31 23:14 UTC | ✅ success | 69% | 0 |
-| github-radar | 2026-10-31 22:34 UTC | ✅ success | 84% | 0 |
-| arxiv-radar | 2026-10-31 22:04 UTC | ✅ success | 85% | 0 |
-| memory-flush | 2026-10-31 18:03 UTC | ✅ success | 75% | 0 |
-| narrative-brief | 2026-10-31 10:01 UTC | ✅ success | 100% | 0 |
-| heartbeat | 2026-10-31 00:32 UTC | ✅ success | 88% | 0 |
+| defillama-radar | 2026-11-02 00:06 UTC | ✅ success | 100% | 0 |
+| defi-overview | 2026-11-01 23:25 UTC | ✅ success | 71% | 0 |
+| github-radar | 2026-11-01 22:34 UTC | ✅ success | 84% | 0 |
+| arxiv-radar | 2026-11-01 22:05 UTC | ✅ success | 86% | 0 |
+| memory-flush | 2026-11-01 18:09 UTC | ✅ success | 76% | 0 |
+| narrative-brief | 2026-11-01 10:01 UTC | ✅ success | 100% | 0 |
+| heartbeat | 2026-11-01 00:32 UTC | ✅ success | 89% | 0 |
 | aeon-update | 2026-10-26 11:03 UTC | ✅ success | 100% | 0 |
 | investigation-report | — | not yet run | — | — |
 | tx-explain | — | not yet run | — | — |
