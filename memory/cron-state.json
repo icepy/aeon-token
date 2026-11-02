@@ -63,8 +63,8 @@
     "last_error": "hivemindos: Failed to authenticate. API Error: 403 All target providers failed."
   },
   "defi-overview": {
-    "last_dispatch": "2026-11-02T23:00:46Z",
-    "last_status": "failed",
+    "last_dispatch": "2026-11-02T23:30:46Z",
+    "last_status": "dispatched",
     "last_success": "2026-11-01T23:25:35Z",
     "total_runs": 15,
     "total_successes": 10,
