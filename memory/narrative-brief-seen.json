@@ -17,6 +17,15 @@
       "date": "29/10/2026",
       "notified_at": "2026-10-29T02:46:20Z"
     },
-    {"sha256": "466aeca7ee71262c7f87c619719fd661b3cfa6e696eab8dd8b296f3f4b663d38", "date": "29/10/2026", "notified_at": "2026-10-29T02:10:00Z"}
+    {
+      "sha256": "466aeca7ee71262c7f87c619719fd661b3cfa6e696eab8dd8b296f3f4b663d38",
+      "date": "29/10/2026",
+      "notified_at": "2026-10-29T02:10:00Z"
+    },
+    {
+      "sha256": "f193ae98882d062375d5f0e7aed5bcbc7a2a00b61dbd8bf20543faf29c38f703",
+      "date": "02/11/2026",
+      "notified_at": "2026-11-02T10:01:14Z"
+    }
   ]
 }
