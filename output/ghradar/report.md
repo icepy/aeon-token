@@ -1,11 +1,9 @@
-**github-radar** · 窗口 30 天 · 报告级 9 · 近 7 天活跃 9
+**github-radar** · 窗口 7 天 · 报告级 7 · 近 7 天活跃 7
 
-- [trungdangtapcode/Embodied-Scout-PuppyPi](https://github.com/trungdangtapcode/Embodied-Scout-PuppyPi) ★0 · 30天=71 · 7天=71 · 词 `teleoperation` · Research platform for PuppyPi: visual perception, object tracking, recorded visual memory, and mobil
-- [ravikola02/egoumi](https://github.com/ravikola02/egoumi) ★1 · 30天=28 · 7天=28 · 词 `egocentric` · UMI-style pinch gripper tracked with ArUco markers from an egocentric head camera; capture to LeRobo
-- [Physical-Super-Intelligence/PLUMB_Bench](https://github.com/Physical-Super-Intelligence/PLUMB_Bench) ★0 · 30天=13 · 7天=12 · 词 `robot manipulation` · PLUMB-Bench: A Physically Verified Benchmark for Precise, Generalizable Robot Manipulation
-- [andrewkwizera/Verlet-Robotics-ROS](https://github.com/andrewkwizera/Verlet-Robotics-ROS) ★0 · 30天=10 · 7天=10 · 词 `teleoperation` · For building Verlet Robotics Robot Operating System (ROS). Done this while working on the Low latenc
-- [ChoujiajunStats/Pelagos](https://github.com/ChoujiajunStats/Pelagos) ★0 · 30天=9 · 7天=9 · 词 `jepa` · Underwater cave exploration with Stonefish, OKVIS2, Wavemap, NBVPlanner and JEPA-MPPI.
-- [sdua078/TeleoPro](https://github.com/sdua078/TeleoPro) ★106 · 30天=7 · 7天=5 · 词 `teleoperation` · Teleoperation Like a Pro: any input device, any robot arm
-- [TheLiaoGroup/Recording-policies-confound-prediction-gains-from-exploration-in-reaction-world-models](https://github.com/TheLiaoGroup/Recording-policies-confound-prediction-gains-from-exploration-in-reaction-world-models) ★0 · 30天=5 · 7天=5 · 词 `world model` · Data and code for Recording policies confound prediction gains from exploration in reaction world mo
-- [LeoLi2526/HMotionGPT_project](https://github.com/LeoLi2526/HMotionGPT_project) ★0 · 30天=5 · 7天=5 · 词 `egocentric` · Ring, forearm EMG, and egocentric video data platform for robot VLA research
-- [AlexanderWegenerRobotics/haptic-glove](https://github.com/AlexanderWegenerRobotics/haptic-glove) ★0 · 30天=17 · 7天=4 · 词 `teleoperation` · Force-feedback haptic glove for dexterous teleoperation: ESP32-S3 firmware with current-mode torque 
+- [OJ102/sim2real-vla](https://github.com/OJ102/sim2real-vla) ★0 · 30天=70 · 7天=70 · 词 `sim2real` · Closed-loop VLA post-training: domain-randomized MuJoCo sim, FSDP2/ZeRO-3 training, GRPO-style RL, l
+- [Yukikaze2233/supermimic_rl](https://github.com/Yukikaze2233/supermimic_rl) ★0 · 30天=35 · 7天=35 · 词 `world model` · PPO and differentiable world-model learning for a closed-chain wheeled-legged robot
+- [Benjamindaoson/WorldPolicy](https://github.com/Benjamindaoson/WorldPolicy) ★0 · 30天=28 · 7天=28 · 词 `world model` · World-Model-Guided Robot Learning 世界模型引导的机器人策略学习与泛化 ACT · Diffusion Policy · SmolVLA · π₀.₅ · Model-
+- [ICHR-BME/SABER](https://github.com/ICHR-BME/SABER) ★0 · 30天=14 · 7天=14 · 词 `vision language action` · Open vision-language-action (VLA) models let robots follow natural-language commands, but they are t
+- [danitylyc/vla-lang-push](https://github.com/danitylyc/vla-lang-push) ★0 · 30天=13 · 7天=13 · 词 `vision language action` · Tiny end-to-end VLA (vision-language-action) trained from scratch: Chinese instruction + camera -> p
+- [SILVIO-ZHENG/wave0-world-model-expert](https://github.com/SILVIO-ZHENG/wave0-world-model-expert) ★0 · 30天=9 · 7天=9 · 词 `world model` · Modular WAVE-0 / PI0.5: world-model-conditioned action experts, VLM KV attention, and detailed Chine
+- [globeenmain/teleop-qc](https://github.com/globeenmain/teleop-qc) ★0 · 30天=7 · 7天=7 · 词 `teleoperation` · Quality control for robot teleoperation data: signal checks and calibrated VLM judges on DROID, stre

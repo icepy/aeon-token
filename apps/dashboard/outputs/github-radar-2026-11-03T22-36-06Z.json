@@ -1,0 +1,321 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 7 · 近 7 天活跃 7"
+      },
+      "children": [
+        "stats",
+        "sep1",
+        "list"
+      ]
+    },
+    "stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "s-window",
+        "s-reported",
+        "s-active"
+      ]
+    },
+    "s-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "7 天",
+        "trend": "neutral"
+      }
+    },
+    "s-reported": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "7",
+        "trend": "neutral"
+      }
+    },
+    "s-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "7",
+        "trend": "neutral"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7"
+      ]
+    },
+    "r1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r1-link",
+        "r1-desc",
+        "r1-badge"
+      ]
+    },
+    "r1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "OJ102/sim2real-vla",
+        "href": "https://github.com/OJ102/sim2real-vla",
+        "source": "GitHub · ★0 · 30天=70 · 7天=70",
+        "score": "30天=70 · 7天=70"
+      }
+    },
+    "r1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Closed-loop VLA post-training: domain-randomized MuJoCo sim, FSDP2/ZeRO-3 training, GRPO-style RL, l",
+        "variant": "muted"
+      }
+    },
+    "r1-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "sim2real",
+        "variant": "secondary"
+      }
+    },
+    "r2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r2-link",
+        "r2-desc",
+        "r2-badge"
+      ]
+    },
+    "r2-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Yukikaze2233/supermimic_rl",
+        "href": "https://github.com/Yukikaze2233/supermimic_rl",
+        "source": "GitHub · ★0 · 30天=35 · 7天=35",
+        "score": "30天=35 · 7天=35"
+      }
+    },
+    "r2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "PPO and differentiable world-model learning for a closed-chain wheeled-legged robot",
+        "variant": "muted"
+      }
+    },
+    "r2-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "secondary"
+      }
+    },
+    "r3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r3-link",
+        "r3-desc",
+        "r3-badge"
+      ]
+    },
+    "r3-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Benjamindaoson/WorldPolicy",
+        "href": "https://github.com/Benjamindaoson/WorldPolicy",
+        "source": "GitHub · ★0 · 30天=28 · 7天=28",
+        "score": "30天=28 · 7天=28"
+      }
+    },
+    "r3-desc": {
+      "type": "Text",
+      "props": {
+        "text": "World-Model-Guided Robot Learning 世界模型引导的机器人策略学习与泛化 ACT · Diffusion Policy · SmolVLA · π₀.₅ · Model-",
+        "variant": "muted"
+      }
+    },
+    "r3-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "secondary"
+      }
+    },
+    "r4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r4-link",
+        "r4-desc",
+        "r4-badge"
+      ]
+    },
+    "r4-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ICHR-BME/SABER",
+        "href": "https://github.com/ICHR-BME/SABER",
+        "source": "GitHub · ★0 · 30天=14 · 7天=14",
+        "score": "30天=14 · 7天=14"
+      }
+    },
+    "r4-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Open vision-language-action (VLA) models let robots follow natural-language commands, but they are t",
+        "variant": "muted"
+      }
+    },
+    "r4-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "vision language action",
+        "variant": "secondary"
+      }
+    },
+    "r5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r5-link",
+        "r5-desc",
+        "r5-badge"
+      ]
+    },
+    "r5-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "danitylyc/vla-lang-push",
+        "href": "https://github.com/danitylyc/vla-lang-push",
+        "source": "GitHub · ★0 · 30天=13 · 7天=13",
+        "score": "30天=13 · 7天=13"
+      }
+    },
+    "r5-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Tiny end-to-end VLA (vision-language-action) trained from scratch: Chinese instruction + camera -> p",
+        "variant": "muted"
+      }
+    },
+    "r5-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "vision language action",
+        "variant": "secondary"
+      }
+    },
+    "r6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r6-link",
+        "r6-desc",
+        "r6-badge"
+      ]
+    },
+    "r6-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SILVIO-ZHENG/wave0-world-model-expert",
+        "href": "https://github.com/SILVIO-ZHENG/wave0-world-model-expert",
+        "source": "GitHub · ★0 · 30天=9 · 7天=9",
+        "score": "30天=9 · 7天=9"
+      }
+    },
+    "r6-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Modular WAVE-0 / PI0.5: world-model-conditioned action experts, VLM KV attention, and detailed Chine",
+        "variant": "muted"
+      }
+    },
+    "r6-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "secondary"
+      }
+    },
+    "r7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r7-link",
+        "r7-desc",
+        "r7-badge"
+      ]
+    },
+    "r7-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "globeenmain/teleop-qc",
+        "href": "https://github.com/globeenmain/teleop-qc",
+        "source": "GitHub · ★0 · 30天=7 · 7天=7",
+        "score": "30天=7 · 7天=7"
+      }
+    },
+    "r7-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Quality control for robot teleoperation data: signal checks and calibrated VLM judges on DROID, stre",
+        "variant": "muted"
+      }
+    },
+    "r7-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "secondary"
+      }
+    }
+  }
+}
