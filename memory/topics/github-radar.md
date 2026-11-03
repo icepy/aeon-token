@@ -1,14 +1,38 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 二十八轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率五轮同窗口复现已成结论**、窗口是流量旋钮、**报告级可全落单一侧**）
+description: github-radar 二十九轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率六轮同窗口复现已成结论（36% vs 97%）**、窗口是流量旋钮、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-01T22:34:00Z
+timestamp: 2026-11-02T22:34:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十八轮（2026-11-01）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十九轮（2026-11-02）实证。
+
+## 第二十九轮（2026-11-02，**30 天窗**，非 dry-run）—— 判据全部维持；`teleoperation` 成新入口
+
+漏斗：原始 **2039** → 幸存 **33** → 报告级 **9**，核验 33/33。丢弃 seen=955 · excl=130 · short_desc=360 · **carrier=431** · neg=56 · pages=60 · pages_root=1 · scaffold=0 · farm=13 · fail=0。
+
+### 70. 🟢 第 14/15 轮连续同形：报告级仍 100% 落机器人侧，加密侧 0
+
+9 个报告级全在机器人/具身侧，与上一轮 12/12 同向。**这是「加密侧在代码通道上稀薄」的第三个连续样本**，但边界不变 —— 只能说明这个 18 词表 + carrier 组合测不到。
+
+### 71. 🟢 入口在换代：`teleoperation` 新收 14 = 最大入口，报告级占 4/9
+
+上一轮的最大入口是 `jepa`（4/12），本轮 `teleoperation` 新收 **14**、报告级 **4/9**；`egocentric` 新收 4、报告级 2。**判据：看「哪个词在贡献报告级」而不是「哪个词返回量最大」** —— 与 #67 的「新收/返回比值」同源。
+
+### 72. 🔴 `commits_7d == commits_30d` 第二轮复现：9 个报告级里 8 个相等
+
+唯一例外 `sdua078/TeleoPro`（★106，30d=7 / 7d=5）。**新仓潮判据（#68）从单轮变两轮连续成立。** 量最大的两个仍是新仓：`Embodied-Scout-PuppyPi`（★0，71/71）、`egoumi`（★1，28/28）。
+
+### 73. 🔴 carrier 误杀第六次：36% vs 97%
+
+丢弃侧近 7 天存活 **52/146 = 36%**，放行侧 **29/30 = 97%**。六轮序列 36/97 → 35/96 → 36/96 → 34/97 → 32/97 → **36/97**。**32–36% vs 96–97%，六轮无一次反向 —— 放宽是唯一还没做的动作。**
+
+### 74. ⚠️ 三个词表分类要分开记（避免「饱和」吞掉过滤损耗）
+
+查询失败 **0** · 真零 **0** · 全已见(饱和) **9** · 有新增 **9**。饱和 9 里 8 个真被 seen 吸收，1 个（`maximal extractable value`，raw=1 / seen=0）是**过滤损耗不是饱和** —— 按 #58 的 `seen < raw 5%` 规则必须单独归因，不能并进饱和。
 
 ## 第二十八轮（2026-11-01，**30 天窗**，非 dry-run）—— 加密侧在报告级归零；新仓潮 vs 持续工程
 
@@ -672,6 +696,7 @@ probe 跳过（2 天 < 7 天），`clusters.json` 未重写。通知已发（报
 
 # Citations
 
+- 第二十九轮（11-02 第 15 轮，30d）`logs/2026-11-02#github-radar（第 15 轮）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184` · `memory/github-seen.json`
 - 第二十八轮（11-01 第 14 轮，30d）`logs/2026-11-01#github-radar（第 14 轮）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184` · `memory/github-seen.json`
 - 第二十七轮（10-31 第 13 轮，30d）`logs/2026-10-31#github-radar（第 13 轮）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184` · `memory/github-seen.json`
 - 第二十六轮（10-30 第 12 轮，30d）`logs/2026-10-30#github-radar（第 12 轮 · 30 天窗 · 非 dry-run）` · `output/ghradar/out.json` · `audit.log` · `dropped.json` · `skills/github-radar/scan.py:184,193` · `memory/github-seen.json`

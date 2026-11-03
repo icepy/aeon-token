@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-10-28T18:20:00Z
+timestamp: 2026-11-03T18:20:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -91,6 +91,21 @@ success each run.
   hunk was superseded by the version `memory-flush` had already merged; the right call was to close
   it, not to resolve the hunk.
 
+## `eyebrowlock.json` drifts from local `__pycache__` — clean it before `eyebrow scan`
+
+`ci-skill-integrity` runs `eyebrow verify --ci`, which compares each skill's `files` list and
+`contentHash` against the committed `eyebrowlock.json`. If the lockfile was regenerated on a machine
+where the skills had been executed, `skills/*/__pycache__/*.pyc` exists on disk and `eyebrow scan`
+writes those `.pyc` entries into the lockfile. A CI runner never has them, so **every later run
+drifts** — the failure looks like skill content changed, but nothing in the skill did.
+
+Observed 2026-11-03: `eyebrow scan` picked up 4 `.pyc` files into `files`; deleting the local
+`__pycache__` directories and re-scanning produced a lockfile without them and `verify --ci` went OK.
+
+- **Regenerate the lockfile only from a tree with no `__pycache__`** — `find skills -name __pycache__ -prune -exec rm -rf {} +` first, then `eyebrow scan`.
+- **Do not "fix" this by making the manifest generator skip `.pyc`.** `bin/generate-skills-json` and the eyebrow tooling are upstream system files; patching them to compensate for a dirty working tree reverts on the next sync and hides the real cause. Same class of mistake as the `count_files` patch that was reverted the same day (`523bfe02`).
+- A real `eyebrow verify` failure can also be legitimate content drift / capability expansion (new `api.` hosts in a skill). Read the reported entries before assuming the `.pyc` cause.
+
 ## Watchlist rationale
 
 Base watches sit at $200/$250. NOTE watches sit at $500 — deliberately low because NOTE events are
@@ -141,3 +156,4 @@ rather than a permission rule:
 - `CLAUDE.md` § Tools / § Network & Secrets.
 - `aeon.yml:18` (`auto-merge: enabled: false`) · `git merge-tree --write-tree` exit=1 on PR #21 (`CONFLICT (content): memory/topics/lessons.md`), exit=0 on PR #22 · `memory/topics/market-context.md` `timestamp: 2026-10-30T23:05:00Z` on main, 2026-11-02.
 - `logs/2026-11-02#heartbeat` (both PRs merged by the operator 2026-11-02T09:26Z / 09:29Z).
+- `logs/2026-11-03#merge-conflict-cleanup（手工会话）` — `eyebrow scan` wrote 4 `.pyc` into `eyebrowlock.json`; `eyebrow verify --ci` OK after removing local `__pycache__` · `bin/generate-skills-json` `count_files` patch reverted in `523bfe02`.
