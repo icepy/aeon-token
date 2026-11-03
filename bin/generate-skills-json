@@ -26,9 +26,12 @@ if [[ "${1:-}" == "--pretty" ]]; then
 fi
 
 # Count files in skill directory (excluding SKILL.md)
+# __pycache__/*.pyc are gitignored, so a machine that has run a skill's script
+# would otherwise report a different count than CI and fail ci-skills-json.
 count_files() {
   local skill_dir="$1"
-  find "$skill_dir" -type f ! -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' '
+  find "$skill_dir" -type f ! -name "SKILL.md" \
+    ! -path "*/__pycache__/*" ! -name "*.pyc" 2>/dev/null | wc -l | tr -d ' '
 }
 
 # Get 7-char git SHA of last commit touching a SKILL.md
