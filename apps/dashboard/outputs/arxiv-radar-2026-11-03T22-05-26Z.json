@@ -1,0 +1,244 @@
+{
+  "root": "root",
+  "state": {},
+  "elements": {
+    "root": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar"
+      },
+      "children": [
+        "header",
+        "sep-header-agv",
+        "agv-heading",
+        "agv-list",
+        "sep-agv-crypto",
+        "crypto-heading",
+        "crypto-list"
+      ]
+    },
+    "header": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "round-text",
+        "counts"
+      ]
+    },
+    "round-text": {
+      "type": "Text",
+      "props": {
+        "text": "第 35 轮 · 窗口 30 天",
+        "variant": "lead"
+      }
+    },
+    "counts": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "sm"
+      },
+      "children": [
+        "stat-raw",
+        "stat-survived"
+      ]
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "84"
+      }
+    },
+    "stat-survived": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "4"
+      }
+    },
+    "sep-header-agv": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "agv-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "agv 侧（3 条）",
+        "level": "h2"
+      }
+    },
+    "agv-list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "item-clothdojo",
+        "item-pixelumi",
+        "item-radio"
+      ]
+    },
+    "item-clothdojo": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "clothdojo-badge",
+        "clothdojo-link",
+        "clothdojo-desc"
+      ]
+    },
+    "clothdojo-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "具身数据",
+        "variant": "secondary"
+      }
+    },
+    "clothdojo-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ClothDojo",
+        "href": "https://arxiv.org/abs/2611.01190"
+      }
+    },
+    "clothdojo-desc": {
+      "type": "Text",
+      "props": {
+        "text": "双臂布料摊平/折叠的学习式数据生成 + 基准",
+        "variant": "body"
+      }
+    },
+    "item-pixelumi": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "pixelumi-badge",
+        "pixelumi-link",
+        "pixelumi-desc"
+      ]
+    },
+    "pixelumi-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "具身数据",
+        "variant": "secondary"
+      }
+    },
+    "pixelumi-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Pixel-UMI",
+        "href": "https://arxiv.org/abs/2611.03647"
+      }
+    },
+    "pixelumi-desc": {
+      "type": "Text",
+      "props": {
+        "text": "用传感器化人类演示学全身操作（环境感知）",
+        "variant": "body"
+      }
+    },
+    "item-radio": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "radio-badge",
+        "radio-link",
+        "radio-desc"
+      ]
+    },
+    "radio-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "第一视角感知",
+        "variant": "secondary"
+      }
+    },
+    "radio-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Embodied AI for Radio Mapping",
+        "href": "https://arxiv.org/abs/2611.00770"
+      }
+    },
+    "radio-desc": {
+      "type": "Text",
+      "props": {
+        "text": "具身平台从单机到集群做无线电地图构建",
+        "variant": "body"
+      }
+    },
+    "sep-agv-crypto": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "crypto-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "加密侧（1 条）",
+        "level": "h2"
+      }
+    },
+    "crypto-list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "item-beyond"
+      ]
+    },
+    "item-beyond": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "beyond-badge",
+        "beyond-link",
+        "beyond-desc"
+      ]
+    },
+    "beyond-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "共识",
+        "variant": "secondary"
+      }
+    },
+    "beyond-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Beyond Leaderless",
+        "href": "https://arxiv.org/abs/2611.01323"
+      }
+    },
+    "beyond-desc": {
+      "type": "Text",
+      "props": {
+        "text": "移动崩溃场景下的随机化共识，绕开 leaderless",
+        "variant": "body"
+      }
+    }
+  }
+}

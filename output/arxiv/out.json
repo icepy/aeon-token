@@ -1,15 +1,54 @@
 [
  {
-  "id": "2610.41336",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "id": "2611.01323",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
   "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
+   "ti:\"consensus\" AND cat:cs.DC"
   ],
   "window": 30,
-  "name": "HandMimicX",
-  "title": "HandMimicX: Learning Human-Like Dexterous Manipulation via an Object-Centric Policy from Egocentric Videos",
-  "published": "2026-10-30",
-  "link": "https://arxiv.org/abs/2610.41336",
-  "carrier": "robotic"
+  "name": "",
+  "title": "Beyond Leaderless: Randomized Consensus Against Mobile Crashes",
+  "published": "2026-10-31",
+  "link": "https://arxiv.org/abs/2611.01323",
+  "carrier": "protocol"
+ },
+ {
+  "id": "2611.00770",
+  "term": "embodied AI",
+  "terms": [
+   "embodied AI"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Embodied AI for Radio Mapping: From Solo to Swarm",
+  "published": "2026-10-31",
+  "link": "https://arxiv.org/abs/2611.00770",
+  "carrier": "embodied"
+ },
+ {
+  "id": "2611.01190",
+  "term": "ti:\"data generation\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"data generation\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "ClothDojo",
+  "title": "ClothDojo: Learned Data Generation and Benchmarking for Bimanual Garment Flattening and Folding",
+  "published": "2026-10-31",
+  "link": "https://arxiv.org/abs/2611.01190",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.03647",
+  "term": "ti:\"human demonstration\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"human demonstration\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Pixel-UMI: Learning Environment-Aware Whole-Body Manipulation from Sensorized Human Demonstrations",
+  "published": "2026-11-02",
+  "link": "https://arxiv.org/abs/2611.03647",
+  "carrier": "robot"
  }
 ]
