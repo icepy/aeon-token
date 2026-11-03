@@ -1951,7 +1951,7 @@
         },
         {
           "path": ".gitignore",
-          "hash": "eb7c42b7def9a8b0fe1814feb22b84add9339d92d9f6fcdf856ae222bc78d8f3"
+          "hash": "a64a9d3e20ccb7c4aca7b2bb86255e8f3a6fd7e7d909c63784807e2893ac0b25"
         },
         {
           "path": "CHANGELOG.md",
@@ -3462,6 +3462,26 @@
       ],
       "contentHash": "sha256-fead703d79cbd78a27855b2ad567ffac6af3ace93470055bc9e32d45c26458a5",
       "discoveredFrom": "skills/aeon-update/SKILL.md"
+    },
+    {
+      "id": "4f15ffa080e0bc18",
+      "tool": "aeon",
+      "scope": "project:.",
+      "type": "skill",
+      "name": "flovia",
+      "source": {
+        "kind": "local",
+        "ref": "skills/flovia"
+      },
+      "capabilities": {},
+      "files": [
+        {
+          "path": "SKILL.md",
+          "hash": "7bca662387350255bdeef307638a530bc7e982ddff3434f83afd136432d3482a"
+        }
+      ],
+      "contentHash": "sha256-55c78c75632ac43dad95c4e67adacf3a6463bfe206a35b5f0439e50f98ec0c88",
+      "discoveredFrom": "skills/flovia/SKILL.md"
     }
   ]
 }

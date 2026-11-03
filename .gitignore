@@ -89,6 +89,7 @@ skills/remotion/project/props.json
 /output/*notify*.md
 /output/xai-*.json
 
+
 # defillama-radar dry-run 快照（不提交）
 output/defillama/*.dry.json
 
@@ -97,3 +98,12 @@ output/arxiv/*.dry.json
 
 # github-radar dry-run 快照（不提交）
 output/ghradar/*.dry.json
+
+# Scratch that lands in output/ under plain names: raw API dumps a skill re-fetched
+# into the workspace (tw-*.json twitterapi.io timelines, tr-*.json token-report
+# payloads, output/tmp/, scratch-* copies). Not run output. Root-anchored.
+/output/tmp/
+/output/tw-*.json
+/output/tr-*.json
+/output/scratch-*
+
