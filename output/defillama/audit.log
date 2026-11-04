@@ -1,9 +1,7 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=8919 · parent=0 · category=0 · 链白名单=0 · 拉取失败=0
-全量 8919 · 新增 id 0（可报 0 / 过滤标记 0）· 重报（上轮未通知）3 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=8919 · parent=1 · category=1 · 链白名单=2 · 拉取失败=0
+全量 8924 · 新增 id 5（可报 1 / 过滤标记 4）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1895 · Base=915 · Solana=468 · Arbitrum=1048 · Ink=33 · Binance=1145 · BSC=0 · Optimism=393 · OP Mainnet=0 · Hyperliquid L1=213 · Robinhood Chain=298
-单侧读数: 加密侧 3 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  BOND Capital · Arbitrum · tvl=177551.75638405196 · Reserve Currency · 1793656536
-  Exceed Finance exSOL · Solana · tvl=122067.75389437449 · Liquid Staking · 1793656741
-  Exceed Finance exBTC · Solana · tvl=652.2718252665125 · Yield · 1793656740
+链命中: Ethereum=1895 · Base=915 · Solana=469 · Arbitrum=1048 · Ink=33 · Binance=1146 · BSC=0 · Optimism=393 · OP Mainnet=0 · Hyperliquid L1=213 · Robinhood Chain=300
+单侧读数: 加密侧 1 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+  H081 Capital · Solana · tvl=42.00351380400001 · Lending · 1793721664

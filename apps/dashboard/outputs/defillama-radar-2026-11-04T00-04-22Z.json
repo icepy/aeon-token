@@ -1,0 +1,127 @@
+{
+  "root": "card-root",
+  "state": {},
+  "elements": {
+    "card-root": {
+      "type": "Card",
+      "props": {
+        "title": "defillama-radar",
+        "description": "第 9 轮 · 可报 1"
+      },
+      "children": [
+        "heading-round",
+        "sep-1",
+        "heading-h081",
+        "badges-stack",
+        "stat-tvl",
+        "text-oneliner",
+        "sep-2",
+        "alert-audit",
+        "sep-3",
+        "text-datasource",
+        "link-datasource"
+      ]
+    },
+    "heading-round": {
+      "type": "Heading",
+      "props": {
+        "text": "第 9 轮 · 可报 1",
+        "level": "h2"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-h081": {
+      "type": "Heading",
+      "props": {
+        "text": "H081 Capital",
+        "level": "h3"
+      }
+    },
+    "badges-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-solana",
+        "badge-lending",
+        "badge-nowebsite"
+      ]
+    },
+    "badge-solana": {
+      "type": "Badge",
+      "props": {
+        "text": "Solana",
+        "variant": "default"
+      }
+    },
+    "badge-lending": {
+      "type": "Badge",
+      "props": {
+        "text": "Lending",
+        "variant": "secondary"
+      }
+    },
+    "badge-nowebsite": {
+      "type": "Badge",
+      "props": {
+        "text": "无官网",
+        "variant": "outline"
+      }
+    },
+    "stat-tvl": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$42"
+      }
+    },
+    "text-oneliner": {
+      "type": "Text",
+      "props": {
+        "text": "一句话：给 AI agent 用的「私人银行」——在 Solana 上做 USDG 托管存款 + 可编程支出策略。刚登记约 1 小时，TVL 基本为零（$42），地板项目，仅供留名。",
+        "variant": "body"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "alert-audit": {
+      "type": "Alert",
+      "props": {
+        "title": "审计旁注（不进可报，只记一笔）",
+        "message": "清单内协议 XMAQUINA（id 9317，RWA，listedAt 2026-11-03T00:45Z）本轮首次出现在 DefiLlama，但 chains=[] 被链白名单挡掉，已按规则标 filtered，后续不会再报。",
+        "type": "info"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "text-datasource": {
+      "type": "Text",
+      "props": {
+        "text": "数据源：（全量 8924 条，CF 快照与源站 id 集合逐条相同）",
+        "variant": "caption"
+      }
+    },
+    "link-datasource": {
+      "type": "Link",
+      "props": {
+        "label": "https://api.llama.fi/protocols",
+        "href": "https://api.llama.fi/protocols"
+      }
+    }
+  }
+}

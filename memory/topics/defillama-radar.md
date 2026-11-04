@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-03T00:30:00Z
+timestamp: 2026-11-04T00:05:00Z
 ---
 
 # DefiLlama Radar
@@ -139,12 +139,32 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **同价陷阱排除法**：BOND 的 $177,632 与 `Camelot V4` 的 $177,634 只差 $1.91，看着像 TVL 串号。两条独立检验否定：① 全量 4250 条 TVL≥$1000 里，相邻差 <$5 的对数占 **11.7%（498 对）**，近价不稀有；② 两份快照的位移不同步（+$80.34 vs +$82.93）。**「数值接近」不是串号判据。**（另：`Camelot V4` 与 V2/V3 共用合约地址，但 TVL 只有 V3 的 6.2%，是独立的新池子条目，非幻影。）
 
-## 本轮漏斗口径（11-03，供下轮对照）
+## `filtered` 的不可逆性会咬到自己的清单（2026-11-04）
+
+第 9 轮，清单内协议 **`XMAQUINA`**（id 9317，`category=RWA`，`chains=[]`，`tvl` 缺失，`listedAt 2026-11-03T00:45:05Z`）首次进入 `/protocols`，**被空 `chains` 桶挡掉、入库那一刻钉成 `filtered`**，此后永不重报 —— 即使它明天接上 `chains=["Base"]` 也进不来。
+
+这不是回归，是 SKILL.md 明写的设计（「补 `chains` 不补报」「加链不回溯」「扩张不算新」）。但有三点值得记死：
+
+1. **清单不参与任何桶的判定。** `memory/defillama-names.txt` 只决定 `in_names` 标注，不影响 `parent` / `category` / `chain` 任何一条。所以清单内协议被过滤时，**审计里不打星、不进 `out`、不留任何痕迹** —— 事后只能靠翻 `seen` 里 `first == 今天` 的条目人工比对。这不是缺陷，是「只做发现、不做判断」的必然结果。
+2. **恢复可见性的正确做法是改 seen，不是删整表。** 只删 `memory/defillama-seen.json` 里 `9317` 这一条即可让它在下一轮重新走漏斗（属修订单条记录，非加链，**不需要重做基线**）。删整表会让 8925 条全部重灌成 `baseline`，代价与收益完全不对等。
+3. **不要把这条当成「该加 `Base` 之前先重做基线」的信号。** `Base` 早在 `CHAINS` 里（本轮命中 915）；XMAQUINA 进不来纯粹因为它自己 `chains=[]`，加链救不了它。
+
+## 本轮漏斗口径（11-04 第 9 轮）
+
+全量 8924 · 新增 id 5（可报 1 / 过滤 4）· `seen` 命中 8919 · `parent` 1 · `category` 1 · 空 `chains` 2 · 无 id 0 · 拉取失败 0 · 重报 0。**`category` 桶从 11-03 的 8 回落到 1** —— 证实 11-03 那次是 Kraken/Coinbase/Upbit/Bithumb 同秒批量回填的单次现象，不是 `EXCL_CATEGORY` 常态产能。
+
+新增 5 条全部落在 `2026-11-03T00:45–16:12Z` 的 15.5 小时内，**无同秒批量指纹**（最小间隔 4m47s），逐条按求差判据独立判定成立。上轮 id 9314–9316 与本轮 9317–9321 连续无缺口，**「暂未回填的分配号」本轮未出现**。
+
+可报 1 条：`H081 Capital`（9319，Solana，Lending，TVL $42.00，`url` 空、无 `address`、无 `parentProtocol`）。**空 `url` + 无 `address` + TVL $42 = 新条目字段未填全的典型形态**，不是异常。
+
+## 上一轮漏斗口径（11-03，历史对照）
 
 新增 id 20（可报 3 / 过滤 17）· `parent` 7 · `category` 8 · 空 `chains` 2 · 无 id 0 · 拉取失败 0 · 重报 0。**`category` 桶首次成为最大丢弃桶**（8 > parent 7），其中 4 条是 `Kraken`/`Coinbase`/`Upbit`/`Bithumb` 的批量回填（见上）、4 条是 Interface。**这是 EXCL_CATEGORY 生效的正面证据，此前七轮该桶读数多为 0–1。**
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-04 第 9 轮；常规 `HIT` 8924 条、`last-modified Tue, 03 Nov 2026 23:02:14 GMT`、etag `W/"6aea67f6-90a472"`、`age 1229`；`?_cb=1793900000` + `no-cache` 源站载荷 8924 条、9,479,690 B；id 集合逐条相同，9319 的 `parentProtocol` / `tvl` 两份一致）
+- 实测数据：同上，9317 `XMAQUINA` · `chains=[]` · `category=RWA` · `tvl` 缺失 · `parentProtocol=None` · `listedAt=1793721905`（2026-11-03T00:45:05Z）
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-03 第 8 轮；常规 `HIT` 8919 条、`last-modified 2026-11-02T23:02:20Z`、etag `W/"6ae9167c-9091f1"`；`?_cb=` + `no-cache` `MISS` 8919 条、`last-modified 23:38:44Z`、etag `W/"6ae91f04-909517"`；id 集合逐条相同）
 - 实测数据：同上两份快照**字段值不同** —— `parentProtocol` 在 9315/9316 上由 `None` 变 `parent#exceed-finance`，全量 TVL 亦有变动
 - 实测数据：`https://api.llama.fi/protocol/bond-capital` 与 `/protocol/camelot-v4`（2026-11-03；BOND `currentChainTvls={"Arbitrum": 177551.75638}`、`address=robinhood:0xEB288E3ca1607E7B921BCb47d5831E88331D65ef`、`audits: 0`、`twitter: BondDotCeo`、无 url）

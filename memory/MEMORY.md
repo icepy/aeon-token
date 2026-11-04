@@ -15,7 +15,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
 - `arxiv-radar` ✅ 07:30 UTC · 26 词 · 11-03 第 35 轮（30d）84 → 幸存 4（95% seen 单通道；carrier 连三轮 0 丢弃）。零命中 7 词 90d 全有命中，6 词 60d=90d → 沉积在 60–90d，补历史直接 days:90。饱和 15 词 maxpub 全在 10-06~10-30 → 全保活。幸存数看**几个词贡献**：单入口 ≥3 = 方向热，多入口各 1 = 覆盖面起作用。`consensus`+cs.DC 疑系统性降入分布式系统，待复核。[source: logs/2026-11-03#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-03 第 8 轮 8919 / 新增 20 / 可报 3（已发）。**「永久 id 空洞」作废**：9290–9293 是延迟 3 天回填的 CEX，**同分钟 ≥3 条即批量回填、仍算真新增**。**`parentProtocol` 跨快照翻转**，对登记 <1h 条目失效。**`address` 不可替代 `chains`**（6.1% 噪声）。[source: logs/2026-11-03#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-04 第 9 轮 8924 / 新增 5 / 可报 1（已发）。**「永久 id 空洞」作废**：同分钟 ≥3 条即批量回填、仍算真新增。**`parentProtocol` 跨快照翻转**，对登记 <1h 条目失效。**`address` 不可替代 `chains`**（6.1% 噪声）。**`filtered` 不可逆性首次咬到清单内协议**（XMAQUINA 9317 空链被钉死；恢复只能单删 seen 那条，不必重做基线）。[source: logs/2026-11-04#defillama-radar]
 - `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**「日跑 7 天窗」从未生效**（`var` 不注入 → `scan.py:184` 吃 30d）。第 15 轮 30d：2039→33→**报告级 9 全落机器人侧、加密侧连两轮归零**；入口换代（`teleoperation` 新收 14，上轮是 `jepa`）。**8/9 的 `commits_7d == 30d` = 新仓潮复现**。carrier 误杀第六次 → 放宽可动手。[source: logs/2026-11-02#github-radar]
 
 ## Lessons Learned

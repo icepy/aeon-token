@@ -1,49 +1,17 @@
 [
  {
-  "id": "9314",
-  "name": "BOND Capital",
-  "slug": "bond-capital",
+  "id": "9319",
+  "name": "H081 Capital",
+  "slug": "h081-capital",
   "chains": [
-   "Arbitrum"
+   "Solana"
   ],
-  "tvl": 177551.75638405196,
-  "category": "Reserve Currency",
-  "listedAt": 1793656536,
+  "tvl": 42.00351380400001,
+  "category": "Lending",
+  "listedAt": 1793721664,
   "url": "",
-  "description": "Institutional-grade, reserve-backed holdings on Robinhood Chain. Every $BOND is backed by treasury reserves wi",
+  "description": "H081 Capital is a private bank for AI agents on Solana: shielded USDG deposits with programmable spending poli",
   "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9316",
-  "name": "Exceed Finance exSOL",
-  "slug": "exceed-finance-exsol",
-  "chains": [
-   "Solana"
-  ],
-  "tvl": 122067.75389437449,
-  "category": "Liquid Staking",
-  "listedAt": 1793656741,
-  "url": "https://www.exceed.finance/",
-  "description": "exSOL pays a stated rate in SOL from staked SOL, SOL lending and secured credit",
-  "misrepresentedTokens": true,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9315",
-  "name": "Exceed Finance exBTC",
-  "slug": "exceed-finance-exbtc",
-  "chains": [
-   "Solana"
-  ],
-  "tvl": 652.2718252665125,
-  "category": "Yield",
-  "listedAt": 1793656740,
-  "url": "https://www.exceed.finance/",
-  "description": "exBTC pays a stated rate in bitcoin (cbBTC) from secured credit financed against bitcoin",
-  "misrepresentedTokens": true,
   "wrongLiquidity": null,
   "in_names": false
  }
