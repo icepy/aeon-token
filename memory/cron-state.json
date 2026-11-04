@@ -123,7 +123,7 @@
     "last_quality_score": 4
   },
   "narrative-brief": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_success": "2026-11-03T10:01:34Z",
     "total_runs": 11,
     "total_successes": 11,
@@ -131,7 +131,7 @@
     "consecutive_failures": 0,
     "success_rate": 1,
     "last_quality_score": 4,
-    "last_dispatch": "2026-11-03T10:00:45Z"
+    "last_dispatch": "2026-11-04T10:15:47Z"
   },
   "defillama-radar": {
     "last_status": "success",
