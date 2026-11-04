@@ -1,0 +1,144 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 幸存 5"
+      },
+      "children": [
+        "heading",
+        "stats-row",
+        "sep1",
+        "h-embodied",
+        "stack-embodied",
+        "sep2",
+        "h-zk",
+        "stack-zk"
+      ]
+    },
+    "heading": {
+      "type": "Heading",
+      "props": {
+        "text": "arxiv-radar",
+        "level": "h1"
+      }
+    },
+    "stats-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-count"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      }
+    },
+    "stat-count": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "5"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-embodied": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据 / 机器人",
+        "level": "h2"
+      }
+    },
+    "stack-embodied": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "story-pyrua",
+        "story-dexhot",
+        "story-roboscope",
+        "story-embodied-sci"
+      ]
+    },
+    "story-pyrua": {
+      "type": "StoryLink",
+      "props": {
+        "title": "PyRUA-DataFarm — 让 LLM agent 充当遥操作员，低成本采集真实机器人数据",
+        "href": "https://arxiv.org/abs/2611.05320",
+        "source": "具身数据/遥操作"
+      }
+    },
+    "story-dexhot": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DexHOT — 手-物配置迁移，用于灵巧操作",
+        "href": "https://arxiv.org/abs/2611.05119",
+        "source": "灵巧操作"
+      }
+    },
+    "story-roboscope": {
+      "type": "StoryLink",
+      "props": {
+        "title": "RoboScope Kit — 具身 AI 评测的统一接口与可扩展套件",
+        "href": "https://arxiv.org/abs/2611.03850",
+        "source": "?"
+      }
+    },
+    "story-embodied-sci": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Embodied AI for Scientific Discovery — 从物理动作到科学证据：具身 AI 做科研的路线综述",
+        "href": "https://arxiv.org/abs/2611.04371",
+        "source": "?"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-zk": {
+      "type": "Heading",
+      "props": {
+        "text": "零知识",
+        "level": "h2"
+      }
+    },
+    "stack-zk": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "story-verfgraph"
+      ]
+    },
+    "story-verfgraph": {
+      "type": "StoryLink",
+      "props": {
+        "title": "VerfGraph — 图查询求值的高效零知识可验证系统",
+        "href": "https://arxiv.org/abs/2611.04240",
+        "source": "零知识"
+      }
+    }
+  }
+}

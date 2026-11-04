@@ -1,9 +1,10 @@
-**arxiv-radar** · 第 35 轮 · 窗口 30 天 · 原始 84 → 幸存 4
+**arxiv-radar** · 窗口 30 天 · 幸存 5
 
-**agv 侧（3 条）**
-- `ClothDojo` [具身数据] — 双臂布料摊平/折叠的学习式数据生成 + 基准 · https://arxiv.org/abs/2611.01190
-- `Pixel-UMI` [具身数据] — 用传感器化人类演示学全身操作（环境感知） · https://arxiv.org/abs/2611.03647
-- `Embodied AI for Radio Mapping` [第一视角感知] — 具身平台从单机到集群做无线电地图构建 · https://arxiv.org/abs/2611.00770
+**具身数据 / 机器人**
+- `PyRUA-DataFarm` — 让 LLM agent 充当遥操作员，低成本采集真实机器人数据 · [具身数据/遥操作] · https://arxiv.org/abs/2611.05320
+- `DexHOT` — 手-物配置迁移，用于灵巧操作 · [灵巧操作] · https://arxiv.org/abs/2611.05119
+- `RoboScope Kit` — 具身 AI 评测的统一接口与可扩展套件 · [?] · https://arxiv.org/abs/2611.03850
+- `Embodied AI for Scientific Discovery` — 从物理动作到科学证据：具身 AI 做科研的路线综述 · [?] · https://arxiv.org/abs/2611.04371
 
-**加密侧（1 条）**
-- `Beyond Leaderless` [共识] — 移动崩溃场景下的随机化共识，绕开 leaderless · https://arxiv.org/abs/2611.01323
+**零知识**
+- `VerfGraph` — 图查询求值的高效零知识可验证系统 · [零知识] · https://arxiv.org/abs/2611.04240

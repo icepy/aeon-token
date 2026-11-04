@@ -1,54 +1,67 @@
 [
  {
-  "id": "2611.01323",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
+  "id": "2611.04240",
+  "term": "zero-knowledge",
   "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
+   "zero-knowledge"
   ],
   "window": 30,
-  "name": "",
-  "title": "Beyond Leaderless: Randomized Consensus Against Mobile Crashes",
-  "published": "2026-10-31",
-  "link": "https://arxiv.org/abs/2611.01323",
-  "carrier": "protocol"
+  "name": "VerfGraph",
+  "title": "VerfGraph: Efficient Zero-Knowledge Verifiable Graph Query Evaluation System",
+  "published": "2026-11-03",
+  "link": "https://arxiv.org/abs/2611.04240",
+  "carrier": "network"
  },
  {
-  "id": "2611.00770",
+  "id": "2611.05320",
+  "term": "robot data",
+  "terms": [
+   "robot data"
+  ],
+  "window": 30,
+  "name": "LLM",
+  "title": "PyRUA-DataFarm: LLM Agent as a Cost-Efficient Teleoperator for Real-Ready Robot Data",
+  "published": "2026-11-03",
+  "link": "https://arxiv.org/abs/2611.05320",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.04371",
   "term": "embodied AI",
   "terms": [
    "embodied AI"
   ],
   "window": 30,
   "name": "",
-  "title": "Embodied AI for Radio Mapping: From Solo to Swarm",
-  "published": "2026-10-31",
-  "link": "https://arxiv.org/abs/2611.00770",
-  "carrier": "embodied"
- },
- {
-  "id": "2611.01190",
-  "term": "ti:\"data generation\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"data generation\" AND cat:cs.RO"
-  ],
-  "window": 30,
-  "name": "ClothDojo",
-  "title": "ClothDojo: Learned Data Generation and Benchmarking for Bimanual Garment Flattening and Folding",
-  "published": "2026-10-31",
-  "link": "https://arxiv.org/abs/2611.01190",
+  "title": "Embodied AI for Scientific Discovery: From Physical Action to Scientific Evidence",
+  "published": "2026-11-03",
+  "link": "https://arxiv.org/abs/2611.04371",
   "carrier": "robot"
  },
  {
-  "id": "2611.03647",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
+  "id": "2611.03850",
+  "term": "embodied AI",
   "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
+   "embodied AI"
   ],
   "window": 30,
-  "name": "",
-  "title": "Pixel-UMI: Learning Environment-Aware Whole-Body Manipulation from Sensorized Human Demonstrations",
+  "name": "RoboScope",
+  "title": "RoboScope Kit: Unified Interfaces for Fast and Scalable Embodied-AI Evaluation",
   "published": "2026-11-02",
-  "link": "https://arxiv.org/abs/2611.03647",
+  "link": "https://arxiv.org/abs/2611.03850",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.05119",
+  "term": "ti:\"hand-object\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"hand-object\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "DexHOT",
+  "title": "DexHOT: Learning Hand-Object Configuration Transfer for Dexterous Manipulation",
+  "published": "2026-11-03",
+  "link": "https://arxiv.org/abs/2611.05119",
   "carrier": "robot"
  }
 ]
