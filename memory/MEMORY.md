@@ -1,5 +1,5 @@
 # Long-term Memory
-*Last consolidated: 2026-11-03*
+*Last consolidated: 2026-11-04*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**（`github-radar` 实跑 30d）；`arxvi-radar` 孤儿待清。**`auto-merge` 关着 = 没人会合 PR**。→ [ops-plumbing](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
@@ -14,9 +14,9 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 UTC · 26 词 · 11-03 第 35 轮（30d）84 → 幸存 4（95% seen 单通道；carrier 连三轮 0 丢弃）。零命中 7 词 90d 全有命中，6 词 60d=90d → 沉积在 60–90d，补历史直接 days:90。饱和 15 词 maxpub 全在 10-06~10-30 → 全保活。幸存数看**几个词贡献**：单入口 ≥3 = 方向热，多入口各 1 = 覆盖面起作用。`consensus`+cs.DC 疑系统性降入分布式系统，待复核。[source: logs/2026-11-03#arxiv-radar]
+- `arxiv-radar` ✅ 07:30 UTC · 26 词 · 11-03 第 35 轮（30d）84 → 幸存 4（95% 被 seen 吃）。零命中 7 词 90d 全有命中、6 词 60d=90d → 沉积 60–90d，补历史直接 `days:90`。饱和 15 词 maxpub 全在 10-06~10-30 → 全保活。幸存数看**几个词贡献**：单入口 ≥3 = 方向热，多入口各 1 = 覆盖面起作用。`consensus`+cs.DC 疑系统性降入分布式系统，待复核。[source: logs/2026-11-03#arxiv-radar]
 - `defillama-radar` ✅ `dl-v1` · 11-04 第 9 轮 8924 / 新增 5 / 可报 1（已发）。**「永久 id 空洞」作废**：同分钟 ≥3 条即批量回填、仍算真新增。**`parentProtocol` 跨快照翻转**，对登记 <1h 条目失效。**`address` 不可替代 `chains`**（6.1% 噪声）。**`filtered` 不可逆性首次咬到清单内协议**（XMAQUINA 9317 空链被钉死；恢复只能单删 seen 那条，不必重做基线）。[source: logs/2026-11-04#defillama-radar]
-- `github-radar` cron 07:45 UTC · 18 词 · gh-v3。**「日跑 7 天窗」从未生效**（`var` 不注入 → `scan.py:184` 吃 30d）。第 15 轮 30d：2039→33→**报告级 9 全落机器人侧、加密侧连两轮归零**；入口换代（`teleoperation` 新收 14，上轮是 `jepa`）。**8/9 的 `commits_7d == 30d` = 新仓潮复现**。carrier 误杀第六次 → 放宽可动手。[source: logs/2026-11-02#github-radar]
+- `github-radar` 07:45 · 18 词 · gh-v3。**「日跑 7 天窗」从未生效**（`var` 不注入 → `scan.py:184` 吃 30d）。第 16 轮首次真跑 7d：439→35→报告级 7，**窄窗幸存更多、报告级更少**（30d 33/9）→ 窗口改的是分布不只是流量。报告级 7/7 ★0 且 7d==30d（新仓潮第三次）。**carrier 误杀在 7d 两侧都 100% = 测不到，只在长窗可读。** [source: logs/2026-11-03#github-radar]
 
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。这里只留判据速查。
@@ -25,8 +25,8 @@
 - **假零八：CDN 快照让 id 差集恒为 0**（10-28）—— 差集为空先断言 `cf-cache-status != HIT` 或加 `?_cb=` 复取。**反向也有坑：id 集合相同 ≠ 字段值最新**，`parentProtocol` 这类事后补录字段会在两份快照间翻转（11-03）。
 - **`eth_getLogs` 判别力测试：** 真 topic0 必回真日志、**故意错 1 字符必回 0**。不可区分 = 端点坏。公共 RPC 硬限 1000 块，长窗 999 分片。
 - **链上速查（DEUS 归档后仍通用）：** Solidly Swap 字序 `(a0In,a1In,a0Out,a1Out)`，按 UniV2 解会读反 → 用储备差对照符号（`x·y=k`：`D>0` 才是净买）。**`eth_getCode`=`0x` 才 EOA，`0xef0100…` 是 7702；地址必须左补零且全小写。** 买单真伪只认一条：终点余额升高且留住。**门槛数学先核对分子分母同单位；24h 涨跌幅别用 `ohlcv_list[0]`。** 细节 [lessons](/topics/lessons.md)
-- **跨日「大幅变化」先问是变化还是重述，再问重述集中在哪个分项**（70.9% 曾是 Bitcoin 链端点自己下修）；**DEX 量/fees 有 ~23% 星期效应，跨星期比必先归一**。**跨 series diff 按日期对齐**（判别式：per-chain delta 总和 = aggregate）；**历史点 `T00:00Z` = 前一日收盘**。[source: logs/2026-11-02#defi-overview]
-- **`/protocols` 的 `change_1d` = 当前值 vs 当日 00:00 桶（日内），不是今天 vs 昨天**（11-03 四次验证）。**`/overview/fees` 的 `change_7d` 实为 `total24h/total7DaysAgo−1`，真 7d-over-7d 在 `change_7dover7d`。** 算涨跌自取 `tvl`/`totalDataChart` 按日期对齐；**报 fees 增速先剔单日尖峰（>14日中位数 3 倍）**。[source: logs/2026-11-03#defi-overview]
+- **行情口径：** 跨日 >2% 先做「同日期重述分解」（70.9% 曾是 Bitcoin 链端点自下修）；DEX 量/fees 有 ~23% 星期效应，跨星期比必先归一；跨 series diff 按日期对齐（判别式：per-chain delta 总和 = aggregate）；历史点 `T00:00Z` = 前一日收盘。**`/protocols` 的 `change_1d` = 当日 00:00 桶内值，不是今昨差**（11-03 四例验证）。[source: logs/2026-11-03#defi-overview]
+- **`/overview/fees` 的 `change_7d` 实为 `total24h/total7DaysAgo−1`**，真 7d-over-7d 在 `change_7dover7d`；算涨跌自取 `tvl`/`totalDataChart` 按日期对齐；报 fees 增速先剔单日尖峰（>14 日中位数 3 倍）。**广度只在连续三日同向时作趋势读，否则退回 F&G 的 14 日斜率。**[source: logs/2026-11-03#defi-overview]
 - **某过滤器长期「0 丢弃」先查有多少输入真经过它** —— `arxiv-radar` carrier 连九轮空转，真因是 26 词里 14 个没配 carrier 表。「零假阴」≠ 规则安全。**某桶占比升高 ≠ 该桶杀伤力升高**（空链占比 85% 但旁路实救 0 条）。**报宽口径的分母，动手要窄口径的分子；「A 口径优于 B」必须同分母重算。**[source: logs/2026-11-02#defillama-radar]
 - **漏斗退化成单通道时，0 输出的责任在词表召回，不在过滤器** —— 过滤层已无调节空间；零幸存来自饱和 ≠ 任一侧流量消失。[source: logs/2026-10-31#arxiv-radar]
 - **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`。

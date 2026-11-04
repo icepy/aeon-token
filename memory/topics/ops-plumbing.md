@@ -1,12 +1,12 @@
 ---
 title: Scheduler and notification plumbing state
-description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, and the notification-format rules that supersede the old hand-formatting notes.
+description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
 tags:
   - ops
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-03T18:20:00Z
+timestamp: 2026-11-04T18:30:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -105,6 +105,22 @@ Observed 2026-11-03: `eyebrow scan` picked up 4 `.pyc` files into `files`; delet
 - **Regenerate the lockfile only from a tree with no `__pycache__`** — `find skills -name __pycache__ -prune -exec rm -rf {} +` first, then `eyebrow scan`.
 - **Do not "fix" this by making the manifest generator skip `.pyc`.** `bin/generate-skills-json` and the eyebrow tooling are upstream system files; patching them to compensate for a dirty working tree reverts on the next sync and hides the real cause. Same class of mistake as the `count_files` patch that was reverted the same day (`523bfe02`).
 - A real `eyebrow verify` failure can also be legitimate content drift / capability expansion (new `api.` hosts in a skill). Read the reported entries before assuming the `.pyc` cause.
+
+## Daily logs are append-only — `Write` on an existing `memory/logs/*.md` is destructive
+
+`memory-flush` wiped a whole day of logs on 2026-11-03: it called `Write` on `memory/logs/2026-11-03.md`
+to add its own entry, and the six sections already in that file (defillama-radar / heartbeat /
+merge-conflict-cleanup / narrative-brief, plus their under-the-hood rows) were replaced by the single
+new section. `git status` showed the file as `M` and `git show HEAD:` still had the original, so
+`git checkout HEAD -- memory/logs/2026-11-03.md` restored all 63 lines; the flush entry was then
+re-added with `Edit`.
+
+- **Never call `Write` on a daily log that already exists.** Check with `Glob` first, then `Read` +
+  `Edit` to append. `Write` is only safe for the *first* write of a given UTC day.
+- **Recovery is `git checkout HEAD -- <path>`, then append again** — do not try to reconstruct the
+  lost sections from the other skills' outputs.
+- The log is the audit trail the health loop and every `[source: logs/…]` tag point at, so a silent
+  overwrite breaks citations for runs you did not touch.
 
 ## Watchlist rationale
 
