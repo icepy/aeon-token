@@ -1,10 +1,10 @@
 {
   "skill": "defi-overview",
-  "last_analyzed": "2026-11-03T23:20:26Z",
-  "quality_score": 4,
-  "assessment": "数据密度高、来源标注清楚、带去尖峰/口径纠偏等实质判断，可核验性强；但对'看完就能决定'的偏短推送要求偏长，且完全未触及 DEUS 触发价位，离操盘优先级还有距离。",
+  "last_analyzed": "2026-11-04T23:09:34Z",
+  "quality_score": 3,
+  "assessment": "Dense, number-first overview with real methodology notes (剔尖峰、7dov7d 归一) and honest logging of the failing websearch source, but it never touches DEUS/xDEUS or the trigger thresholds that are the operator's only priorities, runs long against a '看完就能决定' brief, skips the required per-report source citations (仅 'sources: 全部 ok', 无合约地址/数据源), and is a non-trigger broadcast the strategy says not to push.",
   "flags": [],
-  "avg_score": 3.33,
+  "avg_score": 3.31,
   "history": [
     {
       "date": "2026-10-23",
@@ -76,6 +76,12 @@
       "date": "2026-11-03",
       "score": 4,
       "ts": "2026-11-03T23:20:26Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-04",
+      "score": 3,
+      "ts": "2026-11-04T23:09:34Z",
       "harness": "claude"
     }
   ]
