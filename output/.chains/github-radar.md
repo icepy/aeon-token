@@ -1,9 +1,27 @@
-**github-radar** · 窗口 7 天 · 报告级 7 · 近 7 天活跃 7
+**github-radar** · 窗口 30 天 · 报告级 25 · 近 7 天活跃 22
 
-- [OJ102/sim2real-vla](https://github.com/OJ102/sim2real-vla) ★0 · 30天=70 · 7天=70 · 词 `sim2real` · Closed-loop VLA post-training: domain-randomized MuJoCo sim, FSDP2/ZeRO-3 training, GRPO-style RL, l
-- [Yukikaze2233/supermimic_rl](https://github.com/Yukikaze2233/supermimic_rl) ★0 · 30天=35 · 7天=35 · 词 `world model` · PPO and differentiable world-model learning for a closed-chain wheeled-legged robot
-- [Benjamindaoson/WorldPolicy](https://github.com/Benjamindaoson/WorldPolicy) ★0 · 30天=28 · 7天=28 · 词 `world model` · World-Model-Guided Robot Learning 世界模型引导的机器人策略学习与泛化 ACT · Diffusion Policy · SmolVLA · π₀.₅ · Model-
-- [ICHR-BME/SABER](https://github.com/ICHR-BME/SABER) ★0 · 30天=14 · 7天=14 · 词 `vision language action` · Open vision-language-action (VLA) models let robots follow natural-language commands, but they are t
-- [danitylyc/vla-lang-push](https://github.com/danitylyc/vla-lang-push) ★0 · 30天=13 · 7天=13 · 词 `vision language action` · Tiny end-to-end VLA (vision-language-action) trained from scratch: Chinese instruction + camera -> p
-- [SILVIO-ZHENG/wave0-world-model-expert](https://github.com/SILVIO-ZHENG/wave0-world-model-expert) ★0 · 30天=9 · 7天=9 · 词 `world model` · Modular WAVE-0 / PI0.5: world-model-conditioned action experts, VLM KV attention, and detailed Chine
-- [globeenmain/teleop-qc](https://github.com/globeenmain/teleop-qc) ★0 · 30天=7 · 7天=7 · 词 `teleoperation` · Quality control for robot teleoperation data: signal checks and calibrated VLM judges on DROID, stre
+- [PandaGrdn/athlete2humanoid](https://github.com/PandaGrdn/athlete2humanoid) ★3 · 30天=≥100 · 7天=≥100 · 词 `jepa` · A phone video of a person becomes a Unitree G1 skill: SAM 3.1, SAM 3D Body, Muse Spark and V-JEPA 2 
+- [kudratsingh/vishwaroop](https://github.com/kudratsingh/vishwaroop) ★0 · 30天=≥100 · 7天=≥100 · 词 `world model` · World model and planner for robot learning: action-conditioned dynamics, latent prediction, uncertai
+- [ArioMoniri/wsp-lab](https://github.com/ArioMoniri/wsp-lab) ★0 · 30天=≥100 · 7天=≥100 · 词 `jepa` · Predicting LLM performance change from weight change: SSM/JEPA predictor over edit trajectories (wei
+- [MuraliKrishnaGR/retrodict](https://github.com/MuraliKrishnaGR/retrodict) ★0 · 30天=83 · 7天=80 · 词 `jepa` · Retrodict: from one photo, works out what most likely happened before it was taken (steps, order, ti
+- [ameritusweb/gerundelle](https://github.com/ameritusweb/gerundelle) ★2 · 30天=49 · 7天=49 · 词 `world model` · A formally verified architecture of mind. Twelve layers, from world physics to narrative, machine-ch
+- [vinal-gadhiya/ReActuate](https://github.com/vinal-gadhiya/ReActuate) ★0 · 30天=54 · 7天=38 · 词 `robot manipulation` · An agentic framework for grounded planning, execution monitoring, and failure recovery in robotic ma
+- [iiEliJas/fast_jepa](https://github.com/iiEliJas/fast_jepa) ★0 · 30天=23 · 7天=23 · 词 `jepa` · A C/CUDA LeJEPA implementation that (hopefully) beats PyTorch.
+- [AlienBTw/Sightline](https://github.com/AlienBTw/Sightline) ★0 · 30天=15 · 7天=15 · 词 `jepa` · Sightline: live workshop hazard watcher built with Meta V-JEPA 2.1, SAM 3.1 and Muse (Meta Global AI
+- [darayavahoush/CERBERUS-ARM](https://github.com/darayavahoush/CERBERUS-ARM) ★0 · 30天=11 · 7天=11 · 词 `robot manipulation` · 🐺 CERBERUS-ARM: Tri-Modal Embodied Robotic Manipulation via Spatial CoordConv, D3QN-HER, and Locally
+- [FBddcz/Embodied-SuperMimic](https://github.com/FBddcz/Embodied-SuperMimic) ★0 · 30天=11 · 7天=11 · 词 `robot manipulation` · Research preview: multi-embodiment robot manipulation with differentiable world models. Historical r
+- [iceworld009/PollenStudio](https://github.com/iceworld009/PollenStudio) ★0 · 30天=11 · 7天=11 · 词 `robot dataset` · Pollen Studio is a local web app for annotating robotics datasets and training Limelight TFLite dete
+- [Wugu-art/isaac-rl-notes](https://github.com/Wugu-art/isaac-rl-notes) ★0 · 30天=11 · 7天=11 · 词 `sim-to-real` · Isaac Lab、Go2 强化学习与 Sim-to-Real 学习笔记和实践记录
+- [nemarDatasets/nm000629](https://github.com/nemarDatasets/nm000629) ★0 · 30天=13 · 7天=10 · 词 `egocentric` · EgoBrain-Mini: egocentric video, 32-channel EEG, wrist/arm IMU and audio during everyday actions (40
+- [pearlascope/pearlascope](https://github.com/pearlascope/pearlascope) ★0 · 30天=10 · 7天=10 · 词 `proof of useful work` · Live analytics for Pearl, the proof-of-useful-work L1
+- [shiv207/ContactBC](https://github.com/shiv207/ContactBC) ★1 · 30天=9 · 7天=9 · 词 `egocentric` · Teach a humanoid with your own hands: egocentric human video -> Unitree G1 + Dex3 in MuJoCo -> Mimic
+- [ngonguyenkhanhan/Latent_VAE_ViT_V-JEPA](https://github.com/ngonguyenkhanhan/Latent_VAE_ViT_V-JEPA) ★0 · 30天=8 · 7天=8 · 词 `jepa` · So sánh latent sau khi đưa ảnh hoặc video qua 3 model đã pretrained.
+- [ankdeshm/cosmos3-super-tpu-world-model-serving](https://github.com/ankdeshm/cosmos3-super-tpu-world-model-serving) ★0 · 30天=7 · 7天=7 · 词 `world model` · nvidia/Cosmos3-Super (64.6B Mixture-of-Transformers Omnimodal World Reasoner & Video/Audio/Action Ge
+- [ankdeshm/gr00t-vla-tpu-robotics-serving](https://github.com/ankdeshm/gr00t-vla-tpu-robotics-serving) ★0 · 30天=7 · 7天=7 · 词 `vision language action` · nvidia/GR00T-N1.7-3B Humanoid Robot Vision-Language-Action (VLA) Real-Time Control (<20 ms 50 Hz & <
+- [chang2tz/FastRoverVLA](https://github.com/chang2tz/FastRoverVLA) ★1 · 30天=5 · 7天=5 · 词 `vision language action` · Training-free, state-consistent recurrent execution for off-road vision-language-action planning.
+- [apiantonio/V-JEPA_Event-Detection-Localization_with_PEFT](https://github.com/apiantonio/V-JEPA_Event-Detection-Localization_with_PEFT) ★0 · 30天=5 · 7天=5 · 词 `jepa` · Event detection and zero-shot spatial localization with V-JEPA 2.1, PEFT, Integrated Grandients and 
+- [meta-lucky-builds/world-model-adaptation-vs-retention](https://github.com/meta-lucky-builds/world-model-adaptation-vs-retention) ★0 · 30天=5 · 7天=5 · 词 `jepa` · Independent reproduction and extension of JEPA-TTT: how latent world models adapt to changed dynamic
+- [DDDB479/embodied-data-intelligence-processing-platform](https://github.com/DDDB479/embodied-data-intelligence-processing-platform) ★1 · 30天=10 · 7天=3 · 词 `embodied data` · 具身数据智能处理平台：UMI / EGO / 遥操数据接入、质检、问题处置、任务指令审核、批次验收与 LeRobot / MCAP / Zarr 交付。
+- [Benjamindaoson/WorldDynamics](https://github.com/Benjamindaoson/WorldDynamics) ★0 · 30天=19 · 7天=0 [爆完即停] · 词 `world model` · Reliable Action-Conditioned World Models 可靠动作条件世界模型与长时序物理动力学 RSSM · V-JEPA 2-AC · Video DiT · Joint 
+- [NVlabs/Flora](https://github.com/NVlabs/Flora) ★89 · 30天=11 · 7天=0 [爆完即停] · 词 `robotics data engine` · The open-source model suite for robotics data engine by NVIDIA GEAR
+- [backblaze-b2-samples/aistore-b2-gr00t-robotics-training](https://github.com/backblaze-b2-samples/aistore-b2-gr00t-robotics-training) ★1 · 30天=9 · 7天=0 [爆完即停] · 词 `robot dataset` · Fine-tune NVIDIA Isaac GR00T N1.7 on robot datasets stored in Backblaze B2, with NVIDIA AIStore as a
