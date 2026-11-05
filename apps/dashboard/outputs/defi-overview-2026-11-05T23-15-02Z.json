@@ -1,0 +1,667 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "DeFi Overview — Crypto 2026-11-05（risk-off）",
+        "description": "DeFi Mixed：TVL 读数滞后，别信"
+      },
+      "children": [
+        "alert-riskoff",
+        "sep-1",
+        "price-row",
+        "sep-2",
+        "heading-take",
+        "text-take",
+        "sep-3",
+        "heading-traps",
+        "trap-1",
+        "trap-2",
+        "trap-3",
+        "sep-4",
+        "heading-turnover",
+        "stat-dex",
+        "text-turnover",
+        "sep-5",
+        "heading-movers",
+        "mover-poly",
+        "mover-hyper",
+        "mover-monad",
+        "mover-dolomite",
+        "sep-6",
+        "heading-fees",
+        "text-fees-note",
+        "fee-row-uniswap",
+        "fee-row-jupiter",
+        "text-curve",
+        "heading-fee-leaders",
+        "table-fees",
+        "sep-7",
+        "heading-stables",
+        "stat-stables",
+        "text-stables",
+        "sep-8",
+        "heading-real-yield",
+        "table-real-yield",
+        "sep-9",
+        "heading-incentive",
+        "table-incentive",
+        "sep-10",
+        "heading-macro",
+        "stack-macro",
+        "sep-11",
+        "alert-conclusion",
+        "sep-12",
+        "text-sources"
+      ]
+    },
+    "alert-riskoff": {
+      "type": "Alert",
+      "props": {
+        "title": "⚠️ risk-off（conviction high）",
+        "message": "Crypto 2026-11-05 — risk-off（conviction high）| DeFi Mixed：TVL 读数滞后，别信",
+        "type": "warning"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "price-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-btc",
+        "stat-eth",
+        "stat-breadth"
+      ]
+    },
+    "stat-btc": {
+      "type": "Stat",
+      "props": {
+        "label": "BTC",
+        "value": "$75,637",
+        "delta": "−6.25%",
+        "trend": "down"
+      }
+    },
+    "stat-eth": {
+      "type": "Stat",
+      "props": {
+        "label": "ETH",
+        "value": "$2,229",
+        "delta": "−8.47%",
+        "trend": "down"
+      }
+    },
+    "stat-breadth": {
+      "type": "Stat",
+      "props": {
+        "label": "广度 Breadth",
+        "value": "1/20",
+        "delta": "仅 1 个绿盘",
+        "trend": "down"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-take": {
+      "type": "Heading",
+      "props": {
+        "text": "Take",
+        "level": "h2"
+      }
+    },
+    "text-take": {
+      "type": "Text",
+      "props": {
+        "text": "BTC −6.25%（$75,637）· ETH −8.47%（$2,229）· 广度 1/20。触发源是 AI 股崩盘（Nvidia −9.3%、美股 worst day since April 2025、~$1B 清算），15:00–16:00 UTC 两小时内集中砸盘，不是加密自身事件。",
+        "variant": "lead"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-traps": {
+      "type": "Heading",
+      "props": {
+        "text": "三个必须知道的读数陷阱",
+        "level": "h2"
+      }
+    },
+    "trap-1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "trap1-h",
+        "trap1-t"
+      ]
+    },
+    "trap1-h": {
+      "type": "Heading",
+      "props": {
+        "text": "1. F&G 50（Neutral）是假的乐观",
+        "level": "h4"
+      }
+    },
+    "trap1-t": {
+      "type": "Text",
+      "props": {
+        "text": "它取 11-05 00:00 快照，那时 BTC 还在 $80,442，暴跌在 15:00 之后。今日 F&G 上升 ≠ 市场变好。",
+        "variant": "body"
+      }
+    },
+    "trap-2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "trap2-h",
+        "trap2-t"
+      ]
+    },
+    "trap2-h": {
+      "type": "Heading",
+      "props": {
+        "text": "2. TVL 只跌 1.22% 是滞后",
+        "level": "h4"
+      }
+    },
+    "trap2-t": {
+      "type": "Text",
+      "props": {
+        "text": "链 TVL 81.90B → 81.10B，但 ETH 同期 −8.47%。加 _cb 复取两次结果完全相同 → DeFiLlama 刷新周期滞后，不是缓存、不是假零。暴跌当天 TVL 不能用来判资金进出。",
+        "variant": "body"
+      }
+    },
+    "trap-3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "trap3-h",
+        "trap3-t"
+      ]
+    },
+    "trap3-h": {
+      "type": "Heading",
+      "props": {
+        "text": "3. 昨日报告的 TVL 不可比",
+        "level": "h4"
+      }
+    },
+    "trap3-t": {
+      "type": "Text",
+      "props": {
+        "text": "昨日写的 $84.73B / ETH 链 $45.69B 是「盘中 live 值」，桶里同一天的实际结算值是 $81.90B / $43.76B（差 3–4%）。昨日「TVL +3.44% 站上上沿」是口径错配，不是真流入。",
+        "variant": "body"
+      }
+    },
+    "sep-4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-turnover": {
+      "type": "Heading",
+      "props": {
+        "text": "真实换手（这个可信）",
+        "level": "h2"
+      }
+    },
+    "stat-dex": {
+      "type": "Stat",
+      "props": {
+        "label": "DEX Volume 24h",
+        "value": "$11.635B",
+        "delta": "+21.1% vs 周四基线 $9.609B",
+        "trend": "up"
+      }
+    },
+    "text-turnover": {
+      "type": "Text",
+      "props": {
+        "text": "对周四基线 $9.609B（剔 10-29 Balancer 事件）= +21.1%。放量下跌 = 有真实换手，不是流动性真空。",
+        "variant": "body"
+      }
+    },
+    "sep-5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-movers": {
+      "type": "Heading",
+      "props": {
+        "text": "Movers",
+        "level": "h2"
+      }
+    },
+    "mover-poly": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-poly",
+        "text-poly"
+      ]
+    },
+    "badge-poly": {
+      "type": "Badge",
+      "props": {
+        "text": "↓ Polygon −8.40%",
+        "variant": "destructive"
+      }
+    },
+    "text-poly": {
+      "type": "Text",
+      "props": {
+        "text": "$0.71B → $0.65B — 主体仍是 Polymarket International 腿，非全链撤离",
+        "variant": "body"
+      }
+    },
+    "mover-hyper": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-hyper",
+        "text-hyper"
+      ]
+    },
+    "badge-hyper": {
+      "type": "Badge",
+      "props": {
+        "text": "↓ Hyperliquid L1 −4.52%",
+        "variant": "destructive"
+      }
+    },
+    "text-hyper": {
+      "type": "Text",
+      "props": {
+        "text": "7d 仅 −0.73%，7d 维度反而是抗跌的",
+        "variant": "body"
+      }
+    },
+    "mover-monad": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-monad",
+        "text-monad"
+      ]
+    },
+    "badge-monad": {
+      "type": "Badge",
+      "props": {
+        "text": "↑ Monad +2.24%",
+        "variant": "default"
+      }
+    },
+    "text-monad": {
+      "type": "Text",
+      "props": {
+        "text": "唯一上涨的大链，体量小放大百分比",
+        "variant": "body"
+      }
+    },
+    "mover-dolomite": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-dolomite",
+        "text-dolomite"
+      ]
+    },
+    "badge-dolomite": {
+      "type": "Badge",
+      "props": {
+        "text": "↓ Dolomite −24.66%",
+        "variant": "destructive"
+      }
+    },
+    "text-dolomite": {
+      "type": "Text",
+      "props": {
+        "text": "日内 184.8M → 138.8M，无 hallmark 可归因，no obvious catalyst",
+        "variant": "body"
+      }
+    },
+    "sep-6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-fees": {
+      "type": "Heading",
+      "props": {
+        "text": "Fees 增速跑赢 TVL（剔尖峰后只剩两条）",
+        "level": "h2"
+      }
+    },
+    "fee-row-uniswap": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-uniswap",
+        "text-uniswap"
+      ]
+    },
+    "badge-uniswap": {
+      "type": "Badge",
+      "props": {
+        "text": "fees +27.8% / TVL −4.76%",
+        "variant": "secondary"
+      }
+    },
+    "text-uniswap": {
+      "type": "Text",
+      "props": {
+        "text": "Uniswap V3 — 原始读数报 136%，剔 10-29/10-30 两个 Balancer 撤离尖峰后才成立",
+        "variant": "body"
+      }
+    },
+    "fee-row-jupiter": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-jupiter",
+        "text-jupiter"
+      ]
+    },
+    "badge-jupiter": {
+      "type": "Badge",
+      "props": {
+        "text": "fees +53.8% / TVL −5.69%",
+        "variant": "secondary"
+      }
+    },
+    "text-jupiter": {
+      "type": "Text",
+      "props": {
+        "text": "Jupiter Perp",
+        "variant": "body"
+      }
+    },
+    "text-fees-note": {
+      "type": "Text",
+      "props": {
+        "text": "两者都是下跌中费用逆势放大 = 清算换手饭，不是有机增长。",
+        "variant": "muted"
+      }
+    },
+    "text-curve": {
+      "type": "Text",
+      "props": {
+        "text": "Curve DEX 原始报 236%，实算 +80% 但日序列摆动 20 倍，不建议据建仓。",
+        "variant": "muted"
+      }
+    },
+    "heading-fee-leaders": {
+      "type": "Heading",
+      "props": {
+        "text": "Fees leaders (24h)",
+        "level": "h3"
+      }
+    },
+    "table-fees": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Protocol",
+          "Fees 24h"
+        ],
+        "rows": [
+          [
+            "Tether",
+            "$16.83M"
+          ],
+          [
+            "Circle USDC",
+            "$6.73M"
+          ],
+          [
+            "Hyperliquid Perps",
+            "$4.78M（+84% 1d）"
+          ]
+        ]
+      }
+    },
+    "sep-7": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-stables": {
+      "type": "Heading",
+      "props": {
+        "text": "Stables",
+        "level": "h2"
+      }
+    },
+    "stat-stables": {
+      "type": "Stat",
+      "props": {
+        "label": "Stablecoin Supply",
+        "value": "$295.70B",
+        "delta": "−0.42% 1d",
+        "trend": "down"
+      }
+    },
+    "text-stables": {
+      "type": "Text",
+      "props": {
+        "text": "暴跌当天稳定币只缩 0.42% —— 没有恐慌性出逃，与「被动去杠杆」一致，不是加密内生信用事件。脱锚最深 USDf −58.9bp（$1.66B，连续第五轮）。BUIDL −5.28%（7d −14.41%）、USD1 −4.46% 是最大流出。",
+        "variant": "body"
+      }
+    },
+    "sep-8": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-real-yield": {
+      "type": "Heading",
+      "props": {
+        "text": "Real yield（≥$10M，剔尖峰后）",
+        "level": "h2"
+      }
+    },
+    "table-real-yield": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Pool",
+          "apyBase",
+          "TVL"
+        ],
+        "rows": [
+          [
+            "APXUSD（Ethereum）",
+            "13.73%",
+            "$145M"
+          ],
+          [
+            "TRX（Tron）",
+            "11.12%",
+            "$87M"
+          ]
+        ]
+      }
+    },
+    "sep-9": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-incentive": {
+      "type": "Heading",
+      "props": {
+        "text": "Incentive yield（≥$25M）",
+        "level": "h2"
+      }
+    },
+    "table-incentive": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Pool",
+          "Yield",
+          "TVL"
+        ],
+        "rows": [
+          [
+            "CVXCRV — 43.45% 全 $CRV 奖励",
+            "43.45%",
+            "$35M"
+          ],
+          [
+            "SDCRV — 15.05% 全 $CRV",
+            "15.05%",
+            "$31M（较昨日 14.57% 回升）"
+          ]
+        ]
+      }
+    },
+    "sep-10": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-macro": {
+      "type": "Heading",
+      "props": {
+        "text": "宏观",
+        "level": "h2"
+      }
+    },
+    "stack-macro": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "macro-btc",
+        "macro-eth",
+        "macro-breadth",
+        "stat-poly-btc",
+        "stat-rate"
+      ]
+    },
+    "macro-btc": {
+      "type": "Stat",
+      "props": {
+        "label": "BTC",
+        "value": "$75,637",
+        "delta": "−6.25%",
+        "trend": "down"
+      }
+    },
+    "macro-eth": {
+      "type": "Stat",
+      "props": {
+        "label": "ETH",
+        "value": "$2,229",
+        "delta": "−8.47%",
+        "trend": "down"
+      }
+    },
+    "macro-breadth": {
+      "type": "Text",
+      "props": {
+        "text": "广度 1/20 green（唯一红盘 FIGR_HELOC +0.22%，RWA 国债类）",
+        "variant": "body"
+      }
+    },
+    "stat-poly-btc": {
+      "type": "Stat",
+      "props": {
+        "label": "Polymarket：「年底 BTC 触及 $70,000」YES",
+        "value": "56.5%",
+        "delta": "24h +26pp — 今日最强定价信号",
+        "trend": "up"
+      }
+    },
+    "stat-rate": {
+      "type": "Stat",
+      "props": {
+        "label": "12 月加息 YES",
+        "value": "63.5%",
+        "delta": "24h −14pp（暴跌反而在降加息预期）",
+        "trend": "down"
+      }
+    },
+    "sep-11": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "alert-conclusion": {
+      "type": "Alert",
+      "props": {
+        "title": "结论：全线暂停建立新多头",
+        "message": "昨日所有多头叙事（ETH 轮动、借贷回流）单日全部 dead —— ETH/BTC 由 0.03019 → 0.02947 全数回吐。唯一逆势：XMR 7d +1.05% 是 top-20 唯一 7d 正收益，但那是抗跌不是领涨。",
+        "type": "error"
+      }
+    },
+    "sep-12": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "text-sources": {
+      "type": "Text",
+      "props": {
+        "text": "sources: coingecko=ok defillama=ok fng=ok polymarket=ok websearch=fail newsfeed=ok（CoinDesk RSS）| var: none",
+        "variant": "caption"
+      }
+    }
+  }
+}

@@ -1,40 +1,46 @@
-ℹ️ Crypto 2026-11-04 — risk-on (medium)
+⚠️ Crypto 2026-11-05 — risk-off
 
-**Crypto — 2026-11-04** — risk-on（conviction medium）| DeFi **Risk-on**: TVL +3.4% / 量 +26% / 稳定币 −0.45%
+*Crypto — 2026-11-05* — risk-off（conviction high）| DeFi Mixed：TVL 读数滞后，别信
 
-**Take:** BTC **+3.67%** $80,676、ETH **+6.29%** 领涨、广度 **17/20**；但 F&G 仅 26→**34**、7d 广度仍 8/20 —— 空头回补式反弹，不是增量入场。
+*Take:* BTC **−6.25%**（$75,637）· ETH **−8.47%**（$2,229）· 广度 **1/20**。触发源是 AI 股崩盘（Nvidia −9.3%、美股 worst day since April 2025、~$1B 清算），15:00–16:00 UTC 两小时内集中砸盘，不是加密自身事件。
 
-**TVL:** $84.73B（+3.44% 1d / −1.22% 7d / −10.05% 30d）
+*三个必须知道的读数陷阱*
+1. **F&G 50（Neutral）是假的乐观。** 它取 11-05 00:00 快照，那时 BTC 还在 $80,442，暴跌在 15:00 之后。今日 F&G 上升 ≠ 市场变好。
+2. **TVL 只跌 1.22% 是滞后。** 链 TVL 81.90B → 81.10B，但 ETH 同期 −8.47%。加 `_cb` 复取两次结果完全相同 → DeFiLlama 刷新周期滞后，不是缓存、不是假零。**暴跌当天 TVL 不能用来判资金进出。**
+3. **昨日报告的 TVL 不可比。** 昨日写的 $84.73B / ETH 链 $45.69B 是「盘中 live 值」，桶里同一天的实际结算值是 $81.90B / $43.76B（差 3–4%）。昨日「TVL +3.44% 站上上沿」是口径错配，不是真流入。
 
-**Top chains**
-1. Ethereum — $45.69B（1d **+4.83%**）
-2. Base — $6.16B（1d +4.26%）
-3. Solana — $5.50B（1d +1.93%）
+*真实换手（这个可信）*
+DEX vol 24h **$11.635B**，对周四基线 $9.609B（剔 10-29 Balancer 事件）= **+21.1%**。放量下跌 = 有真实换手，不是流动性真空。
 
-**Movers**
-↑ **Arc +12.17%**（$0.572B → $0.641B）— Aave V4 腿 $189M 单日 +7.76%，链体量小放大百分比
-↓ **Polygon −6.92%**（$0.689B → $0.641B）— 主体是 Polymarket Intl −$77M（−15.74%），非全链撤离
-协议侧 ↑ Aster Bridge +13.69%（$505M→$578M）· ↓ Ethena USDtb −13.87%（$484M→$417M，日内口径）
+*Movers*
+↓ Polygon −8.40%（$0.71B → $0.65B）— 主体仍是 Polymarket International 腿，非全链撤离
+↓ Hyperliquid L1 −4.52%（7d 仅 −0.73%，7d 维度反而是抗跌的）
+↑ Monad +2.24% — 唯一上涨的大链，体量小放大百分比
+↓ Dolomite −24.66% — 日内 184.8M → 138.8M，无 hallmark 可归因，`no obvious catalyst`
 
-**Fees leaders（24h）**
-1. Tether — $16.87M（7dov7d −2.3%）
-2. Circle USDC — $6.77M（−1.6%）
-3. PumpSwap — $2.82M（−15.1%）
+*Fees 增速跑赢 TVL（剔尖峰后只剩两条）*
+• Uniswap V3 — fees **+27.8%** / TVL −4.76% — 原始读数报 136%，剔 10-29/10-30 两个 Balancer 撤离尖峰后才成立
+• Jupiter Perp — fees **+53.8%** / TVL −5.69%
+两者都是**下跌中费用逆势放大 = 清算换手饭，不是有机增长**。Curve DEX 原始报 236%，实算 +80% 但日序列摆动 20 倍，不建议据建仓。
 
-**Fees beating TVL（已剔单日尖峰）**
-• **Morpho Blue** — fees 7dov7d **+22.6%** / TVL 7d +1.50% — 唯一稳健幸存
-• Binance staked ETH — +33.1% / +3.48%，1.5× 上限下退到 +16.2%（10-31~11-01 翻倍属暂态）
-_淘汰：Lido 报 +75.7% 剔 10-30 尖峰后仅 +1.2%；Uni V3 +131.5%→+6.1%；Curve +205%→**−26%**。_
+*Fees leaders (24h):* Tether $16.83M · Circle USDC $6.73M · Hyperliquid Perps $4.78M（+84% 1d）
 
-**DEX vol:** $8.274B（11-03 结算）；今日进行中 $10.300B，同星期归一 vs 上周三 **+26.25%**，高于工作日均值 $8.355B
+*Stables:* $295.70B（−0.42% 1d）。**暴跌当天稳定币只缩 0.42% —— 没有恐慌性出逃，与「被动去杠杆」一致，不是加密内生信用事件。** 脱锚最深 USDf −58.9bp（$1.66B，连续第五轮）。BUIDL −5.28%（7d −14.41%）、USD1 −4.46% 是最大流出。
 
-**Stables:** $295.20B（−0.45% 1d / −2.05% 7d）。BUIDL −5.88%、USD1 −4.03%、USDG −2.02%（7d −9.71%）、RLUSD +1.70%
-**脱锚（bp，≥$500M）:** **USDf −73.6**（$1.67B，第四轮最深）· **USDD −20.0**（7d 供应 −13.71%）· USD1 −15.5 · U −13.9
+*Real yield（≥$10M，剔尖峰后）*
+• APXUSD（Ethereum）— 13.73% apyBase（$145M）
+• TRX（Tron）— 11.12% apyBase（$87M）
 
-**Real yield（可持续）** Uniswap V3 WETH-USDT 63.57%（$85.3M，m30 50.28）· Saturn SUSDAT 15.54%（$37.7M）· apyx APXUSD 13.46%（$148.2M）
-**Incentive（≥$25M）** SDCRV 14.57% 全 $CRV（$32.8M）· CVXCRV 11.55% 全 $CRV（$38.1M）
+*Incentive yield（≥$25M）*
+• CVXCRV — 43.45% 全 $CRV 奖励（$35M）
+• SDCRV — 15.05% 全 $CRV（$31M）· 较昨日 14.57% 回升
 
-**Macro:** BTC $80,676 (+3.67%) / ETH $2,435.88 (+6.29%, ETH/BTC 0.03019) · SOL $96.03 (+2.76%) · F&G **34 Fear**（昨 26）· 总市值 $2.717T
-**Polymarket:** "共和党丢 AK/IA/KS/ME/MI/OH/TX 参议院席位" YES **93.3%**（24h $3.38M）· 加密盘连续第八轮未进前十
+*宏观*
+• BTC $75,637（−6.25%）/ ETH $2,229（−8.47%）
+• 广度 1/20 green（唯一红盘 FIGR_HELOC +0.22%，RWA 国债类）
+• **Polymarket：「年底 BTC 触及 $70,000」YES 56.5%，24h 跳 +26pp** —— 今日最强定价信号
+• 12 月加息 YES 63.5%（24h −14pp，暴跌反而在降加息预期）
 
-_sources: 全部 ok，唯 websearch 连续第 13 轮 400 失败（Catalysts 整节省略）| var: none_
+*结论：全线暂停建立新多头。* 昨日所有多头叙事（ETH 轮动、借贷回流）单日全部 dead —— ETH/BTC 由 0.03019 → 0.02947 全数回吐。唯一逆势：XMR 7d **+1.05%** 是 top-20 唯一 7d 正收益，但那是抗跌不是领涨。
+
+_sources: coingecko=ok defillama=ok fng=ok polymarket=ok websearch=fail newsfeed=ok（CoinDesk RSS）| var: none_

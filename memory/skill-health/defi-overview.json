@@ -1,10 +1,10 @@
 {
   "skill": "defi-overview",
-  "last_analyzed": "2026-11-04T23:09:34Z",
-  "quality_score": 3,
-  "assessment": "Dense, number-first overview with real methodology notes (剔尖峰、7dov7d 归一) and honest logging of the failing websearch source, but it never touches DEUS/xDEUS or the trigger thresholds that are the operator's only priorities, runs long against a '看完就能决定' brief, skips the required per-report source citations (仅 'sources: 全部 ok', 无合约地址/数据源), and is a non-trigger broadcast the strategy says not to push.",
+  "last_analyzed": "2026-11-05T23:15:02Z",
+  "quality_score": 4,
+  "assessment": "Comprehensive one-pass crypto read covering regime take, movers, fees, yields, breadth, F&G, stables, and prediction markets with strong internal consistency (ETH/BTC ratio checks out, DEX vol and fee deltas reconcile) and candid data-quality caveats (stale F&G snapshot, lagging TVL, prior-day comparability error) plus a source-status line; held back from 5 by thin yields lists (2 items each) and absence of explicit tracked-protocol position/health detail.",
   "flags": [],
-  "avg_score": 3.31,
+  "avg_score": 3.36,
   "history": [
     {
       "date": "2026-10-23",
@@ -82,6 +82,12 @@
       "date": "2026-11-04",
       "score": 3,
       "ts": "2026-11-04T23:09:34Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-05",
+      "score": 4,
+      "ts": "2026-11-05T23:15:02Z",
       "harness": "claude"
     }
   ]
