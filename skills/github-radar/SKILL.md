@@ -88,7 +88,7 @@ metadata:
 ```
 1. python3 skills/github-radar/scan.py "${var}"     ← digest，1 次
 2. gh api repos/O/R/contents --jq '.[].name'        ← 只在要判页形态时，0–1 次
-3. bash >> memory/logs/${today}.md                  ← 1 次
+3. bash（node 追加日志）                            ← 1 次
                                              合计 2–3 次
 ```
 
@@ -126,17 +126,17 @@ python3 skills/github-radar/scan.py "${var}"
 
 往 `memory/logs/${today}.md` 追加一节 `### github-radar（第 N 轮）`：口径 + 漏斗 + 四分类（**必须分开写**）+ 你自己的判据级发现。报告级为 0 就只写一行。digest 的行可以直接抄。
 
-跑 `probe` 时，日志里 `probe` 单独起一节，别混进方向节；同一节里用 `bash >>` 把簇追加进 `memory/gh-probe-cards.md`、把候选词追加进候选词文件。都是追加，不 Read 后 Edit，不额外占调用。建表与追加合在同一批 bash，先兜底建文件再追加。
+跑 `probe` 时，日志里 `probe` 单独起一节，别混进方向节；同一节里用 `printf … | node -e '…appendFileSync…'` 把簇追加进 `memory/gh-probe-cards.md`、把候选词追加进候选词文件。都是追加，不 Read 后 Edit，不额外占调用。建表与追加合在同一批 bash，先兜底建文件再追加。
 
 **逐簇从 digest 的 `probe` 段抄值，一簇一组，全部写在同一批 bash 里，不按簇分批调用。** digest 里的 `total=` 就是 repo 数、`owners=` 就是 owner 数，别对调。`cohesive` 与 `thematic` digest 只给判定不给数值，过了就都写 `1`、没过写 `0`。`today` 用 `${today}`。0 簇就只跑两条建表行，不写 `printf`。
 
 ```bash
-[ -f memory/gh-probe-cards.md ] || printf '# probe 簇卡\n\n| 短名 | owner 数 | repo 数 | cohesive | thematic | 首次 | 状态 |\n|---|---|---|---|---|---|---|\n' > memory/gh-probe-cards.md
-[ -f memory/gh-probe-terms.txt ] || printf '# probe 候选词（人点头后进 TERMS）\n\n| 词 | 日期 | owner 数 | 状态 |\n|---|---|---|---|\n' > memory/gh-probe-terms.txt
+[ -f memory/gh-probe-cards.md ] || printf '# probe 簇卡\n\n| 短名 | owner 数 | repo 数 | cohesive | thematic | 首次 | 状态 |\n|---|---|---|---|---|---|---|\n' | node -e 'require("fs").writeFileSync("memory/gh-probe-cards.md", require("fs").readFileSync(0))'
+[ -f memory/gh-probe-terms.txt ] || printf '# probe 候选词（人点头后进 TERMS）\n\n| 词 | 日期 | owner 数 | 状态 |\n|---|---|---|---|\n' | node -e 'require("fs").writeFileSync("memory/gh-probe-terms.txt", require("fs").readFileSync(0))'
 
 short=supermimic owners=7 repos=9 cohesive=1 thematic=1 term=supermimic
-printf '| %s | %s | %s | %s | %s | %s | %s |\n' "$short" "$owners" "$repos" "$cohesive" "$thematic" "${today}" "待定" >> memory/gh-probe-cards.md
-printf '| %s | %s | %s | %s |\n' "$term" "${today}" "$owners" "待定" >> memory/gh-probe-terms.txt
+printf '| %s | %s | %s | %s | %s | %s | %s |\n' "$short" "$owners" "$repos" "$cohesive" "$thematic" "${today}" "待定" | node -e 'require("fs").appendFileSync("memory/gh-probe-cards.md", require("fs").readFileSync(0))'
+printf '| %s | %s | %s | %s |\n' "$term" "${today}" "$owners" "待定" | node -e 'require("fs").appendFileSync("memory/gh-probe-terms.txt", require("fs").readFileSync(0))'
 
 # 第二簇就再赋值一组、再两行 printf，仍在同一批
 ```

@@ -93,7 +93,7 @@ python3 skills/arxiv-radar/scan.py "${var}"
 一次 bash：覆写 `output/arxiv/report.md` 为中文，同一条命令里发出去。
 
 ```bash
-cat > output/arxiv/report.md <<'EOF'
+node -e 'require("fs").writeFileSync("output/arxiv/report.md", require("fs").readFileSync(0))' <<'EOF'
 **arxiv-radar** · 窗口 30 天 · 幸存 3
 
 **具身数据**
