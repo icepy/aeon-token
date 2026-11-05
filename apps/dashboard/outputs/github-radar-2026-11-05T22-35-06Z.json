@@ -1,0 +1,606 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar"
+      },
+      "children": [
+        "meta",
+        "stats",
+        "sep",
+        "list"
+      ]
+    },
+    "meta": {
+      "type": "Text",
+      "props": {
+        "text": "窗口 30 天 · 报告级 17 · 近 7 天活跃 16",
+        "variant": "lead"
+      },
+      "children": []
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "s1": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      },
+      "children": []
+    },
+    "s2": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "17"
+      },
+      "children": []
+    },
+    "s3": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "16"
+      },
+      "children": []
+    },
+    "sep": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8",
+        "r9",
+        "r10",
+        "r11",
+        "r12",
+        "r13",
+        "r14",
+        "r15",
+        "r16",
+        "r17"
+      ]
+    },
+    "r1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r1l",
+        "r1d"
+      ]
+    },
+    "r1l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "INDIETRACK-TEAM-Prometheus/project-prometheus",
+        "href": "https://github.com/INDIETRACK-TEAM-Prometheus/project-prometheus",
+        "source": "egocentric",
+        "score": "★0 · 30天=≥100 · 7天=≥100"
+      },
+      "children": []
+    },
+    "r1d": {
+      "type": "Text",
+      "props": {
+        "text": "Gaze-grounded egocentric AI: SAM 3.1 segments what you look at, a 3D memory remembers where things a",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r2l",
+        "r2d"
+      ]
+    },
+    "r2l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HunterSun2005/VLA-Workbench",
+        "href": "https://github.com/HunterSun2005/VLA-Workbench",
+        "source": "teleoperation",
+        "score": "★0 · 30天=41 · 7天=41"
+      },
+      "children": []
+    },
+    "r2d": {
+      "type": "Text",
+      "props": {
+        "text": "A practical workbench for Franka VLA research: teleoperation, data collection and curation, PI0.5 fi",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r3l",
+        "r3d"
+      ]
+    },
+    "r3l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "eskwisit/pi-world-model-hjepa",
+        "href": "https://github.com/eskwisit/pi-world-model-hjepa",
+        "source": "world model",
+        "score": "★0 · 30天=25 · 7天=25"
+      },
+      "children": []
+    },
+    "r3d": {
+      "type": "Text",
+      "props": {
+        "text": "A hierarchical JEPA world model for agents and sub-agents: it learns in latent space what actions an",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r4l",
+        "r4d"
+      ]
+    },
+    "r4l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "liao-zhizhi/agent-metabolism-os",
+        "href": "https://github.com/liao-zhizhi/agent-metabolism-os",
+        "source": "world model",
+        "score": "★0 · 30天=18 · 7天=18"
+      },
+      "children": []
+    },
+    "r4d": {
+      "type": "Text",
+      "props": {
+        "text": "Causal Execution Layer for VLA & Autonomous Driving. Bridging World Models and Physical Reality. 100",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r5l",
+        "r5d",
+        "r5p"
+      ]
+    },
+    "r5l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "yrluestc/T2G-JEPA",
+        "href": "https://github.com/yrluestc/T2G-JEPA",
+        "source": "jepa",
+        "score": "★0 · 30天=17 · 7天=16"
+      },
+      "children": []
+    },
+    "r5d": {
+      "type": "Text",
+      "props": {
+        "text": "The official implementation code for https://arxiv.org/abs/2611.05847",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r5p": {
+      "type": "Link",
+      "props": {
+        "label": "arxiv.org/abs/2611.05847",
+        "href": "https://arxiv.org/abs/2611.05847"
+      },
+      "children": []
+    },
+    "r6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r6l",
+        "r6d"
+      ]
+    },
+    "r6l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "newblitz/sar_to_eo",
+        "href": "https://github.com/newblitz/sar_to_eo",
+        "source": "jepa",
+        "score": "★0 · 30天=27 · 7天=13"
+      },
+      "children": []
+    },
+    "r6d": {
+      "type": "Text",
+      "props": {
+        "text": "SAR-to-EO is a conditional diffusion + JEPA based model that translates single-channel Synthetic Ape",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r7l",
+        "r7d"
+      ]
+    },
+    "r7l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SILVIO-ZHENG/kineweave",
+        "href": "https://github.com/SILVIO-ZHENG/kineweave",
+        "source": "teleoperation",
+        "score": "★0 · 30天=10 · 7天=10"
+      },
+      "children": []
+    },
+    "r7d": {
+      "type": "Text",
+      "props": {
+        "text": "Modular multi-robot teleoperation and timestamped data capture.",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r8l",
+        "r8d"
+      ]
+    },
+    "r8l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "IDZTPHKKKS/go2-fall-risk",
+        "href": "https://github.com/IDZTPHKKKS/go2-fall-risk",
+        "source": "world model",
+        "score": "★0 · 30天=10 · 7天=10"
+      },
+      "children": []
+    },
+    "r8d": {
+      "type": "Text",
+      "props": {
+        "text": "Do diffusion and flow-matching world models predict how often a robot falls? Branching ground truth",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r9l",
+        "r9d"
+      ]
+    },
+    "r9l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "JackYFL/SP-VTP",
+        "href": "https://github.com/JackYFL/SP-VTP",
+        "source": "egocentric",
+        "score": "★2 · 30天=7 · 7天=7"
+      },
+      "children": []
+    },
+    "r9d": {
+      "type": "Text",
+      "props": {
+        "text": "[WACV2027] Spatially Prompted Visual Trajectory Prediction for Egocentric Manipulation",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r10": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r10l",
+        "r10d"
+      ]
+    },
+    "r10l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ADEPT-ORG/FastRoverVLA",
+        "href": "https://github.com/ADEPT-ORG/FastRoverVLA",
+        "source": "vision language action",
+        "score": "★1 · 30天=7 · 7天=7"
+      },
+      "children": []
+    },
+    "r10d": {
+      "type": "Text",
+      "props": {
+        "text": "Training-free, state-consistent recurrent execution for off-road vision-language-action planning.",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r11": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r11l",
+        "r11d"
+      ]
+    },
+    "r11l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "svedula24/m20-sim-to-real",
+        "href": "https://github.com/svedula24/m20-sim-to-real",
+        "source": "sim-to-real",
+        "score": "★0 · 30天=7 · 7天=7"
+      },
+      "children": []
+    },
+    "r11d": {
+      "type": "Text",
+      "props": {
+        "text": "Deep Robotics Lynx M20: the ROS 2 Humble / Nav2 / natural-language navigation stack from simulation,",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r12": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r12l",
+        "r12d"
+      ]
+    },
+    "r12l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "flyingbitac/FlowPilot",
+        "href": "https://github.com/flyingbitac/FlowPilot",
+        "source": "world action model",
+        "score": "★4 · 30天=6 · 7天=6"
+      },
+      "children": []
+    },
+    "r12d": {
+      "type": "Text",
+      "props": {
+        "text": "FlowPilot: Real-Time World-Action Modeling for Agile UAV Navigation",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r13": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r13l",
+        "r13d"
+      ]
+    },
+    "r13l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "linker-bot/SDK",
+        "href": "https://github.com/linker-bot/SDK",
+        "source": "teleoperation",
+        "score": "★0 · 30天=6 · 7天=6"
+      },
+      "children": []
+    },
+    "r13d": {
+      "type": "Text",
+      "props": {
+        "text": "Directory of LinkerBot hand and arm SDKs, transport libraries, teleoperation projects, and shared to",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r14": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r14l",
+        "r14d"
+      ]
+    },
+    "r14l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "nexform-tech/litearm-vr",
+        "href": "https://github.com/nexform-tech/litearm-vr",
+        "source": "teleoperation",
+        "score": "★0 · 30天=8 · 7天=4"
+      },
+      "children": []
+    },
+    "r14d": {
+      "type": "Text",
+      "props": {
+        "text": "Open-source VR teleoperation for the LiteArm robotic manipulator series",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r15": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r15l",
+        "r15d"
+      ]
+    },
+    "r15l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Breezewrf/supermimic_mjlab",
+        "href": "https://github.com/Breezewrf/supermimic_mjlab",
+        "source": "sim2real",
+        "score": "★10 · 30天=39 · 7天=2"
+      },
+      "children": []
+    },
+    "r15d": {
+      "type": "Text",
+      "props": {
+        "text": "Reproduce of Supermimic in Mjlab, implemented Sim2Real in Robojudo-Plus",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r16": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r16l",
+        "r16d"
+      ]
+    },
+    "r16l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Yu1man/Force2Act",
+        "href": "https://github.com/Yu1man/Force2Act",
+        "source": "robot manipulation",
+        "score": "★0 · 30天=11 · 7天=1"
+      },
+      "children": []
+    },
+    "r16d": {
+      "type": "Text",
+      "props": {
+        "text": "Force-conditioned flow matching policy for contact-rich robot manipulation. Fuses camera images, rob",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "r17": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r17l",
+        "r17badge",
+        "r17d"
+      ]
+    },
+    "r17l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "cookies060809/mwm-resumption",
+        "href": "https://github.com/cookies060809/mwm-resumption",
+        "source": "world model",
+        "score": "★0 · 30天=49 · 7天=0"
+      },
+      "children": []
+    },
+    "r17badge": {
+      "type": "Badge",
+      "props": {
+        "text": "爆完即停",
+        "variant": "destructive"
+      },
+      "children": []
+    },
+    "r17d": {
+      "type": "Text",
+      "props": {
+        "text": "ECR-MWM / EC-JMF: Epistemically Constrained Dynamic Mental World Modeling for task interruption and",
+        "variant": "muted"
+      },
+      "children": []
+    }
+  }
+}
