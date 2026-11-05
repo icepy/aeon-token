@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-04T00:05:00Z
+timestamp: 2026-11-05T00:20:00Z
 ---
 
 # DefiLlama Radar
@@ -149,7 +149,31 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 2. **恢复可见性的正确做法是改 seen，不是删整表。** 只删 `memory/defillama-seen.json` 里 `9317` 这一条即可让它在下一轮重新走漏斗（属修订单条记录，非加链，**不需要重做基线**）。删整表会让 8925 条全部重灌成 `baseline`，代价与收益完全不对等。
 3. **不要把这条当成「该加 `Base` 之前先重做基线」的信号。** `Base` 早在 `CHAINS` 里（本轮命中 915）；XMAQUINA 进不来纯粹因为它自己 `chains=[]`，加链救不了它。
 
-## 本轮漏斗口径（11-04 第 9 轮）
+## `parent` 首次成为绝对主导桶，且吃掉本轮最大 TVL（11-05 第 10 轮）
+
+18 条新增里 10 条被过滤，其中 **6 条只被 `parentProtocol` 挡**（Privacy Pools V2 · HedgeHood Share Lending · StonkBrokers Books · StonkBrokers Clutch TV · Dexalot OmniVaults · Precept←`parent#templar-protocol`），同轮 `category` 桶为 **0**、空链桶 3。前九轮 `parent` 单轮 0–7，从未同时压过这两桶。
+
+**这是录入潮的形状，不是回归。** 一批新增集中来自「同一母协议铺子协议」（StonkBrokers 两条、Privacy Pools V2、Dexalot OmniVaults、HedgeHood、Precept），正是 SKILL.md「版本号铺开是最大噪声源」要挡的东西。
+
+**由此得一条读数口径：可报集的 TVL 和不代表本轮新增体量。** 本轮 8 条可报合计 TVL 仅 **$102K**（最大 `Axcess` $97.6K），而被丢弃的 `Dexalot OmniVaults`(9337) 单条 **$1.96M** —— 它只被 `parent` 一个桶挡。因为「不设 TVL 地板」是铁律，`out.json` 按定义**不含体量信息**，读「本轮最大的新协议」必须回看 `payload` 的差集全集，不能只读 `out.json`。
+
+## `seen` 多出一条不属于 payload 的 id = 下架痕迹，不是损坏（11-05 首次观测）
+
+本轮反向差集出现 `only_seen=['4818']`、`only_raw=[]`：id 4818（`first 2026-10-28`、`notified=baseline`）仍在 seen 里，但已不在 `/protocols`。seen 总数 8943 = 8924 命中 + 18 新增 + **1 下架残留**。
+
+**判据：`only_seen` 非空而 `only_raw` 为空 ⇒ 条目不在了，不是读坏了。** seen 是只增不删的表（脚本从不移除 id），所以任何「seen 有、payload 无」的 id 都是 DefiLlama 侧下架；若这些 id 日后重新出现，会走 `seen` 命中、`notified != None` 分支，**静默跳过、不会重报** —— 这与 [id 单调递增 / 旧条目回流](#id-单调递增2026-10-28-实测求差正确性的正面证据) 记的「下架再上架」互相印证。**只看 seen 文件大小无法区分「下架残留」和「解析异常」，要看两个方向的差集。**
+
+## 本轮漏斗口径（11-05 第 10 轮）
+
+全量 8942 · 新增 id 18（可报 8 / 过滤 10）· `seen` 命中 8924 · `parent` 7（含 1 条 seen 命中重判）· `category` 0 · 空 `chains` 3 · 链白名单 1（`Lubics` SASEUL $18.2K）· 无 id 0 · 拉取失败 0 · 重报 0。
+
+`listedAt` 跨度 21.0h（11-03 23:31:32Z → 11-04 20:31:53Z），最小间隔 **4s**，无 ≥3 条同分钟批量指纹（11-03 23:31 仅 2 条）。上轮最大 id 9321 → 本轮 9322–9339 **连续无缺口，连续两轮无「暂未回填的分配号」**。
+
+**CF 校验两份快照对 18 条新增的 `parentProtocol` / `category` / `chains` 全部一致 —— 11-03 的 `parentProtocol` 跨快照翻转本轮未复现**，差异只出现在 `tvl` / `change_1h` / `staking` / `mcap` 这类连续量上。翻转是偶发（补录延迟所致），不是每轮必现，所以「一轮 1 次请求」的铁律暂不需要为它让步。
+
+8 条可报：`Axcess` $97.6K · `VectaSwap` $3.9K · `yld.cx` $311 · `ALPHA Launchpad` $234 · `Nullroot Protocol` $85 · `CoinLotto` $9 · `Prediction Arena` $1 · `Milk Money`（`tvl=0` 但 `staking` $574K / `mcap` $1.18M —— **`tvl` 缺省不等于空壳，staking 另计**）。
+
+## 上一轮漏斗口径（11-04 第 9 轮，历史对照）
 
 全量 8924 · 新增 id 5（可报 1 / 过滤 4）· `seen` 命中 8919 · `parent` 1 · `category` 1 · 空 `chains` 2 · 无 id 0 · 拉取失败 0 · 重报 0。**`category` 桶从 11-03 的 8 回落到 1** —— 证实 11-03 那次是 Kraken/Coinbase/Upbit/Bithumb 同秒批量回填的单次现象，不是 `EXCL_CATEGORY` 常态产能。
 
@@ -163,6 +187,9 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-05 第 10 轮；常规 `HIT` 8942 条、etag `W/"6aebb979-9102c7"`、`last-modified Wed, 04 Nov 2026 23:02:17 GMT`、`age 1082`；`?_cb=` + `no-cache` 源站 `MISS` 8942 条、etag `W/"6aebc1f9-910644"`、`last-modified 23:38:33 GMT`；id 集合两向差集仅 `only_seen=['4818']`）
+- 实测数据：同上 9337 `Dexalot OmniVaults` · `tvl=1964050.56` · `chains=['Dexalot','Avalanche','Arbitrum','Binance','Base']` · `parentProtocol=parent#dexalot`（两份快照一致）
+- 实测数据：同上 9336 `Milk Money` · `tvl=0` · `staking=574367.77` · `mcap=1180030.43` · `address=solana:Ax8PSfCXxmxb8C8kYTzN5CPpTe6PyeZfFf8rrXNCjupx`
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-04 第 9 轮；常规 `HIT` 8924 条、`last-modified Tue, 03 Nov 2026 23:02:14 GMT`、etag `W/"6aea67f6-90a472"`、`age 1229`；`?_cb=1793900000` + `no-cache` 源站载荷 8924 条、9,479,690 B；id 集合逐条相同，9319 的 `parentProtocol` / `tvl` 两份一致）
 - 实测数据：同上，9317 `XMAQUINA` · `chains=[]` · `category=RWA` · `tvl` 缺失 · `parentProtocol=None` · `listedAt=1793721905`（2026-11-03T00:45:05Z）
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-03 第 8 轮；常规 `HIT` 8919 条、`last-modified 2026-11-02T23:02:20Z`、etag `W/"6ae9167c-9091f1"`；`?_cb=` + `no-cache` `MISS` 8919 条、`last-modified 23:38:44Z`、etag `W/"6ae91f04-909517"`；id 集合逐条相同）

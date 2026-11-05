@@ -1,0 +1,807 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "defillama-radar · 第 10 轮 · 可报 8",
+        "description": "全量 8942 · 新增 id 18（可报 8 / 过滤 10）"
+      },
+      "children": [
+        "s"
+      ]
+    },
+    "s": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "tlead",
+        "bs",
+        "sep1",
+        "hrep",
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5",
+        "i6",
+        "i7",
+        "i8",
+        "sep2",
+        "hf",
+        "fl",
+        "sep3",
+        "ha",
+        "tbl_a",
+        "sep4",
+        "hs",
+        "lsrc",
+        "tsrc"
+      ]
+    },
+    "tlead": {
+      "type": "Text",
+      "props": {
+        "text": "全量 8942 · 新增 id 18（可报 8 / 过滤 10）· HIT 与源站两份快照 id 集合逐条相同 → 不是缓存假零。",
+        "variant": "lead"
+      }
+    },
+    "bs": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ]
+    },
+    "b1": {
+      "type": "Badge",
+      "props": {
+        "text": "全量 8942",
+        "variant": "default"
+      }
+    },
+    "b2": {
+      "type": "Badge",
+      "props": {
+        "text": "新增 id 18",
+        "variant": "secondary"
+      }
+    },
+    "b3": {
+      "type": "Badge",
+      "props": {
+        "text": "可报 8",
+        "variant": "default"
+      }
+    },
+    "b4": {
+      "type": "Badge",
+      "props": {
+        "text": "过滤 10",
+        "variant": "outline"
+      }
+    },
+    "b5": {
+      "type": "Badge",
+      "props": {
+        "text": "非缓存假零",
+        "variant": "outline"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hrep": {
+      "type": "Heading",
+      "props": {
+        "text": "可报 8 条（按 TVL 降序，仅名字与地板字段，不做判断）",
+        "level": "h3"
+      }
+    },
+    "i1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "i1h",
+        "i1b",
+        "i1s",
+        "i1m",
+        "i1d"
+      ]
+    },
+    "i1h": {
+      "type": "Heading",
+      "props": {
+        "text": "1. Axcess",
+        "level": "h4"
+      }
+    },
+    "i1b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "i1b1",
+        "i1b2"
+      ]
+    },
+    "i1b1": {
+      "type": "Badge",
+      "props": {
+        "text": "Ethereum",
+        "variant": "secondary"
+      }
+    },
+    "i1b2": {
+      "type": "Badge",
+      "props": {
+        "text": "Uncollateralized Lending",
+        "variant": "outline"
+      }
+    },
+    "i1s": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$97,578"
+      }
+    },
+    "i1m": {
+      "type": "Text",
+      "props": {
+        "text": "id 9329 · 11-04 17:26Z",
+        "variant": "caption"
+      }
+    },
+    "i1d": {
+      "type": "Text",
+      "props": {
+        "text": "中文：面向交易机构的无抵押信用协议，用链上金库撮合出借方与机构借方。审计 2 · 无 url · 无 address。",
+        "variant": "body"
+      }
+    },
+    "i2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "i2h",
+        "i2b",
+        "i2s",
+        "i2m",
+        "i2d"
+      ]
+    },
+    "i2h": {
+      "type": "Heading",
+      "props": {
+        "text": "2. VectaSwap",
+        "level": "h4"
+      }
+    },
+    "i2b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "i2b1",
+        "i2b2"
+      ]
+    },
+    "i2b1": {
+      "type": "Badge",
+      "props": {
+        "text": "Base/Arbitrum",
+        "variant": "secondary"
+      }
+    },
+    "i2b2": {
+      "type": "Badge",
+      "props": {
+        "text": "Dexs",
+        "variant": "outline"
+      }
+    },
+    "i2s": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$3,887"
+      }
+    },
+    "i2m": {
+      "type": "Text",
+      "props": {
+        "text": "id 9327 · 11-04 17:15Z",
+        "variant": "caption"
+      }
+    },
+    "i2d": {
+      "type": "Text",
+      "props": {
+        "text": "中文：Base 与 Arbitrum 上的集中流动性 DEX（兼容 Uniswap V3），聚合 0x / 1inch / LI.FI / KyberSwap / Velora 路由。审计 0。",
+        "variant": "body"
+      }
+    },
+    "i3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "i3h",
+        "i3b",
+        "i3s",
+        "i3m",
+        "i3d"
+      ]
+    },
+    "i3h": {
+      "type": "Heading",
+      "props": {
+        "text": "3. yld.cx",
+        "level": "h4"
+      }
+    },
+    "i3b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "i3b1",
+        "i3b2"
+      ]
+    },
+    "i3b1": {
+      "type": "Badge",
+      "props": {
+        "text": "Base/Ethereum/Robinhood Chain",
+        "variant": "secondary"
+      }
+    },
+    "i3b2": {
+      "type": "Badge",
+      "props": {
+        "text": "Yield",
+        "variant": "outline"
+      }
+    },
+    "i3s": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$311"
+      }
+    },
+    "i3m": {
+      "type": "Text",
+      "props": {
+        "text": "id 9331 · 11-04 19:53Z",
+        "variant": "caption"
+      }
+    },
+    "i3d": {
+      "type": "Text",
+      "props": {
+        "text": "中文：流动性租赁市场，按自定价出借或租入代币。审计 0。",
+        "variant": "body"
+      }
+    },
+    "i4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "i4h",
+        "i4b",
+        "i4s",
+        "i4m",
+        "i4d"
+      ]
+    },
+    "i4h": {
+      "type": "Heading",
+      "props": {
+        "text": "4. ALPHA Launchpad",
+        "level": "h4"
+      }
+    },
+    "i4b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "i4b1",
+        "i4b2"
+      ]
+    },
+    "i4b1": {
+      "type": "Badge",
+      "props": {
+        "text": "Robinhood Chain/Arc/Base/Binance/Ethereum",
+        "variant": "secondary"
+      }
+    },
+    "i4b2": {
+      "type": "Badge",
+      "props": {
+        "text": "Launchpad",
+        "variant": "outline"
+      }
+    },
+    "i4s": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$234"
+      }
+    },
+    "i4m": {
+      "type": "Text",
+      "props": {
+        "text": "id 9330 · 11-04 17:30Z",
+        "variant": "caption"
+      }
+    },
+    "i4d": {
+      "type": "Text",
+      "props": {
+        "text": "中文：一次签名发币，可与任意已上币种 / 稳定币 / 股票代币 / 黄金配对。审计 0 · address 在 Robinhood Chain（0x2Da0…A1fa）。",
+        "variant": "body"
+      }
+    },
+    "i5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "i5h",
+        "i5b",
+        "i5s",
+        "i5m",
+        "i5d"
+      ]
+    },
+    "i5h": {
+      "type": "Heading",
+      "props": {
+        "text": "5. Nullroot Protocol",
+        "level": "h4"
+      }
+    },
+    "i5b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "i5b1",
+        "i5b2"
+      ]
+    },
+    "i5b1": {
+      "type": "Badge",
+      "props": {
+        "text": "Robinhood Chain",
+        "variant": "secondary"
+      }
+    },
+    "i5b2": {
+      "type": "Badge",
+      "props": {
+        "text": "Privacy",
+        "variant": "outline"
+      }
+    },
+    "i5s": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$85"
+      }
+    },
+    "i5m": {
+      "type": "Text",
+      "props": {
+        "text": "id 9333 · 11-04 19:59Z",
+        "variant": "caption"
+      }
+    },
+    "i5d": {
+      "type": "Text",
+      "props": {
+        "text": "中文：Robinhood Chain 上的合规隐私池，存款对 OFAC 名单筛查后进关联集，零知识证明提款到新地址。审计 0。",
+        "variant": "body"
+      }
+    },
+    "i6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "i6h",
+        "i6b",
+        "i6s",
+        "i6m",
+        "i6d"
+      ]
+    },
+    "i6h": {
+      "type": "Heading",
+      "props": {
+        "text": "6. CoinLotto",
+        "level": "h4"
+      }
+    },
+    "i6b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "i6b1",
+        "i6b2"
+      ]
+    },
+    "i6b1": {
+      "type": "Badge",
+      "props": {
+        "text": "Binance/Base/Ethereum",
+        "variant": "secondary"
+      }
+    },
+    "i6b2": {
+      "type": "Badge",
+      "props": {
+        "text": "Luck Games",
+        "variant": "outline"
+      }
+    },
+    "i6s": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$9"
+      }
+    },
+    "i6m": {
+      "type": "Text",
+      "props": {
+        "text": "id 9325 · 11-04 17:03Z",
+        "variant": "caption"
+      }
+    },
+    "i6d": {
+      "type": "Text",
+      "props": {
+        "text": "中文：任意 ERC-20 发起的链上彩票，Chainlink VRF 开奖。审计 2。",
+        "variant": "body"
+      }
+    },
+    "i7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "i7h",
+        "i7b",
+        "i7s",
+        "i7m",
+        "i7d"
+      ]
+    },
+    "i7h": {
+      "type": "Heading",
+      "props": {
+        "text": "7. Prediction Arena",
+        "level": "h4"
+      }
+    },
+    "i7b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "i7b1",
+        "i7b2"
+      ]
+    },
+    "i7b1": {
+      "type": "Badge",
+      "props": {
+        "text": "Base",
+        "variant": "secondary"
+      }
+    },
+    "i7b2": {
+      "type": "Badge",
+      "props": {
+        "text": "Prediction Market",
+        "variant": "outline"
+      }
+    },
+    "i7s": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$1"
+      }
+    },
+    "i7m": {
+      "type": "Text",
+      "props": {
+        "text": "id 9332 · 11-04 19:57Z",
+        "variant": "caption"
+      }
+    },
+    "i7d": {
+      "type": "Text",
+      "props": {
+        "text": "中文：Base 上的彩池制二元预测市场，4% 手续费中 30% 返推荐人。审计 0。",
+        "variant": "body"
+      }
+    },
+    "i8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "i8h",
+        "i8b",
+        "i8stats",
+        "i8m",
+        "i8d"
+      ]
+    },
+    "i8h": {
+      "type": "Heading",
+      "props": {
+        "text": "8. Milk Money",
+        "level": "h4"
+      }
+    },
+    "i8b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "i8b1",
+        "i8b2"
+      ]
+    },
+    "i8b1": {
+      "type": "Badge",
+      "props": {
+        "text": "Solana",
+        "variant": "secondary"
+      }
+    },
+    "i8b2": {
+      "type": "Badge",
+      "props": {
+        "text": "Liquidity Manager",
+        "variant": "outline"
+      }
+    },
+    "i8stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "sm"
+      },
+      "children": [
+        "i8st1",
+        "i8st2",
+        "i8st3"
+      ]
+    },
+    "i8st1": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$0"
+      }
+    },
+    "i8st2": {
+      "type": "Stat",
+      "props": {
+        "label": "Staking",
+        "value": "$574K"
+      }
+    },
+    "i8st3": {
+      "type": "Stat",
+      "props": {
+        "label": "Market Cap",
+        "value": "$1.18M"
+      }
+    },
+    "i8m": {
+      "type": "Text",
+      "props": {
+        "text": "id 9336 · 11-04 20:15Z",
+        "variant": "caption"
+      }
+    },
+    "i8d": {
+      "type": "Text",
+      "props": {
+        "text": "中文：Solana 上的流动性管理器，用协议自有钱包在 Meteora DLMM 跑集中流动性；treasury 池手续费回购 $MM，reward 池分给质押者。（tvl=0 是没算持仓本金，不是空壳）。",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hf": {
+      "type": "Heading",
+      "props": {
+        "text": "过滤 10 条（已钉 filtered，此后不再报）",
+        "level": "h3"
+      }
+    },
+    "fl": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "fl1",
+        "fl2",
+        "fl3"
+      ]
+    },
+    "fl1": {
+      "type": "Text",
+      "props": {
+        "text": "parentProtocol 6：Privacy Pools V2(9326) · HedgeHood Share Lending(9328) · StonkBrokers Books(9334) · StonkBrokers Clutch TV(9335) · Dexalot OmniVaults(9337) · Precept(9338)",
+        "variant": "body"
+      }
+    },
+    "fl2": {
+      "type": "Text",
+      "props": {
+        "text": "空 chains 3：Quotrons(9322) · AetherZone(9323) · liq.fun Predictions(9339)",
+        "variant": "body"
+      }
+    },
+    "fl3": {
+      "type": "Text",
+      "props": {
+        "text": "链不在白名单 1：Lubics(9324, SASEUL, TVL $18,201)",
+        "variant": "body"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "ha": {
+      "type": "Heading",
+      "props": {
+        "text": "审计读数",
+        "level": "h3"
+      }
+    },
+    "tbl_a": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "项",
+          "值"
+        ],
+        "rows": [
+          [
+            "seen 命中",
+            "8924"
+          ],
+          [
+            "parent",
+            "7"
+          ],
+          [
+            "category",
+            "0"
+          ],
+          [
+            "链白名单",
+            "3"
+          ],
+          [
+            "无 id",
+            "0"
+          ],
+          [
+            "拉取失败",
+            "0"
+          ],
+          [
+            "重报",
+            "0"
+          ],
+          [
+            "基线轮",
+            "False"
+          ]
+        ]
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hs": {
+      "type": "Heading",
+      "props": {
+        "text": "数据源",
+        "level": "h3"
+      }
+    },
+    "lsrc": {
+      "type": "Link",
+      "props": {
+        "label": "https://api.llama.fi/protocols",
+        "href": "https://api.llama.fi/protocols"
+      }
+    },
+    "tsrc": {
+      "type": "Text",
+      "props": {
+        "text": "2026-11-05 00:0xZ；常规 HIT etag W/\"6aebb979-9102c7\"、last-modified Wed, 04 Nov 2026 23:02:17 GMT、age 1082；源站 MISS etag W/\"6aebc1f9-910644\"、last-modified 23:38:33 GMT，两份各 8942 条、id 集合差集为空。",
+        "variant": "muted"
+      }
+    }
+  }
+}

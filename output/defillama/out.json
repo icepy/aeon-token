@@ -1,16 +1,136 @@
 [
  {
-  "id": "9319",
-  "name": "H081 Capital",
-  "slug": "h081-capital",
+  "id": "9329",
+  "name": "Axcess",
+  "slug": "axcess",
+  "chains": [
+   "Ethereum"
+  ],
+  "tvl": 97573.22457848236,
+  "category": "Uncollateralized Lending",
+  "listedAt": 1793813164,
+  "url": "",
+  "description": "Axcess is an institutional credit protocol that provides stablecoin credit facilities to crypto trading firms.",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9327",
+  "name": "VectaSwap",
+  "slug": "vectaswap",
+  "chains": [
+   "Base",
+   "Arbitrum"
+  ],
+  "tvl": 3886.774682671708,
+  "category": "Dexs",
+  "listedAt": 1793812510,
+  "url": "",
+  "description": "Concentrated-liquidity DEX (Uniswap V3 compatible) on Base and Arbitrum, with price routing across 0x, 1inch, ",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9331",
+  "name": "yld.cx",
+  "slug": "yld.cx",
+  "chains": [
+   "Base",
+   "Ethereum",
+   "Robinhood Chain"
+  ],
+  "tvl": 310.2388835181703,
+  "category": "Yield",
+  "listedAt": 1793822035,
+  "url": "",
+  "description": "Liquidity rental markets. Provide or rent tokens at your price",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9330",
+  "name": "ALPHA Launchpad",
+  "slug": "alpha-launchpad",
+  "chains": [
+   "Robinhood Chain",
+   "Base",
+   "Binance",
+   "Ethereum"
+  ],
+  "tvl": 233.98680037631206,
+  "category": "Launchpad",
+  "listedAt": 1793813457,
+  "url": "",
+  "description": "One launchpad on six chains. Launch a token with one wallet signature and pair it with any listed coin, stable",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9333",
+  "name": "Nullroot Protocol",
+  "slug": "nullroot-protocol",
+  "chains": [
+   "Robinhood Chain"
+  ],
+  "tvl": 84.46780641750001,
+  "category": "Privacy",
+  "listedAt": 1793822383,
+  "url": "",
+  "description": "Nullroot Protocol is a compliant privacy pool on Robinhood Chain. Users deposit ETH or USDG, deposits are scre",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9325",
+  "name": "CoinLotto",
+  "slug": "coinlotto",
+  "chains": [
+   "Binance",
+   "Base",
+   "Ethereum"
+  ],
+  "tvl": 8.980629798679688,
+  "category": "Luck Games",
+  "listedAt": 1793811822,
+  "url": "",
+  "description": "On-chain lottery protocol where anyone can launch a lottery in any ERC-20 token, with winners drawn via Chainl",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9332",
+  "name": "Prediction Arena",
+  "slug": "prediction-arena",
+  "chains": [
+   "Base"
+  ],
+  "tvl": 0.99973412925,
+  "category": "Prediction Market",
+  "listedAt": 1793822253,
+  "url": "",
+  "description": "Pari-mutuel prediction markets on Base. Two outcomes per market, stakes escrowed in the contract, the wrong si",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9336",
+  "name": "Milk Money",
+  "slug": "milk-money",
   "chains": [
    "Solana"
   ],
-  "tvl": 42.00351380400001,
-  "category": "Lending",
-  "listedAt": 1793721664,
+  "tvl": 0,
+  "category": "Liquidity Manager",
+  "listedAt": 1793823314,
   "url": "",
-  "description": "H081 Capital is a private bank for AI agents on Solana: shielded USDG deposits with programmable spending poli",
+  "description": "Milk Money is a liquidity manager on Solana: it runs concentrated-liquidity positions on Meteora DLMM from pro",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false

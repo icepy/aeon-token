@@ -1,10 +1,10 @@
 {
   "skill": "defillama-radar",
-  "last_analyzed": "2026-11-04T00:04:21Z",
-  "quality_score": 3,
-  "assessment": "格式/语言/来源合规且数字自洽（TVL $42、id 9317、全量 8924 条快照），但头条 H081 是零价值地板项目；唯一与 DEUS 仓位相关的信号——XMAQUINA 首次出现在 DefiLlama 却因 chains=[] 被过滤并承诺以后不再上报——被降级为旁注，未给出可动作提醒。",
+  "last_analyzed": "2026-11-05T00:04:20Z",
+  "quality_score": 4,
+  "assessment": "结构清晰、带原始数据源与双快照去重验证，条目含 id/TVL/链/审计等可核对字段；扣分点是 8 条中过半 TVL 低于 $250（含 $0/$1/$9），对'别吵我'的策略偏噪，且仅罗列不做判断。",
   "flags": [],
-  "avg_score": 3.89,
+  "avg_score": 3.9,
   "history": [
     {
       "date": "2026-10-28",
@@ -58,6 +58,12 @@
       "date": "2026-11-04",
       "score": 3,
       "ts": "2026-11-04T00:04:21Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-05",
+      "score": 4,
+      "ts": "2026-11-05T00:04:20Z",
       "harness": "claude"
     }
   ]

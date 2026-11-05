@@ -1,7 +1,14 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=8919 · parent=1 · category=1 · 链白名单=2 · 拉取失败=0
-全量 8924 · 新增 id 5（可报 1 / 过滤标记 4）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=8924 · parent=7 · category=0 · 链白名单=3 · 拉取失败=0
+全量 8942 · 新增 id 18（可报 8 / 过滤标记 10）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1895 · Base=915 · Solana=469 · Arbitrum=1048 · Ink=33 · Binance=1146 · BSC=0 · Optimism=393 · OP Mainnet=0 · Hyperliquid L1=213 · Robinhood Chain=300
-单侧读数: 加密侧 1 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  H081 Capital · Solana · tvl=42.00351380400001 · Lending · 1793721664
+链命中: Ethereum=1900 · Base=922 · Solana=470 · Arbitrum=1051 · Ink=33 · Binance=1150 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=213 · Robinhood Chain=306
+单侧读数: 加密侧 8 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+  Axcess · Ethereum · tvl=97573.22457848236 · Uncollateralized Lending · 1793813164
+  VectaSwap · Base/Arbitrum · tvl=3886.774682671708 · Dexs · 1793812510
+  yld.cx · Base/Ethereum/Robinhood Chain · tvl=310.2388835181703 · Yield · 1793822035
+  ALPHA Launchpad · Robinhood Chain/Base/Binance/Ethereum · tvl=233.98680037631206 · Launchpad · 1793813457
+  Nullroot Protocol · Robinhood Chain · tvl=84.46780641750001 · Privacy · 1793822383
+  CoinLotto · Binance/Base/Ethereum · tvl=8.980629798679688 · Luck Games · 1793811822
+  Prediction Arena · Base · tvl=0.99973412925 · Prediction Market · 1793822253
+  Milk Money · Solana · tvl=0 · Liquidity Manager · 1793823314
