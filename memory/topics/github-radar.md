@@ -1,14 +1,49 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 三十轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率六轮同窗口复现已成结论（36% vs 97%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」**）
+description: github-radar 三十一轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率七轮同向复现（34–36% vs 94–97%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**词表可能退化为「jepa+world model」双通道**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-03T22:36:00Z
+timestamp: 2026-11-04T22:35:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。二十九轮（2026-11-02）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十一轮（2026-11-04）实证。
+
+## 第三十一轮（2026-11-04，**30 天窗**，非 dry-run）—— 词表疑似退化为双通道；加密侧零新增要拆两种成因
+
+漏斗：原始 **2090** → 幸存 **53** → 报告级 **25**，核验 53/53（全量），黑名单 3 owner。丢弃 seen=964 · excl=129 · archived=0 · short_desc=370 · **carrier=444** · neg=58 · pages=59 · farm=13 · fail=0。二分至一页：单窗 13 / 需拆窗 5、二分 2 次、搜索调用 41、min:0。耗时 141s（搜索 118s / 核验 8s）。
+
+### 79. 🔴 `jepa` + `world model` 贡献 21/53 = 40% 幸存者 —— 集中度首次触及「双通道」阈值
+
+两词合计 raw **1117** = 全轮 2090 的 **53%**。逐词返回/新收/已见：`world model` 769/8/172 · `jepa` 348/13/152 —— 新增也集中在这两个（13 + 8 = 21）。其余 16 词里最高的 `teleoperation` 只有 7。
+
+**判据：若下一轮 `jepa` 新收仍 ≥10 而其余 17 词合计 ≤10，说明词表实际已退化为双通道，需按 arxiv-radar 的「出口分散度」口径复核（几个词在贡献），而不是继续加词。** 这与 #67「`jepa` 是在扩散的写法」同向，但这次量到了幸存集的占比，不只是单词语义。 [source: logs/2026-11-04#github-radar]
+
+### 80. 🔴 加密侧第二连轮零新增，但「饱和」与「过滤损耗」必须分开判 —— 只有后者是删词候选
+
+四个加密词本轮 0 新增，成因不同：
+
+- `restaking` raw=4 / seen=3 · `intent-based` raw=55 / seen=2 · `data availability` raw=57 / seen=2 → **seen 饱和**，话题活着但都见过，**删词会丢覆盖**。
+- `maximal extractable value` raw=1 / seen=0 → **被过滤规则整条吃掉**，这才是词表无效候选。
+
+**判据（承 #74 的四分类）：看到「0 新增」先分 `seen` 与 raw 的差值 —— `seen≈raw` 是饱和，`seen≈0 且 raw>0` 是过滤损耗。下轮若要动加密侧，只动 MEV 一个词，且先跨窗量 `total_count`。** [source: logs/2026-11-04#github-radar]
+
+### 81. ⚠️ 「爆完即停」本轮吃掉了全部重点仓，含唯一的 ★89 大仓
+
+30d 有量 / 7d 归零 3 个：`Benjamindaoson/WorldDynamics`（30d=19）· **`NVlabs/Flora`（★89，30d=11）** · `backblaze-b2-samples/aistore-b2-gr00t-robotics-training`（30d=9）。
+
+报告级 25 条里 ★≤3 占 22/25、近 7 天仍在写 22/25，其中 **7d == 30d 的 15 个**（新仓潮第四次）。**判据（承 #68 / #76）：star 与 30d 提交数都不足以判「现在还在写」；唯一可信的是把 30d 与 7d 并排看，7d=0 而 30d 高的就是本轮的「重点仓」，正好也是最该扣分的。** [source: logs/2026-11-04#github-radar]
+
+### 82. ⚠️ 「无 language 字段」的批量出现不等于非代码仓 —— 要看同 owner 形态
+
+本轮 8 个无 `language`：`Kushaldatta17/so101-pick-and-place` · `jutrasd/CPE-595-Project---VLA-Robustness-Under-Environmental-Noise` · `Overdamp/g1_study_101` · `Overdamp/g1_study` · `Milkywayna/RLP-from-goals-to-actions` · `sejmoonwei/ForesightFlow` · `LKVexa/KerJEPA-...` · `ZovdaHub/dm0010-egocentric-physical-interaction-samples`。另有空仓 409 一个：`yadong-cruz/VISTA`。
+
+**注意 `Overdamp` 同 owner 两仓同义名（`g1_study` / `g1_study_101`）—— 正是 gh-v4 要求的「同 owner 多仓」形态，但两仓皆无 language，更像课程/笔记作业而非脚手架，本轮不判正样本。** 这说明 #78 的新判据（同 owner 多仓）单独用也不够，还要叠「是代码仓」这一层。 [source: logs/2026-11-04#github-radar]
+
+### 83. 🟢 carrier 误杀对照在长窗维持：丢弃侧 35% vs 放行侧 94%（第七次同向）
+
+丢弃里仓名自带词表词的 171 个 / owner 去重 167 / 本轮核验 146 → 近 7 天存活 **51/146 = 35%**；幸存者对照 **49/52 = 94%**。两线差 2.7 倍，与第 13 轮的 34/97 同向。**本轮是长窗，指标可读**（7d 窗下两侧恒 100% = 测不到，见 #77）。**判据：#77 的「窄窗测不到」与 #73 的「长窗稳定复现」是一体两面 —— carrier 判据未被证伪，改表仍须走 PR 且改前抽检两行。** [source: logs/2026-11-04#github-radar]
 
 ## 第三十轮（2026-11-03，**7 天窗**，非 dry-run）—— 首次真正跑窄窗：窗口改变报告级分布；carrier 指标在窄窗失效
 
