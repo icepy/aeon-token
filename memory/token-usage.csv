@@ -231,3 +231,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-11-05,heartbeat,claude-opus-5-5,60132,7105,490496,0
 2026-11-05,narrative-brief,claude-opus-5-5,35261,2349,61696,0
 2026-11-05,memory-flush,claude-opus-5-5,120204,62082,6307072,0
+2026-11-05,arxiv-radar,claude-opus-5-5,122209,27878,3227136,0

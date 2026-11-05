@@ -1,67 +1,28 @@
 [
  {
-  "id": "2611.04240",
+  "id": "2611.06656",
   "term": "zero-knowledge",
   "terms": [
    "zero-knowledge"
   ],
   "window": 30,
-  "name": "VerfGraph",
-  "title": "VerfGraph: Efficient Zero-Knowledge Verifiable Graph Query Evaluation System",
-  "published": "2026-11-03",
-  "link": "https://arxiv.org/abs/2611.04240",
-  "carrier": "network"
+  "name": "",
+  "title": "Flux Crosstalk Calibration from Zero Knowledge to High Precision in Fully Tunable Superconducting Circuits",
+  "published": "2026-11-04",
+  "link": "https://arxiv.org/abs/2611.06656",
+  "carrier": "circuit"
  },
  {
-  "id": "2611.05320",
-  "term": "robot data",
+  "id": "2611.06524",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
   "terms": [
-   "robot data"
-  ],
-  "window": 30,
-  "name": "LLM",
-  "title": "PyRUA-DataFarm: LLM Agent as a Cost-Efficient Teleoperator for Real-Ready Robot Data",
-  "published": "2026-11-03",
-  "link": "https://arxiv.org/abs/2611.05320",
-  "carrier": "robot"
- },
- {
-  "id": "2611.04371",
-  "term": "embodied AI",
-  "terms": [
-   "embodied AI"
+   "ti:\"consensus\" AND cat:cs.DC"
   ],
   "window": 30,
   "name": "",
-  "title": "Embodied AI for Scientific Discovery: From Physical Action to Scientific Evidence",
-  "published": "2026-11-03",
-  "link": "https://arxiv.org/abs/2611.04371",
-  "carrier": "robot"
- },
- {
-  "id": "2611.03850",
-  "term": "embodied AI",
-  "terms": [
-   "embodied AI"
-  ],
-  "window": 30,
-  "name": "RoboScope",
-  "title": "RoboScope Kit: Unified Interfaces for Fast and Scalable Embodied-AI Evaluation",
-  "published": "2026-11-02",
-  "link": "https://arxiv.org/abs/2611.03850",
-  "carrier": "robot"
- },
- {
-  "id": "2611.05119",
-  "term": "ti:\"hand-object\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 30,
-  "name": "DexHOT",
-  "title": "DexHOT: Learning Hand-Object Configuration Transfer for Dexterous Manipulation",
-  "published": "2026-11-03",
-  "link": "https://arxiv.org/abs/2611.05119",
-  "carrier": "robot"
+  "title": "Distributed Consensus, Optimization, and Learning under Communication Constraints",
+  "published": "2026-11-04",
+  "link": "https://arxiv.org/abs/2611.06524",
+  "carrier": "network"
  }
 ]

@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-04T22:06:48Z",
+  "last_analyzed": "2026-11-05T22:09:53Z",
   "quality_score": 3,
-  "assessment": "A clean, correctly-formatted arXiv digest of 5 papers with real arXiv links and an honest '[?]' tag where classification failed, but entries are title-only — no abstracts, authors, submission dates, or selection rationale — so the operator cannot judge relevance without opening every link; the 2611.xxxxx IDs are structurally valid for the window but uncheckable here.",
+  "assessment": "Completes the discovery job with two concrete hits, arXiv IDs, and honest log of wordlist state and 429 retries, but delivers only titles and links (no abstracts/authors/dates), cannot be independently verified from the output, and includes pollution judgments the skill's scope says to avoid.",
   "flags": [],
-  "avg_score": 3.33,
+  "avg_score": 3.3,
   "history": [
-    {
-      "date": "2026-10-24",
-      "score": 4,
-      "ts": "2026-10-24T08:38:29Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-24",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-04",
       "score": 3,
       "ts": "2026-11-04T22:06:48Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-05",
+      "score": 3,
+      "ts": "2026-11-05T22:09:53Z",
       "harness": "claude"
     }
   ]

@@ -1,0 +1,269 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar 第 37 轮"
+      },
+      "children": [
+        "hdr",
+        "sep1",
+        "sec-orig",
+        "sep2",
+        "sec-why",
+        "sep3",
+        "sec-vocab"
+      ]
+    },
+    "hdr": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "h-main",
+        "h-sub",
+        "stat-grid"
+      ]
+    },
+    "h-main": {
+      "type": "Heading",
+      "props": {
+        "text": "arxiv-radar 第 37 轮",
+        "level": "h2"
+      }
+    },
+    "h-sub": {
+      "type": "Text",
+      "props": {
+        "text": "30 天窗 · 两条都不是加密方向",
+        "variant": "lead"
+      }
+    },
+    "stat-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-round",
+        "stat-raw",
+        "stat-surv"
+      ]
+    },
+    "stat-round": {
+      "type": "Stat",
+      "props": {
+        "label": "轮次",
+        "value": "37"
+      }
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "83"
+      }
+    },
+    "stat-surv": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "2"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-orig": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "orig-h",
+        "item1",
+        "item2"
+      ]
+    },
+    "orig-h": {
+      "type": "Heading",
+      "props": {
+        "text": "原文（不做判断，只登记）",
+        "level": "h3"
+      }
+    },
+    "item1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "item1-link",
+        "item1-desc"
+      ]
+    },
+    "item1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Flux Crosstalk Calibration from Zero Knowledge to High Precision in Fully Tunable Superconducting Circuits",
+        "href": "https://arxiv.org/abs/2611.06656",
+        "source": "arXiv"
+      }
+    },
+    "item1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "超导量子比特耦合器串扰标定，这里的 “zero knowledge” 是「无需先验谱学」的普通语义",
+        "variant": "body"
+      }
+    },
+    "item2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "item2-link",
+        "item2-desc"
+      ]
+    },
+    "item2-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Distributed Consensus, Optimization, and Learning under Communication Constraints",
+        "href": "https://arxiv.org/abs/2611.06524",
+        "source": "arXiv"
+      }
+    },
+    "item2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "分布式机器学习里的共识/优化综述，通信受限下的达成一致",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-why": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "why-h",
+        "why-p1",
+        "why-p2"
+      ]
+    },
+    "why-h": {
+      "type": "Heading",
+      "props": {
+        "text": "为什么标 `?`",
+        "level": "h3"
+      }
+    },
+    "why-p1": {
+      "type": "Text",
+      "props": {
+        "text": "两条都判为污染，不是标签缺口：一篇 quant-ph 超导电路，一篇 cs.IT 分布式 ML 教程。",
+        "variant": "body"
+      }
+    },
+    "why-p2": {
+      "type": "Text",
+      "props": {
+        "text": "`zero-knowledge` 与 `consensus` 两个词分别被词干/普通语义带偏，`cat:cs.DC` 也挡不住 ML 方向的 consensus。",
+        "variant": "body"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-vocab": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "vocab-h",
+        "vocab-stats",
+        "vocab-p1",
+        "vocab-p2"
+      ]
+    },
+    "vocab-h": {
+      "type": "Heading",
+      "props": {
+        "text": "词表",
+        "level": "h3"
+      }
+    },
+    "vocab-stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "vocab-zero",
+        "vocab-sat",
+        "vocab-retry"
+      ]
+    },
+    "vocab-zero": {
+      "type": "Stat",
+      "props": {
+        "label": "零命中",
+        "value": "9 词"
+      }
+    },
+    "vocab-sat": {
+      "type": "Stat",
+      "props": {
+        "label": "饱和",
+        "value": "15 词"
+      }
+    },
+    "vocab-retry": {
+      "type": "Stat",
+      "props": {
+        "label": "429 重试成功",
+        "value": "2 次"
+      }
+    },
+    "vocab-p1": {
+      "type": "Text",
+      "props": {
+        "text": "本轮不动。零命中 9 词跨窗全有命中（`embodied data` 60d=1/90d=1 是本轮新进零命中），饱和 15 词 maxpub 全在近 30 天。",
+        "variant": "body"
+      }
+    },
+    "vocab-p2": {
+      "type": "Text",
+      "props": {
+        "text": "无查询失败、无熔断。两条跨窗查询被 429 挡后重试成功（`proof of training` 90d、`light client` 60d 各一次重试）。",
+        "variant": "body"
+      }
+    }
+  }
+}

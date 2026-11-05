@@ -1,10 +1,11 @@
-**arxiv-radar** · 窗口 30 天 · 幸存 5
+**arxiv-radar 第 37 轮** · 30 天窗 · 原始 83 · 幸存 2 · 两条都不是加密方向
 
-**具身数据 / 机器人**
-- `PyRUA-DataFarm` — 让 LLM agent 充当遥操作员，低成本采集真实机器人数据 · [具身数据/遥操作] · https://arxiv.org/abs/2611.05320
-- `DexHOT` — 手-物配置迁移，用于灵巧操作 · [灵巧操作] · https://arxiv.org/abs/2611.05119
-- `RoboScope Kit` — 具身 AI 评测的统一接口与可扩展套件 · [?] · https://arxiv.org/abs/2611.03850
-- `Embodied AI for Scientific Discovery` — 从物理动作到科学证据：具身 AI 做科研的路线综述 · [?] · https://arxiv.org/abs/2611.04371
+**原文（不做判断，只登记）**
+- `Flux Crosstalk Calibration from Zero Knowledge to High Precision in Fully Tunable Superconducting Circuits` — 超导量子比特耦合器串扰标定，这里的 “zero knowledge” 是「无需先验谱学」的普通语义 · https://arxiv.org/abs/2611.06656
+- `Distributed Consensus, Optimization, and Learning under Communication Constraints` — 分布式机器学习里的共识/优化综述，通信受限下的达成一致 · https://arxiv.org/abs/2611.06524
 
-**零知识**
-- `VerfGraph` — 图查询求值的高效零知识可验证系统 · [零知识] · https://arxiv.org/abs/2611.04240
+**为什么标 `?`**
+两条都判为污染，不是标签缺口：一篇 quant-ph 超导电路，一篇 cs.IT 分布式 ML 教程。`zero-knowledge` 与 `consensus` 两个词分别被词干/普通语义带偏，`cat:cs.DC` 也挡不住 ML 方向的 consensus。
+
+**词表**
+本轮不动。零命中 9 词跨窗全有命中（`embodied data` 60d=1/90d=1 是本轮新进零命中），饱和 15 词 maxpub 全在近 30 天。无查询失败、无熔断。两条跨窗查询被 429 挡后重试成功（`proof of training` 90d、`light client` 60d 各一次重试）。
