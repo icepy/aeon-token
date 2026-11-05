@@ -1,10 +1,10 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-04T10:16:31Z",
-  "quality_score": 3,
-  "assessment": "干净的静默运行：远端 narratives 抓取成功（http=200、17373 字节），3 个日期节全部命中已推记录，结果 UNCHANGED 并按约定跳过 notify 与覆盖，符合「正常别吵我」的策略；但输出本质是日志加摘要，无新增情报内容，属达标而非有额外价值。",
+  "last_analyzed": "2026-11-05T10:01:39Z",
+  "quality_score": 4,
+  "assessment": "Substantive, well-structured narrative brief with source link, per-item counter-theses, scoring dimensions, and change tracking that reflects tag-level dedupe (NEW/demoted/no-dead), though the sha256 section-level dedupe step is only implied and the X/Twitter specifics cannot be independently verified here.",
   "flags": [],
-  "avg_score": 3.42,
+  "avg_score": 3.46,
   "history": [
     {
       "date": "2026-10-27",
@@ -76,6 +76,12 @@
       "date": "2026-11-04",
       "score": 3,
       "ts": "2026-11-04T10:16:31Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-05",
+      "score": 4,
+      "ts": "2026-11-05T10:01:39Z",
       "harness": "claude"
     }
   ]
