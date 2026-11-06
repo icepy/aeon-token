@@ -1,32 +1,28 @@
-**defillama-radar** · 第 10 轮 · 可报 8
+**defillama-radar · 第 11 轮** · 可报 3 条
 
-全量 8942 · 新增 id 18（可报 8 / 过滤 10）· `HIT` 与源站两份快照 id 集合逐条相同 → 不是缓存假零。
+全量 8950 · 新增 id 8（可报 3 / 过滤 5）· `parent` 1 · `category` 0 · 空链 2 · 链白名单 3
 
-**可报 8 条**（按 TVL 降序，仅名字与地板字段，不做判断）
+**1. Panda Financial** — `Base` · TVL $8,673 · 类目：流动性管理器（Liquidity Manager）
+在 Base 上为 Aero 的 WETH/USDC 池做自动流动性管理，每笔存款是一个独立的集中流动性头寸，价格出区间由 keeper bot 搬仓。
+`id=9345` · `listedAt 2026-11-05T19:20:36Z` · `url` 空 · 无 `address` · 无 `parentProtocol`
 
-1. `Axcess` — Ethereum · Uncollateralized Lending · TVL **$97,578** · id 9329 · 11-04 17:26Z
-   中文：面向交易机构的无抵押信用协议，用链上金库撮合出借方与机构借方。审计 2 · 无 url · 无 address。
-2. `VectaSwap` — Base/Arbitrum · Dexs · TVL **$3,887** · id 9327 · 11-04 17:15Z
-   中文：Base 与 Arbitrum 上的集中流动性 DEX（兼容 Uniswap V3），聚合 0x / 1inch / LI.FI / KyberSwap / Velora 路由。审计 0。
-3. `yld.cx` — Base/Ethereum/Robinhood Chain · Yield · TVL **$311** · id 9331 · 11-04 19:53Z
-   中文：流动性租赁市场，按自定价出借或租入代币。审计 0。
-4. `ALPHA Launchpad` — Robinhood Chain/Arc/Base/Binance/Ethereum · Launchpad · TVL **$234** · id 9330 · 11-04 17:30Z
-   中文：一次签名发币，可与任意已上币种 / 稳定币 / 股票代币 / 黄金配对。审计 0 · `address` 在 Robinhood Chain（`0x2Da0…A1fa`）。
-5. `Nullroot Protocol` — Robinhood Chain · Privacy · TVL **$85** · id 9333 · 11-04 19:59Z
-   中文：Robinhood Chain 上的合规隐私池，存款对 OFAC 名单筛查后进关联集，零知识证明提款到新地址。审计 0。
-6. `CoinLotto` — Binance/Base/Ethereum · Luck Games · TVL **$9** · id 9325 · 11-04 17:03Z
-   中文：任意 ERC-20 发起的链上彩票，Chainlink VRF 开奖。审计 2。
-7. `Prediction Arena` — Base · Prediction Market · TVL **$1** · id 9332 · 11-04 19:57Z
-   中文：Base 上的彩池制二元预测市场，4% 手续费中 30% 返推荐人。审计 0。
-8. `Milk Money` — Solana · Liquidity Manager · TVL **$0** · id 9336 · 11-04 20:15Z
-   中文：Solana 上的流动性管理器，用协议自有钱包在 Meteora DLMM 跑集中流动性；treasury 池手续费回购 `$MM`，reward 池分给质押者。**staking $574K · mcap $1.18M**（`tvl=0` 是没算持仓本金，不是空壳）。
+**2. HyperHive** — `Hyperliquid L1` · TVL $2,425 · 类目：风险策展（Risk Curators）
+Hyperliquid 原生的风险策展资金分配基础设施，把策略筛选、敞口上限、链上透明路由合成一层。
+`id=9346` · `listedAt 2026-11-05T19:24:05Z` · `url` 空 · 无 `address`
 
-**过滤 10 条**（已钉 `filtered`，此后不再报）
+**3. Ignite DEX** — `Solana / Ethereum / Binance / Base` · TVL $130 · 类目：DEX
+多链现货交易所，中央限价订单簿。用户把资产存入 Ethereum / Base / BNB Chain / Solana / Lithosphere 上的托管金库，交易已上架代币，报价对为 LAX / USDC / USDT。
+`id=9344` · `listedAt 2026-11-05T19:16:41Z` · `url` 空 · 无 `address`
+注：`chainTvls` 里 Binance 与 Base 均为 0，TVL 全在 Ethereum $44.8 / Solana $85.0。
 
-- `parentProtocol` 6：Privacy Pools V2(9326) · HedgeHood Share Lending(9328) · StonkBrokers Books(9334) · StonkBrokers Clutch TV(9335) · Dexalot OmniVaults(9337) · Precept(9338)
-- 空 `chains` 3：Quotrons(9322) · AetherZone(9323) · liq.fun Predictions(9339)
-- 链不在白名单 1：Lubics(9324, SASEUL, TVL $18,201)
+**本轮被过滤的 5 条（只列名字，不展开）**
+`Brighter`(zkLighter, Yield, $20.1K) · `OnOne`(空链, Launchpad) · `GlazeCorp Launchpad`(Robinhood Chain, parent#glazecorp, $17.6K) · `The River`(空链, Trading App) · `LDEX`(Luxa, Dexs, $1.71)
 
-**审计读数**：`seen` 命中 8924 · `parent` 7 · `category` 0 · 链白名单 3 · 无 id 0 · 拉取失败 0 · 重报 0 · 基线轮 False。
+**校验**
+- CF 校验：常规 `HIT`（etag `W/"6aed0b01-913c44"`，`last-modified 2026-11-05T23:02:25Z`，`age 1005`）与 `?_cb=` + `no-cache` 源站 `MISS`（etag `W/"6aed1362-913ce3"`，`last-modified 23:38:10Z`）两份 8950 个 id 逐条相同，`only_hit` / `only_miss` 均空 → 不是缓存假零。
+- 8 条新增在两份快照上的 `parentProtocol` / `category` / `chains` 全部一致，无 11-03 那种翻转。
+- 反向差集 `only_seen=['4818']`，`only_raw` 空 → 上轮已记的下架痕迹，非解析异常。
+- `listedAt` 跨度 19.87h（11-04 23:39:13Z → 11-05 19:31:20Z），最小间隔 209s，同分钟 ≥3 条批量指纹 0 组。
+- id 9339 → 9340–9347 连续无缺口，连续三轮无「暂未回填的分配号」。
 
-**数据源**：`https://api.llama.fi/protocols`（2026-11-05 00:0xZ；常规 `HIT` etag `W/"6aebb979-9102c7"`、`last-modified Wed, 04 Nov 2026 23:02:17 GMT`、`age 1082`；源站 `MISS` etag `W/"6aebc1f9-910644"`、`last-modified 23:38:33 GMT`，两份各 8942 条、id 集合差集为空）。
+**原始来源**：`https://api.llama.fi/protocols`（id 9344 / 9345 / 9346 / 9347 / 9340–9343）

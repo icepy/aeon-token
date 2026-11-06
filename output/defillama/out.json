@@ -1,136 +1,51 @@
 [
  {
-  "id": "9329",
-  "name": "Axcess",
-  "slug": "axcess",
-  "chains": [
-   "Ethereum"
-  ],
-  "tvl": 97573.22457848236,
-  "category": "Uncollateralized Lending",
-  "listedAt": 1793813164,
-  "url": "",
-  "description": "Axcess is an institutional credit protocol that provides stablecoin credit facilities to crypto trading firms.",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9327",
-  "name": "VectaSwap",
-  "slug": "vectaswap",
-  "chains": [
-   "Base",
-   "Arbitrum"
-  ],
-  "tvl": 3886.774682671708,
-  "category": "Dexs",
-  "listedAt": 1793812510,
-  "url": "",
-  "description": "Concentrated-liquidity DEX (Uniswap V3 compatible) on Base and Arbitrum, with price routing across 0x, 1inch, ",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9331",
-  "name": "yld.cx",
-  "slug": "yld.cx",
-  "chains": [
-   "Base",
-   "Ethereum",
-   "Robinhood Chain"
-  ],
-  "tvl": 310.2388835181703,
-  "category": "Yield",
-  "listedAt": 1793822035,
-  "url": "",
-  "description": "Liquidity rental markets. Provide or rent tokens at your price",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9330",
-  "name": "ALPHA Launchpad",
-  "slug": "alpha-launchpad",
-  "chains": [
-   "Robinhood Chain",
-   "Base",
-   "Binance",
-   "Ethereum"
-  ],
-  "tvl": 233.98680037631206,
-  "category": "Launchpad",
-  "listedAt": 1793813457,
-  "url": "",
-  "description": "One launchpad on six chains. Launch a token with one wallet signature and pair it with any listed coin, stable",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9333",
-  "name": "Nullroot Protocol",
-  "slug": "nullroot-protocol",
-  "chains": [
-   "Robinhood Chain"
-  ],
-  "tvl": 84.46780641750001,
-  "category": "Privacy",
-  "listedAt": 1793822383,
-  "url": "",
-  "description": "Nullroot Protocol is a compliant privacy pool on Robinhood Chain. Users deposit ETH or USDG, deposits are scre",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9325",
-  "name": "CoinLotto",
-  "slug": "coinlotto",
-  "chains": [
-   "Binance",
-   "Base",
-   "Ethereum"
-  ],
-  "tvl": 8.980629798679688,
-  "category": "Luck Games",
-  "listedAt": 1793811822,
-  "url": "",
-  "description": "On-chain lottery protocol where anyone can launch a lottery in any ERC-20 token, with winners drawn via Chainl",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9332",
-  "name": "Prediction Arena",
-  "slug": "prediction-arena",
+  "id": "9345",
+  "name": "Panda Financial",
+  "slug": "panda-financial",
   "chains": [
    "Base"
   ],
-  "tvl": 0.99973412925,
-  "category": "Prediction Market",
-  "listedAt": 1793822253,
+  "tvl": 8672.768482810214,
+  "category": "Liquidity Manager",
+  "listedAt": 1793906436,
   "url": "",
-  "description": "Pari-mutuel prediction markets on Base. Two outcomes per market, stakes escrowed in the contract, the wrong si",
+  "description": "Automated liquidity manager for the WETH/USDC pool on Aero, on Base. Each deposit is its own concentrated-liqu",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false
  },
  {
-  "id": "9336",
-  "name": "Milk Money",
-  "slug": "milk-money",
+  "id": "9346",
+  "name": "HyperHive",
+  "slug": "hyperhive",
   "chains": [
-   "Solana"
+   "Hyperliquid L1"
   ],
-  "tvl": 0,
-  "category": "Liquidity Manager",
-  "listedAt": 1793823314,
+  "tvl": 2425.266062260148,
+  "category": "Risk Curators",
+  "listedAt": 1793906645,
   "url": "",
-  "description": "Milk Money is a liquidity manager on Solana: it runs concentrated-liquidity positions on Meteora DLMM from pro",
+  "description": "HyperHive is Hyperliquid-native infrastructure for risk-curated capital allocation, combining strategy selecti",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9344",
+  "name": "Ignite DEX",
+  "slug": "ignite-dex",
+  "chains": [
+   "Solana",
+   "Ethereum",
+   "Binance",
+   "Base"
+  ],
+  "tvl": 129.80988244385566,
+  "category": "Dexs",
+  "listedAt": 1793906201,
+  "url": "",
+  "description": "Ignite is a multi-chain spot exchange with a central limit order book. Traders deposit into Ignite custody vau",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false

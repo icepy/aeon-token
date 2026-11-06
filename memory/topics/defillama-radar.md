@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-05T00:20:00Z
+timestamp: 2026-11-06T00:10:00Z
 ---
 
 # DefiLlama Radar
@@ -163,7 +163,27 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **判据：`only_seen` 非空而 `only_raw` 为空 ⇒ 条目不在了，不是读坏了。** seen 是只增不删的表（脚本从不移除 id），所以任何「seen 有、payload 无」的 id 都是 DefiLlama 侧下架；若这些 id 日后重新出现，会走 `seen` 命中、`notified != None` 分支，**静默跳过、不会重报** —— 这与 [id 单调递增 / 旧条目回流](#id-单调递增2026-10-28-实测求差正确性的正面证据) 记的「下架再上架」互相印证。**只看 seen 文件大小无法区分「下架残留」和「解析异常」，要看两个方向的差集。**
 
-## 本轮漏斗口径（11-05 第 10 轮）
+## 本轮漏斗口径（11-06 第 11 轮）
+
+全量 **8950** · 新增 id **8**（可报 3 / 过滤 5）· `seen` 命中 8942 · `parent` 1 · `category` **0** · 空 `chains` 2 · 链白名单 2 · 无 id 0 · 拉取失败 0 · 重报 0。
+
+可报 3 条：`Panda Financial`(9345, Base, Liquidity Manager, $8,673) · `HyperHive`(9346, Hyperliquid L1, Risk Curators, $2,425) · `Ignite DEX`(9344, Solana/Ethereum/Binance/Base, Dexs, $130)。
+
+**`parent` 从 10 回落到 1 —— 11-05 的「录入潮」是单次形状，不是常态。** 同轮 `category` 桶连续第二轮为 0（11-05 亦 0），11-03 那次 8 条确认来自交易所批量回填的单次现象。**两轮连续读数才是否定「某桶成为常态产能」的最短证据长度。**
+
+**CF 校验通过（两份 8950 id 逐条相同）**：常规 `HIT` etag `W/"6aed0b01-913c44"`、`last-modified 2026-11-05T23:02:25Z`、`age 1005`；`?_cb=` + `no-cache` 源站 `MISS` etag `W/"6aed1362-913ce3"`、`last-modified 23:38:10Z`。8 条新增的 `parentProtocol` / `category` / `chains` 两快照全一致，**11-03 那种翻转连续两轮未复现。**
+
+**`only_seen=['4818']` 连续第二轮出现**（`only_raw` 空），11-05 首次观测的同一 id 仍不在 payload —— 从「一次快照缺条目」升级为**真下架的确认证据**。seen 总数 8951 = 8950 命中 + 1 残留。
+
+`listedAt` 跨度 19.87h（11-04 23:39:13Z → 11-05 19:31:20Z），最小间隔 209s，同分钟 ≥3 条批量指纹 **0 组**；id 9339 → 9340–9347 连续无缺口，**连续三轮无「暂未回填的分配号」**。
+
+### 读 `chains` 会高估覆盖面：量看 `chainTvls`（11-06）
+
+`Ignite DEX` 报 `chains=['Solana','Ethereum','Binance','Base']`，但 `chainTvls` 里 **Binance=0、Base=0**，TVL 只在 Ethereum $44.8 + Solana $85.0。这与 11-05 的 `VectaSwap`($3.9K) 同属「多链 DEX、TVL 百元级」形态，连续第二轮出现。
+
+**含义：`chains` 是部署声明，`chainTvls` 才是该链上的实际量。** 判断「铺了几条链」用 `chains` 没错（白名单过滤只认它，铁律不变），但读「这协议在哪些链上真有东西」必须回到 `chainTvls`，0 值链等于没部署量。此条只影响人工读数，**不改过滤器**。
+
+## 上一轮漏斗口径（11-05 第 10 轮）
 
 全量 8942 · 新增 id 18（可报 8 / 过滤 10）· `seen` 命中 8924 · `parent` 7（含 1 条 seen 命中重判）· `category` 0 · 空 `chains` 3 · 链白名单 1（`Lubics` SASEUL $18.2K）· 无 id 0 · 拉取失败 0 · 重报 0。
 
@@ -187,6 +207,10 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-06 第 11 轮；常规 `HIT` 8950 条、etag `W/"6aed0b01-913c44"`、`last-modified Thu, 05 Nov 2026 23:02:25 GMT`、`age 1005`；`?_cb=` + `no-cache` 源站 `MISS` 8950 条、etag `W/"6aed1362-913ce3"`、`last-modified 23:38:10 GMT`；id 集合两向差集仅 `only_seen=['4818']`）
+- 实测数据：同上 9344 `Ignite DEX` · `chains=['Solana','Ethereum','Binance','Base']` · `chainTvls={'Binance':0,'Ethereum':44.84,'Base':0,'Solana':84.97}` · `tvl=129.81` · `url=''`
+- 实测数据：同上 9345 `Panda Financial` · `chains=['Base']` · `tvl=8672.77` · `category='Liquidity Manager'` · `url=''`
+- 实测数据：同上 9346 `HyperHive` · `chains=['Hyperliquid L1']` · `tvl=2425.27` · `category='Risk Curators'` · `url=''`
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-05 第 10 轮；常规 `HIT` 8942 条、etag `W/"6aebb979-9102c7"`、`last-modified Wed, 04 Nov 2026 23:02:17 GMT`、`age 1082`；`?_cb=` + `no-cache` 源站 `MISS` 8942 条、etag `W/"6aebc1f9-910644"`、`last-modified 23:38:33 GMT`；id 集合两向差集仅 `only_seen=['4818']`）
 - 实测数据：同上 9337 `Dexalot OmniVaults` · `tvl=1964050.56` · `chains=['Dexalot','Avalanche','Arbitrum','Binance','Base']` · `parentProtocol=parent#dexalot`（两份快照一致）
 - 实测数据：同上 9336 `Milk Money` · `tvl=0` · `staking=574367.77` · `mcap=1180030.43` · `address=solana:Ax8PSfCXxmxb8C8kYTzN5CPpTe6PyeZfFf8rrXNCjupx`

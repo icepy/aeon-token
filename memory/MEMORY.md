@@ -13,7 +13,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
 - `arxiv-radar` ✅ 07:30 UTC · 26 词 · 11-04 第 36 轮 87 → 幸存 5。零命中 7 词 90d 全有命中 → 沉积 60–90d，补历史用 `days:90`；饱和 15 词 maxpub 全在近 30 天 → 全保活。幸存数看**几个词贡献**：单入口 ≥3 = 方向热，多入口各 1 = 覆盖面起作用。**`robot data` 已吞掉 `robot manipulation data`；`可验证计算` 5 词 90d 仅 ~5 条。**[source: logs/2026-11-04#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-05 第 10 轮 8942 / 新增 18 / 可报 8。**`parent` 首成立导桶（6/10）且吃掉本轮最大 TVL $1.96M** —— 可报 8 条仅 $102K，`out.json` 不含体量，读「最大新增」须回看差集全集。**`only_seen` 非空 + `only_raw` 空 = 下架痕迹**，非损坏。`tvl=0` ≠ 空壳（9336 staking $574K）。[source: logs/2026-11-05#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-06 第 11 轮 8950 / 新增 8 / 可报 3。**`parent` 从 10 回落到 1、`category` 连续两轮 0 → 11-05 录入潮是单次形状，非常态**；**`chains` 是部署声明、量看 `chainTvls`（Ignite DEX 报 4 链但 Binance/Base TVL=0）**；`only_seen=['4818']` 连续两轮 → 真下架。`tvl=0` ≠ 空壳（9336 staking $574K）。[source: logs/2026-11-06#defillama-radar]
 - `github-radar` 07:45 · 18 词 · gh-v3。**「7 天窗」从未生效**（`var` 不注入 → 吃 30d）。**窄窗幸存更多、报告级更少**（7d 35/7 vs 30d 33/9）→ 窗口改的是分布不只是流量；**carrier 误杀在 7d 两侧 100% = 测不到**。第 17 轮 30d：**`jepa`+`world model` 占 40% 幸存，疑退化为双通道**；加密侧第二连轮零新增，饱和与过滤损耗须分开判。**按 commits 读。** [source: logs/2026-11-04#github-radar]
 
 ## Lessons Learned

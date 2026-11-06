@@ -1,0 +1,252 @@
+{
+  "root": "root",
+  "state": {},
+  "elements": {
+    "root": {
+      "type": "Card",
+      "props": {
+        "title": "defillama-radar · 第 11 轮",
+        "description": "可报 3 条"
+      },
+      "children": [
+        "ov-grid",
+        "sep-1",
+        "p1",
+        "sep-2",
+        "p2",
+        "sep-3",
+        "p3",
+        "sep-4",
+        "h-filt",
+        "filt-grid",
+        "sep-5",
+        "h-ver",
+        "ver-stack",
+        "sep-6",
+        "h-src",
+        "src-stack"
+      ]
+    },
+    "ov-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "sm"
+      },
+      "children": [
+        "ov1",
+        "ov2",
+        "ov3",
+        "ov4",
+        "ov5",
+        "ov6",
+        "ov7",
+        "ov8"
+      ]
+    },
+    "ov1": {
+      "type": "Stat",
+      "props": {
+        "label": "全量",
+        "value": "8950"
+      }
+    },
+    "ov2": {
+      "type": "Stat",
+      "props": {
+        "label": "新增 id",
+        "value": "8",
+        "delta": "可报 3 / 过滤 5",
+        "trend": "neutral"
+      }
+    },
+    "ov3": {
+      "type": "Stat",
+      "props": {
+        "label": "可报",
+        "value": "3"
+      }
+    },
+    "ov4": {
+      "type": "Stat",
+      "props": {
+        "label": "过滤",
+        "value": "5"
+      }
+    },
+    "ov5": {
+      "type": "Stat",
+      "props": {
+        "label": "parent",
+        "value": "1"
+      }
+    },
+    "ov6": {
+      "type": "Stat",
+      "props": {
+        "label": "category",
+        "value": "0"
+      }
+    },
+    "ov7": {
+      "type": "Stat",
+      "props": {
+        "label": "空链",
+        "value": "2"
+      }
+    },
+    "ov8": {
+      "type": "Stat",
+      "props": {
+        "label": "链白名单",
+        "value": "3"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "p1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p1h",
+        "p1b",
+        "p1t",
+        "p1d",
+        "p1m"
+      ]
+    },
+    "p1h": {
+      "type": "Heading",
+      "props": {
+        "text": "1. Panda Financial",
+        "level": "h3"
+      }
+    },
+    "p1b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p1c",
+        "p1k"
+      ]
+    },
+    "p1c": {
+      "type": "Badge",
+      "props": {
+        "text": "Base",
+        "variant": "secondary"
+      }
+    },
+    "p1k": {
+      "type": "Badge",
+      "props": {
+        "text": "流动性管理器（Liquidity Manager）",
+        "variant": "outline"
+      }
+    },
+    "p1t": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$8,673"
+      }
+    },
+    "p1d": {
+      "type": "Text",
+      "props": {
+        "text": "在 Base 上为 Aero 的 WETH/USDC 池做自动流动性管理，每笔存款是一个独立的集中流动性头寸，价格出区间由 keeper bot 搬仓。",
+        "variant": "body"
+      }
+    },
+    "p1m": {
+      "type": "Text",
+      "props": {
+        "text": "id=9345 · listedAt 2026-11-05T19:20:36Z · url 空 · 无 address · 无 parentProtocol",
+        "variant": "caption"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "p2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p2h",
+        "p2b",
+        "p2t",
+        "p2d",
+        "p2m"
+      ]
+    },
+    "p2h": {
+      "type": "Heading",
+      "props": {
+        "text": "2. HyperHive",
+        "level": "h3"
+      }
+    },
+    "p2b": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p2c",
+        "p2k"
+      ]
+    },
+    "p2c": {
+      "type": "Badge",
+      "props": {
+        "text": "Hyperliquid L1",
+        "variant": "secondary"
+      }
+    },
+    "p2k": {
+      "type": "Badge",
+      "props": {
+        "text": "风险策展（Risk Curators）",
+        "variant": "outline"
+      }
+    },
+    "p2t": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$2,425"
+      }
+    },
+    "p2d": {
+      "type": "Text",
+      "props": {
+        "text": "Hyperliquid 原生的风险策展资金分配基础设施，把策略筛选、敞口上限、链上透明路由合成一层。",
+        "variant": "body"
+      }
+    },
+    "p2m": {
+      "type": "Text",
+      "props": {
+        "text": "id=9346 · listedAt 2026-11-05T19:24:05Z · url 空 · 无 address",
+        "variant": "caption"
+      }
+    }
+  }
+}
