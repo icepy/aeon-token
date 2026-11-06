@@ -1,14 +1,42 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 三十一轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率七轮同向复现（34–36% vs 94–97%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**词表可能退化为「jepa+world model」双通道**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」**）
+description: github-radar 三十二轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率八轮同向复现（35–36% vs 94%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」——teleoperation 第 32 轮首次居首**、**raw=1/seen=0 连两轮 = 靶子稳定，不等于词表无效**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-04T22:35:00Z
+timestamp: 2026-11-05T22:35:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十一轮（2026-11-04）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十二轮（2026-11-05）实证。
+
+## 第三十二轮（2026-11-05，**30 天窗**，非 dry-run）—— 双通道退化判据未成立；加密侧第三连轮零产出
+
+漏斗：原始 **2093** → 幸存 **36** → 报告级 **17**，核验 36/36（全量），黑名单 3 owner。丢弃 seen=977 · excl=132 · archived=0 · short_desc=370 · **carrier=448** · neg=61 · pages=64 · pages_root=2 · scaffold=0 · farm=3 · fail=0。二分至一页：单窗 13 / 需拆窗 5、二分 3 次、搜索调用 43、min:0。耗时 152s（搜索 124s / 核验 8s）。`var` 仍未注入（第 10 连跑）。
+
+### 84. 🟢 #79 的「双通道退化」判据**未成立** —— 两个条件同时反向，结案为单轮回摆
+
+第 31 轮立的标尺是「`jepa` 新收仍 ≥10 而其余 17 词合计 ≤10 → 退化」。本轮 **`jepa` 新收 13 → 7**、其余 17 词合计 **21 → 29**，两个条件都反向；幸存占比也从 40% 回落到 **11/36 = 31%**。**判据：#79 是一次单轮回摆，不是趋势。词表仍在多通道产出，不加词、不裁词。教训是「单轮占比定阈值」本身不够稳 —— 占比类判据至少要两个条件同时成立才可下结论，与本轮 defillama-radar「两轮连续读数才是最短证据」同型。** [source: logs/2026-11-05#github-radar]
+
+### 85. 🔴 `maximal extractable value` 连两轮 raw=1 / seen=0 —— 是「同一个被过滤的仓」而非饱和
+
+第 31 轮记它 raw=1 seen=0 判为过滤损耗；本轮**完全复现同一读数**。含义：它每次都捞到同一个已被过滤的仓，不是新仓在进来。**这条同时修正 #80 的动作建议 —— 过滤损耗不一定等于「词表无效」，也可能是「词有效但靶子稳定」。按三级动作先「换写法」（`ti:"MEV"` 式改写或配 carrier），删词留到换写法后再量一轮。** [source: logs/2026-11-05#github-radar]
+
+### 86. 词表四分类（分开记）：查询失败 0 · 真零 0 · 饱和 9 · 有新增 9
+
+饱和 9 中 8 个确被 seen 吸收且**别删**（`embodied data` 11/5 · `robot dataset` 19/19 · `robotics data engine` 1/1 · `verifiable inference` 6/5 · `proof of useful work` 9/9 · `data availability` 57/2 · `restaking` 4/3 · `intent-based` 57/2）；剩 1 个 `maximal extractable value` 见 #85。**加密侧 4 词 + MEV 全部 0 新收（第三连轮）。** 逐词返回/新收/已见：`world model` 771/4/175 · `jepa` 352/7/159 · `teleoperation` 235/7/170 · `robot manipulation` 159/5/122 · `sim-to-real` 104/2/83 · `vision language action` 94/4/75 · `egocentric` 91/4/73 · `sim2real` 81/2/43 · `world action model` 41/3/31。[source: logs/2026-11-05#github-radar]
+
+### 87. 🟢 `teleoperation` 首次成为单轮最大报告级入口 —— 入口词确实会换代
+
+报告级 17 条词分布：`teleoperation` 4 · `jepa` 3 · `world model` 3 · `egocentric` 2 · 其余各 1。**`teleoperation` 上轮仅 7 新收、报告级 0，本轮报告级 4 条居首。** 验证了「入口词会换代」：判断词表健康要看**谁在贡献报告级**，不能只看 raw 返回量。**注意其 raw 235 只排第三、`world model` 771 是它三倍多 —— 返回量与报告级产出不成比例，答辩/教程类长尾多。** [source: logs/2026-11-05#github-radar]
+
+### 88. 🟢 carrier 误杀第八次同向：丢弃侧 36% vs 放行侧 94%（长窗可读）
+
+丢弃里仓名自带词表词的 174 / owner 去重 172 / 本轮核 146 → 近 7 天存活 **53/146 = 36%**；幸存者对照 **33/35 = 94%**。差 2.6 倍，与 #83（35% vs 94%）逐位吻合。**carrier 判据未证伪，不动；改表仍须走 PR 且改前抽检两行。** [source: logs/2026-11-05#github-radar]
+
+### 89. ⚠️ 「爆完即停」降到 2 个且无大仓；无 language 3 个、空仓 1 个
+
+30d 有量 / 7d 归零 2 个：`cookies060809/mwm-resumption`（30d=49）· `cgznb/breast-mri-jepa-versions`（未进报告级）。上轮 3 个含唯一 ★89，本轮**无大仓** —— 但仍须并排看 30d/7d，star 与单看 30d 都不够（#81 判据不变）。无 `language` 3 个：`linker-bot/SDK`（**进报告级，desc 明写 SDK 目录 → 可能是聚合仓而非页**）· `Zizizi-hao/NegWAM` · `xiaopengyou0000/AERIS`。空仓（409）1 个：`zzzyzh/ReOPD`。**新仓潮第五次，仍按 commits 读。** [source: logs/2026-11-05#github-radar]
 
 ## 第三十一轮（2026-11-04，**30 天窗**，非 dry-run）—— 词表疑似退化为双通道；加密侧零新增要拆两种成因
 

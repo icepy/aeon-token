@@ -122,6 +122,17 @@ re-added with `Edit`.
 - The log is the audit trail the health loop and every `[source: logs/…]` tag point at, so a silent
   overwrite breaks citations for runs you did not touch.
 
+## Restarting a parked watch — seed the cursor first
+
+Base reads go through `base.gateway.tenderly.co` (`eth_getLogs` capped at 1,000 blocks); the RH 4663
+chain needs no key. Data-shape caveats live in [lessons](/topics/lessons.md#行情取数形状defillama--coingecko).
+
+**A watch that is switched back on must first get a `memory/on-chain-state.json` entry with
+`last_block` set to the current block** — otherwise the first run replays the entire historical log
+range and every old event arrives as if it were new. The 10-25 parked DEUS/NOTE watches still have
+the stale `memory/on-chain-state.json.new` leftover; deal with it before re-enabling anything, not
+before.
+
 ## Watchlist rationale
 
 Base watches sit at $200/$250. NOTE watches sit at $500 — deliberately low because NOTE events are
