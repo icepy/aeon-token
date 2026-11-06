@@ -1,28 +1,28 @@
 [
  {
-  "id": "2611.06656",
-  "term": "zero-knowledge",
+  "id": "2611.07306",
+  "term": "embodied AI",
   "terms": [
-   "zero-knowledge"
+   "embodied AI"
   ],
   "window": 30,
   "name": "",
-  "title": "Flux Crosstalk Calibration from Zero Knowledge to High Precision in Fully Tunable Superconducting Circuits",
-  "published": "2026-11-04",
-  "link": "https://arxiv.org/abs/2611.06656",
-  "carrier": "circuit"
+  "title": "Few-Shot Beam Selection for Embodied AI via In-Context Learning and Conformal Prediction",
+  "published": "2026-11-05",
+  "link": "https://arxiv.org/abs/2611.07306",
+  "carrier": "embodied"
  },
  {
-  "id": "2611.06524",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
+  "id": "2611.07272",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
+   "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "",
-  "title": "Distributed Consensus, Optimization, and Learning under Communication Constraints",
-  "published": "2026-11-04",
-  "link": "https://arxiv.org/abs/2611.06524",
-  "carrier": "network"
+  "name": "HumanEgo",
+  "title": "VREgo: Consumer VR Headsets for Learning Robot Manipulation from Egocentric Demonstrations",
+  "published": "2026-11-05",
+  "link": "https://arxiv.org/abs/2611.07272",
+  "carrier": "robot"
  }
 ]

@@ -1,22 +1,22 @@
-arxiv-radar vM · 窗口 30 天 · 词 26 · 原始 83 · 幸存 2 · var=''
-丢弃 seen(记忆)=81 · seen(本轮重复)=0 · EXCL=0 · carrier=0 · 查询失败=0
-窗口内最新收录日期: 2026-11-04（周三，距今 1 天）— 正常
+arxiv-radar vM · 窗口 30 天 · 词 26 · 原始 82 · 幸存 2 · var=''
+丢弃 seen(记忆)=80 · seen(本轮重复)=0 · EXCL=0 · carrier=0 · 查询失败=0
+窗口内最新收录日期: 2026-11-05（周四，距今 1 天）— 正常
 六分类（单位=词）: 未测到(试过失败)=0 · 未尝试(熔断跳过)=0 · 窗口内零命中=9 · 低频探针=0 · 全已见(饱和)=15 · 有新增=2
 未配 carrier 表的词 14 个（走默认 crypto 表，仅登记不报错）: verifiable inference · verifiable computation · verifiable training · auditable training · proof of training · proof-of-useful-work · light client · zero-knowledge · consensus · data availability sampling · restaking · staking · RWA · EIP-1559
    verifiable inference: win=0 60d=0 90d=1
    verifiable computation: win=0 60d=1 90d=1
-   proof of training: win=0 60d=1 90d=-1
-   light client: win=0 60d=-1 90d=1
+   proof of training: win=0 60d=1 90d=1
+   light client: win=0 60d=0 90d=1
    restaking: win=0 60d=0 90d=1
    cat:cs.CR AND ti:"MEV": win=0 60d=3 90d=4
    RWA: win=0 60d=1 90d=2
    embodied data: win=0 60d=1 90d=3
    robot manipulation data: win=0 60d=2 90d=2
    └ 窗口太短（跨窗有命中）→ **非真零，别删** 9 个: verifiable inference · verifiable computation · proof of training · light client · restaking · cat:cs.CR AND ti:"MEV" · RWA · embodied data · robot manipulation data
-全已见（饱和，**别删**）: verifiable training(raw=1) · auditable training(raw=2) · proof-of-useful-work(raw=1) · data availability sampling(raw=1) · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)(raw=1) · automated market maker(raw=1) · robot data(raw=7) · embodied AI(raw=6) · ti:"data engine" AND cat:cs.RO(raw=3) · ti:"human data" AND cat:cs.RO(raw=2) · ti:"egocentric" AND cat:cs.RO(raw=20) · ti:"data generation" AND cat:cs.RO(raw=5) · ti:"human demonstration" AND cat:cs.RO(raw=8) · ti:"hand-object" AND cat:cs.RO(raw=7) · ti:"EIP-1559"(raw=2)
-   饱和词 raw 命中的最新发布日期: verifiable training=10-23 · auditable training=10-13 · proof-of-useful-work=10-18 · data availability sampling=10-15 · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)=10-10 · automated market maker=10-16 · robot data=11-03 · embodied AI=11-03 · ti:"data engine" AND cat:cs.RO=10-22 · ti:"human data" AND cat:cs.RO=10-13 · ti:"egocentric" AND cat:cs.RO=10-30 · ti:"data generation" AND cat:cs.RO=10-31 · ti:"human demonstration" AND cat:cs.RO=11-02 · ti:"hand-object" AND cat:cs.RO=11-03 · ti:"EIP-1559"=10-22
+全已见（饱和，**别删**）: verifiable training(raw=1) · auditable training(raw=2) · proof-of-useful-work(raw=1) · zero-knowledge(raw=7) · ti:"consensus" AND cat:cs.DC(raw=9) · data availability sampling(raw=1) · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)(raw=1) · automated market maker(raw=1) · robot data(raw=7) · ti:"data engine" AND cat:cs.RO(raw=3) · ti:"human data" AND cat:cs.RO(raw=2) · ti:"data generation" AND cat:cs.RO(raw=5) · ti:"human demonstration" AND cat:cs.RO(raw=8) · ti:"hand-object" AND cat:cs.RO(raw=6) · ti:"EIP-1559"(raw=1)
+   饱和词 raw 命中的最新发布日期: verifiable training=10-23 · auditable training=10-13 · proof-of-useful-work=10-18 · zero-knowledge=11-04 · ti:"consensus" AND cat:cs.DC=11-04 · data availability sampling=10-15 · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)=10-10 · automated market maker=10-16 · robot data=11-03 · ti:"data engine" AND cat:cs.RO=10-22 · ti:"human data" AND cat:cs.RO=10-13 · ti:"data generation" AND cat:cs.RO=10-31 · ti:"human demonstration" AND cat:cs.RO=11-02 · ti:"hand-object" AND cat:cs.RO=11-03 · ti:"EIP-1559"=10-22
    读法: 最新发布日期在近 30 天内 → 话题活着，是 seen 饱和（**别删**）；停在 60 天前 → 才考虑降温，且需再一轮确认
-词表原始/新收: ti:"egocentric" AND cat:cs.RO=20/0 · ti:"consensus" AND cat:cs.DC=9/1 · ti:"human demonstration" AND cat:cs.RO=8/0 · zero-knowledge=7/1 · robot data=7/0 · ti:"hand-object" AND cat:cs.RO=7/0 · embodied AI=6/0 · ti:"data generation" AND cat:cs.RO=5/0 · ti:"data engine" AND cat:cs.RO=3/0 · auditable training=2/0 · ti:"human data" AND cat:cs.RO=2/0 · ti:"EIP-1559"=2/0 · verifiable training=1/0 · proof-of-useful-work=1/0 · data availability sampling=1/0 · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)=1/0 · automated market maker=1/0 · verifiable inference=0/0 · verifiable computation=0/0 · proof of training=0/0 · light client=0/0 · restaking=0/0 · cat:cs.CR AND ti:"MEV"=0/0 · RWA=0/0 · embodied data=0/0 · robot manipulation data=0/0
-  2026-11-04 [zero-knowledge] Flux Crosstalk Calibration from Zero Knowledge to High Precision in Fully Tunable Superc
-  2026-11-04 [ti:"consensus" AND cat:cs.DC] Distributed Consensus, Optimization, and Learning under Communication Constraints
+词表原始/新收: ti:"egocentric" AND cat:cs.RO=20/1 · ti:"consensus" AND cat:cs.DC=9/0 · ti:"human demonstration" AND cat:cs.RO=8/0 · zero-knowledge=7/0 · robot data=7/0 · embodied AI=7/1 · ti:"hand-object" AND cat:cs.RO=6/0 · ti:"data generation" AND cat:cs.RO=5/0 · ti:"data engine" AND cat:cs.RO=3/0 · auditable training=2/0 · ti:"human data" AND cat:cs.RO=2/0 · verifiable training=1/0 · proof-of-useful-work=1/0 · data availability sampling=1/0 · ti:"staking" AND (cat:cs.CR OR cat:cs.DC OR cat:q-fin.GN)=1/0 · automated market maker=1/0 · ti:"EIP-1559"=1/0 · verifiable inference=0/0 · verifiable computation=0/0 · proof of training=0/0 · light client=0/0 · restaking=0/0 · cat:cs.CR AND ti:"MEV"=0/0 · RWA=0/0 · embodied data=0/0 · robot manipulation data=0/0
+  2026-11-05 [embodied AI] Few-Shot Beam Selection for Embodied AI via In-Context Learning and Conformal Prediction
+  2026-11-05 [ti:"egocentric" AND cat:cs.RO] VREgo: Consumer VR Headsets for Learning Robot Manipulation from Egocentric Demonstratio · 名字=HumanEgo
 hits 流水: 追加 2 行（列序 日期/键/名字/窗口，窗口=30）
