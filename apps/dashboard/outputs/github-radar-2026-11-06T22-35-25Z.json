@@ -1,0 +1,214 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 30 天 · 报告级 14 · 近 7 天活跃 14"
+      },
+      "children": [
+        "stats",
+        "sep1",
+        "hdr-repos",
+        "repo-list"
+      ]
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-reported",
+        "stat-active"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      }
+    },
+    "stat-reported": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "14"
+      }
+    },
+    "stat-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "14"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hdr-repos": {
+      "type": "Heading",
+      "props": {
+        "text": "Repositories",
+        "level": "h2"
+      }
+    },
+    "repo-list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "repo-1",
+        "repo-2",
+        "repo-3",
+        "repo-4",
+        "repo-5",
+        "repo-6",
+        "repo-7",
+        "repo-8",
+        "repo-9",
+        "repo-10",
+        "repo-11",
+        "repo-12",
+        "repo-13",
+        "repo-14"
+      ]
+    },
+    "repo-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "VibeHash/vibehash",
+        "href": "https://github.com/VibeHash/vibehash",
+        "source": "Vibe Hash: a proof-of-useful-work cryptocurrency testnet where miners train AI models",
+        "score": "★2 · 30天=≥100 · 7天=≥100 · 词 `proof of useful work`"
+      }
+    },
+    "repo-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Moad-byte/PhantomArm",
+        "href": "https://github.com/Moad-byte/PhantomArm",
+        "source": "IMU-controlled robotic arm teleoperation with Raspberry Pi Pico 2 W, MPU6050, Python and MuJoCo",
+        "score": "★1 · 30天=9 · 7天=9 · 词 `teleoperation`"
+      }
+    },
+    "repo-3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "PMETGAIC/Pancrazio",
+        "href": "https://github.com/PMETGAIC/Pancrazio",
+        "source": "A framework for easy teleoperation",
+        "score": "★0 · 30天=14 · 7天=8 · 词 `teleoperation`"
+      }
+    },
+    "repo-4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "henrikagreat/soarm101challenge",
+        "href": "https://github.com/henrikagreat/soarm101challenge",
+        "source": "Static website for the teleoperation challenge featuring the SO ARM 101 robot arm.",
+        "score": "★0 · 30天=7 · 7天=7 · 词 `teleoperation`"
+      }
+    },
+    "repo-5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Pablomg02/curso-robotica-inteligente",
+        "href": "https://github.com/Pablomg02/curso-robotica-inteligente",
+        "source": "Curso intensivo de robótica inteligente para un doctorado en IA para drones (sim-to-real)",
+        "score": "★0 · 30天=7 · 7天=7 · 词 `sim-to-real`"
+      }
+    },
+    "repo-6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Learner4everrr/LM-as-Med-World-Model",
+        "href": "https://github.com/Learner4everrr/LM-as-Med-World-Model",
+        "source": "Evaluation materials for Action fidelity in language models used as medical world models.",
+        "score": "★0 · 30天=7 · 7天=7 · 词 `world model`"
+      }
+    },
+    "repo-7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "yibhu/SWAAP",
+        "href": "https://github.com/yibhu/SWAAP",
+        "source": "Official implementation of \"Stealthy World Model Manipulation via Data Poisoning\" (NeurIPS 2026)",
+        "score": "★0 · 30天=6 · 7天=6 · 词 `world model`"
+      }
+    },
+    "repo-8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "jayden1711/pocket-vla",
+        "href": "https://github.com/jayden1711/pocket-vla",
+        "source": "A vision-language-action model running on a phone that drives a real robot. The phone is the brain a",
+        "score": "★0 · 30天=6 · 7天=6 · 词 `vision language action`"
+      }
+    },
+    "repo-9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "langxin11/maniplot",
+        "href": "https://github.com/langxin11/maniplot",
+        "source": "Publication-ready scientific plotting toolkit & AI Agent Skill for Robotic Manipulation (IEEE ICRA/I",
+        "score": "★0 · 30天=5 · 7天=5 · 词 `robot manipulation`"
+      }
+    },
+    "repo-10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EGalahad/website",
+        "href": "https://github.com/EGalahad/website",
+        "source": "Static documentation hub for sim2real and Bolt Runtime",
+        "score": "★0 · 30天=5 · 7天=5 · 词 `sim2real`"
+      }
+    },
+    "repo-11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "forgetheworlds/drone-rl",
+        "href": "https://github.com/forgetheworlds/drone-rl",
+        "source": "Stereo-depth indoor drone navigation: DAgger student policy, RAPTOR control, honest sim eval under c",
+        "score": "★0 · 30天=5 · 7天=5 · 词 `sim-to-real`"
+      }
+    },
+    "repo-12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Bkrakshith/hospital-sim-ros2",
+        "href": "https://github.com/Bkrakshith/hospital-sim-ros2",
+        "source": "WardZero ROS 2 Humble packages for the Unitree G1: controller, mode manager, teleoperation and navig",
+        "score": "★0 · 30天=7 · 7天=4 · 词 `teleoperation`"
+      }
+    },
+    "repo-13": {
+      "type": "StoryLink",
+      "props": {
+        "title": "unitreerobotics/R1-7A",
+        "href": "https://github.com/unitreerobotics/R1-7A",
+        "source": "R1-7A single-arm and dual-arm teleoperation, multi-camera recording and replay.",
+        "score": "★3 · 30天=16 · 7天=2 · 词 `teleoperation`"
+      }
+    },
+    "repo-14": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Bkrakshith/g1-webcam-teleop",
+        "href": "https://github.com/Bkrakshith/g1-webcam-teleop",
+        "source": "WardZero webcam teleoperation of the Unitree G1 arms and BrainCo Revo2 hands, no VR headset.",
+        "score": "★0 · 30天=5 · 7天=2 · 词 `teleoperation`"
+      }
+    }
+  }
+}

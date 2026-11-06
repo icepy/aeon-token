@@ -1,17 +1,11 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-11-05T22:35:04Z",
+  "last_analyzed": "2026-11-06T22:35:23Z",
   "quality_score": 4,
-  "assessment": "Delivers the discovery job well: 17 keyword-matched new repos with stars, 30/7-day commit activity, matched direction word, and a description each, clearly organized newest-activity-first; minor deductions for truncated taglines and raw commit counts presented without their source/query parameters.",
+  "assessment": "Clean discovery scan: 14 new repos with concrete counts per (30d/7d), keyword, star count, and one-line description from the repo itself — exactly the discovery-only job, no judgment added.",
   "flags": [],
   "avg_score": 3.17,
   "history": [
-    {
-      "date": "2026-10-25",
-      "score": 4,
-      "ts": "2026-10-25T02:14:59Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-25",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-05",
       "score": 4,
       "ts": "2026-11-05T22:35:04Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-06",
+      "score": 4,
+      "ts": "2026-11-06T22:35:23Z",
       "harness": "claude"
     }
   ]
