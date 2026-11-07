@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-05T22:09:53Z",
+  "last_analyzed": "2026-11-07T22:04:35Z",
   "quality_score": 3,
-  "assessment": "Completes the discovery job with two concrete hits, arXiv IDs, and honest log of wordlist state and 429 retries, but delivers only titles and links (no abstracts/authors/dates), cannot be independently verified from the output, and includes pollution judgments the skill's scope says to avoid.",
+  "assessment": "A legitimate zero-survivor discovery run: the funnel accounting, six-way classification, and per-word 30/60/90-day cross-window values are specific and internally consistent, so the empty result reads as a real scan rather than a failure or invention. It completes the skill's job (clean scan, no hits, notification correctly skipped) and the saturation diagnosis is useful. It stops short of 4 because the actual deliverable is zero papers and a large share of the text is meta-commentary/word-list judgment that goes past the skill's stated 'discovery only, no judgment' remit.",
   "flags": [],
-  "avg_score": 3.3,
+  "avg_score": 3.27,
   "history": [
-    {
-      "date": "2026-10-24",
-      "score": 4,
-      "ts": "2026-10-24T09:26:07Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-24",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-05",
       "score": 3,
       "ts": "2026-11-05T22:09:53Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-07",
+      "score": 3,
+      "ts": "2026-11-07T22:04:35Z",
       "harness": "claude"
     }
   ]

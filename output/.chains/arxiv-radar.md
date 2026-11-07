@@ -1,20 +1,52 @@
-**arxiv-radar** · 窗口 30 天 · 原始 82 · 幸存 2
+**arxiv-radar 第 39 轮** — 零幸存，结构性归零，未发通知。
 
-**真命中（1）**
+## 口径
+`vM` · var 空（默认）· 窗口 30 天 · 26 词 · 耗时 146s · 最新收录 **2026-11-05（周四）**，今天周六 → 索引正常，无滞后（连续第三轮）。
 
-- `[具身数据]` **VREgo: Consumer VR Headsets for Learning Robot Manipulation from Egocentric Demonstrations**（名字 `HumanEgo`）— 用消费级 VR 头显（PICO 4 Ultra）的第一视角双手数据直接训操作策略，开放动作接口的采集侧工作 · https://arxiv.org/abs/2611.07272
+## 漏斗
+原始 **76** → `seen(记忆)` **76** · 本轮重复 0 · `EXCL` 0 · `carrier` 0 · 查询失败 0 → 幸存 **0**
 
-**污染（1，标 `?`，供你确认要不要看）**
+100% 被 seen 吃掉 —— 这是本通道可查记录内的最高值（第 38 轮 97.6%）。
 
-- **Few-Shot Beam Selection for Embodied AI via In-Context Learning and Conformal Prediction** — 主类 `eess.SP`，讲的是 mmWave 波束选择，只是拿 embodied AI 当应用场景写 motivation 段 · https://arxiv.org/abs/2611.07306
+## 六分类（单位=词，合计 26）
+- 未测到（试过失败）= **0**
+- 未尝试（熔断跳过）= **0**
+- 窗口内零命中 = **9**
+- 低频探针 = **0**
+- 全已见（饱和）= **17**
+- 有新增 = **0**
 
----
+## 跨窗结论
+9 个零命中词**跨窗量与第 38 轮逐词同值**，全部有命中，无一判死：
+`verifiable inference` 60d=0/90d=1 · `verifiable computation` 60d=1/90d=1 · `proof of training` 60d=1/90d=1 · `light client` 60d=0/90d=1 · `restaking` 60d=0/90d=1 · `cat:cs.CR AND ti:"MEV"` 60d=3/90d=4 · `RWA` 60d=1/90d=2 · `embodied data` 60d=1/90d=3 · `robot manipulation data` 60d=2/90d=2
 
-**漏斗**：seen(记忆) 80 · 本轮重复 0 · EXCL 0 · carrier 0 · 查询失败 0 → 97.6% 被 seen 吃掉。窗口内最新收录 11-05（周四，距今 1 天）→ 索引正常。
+## 判据级发现：raw 与幸存彻底脱钩
 
-**词表动作：本轮不动。** 零命中 9 词跨窗全有命中（含 `embodied data` 60d=1/90d=3），饱和 15 词最新发布日期全在近 30 天。
+窗口滑动一天后 raw 82 → **76**，即 10-08 这一天贡献 6 条沉积、**0 条新**。饱和词 15 → **17**，有新增 2 → **0**。
 
-**已量测，留给下轮定夺：**
+**在现有 26 词口径下，机器人侧的机制增量已被 seen 完全吃掉 —— 本通道当前只测「饱和度」，不测「流量」。** 这比第 38 轮「漏斗退化成单通道」更进一步：那轮是出口只剩 2 条，这轮出口关了。
 
-- `ti:"zero-knowledge proof"` — 30d 1 / 60d 6（已见 6/6）/ 90d 9。收窄后精度确实干净，但 60 天已被 seen 吃干，替换等于用召回换精度，**不划算，暂不换**。
-- `ti:"consensus" AND (cat:cs.CR OR ti:blockchain OR ti:byzantine)` — 30d 5 / 90d 14，但前三条全是 LLM agent 安全 / 内容审核论文。**`cat:cs.CR` 已漂移到 LLM 安全，和 `cat:cs.DC` 一样挡不住污染 —— 用 `cat:` 收窄这条路第二次被证伪。**
+连带后果：**carrier 判别力抽检（`circuit`/`network`/`embodied`）本轮不可测** —— 0 条进入 carrier 层，顺延。
+
+## 饱和词存活情况
+17 词 maxpub 全部落在 10-10–11-05，话题全活着，一个都不降级。最新三个：`embodied AI` 11-05 · `ti:"egocentric" AND cat:cs.RO` 11-05 · `zero-knowledge` 11-04。
+
+最旧是 `ti:"staking" AND (cs.CR OR cs.DC OR q-fin.GN)` = **10-10，距今 28 天**，仍在 30 天窗内 —— **11-09 滑出窗口，是本批 17 个里唯一进入「降温候选」的**，需再一轮确认才动。
+
+## 词表动作：本轮不动
+零命中词跨窗全有命中、无失败格、饱和词全在近 30 天内。按判词三级，无一条够格。
+
+## 待办
+- **11-09 盯 `ti:"staking"`**：滑出 30d 后跑 `check:` 单独量，别在轮次里判死。
+- **carrier 抽检顺延**：需先有 >0 条进入 carrier 层。
+- **真正的问题在词表召回，不在过滤层** —— 连续两轮 0 新增，说明 26 个词已把能捞的捞干。下一步该做的是加词（`days:90` 补历史），还是承认这条探针的 AI/机器人侧已饱和、只留加密词当低频探针，需要一次明确的决定。
+
+## Summary
+
+- 运行 `skills/arxiv-radar/scan.py`，30d 窗口 26 词，原始 76 → 幸存 0，`STATUS: ARXIV_RADAR_OK`，耗时 146s。
+- 零幸存归因于 seen 饱和（100%），非查询失败、非熔断、非 carrier 误杀 —— 脚本自身判定「结构性，不是故障」。
+- 未发通知、未写 labels（按 SKILL：零幸存时两者都跳过）。
+- 写日志：`memory/logs/2026-11-07.md` 追加 `### arxiv-radar（第 39 轮）` 一节（含六分类分开记、跨窗逐词值、饱和词 maxpub、判据级发现）。
+- 待决：这条探针的机器人侧已连续两轮 0 增量，词表是否扩展（`days:90` 补历史）需要一次判断；`ti:"staking"` 11-09 进入降温候选观察。</｜DSML｜ parameter>
+</｜DSML｜ invoke>
+</｜DSML｜ calls>
