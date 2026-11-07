@@ -39,15 +39,15 @@
   },
   "memory-flush": {
     "last_dispatch": "2026-11-07T18:00:44Z",
-    "last_status": "dispatched",
-    "last_success": "2026-11-06T18:06:07Z",
-    "total_runs": 22,
-    "total_successes": 18,
+    "last_status": "success",
+    "last_success": "2026-11-07T18:10:40Z",
+    "total_runs": 23,
+    "total_successes": 19,
     "total_failures": 4,
     "consecutive_failures": 0,
-    "success_rate": 0.82,
+    "success_rate": 0.83,
     "last_failed": "2026-10-25T23:31:10Z",
-    "last_error": "hivemindos: Failed to authenticate. API Error: 403 All target providers failed."
+    "last_error": null
   },
   "token-movers": {
     "last_dispatch": "2026-10-25T13:00:45Z",
