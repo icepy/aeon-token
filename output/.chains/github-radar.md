@@ -1,16 +1,14 @@
-**github-radar** · 窗口 30 天 · 报告级 14 · 近 7 天活跃 14
+**github-radar** · 窗口 7 天 · 报告级 12 · 近 7 天活跃 12
 
-- [VibeHash/vibehash](https://github.com/VibeHash/vibehash) ★2 · 30天=≥100 · 7天=≥100 · 词 `proof of useful work` · Vibe Hash: a proof-of-useful-work cryptocurrency testnet where miners train AI models
-- [Moad-byte/PhantomArm](https://github.com/Moad-byte/PhantomArm) ★1 · 30天=9 · 7天=9 · 词 `teleoperation` · IMU-controlled robotic arm teleoperation with Raspberry Pi Pico 2 W, MPU6050, Python and MuJoCo
-- [PMETGAIC/Pancrazio](https://github.com/PMETGAIC/Pancrazio) ★0 · 30天=14 · 7天=8 · 词 `teleoperation` · A framework for easy teleoperation
-- [henrikagreat/soarm101challenge](https://github.com/henrikagreat/soarm101challenge) ★0 · 30天=7 · 7天=7 · 词 `teleoperation` · Static website for the teleoperation challenge featuring the SO ARM 101 robot arm.
-- [Pablomg02/curso-robotica-inteligente](https://github.com/Pablomg02/curso-robotica-inteligente) ★0 · 30天=7 · 7天=7 · 词 `sim-to-real` · Curso intensivo de robótica inteligente para un doctorado en IA para drones (sim-to-real)
-- [Learner4everrr/LM-as-Med-World-Model](https://github.com/Learner4everrr/LM-as-Med-World-Model) ★0 · 30天=7 · 7天=7 · 词 `world model` · Evaluation materials for Action fidelity in language models used as medical world models.
-- [yibhu/SWAAP](https://github.com/yibhu/SWAAP) ★0 · 30天=6 · 7天=6 · 词 `world model` · Official implementation of "Stealthy World Model Manipulation via Data Poisoning" (NeurIPS 2026)
-- [jayden1711/pocket-vla](https://github.com/jayden1711/pocket-vla) ★0 · 30天=6 · 7天=6 · 词 `vision language action` · A vision-language-action model running on a phone that drives a real robot. The phone is the brain a
-- [langxin11/maniplot](https://github.com/langxin11/maniplot) ★0 · 30天=5 · 7天=5 · 词 `robot manipulation` · Publication-ready scientific plotting toolkit & AI Agent Skill for Robotic Manipulation (IEEE ICRA/I
-- [EGalahad/website](https://github.com/EGalahad/website) ★0 · 30天=5 · 7天=5 · 词 `sim2real` · Static documentation hub for sim2real and Bolt Runtime
-- [forgetheworlds/drone-rl](https://github.com/forgetheworlds/drone-rl) ★0 · 30天=5 · 7天=5 · 词 `sim-to-real` · Stereo-depth indoor drone navigation: DAgger student policy, RAPTOR control, honest sim eval under c
-- [Bkrakshith/hospital-sim-ros2](https://github.com/Bkrakshith/hospital-sim-ros2) ★0 · 30天=7 · 7天=4 · 词 `teleoperation` · WardZero ROS 2 Humble packages for the Unitree G1: controller, mode manager, teleoperation and navig
-- [unitreerobotics/R1-7A](https://github.com/unitreerobotics/R1-7A) ★3 · 30天=16 · 7天=2 · 词 `teleoperation` · R1-7A single-arm and dual-arm teleoperation, multi-camera recording and replay.
-- [Bkrakshith/g1-webcam-teleop](https://github.com/Bkrakshith/g1-webcam-teleop) ★0 · 30天=5 · 7天=2 · 词 `teleoperation` · WardZero webcam teleoperation of the Unitree G1 arms and BrainCo Revo2 hands, no VR headset.
+- [gretchenboria/Operon](https://github.com/gretchenboria/Operon) ★0 · 30天=15 · 7天=15 · 词 `sim-to-real` · Browser-native Omniverse RTX Teleop & Sim-to-Real Telemetry Comparator (Phone/Apple Watch IMU vs Fir
+- [rudranaresh0201/so101-world-model](https://github.com/rudranaresh0201/so101-world-model) ★0 · 30天=13 · 7天=13 · 词 `world model` · SAC picks a box with a simulated SO-101 arm in MuJoCo; a second policy trains inside a learned world
+- [Warit-Yuv/SIIT-bobo-goggles](https://github.com/Warit-Yuv/SIIT-bobo-goggles) ★0 · 30天=12 · 7天=12 · 词 `teleoperation` · EEG and Gaze tracking ROSMASTER-M1 Robot Teleoperation.
+- [prasad-yashdeep/jepa-world-model-from-scratch](https://github.com/prasad-yashdeep/jepa-world-model-from-scratch) ★0 · 30天=9 · 7天=9 · 词 `world model` · Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTor
+- [kmsmohamedansar/prh-jepa](https://github.com/kmsmohamedansar/prh-jepa) ★0 · 30天=9 · 7天=9 · 词 `jepa` · Independent replication and audit of 'Proving and Improving the Platonic Representation Hypothesis w
+- [AcastaPaloma/kuanjepa](https://github.com/AcastaPaloma/kuanjepa) ★0 · 30天=8 · 7天=8 · 词 `jepa` · Hand-implementation of JEPA-based image/caption twin encoders.
+- [knobbyintens/diffusion-policy-robotics-q4m8z1](https://github.com/knobbyintens/diffusion-policy-robotics-q4m8z1) ★0 · 30天=6 · 7天=6 · 词 `robot manipulation` · Official code release for 'Diffusion Policy for Robotic Manipulation' (CoRL 2024).
+- [AntonioSkara132/piper_davinci_simulation](https://github.com/AntonioSkara132/piper_davinci_simulation) ★0 · 30天=6 · 7天=6 · 词 `teleoperation` · AgileX Piper with a da Vinci Si instrument adaptor: ROS 2 Jazzy + SOFA LapGym surgical scenes in Doc
+- [jackgao1540/Diep-Genie](https://github.com/jackgao1540/Diep-Genie) ★0 · 30天=6 · 7天=6 · 词 `world model` · Small Genie-style video world-model research prototype for diep.io. Local-first validation, latent-a
+- [whassan007/vla-simulator](https://github.com/whassan007/vla-simulator) ★0 · 30天=6 · 7天=6 · 词 `vision language action` · Distributed Vision-Language-Action (VLA) Robotics Simulator, Multi-Tier Annotation & Deterministic E
+- [hwanglab/SpatialCell-JEPA](https://github.com/hwanglab/SpatialCell-JEPA) ★0 · 30天=6 · 7天=6 · 词 `jepa` · Code and per-fold results for SpatialCell-JEPA (Interp4Discovery, NeurIPS 2026 workshop). Tests whet
+- [nakka1/World-Models-JEPA-for-Error-Mitigation-in-Quantum-Hardware](https://github.com/nakka1/World-Models-JEPA-for-Error-Mitigation-in-Quantum-Hardware) ★0 · 30天=5 · 7天=5 · 词 `jepa` · World Models (JEPA) for Error Mitigation in Quantum Hardware

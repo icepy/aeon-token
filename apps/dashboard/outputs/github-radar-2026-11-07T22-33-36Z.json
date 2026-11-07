@@ -1,0 +1,244 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 12 · 近 7 天活跃 12"
+      },
+      "children": [
+        "stats",
+        "sep1",
+        "sec1",
+        "sep2",
+        "sec2",
+        "sep3",
+        "sec3"
+      ]
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat1",
+        "stat2",
+        "stat3"
+      ]
+    },
+    "stat1": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "7 天"
+      }
+    },
+    "stat2": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "12"
+      }
+    },
+    "stat3": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "12"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h1a",
+        "r1",
+        "r2",
+        "r3"
+      ]
+    },
+    "h1a": {
+      "type": "Heading",
+      "props": {
+        "text": "World & Sim-to-Real (15 次)",
+        "level": "h3"
+      }
+    },
+    "r1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "gretchenboria/Operon",
+        "href": "https://github.com/gretchenboria/Operon",
+        "source": "★0 · 30天=15 · 7天=15 · sim-to-real",
+        "score": "15"
+      }
+    },
+    "r2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "rudranaresh0201/so101-world-model",
+        "href": "https://github.com/rudranaresh0201/so101-world-model",
+        "source": "★0 · 30天=13 · 7天=13 · world model",
+        "score": "13"
+      }
+    },
+    "r3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Warit-Yuv/SIIT-bobo-goggles",
+        "href": "https://github.com/Warit-Yuv/SIIT-bobo-goggles",
+        "source": "★0 · 30天=12 · 7天=12 · teleoperation",
+        "score": "12"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h2a",
+        "r4",
+        "r5",
+        "r6",
+        "r7"
+      ]
+    },
+    "h2a": {
+      "type": "Heading",
+      "props": {
+        "text": "JEPA & Representation Learning",
+        "level": "h3"
+      }
+    },
+    "r4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "prasad-yashdeep/jepa-world-model-from-scratch",
+        "href": "https://github.com/prasad-yashdeep/jepa-world-model-from-scratch",
+        "source": "★0 · 30天=9 · 7天=9 · world model",
+        "score": "9"
+      }
+    },
+    "r5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "kmsmohamedansar/prh-jepa",
+        "href": "https://github.com/kmsmohamedansar/prh-jepa",
+        "source": "★0 · 30天=9 · 7天=9 · jepa",
+        "score": "9"
+      }
+    },
+    "r6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "AcastaPaloma/kuanjepa",
+        "href": "https://github.com/AcastaPaloma/kuanjepa",
+        "source": "★0 · 30天=8 · 7天=8 · jepa",
+        "score": "8"
+      }
+    },
+    "r7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "hwanglab/SpatialCell-JEPA",
+        "href": "https://github.com/hwanglab/SpatialCell-JEPA",
+        "source": "★0 · 30天=6 · 7天=6 · jepa",
+        "score": "6"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h3a",
+        "r8",
+        "r9",
+        "r10",
+        "r11",
+        "r12"
+      ]
+    },
+    "h3a": {
+      "type": "Heading",
+      "props": {
+        "text": "Robotics, Teleop & VLA",
+        "level": "h3"
+      }
+    },
+    "r8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "knobbyintens/diffusion-policy-robotics-q4m8z1",
+        "href": "https://github.com/knobbyintens/diffusion-policy-robotics-q4m8z1",
+        "source": "★0 · 30天=6 · 7天=6 · robot manipulation",
+        "score": "6"
+      }
+    },
+    "r9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "AntonioSkara132/piper_davinci_simulation",
+        "href": "https://github.com/AntonioSkara132/piper_davinci_simulation",
+        "source": "★0 · 30天=6 · 7天=6 · teleoperation",
+        "score": "6"
+      }
+    },
+    "r10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "jackgao1540/Diep-Genie",
+        "href": "https://github.com/jackgao1540/Diep-Genie",
+        "source": "★0 · 30天=6 · 7天=6 · world model",
+        "score": "6"
+      }
+    },
+    "r11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "whassan007/vla-simulator",
+        "href": "https://github.com/whassan007/vla-simulator",
+        "source": "★0 · 30天=6 · 7天=6 · vision language action",
+        "score": "6"
+      }
+    },
+    "r12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "nakka1/World-Models-JEPA-for-Error-Mitigation-in-Quantum-Hardware",
+        "href": "https://github.com/nakka1/World-Models-JEPA-for-Error-Mitigation-in-Quantum-Hardware",
+        "source": "★0 · 30天=5 · 7天=5 · jepa",
+        "score": "5"
+      }
+    }
+  }
+}

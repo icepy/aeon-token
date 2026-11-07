@@ -1,17 +1,11 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-11-06T22:35:23Z",
-  "quality_score": 4,
-  "assessment": "Clean discovery scan: 14 new repos with concrete counts per (30d/7d), keyword, star count, and one-line description from the repo itself — exactly the discovery-only job, no judgment added.",
+  "last_analyzed": "2026-11-07T22:33:35Z",
+  "quality_score": 3,
+  "assessment": "Solid discovery-only radar output matching the skill's job: 12 candidate repos with links, star/adoption counts, 30d/7d commit activity evidencing active code writing, matched direction keywords, and one-line descriptions — but descriptions are truncated mid-word and the flat list offers no grouping or signal beyond counts, capping it at acceptable rather than substantive.",
   "flags": [],
-  "avg_score": 3.17,
+  "avg_score": 3.13,
   "history": [
-    {
-      "date": "2026-10-25",
-      "score": 4,
-      "ts": "2026-10-25T02:51:02Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-25",
       "score": 3,
@@ -184,6 +178,12 @@
       "date": "2026-11-06",
       "score": 4,
       "ts": "2026-11-06T22:35:23Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-07",
+      "score": 3,
+      "ts": "2026-11-07T22:33:35Z",
       "harness": "claude"
     }
   ]
