@@ -244,3 +244,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-11-07,heartbeat,claude-opus-5-5,54845,38231,1641216,0
 2026-11-07,defi-overview,claude-opus-5-5,141456,169481,12808448,0
 2026-11-07,narrative-brief,claude-opus-5-5,33758,1072,61440,0
+2026-11-07,memory-flush,claude-opus-5-5,139170,64148,8080128,0

@@ -1,12 +1,12 @@
 ---
 title: Scheduler and notification plumbing state
-description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
+description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, how a gateway 403 differs from a skill regression, the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
 tags:
   - ops
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-04T18:30:00Z
+timestamp: 2026-11-07T00:40:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -50,6 +50,23 @@ overnight is replayed **all at once**. On 2026-10-28 three skills whose crons si
   10-26, `total_runs: 1`) matches no skill in `aeon.yml` — a typo for `arxiv-radar` from some past
   dispatch. It never affects scheduling, but it keeps showing up as an unexplainable row whenever the
   status page cross-checks cron state against the skill list. Delete it when a write path is handy.
+
+## Gateway 403 is a window, not an outage — and it self-heals
+
+On 2026-11-06 `defi-overview` failed twice back-to-back (23:00:48Z and 23:30:49Z) with
+`api_error_status: 403` and the identical signature `hivemindos: Failed to authenticate. API Error:
+403 All target providers failed.` Both runs show **`num_turns: 1` + 0 tool calls + `duration_api_ms: 0`**
+— that triple means the request never reached the model, so it is a **gateway-side auth rejection, not
+a skill regression**. Do not go looking for a bug in the skill's own logic when you see it.
+
+- **Localise it by window, not by scope**: in the same window `arxiv-radar` 22:06Z, `github-radar`
+  22:35Z and `defillama-radar` 00:04Z all succeeded, so the gateway was healthy overall and the 403
+  only hit the 23:00–23:31 pair. Acknowledge as WATCH (`cf=2`, below the `cf≥3` red line) and let the
+  next dispatch decide.
+- **It did self-heal**: the 00:15Z re-dispatch succeeded at 00:36Z and `consecutive_failures` went back
+  to **0**. The correct action after two failures is to say the *impact* (here: `market-context.md`
+  stayed one day stale, `timestamp` pinned at 11-05T23:20Z) and then wait for the next slot rather than
+  escalate. [source: logs/2026-11-07#heartbeat]
 
 
 ## A skill's frontmatter `var:` default is NOT injected into the run

@@ -1,14 +1,42 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 三十二轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率八轮同向复现（35–36% vs 94%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」——teleoperation 第 32 轮首次居首**、**raw=1/seen=0 连两轮 = 靶子稳定，不等于词表无效**）
+description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-05T22:35:00Z
+timestamp: 2026-11-06T22:35:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十二轮（2026-11-05）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）实证。
+
+## 第三十三轮（2026-11-06，**30 天窗**，非 dry-run）—— 静态站逃逸首现；`teleoperation` 由单轮升为连续两轮；加密侧第四连轮近零
+
+漏斗：原始 **2066** → 幸存 **30** → 报告级 **14**，核验 **30/30 = 100%**（全量）。丢弃 seen=971 · excl=133 · archived=0 · short_desc=361 · **carrier=438** · neg=64 · pages=66 · pages_root=0 · scaffold=0 · farm=3 · fail=0。二分至一页：单窗 13 / 需拆窗 5、二分 4 次、搜索调用 45。耗时 166s（搜索 128s / 核验 4s）。`var` 仍未注入（实吃 30d）。`probe` 跳过（戳 2026-11-03，3 天 < 7 天），`clusters.json` 未重写 —— **digest 里那 14 行是 11-03 旧结果，不能当本轮读**。
+
+### 90. 🔴 静态站逃逸两例：`pages` 后缀规则与 `EXCL` 同时漏
+
+`EGalahad/website`（desc 自述 "Static documentation hub for sim2real and Bolt Runtime"，30d=5 / 7d=5）与 `henrikagreat/soarm101challenge`（desc "Static website for the teleoperation challenge..."）双双被当报告级放行。**根因：`SITE_SUFFIX` 只收 `-website` / `.github.io` 这类后缀形态，`EXCL` 里也没有 `website` / `docs` / `hub` → 覆盖的是「后缀」，不覆盖「名字本身是 website / 站名」的形态。** 这推翻了「站点仓按后缀无条件丢」的覆盖假设。候选修法：desc 侧窄判据（desc 含 `static website` / `documentation hub` / `project page` 且无 `language` → 丢），但**须先量误杀再改**。 [source: logs/2026-11-06#github-radar]
+
+### 91. 🟢 `teleoperation` 连续第二轮是最大报告级入口（6/14），但也是质量最差的口径
+
+11 条新收 → 报告级 6：`Moad-byte/PhantomArm`(9/9) · `PMETGAIC/Pancrazio`(14/8) · `henrikagreat/soarm101challenge`(7/7) · `Bkrakshith/hospital-sim-ros2`(7/4) · `unitreerobotics/R1-7A`(16/2) · `Bkrakshith/g1-webcam-teleop`(5/2)。#87「入口词会换代」**由单轮升为连续两轮**。但 6 条里 1 条静态站、2 条同一 owner（`Bkrakshith`）的 Unitree G1 配套仓、`Pancrazio` 是框架壳 —— **真信号只有 `unitreerobotics/R1-7A`（本体厂官方账号，单/双臂遥操作 + 多相机录制回放），且 30d=16 / 7d=2 → 上月铺完、本周停，按 commits 读不是在做。** 判据：入口词的报告级条数 ≠ 信号量，必须逐条看 owner 与 30d/7d 双读数。 [source: logs/2026-11-06#github-radar]
+
+### 92. 加密侧第四连轮近乎零；唯一幸存是「双满但疑似农场」
+
+唯一加密侧报告级 `VibeHash/vibehash`（★2，30d=≥100 / 7d=≥100，`proof of useful work`，矿工训 AI 模型的 PoUW 测试网）—— **本轮唯一 30d 与 7d 双满且 ★≥2 的仓，但 `commits=100` 是 `per_page` 上限（记 ≥100），农场/镜像形态高危，下轮单独看根目录。** 其余 6 个加密词（`data availability` / `intent-based` / `restaking` / `maximal extractable value` / `verifiable inference` / `world action model`）新收全 0 —— 与 arxiv-radar 加密侧第 38 轮同样零产出**同向**，两条通道同时空，记一次、不作判据。 [source: logs/2026-11-06#github-radar]
+
+### 93. 🟢 carrier 口径第九次同向 → 候选结案
+
+丢弃侧仓名自带词表词 169 个（owner 去重 168），核 146 → 近 7 天存活 **51/146 = 35%**；放行幸存者对照 **29/29 = 100%**。连续九轮同向（35–36% vs 94–100%），**carrier 判别力结论不再每轮重开**；改表仍须走 PR 且改前抽检两行。 [source: logs/2026-11-06#github-radar]
+
+### 94. 词表四分类 8 饱和 / 10 有新增，1 个饱和其实是过滤损耗
+
+查询失败 **0** / 真零 **0** / 全已见 **8** / 有新增 **10**。饱和 7 个真被 seen 吸收（`embodied data` raw12/seen4 · `world action model` 40/33 · `robotics data engine` 1/1 · `verifiable inference` 5/4 · `data availability` 56/2 · `restaking` 4/3 · `intent-based` 55/1），**第 8 个 `maximal extractable value` raw=1 / seen=0 连续第三轮同一读数 → 靶子稳定，延 #85，不判饱和。词表动作：本轮不动**（无真零、无失败格）。 [source: logs/2026-11-06#github-radar]
+
+### 95. ⚠️ 异常形态：无 `language` 3 个、空仓 1 个、farm 黑名单 3 个
+
+无 `language`：`DillanImans/haptic-needle-teleoperation` · `ccfdfvapour/SynthSoM-Twin` · `chrisjcc/cohomology`（后两个 desc 与方向词语义弱相关）。空仓（409）：`Louis-24000614/Dual_Nero_Vla`。`farm` 黑名单命中 3 owner。**`farm` 计数连续两轮为 3，与 #89 的「爆完即停降至 2 个」同属「新仓潮退潮后的长尾」形态。** [source: logs/2026-11-06#github-radar]
 
 ## 第三十二轮（2026-11-05，**30 天窗**，非 dry-run）—— 双通道退化判据未成立；加密侧第三连轮零产出
 
