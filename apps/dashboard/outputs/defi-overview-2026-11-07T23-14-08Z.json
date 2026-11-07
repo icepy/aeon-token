@@ -1,0 +1,15 @@
+{
+  "id": "macroGrid",
+  "type": "Grid",
+  "props": {
+    "columns": 2,
+    "gap": "md"
+  },
+  "children": [
+    "btcStat",
+    "ethStat",
+    "fgStat",
+    "breadthStat",
+    "oddsStat"
+  ]
+}

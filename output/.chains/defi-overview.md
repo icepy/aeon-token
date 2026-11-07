@@ -1,52 +1,43 @@
-ℹ️ Crypto — 2026-11-07 — chop（修正 TVL 7d 数字）
+⚠️ Crypto 11-07 · risk-off
 
-**Crypto — 2026-11-07** — chop（conviction medium）| DeFi 混合：TVL −5.12%，DEX 量同星归 −10.6%
+*Crypto - 2026-11-07* - risk-off (conviction medium) | DeFi Mixed: TVL 走平但量能与广度双双走弱
 
-**Take:** 暴跌次日止跌未反弹。BTC $75,869（−0.24% 24h），24h 广度 12/20 但 **7d 仍只 4/20**；F&G 28→**25 Extreme Fear** 才追上 11-05 那次砸盘。Polymarket 12 月加息盘两日 **+13pp 到 76.5%**，宏观折价还在加。
+*🔴 今日最重要：广度 12/20 → 2/20，一天崩掉 10 个名次。* 昨日那个 12/20 被记为「暴跌次日的机械修复」-- 今天证明它没站住：**只有 BNB +0.29%、TRX +0.50% 两个还在涨，其余 18 个全红**。7d 广度 4/20 → 3/20。
 
-**TVL:** $80.70B（−5.12% 1d，−0.97% 7d，−13.92% 30d）
-> ⚠️ 上轮「TVL 只跌 1.22%」是假象：11-05 桶当时读到 81.10B，今日回查 **85.053B（+4.87%）** —— 桶被回溯补了约 $3.95B。修正后与 ETH −7.73% 对齐。
+*TVL:* $80.73B（−0.13% 1d, −1.89% 7d）｜11-07 桶与 11-06 桶几乎同值，**跌幅停在原处、没有二次崩塌**
 
-**Top chains（7d）**
-1. Ethereum — $43.18B（+0.57%）· 1d −5.83%
-2. Base — $5.75B（−0.33%）· 1d −6.94%
-3. Solana — $5.22B（−2.27%）· 1d −5.64%
+*Top chains（桶对桶）*
+1. Ethereum - $43.19B（−0.18%）
+2. Base - $5.86B（−0.15%）
+3. Solana - $5.18B（−1.50%）
 
-**链 mover**
-↑ Avalanche **+17.91% 7d**（+2.24% 1d，$0.61B）— 唯一 7d 双位数上涨
-↓ Tron −10.82% 7d（−1.66% 1d，$5.03B）— 大链里 7d 最差，no obvious catalyst
+*Movers*
+↑ Avalanche +6.69%（$0.570B → $0.608B）- 主协议零增量，长尾驱动
+↓ Solana -1.50%（$5.259B → $5.182B）- no obvious catalyst
 
-**协议 mover**
-↑ **Aave V3 +4.45%**（$15.11B→$15.78B，7d +5.15%）— 借贷回流复活，与 11-05 的 −5.31% 直接反转
-↓ **Sky Lending −11.70%**（$4.77B→$4.21B，7d −16.41%）— USDS 同步 −13.97%，收益率轮动
+*Fees（24h，同星归 −16.75%）*
+1. Tether - $16.64M（−0.86%）
+2. Circle USDC - $6.66M（−1.32%）
+3. Hyperliquid Perps - $2.77M（−22.78%）
 
-**Fees leaders（24h）**
-1. Tether — $16.79M（−0.24%）
-2. Circle USDC — $6.75M（+0.27%）
-3. Hyperliquid Perps — $3.59M（**−24.87%**）
+*Fees 跑赢 TVL*
+• Binance staked ETH - fees 7dover7d +37.7% / TVL 7d −0.3% - 需求跑过存款
 
-**Fees 跑赢 TVL（剔尖峰后仅 2 条）**
-• Binance staked ETH — fees **+37.7%** / TVL +1.05%（7d）
-• Lido — fees **+3.7%**（名义 +77.3%，几乎全是 10-30 单日尖峰）/ TVL +0.15%
+*DEX vol（11-07 桶）:* $5.94B（同星归 −8.2%） top: PancakeSwap $0.72B / Uniswap V4 $0.56B / Kalshi $0.56B
 
-**DEX vol:** 11-06 桶 $9.576B · 同周五中位裁减 **−10.56%**（11-05 桶 $11.684B 是暴跌日放量）
-top: Uniswap V3 $1.10B、Uniswap V4 $1.10B、PancakeSwap V3 $0.90B
+*Stables:* $293.6B（−0.43%） - USDS −13.80% vs USDe +13.92%，全在 Ethereum，**第二日同向且加速 = 收益率轮动（3.80% vs 5.02%）**
 
-**Stables:** $292.96B（−0.73% 1d / −2.18% 7d）
-• **USDS −13.97%**（$6.50B→$5.59B，全在 Ethereum）
-• **USDe +7.76%**（$4.57B→$4.92B，同链）
-→ 同一笔钱在轮动（sUSDS 3.80% base vs sUSDe 5.01%），不是出逃。总供应只缩 0.73%。
+*Real yield（sustainable，已加 ilRisk=no + single）*
+• hipo HGRAM (TON) - 16.65% apyBase ($10M TVL)
+• apyx APXUSD (ETH) - 13.97% apyBase ($142M TVL)
+• upshift XUPUSDC (ETH) - 13.15% apyBase ($15M TVL)
 
-**Real yield（single-exposure，已剔除 LP 波动率溢价）**
-• hipo（TON）HGRAM — 17.70% base（$10.3M）
-• apyx（Ethereum）APXUSD — 13.95% base（$142.5M）
-• upshift（Ethereum）XUPUSDC — 13.15% base（$15.2M）
-> 原始 filter 前 8 名全是 `ilRisk: yes` 的 Uniswap 多资产池（WBTC-USDC 35.97% 等）—— 那是暴跌后的波动率溢价，且 `il7d` 全为 null。**建议 skill 的 real-yield 过滤加 `ilRisk=='no'`。**
+*Incentive yield（points / emissions）*
+• CVXCRV (Convex, ETH) - 39.45% apy via $CRV/$CVX/frxUSD ($38M)
+• SDCRV (Stake DAO, ETH) - 23.11% apy via $CRV/frxUSD ($32M)
 
-**Incentive yield（≥$25M）**
-• Convex（Ethereum）CVXCRV — 41.03% 全部来自 $CVX/$CRV/$FRAX 奖励（$37.1M TVL）
-
-**Macro:** BTC $75,869（−0.24%）/ ETH $2,240（+0.20%）/ SOL $90.12（+0.65%）· F&G **25 Extreme Fear**（昨 28）· 广度 12/20 · TVL $80.70B
-**Polymarket:** 「12 月加息 25bp」YES **76.5%**（两日 +13pp）｜「BTC 11/7 站上 $76,000」50.9%｜「BTC 11 月触及 $82,500」仅 36.5%
+*Macro:* BTC $75,671（−0.21%）/ ETH $2,231（−0.19%）· F&G 25（Extreme Fear，昨 28）· 广度 2/20 · 加息盘「12 月 +25bp」YES 76.5%（与昨日同值，转向已完成、现横盘定价）· BTC 11/7 掉破 $75,000 仅 10.5%
 
 _sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail | var: none_
+
+*口径修正（判据级）：DEX 量的日桶也会被回溯**下修**，11-06 桶两小时内从 9.576B 下修到 8.291B（−13.4%，`?_cb=` 复取同值、排除缓存）。周五归一后是 **−21.3%**，不是昨日算的 −10.56% -- 昨日那个数作废。**
