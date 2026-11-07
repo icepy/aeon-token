@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-06T00:10:00Z
+timestamp: 2026-11-07T00:10:00Z
 ---
 
 # DefiLlama Radar
@@ -163,7 +163,56 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **判据：`only_seen` 非空而 `only_raw` 为空 ⇒ 条目不在了，不是读坏了。** seen 是只增不删的表（脚本从不移除 id），所以任何「seen 有、payload 无」的 id 都是 DefiLlama 侧下架；若这些 id 日后重新出现，会走 `seen` 命中、`notified != None` 分支，**静默跳过、不会重报** —— 这与 [id 单调递增 / 旧条目回流](#id-单调递增2026-10-28-实测求差正确性的正面证据) 记的「下架再上架」互相印证。**只看 seen 文件大小无法区分「下架残留」和「解析异常」，要看两个方向的差集。**
 
-## 本轮漏斗口径（11-06 第 11 轮）
+## 桶序会掩盖读数：`parent` → `category` 是一条有损链（11-07 第 12 轮首次定量）
+
+`scan.py` 的判定顺序是 `seen` → `parent` → `category` → `chain`，每桶 `continue`，所以**一条记录只会记进它撞上的第一个桶**。第 12 轮 6 条新增全部被 `parent` 吃掉（`parent=6` / `category=0` / `空链=0` / 链白名单=0），审计读起来像「parent 是唯一问题」，实际不是：
+
+| id | 名称 | category | 被 parent 挡后，去掉 parent 会怎样 |
+|---|---|---|---|
+| 9348–9351 | `Sparkling *` 四条 | **Interface** | 仍被 `category` 挡 |
+| 9352 | `pump.fun Perps` | **Interface** | 仍被 `category` 挡 |
+| 9353 | `Vesper V2` | Yield Aggregator | 空链也挡不住（`chains=['Ethereum']`）→ **唯一真边际** |
+
+**`parent` 对本案的边际贡献只有 1/6。** 另外 5 条是双帽，`category` 桶**真实读了 5 条、显示 0**。
+
+全量口径的重叠率（同一份 payload 实测）：
+
+| 窗口 | `listedAt` 有值 | 带 parent | 其中 category∈EXCL |
+|---|---|---|---|
+| 7d | 63 | 24 | 11（46%） |
+| 30d | 420 | 225 | **137（61%）** |
+| 90d | 916 | 384 | 142（37%） |
+| 全时段 | — | 2668 | 247（9.3%） |
+
+**读法：`category=0` 不等于 `EXCL_CATEGORY` 没生效，只等于「没有不带 parent 的 EXCL 条目」。** 近 30d 里 EXCL 类目共 178 条，其中 137 条带 parent、只有 41 条不带 —— 即该桶在 30d 尺度上的可观测面只有 23%。反过来 `parent` 也同理：它吞掉了 61% 的本该记给 `category` 的条目，所以**「parent 占比升高」可能只是「Interface 类铺子协议变多」的同一个事实换了个名字**。
+
+**不改代码。** 想让两个桶都可读需要改成「多标签计数」（一桶丢弃后继续判定其余桶），这与「只做发现」无关、只是审计口径，但会让 `drop` 各桶之和 > 新增数，破坏现有「新增 = 通过 + 过滤」的闭合式。真要改，须同步改审计行语义。**当前纪律：任何单桶「占比」读数必须注明桶序，且不能与其他桶读数做减法。**
+
+## 本轮漏斗口径（11-07 第 12 轮）
+
+全量 **8956** · 新增 id **6**（可报 **0** / 过滤 6）· `seen` 命中 8950 · `parent` 6 · `category` 0 · 空 `chains` 0 · 链白名单 0 · 无 id 0 · 拉取失败 0 · 重报 0。
+
+**可报 0 = 结构性，不是故障。** 6 条全部是「母协议铺子协议」形态，且 5 条是 `Interface`（交易界面）：`Sparkling Hyperliquid` / `Sparkling Lighter Perps` / `Sparkling Lighter Predict` / `Sparkling Prediction Markets`（同 `parent#sparkling`，共用一个站点 `sparkl.ing`，7.9 小时内连登 4 条）、`pump.fun Perps`（`parent#pump`）、`Vesper V2`（`parent#vesper`，**$10.02M**，全轮体量最大）。
+
+**`Vesper V2` 是本轮唯一有实质量的条目，也是 `parent` 桶唯一的真边际**（见上节）。它是老协议的行为版本铺开，属 SKILL.md 明写要挡的「版本号铺开是最大噪声源」，遮挡正确。
+
+按 SKILL.md 铁律「报告级 0 时不发通知、不重写 `report.md`」——`report.md` 与 `out.json` 均未动（`out.json` 被脚本写成空数组 `[]`，属正常；`report.md` mtime 仍是 11-06）。
+
+**CF 校验通过（两份 8956 id 逐条相同）**：常规 `HIT` etag `W/"6aee5c93-9162f5"`、`last-modified 2026-11-06T23:02:43Z`、`age 967`；`?_cb=` + `no-cache` 源站 `MISS` etag `W/"6aee64e2-91626e"`、`last-modified 23:38:10Z`。6 条新增的 `parentProtocol` / `category` / `chains` / `tvl` 两快照**零字段差异**，**11-03 那种 `parentProtocol` 翻转连续三轮未复现**。
+
+`listedAt` 跨度 7.88h（11-06 05:42:31Z → 13:35:26Z），最小间隔 166s，同分钟 ≥3 条批量指纹 **0 组**（`Sparkling` 四条间隔 166–538s，是逐条录入不是同秒批量）。id 9347 → 9348–9353 连续无缺口，**连续四轮无「暂未回填的分配号」**。
+
+`only_seen=['4818']`、`only_raw=[]` **连续第三轮** → 真下架，无争议。seen 8957 = 8956 命中 + 1 残留。
+
+### `listedAt=null` 出现在新 id 上 —— 「近期新登记覆盖完整」这条要加限定
+
+`Vesper V2`(9353) 是本轮最新 id 但 `listedAt=null`，10 分钟内两份快照都是 null。这直接顶撞上文「`listedAt` 在近期新登记上覆盖完整」的旧结论。
+
+实测该区间：id ≥ 9300 的 54 条里 `listedAt` 为 null 的**只有 2 条**（`Imperial` 9300、`Vesper V2` 9353）= **3.7%**；id 9330–9353 共 24 条里 1 条 = 4%。
+
+**修正后的说法：**「近 30 天新登记录入时刻普遍带 `listedAt`」仍成立（覆盖 ~96%），但**不是 100%**，所以「新度只能靠 id 求差」这条主结论不变、且更需要它。反过来，**`listedAt` 为 null 不能反推「老条目」** —— 本轮 9353 是全新 id 却是 null。以前把 null 一律读成「老/头部大协议」是错的，null 有两种来源：**老条目从未补录**，与**新条目录入时该字段漏填**（本例）。
+
+## 上一轮漏斗口径（11-06 第 11 轮）
 
 全量 **8950** · 新增 id **8**（可报 3 / 过滤 5）· `seen` 命中 8942 · `parent` 1 · `category` **0** · 空 `chains` 2 · 链白名单 2 · 无 id 0 · 拉取失败 0 · 重报 0。
 
@@ -207,6 +256,12 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-07 第 12 轮；常规 `HIT` 8956 条、etag `W/"6aee5c93-9162f5"`、`last-modified Fri, 06 Nov 2026 23:02:43 GMT`、`age 967`；`?_cb=` + `no-cache` 源站 `MISS` 8956 条、etag `W/"6aee64e2-91626e"`、`last-modified 23:38:10 GMT`；id 集合两向差集仅 `only_seen=['4818']`，6 条新增两份快照字段零差异）
+- 实测数据：同上 9348–9351 `Sparkling Hyperliquid` / `Sparkling Lighter Perps` / `Sparkling Lighter Predict` / `Sparkling Prediction Markets` · `chains=[]` · `category='Interface'` · `parentProtocol='parent#sparkling'` · `tvl=null` · `url='https://sparkl.ing'` · `listedAt` 1793943751/1793943917/1793944153/1793944691
+- 实测数据：同上 9352 `pump.fun Perps` · `chains=[]` · `category='Interface'` · `parentProtocol='parent#pump'` · `address='solana:pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn'` · `listedAt=1793972126`
+- 实测数据：同上 9353 `Vesper V2` · `chains=['Ethereum']` · `category='Yield Aggregator'` · `parentProtocol='parent#vesper'` · `tvl=10024457.905` · `chainTvls={'Ethereum':10024457.905}` · `listedAt=null`（两份快照一致）· `address='0x1b40183efb4dd766f11bda7a7c3ad8982e998421'`
+- 实测数据（桶重叠率，同一份 payload 重算）：7d `listedAt` 有值 63 / 带 parent 24 / 其中 EXCL category 11 · 30d 420 / 225 / 137 · 90d 916 / 384 / 142 · 全时段 parent 2668、其中 EXCL category 247（9.3%）· 30d EXCL category 计 178 条，其中带 parent 137、不带 41
+- 实测数据（`listedAt` 覆盖）：id ≥ 9300 共 54 条，`listedAt` 为 null 仅 `Imperial`(9300) 与 `Vesper V2`(9353) = 3.7%；id 9330–9353 共 24 条中 1 条 = 4%
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-06 第 11 轮；常规 `HIT` 8950 条、etag `W/"6aed0b01-913c44"`、`last-modified Thu, 05 Nov 2026 23:02:25 GMT`、`age 1005`；`?_cb=` + `no-cache` 源站 `MISS` 8950 条、etag `W/"6aed1362-913ce3"`、`last-modified 23:38:10 GMT`；id 集合两向差集仅 `only_seen=['4818']`）
 - 实测数据：同上 9344 `Ignite DEX` · `chains=['Solana','Ethereum','Binance','Base']` · `chainTvls={'Binance':0,'Ethereum':44.84,'Base':0,'Solana':84.97}` · `tvl=129.81` · `url=''`
 - 实测数据：同上 9345 `Panda Financial` · `chains=['Base']` · `tvl=8672.77` · `category='Liquidity Manager'` · `url=''`

@@ -13,7 +13,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · 26 词 · 11-06 第 37 轮 83 → 幸存 2，**全污染**（`zero-knowledge` 撞 quant-ph 普通语义；`cat:cs.DC` 挡不住分布式 ML）。**carrier「0 丢弃」≠ 安全：`circuit`/`network` 对超导/ML 同样成立 = 假装挡住。** 饱和 15 词 maxpub 全近 30 天 → 全保活。**`robot data` 吞掉 `robot manipulation data`。**[source: logs/2026-11-05#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-06 第 11 轮 8950 / 新增 8 / 可报 3。**`parent` 从 10 回落到 1、`category` 连续两轮 0 → 11-05 录入潮是单次形状**；**`chains` 是部署声明、量看 `chainTvls`（Ignite 报 4 链但 Binance/Base=0）**；`only_seen=['4818']` 两轮 → 真下架。`tvl=0` ≠ 空壳（9336 staking $574K）。[source: logs/2026-11-06#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-07 第 12 轮 8956 / 新增 6 / **可报 0**（6 条全被 parent 挡）。**桶序有损：单条只记第一个撞上的桶 → 5 条双帽 Interface 记到 parent 名下，`category=0` 是假象（30d 重叠 61%）**；量看 `chainTvls`；`only_seen=['4818']` 三轮 = 真下架。[source: logs/2026-11-07#defillama-radar]
 - `github-radar` 07:45 · 18 词 · gh-v3。**「7 天窗」从未生效**（`var` 不注入 → 吃 30d）。**窄窗幸存更多、报告级更少** → 窗口改分布非流量；**carrier 误杀在 7d 两侧 100% = 测不到**。11-05：**「`jepa`+`world model` 双通道退化」判据被否**（jepa 13→7、其余 17 词 21→29，全反向）= 单轮回摆；加密侧第三连轮零新增。**按 commits 读。** [source: logs/2026-11-05#github-radar]
 
 ## Lessons Learned
