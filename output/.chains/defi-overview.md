@@ -1,46 +1,52 @@
-⚠️ Crypto 2026-11-05 — risk-off
+ℹ️ Crypto — 2026-11-07 — chop（修正 TVL 7d 数字）
 
-*Crypto — 2026-11-05* — risk-off（conviction high）| DeFi Mixed：TVL 读数滞后，别信
+**Crypto — 2026-11-07** — chop（conviction medium）| DeFi 混合：TVL −5.12%，DEX 量同星归 −10.6%
 
-*Take:* BTC **−6.25%**（$75,637）· ETH **−8.47%**（$2,229）· 广度 **1/20**。触发源是 AI 股崩盘（Nvidia −9.3%、美股 worst day since April 2025、~$1B 清算），15:00–16:00 UTC 两小时内集中砸盘，不是加密自身事件。
+**Take:** 暴跌次日止跌未反弹。BTC $75,869（−0.24% 24h），24h 广度 12/20 但 **7d 仍只 4/20**；F&G 28→**25 Extreme Fear** 才追上 11-05 那次砸盘。Polymarket 12 月加息盘两日 **+13pp 到 76.5%**，宏观折价还在加。
 
-*三个必须知道的读数陷阱*
-1. **F&G 50（Neutral）是假的乐观。** 它取 11-05 00:00 快照，那时 BTC 还在 $80,442，暴跌在 15:00 之后。今日 F&G 上升 ≠ 市场变好。
-2. **TVL 只跌 1.22% 是滞后。** 链 TVL 81.90B → 81.10B，但 ETH 同期 −8.47%。加 `_cb` 复取两次结果完全相同 → DeFiLlama 刷新周期滞后，不是缓存、不是假零。**暴跌当天 TVL 不能用来判资金进出。**
-3. **昨日报告的 TVL 不可比。** 昨日写的 $84.73B / ETH 链 $45.69B 是「盘中 live 值」，桶里同一天的实际结算值是 $81.90B / $43.76B（差 3–4%）。昨日「TVL +3.44% 站上上沿」是口径错配，不是真流入。
+**TVL:** $80.70B（−5.12% 1d，−0.97% 7d，−13.92% 30d）
+> ⚠️ 上轮「TVL 只跌 1.22%」是假象：11-05 桶当时读到 81.10B，今日回查 **85.053B（+4.87%）** —— 桶被回溯补了约 $3.95B。修正后与 ETH −7.73% 对齐。
 
-*真实换手（这个可信）*
-DEX vol 24h **$11.635B**，对周四基线 $9.609B（剔 10-29 Balancer 事件）= **+21.1%**。放量下跌 = 有真实换手，不是流动性真空。
+**Top chains（7d）**
+1. Ethereum — $43.18B（+0.57%）· 1d −5.83%
+2. Base — $5.75B（−0.33%）· 1d −6.94%
+3. Solana — $5.22B（−2.27%）· 1d −5.64%
 
-*Movers*
-↓ Polygon −8.40%（$0.71B → $0.65B）— 主体仍是 Polymarket International 腿，非全链撤离
-↓ Hyperliquid L1 −4.52%（7d 仅 −0.73%，7d 维度反而是抗跌的）
-↑ Monad +2.24% — 唯一上涨的大链，体量小放大百分比
-↓ Dolomite −24.66% — 日内 184.8M → 138.8M，无 hallmark 可归因，`no obvious catalyst`
+**链 mover**
+↑ Avalanche **+17.91% 7d**（+2.24% 1d，$0.61B）— 唯一 7d 双位数上涨
+↓ Tron −10.82% 7d（−1.66% 1d，$5.03B）— 大链里 7d 最差，no obvious catalyst
 
-*Fees 增速跑赢 TVL（剔尖峰后只剩两条）*
-• Uniswap V3 — fees **+27.8%** / TVL −4.76% — 原始读数报 136%，剔 10-29/10-30 两个 Balancer 撤离尖峰后才成立
-• Jupiter Perp — fees **+53.8%** / TVL −5.69%
-两者都是**下跌中费用逆势放大 = 清算换手饭，不是有机增长**。Curve DEX 原始报 236%，实算 +80% 但日序列摆动 20 倍，不建议据建仓。
+**协议 mover**
+↑ **Aave V3 +4.45%**（$15.11B→$15.78B，7d +5.15%）— 借贷回流复活，与 11-05 的 −5.31% 直接反转
+↓ **Sky Lending −11.70%**（$4.77B→$4.21B，7d −16.41%）— USDS 同步 −13.97%，收益率轮动
 
-*Fees leaders (24h):* Tether $16.83M · Circle USDC $6.73M · Hyperliquid Perps $4.78M（+84% 1d）
+**Fees leaders（24h）**
+1. Tether — $16.79M（−0.24%）
+2. Circle USDC — $6.75M（+0.27%）
+3. Hyperliquid Perps — $3.59M（**−24.87%**）
 
-*Stables:* $295.70B（−0.42% 1d）。**暴跌当天稳定币只缩 0.42% —— 没有恐慌性出逃，与「被动去杠杆」一致，不是加密内生信用事件。** 脱锚最深 USDf −58.9bp（$1.66B，连续第五轮）。BUIDL −5.28%（7d −14.41%）、USD1 −4.46% 是最大流出。
+**Fees 跑赢 TVL（剔尖峰后仅 2 条）**
+• Binance staked ETH — fees **+37.7%** / TVL +1.05%（7d）
+• Lido — fees **+3.7%**（名义 +77.3%，几乎全是 10-30 单日尖峰）/ TVL +0.15%
 
-*Real yield（≥$10M，剔尖峰后）*
-• APXUSD（Ethereum）— 13.73% apyBase（$145M）
-• TRX（Tron）— 11.12% apyBase（$87M）
+**DEX vol:** 11-06 桶 $9.576B · 同周五中位裁减 **−10.56%**（11-05 桶 $11.684B 是暴跌日放量）
+top: Uniswap V3 $1.10B、Uniswap V4 $1.10B、PancakeSwap V3 $0.90B
 
-*Incentive yield（≥$25M）*
-• CVXCRV — 43.45% 全 $CRV 奖励（$35M）
-• SDCRV — 15.05% 全 $CRV（$31M）· 较昨日 14.57% 回升
+**Stables:** $292.96B（−0.73% 1d / −2.18% 7d）
+• **USDS −13.97%**（$6.50B→$5.59B，全在 Ethereum）
+• **USDe +7.76%**（$4.57B→$4.92B，同链）
+→ 同一笔钱在轮动（sUSDS 3.80% base vs sUSDe 5.01%），不是出逃。总供应只缩 0.73%。
 
-*宏观*
-• BTC $75,637（−6.25%）/ ETH $2,229（−8.47%）
-• 广度 1/20 green（唯一红盘 FIGR_HELOC +0.22%，RWA 国债类）
-• **Polymarket：「年底 BTC 触及 $70,000」YES 56.5%，24h 跳 +26pp** —— 今日最强定价信号
-• 12 月加息 YES 63.5%（24h −14pp，暴跌反而在降加息预期）
+**Real yield（single-exposure，已剔除 LP 波动率溢价）**
+• hipo（TON）HGRAM — 17.70% base（$10.3M）
+• apyx（Ethereum）APXUSD — 13.95% base（$142.5M）
+• upshift（Ethereum）XUPUSDC — 13.15% base（$15.2M）
+> 原始 filter 前 8 名全是 `ilRisk: yes` 的 Uniswap 多资产池（WBTC-USDC 35.97% 等）—— 那是暴跌后的波动率溢价，且 `il7d` 全为 null。**建议 skill 的 real-yield 过滤加 `ilRisk=='no'`。**
 
-*结论：全线暂停建立新多头。* 昨日所有多头叙事（ETH 轮动、借贷回流）单日全部 dead —— ETH/BTC 由 0.03019 → 0.02947 全数回吐。唯一逆势：XMR 7d **+1.05%** 是 top-20 唯一 7d 正收益，但那是抗跌不是领涨。
+**Incentive yield（≥$25M）**
+• Convex（Ethereum）CVXCRV — 41.03% 全部来自 $CVX/$CRV/$FRAX 奖励（$37.1M TVL）
 
-_sources: coingecko=ok defillama=ok fng=ok polymarket=ok websearch=fail newsfeed=ok（CoinDesk RSS）| var: none_
+**Macro:** BTC $75,869（−0.24%）/ ETH $2,240（+0.20%）/ SOL $90.12（+0.65%）· F&G **25 Extreme Fear**（昨 28）· 广度 12/20 · TVL $80.70B
+**Polymarket:** 「12 月加息 25bp」YES **76.5%**（两日 +13pp）｜「BTC 11/7 站上 $76,000」50.9%｜「BTC 11 月触及 $82,500」仅 36.5%
+
+_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail | var: none_
