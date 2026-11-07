@@ -1,0 +1,238 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "⚠️ Heartbeat · 2026-11-07"
+      },
+      "children": [
+        "alert-watch",
+        "sep-1",
+        "h-what",
+        "stats-grid",
+        "alert-error",
+        "badges",
+        "text-sideeffect",
+        "sep-2",
+        "h-judgment",
+        "text-judgment",
+        "table-runs",
+        "sep-3",
+        "h-action",
+        "alert-action",
+        "sep-4",
+        "text-source"
+      ]
+    },
+    "alert-watch": {
+      "type": "Alert",
+      "props": {
+        "title": "🟡 WATCH — defi-overview 连续两次失败",
+        "message": "23:00Z 与 23:30Z 两轮 defi-overview 均以 gateway 403 失败，consecutive_failures=2。",
+        "type": "warning"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-what": {
+      "type": "Heading",
+      "props": {
+        "text": "发生了什么",
+        "level": "h3"
+      }
+    },
+    "stats-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-cf",
+        "stat-last",
+        "stat-retry"
+      ]
+    },
+    "stat-cf": {
+      "type": "Stat",
+      "props": {
+        "label": "consecutive_failures",
+        "value": "2",
+        "trend": "up"
+      }
+    },
+    "stat-last": {
+      "type": "Stat",
+      "props": {
+        "label": "最后一次成功",
+        "value": "2026-11-05 23:15Z",
+        "delta": "距今约 25h",
+        "trend": "down"
+      }
+    },
+    "stat-retry": {
+      "type": "Stat",
+      "props": {
+        "label": "重试派发",
+        "value": "00:15Z",
+        "delta": "⏳ dispatched",
+        "trend": "neutral"
+      }
+    },
+    "alert-error": {
+      "type": "Alert",
+      "props": {
+        "title": "错误签名",
+        "message": "hivemindos: Failed to authenticate. API Error: 403 All target providers failed.（两轮同签名）",
+        "type": "error"
+      }
+    },
+    "badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-1",
+        "badge-2",
+        "badge-3"
+      ]
+    },
+    "badge-1": {
+      "type": "Badge",
+      "props": {
+        "text": "gateway 403",
+        "variant": "destructive"
+      }
+    },
+    "badge-2": {
+      "type": "Badge",
+      "props": {
+        "text": "cf=2（阈值 3）",
+        "variant": "secondary"
+      }
+    },
+    "badge-3": {
+      "type": "Badge",
+      "props": {
+        "text": "⏳ dispatched",
+        "variant": "outline"
+      }
+    },
+    "text-sideeffect": {
+      "type": "Text",
+      "props": {
+        "text": "副作用：memory/topics/market-context.md 的 timestamp 仍停在 2026-11-05T23:20:00Z —— 每日 DeFi 读数已缺一天",
+        "variant": "body"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-judgment": {
+      "type": "Heading",
+      "props": {
+        "text": "判断",
+        "level": "h3"
+      }
+    },
+    "text-judgment": {
+      "type": "Text",
+      "props": {
+        "text": "403 只打在 23:00–23:31 这个窗口。同期 arxiv-radar（22:06Z）、github-radar（22:35Z）、defillama-radar（00:04Z）全部成功，所以不是全局网关故障，是这两轮的 provider 鉴权瞬时问题，cf=2 未达 🔴 线（阈值 3）。",
+        "variant": "body"
+      }
+    },
+    "table-runs": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "任务",
+          "时间 (UTC)",
+          "结果"
+        ],
+        "rows": [
+          [
+            "defi-overview",
+            "23:00Z",
+            "❌ 失败 — gateway 403"
+          ],
+          [
+            "defi-overview",
+            "23:30Z",
+            "❌ 失败 — gateway 403"
+          ],
+          [
+            "defi-overview",
+            "00:15Z",
+            "⏳ dispatched（未出结果）"
+          ],
+          [
+            "defi-overview",
+            "2026-11-05 23:15Z",
+            "✅ 最后成功"
+          ],
+          [
+            "arxiv-radar",
+            "22:06Z",
+            "✅ 成功"
+          ],
+          [
+            "github-radar",
+            "22:35Z",
+            "✅ 成功"
+          ],
+          [
+            "defillama-radar",
+            "00:04Z",
+            "✅ 成功"
+          ]
+        ]
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-action": {
+      "type": "Heading",
+      "props": {
+        "text": "要你做什么",
+        "level": "h3"
+      }
+    },
+    "alert-action": {
+      "type": "Alert",
+      "props": {
+        "title": "暂时不用",
+        "message": "若 00:15Z 那轮再失败 → cf=3 触发 🔴，届时再查 gateway 凭据。",
+        "type": "info"
+      }
+    },
+    "sep-4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "text-source": {
+      "type": "Text",
+      "props": {
+        "text": "来源：memory/cron-state.json · gh run view 42312390518 / 42308889285 · memory/topics/market-context.md",
+        "variant": "caption"
+      }
+    }
+  }
+}
