@@ -6,8 +6,8 @@ permalink: /status/
 
 # Agent Status
 
-**Overall:** 🟡 WATCH
-**Updated:** 2026-11-07 00:34 UTC
+**Overall:** 🟢 OK
+**Updated:** 2026-11-08 00:31 UTC
 **Open issues:** 0 filed in tracker (8 unlabelled machine health threads on GitHub)
 **Next scheduled run:** narrative-brief at 10:00 UTC
 
@@ -21,13 +21,13 @@ _No recent token data (latest report 2026-10-24)._
 
 | Skill | Last run | Status | Success rate | Consecutive failures |
 |-------|----------|--------|-------------:|---------------------:|
-| defillama-radar | 2026-11-07 00:04 UTC | ✅ success | 100% | 0 |
-| defi-overview | 2026-11-07 00:15 UTC | ⏳ dispatched | 67% | 2 |
-| github-radar | 2026-11-06 22:35 UTC | ✅ success | 86% | 0 |
-| arxiv-radar | 2026-11-06 22:06 UTC | ✅ success | 88% | 0 |
-| memory-flush | 2026-11-06 18:06 UTC | ✅ success | 82% | 0 |
-| narrative-brief | 2026-11-06 10:01 UTC | ✅ success | 100% | 0 |
-| heartbeat | 2026-11-06 00:32 UTC | ✅ success | 91% | 0 |
+| defillama-radar | 2026-11-08 00:04 UTC | ✅ success | 100% | 0 |
+| defi-overview | 2026-11-07 23:14 UTC | ✅ success | 70% | 0 |
+| github-radar | 2026-11-07 22:33 UTC | ✅ success | 87% | 0 |
+| arxiv-radar | 2026-11-07 22:04 UTC | ✅ success | 88% | 0 |
+| memory-flush | 2026-11-07 18:10 UTC | ✅ success | 83% | 0 |
+| narrative-brief | 2026-11-07 10:01 UTC | ✅ success | 100% | 0 |
+| heartbeat | 2026-11-07 00:35 UTC | ✅ success | 92% | 0 |
 | aeon-update | 2026-11-02 11:10 UTC | ✅ success | 100% | 0 |
 | investigation-report | — | not yet run | — | — |
 | tx-explain | — | not yet run | — | — |
@@ -36,7 +36,7 @@ _No recent token data (latest report 2026-10-24)._
 
 No open issues in `memory/issues/INDEX.md`.
 
-Eight unlabelled GitHub health threads are open (`#3` price-alert, `#4` onchain-monitor, `#5` memory-flush, `#6` arxiv-radar, `#9` github-radar, `#12` token-movers, `#13` defi-overview, `#18` narrative-brief). None carry a severity label; each is filed automatically by the scorer and closed automatically on recovery. `#13` was the only one touched in the last 24h (2026-11-06 23:31 UTC, on the failed `defi-overview` run).
+Eight unlabelled GitHub health threads are open (`#3` price-alert, `#4` onchain-monitor, `#5` memory-flush, `#6` arxiv-radar, `#9` github-radar, `#12` token-movers, `#13` defi-overview, `#18` narrative-brief). None carry a severity label; each is filed automatically by the scorer and closed automatically on recovery. None touched in the last 24h.
 
 ---
 *Fork this repo and your copy inherits this page automatically — [how it works](/memory/).*
