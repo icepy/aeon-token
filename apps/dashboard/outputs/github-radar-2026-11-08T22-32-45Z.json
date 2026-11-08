@@ -1,0 +1,437 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 8 · 近 7 天活跃 8"
+      },
+      "children": [
+        "header-stats",
+        "sep-1",
+        "repos"
+      ]
+    },
+    "header-stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-grade",
+        "stat-active"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "7 天",
+        "trend": "neutral"
+      }
+    },
+    "stat-grade": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "8",
+        "trend": "neutral"
+      }
+    },
+    "stat-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "8",
+        "trend": "neutral"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repos": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "repo-1",
+        "repo-2",
+        "repo-3",
+        "repo-4",
+        "repo-5",
+        "repo-6",
+        "repo-7",
+        "repo-8"
+      ]
+    },
+    "repo-1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-1-link",
+        "repo-1-meta"
+      ]
+    },
+    "repo-1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "debojoti-soumya/megamind",
+        "href": "https://github.com/debojoti-soumya/megamind",
+        "source": "GitHub",
+        "score": "★0 · 30天=≥100 · 7天=≥100"
+      }
+    },
+    "repo-1-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-1-badge",
+        "repo-1-desc"
+      ]
+    },
+    "repo-1-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "egocentric",
+        "variant": "outline"
+      }
+    },
+    "repo-1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Meta Quest 3 egocentric memory: passthrough capture → tokenized memory DB → Claude agent with memory",
+        "variant": "caption"
+      }
+    },
+    "repo-2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-2-link",
+        "repo-2-meta"
+      ]
+    },
+    "repo-2-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Hcoder10/speech2action",
+        "href": "https://github.com/Hcoder10/speech2action",
+        "source": "GitHub",
+        "score": "★0 · 30天=22 · 7天=22"
+      }
+    },
+    "repo-2-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-2-badge",
+        "repo-2-desc"
+      ]
+    },
+    "repo-2-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "sim-to-real",
+        "variant": "outline"
+      }
+    },
+    "repo-2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Pip: talk to an SO-101 arm through PersonaPlex (full-duplex speech), with a hidden-state intent prob",
+        "variant": "caption"
+      }
+    },
+    "repo-3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-3-link",
+        "repo-3-meta"
+      ]
+    },
+    "repo-3-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "namanraii/dream-arcade",
+        "href": "https://github.com/namanraii/dream-arcade",
+        "source": "GitHub",
+        "score": "★0 · 30天=19 · 7天=19"
+      }
+    },
+    "repo-3-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-3-badge",
+        "repo-3-desc"
+      ]
+    },
+    "repo-3-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "outline"
+      }
+    },
+    "repo-3-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Play Pong inside an action-conditioned diffusion world model, in the browser.",
+        "variant": "caption"
+      }
+    },
+    "repo-4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-4-link",
+        "repo-4-meta"
+      ]
+    },
+    "repo-4-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "michele-xilo/lecop",
+        "href": "https://github.com/michele-xilo/lecop",
+        "source": "GitHub",
+        "score": "★0 · 30天=11 · 7天=11"
+      }
+    },
+    "repo-4-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-4-badge",
+        "repo-4-desc"
+      ]
+    },
+    "repo-4-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "robot dataset",
+        "variant": "outline"
+      }
+    },
+    "repo-4-desc": {
+      "type": "Text",
+      "props": {
+        "text": "🚓 Fast, single-binary health checks for LeRobot robot datasets (v2 & v3): format, timestamps, video",
+        "variant": "caption"
+      }
+    },
+    "repo-5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-5-link",
+        "repo-5-meta"
+      ]
+    },
+    "repo-5-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "jefreybulla/ur5_teleop_ws",
+        "href": "https://github.com/jefreybulla/ur5_teleop_ws",
+        "source": "GitHub",
+        "score": "★1 · 30天=9 · 7天=9"
+      }
+    },
+    "repo-5-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-5-badge",
+        "repo-5-desc"
+      ]
+    },
+    "repo-5-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "outline"
+      }
+    },
+    "repo-5-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Teleoperation for UR5 robotic arm",
+        "variant": "caption"
+      }
+    },
+    "repo-6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-6-link",
+        "repo-6-meta"
+      ]
+    },
+    "repo-6-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "NapoleonPK/teleop-fix",
+        "href": "https://github.com/NapoleonPK/teleop-fix",
+        "source": "GitHub",
+        "score": "★0 · 30天=9 · 7天=9"
+      }
+    },
+    "repo-6-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-6-badge",
+        "repo-6-desc"
+      ]
+    },
+    "repo-6-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "outline"
+      }
+    },
+    "repo-6-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Can an AI agent fix a robot policy trained on flawed teleoperation data? Pre-registered simulation s",
+        "variant": "caption"
+      }
+    },
+    "repo-7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-7-link",
+        "repo-7-meta"
+      ]
+    },
+    "repo-7-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DebelToni/JEPA-research-landscape",
+        "href": "https://github.com/DebelToni/JEPA-research-landscape",
+        "source": "GitHub",
+        "score": "★0 · 30天=8 · 7天=8"
+      }
+    },
+    "repo-7-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-7-badge",
+        "repo-7-desc"
+      ]
+    },
+    "repo-7-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "jepa",
+        "variant": "outline"
+      }
+    },
+    "repo-7-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Continuously curated JEPA and world-model research with source-grounded findings",
+        "variant": "caption"
+      }
+    },
+    "repo-8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-8-link",
+        "repo-8-meta"
+      ]
+    },
+    "repo-8-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "wwwwws12/space-vla-benchmark",
+        "href": "https://github.com/wwwwws12/space-vla-benchmark",
+        "source": "GitHub",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "repo-8-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-8-badge",
+        "repo-8-desc"
+      ]
+    },
+    "repo-8-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "vision language action",
+        "variant": "outline"
+      }
+    },
+    "repo-8-desc": {
+      "type": "Text",
+      "props": {
+        "text": "A space vision-language-action benchmark across Mars, Moon, and cabin environments, with paired ligh",
+        "variant": "caption"
+      }
+    }
+  }
+}
