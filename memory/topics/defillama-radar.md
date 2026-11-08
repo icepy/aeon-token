@@ -1,12 +1,12 @@
 ---
 title: DefiLlama Radar
-description: 第二层（名字）发现通道 —— 用全量 id 求差找白名单链上新登记的协议。机制、四态、判据与已知陷阱（含延迟批量回填使「永久 id 空洞」判据作废、parentProtocol 跨快照翻转、address 前缀不可替代 chains、旁路收益的窄口径）。
+description: 第二层（名字）发现通道 —— 用全量 id 求差找白名单链上新登记的协议。机制、四态、判据与已知陷阱（含延迟批量回填使「永久 id 空洞」判据作废、parentProtocol 跨快照翻转、address 前缀不可替代 chains、旁路收益的窄口径、桶序有损、非数字 id 归一化会让老条目冒充新协议）。
 tags:
   - crypto
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-07T00:10:00Z
+timestamp: 2026-11-08T00:20:00Z
 ---
 
 # DefiLlama Radar
@@ -188,7 +188,63 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **不改代码。** 想让两个桶都可读需要改成「多标签计数」（一桶丢弃后继续判定其余桶），这与「只做发现」无关、只是审计口径，但会让 `drop` 各桶之和 > 新增数，破坏现有「新增 = 通过 + 过滤」的闭合式。真要改，须同步改审计行语义。**当前纪律：任何单桶「占比」读数必须注明桶序，且不能与其他桶读数做减法。**
 
-## 本轮漏斗口径（11-07 第 12 轮）
+## `id` 不是整数：`<5471>` 这种带尖括号的 id 存在，且它救了一轮（11-08 第 13 轮）
+
+第 13 轮求差时按 `int(id)` 排序做 id 连续性校验，**直接崩在 `<5471>`（`OpenTrade`，RWA，TVL $245.6M，`chains=['Avalanche','Ethereum','Plume Mainnet']`，`parentProtocol=None`，`listedAt=2024-12-06T14:40:42Z`）**。这不是脏数据：该 id 自基线轮（10-28）就在 `seen` 里，`notified=baseline`，尖括号是 DefiLlama 侧原始格式。
+
+**判据：`scan.py` 全程用 `str(p.get("id"))` 做键，这一点是对的 —— 任何「把 id 当整数处理」的校验脚本都会在这里翻车，且是崩在本地校验而不是扫描本身。** 好处也是实的：本轮 `<5471>` 与 `5471` 在 `seen` 里只有前者存在，说明字符串键没有归一化，所以**一个 `id` 从 `<N>` 变成 `N`（或反之）会被当成新协议重报一次**。本轮未发生，但这是 `seen` 键空间的一条已知裂缝，判「本轮新增」时若出现巨型老协议（本例 TVL $245.6M）要先查是不是 id 写法变了。
+
+数字 id 侧：最大 **9362**，9340–9362 **连续无缺口**，连续五轮无「暂未回填的分配号」。
+
+## 链白名单桶首次真正咬到输入，但 2 条里 0 条是「链不在白名单」（11-08 第 13 轮）
+
+前十二轮 `链白名单` 桶读数多为 0（仅 11-05 有 1 条 `Lubics`）。本轮审计报 **`链白名单=2`**，看起来像白名单终于开始做功，实际不是：
+
+| id | 名称 | chains | 真实原因 |
+|---|---|---|---|
+| 9354 | `BNQ` | `['Hemi']` | 链不在白名单（$538，`Hemi`） |
+| 9362 | `Yellow Onchain` | `[]` | **空 `chains`**，不是链不匹配 |
+
+`scan.py` 里 `if not hit` 一个条件同时吞掉「空 `chains`」和「链不在白名单」两种情况，审计只打一个 `chain` 桶。**所以 `链白名单=2` 里只有 1 条真属于「非白名单链」，另 1 条是空链。** 与上文 `parent → category` 的有损链同源：桶名比桶语义窄。
+
+## `parent` 的真边际首次可以逐条数清：7 条里 2 条（11-08 第 13 轮）
+
+本轮 7 条带 `parentProtocol`，逐条拆开：
+
+| id | 名称 | parent | EXCL | 空链 | 判定 |
+|---|---|---|---|---|---|
+| 9355 | `Rocketswap Anubis V3` | ✓ | ✗ | ✓ | parent 与空链**双帽** |
+| 9356 | `PeddleSwap V2` | ✓ | ✗ | ✗ | **parent 唯一** |
+| 9357 | `PeddleSwap V3` | ✓ | ✗ | ✗ | **parent 唯一** |
+| 9358–9361 | `Jupiter *` 四条 | ✓ | ✗ | ✓ | parent 与空链**双帽** |
+
+**`parent` 真边际 = 2/7**，且只有 `PeddleSwap V2/V3` 这两条是「有白名单链（`Robinhood Chain`+`Base`）、只被 parent 挡」的。但两条 `tvl` 分别 **$0.796 / $0.088**，`chainTvls` 里 Robinhood Chain 与 Base **都等于 0**，量全在 `Anubis`（非白名单）—— 正是 11-06 记的「`chains` 是部署声明、`chainTvls` 才是实际量」。
+
+**`category` 桶本轮 0，且这次是真的 0**：9 条新增里 EXCL 类目（CEX/Chain/Interface）**一条都没有**（`Lending`/`Dexs`×3/`Staking Pool`/`Developer Tools`×3/`Trading App`）。与前一轮的「假 0」不同 —— 上一轮 5 条双帽 Interface，本轮无 Interface。
+
+## `Jupiter` 四条同秒登记是本轮唯一的批量指纹（11-08 第 13 轮）
+
+全量 payload 中 `listedAt` 同秒 ≥3 条的簇只有 6 个，最近两个是 10-07（22 条桥，已记为污染源）与 **11-07T14:26:04Z（n=4，全部是 Jupiter 的四个子条目）**。`Jupiter Native Staking` / `VRFD` / `Developer Platform` / `Rent Reclaim` 四条 `listedAt` **完全相同**、`parent=parent#jupiter`、`chains=[]`、`tvl=None`。
+
+**这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
+
+## 本轮漏斗口径（11-08 第 13 轮）
+
+全量 **8965** · 新增 id **9**（可报 **0** / 过滤 9）· `seen` 命中 8956 · `parent` 7 · `category` **0（真 0）** · 空 `chains`/链白名单合计 2 · 无 id 0 · 拉取失败 0 · 重报 0。
+
+**可报 0 = 结构性。** 9 条新增里 5 条 `chains=[]`、7 条带 parent、0 条 EXCL 类目，无一通过。全轮最大体量 `Rocketswap Anubis V3`(9355) **$131.8K**，但它 `chains=['Anubis']`（非白名单）且带 parent，双帽。**本轮没有任何一条「本可报却被误挡」的条目** —— 与 11-07 的 `Vesper V2`（$10.02M，真边际）不同，这轮 parent 的边际两条都是 $1 以下的空池子。
+
+按铁律「报告级 0 时不发通知、不重写 `report.md`」—— `out.json` 被写成 `[]`，`report.md` mtime 未变。
+
+**CF 校验通过（两份 8965 id 逐条相同）**：常规 `HIT` etag `W/"6aefaddf-918df0"`、`last-modified 2026-11-07T23:01:51Z`、`age 1063`；`?_cb=` 源站 `MISS` etag `W/"6aefb657-918c8b"`、`last-modified 23:37:59Z`。9 条新增的 `name`/`category`/`parentProtocol`/`chains`/`tvl`/`listedAt`/`slug`/`url`/`misrepresentedTokens`/`wrongLiquidity` **十字段零差异**，**`parentProtocol` 翻转连续四轮未复现**。
+
+`listedAt` 跨度 **14.35h**（11-07T02:12:39Z → 16:33:48Z），最小间隔 **0s**（Jupiter 四条），同秒 ≥3 条批量指纹 **1 组**（即 Jupiter）。
+
+`only_seen=['4818']`、`only_raw=[]` **连续第四轮** → 真下架。seen 8966 = 8965 命中 + 1 残留（其中 8964 条为数字 id、1 条 `<5471>`）。
+
+全量 `chains=[]` = **1591 / 8965 = 17.75%**（上轮 17.6%，五轮区间 17.4–17.75），稳定。
+
+## 上一轮漏斗口径（11-07 第 12 轮）
 
 全量 **8956** · 新增 id **6**（可报 **0** / 过滤 6）· `seen` 命中 8950 · `parent` 6 · `category` 0 · 空 `chains` 0 · 链白名单 0 · 无 id 0 · 拉取失败 0 · 重报 0。
 
@@ -256,6 +312,15 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-08 第 13 轮；常规 `HIT` 8965 条、etag `W/"6aefaddf-918df0"`、`last-modified Sat, 07 Nov 2026 23:01:51 GMT`、`age 1063`；`?_cb=` 源站 `MISS` 8965 条、etag `W/"6aefb657-918c8b"`、`last-modified 23:37:59 GMT`；id 集合两向差集仅 `only_seen=['4818']`，9 条新增十字段两份快照零差异）
+- 实测数据：同上 9354 `BNQ` · `chains=['Hemi']` · `category='Lending'` · `tvl=538.38` · `parent=None` · `listedAt=1794017559`（2026-11-07T02:12:39Z）
+- 实测数据：同上 9355 `Rocketswap Anubis V3` · `chains=['Anubis']` · `parentProtocol='parent#rocketswap-anubis'` · `tvl=131756.12` · `listedAt=1794017901`
+- 实测数据：同上 9356/9357 `PeddleSwap V2`/`V3` · `chains=['Anubis','Robinhood Chain','Base','Arc']` · `chainTvls={Robinhood Chain:0, Base:0, Arc:0, Anubis:0.796/0.088}` · `parentProtocol='parent#peddleswap'` · `tvl=0.7957/0.0877` · `listedAt=1794018207/1794018211`
+- 实测数据：同上 9358–9361 `Jupiter Native Staking`/`VRFD`/`Developer Platform`/`Rent Reclaim` · `chains=[]` · `tvl=None` · `parentProtocol='parent#jupiter'` · `listedAt` **全为 `1794061564`（2026-11-07T14:26:04Z）**
+- 实测数据：同上 9362 `Yellow Onchain` · `chains=[]` · `category='Trading App'` · `tvl=None` · `parent=None` · `listedAt=1794069228`（2026-11-07T16:33:48Z）
+- 实测数据（非数字 id）：同上 `<5471>` `OpenTrade` · `category='RWA'` · `tvl=245567081.83` · `chains=['Avalanche','Ethereum','Plume Mainnet']` · `parent=None` · `listedAt=1733496042`（2024-12-06T14:40:42Z）· `seen` 中键为 `'<5471>'`，`'5471'` 不存在
+- 实测数据（全量同秒簇）：`listedAt` 同秒 ≥3 条共 6 簇 —— 2024-05-15T04:40:37Z(7) · 2025-07-28T18:06:11Z(3) · 2025-07-31T01:31:23Z(3) · 2026-10-07T13:38:45Z(22) · 2026-10-08T10:18:53Z(4) · 2026-11-07T14:26:04Z(4)
+- 实测数据（`chains=[]` 占比）：1591/8965 = 17.75%
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-07 第 12 轮；常规 `HIT` 8956 条、etag `W/"6aee5c93-9162f5"`、`last-modified Fri, 06 Nov 2026 23:02:43 GMT`、`age 967`；`?_cb=` + `no-cache` 源站 `MISS` 8956 条、etag `W/"6aee64e2-91626e"`、`last-modified 23:38:10 GMT`；id 集合两向差集仅 `only_seen=['4818']`，6 条新增两份快照字段零差异）
 - 实测数据：同上 9348–9351 `Sparkling Hyperliquid` / `Sparkling Lighter Perps` / `Sparkling Lighter Predict` / `Sparkling Prediction Markets` · `chains=[]` · `category='Interface'` · `parentProtocol='parent#sparkling'` · `tvl=null` · `url='https://sparkl.ing'` · `listedAt` 1793943751/1793943917/1793944153/1793944691
 - 实测数据：同上 9352 `pump.fun Perps` · `chains=[]` · `category='Interface'` · `parentProtocol='parent#pump'` · `address='solana:pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn'` · `listedAt=1793972126`

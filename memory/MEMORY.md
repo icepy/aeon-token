@@ -13,7 +13,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · 26 词 · 11-06 第 38 轮 82 → 幸存 2（真命中 1 / 污染 1）。**carrier 歧义词第 4 个 `embodied` 首落 robot 侧表**（`eess.SP` 无线论文照样命中）；**「用 `cat:` 挡污染」在 consensus 上二次失败 = 路线判死**；饱和 15 词 maxpub 全近 30 天。**`robot data` 吞掉 `robot manipulation data`。**[source: logs/2026-11-06#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-07 第 12 轮 8956 / 新增 6 / **可报 0**（6 条全被 parent 挡）。**桶序有损：单条只记第一个撞上的桶 → 5 条双帽 Interface 记到 parent 名下，`category=0` 是假象（30d 重叠 61%）**；量看 `chainTvls`；`only_seen` 三轮残留 = 真下架。[source: logs/2026-11-07#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-08 第 13 轮 8965 / 新增 9 / **可报 0**（无误挡）。**`id` 非整数（`<5471>` $245.6M）→ `str()` 做键才对，但 `<N>`↔`N` 会重报**；`链白名单=2` 里 1 条实是空链；parent 真边际 2/7 且都空池；同秒≥3+同 parent = 批量（Jupiter 四条）。[source: logs/2026-11-08#defillama-radar]
 - `github-radar` 07:45 · 18 词 · gh-v3。**「7 天窗」从未生效**（`var` 不注入 → 吃 30d）。**窄窗幸存更多、报告级更少** → 窗口改分布非流量。11-06 第 33 轮 2066 → 30 → 14：**静态站逃逸两例**（`SITE_SUFFIX` 只覆盖后缀，不覆盖「名字本身是 website」）；`teleoperation` 连两轮居首但质量最差；加密侧四连轮近零；carrier 九轮同向 → 结案。**按 commits 读。** [source: logs/2026-11-06#github-radar]
 
 
