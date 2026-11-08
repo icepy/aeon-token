@@ -1,14 +1,38 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**）
+description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔；且 7d 下报告级全 ★0，star 只能 `min:0`**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-06T22:35:00Z
+timestamp: 2026-11-07T22:36:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十轮 7 天窗（11-07）实证。
+
+## 第二十轮（2026-11-07，**7 天窗首次真正生效**，非 dry-run）—— `30天=` 与 `7天=` 退化同值；报告级 12/12 ★0；`jepa` 独占 5/12
+
+漏斗：`gh-v3` · var=`days:7` · 18 词 · 2019 调用（搜索 20：单窗 17 / 需拆窗 1 / 二分 0）· 耗时 72s。原始 **452** → 幸存 **35** → 报告级 **12**。丢弃 seen=187 · excl=28 · archived=0 · short_desc=85 · carrier=86 · neg=14 · pages=17 · pages_root=0 · scaffold=0 · farm=0 · fail=0。核验 35/35 = 100%，黑名单 3 owner。`probe` 跳过（戳 11-03，4 天 < 7 天），`clusters.json` 未重写。
+
+### 96. 🔴 7 天窗下 `commits_30d` 与 `commits_7d` 逐条相等（12/12）—— 两栏退化成「仓龄」
+
+**这不是数据错，是窗口的数学后果**：报告级最老仓仅 15 天，7 天窗内的候选几乎全是新建仓，`30天=` 与 `7天=` 必然同值。所以第 21 轮立的铁律「30 天提交高 ≠ 现在在写」**在 7 天窗下无法用这两个数分辨**。要测「爆完即停」必须比**首提交日与末次提交日的间隔**，而不是两个计数。**判据级：窗口变短不只改流量分布，还会改判据的可观测性 —— 换窗前要重列哪些判据仍然可读。** [source: logs/2026-11-07#github-radar（第 20 轮）]
+
+### 97. 🟢 报告级 12/12 全 ★0 → 7 天窗下 star 排序必须 `min:0`
+
+与第十一轮「★≥5 只有 1 个」同向且更彻底。**7 天窗里没有任何报告级仓拿到星，任何 star 地板都会把整份名单清零。** star 只能作展示字段，不能作筛选或排序主轴。 [source: logs/2026-11-07#github-radar（第 20 轮）]
+
+### 98. ⚠️ `jepa` 单架构词吃掉 5/12（42%），且多为复现/练手仓
+
+`prh-jepa`（明写 replication）· `kuanjepa` · `SpatialCell-JEPA`（NeurIPS workshop 代码）· `nakka1/World-Models-JEPA`（量子硬件误差缓解，与机器人无关）· `prasad-yashdeep/jepa-world-model-from-scratch`。**这是「一个学术名词在衍生复现仓」，不是多方向扩散**；5 条里只有 2 条属本方向。与第三十一轮「`jepa`+`world model` 双通道退化」判据不同 —— 那轮被证伪是总量口径，这轮是**单词语义质量**，两者不可混为一谈。 [source: logs/2026-11-07#github-radar（第 20 轮）]
+
+### 99. 🔴 加密侧第五连轮近零：报告级 0 条
+
+唯一主动通道 `intent-based` raw=12 / 新=1，但未进报告级；`restaking` raw=1 全饱和；`maximal extractable value` **连两轮 raw=0**；`data availability` raw=15 但新=1。**加密侧在本通道召回连续五轮接近零，与 arxiv-radar 侧同向 —— 两条通道同时空，已成结构性而非轮次波动。** [source: logs/2026-11-07#github-radar（第 20 轮）]
+
+### 100. ⚠️ digest 的「核验 35/35（100%）」与「未核验 1」并列，读起来自相矛盾
+
+两个数都对但量的不是一件事：「100%」是**尝试率**，「未核验 1（`Wang-qishen/PredMind`）」是**没拿到 commits**（限速/空仓）。**修法：拆成 `尝试 X/Y` + `成功 X/Y` 两栏。** 属显示层缺陷，不改脚本（不改脚本铁律）。 [source: logs/2026-11-07#github-radar（第 20 轮）]
 
 ## 第三十三轮（2026-11-06，**30 天窗**，非 dry-run）—— 静态站逃逸首现；`teleoperation` 由单轮升为连续两轮；加密侧第四连轮近零
 
