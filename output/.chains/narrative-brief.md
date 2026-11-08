@@ -11,13 +11,12 @@ narratives http=200 bytes=22993 source=remote reason=ok
 notify: 跳过（已推过）
 ```
 
-**下一步** — 没有。不要改 `check.py`。
-
-**你要处理的** — 这轮不用你处理。
+- **下一步** — 没有。不要改 `check.py`。
+- **你要处理的** — 这轮不用你处理。
 
 ## Summary
-- 读取 `skills/narrative-brief/SKILL.md` 与 `memory/MEMORY.md`，按其铁律只跑了一条规定命令：`python3 skills/narrative-brief/check.py ""`（一次工具调用，无额外抓取、未改写通知）。
-- 远程 `memory/topics/narratives.md` 拉取成功（http=200，22993 字节，`reason=ok`），未走本地 fallback。文件内 4 个日期节（05/11、02/11、29/10、26/10），sha256 全部已在 `memory/narrative-brief-seen.json` 中 → `结果: UNCHANGED`，未发送 notify，未写 seen。
-- 节数正好 4，未触发「超过 4 节」告警；这份 brief 最新一节是 11-05，距今 2 天，属 3 天窗口内正常节拍。
-- 未创建/修改任何文件；日志由 `check.py` 自行写入，未重复追加 `### narrative-brief`。
-- 后续动作：无。
+- 执行 `skills/narrative-brief/SKILL.md`：一次 `python3 skills/narrative-brief/check.py ""` 调用完成抓取、切节、去重与推送判断。
+- 远程 `memory/topics/narratives.md` 抓取正常（`http=200`，22993 字节，`reason=ok`），未回退本地。
+- 共 4 个日期节（05/11、02/11、29/10、26/10），全部命中 `memory/narrative-brief-seen.json` 的 sha256，无新节 → `UNCHANGED`，按要求未发通知。
+- 未创建/修改任何文件（无 `report.md`，`seen` 未动，日志由脚本自行处理）。
+- 注：`narratives.md` 仍是 4 节、最新一节为 05/11，距今已 3 天。Grok 自动化若持续停摆，本 skill 的输出与「今天没新内容」不可区分（`距上次推送: N 天` 提示尚未实现），这是已知缺口，本轮不处理。
