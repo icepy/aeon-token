@@ -31,6 +31,11 @@
       "sha256": "a0564a34955687ec6b8dc2c849fa2963e455f7339242fcd53121da57a4b7cc3f",
       "date": "05/11/2026",
       "notified_at": "2026-11-05T10:01:16Z"
+    },
+    {
+      "sha256": "8da196f69463db95ee70c9a20ed5a21bad27901202d7a63babf3a5abf3e8edf4",
+      "date": "09/11/2026",
+      "notified_at": "2026-11-09T10:02:50Z"
     }
   ]
 }

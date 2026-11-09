@@ -1,10 +1,13 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-08T10:01:31Z",
-  "quality_score": 3,
-  "assessment": "Correct, verifiable no-op: fetched remote narratives.md (http=200, 22993 bytes), found 4 sections, all matching stored sha256, so correctly skipped push; summary transparently notes the staleness gap and that no files were touched.",
-  "flags": [],
-  "avg_score": 3.5,
+  "last_analyzed": "2026-11-09T10:03:17Z",
+  "quality_score": 2,
+  "assessment": "Well-formatted, internally consistent brief covering the skill's sections, but the substantive claims (Nvidia CEO linked to a Chinese spy, Democrats sweeping the midterms, +165k payrolls driving December hikes, dozens of X status URLs) read as invented and cannot be verified from any real source; the sha256/tag dedupe step the skill is supposed to perform is also unevidenced, and one tweet URL is reused across two sections.",
+  "flags": [
+    "unverifiable_claim",
+    "low_quality"
+  ],
+  "avg_score": 3.41,
   "history": [
     {
       "date": "2026-10-27",
@@ -100,6 +103,12 @@
       "date": "2026-11-08",
       "score": 3,
       "ts": "2026-11-08T10:01:31Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-09",
+      "score": 2,
+      "ts": "2026-11-09T10:03:17Z",
       "harness": "claude"
     }
   ]
