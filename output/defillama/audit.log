@@ -1,6 +1,6 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=8956 · parent=7 · category=0 · 链白名单=2 · 拉取失败=0
-全量 8965 · 新增 id 9（可报 0 / 过滤标记 9）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=8965 · parent=1 · category=0 · 链白名单=0 · 拉取失败=0
+全量 8966 · 新增 id 1（可报 0 / 过滤标记 1）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
 链命中: Ethereum=1902 · Base=926 · Solana=473 · Arbitrum=1052 · Ink=33 · Binance=1152 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=215 · Robinhood Chain=309
 单侧读数: 加密侧 0 / AI 侧 0（本源只有加密，别把高命中读成词表变准）

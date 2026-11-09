@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-08T00:20:00Z
+timestamp: 2026-11-09T00:05:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,27 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-08 第 13 轮）
+## 本轮漏斗口径（11-09 第 14 轮）
+
+全量 **8966** · 新增 id **1**（可报 **0** / 过滤 1）· `seen` 命中 8965 · `parent` 1 · `category` **0** · 空 `chains`/链白名单 0 · 无 id 0 · 拉取失败 0 · 重报 0。
+
+唯一新增 **`Bitty Vaults`**(9363)：`parentProtocol='parent#bitty'`、`chains=[]`、`tvl=None`、`category='Onchain Capital Allocator'`（不在 `EXCL_CATEGORY`）、`listedAt 2026-11-08T19:07:59Z`、`url=https://bitty.io`、`twitter=bitty_io`。**parent 与空链双帽，parent 真边际 0/1** —— 去掉 parent 它仍被空链挡，去掉空链它仍在 parent 下。同父已有 `Bitty Lending`(6685，Ethereum+Bitcoin，$76.88)，是「母协议铺子协议」的标准形态（连续第二轮 `parent` 单条、双帽）。
+
+**可报 0 = 结构性。** 本轮 `category` 桶 0 且是真 0（该条类目本就不在 EXCL）；`链白名单` 桶 0。新增流从上一轮 9 条降到 1 条，**单轮不能当趋势读**（前例：11-05 的 18 条录入潮后 11-06 立刻回到 8、11-07 到 6）。
+
+按铁律「报告级 0 时不发通知、不重写 `report.md`」—— `out.json` 被写成 `[]`，`report.md` 内容仍是第 11 轮那份（只 mtime 被脚本触碰），本轮不发。
+
+**CF 校验通过（两份 8966 id 逐条相同）**：常规 `HIT` etag `W/"6af0ff61-9182a7"`、`last-modified Sun, 08 Nov 2026 23:01:53 GMT`、`age 1271`；`?_cb=` 源站 `MISS` etag `W/"6af107fa-91819e"`、`last-modified 23:38:34 GMT`。9363 的两份快照 `name`/`category`/`chains`/`tvl`/`parentProtocol`/`listedAt`/`url` **零差异**，`parentProtocol` 翻转连续五轮未复现。
+
+`listedAt` 跨度 **26.56h**（11-07T16:33:48Z → 11-08T19:07:59Z），单条无最小间隔可言；**同秒 ≥3 条批量指纹本轮新增 0 组**（全量现存簇仍是历史那 29 个，最近两个为 10-07T13:38:45Z(n=22) 与 11-07T14:26:04Z(n=4)）。
+
+`only_seen=['4818']`、`only_raw=[]` **连续第五轮** → 真下架。seen 8967 = 8966 命中 + 1 残留。
+
+id 9300–9363 **连续无缺口**（含本轮 9363），**连续六轮无「暂未回填的分配号」**；`max_id=9363`，非数字 id 仍只有 `<5471>`。
+
+全量 `chains=[]` = **1592 / 8966 = 17.76%**（上轮 17.75%，六轮区间 17.4–17.76），稳定。
+
+## 上一轮漏斗口径（11-08 第 13 轮）
 
 全量 **8965** · 新增 id **9**（可报 **0** / 过滤 9）· `seen` 命中 8956 · `parent` 7 · `category` **0（真 0）** · 空 `chains`/链白名单合计 2 · 无 id 0 · 拉取失败 0 · 重报 0。
 
@@ -312,6 +332,12 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-09 第 14 轮；常规 `HIT` 8966 条、etag `W/"6af0ff61-9182a7"`、`last-modified Sun, 08 Nov 2026 23:01:53 GMT`、`age 1271`；`?_cb=` 源站 `MISS` 8966 条、etag `W/"6af107fa-91819e"`、`last-modified 23:38:34 GMT`；id 集合两向差集仅 `only_seen=['4818']`）
+- 实测数据：同上 9363 `Bitty Vaults` · `category='Onchain Capital Allocator'` · `chains=[]` · `chainTvls={}` · `tvl=None` · `parentProtocol='parent#bitty'` · `listedAt=1794164879`（2026-11-08T19:07:59Z）· `url='https://bitty.io'` · `twitter='bitty_io'` · `address=None`
+- 实测数据：同上 6685 `Bitty Lending` · `chains=['Ethereum','Bitcoin']` · `tvl=76.87825734639296` · `parentProtocol='parent#bitty'` · `listedAt=1757358297`
+- 实测数据（id 连续性）：9300–9363 无缺口，`max_id=9363`；非数字 id 仅 `<5471>`
+- 实测数据（`chains=[]` 占比）：1592/8966 = 17.76%
+- 实测数据（全量同秒 ≥3 条簇）：29 组，最近为 2026-10-07T13:38:45Z(22) 与 2026-11-07T14:26:04Z(4)
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-08 第 13 轮；常规 `HIT` 8965 条、etag `W/"6aefaddf-918df0"`、`last-modified Sat, 07 Nov 2026 23:01:51 GMT`、`age 1063`；`?_cb=` 源站 `MISS` 8965 条、etag `W/"6aefb657-918c8b"`、`last-modified 23:37:59 GMT`；id 集合两向差集仅 `only_seen=['4818']`，9 条新增十字段两份快照零差异）
 - 实测数据：同上 9354 `BNQ` · `chains=['Hemi']` · `category='Lending'` · `tvl=538.38` · `parent=None` · `listedAt=1794017559`（2026-11-07T02:12:39Z）
 - 实测数据：同上 9355 `Rocketswap Anubis V3` · `chains=['Anubis']` · `parentProtocol='parent#rocketswap-anubis'` · `tvl=131756.12` · `listedAt=1794017901`
