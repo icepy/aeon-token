@@ -260,3 +260,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-11-09,narrative-brief,claude-opus-5-5,35137,2851,61952,0
 2026-11-09,aeon-update,claude-opus-5-5,124158,64144,9222400,0
 2026-11-09,memory-flush,claude-opus-5-5,111183,54586,5606656,0
+2026-11-09,arxiv-radar,claude-opus-5-5,52964,13084,589312,0

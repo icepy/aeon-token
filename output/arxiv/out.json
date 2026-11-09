@@ -1,1 +1,41 @@
-[]
+[
+ {
+  "id": "2611.09470",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
+  "terms": [
+   "ti:\"consensus\" AND cat:cs.DC"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Consensus-Constrained Dual-Federated Optimization with Client-Side Dynamic Weighting for Distributed Android Device Threat Defense",
+  "published": "2026-11-06",
+  "link": "https://arxiv.org/abs/2611.09470",
+  "carrier": "round"
+ },
+ {
+  "id": "2611.09036",
+  "term": "ti:\"human demonstration\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"human demonstration\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "ToolDex",
+  "title": "ToolDex: An Ego-Exo Human Demonstration Dataset for Creative Physical Tool Use",
+  "published": "2026-11-06",
+  "link": "https://arxiv.org/abs/2611.09036",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.08920",
+  "term": "ti:\"hand-object\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"hand-object\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "HOC2R",
+  "title": "HOC2R: Hand-Object Contact Trajectories for Human-to-Robot Motion Transfer",
+  "published": "2026-11-06",
+  "link": "https://arxiv.org/abs/2611.08920",
+  "carrier": "robot"
+ }
+]

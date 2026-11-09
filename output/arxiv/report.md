@@ -1,20 +1,17 @@
-**arxiv-radar** · 窗口 30 天 · 原始 82 · 幸存 2
+**arxiv-radar** · 第 41 轮 · 窗口 30 天 · 原始 75 → 幸存 3
 
-**真命中（1）**
+连续三轮「有新增 0」在本轮终结。窗口内最新收录 **2026-11-06（周五）** —— 第 40 轮担心的「索引连续三天停在 11-05」是周末节律，不是真滞后。
 
-- `[具身数据]` **VREgo: Consumer VR Headsets for Learning Robot Manipulation from Egocentric Demonstrations**（名字 `HumanEgo`）— 用消费级 VR 头显（PICO 4 Ultra）的第一视角双手数据直接训操作策略，开放动作接口的采集侧工作 · https://arxiv.org/abs/2611.07272
+**具身数据 / 灵巧操作**
+- `ToolDex` — Ego-Exo 人类演示数据集，面向创造性物理工具使用 · https://arxiv.org/abs/2611.09036 · `[具身数据]`
+- `HOC2R` — 手-物接触轨迹，用于人手到机器人的动作迁移 · https://arxiv.org/abs/2611.08920 · `[灵巧操作]`
 
-**污染（1，标 `?`，供你确认要不要看）**
+**未归口**
+- `2611.09470` — 联邦学习侧的共识约束对偶优化（Android 威胁防御）· https://arxiv.org/abs/2611.09470 · `[?]`
+  落在 `ti:"consensus" AND cat:cs.DC`，属分布式 ML 的 consensus，非链上共识 —— 与 `directions.md` 里「控制论/分布式 ML 的 consensus → `?`」一致。
 
-- **Few-Shot Beam Selection for Embodied AI via In-Context Learning and Conformal Prediction** — 主类 `eess.SP`，讲的是 mmWave 波束选择，只是拿 embodied AI 当应用场景写 motivation 段 · https://arxiv.org/abs/2611.07306
+**加密侧读数（探针）**
+- 本轮加密词命中 **0**，与前几轮一致。`staking` 已滑出 30d 窗，跨窗实测 **60d=1 / 90d=1** → 窗口太短，不是降温，暂不动词表。
+- `verifiable inference` / `restaking` 两词 60d=90d=0。本轮量了同义写法 `proof of inference`：7d/30d/60d/90d **全 0**，无召回。`restaking` 的同义写法本轮未测，留待下轮。
 
----
-
-**漏斗**：seen(记忆) 80 · 本轮重复 0 · EXCL 0 · carrier 0 · 查询失败 0 → 97.6% 被 seen 吃掉。窗口内最新收录 11-05（周四，距今 1 天）→ 索引正常。
-
-**词表动作：本轮不动。** 零命中 9 词跨窗全有命中（含 `embodied data` 60d=1/90d=3），饱和 15 词最新发布日期全在近 30 天。
-
-**已量测，留给下轮定夺：**
-
-- `ti:"zero-knowledge proof"` — 30d 1 / 60d 6（已见 6/6）/ 90d 9。收窄后精度确实干净，但 60 天已被 seen 吃干，替换等于用召回换精度，**不划算，暂不换**。
-- `ti:"consensus" AND (cat:cs.CR OR ti:blockchain OR ti:byzantine)` — 30d 5 / 90d 14，但前三条全是 LLM agent 安全 / 内容审核论文。**`cat:cs.CR` 已漂移到 LLM 安全，和 `cat:cs.DC` 一样挡不住污染 —— 用 `cat:` 收窄这条路第二次被证伪。**
+**口径提醒**：`check:` 后面带引号的词会被重复包一层引号（`ti:""..."`) ，四个窗口返回同一批 total —— 那是失真读数，不是零命中。量新写法一律不带内层引号。

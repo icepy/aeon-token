@@ -1,0 +1,303 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "第 41 轮 · 窗口 30 天 · 原始 75 → 幸存 3"
+      },
+      "children": [
+        "stats",
+        "lead",
+        "sep1",
+        "h-embodied",
+        "stack-embodied",
+        "sep2",
+        "h-uncat",
+        "stack-uncat",
+        "sep3",
+        "h-crypto",
+        "stack-crypto",
+        "sep4",
+        "h-note",
+        "alert-note"
+      ]
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "md"
+      },
+      "children": [
+        "stat-round",
+        "stat-window",
+        "stat-raw",
+        "stat-surv"
+      ]
+    },
+    "stat-round": {
+      "type": "Stat",
+      "props": {
+        "label": "轮次",
+        "value": "第 41 轮",
+        "trend": "neutral"
+      }
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天",
+        "trend": "neutral"
+      }
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "75",
+        "trend": "neutral"
+      }
+    },
+    "stat-surv": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "3",
+        "trend": "neutral"
+      }
+    },
+    "lead": {
+      "type": "Text",
+      "props": {
+        "text": "连续三轮「有新增 0」在本轮终结。窗口内最新收录 2026-11-06（周五） -- 第 40 轮担心的「索引连续三天停在 11-05」是周末节律，不是真滞后。",
+        "variant": "lead"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-embodied": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据 / 灵巧操作",
+        "level": "h2"
+      }
+    },
+    "stack-embodied": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "item-tooldex",
+        "item-hoc2r"
+      ]
+    },
+    "item-tooldex": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-tooldex",
+        "text-tooldex",
+        "badge-tooldex"
+      ]
+    },
+    "story-tooldex": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ToolDex",
+        "href": "https://arxiv.org/abs/2611.09036",
+        "source": "arXiv"
+      }
+    },
+    "text-tooldex": {
+      "type": "Text",
+      "props": {
+        "text": "Ego-Exo 人类演示数据集，面向创造性物理工具使用",
+        "variant": "caption"
+      }
+    },
+    "badge-tooldex": {
+      "type": "Badge",
+      "props": {
+        "text": "具身数据",
+        "variant": "secondary"
+      }
+    },
+    "item-hoc2r": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-hoc2r",
+        "text-hoc2r",
+        "badge-hoc2r"
+      ]
+    },
+    "story-hoc2r": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HOC2R",
+        "href": "https://arxiv.org/abs/2611.08920",
+        "source": "arXiv"
+      }
+    },
+    "text-hoc2r": {
+      "type": "Text",
+      "props": {
+        "text": "手-物接触轨迹，用于人手到机器人的动作迁移",
+        "variant": "caption"
+      }
+    },
+    "badge-hoc2r": {
+      "type": "Badge",
+      "props": {
+        "text": "灵巧操作",
+        "variant": "secondary"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-uncat": {
+      "type": "Heading",
+      "props": {
+        "text": "未归口",
+        "level": "h2"
+      }
+    },
+    "stack-uncat": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-uncat",
+        "badge-uncat",
+        "text-uncat"
+      ]
+    },
+    "story-uncat": {
+      "type": "StoryLink",
+      "props": {
+        "title": "2611.09470",
+        "href": "https://arxiv.org/abs/2611.09470",
+        "source": "arXiv"
+      }
+    },
+    "badge-uncat": {
+      "type": "Badge",
+      "props": {
+        "text": "?",
+        "variant": "outline"
+      }
+    },
+    "text-uncat": {
+      "type": "Text",
+      "props": {
+        "text": "联邦学习侧的共识约束对偶优化（Android 威胁防御）。落在 `ti:\"consensus\" AND cat:cs.DC`，属分布式 ML 的 consensus，非链上共识 -- 与 `directions.md` 里「控制论/分布式 ML 的 consensus → `?`」一致。",
+        "variant": "caption"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-crypto": {
+      "type": "Heading",
+      "props": {
+        "text": "加密侧读数（探针）",
+        "level": "h2"
+      }
+    },
+    "stack-crypto": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "crypto-hits",
+        "crypto-staking",
+        "crypto-verinf",
+        "crypto-restaking",
+        "crypto-synonym"
+      ]
+    },
+    "crypto-hits": {
+      "type": "Text",
+      "props": {
+        "text": "本轮加密词命中 0，与前几轮一致。",
+        "variant": "body"
+      }
+    },
+    "crypto-staking": {
+      "type": "Text",
+      "props": {
+        "text": "`staking` 已滑出 30d 窗，跨窗实测 60d=1 / 90d=1 → 窗口太短，不是降温，暂不动词表。",
+        "variant": "body"
+      }
+    },
+    "crypto-verinf": {
+      "type": "Text",
+      "props": {
+        "text": "`verifiable inference` / `restaking` 两词 60d=90d=0。",
+        "variant": "body"
+      }
+    },
+    "crypto-restaking": {
+      "type": "Text",
+      "props": {
+        "text": "本轮量了同义写法 `proof of inference`：7d/30d/60d/90d 全 0，无召回。",
+        "variant": "body"
+      }
+    },
+    "crypto-synonym": {
+      "type": "Text",
+      "props": {
+        "text": "`restaking` 的同义写法本轮未测，留待下轮。",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-note": {
+      "type": "Heading",
+      "props": {
+        "text": "口径提醒",
+        "level": "h2"
+      }
+    },
+    "alert-note": {
+      "type": "Alert",
+      "props": {
+        "title": "口径提醒",
+        "message": "`check:` 后面带引号的词会被重复包一层引号（`ti:\"\"...\"`），四个窗口返回同一批 total -- 那是失真读数，不是零命中。量新写法一律不带内层引号。",
+        "type": "warning"
+      }
+    }
+  }
+}
