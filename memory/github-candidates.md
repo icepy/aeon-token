@@ -581,3 +581,11 @@
 - [NapoleonPK/teleop-fix](https://github.com/NapoleonPK/teleop-fix) ★0 · 30天=9 · 7天=9 · `teleoperation` · Can an AI agent fix a robot policy trained on flawed teleoperation data? Pre-registered simulation s
 - [DebelToni/JEPA-research-landscape](https://github.com/DebelToni/JEPA-research-landscape) ★0 · 30天=8 · 7天=8 · `jepa` · Continuously curated JEPA and world-model research with source-grounded findings
 - [wwwwws12/space-vla-benchmark](https://github.com/wwwwws12/space-vla-benchmark) ★0 · 30天=6 · 7天=6 · `vision language action` · A space vision-language-action benchmark across Mars, Moon, and cabin environments, with paired ligh
+
+## 2026-11-09 · github-radar（报告级 6）
+- [michele-xilo/leCop](https://github.com/michele-xilo/leCop) ★0 · 30天=60 · 7天=60 · `robot dataset` · 🚓 Fast, single-binary health checks for LeRobot robot datasets (v2 & v3): format, timestamps, video 
+- [Comet-Aerobotics/Rover-Simulation](https://github.com/Comet-Aerobotics/Rover-Simulation) ★0 · 30天=22 · 7天=22 · `teleoperation` · AIAA Isaac Sim rover simulation and ROS 2 teleoperation workspace.
+- [Jeymsbond97/Booster](https://github.com/Jeymsbond97/Booster) ★0 · 30天=11 · 7天=11 · `sim2real` · Teaching the Booster K1 humanoid to stand, balance and walk with reinforcement learning, from scratc
+- [Anonymous-Code-source/TwinRSI](https://github.com/Anonymous-Code-source/TwinRSI) ★0 · 30天=8 · 7天=8 · `robot manipulation` · RSI for robot manipulation
+- [sadbanana303/delay-driven-supervisory-teleoperation](https://github.com/sadbanana303/delay-driven-supervisory-teleoperation) ★0 · 30天=7 · 7天=7 · `teleoperation` · Simulation code for measured-threshold, delay-driven supervisory control of a two-link manipulator.
+- [casrlosrocha-dot/esp32-robotic-arm-pybullet](https://github.com/casrlosrocha-dot/esp32-robotic-arm-pybullet) ★0 · 30天=6 · 7天=6 · `teleoperation` · Real-time teleoperation of a URDF robotic arm in PyBullet from ESP32 potentiometers over UART (Pytho

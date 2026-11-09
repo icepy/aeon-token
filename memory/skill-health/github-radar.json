@@ -1,17 +1,11 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-11-08T22:32:44Z",
+  "last_analyzed": "2026-11-09T22:33:01Z",
   "quality_score": 4,
-  "assessment": "Delivers exactly the discovery-only job: eight keyword-matched new/active repos with URLs, stars, 7/30-day commit activity, matched term, and a one-line technical descriptor — specific, clickable, and structured for verification; light on insight by design, and the ★0-with-≥100-commit entries deserve a sanity check but are plausible for bot-driven repos.",
+  "assessment": "Delivered a clean discovery-only scan: 6 repos with links, activity counts, matched direction keywords, and descriptions, consistent with the skill's stated job; descriptions are truncated but data is plausible and verifiable.",
   "flags": [],
-  "avg_score": 3.17,
+  "avg_score": 3.2,
   "history": [
-    {
-      "date": "2026-10-25",
-      "score": 3,
-      "ts": "2026-10-25T04:06:27Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-25",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-08",
       "score": 4,
       "ts": "2026-11-08T22:32:44Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-09",
+      "score": 4,
+      "ts": "2026-11-09T22:33:01Z",
       "harness": "claude"
     }
   ]

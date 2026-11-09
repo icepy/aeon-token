@@ -1,0 +1,307 @@
+{
+  "root": "root",
+  "state": {},
+  "elements": {
+    "root": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 6 · 近 7 天活跃 6"
+      },
+      "children": [
+        "statsRow",
+        "sep1",
+        "repo1",
+        "sep2",
+        "repo2",
+        "sep3",
+        "repo3",
+        "sep4",
+        "repo4",
+        "sep5",
+        "repo5",
+        "sep6",
+        "repo6"
+      ]
+    },
+    "statsRow": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat1",
+        "stat2",
+        "stat3"
+      ]
+    },
+    "stat1": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "7 天"
+      }
+    },
+    "stat2": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "6"
+      }
+    },
+    "stat3": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "6"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link1",
+        "badge1",
+        "desc1"
+      ]
+    },
+    "link1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "michele-xilo/leCop",
+        "href": "https://github.com/michele-xilo/leCop",
+        "source": "GitHub · ★0",
+        "score": "30天=60 · 7天=60"
+      }
+    },
+    "badge1": {
+      "type": "Badge",
+      "props": {
+        "text": "robot dataset",
+        "variant": "secondary"
+      }
+    },
+    "desc1": {
+      "type": "Text",
+      "props": {
+        "text": "🚓 Fast, single-binary health checks for LeRobot robot datasets (v2 & v3): format, timestamps, video",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link2",
+        "badge2",
+        "desc2"
+      ]
+    },
+    "link2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Comet-Aerobotics/Rover-Simulation",
+        "href": "https://github.com/Comet-Aerobotics/Rover-Simulation",
+        "source": "GitHub · ★0",
+        "score": "30天=22 · 7天=22"
+      }
+    },
+    "badge2": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "secondary"
+      }
+    },
+    "desc2": {
+      "type": "Text",
+      "props": {
+        "text": "AIAA Isaac Sim rover simulation and ROS 2 teleoperation workspace.",
+        "variant": "body"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link3",
+        "badge3",
+        "desc3"
+      ]
+    },
+    "link3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Jeymsbond97/Booster",
+        "href": "https://github.com/Jeymsbond97/Booster",
+        "source": "GitHub · ★0",
+        "score": "30天=11 · 7天=11"
+      }
+    },
+    "badge3": {
+      "type": "Badge",
+      "props": {
+        "text": "sim2real",
+        "variant": "secondary"
+      }
+    },
+    "desc3": {
+      "type": "Text",
+      "props": {
+        "text": "Teaching the Booster K1 humanoid to stand, balance and walk with reinforcement learning, from scratc",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link4",
+        "badge4",
+        "desc4"
+      ]
+    },
+    "link4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Anonymous-Code-source/TwinRSI",
+        "href": "https://github.com/Anonymous-Code-source/TwinRSI",
+        "source": "GitHub · ★0",
+        "score": "30天=8 · 7天=8"
+      }
+    },
+    "badge4": {
+      "type": "Badge",
+      "props": {
+        "text": "robot manipulation",
+        "variant": "secondary"
+      }
+    },
+    "desc4": {
+      "type": "Text",
+      "props": {
+        "text": "RSI for robot manipulation",
+        "variant": "body"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link5",
+        "badge5",
+        "desc5"
+      ]
+    },
+    "link5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "sadbanana303/delay-driven-supervisory-teleoperation",
+        "href": "https://github.com/sadbanana303/delay-driven-supervisory-teleoperation",
+        "source": "GitHub · ★0",
+        "score": "30天=7 · 7天=7"
+      }
+    },
+    "badge5": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "secondary"
+      }
+    },
+    "desc5": {
+      "type": "Text",
+      "props": {
+        "text": "Simulation code for measured-threshold, delay-driven supervisory control of a two-link manipulator.",
+        "variant": "body"
+      }
+    },
+    "sep6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link6",
+        "badge6",
+        "desc6"
+      ]
+    },
+    "link6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "casrlosrocha-dot/esp32-robotic-arm-pybullet",
+        "href": "https://github.com/casrlosrocha-dot/esp32-robotic-arm-pybullet",
+        "source": "GitHub · ★0",
+        "score": "30天=6 · 7天=6"
+      }
+    },
+    "badge6": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "secondary"
+      }
+    },
+    "desc6": {
+      "type": "Text",
+      "props": {
+        "text": "Real-time teleoperation of a URDF robotic arm in PyBullet from ESP32 potentiometers over UART (Pytho",
+        "variant": "body"
+      }
+    }
+  }
+}
