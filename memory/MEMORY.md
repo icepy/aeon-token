@@ -4,11 +4,11 @@
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**；`arxvi-radar` 孤儿待清。**`auto-merge` 关着 = 没人会合 PR**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS / NOTE 的价格监控已停，下面归档。
-- **`aeon-update` 上游基线**（11-03 合入）：`aeonfun/aeon` HEAD `ec7a50c`；PR #23 只推水位线、不搬内容。[source: logs/2026-11-02#aeon-update]
+- **`aeon-update` 基线**（11-09 PR #24 待合）：上游 HEAD `2ff25a3`，+3 个 ICP 技能。**eyebrow 重扫读暂存区 → 文件被暂删会从 lockfile 丢条目，须手工补回。** [source: logs/2026-11-09#aeon-update]
 - **预算纪律：MEMORY.md 只在两次 flush 之间增长。** 超 8KB 先砍已归档节。[source: logs/2026-11-01#memory-flush]
 
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
-> **归档，勿再展开。** 阈值以 `STRATEGY.md` 为准，盘口细节在 `memory/topics/`，重开前先读 `memory/decisions.md`。DEUS `0x940A319B75861014A220D9c6c144d108552B089B`（base）· `0xbb0f7533` 持 xDEUS #1396 → 5 天 clock 未启动。**NOTE** 待命 480,000，扳机 = 第一笔 ETH 入账。已停：`price-alert` · `token-movers` · `onchain-monitor` · `unlock-monitor`。
+> **归档，勿再展开。** 阈值以 `STRATEGY.md` 为准，盘口细节在 `memory/topics/`，重开前先读 `memory/decisions.md`。DEUS `0x940A319B75861014A220D9c6c144d108552B089B`（base）。**NOTE** 待命 480,000，扳机 = 首笔 ETH 入账。已停：`price-alert` · `token-movers` · `onchain-monitor` · `unlock-monitor`。
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
