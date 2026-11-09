@@ -1,10 +1,10 @@
 {
   "skill": "defi-overview",
-  "last_analyzed": "2026-11-07T23:14:06Z",
+  "last_analyzed": "2026-11-09T00:45:42Z",
   "quality_score": 4,
-  "assessment": "Comprehensive one-pass crypto read covering all required components: regime take (risk-off, medium conviction), breadth collapse with day-over-day comparison, TVL with chain breakdown, movers with attribution, fees with same-weekday normalization, DEX volume, stablecoin flows with yield-rotation rationale, real vs incentive yields properly separated, macro (F&G, prediction market pricing), plus a self-correcting methodology note that retracts yesterday's flawed DEX figure. Sources listed individually with status flags; one honest failure (websearch=fail) disclosed rather than papered over. Minor deductions: some claims like 'main protocols zero increment, long-tail driven' for Avalanche and the 'no obvious catalyst' for Solana are asserted without supporting evidence shown, and the correction note is dense/technical enough that it may confuse a casual reader.",
+  "assessment": "Complete, well-structured one-pass DeFi read: regime take, TVL/chain/protocol movers, fees, DEX volume, stablecoin flows, filtered real vs incentive yields, macro breadth/F&G, prediction markets, and narrative shifts all delivered with source status and an explicit data-lag caveat. Figures are internally consistent (breadth 0/15 non-stables vs 3/20 total; ETH price move corroborating ETH-denominated TVL), though the narrative calls (e.g., AI-equity spillover) are assertive rather than evidenced and websearch failed without blocking output.",
   "flags": [],
-  "avg_score": 3.44,
+  "avg_score": 3.47,
   "history": [
     {
       "date": "2026-10-23",
@@ -100,6 +100,12 @@
       "date": "2026-11-07",
       "score": 4,
       "ts": "2026-11-07T23:14:06Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-09",
+      "score": 4,
+      "ts": "2026-11-09T00:45:42Z",
       "harness": "claude"
     }
   ]
