@@ -3,12 +3,40 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔；且 7d 下报告级全 ★0，star 只能 `min:0`**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-07T22:36:00Z
+timestamp: 2026-11-08T22:33:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
-从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十轮 7 天窗（11-07）实证。
+从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十/二十一轮 7 天窗（11-07 / 11-08）实证。
+
+## 第二十一轮（2026-11-08，`days:7` 手动传参，非 dry-run）—— `30天=`≡`7天=` 连续两轮；`jepa` 第三种形态（文献聚合仓）；加密侧第六连轮 0
+
+漏斗：原始 **462** → 幸存 **28** → 报告级 **8**，核验 **28/28 = 100%**（全量）。搜索 20 次调用，耗时 51s。丢弃 seen=202 · excl=28 · short_desc=85 · carrier=88 · neg=14 · pages=17 · pages_root=0 · archived=0 · scaffold=0 · farm=0 · **fail=0**。逐词四分类：查询失败 0 · 真零 2（`robotics data engine` / `maximal extractable value`，单窗不删）· 饱和 4 · 有新增 12。`probe` 跳过（戳 5 天 < 7 天），`clusters.json` **未重写，是上轮结果**。
+
+### 101. 🔴 `30天=` ≡ `7天=` 本轮 8/8 全等（含两条 `≥100`）—— 第 20 轮 #96 的连续第二次复现，可升为判据
+
+最老仓龄仍在 30 天内 → 两栏在 7d 窗下必然同值，「爆完即停」只能看**首末提交日间隔**。**两轮不同样本量（12/12 与 8/8）同结论，已够立为 7d 窗的固定前提**，不必再逐轮复现。 [source: logs/2026-11-08#github-radar（第 21 轮）]
+
+### 102. 🟢 star 依旧不能作筛选 —— 报告级 8 里 7 个 ★0、1 个 ★1
+
+与 #97（12/12 全 ★0）同向，`min:0` 是唯一可用设置。**这是 star 第 N 次失效，不再单独记轮次，只记「7d 窗下 star 恒为空」。** [source: logs/2026-11-08#github-radar（第 21 轮）]
+
+### 103. ⚠️ `jepa` 第三种形态：文献整理仓（不是复现仓，也不是练手仓）
+
+本轮唯一一条 `DebelToni/JEPA-research-landscape`，desc 自述 "Continuously curated ... research with source-grounded findings" —— 是**聚合/索引仓**。第 20 轮 #98 记的是复现/练手仓（5/12），第 33 轮记的是静态站逃逸，三者是不同逃逸路径。**判据：`jepa` 一个词已产不出可用的语义信号，下一轮若同形态再现，应在 `SKILL.md` 侧单开一条「聚合仓」丢弃规则，而不是继续逐轮归类。** [source: logs/2026-11-08#github-radar（第 21 轮）]
+
+### 104. 🔴 加密侧第六连轮报告级 0；本轮 8 条清一色 AI / 机器人
+
+`restaking` 新增 2、`proof of useful work` 新增 1，全部止步于报告级。报告级 8 条：`egocentric` / `sim-to-real` / `world model` / `robot dataset` / `teleoperation`×2 / `jepa` / `vision language action`。**与 arxiv-radar 侧同向连续六轮 —— 两条通道同时空。** [source: logs/2026-11-08#github-radar（第 21 轮）]
+
+### 105. 🟢 carrier 误杀对照：本轮两侧同率 100%，仍不可读
+
+丢弃侧仓名自带词表词 38 / owner 35 / 核 35 → 近 7 天存活 **35/35**；放行侧幸存 26 已核 → **26/26**。两侧同率 → **放宽无依据**，与 7d 窗恒不可读的既有结论一致（#12 系列）。 [source: logs/2026-11-08#github-radar（第 21 轮）]
+
+### 106. ⚠️ `embodied data` raw=3 / seen=0 是过滤损耗，不是饱和
+
+饱和栏 4 个里，3 个是真被 seen 吸收（`verifiable inference` 1/1 · `data availability` 16/2 · `intent-based` 9/1）；**`embodied data` 3/0 = 过滤损耗，须单独归类**，按饱和读会得出「该词热度已耗尽」的错误结论。 [source: logs/2026-11-08#github-radar（第 21 轮）]
 
 ## 第二十轮（2026-11-07，**7 天窗首次真正生效**，非 dry-run）—— `30天=` 与 `7天=` 退化同值；报告级 12/12 ★0；`jepa` 独占 5/12
 

@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-07T00:40:00Z
+timestamp: 2026-11-09T00:37:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -67,6 +67,22 @@ a skill regression**. Do not go looking for a bug in the skill's own logic when 
   to **0**. The correct action after two failures is to say the *impact* (here: `market-context.md`
   stayed one day stale, `timestamp` pinned at 11-05T23:20Z) and then wait for the next slot rather than
   escalate. [source: logs/2026-11-07#heartbeat]
+
+### The 23:00–23:31Z slot repeats — treat it as a quota window, not random jitter
+
+2026-11-08 failed at **exactly the same two slots** as 11-06 (23:00:47Z and 23:30:48Z) with the
+byte-identical `403 All target providers failed.` signature. Two days, same minute positions, same
+error → upgrade the hypothesis from "transient blip" to **a periodic auth/quota window at
+23:00–23:31Z**. Adjacent skills in the same window all succeeded (`arxiv-radar` 22:06Z,
+`github-radar` 22:33Z, `defillama-radar` 00:04Z), so the gateway is healthy overall — still not a
+global outage.
+
+- **Discipline:** when the 403 repeats at a known slot, look at the gateway/quota side, **not** the
+  skill's own logic. Do not "fix" the skill for it.
+- **It self-healed again**: the third re-dispatch (00:15:45Z) landed at 00:46:26Z, `consecutive_failures`
+  back to 0, `success_rate` 0.65. Two independent self-heals now confirm the WATCH-not-escalate call.
+- **Impact to record while it lasts**: `memory/topics/market-context.md` goes stale by exactly the
+  number of missed days — check its `timestamp`, not the skill's `last_status`. [source: logs/2026-11-09#heartbeat]
 
 
 ## A skill's frontmatter `var:` default is NOT injected into the run

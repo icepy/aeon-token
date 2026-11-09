@@ -1,45 +1,29 @@
-已完成 memory-flush 并盖了水位线。下面是这一轮的实质内容。
+记忆整理完成。扫描窗口 `2026-11-08 → 2026-11-09`，读了 2 个日志文件，无缺口未 clamp，未触发月份轮转。
 
-# memory-flush · 扫描窗口 2026-11-07 → 2026-11-08
+## 本轮处理
 
-读了两个在窗日志：`2026-11-07.md`（defi-overview 两轮、defillama-radar 第 12 轮、heartbeat、narrative-brief、arxiv-radar 第 39 轮、github-radar 第 20 轮）与 `2026-11-08.md`（defillama-radar 第 13 轮、heartbeat、narrative-brief）。无 >14 天缺口，未 clamp；轮转归档 0 个月（19 个日文件 / 阈值 45）。
+**一处事实纠正（最重要）：** MEMORY 里 `aeon-update` 行写「PR #24 待合」，实际 `state: CLOSED`、`mergedAt: null`（12:34Z 关闭）。逐项核对确认其内容已由 12:32Z 的 catalog commit 直接落 main：三个 ICP 技能均已 tracked、`catalog/skills.json` = 96（ICP 三件套 + 四个 fork-only 全在）、`eyebrowlock.json` = 99、`ci-lanes.txt:110` lane 8 已在。待办因此从「合 PR」改成「上游 `aeon.yml` 五条 disabled 技能的取舍」—— 而这五条在 `aeon.yml:58-69` 已经存在且全 disabled，不阻塞任何现有技能。
 
-## 晋升的四条判据
+**三项 promote：**
 
-**1. arxiv-radar 的 raw 与幸存彻底脱钩（第 39 轮）** —— 26 词 30d 原始 76 → 幸存 **0**，`seen` 命中 76 = **100% 全吃**（第 38 轮 97.6%，可查记录最高），其余五栏全 0；窗滑动一天 raw 82 → 76，新增 0。**判据：`seen` 吃干率逼近 100% 且「有新增」连续为 0 时，「0 命中 = 词表失效」和「0 命中 = 话题降温」两个结论都不成立 —— 这条通道此刻只能证饱和，加过滤器无效，只能换窗、加词或扩源。** 饱和 17 词 maxpub 最新落在 11-04~11-05（话题全活着），`ti:"staking"` 10-10 → **11-09 滑出 30d = 唯一降温候选**。
-
-**2. 当日桶的「下修侧」首次定量（defi-overview 11-07 第二轮）** —— 11-06 DEX 桶 00:40Z 读 9.576B，同日 23:0xZ 同端点回查 **8.291B（−13.4%）**，`?_cb=` 复取同值、`cf` 非 HIT → 排除缓存。这补上了 10-31 那次单向反例：**「任何当日桶可双向修」现在是双侧定量结论**，当天按 9.576B 算的 −10.56% 作废（周五归一后实为 −21.3%）。
-
-**3. Polymarket「按量排序」系统性漏掉宏观盘** —— `order=volume24hr` 前 200 条一条 Fed 盘都没有（单腿 24h 量仅 $2–5 万），须走 `public-search` 命中 slug 再展开。**低量 ≠ 低信息，加密/宏观盘的取数路径必须与全站热榜分离。**
-
-**4. 稳定币轮动升为确认态** —— USDS 桶对桶 −13.80% / USDe Ethereum +13.92% / 总供应仅 −0.43%，**同链对撞 + 总量平 + 连续两日**三条件齐备。
-
-## 纠正一处记载冲突
-
-旧 MEMORY 行写「7 天窗从未生效」，11-07 第 20 轮日志写「7 天窗首次真正生效」。核对 `scheduler.yml:497-503` 只从 `aeon.yml` 的 `SKILL_VAR` 取值，而 `aeon.yml:173` 的 github-radar 条目**没有 `var` 键** —— **两条都对：cron 链路确实不注入，7d 是手动传参跑出来的**。已改成「cron 不注入 `var` → 7d 仅在手动 `days:7` 时成立」，并在 topic 记第 20 轮为「首次真正生效（手动 7d）」。
-
-第 20 轮本身另立 5 条（#96–#100）：7d 窗下 `30天=`≡`7天=`（12/12 全等）→ 两栏退化成「仓龄」，**「30 天提交高 ≠ 现在在写」这条铁律在 7d 窗下无法用这两个数分辨，须改比首末提交日间隔**；最老仓仅 15 天；报告级 12/12 全 ★0 → 7d 下 star 只能作展示；`jepa` 占 5/12 且多数是复现仓；加密侧第五连轮近零。
-
-**这第 96 条最有操作价值：窗口变短不只改流量分布，还改判据的可观测性。** 换窗前要重列哪些判据仍然可读。
-
-## 预算与文件
-
-| 项 | 起点 | 终点 |
+| 来源 | 去向 | 核心事实 |
 |---|---|---|
-| MEMORY.md | 8,179 B | **8,137 B**（余 55 B） |
-| 行数 | 43 | 43 |
-| 超长行 | 1（第 11 行 300 字符，恰卡线） | **0** |
+| github-radar 第 21 轮 | MEMORY 发现层行 + topic 新增 #101–#106 | `30天=`≡`7天=` **8/8**，与第 20 轮 12/12 同结论 → 升为 7d 窗固定前提；`jepa` 第三种形态（文献聚合仓）；加密侧第六连轮 0；`embodied data` raw=3/seen=0 是过滤损耗不是饱和 |
+| arxiv-radar 第 40 轮 | lessons 新增末条 | 73 → 0，`seen` **连续两轮 100% 全吃**；跨窗判死只剩 2 词（均 60d=90d=0）；**滑出窗口 ≠ 降温**，14/26 词未配 carrier 表是结构性缺口 |
+| 11-09 heartbeat | ops-plumbing 新增一节 | 11-08 两次 403 与 11-06 **同分钟位、同签名** → 23:00–23:31Z 周期性配额窗口；第二次自愈（00:46Z）已证 |
 
-中途一次冲到 8,326 B（超 134）且第 17 行 342 字符，靠五步压回：删 About 行的括号补注、删归档 DEUS 节冗余字、改写「行情口径」的桶修正表述、github-radar 行四次重写至 288 字符、删「跨星期比」三字。
+**未 promote：** 11-09 `defi-overview` 的四条判据（稳定币剔 `circulatingPrevDay==0`、ETH 计价每轮重算、11-07 DEX 桶 −17.1% 下修、Polymarket 跨年 slug 陷阱）该 skill 已在同轮写入 lessons，只补了 Citations 指针，没重写正文。
 
-修改文件：`memory/MEMORY.md`、`memory/topics/lessons.md`（+4 条）、`memory/topics/github-radar.md`（+第二十轮 5 条）、`memory/topics/index.md`（三行）、`memory/logs/2026-11-08.md`（日志）、`memory/memory-flush-state.json`（水位线已盖 2026-11-08）。
+**剪枝：** `gh pr list --state open` = `[]`（连续第七天），无 Open Improvement PRs 段可清；Lessons 无失效条目；各节未超 10–15 行，未触发归档。
 
-`gh pr list --state open` 两次都是 `[]`，无 Open Improvement PRs 段、无 Next Priorities 段可清；Lessons 无失效条目（唯一的修正是 11-07 已原地改写的那条）；各节均未超 10–15 行，未触发归档。
+**预算：** 8,187 → **8,174 字节**（余 18）· 43 → 41 行 · 超长行 0。中途冲到 8,237（超 45），靠四处压缩回线，并删掉一条与 ops topic 重复的 `auto-merge` 事实（该事实在 topic 完整保留）。
 
 ## Summary
 
-- 完成 memory-flush：窗口 2026-11-07 → 2026-11-08，读 2 个日志文件。
-- 晋升 4 组判据 + 纠正 1 处记载冲突（github-radar 7 天窗），MEMORY.md 发现层三行原地改写（非新增）。
-- MEMORY.md 8137 字节 / 43 行 / 0 超长行，在 8 KB 预算内；未触发节归档。
-- 水位线已 stamp 至 2026-11-08。
-- 待跟进（延续，非本轮新增）：`memory/on-chain-state.json.new` 遗留物、`arxvi-radar` cron-state 孤儿、arxiv `staking` 11-09 滑出后的降温判定、github-radar 静态站 desc 窄判据的误杀量测（7d 窗下两例未复现，样本不足）。
+- 修改 `memory/MEMORY.md`（aeon-update 行纠正、github-radar 行改写、Lessons 网关行改写、压缩数行）
+- 新增 `memory/topics/github-radar.md` 第二十一轮 #101–#106，bump `timestamp` → 11-08T22:33Z
+- 新增 `memory/topics/lessons.md` 第 40 轮判据 + Citations，bump `timestamp` → 11-09T00:46Z
+- 新增 `memory/topics/ops-plumbing.md`「配额窗口」小节，bump `timestamp` → 11-09T00:37Z
+- 更新 `memory/topics/index.md` 两行；日志写入 `memory/logs/2026-11-09.md`
+- 已 `memory_prep.py stamp`，水位 → 2026-11-09
+- 遗留待办：`on-chain-state.json.new`、`arxvi-radar` 孤儿 cron 条目、`price-alert-state.json.bak`、`aeon.yml` 五条 disabled 技能取舍、arxiv `staking` 60d 补测
