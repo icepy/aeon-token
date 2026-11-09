@@ -1,50 +1,93 @@
 {
-  "baseline_sha": "ec7a50c7f73ef013905526393847a1ace55de01a",
+  "baseline_sha": "2ff25a3edb15b88bc1ade0b019adba96fa2775ad",
   "upstream": "aeonfun/aeon",
-  "last_run": "2026-11-02",
-  "last_pr": "https://github.com/icepy/aeon-token/pull/23",
+  "last_run": "2026-11-09",
+  "last_pr": "https://github.com/icepy/aeon-token/pull/24",
   "pending_conflicts": [
     {
       "path": ".github/README.md",
       "reason": "operator-customized",
       "upstream_commits": [
-        "933fbbd"
+        "2ff25a3",
+        "f7a239e",
+        "25575a6",
+        "0208afe",
+        "665a0e2"
+      ]
+    },
+    {
+      "path": ".gitignore",
+      "reason": "operator-customized",
+      "upstream_commits": [
+        "d68e87e",
+        "2eaaf1b"
+      ]
+    },
+    {
+      "path": "AGENTS.md",
+      "reason": "deleted-locally",
+      "upstream_commits": [
+        "b52deab"
+      ]
+    },
+    {
+      "path": "apps/dashboard/lib/skill-icons.data.ts",
+      "reason": "operator-customized",
+      "upstream_commits": [
+        "2ff25a3",
+        "f7a239e",
+        "25575a6"
       ]
     },
     {
       "path": "docs/aeon-setup.md",
       "reason": "operator-customized",
       "upstream_commits": [
-        "933fbbd",
-        "82c874f"
+        "2ff25a3",
+        "f7a239e",
+        "25575a6"
       ]
     },
     {
       "path": "docs/assets/hero-animated.svg",
       "reason": "operator-customized",
       "upstream_commits": [
-        "933fbbd"
+        "2ff25a3",
+        "f7a239e",
+        "25575a6"
       ]
     },
     {
       "path": "docs/examples/README.md",
       "reason": "operator-customized",
       "upstream_commits": [
-        "933fbbd"
+        "2ff25a3",
+        "f7a239e",
+        "25575a6"
+      ]
+    },
+    {
+      "path": "docs/icp/README.md",
+      "reason": "local-collision",
+      "upstream_commits": [
+        "2ff25a3",
+        "1a5e4b0"
       ]
     },
     {
       "path": "docs/skill-packs.md",
       "reason": "operator-customized",
       "upstream_commits": [
-        "933fbbd"
+        "2ff25a3",
+        "f7a239e",
+        "25575a6"
       ]
     }
   ],
   "applied": {
-    "added": 0,
-    "updated": 0,
-    "merged": 4,
+    "added": 12,
+    "updated": 1,
+    "merged": 2,
     "deleted": 0
   }
 }
