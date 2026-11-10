@@ -3,12 +3,27 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔；且 7d 下报告级全 ★0，star 只能 `min:0`**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-08T22:33:00Z
+timestamp: 2026-11-10T18:24:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
 从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十/二十一轮 7 天窗（11-07 / 11-08）实证。
+
+## 第二十二轮（2026-11-09，`days:7` 手动传参，非 dry-run）—— 低频词分档逐轮翻转；`30天=`≡`7天=` 6/6 第三轮；加密侧第七连轮 0
+
+漏斗：原始 **459** → 幸存 **28** → 报告级 **6**，核验 **28/28 = 100%**（全量）。搜索 20 次调用，耗时 51s。丢弃 seen=201 · excl=27 · short_desc=88 · carrier=85 · neg=15 · pages=14 · pages_root=1 · archived=0 · scaffold=0 · farm=0 · **fail=0**。逐词四分类：查询失败 0 · 真零 2 · 饱和 4 · 有新增 12。`probe` 跳过（戳 6 天 < 7 天）；**下一轮（第 23 轮）戳满 7 天将自动跑 probe**，届时按三条件判簇。
+
+- **🔴 判据级 ①（本轮头号发现）：低频词的四分类集合逐轮翻转，单轮分档不可当趋势读。** 第 21 轮饱和是 `verifiable inference` / `data availability` / `intent-based`(+`embodied data`)，第 22 轮变成 `proof of useful work` / `data availability` / `restaking`(+`embodied data`)；`verifiable inference`(raw=2) 与 `intent-based`(raw=10) 翻成「有新增」，`proof of useful work`(raw=1) 与 `restaking`(raw=2) 翻成「饱和」。**raw≤5 的词在 0/1 之间抖动 → 四分类对低频词分辨率不足，须连续 3 轮同档才可引用。** 这是对 #101（star 分布类判据须两条件）的同型扩展：**任何一个「本轮落在哪一格」的读数，对低频样本都不成立。**
+- **判据级 ②：`30天=`≡`7天=` 本轮 6/6 全等，连续第三轮复现**（第 20 轮 12/12、第 21 轮 8/8、第 22 轮 6/6）。6 条仓龄全落在 30 天内 → 两栏退化成「仓龄」，已成稳定形态，**不必再逐轮举证**。
+- **判据级 ③：star 依旧不可筛 —— 报告级 6 全 ★0，连续第三轮。** `min:0` 正确。
+- **判据级 ④：加密侧第七连轮报告级 0。** 本轮 `intent-based` 有新增 1，`restaking` / `data availability` / `proof of useful work` 均有 raw>0，但**全部止步于报告级**；6 条报告级清一色 AI/机器人（`robot dataset` / `teleoperation`×3 / `sim2real` / `robot manipulation`）。**判据：某侧「raw>0 但报告级 0」连续七轮 = 该侧在本通道的召回确实存在、转化被封在报告级门槛，不是「没有代码」。**
+- **`jepa` 形态：** 原始 83 / 新增 2 / 已见 39，量仍最大；两条新增 `flybits/social-jepa`、`NicBonetto/jepa-cxr-robustness` **双双无 `language` 字段**，与第 21 轮 `DebelToni` 文献聚合仓同侧 → **`jepa` 的非代码仓形态连续两轮出现，第三度复现则单开判据**（本轮样本仍不够）。
+- **真零（total=0，单窗不删）：** `robotics data engine` · `maximal extractable value` —— 与第 21 轮同一对，**仍未跨 7/30/60 量测**，本轮不下删词结论。
+- **饱和 4 的构成：** 真被 seen 吸收 3（`proof of useful work` 1/1 · `data availability` 14/2 · `restaking` 2/2）→ 别删；**`embodied data` raw=4 / seen=0 是过滤损耗，不是饱和**（连续第二轮同一形态），单独归类别按饱和读。
+- **异常：** 无 `language` 字段 **4**（`Idaar7/sim-to-real-fractional-robotics` · `flybits/social-jepa` · `NicBonetto/jepa-cxr-robustness` · `ABADIAb/risk-adaptive-decision-gates-preview`，上轮 1，翻四倍但绝对值低）· 空仓 409 **2**（`csy2077/agibot-cosmos3-distill` · `GadzhiAskhabaliev/Selection-as-a-Reliability-Layer-for-VLA-Benchmarks`，两条都是 VLA/机器人 —— 开坑不写，与「有新增 12」构成反向读数）。
+- **carrier 误杀对照：** 丢弃侧仓名自带词表词 35 / owner 32 / 核 32 → 近 7 天存活 **31/32 = 97%**；放行侧幸存 26 已核 → **26/26 = 100%**。两侧差 3pp（上轮 100% vs 100%），**仍无放宽依据**。
+- 词表本轮不动（无 `_DEGRADED`、无查询失败）。通知：报告级 6 → 已发（queued `b53ed6c6`）。[source: logs/2026-11-09#github-radar（第 22 轮）]
 
 ## 第二十一轮（2026-11-08，`days:7` 手动传参，非 dry-run）—— `30天=`≡`7天=` 连续两轮；`jepa` 第三种形态（文献聚合仓）；加密侧第六连轮 0
 

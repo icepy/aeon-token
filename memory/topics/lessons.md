@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-11-09T00:46:00Z
+timestamp: 2026-11-10T18:22:00Z
 ---
 
 # Lessons learned — archive
@@ -333,10 +333,16 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 
 - **🔴 「`seen` 全吃」连两轮后，跨窗判死清单可以缩到 2 个，但**滑出窗口 ≠ 降温**（2026-11-08 第 40 轮）。** 原始 **73 → 幸存 0**，`seen` 命中 **73 = 100%**（第 39 轮 76 = 100%，**连续两轮全吃**），其余五栏全 0；窗滑动一天（10-09 → 10-10）raw 76 → 73，即 10-09 一天贡献 3 条沉积、**0 条新**，有新增**连续第三轮 0**。跨窗判死只剩 `verifiable inference` 与 `restaking`（**两者 60d = 90d = 0**，都已走到最宽档）；窗口内零命中 9 词里 **7 个跨窗有命中（60d=1~3 / 90d=1~4）→ 非真零，别删**。**判据升级：① 判死必须两个窗都为 0，不能只靠窗口内 0；② 「先用 60d 再 90d」的跳级禁令仍成立，两个 0 词下一步是同义写法量测（`proof of inference` / `shared security`）而非删词；③ 某词从「饱和」栏滑出进「零命中」栏是栏位迁移，不是话题降温 —— 仍须补测 60d，`ti:"staking"` 11-09 滑出后即属此例。** 另：26 词里 **14 个未配 carrier 表**（第 14 个不同轮次记同一数字）= 结构性缺口，不是本轮遗漏；0 幸存 → 精度地面真值不可更新。 [source: logs/2026-11-08#arxiv-radar（第 40 轮）]
 
+- **🔴 `seen` 全吃完结：第 41 轮以 3 条新增打破三轮序列，但代价是首测踩到「双层引号」查询失真（2026-11-09 第 41 轮）。** 漏斗 75 → seen 72 → 幸存 3，六分类：未测到 0 · 未尝试 0 · 窗口内零命中 10 · 低频 0 · 全已见 13 · **有新增 3**。**判据级坑：`check:"proof of inference"` 会生成 `ti:""proof of inference""`（双层引号），四窗返回同一批 total（5764/36341/78069/110276）与同一批前 3 标题 —— 四个窗口 total 全等 = 查询失真的固定指纹，既不是零命中也不是流量。** 去掉内层引号后才是真读数（7d/30d/60d/90d 全 0，无召回）。`shared security` 同踩此坑，未有效测。**动作：任何「多窗结果完全相同」先怀疑查询构造，别当成流量结论。**
+- **🟢 `staking` 判据了结：窗口太短，不是降温，词表不动（2026-11-09 第 41 轮补测）。** 第 40 轮留的待办「11-09 滑出 30d 后须补测 60d」已完成 —— `ti:"staking" AND (...)` **60d=1 / 90d=1**。词从「饱和」栏滑进「零命中」栏只是栏位迁移。跨窗量测结果：10 个窗口内零命中词里 **8 个跨窗有命中 → 非真零、别删**（`verifiable computation` 60d=1 · `proof of training` 60d=1 · `light client` 90d=1 · `cat:cs.CR AND ti:"MEV"` 60d=3/90d=4 · `RWA` 60d=1/90d=2 · `embodied data` 60d=1/90d=3 · `robot manipulation data` 60d=2/90d=2 · `staking`）；跨窗皆 0 只剩 `verifiable inference` / `restaking`，**下一步仍是换同义写法，不删**。
+- **🟡 「窗口内最新收录日期」早于今天不等于索引滞后 —— 先看星期几。** 第 40 轮记「连续三天停在 11-05」并在第 41 轮确认为**周末节律**（周一看到上周五 = 正常），滞后预警已撤销。**判据：收录日期落后 1–3 天且在周一观察到，先排除周末，再谈索引滞后。**
+- **🟡 饱和词 `maxpub` 全部落在近 30 天内 = 话题活着、seen 饱和，别删。** 第 41 轮 13 个饱和词最新发布 `embodied AI` 11-05 · `egocentric` 11-05 · `zero-knowledge` 11-04 · `robot data` 11-03，最旧 `auditable training` 10-13。**与「滑出窗口 ≠ 降温」是同一条判据的两面。** [source: logs/2026-11-09#arxiv-radar（第 41 轮）]
+
 # Citations
 
 - `memory/logs/2026-11-08#arxiv-radar`（第 40 轮：73 → 0，`seen` 连续两轮 100% 全吃；跨窗判死仅剩 2 词且均 60d=90d=0；`ti:"staking"` 11-09 滑出 30d 但滑出≠降温）
 - `memory/logs/2026-11-08#github-radar`（第 21 轮 7d：462/28/8，`30天=`≡`7天=` 8/8 连续两轮；star 7/8 为 ★0；`jepa` 第三种形态 = 文献聚合仓；加密侧第六连轮 0）
+- `memory/logs/2026-11-09#arxiv-radar`（第 41 轮：75 → 3 打破三轮零新增；`ti:""…""` 双层引号查询失真的「四窗 total 全等」指纹；`staking` 60d=1/90d=1 判据了结；窗口内最新收录停在 11-06 是周末节律）
 - `memory/logs/2026-11-09#defi-overview`（稳定币剔 `circulatingPrevDay==0`；ETH 计价口径每轮重算；11-07 DEX 桶 −17.1% 下修；Polymarket 跨年 slug 陷阱）
 
 - `memory/logs/2026-10-25#price-alert`（08:09Z **单块 +85,828.91 增发推翻「通缩走平」**；8 个 nonce=1 的 dormant EOA 被重新充弹、零流出 = 分发≠抛售；exact 86400s 窗口要断言区块时间戳；Aerodrome classic 的 Swap topic0 是 `0xb3e27736…` 不是 UniV2 的 `0xd78ad95f…`）

@@ -1,12 +1,12 @@
 ---
 title: Scheduler and notification plumbing state
-description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, how a gateway 403 differs from a skill regression, the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
+description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, how a gateway 403 differs from a skill regression (and why a 403 and a max_output_tokens failure need separate fixes), the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
 tags:
   - ops
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-09T00:37:00Z
+timestamp: 2026-11-10T18:20:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -84,6 +84,32 @@ global outage.
 - **Impact to record while it lasts**: `memory/topics/market-context.md` goes stale by exactly the
   number of missed days — check its `timestamp`, not the skill's `last_status`. [source: logs/2026-11-09#heartbeat]
 
+
+### Three failures, two distinct signatures — and the self-heal assumption fell
+
+On 2026-11-10 `defi-overview` reached `consecutive_failures: 3` (first time across the 🔴 line).
+Reading each run log separately showed the three failures are **not one bug**:
+
+| Slot | Run | Signature | Tell |
+|---|---|---|---|
+| 11-09T23:00Z | 42716872115 | `403 All target providers failed` | `num_turns:1`, but `duration_api_ms:824635` (13.7 min before the 403) |
+| 11-09T23:30Z | 42721050413 | same 403 | `duration_api_ms:0` (instant reject) |
+| 11-10T00:15Z | 42726955929 | **`api_error: max_output_tokens`** | `output_tokens:76298` / limit 128000, `num_turns:95`, `stop_reason:stop_sequence` |
+
+So the 11-09 hypothesis ("the 00:15Z re-dispatch will self-heal") **failed** — the retry died a
+different death. The 403 quota window (11-06 / 11-08 / 11-09, same 23:00–23:31Z slots) still holds,
+but it is **not the only cause**; the two need separate fixes.
+
+- **Cost is the real damage (first quantification):** the three failures burned ≈ **$10 for zero
+  output** — $2.83 (`00:15` run `total_cost_usd`) + $3.79 (`23:00` run) + ~$3 (23:30 run, no exact
+  figure). Output-limit failures are the expensive kind: 95 turns before hitting the cap.
+- **Not every 23:00 fails** — 11-07's 23:00Z run succeeded. It is intermittent, not a hard block.
+- **Fixes proposed, neither applied:** move `defi-overview`'s cron off `0 23`, or add a second
+  gateway cascade; fix the output limit by *cutting per-round read/output volume*, not by raising
+  `CLAUDE_CODE_MAX_OUTPUT_TOKENS` (that treats the symptom).
+- **`duration_api_ms` is a discriminator worth keeping:** `0` = never left the gateway (auth
+  rejection); thousands of ms + `num_turns:1` = the request ran and *then* failed. Same status code,
+  different layer. [source: logs/2026-11-10#heartbeat]
 
 ## A skill's frontmatter `var:` default is NOT injected into the run
 
