@@ -1,17 +1,19 @@
-**arxiv-radar** · 第 41 轮 · 窗口 30 天 · 原始 75 → 幸存 3
+**arxiv-radar** · 窗口 30 天 · 幸存 7 · 索引到 11-09（正常）
 
-连续三轮「有新增 0」在本轮终结。窗口内最新收录 **2026-11-06（周五）** —— 第 40 轮担心的「索引连续三天停在 11-05」是周末节律，不是真滞后。
+**零知识**
+- `BioBind` — 把生物特征去重的绑定关系接到零知识认证上 · https://arxiv.org/abs/2611.12636
+- `zk-DEAP` — 零知识去中心化加密聚合协议 · https://arxiv.org/abs/2611.10020
+- `[零知识]` `Swarm Learning` — 用 ZK validator admission + 共识做私有群学习的接入控制 · https://arxiv.org/abs/2611.11477
 
-**具身数据 / 灵巧操作**
-- `ToolDex` — Ego-Exo 人类演示数据集，面向创造性物理工具使用 · https://arxiv.org/abs/2611.09036 · `[具身数据]`
-- `HOC2R` — 手-物接触轨迹，用于人手到机器人的动作迁移 · https://arxiv.org/abs/2611.08920 · `[灵巧操作]`
+**共识**
+- `FirstSwap` — 共识前的交易预批准，去中心化市场设计 · https://arxiv.org/abs/2611.10254
 
-**未归口**
-- `2611.09470` — 联邦学习侧的共识约束对偶优化（Android 威胁防御）· https://arxiv.org/abs/2611.09470 · `[?]`
-  落在 `ti:"consensus" AND cat:cs.DC`，属分布式 ML 的 consensus，非链上共识 —— 与 `directions.md` 里「控制论/分布式 ML 的 consensus → `?`」一致。
+**具身数据**
+- `EgoLabel` — 第一视角零样本自动打标，跨模态一致性 · https://arxiv.org/abs/2611.12149
+- `RoboMoCap` — 大规模全身动捕数据集，带第一视角视觉 · https://arxiv.org/abs/2611.10994
 
-**加密侧读数（探针）**
-- 本轮加密词命中 **0**，与前几轮一致。`staking` 已滑出 30d 窗，跨窗实测 **60d=1 / 90d=1** → 窗口太短，不是降温，暂不动词表。
-- `verifiable inference` / `restaking` 两词 60d=90d=0。本轮量了同义写法 `proof of inference`：7d/30d/60d/90d **全 0**，无召回。`restaking` 的同义写法本轮未测，留待下轮。
+**未归类**
+- `Look Ahead` — 具身 AI 里搜索驱动的推理 · https://arxiv.org/abs/2611.10769
 
-**口径提醒**：`check:` 后面带引号的词会被重复包一层引号（`ti:""..."`) ，四个窗口返回同一批 total —— 那是失真读数，不是零命中。量新写法一律不带内层引号。
+---
+跨窗：`verifiable inference` / `restaking` 60d+90d 仍 0（连两轮），下一轮先量同义写法再判；其余 8 个零命中词跨窗有货 → 窗口太短，词表不动。
