@@ -1,1 +1,34 @@
-[]
+[
+ {
+  "id": "9370",
+  "name": "Hollow",
+  "slug": "hollow",
+  "chains": [
+   "Ethereum"
+  ],
+  "tvl": 10698.342229103919,
+  "category": "Reserve Currency",
+  "listedAt": 1794249485,
+  "url": "https://hollow.cash",
+  "description": "An ETH-backed currency with a floor that only rises. Every HLO is backed by at least 1.3x its floor in ETH hel",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9367",
+  "name": "MING",
+  "slug": "ming",
+  "chains": [
+   "Binance"
+  ],
+  "tvl": 744.6458651847188,
+  "category": "Gamified Mining",
+  "listedAt": 1794249038,
+  "url": "",
+  "description": "MING is a mining game on BSC: each round players deploy BNB on a 5 x 5 grid of tiles, one tile is drawn, and t",
+  "misrepresentedTokens": true,
+  "wrongLiquidity": null,
+  "in_names": false
+ }
+]

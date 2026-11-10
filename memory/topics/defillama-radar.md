@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-09T00:05:00Z
+timestamp: 2026-11-10T00:10:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,29 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-09 第 14 轮）
+## 本轮漏斗口径（11-10 第 15 轮）
+
+全量 **8975** · 新增 id **9**（可报 **2** / 过滤 7）· `seen` 命中 8966 · `parent` 5 · `category` 1 · 空 `chains`/链白名单 1 · 无 id 0 · 拉取失败 0 · 重报 0。**报告级 2 —— 自第 11 轮以来首次真正出报告并发送。**
+
+**可报两条（均已发通知、已标 `notified`）：**
+- **`Hollow`**(9370) · `Ethereum` · TVL **$10.7K** · `Reserve Currency` · `listedAt 2026-11-09T18:38:05Z` · `url=hollow.cash` · `misrepresentedTokens=false`。ETH 背书的地板价只涨货币，宣称国库内 ≥1.3× 地板 ETH 背书、无 owner/无 admin key/无升级路径。**是本轮唯一 TVL 上万且未被 DefiLlama 标失真的条目。**
+- **`MING`**(9367) · `Binance`(BSC) · TVL **$744.6** · `Gamified Mining` · `listedAt 2026-11-09T18:30:38Z` · `url` 为空 · **`misrepresentedTokens=true`**。5×5 格子每轮一分钟的 BNB 押注游戏。**该条 TVL 口径失真，读数不可直接用** —— 这是「类目不是真伪，只是原样带」的又一例。
+
+**过滤 7 条的真边际首次是两个桶都可数清：** `parent` 5（`Syndicate Perps`/`Syndicate Predictions`/`Pacifica Options`/`Bitso Onchain Perps`/`Bitso Onchain Spot`，全部同时 `chains=[]` → **5/5 双帽**）· 空链 1（`Bridged Finance`）· `category` 1（`Afterbell`，`Interface`）。**可报的 2 条恰好是唯一两条不带 parent、类目不属 EXCL、且有白名单链的条目** → 本轮漏斗无一条「本可报却被误挡」。
+
+**「母协议一次性铺子条目」连续第二轮主导：** `Syndicate` 两条相隔 **6s**、`Bitso Onchain` 两条相隔 **1s** —— 与 11-08 第 13 轮 `Jupiter` 四条同秒同型。**同秒 ≤10s + 同一 parent ⇒ 一条都不必细看**，与本轮 `Hollow`/`MING` 这类单条独立登记形成清晰对照。
+
+**CF 校验通过（两份 8975 id 逐条相同）**：常规 `HIT` etag `W/"6af2597a-91a680"`、`last-modified Mon, 09 Nov 2026 23:38:34 GMT`、`age 17`；`?_cb=` 源站 `MISS` 同 etag 同 `last-modified`（**本轮两份快照 etag 首次完全相同**，`HIT`/`MISS` 只差缓存状态，说明源站自 23:38:34Z 后未再更新）。id 集合两向差集仅 `only_seen=['4818']`，9 条新增两份快照零差异。
+
+`listedAt` 跨度 **4.57h**（11-09T17:53:21Z → 22:27:39Z），是近六轮最短窗口；同秒 ≥3 条批量指纹本轮新增 **0 组**（现存最近一组仍是 11-07T14:26:04Z，n=4）。
+
+`only_seen=['4818']`、`only_raw=[]` **连续第六轮** → 真下架，可当稳定结论引用。seen 8976 = 8975 命中 + 1 残留。
+
+id 9300–9372 **连续无缺口**，`max_id=9372`（较上轮 9363 前进 9，与新增 9 条一致，**无「暂未回填的分配号」连续七轮**）；非数字 id 仍只有 `<5471>`。
+
+全量 `chains=[]` = **1598 / 8975 = 17.81%**（上轮 17.76%，七轮区间 17.4–17.81，缓慢上行但仍在窄带内）。
+
+## 上一轮漏斗口径（11-09 第 14 轮）
 
 全量 **8966** · 新增 id **1**（可报 **0** / 过滤 1）· `seen` 命中 8965 · `parent` 1 · `category` **0** · 空 `chains`/链白名单 0 · 无 id 0 · 拉取失败 0 · 重报 0。
 
@@ -332,6 +354,15 @@ id 9300–9363 **连续无缺口**（含本轮 9363），**连续六轮无「暂
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-10 第 15 轮；常规 `HIT` 8975 条、etag `W/"6af2597a-91a680"`、`last-modified Mon, 09 Nov 2026 23:38:34 GMT`、`age 17`；`?_cb=` 源站 `MISS` 8975 条、**etag 与 `last-modified` 与 HIT 完全相同**；id 集合两向差集仅 `only_seen=['4818']`，9 条新增两份快照零差异）
+- 实测数据：同上 9370 `Hollow` · `chains=['Ethereum']` · `category='Reserve Currency'` · `tvl=10698.342229103919` · `parentProtocol=None` · `listedAt=1794249485`（2026-11-09T18:38:05Z）· `url='https://hollow.cash'` · `misrepresentedTokens=false` · `audits=0`
+- 实测数据：同上 9367 `MING` · `chains=['Binance']` · `category='Gamified Mining'` · `tvl=744.6458651847188` · `parentProtocol=None` · `listedAt=1794249038`（2026-11-09T18:30:38Z）· `url=''` · **`misrepresentedTokens=true`** · `audits=0`
+- 实测数据：同上 9364/9365 `Syndicate Perps`/`Syndicate Predictions` · `chains=[]` · `category='Interface'` · `parentProtocol='parent#syndicate'` · `tvl=None` · `url='https://syndicate.trade'` · `listedAt=1794246801/1794246807`（相隔 6s）
+- 实测数据：同上 9371/9372 `Bitso Onchain Perps`/`Bitso Onchain Spot` · `chains=[]` · `category='Interface'` · `parentProtocol='parent#bitso-onchain'` · `tvl=None` · `url='https://onchain.cc'` · `listedAt=1794263258/1794263259`（相隔 1s）
+- 实测数据：同上 9366 `Bridged Finance`（`chains=[]`、`category='Bridge Aggregator'`、`parent=None`、`tvl=None`、`url=''`、`listedAt=1794246877`）· 9368 `Afterbell`（`chains=[]`、`category='Interface'`、`parent=None`、`listedAt=1794249193`）· 9369 `Pacifica Options`（`chains=[]`、`category='Options'`、`parentProtocol='parent#pacifica'`、`listedAt=1794249484`）
+- 实测数据（id 连续性）：9300–9372 无缺口，`max_id=9372`；非数字 id 仅 `<5471>`
+- 实测数据（`chains=[]` 占比）：1598/8975 = 17.81%
+- 实测数据（新增 `listedAt` 跨度，第 15 轮）：4.57h（2026-11-09T17:53:21Z → 22:27:39Z）；全量同秒 ≥3 条簇新增 0 组，最近仍为 2026-11-07T14:26:04Z(4)
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-09 第 14 轮；常规 `HIT` 8966 条、etag `W/"6af0ff61-9182a7"`、`last-modified Sun, 08 Nov 2026 23:01:53 GMT`、`age 1271`；`?_cb=` 源站 `MISS` 8966 条、etag `W/"6af107fa-91819e"`、`last-modified 23:38:34 GMT`；id 集合两向差集仅 `only_seen=['4818']`）
 - 实测数据：同上 9363 `Bitty Vaults` · `category='Onchain Capital Allocator'` · `chains=[]` · `chainTvls={}` · `tvl=None` · `parentProtocol='parent#bitty'` · `listedAt=1794164879`（2026-11-08T19:07:59Z）· `url='https://bitty.io'` · `twitter='bitty_io'` · `address=None`
 - 实测数据：同上 6685 `Bitty Lending` · `chains=['Ethereum','Bitcoin']` · `tvl=76.87825734639296` · `parentProtocol='parent#bitty'` · `listedAt=1757358297`
