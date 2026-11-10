@@ -1,0 +1,509 @@
+{
+  "root": "root",
+  "state": {},
+  "elements": {
+    "root": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 12 · 近 7 天活跃 12"
+      },
+      "children": [
+        "hdr",
+        "stats",
+        "sep1",
+        "repos"
+      ]
+    },
+    "hdr": {
+      "type": "Heading",
+      "props": {
+        "text": "github-radar",
+        "level": "h2"
+      }
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "s1": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "7 天",
+        "trend": "neutral"
+      }
+    },
+    "s2": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "12",
+        "trend": "neutral"
+      }
+    },
+    "s3": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "12",
+        "trend": "neutral"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repos": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8",
+        "r9",
+        "r10",
+        "r11",
+        "r12"
+      ]
+    },
+    "r1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r1l",
+        "r1b",
+        "r1t"
+      ]
+    },
+    "r1l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "zackholt05-tech/roboforge",
+        "href": "https://github.com/zackholt05-tech/roboforge",
+        "source": "github",
+        "score": "★0 · 30天=≥100 · 7天=≥100"
+      }
+    },
+    "r1b": {
+      "type": "Badge",
+      "props": {
+        "text": "robot manipulation",
+        "variant": "outline"
+      }
+    },
+    "r1t": {
+      "type": "Text",
+      "props": {
+        "text": "Behavior cloning vs. a conditional diffusion policy on simulated 3D robot manipulation (robosuite + ",
+        "variant": "caption"
+      }
+    },
+    "r2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r2l",
+        "r2b",
+        "r2t"
+      ]
+    },
+    "r2l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "vlumi/tourian",
+        "href": "https://github.com/vlumi/tourian",
+        "source": "github",
+        "score": "★0 · 30天=74 · 7天=74"
+      }
+    },
+    "r2b": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "outline"
+      }
+    },
+    "r2t": {
+      "type": "Text",
+      "props": {
+        "text": "A control room for robots, and for whatever is at the controls: browser teleoperation of simulated a",
+        "variant": "caption"
+      }
+    },
+    "r3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r3l",
+        "r3b",
+        "r3t"
+      ]
+    },
+    "r3l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "LeanoA/sim2real-data-engine",
+        "href": "https://github.com/LeanoA/sim2real-data-engine",
+        "source": "github",
+        "score": "★0 · 30天=64 · 7天=64"
+      }
+    },
+    "r3b": {
+      "type": "Badge",
+      "props": {
+        "text": "sim2real",
+        "variant": "outline"
+      }
+    },
+    "r3t": {
+      "type": "Text",
+      "props": {
+        "text": "Hexagonal Sim-to-Real Data Engine: Deterministic MuJoCo 4.0 Physics, Hugging Face LeRobot v2 Dataset",
+        "variant": "caption"
+      }
+    },
+    "r4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r4l",
+        "r4b",
+        "r4t"
+      ]
+    },
+    "r4l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Lolix7/jepa-world-model-from-scratch",
+        "href": "https://github.com/Lolix7/jepa-world-model-from-scratch",
+        "source": "github",
+        "score": "★0 · 30天=28 · 7天=28"
+      }
+    },
+    "r4b": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "outline"
+      }
+    },
+    "r4t": {
+      "type": "Text",
+      "props": {
+        "text": "Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTor",
+        "variant": "caption"
+      }
+    },
+    "r5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r5l",
+        "r5b",
+        "r5t"
+      ]
+    },
+    "r5l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "LiuLiShenShe/AgriDSeq-JEPA",
+        "href": "https://github.com/LiuLiShenShe/AgriDSeq-JEPA",
+        "source": "github",
+        "score": "★0 · 30天=22 · 7天=22"
+      }
+    },
+    "r5b": {
+      "type": "Badge",
+      "props": {
+        "text": "jepa",
+        "variant": "outline"
+      }
+    },
+    "r5t": {
+      "type": "Text",
+      "props": {
+        "text": "Official DSeq-JEPA ViT-B/16 and UPerNet transfer to PhenoBench v1.1.0",
+        "variant": "caption"
+      }
+    },
+    "r6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r6l",
+        "r6b",
+        "r6t"
+      ]
+    },
+    "r6l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Mr-banananana/banana-pico4-so101-teleop",
+        "href": "https://github.com/Mr-banananana/banana-pico4-so101-teleop",
+        "source": "github",
+        "score": "★0 · 30天=12 · 7天=12"
+      }
+    },
+    "r6b": {
+      "type": "Badge",
+      "props": {
+        "text": "teleoperation",
+        "variant": "outline"
+      }
+    },
+    "r6t": {
+      "type": "Text",
+      "props": {
+        "text": "PICO 4 passthrough teleoperation for SO-ARM101, with MuJoCo simulation and Feetech servo control.",
+        "variant": "caption"
+      }
+    },
+    "r7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r7l",
+        "r7b",
+        "r7t"
+      ]
+    },
+    "r7l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Eddine-Ben/OC-JEPA-REASON",
+        "href": "https://github.com/Eddine-Ben/OC-JEPA-REASON",
+        "source": "github",
+        "score": "★0 · 30天=9 · 7天=9"
+      }
+    },
+    "r7b": {
+      "type": "Badge",
+      "props": {
+        "text": "jepa",
+        "variant": "outline"
+      }
+    },
+    "r7t": {
+      "type": "Text",
+      "props": {
+        "text": "Official repository for OC-JEPA-Reason: Object-Causal Joint Embedding Predictive Architecture for Gr",
+        "variant": "caption"
+      }
+    },
+    "r8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r8l",
+        "r8b",
+        "r8t"
+      ]
+    },
+    "r8l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DanJing-coder/OWO",
+        "href": "https://github.com/DanJing-coder/OWO",
+        "source": "github",
+        "score": "★0 · 30天=8 · 7天=8"
+      }
+    },
+    "r8b": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "outline"
+      }
+    },
+    "r8t": {
+      "type": "Text",
+      "props": {
+        "text": "An open semantic protocol for describing entities, relationships, states, and actions, enabling inte",
+        "variant": "caption"
+      }
+    },
+    "r9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r9l",
+        "r9b",
+        "r9t"
+      ]
+    },
+    "r9l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "TUHH-ITL/MRCD",
+        "href": "https://github.com/TUHH-ITL/MRCD",
+        "source": "github",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "r9b": {
+      "type": "Badge",
+      "props": {
+        "text": "robot dataset",
+        "variant": "outline"
+      }
+    },
+    "r9t": {
+      "type": "Text",
+      "props": {
+        "text": "An outdoor mobile robot dataset for ROS2 Humble.",
+        "variant": "caption"
+      }
+    },
+    "r10": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r10l",
+        "r10b",
+        "r10t"
+      ]
+    },
+    "r10l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Quinten-Wu504/RobotDynamics-CS224W-Stanford",
+        "href": "https://github.com/Quinten-Wu504/RobotDynamics-CS224W-Stanford",
+        "source": "github",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "r10b": {
+      "type": "Badge",
+      "props": {
+        "text": "jepa",
+        "variant": "outline"
+      }
+    },
+    "r10t": {
+      "type": "Text",
+      "props": {
+        "text": "Graph learning for robot dynamics prediction: temporal GNNs, equivariance, and JEPA on MimicGen Squa",
+        "variant": "caption"
+      }
+    },
+    "r11": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r11l",
+        "r11b",
+        "r11t"
+      ]
+    },
+    "r11l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "nuskonghou/wm-ppo",
+        "href": "https://github.com/nuskonghou/wm-ppo",
+        "source": "github",
+        "score": "★1 · 30天=5 · 7天=5"
+      }
+    },
+    "r11b": {
+      "type": "Badge",
+      "props": {
+        "text": "world model",
+        "variant": "outline"
+      }
+    },
+    "r11t": {
+      "type": "Text",
+      "props": {
+        "text": "WM-PPO: Learning to act by valuing predicted state transitions. World-model predictions + critic-bas",
+        "variant": "caption"
+      }
+    },
+    "r12": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r12l",
+        "r12b",
+        "r12t"
+      ]
+    },
+    "r12l": {
+      "type": "StoryLink",
+      "props": {
+        "title": "kimsunguk0/Ishinca",
+        "href": "https://github.com/kimsunguk0/Ishinca",
+        "source": "github",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "r12b": {
+      "type": "Badge",
+      "props": {
+        "text": "vision language action",
+        "variant": "outline"
+      }
+    },
+    "r12t": {
+      "type": "Text",
+      "props": {
+        "text": "Ishinca: Knowledge Distillation NVIDIA Alpamayo 1.5 (10B) into a 4B vision-language-action model for",
+        "variant": "caption"
+      }
+    }
+  }
+}
