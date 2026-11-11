@@ -1,5 +1,5 @@
 # Long-term Memory
-*Last consolidated: 2026-11-10*
+*Last consolidated: 2026-11-11*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**；`arxvi-radar` 孤儿待清。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
@@ -12,9 +12,9 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-09 第 41 轮 **75 → 3**，**「有新增 0」三轮序列终结**；窗口停 11-06 = **周末节律非索引滞后**。`staking` 补测 **60d=1/90d=1 → 窗口太短，词表不动**。`proof of inference` 四窗 total 全等 = **`ti:""…""` 双层引号失真指纹**。跨窗皆 0 只剩 `verifiable inference`/`restaking`，换写法不删。[source: logs/2026-11-09#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-11 第 16 轮 8990 / 新增 15 / **可报 4**（`Hyper Tokens` 9379 $103.7K · `Roulana` 9374 $6.34K · `Kyte` 9377 staking $2K · `GraveStake` 9373 staking $39.9K）。已发已标。**主读数 = Elysium 簇**：新增 6 条挂 `Elysium Kinetiq`（不在 `CHAINS`，存量已有 Uniswap/Ramses/Aero），加链真收益仅 1 条 $514 → **不加**。`9382` = 暂未回填分配号。**`listedAt` 滞后 `/protocols` 出现 ≥37min → 不能测延迟**。`only_seen=['4818']` 七轮。**加链必删 seen 重做基线。**[source: logs/2026-11-11#defillama-radar]
-- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅在手动 `days:7` 时成立**。11-09 第 22 轮 459/28/6：**`30天=`≡`7天=` 6/6 第三轮**（退化成「仓龄」）· 报告级全 ★0 三轮（`min:0`）· **raw≤5 四分类逐轮翻转 → 单轮分档不可当趋势读** · 加密侧**第七连轮** 0 · `jepa` 非代码仓连两轮。[source: logs/2026-11-09#github-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-10 第 42 轮 **80 → 7**，六分类两侧失败类全 0 = 读数干净；**ZK 侧占 3/7 证明召回活着**（单轮不作趋势）。14 词仍未配 carrier 表（同 37 轮结论）。收录停 11-09 = 正常。跨窗皆 0 仍只剩 `verifiable inference`/`restaking`，换写法不删。[source: logs/2026-11-10#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-11 第 16 轮 8990 / 新增 15 / **可报 4**（`Hyper Tokens` $103.7K 等）。**主读数 = Elysium 簇**：6/15 挂 `Elysium Kinetiq`（不在 `CHAINS`），加链真边际仅 1 条 → **不加**。`9382` = 未回填编号非空洞。**`listedAt` 不能测延迟；加链须删 seen 重建基线。** [source: logs/2026-11-11#defillama-radar]
+- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅在手动 `days:7` 时成立**。11-10 第 23 轮 447/25/12：`30天=`≡`7天=` **12/12 第四轮**（=仓龄，判据缺陷）· **★ 分布首破全 0**（1★1，`min:0` 不动）· 加密侧**第八连轮** 0 · probe 真簇 `teleop`。→ [topic](/topics/github-radar.md) [source: logs/2026-11-10#github-radar]
 
 
 ## Lessons Learned
@@ -29,7 +29,7 @@
 - **聚合字段口诀：先说清它量的是什么，再决定信不信。** `/protocols` 的 `change_1d` = 当日 00:00 桶内值，不是今昨差；`/v2/chains` 已删 `change_1d`/`change_7d` → 旧写法静默拿缺省值，链涨跌只能走 `/v2/historicalChainTvl/{chain}` 自算。**成因查 `hallmarks`**（协议级）；宏观崩盘用 CoinDesk RSS + WebFetch。[source: logs/2026-11-05#defi-overview]
 - **某过滤器长期「0 丢弃」先查有多少输入真经过它，再查它是不是用歧义词假装挡住了** —— `arxiv-radar` carrier 连九轮空转（14 词没配表），第 37 轮又证明 `circuit`/`network` 对超导/ML 同样成立 = 无判别力。「零假阴」≠ 规则安全。**某桶占比升高 ≠ 该桶杀伤力升高**。**报宽口径的分母，动手要窄口径的分子。**[source: logs/2026-11-05#arxiv-radar]
 - **漏斗退化成单通道时，0 输出的责任在词表召回，不在过滤器** —— 过滤层已无调节空间；零幸存来自饱和 ≠ 任一侧流量消失。[source: logs/2026-10-31#arxiv-radar]
-- **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`。**但失败签名不止一种：** 403 是 23:00–23:31Z 配额窗口；`max_output_tokens`（76298/128000，95 turns）是另一病因，需分开修、别合并归因 → [ops](/topics/ops-plumbing.md)。
+- **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据：`num_turns:1` + 0 tool calls + `api_error_status`。**但失败签名不止一种：** 403 是 23:00–23:31Z 配额窗口；`max_output_tokens` 是另一病因。**断路器 cf≥3 后连 30min 重试也守门**（只剩 360m probe）→ 「等重试自愈」失效，间歇故障变结构性卡死 → [ops](/topics/ops-plumbing.md)。
 - **脚本尾部崩溃 ≠ 本轮没产出** —— 产物在崩溃点之前写出时 stdout 像「跑挂了」而 `out.*.json` 其实是新的；**先看产物 mtime 再决定重跑**。
 - **「0 新增」≠「废词」** —— 逐词单查 total_count 才分清「饱和」与「查询打不中」；长窗首跑推沉积、次跑归零 = `seen` 吃干；**`seen < raw 5%` 不许记饱和，须归因到具体规则**。[source: logs/2026-10-29#github-radar]
 - **查询失败会伪装成「零命中」** —— 有 `failed_t` 就先补扫，别下结论。**词干化污染：`staking` 精度 11%（撞 `stakes`）**，单词必须换长短语。详见 [lessons](/topics/lessons.md#arXiv-检索arxiv-radar)。[source: logs/2026-10-26#arxiv-radar]

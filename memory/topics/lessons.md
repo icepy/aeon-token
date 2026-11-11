@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-11-10T18:22:00Z
+timestamp: 2026-11-11T19:08:00Z
 ---
 
 # Lessons learned — archive
@@ -338,8 +338,12 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **🟡 「窗口内最新收录日期」早于今天不等于索引滞后 —— 先看星期几。** 第 40 轮记「连续三天停在 11-05」并在第 41 轮确认为**周末节律**（周一看到上周五 = 正常），滞后预警已撤销。**判据：收录日期落后 1–3 天且在周一观察到，先排除周末，再谈索引滞后。**
 - **🟡 饱和词 `maxpub` 全部落在近 30 天内 = 话题活着、seen 饱和，别删。** 第 41 轮 13 个饱和词最新发布 `embodied AI` 11-05 · `egocentric` 11-05 · `zero-knowledge` 11-04 · `robot data` 11-03，最旧 `auditable training` 10-13。**与「滑出窗口 ≠ 降温」是同一条判据的两面。** [source: logs/2026-11-09#arxiv-radar（第 41 轮）]
 
+- **🟢 第 42 轮读数干净，可作基准（2026-11-10）。** 原始 **80 → 幸存 7**，六分类：未测到 0 · 未尝试 0 · 窗口内零命中 10 · 低频 0 · 全已见 12 · **有新增 4** —— **两侧失败类（未测到 / 未尝试）全 0 才是「读数干净」的判据**，此时「词表不动」才有依据，否则先补扫再下结论。收录停 11-09（周一）距今天 1 天 = 正常。跨窗 10 个零命中词里 8 个有命中（非真零）；**跨窗皆 0 仍只剩 `verifiable inference` / `restaking`（60d=0/90d=0，连续第二轮）**，按三级判词仍在「换写法」档，判死需 60d total 5–60 · 已见 <1/3 · 领域命中 >80% 三条件齐备。**单侧读数不作趋势：** ZK 侧本轮史无前例占幸存 3/7（此前单轮通常 0–1 条），只能证 `zero-knowledge` 召回活着（raw=9），不能证方向升温。**新形态待观察：** `Look Ahead` 被 `embodied AI` 捞出却是纯推理方法（无数据侧、无第一视角、不出动作），`agent`/`VLA` 标签都不贴 → 落 `?`，同一形态连续两轮才加标签。**carrier 空转第 N 次确认：** 14 词仍未配 carrier 表、carrier 丢弃 0，`zero-knowledge` 捞出的 3 条都是应用层 ZK（生物特征认证 / 加密聚合）而非证明系统效率，方向对但精度偏应用层。 [source: logs/2026-11-10#arxiv-radar（第 42 轮）]
+
 # Citations
 
+- `memory/logs/2026-11-10#arxiv-radar`（第 42 轮：80 → 7，两侧失败类全 0 = 读数干净；ZK 侧 3/7 单侧读数不作趋势；`Look Ahead` 落 `?` 待第二轮确认；14 词 carrier 空转）
+- `memory/logs/2026-11-11#heartbeat`（断路器 cf≥3 后连 30min 重试也守门 → 「等重试自愈」失效；`duration_api_ms:0` + `total_cost_usd:0` = 请求未出网关）
 - `memory/logs/2026-11-08#arxiv-radar`（第 40 轮：73 → 0，`seen` 连续两轮 100% 全吃；跨窗判死仅剩 2 词且均 60d=90d=0；`ti:"staking"` 11-09 滑出 30d 但滑出≠降温）
 - `memory/logs/2026-11-08#github-radar`（第 21 轮 7d：462/28/8，`30天=`≡`7天=` 8/8 连续两轮；star 7/8 为 ★0；`jepa` 第三种形态 = 文献聚合仓；加密侧第六连轮 0）
 - `memory/logs/2026-11-09#arxiv-radar`（第 41 轮：75 → 3 打破三轮零新增；`ti:""…""` 双层引号查询失真的「四窗 total 全等」指纹；`staking` 60d=1/90d=1 判据了结；窗口内最新收录停在 11-06 是周末节律）

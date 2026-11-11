@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-10T18:20:00Z
+timestamp: 2026-11-11T19:06:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -110,6 +110,39 @@ but it is **not the only cause**; the two need separate fixes.
 - **`duration_api_ms` is a discriminator worth keeping:** `0` = never left the gateway (auth
   rejection); thousands of ms + `num_turns:1` = the request ran and *then* failed. Same status code,
   different layer. [source: logs/2026-11-10#heartbeat]
+
+### The circuit breaker closes the retry path — "wait for the retry to self-heal" stops working
+
+On 2026-11-11 `defi-overview` reached `consecutive_failures: 4` and the self-heal assumption was
+falsified **in a new way**: the retry channel itself was shut off.
+
+- **2026-11-10T23:00Z** still `403 All target providers failed`, but now `duration_api_ms: 0` +
+  `num_turns: 1` + `total_cost_usd: 0` + `output_tokens: 0` → the request never left the gateway.
+- **The 30-minute retry never ran.** Scheduler log, verbatim: *"Circuit breaker OPEN: defi-overview
+  (4 consecutive failures) - skip, next probe in 330m"* (11-10T23:30Z), then `next probe in 270m`
+  (11-11T00:30Z). Reading `scripts/breaker.sh` + `.github/workflows/scheduler.yml:250-275`: once
+  `consecutive_failures >= BREAKER_THRESHOLD` (default 3), **both** the retry and the cron match sit
+  behind the gate; a run is released only when `MINUTES_SINCE >= COOLDOWN_MIN` (default 360m) **and**
+  `slot_owed=1`. `RETRY_LIMIT = BREAKER_THRESHOLD`, so past the line even the 30-min retry is refused.
+- **This retroactively explains every earlier self-heal.** Slot-by-slot history: 11-02 fail → 23:30
+  success; 11-06 fail → next-day 00:15 success; 11-08 fail → next-day 00:15 success; **11-09 fail →
+  23:30 fail → 00:15 fail (`max_output_tokens`)**; 11-10 fail → breaker skip, no retry at all.
+  **The retry was the self-heal mechanism.** When 11-09's retry died on the output cap, `cf` climbed
+  to 4, tripped the breaker, and closed the only path that had ever worked.
+- **Shape upgrade:** the 23:00Z slot has failed 5 of 6 times since 11-06 (only 11-07 succeeded),
+  down from a 100% success rate across 10-29–11-01. The current combination — tripped breaker
+  allowing one probe a day, at the very slot that 403s most — is no longer intermittent jitter;
+  **it is structurally stuck.**
+- **Two separate fixes, neither applied:** ① move the cron off `0 23` (the only action that dodges
+  the 403 window without depending on a retry); ② cut per-round read/output volume for the
+  `max_output_tokens` failure (raising `CLAUDE_CODE_MAX_OUTPUT_TOKENS` treats the symptom).
+- **The real cost is the stale artifact, not the wasted spend:** `memory/topics/market-context.md`
+  `timestamp` is pinned at `2026-11-09T00:30:00Z` → the macro snapshot is 2 days old. Check the
+  topic's own `timestamp`, never the skill's `last_status`.
+- **Operational lesson (generalises past this skill):** a `cf`-based breaker that shares its
+  threshold with the retry limit **converts a recoverable intermittent failure into a permanent one**.
+  When you see "it used to self-heal, now it doesn't", check whether the breaker tripped before
+  assuming the failure got worse. [source: logs/2026-11-11#heartbeat]
 
 ## A skill's frontmatter `var:` default is NOT injected into the run
 

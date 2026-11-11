@@ -1,35 +1,35 @@
-记忆整理完成。MEMORY.md 8167 字节 / 42 行 / 无超长行，watermark 已推进到 2026-11-10。
+Memory flush complete. Writing the final report.
 
-## 本轮整理结果
+## Memory Flush 报告 — 2026-11-11
 
-**扫描窗口** `2026-11-09 → 2026-11-10`，读 2 个日志文件，无 >14 天缺口，未触发日志轮转（21 个日文件 / 阈值 45）。
+**扫描窗口 `2026-11-10 → 2026-11-11`**（watermark = `2026-11-10`，读 2 个日文件）。无 >14 天缺口、未 clamp；日志轮转归档 0 个月（22 个日文件，阈值 45）。
 
-### 四条 skill 事实原地改写（未新增重复条目）
+### 预算
+起点 **8,251 字节 / 43 行 → 超 8 KB 59 字节**，且 line 16 达 447 字符。终点 **8,030 字节 / 43 行 / 0 条超 300 字符**（余 162 字节）。靠发现层三行改写 + 长行瘦身回线。
 
-**`defillama-radar` 第 15 轮** — 8975 / 新增 9 / **可报 2**，是自第 11 轮以来首次真正出报告。`Hollow`(9370) Ethereum $10.7K、`MING`(9367) BSC $744.6 但 `misrepresentedTokens=true` 读数不可直接用。新判据：**同秒 ≤10s + 同一 parent ⇒ 整组不必细看**（`Syndicate` 隔 6s、`Bitso` 隔 1s，第三次复现）。两份快照 etag 首次全等 → 非缓存假阳。`only_seen=['4818']` 连续第六轮，真下架。
+### promote 四条
 
-**`arxiv-radar` 第 41 轮** — **75 → 3，打破「有新增 0」三轮序列**。三条判据级：① `ti:""…""` 双层引号失真的指纹是**四个窗口 total 全等**（5764/36341/78069/110276）+ 前 3 标题相同，既非零命中也非流量；② `staking` 判据了结，**60d=1/90d=1 → 窗口太短不是降温**；③ 收录日期停在上周五是**周末节律**，第 40 轮的滞后预警撤销。零命中 10 词里 8 个跨窗有命中，别删；跨窗皆 0 只剩 `verifiable inference`/`restaking`。
+**1. `defillama-radar` 第 16 轮** — 8990 / 新增 15 / 可报 4。主读数 = Elysium 簇：6/15 挂 `Elysium Kinetiq`（不在 `CHAINS`），加链真边际仅 `ArkhamPad` 一条 $514 → **不加链**（须删 seen 重做 8990 条基线）。`9382` 缺席 = 未回填分配号非空洞。**`listedAt` 判据被证伪一半**：`GraveStake` 的 `listedAt` 比上轮快照 `last-modified` 早 37 分钟却不在上轮 payload → 只能当「登记意图时刻」，不能测延迟也不能倒推漏报原因。`staking` 未计入 TVL 连中两条 → 读「空壳」前必看 `chainTvls` 的 `-staking` 键。
 
-**`github-radar` 第 22 轮** — 459/28/6，核验 28/28。**头号发现：低频词（raw≤5）四分类逐轮翻转**，第 21 轮的饱和组本轮翻成「有新增」→ **单轮分档不可当趋势读，须连续 3 轮同档**。`30天=`≡`7天=` 6/6 累计三轮复现，已成稳定形态。加密侧第七连轮报告级 0，但 raw>0 → **是转化被封在门槛，不是没代码**。`embodied data` raw=4/seen=0 第二轮确认为过滤损耗。
+**2. `github-radar` 第 23 轮 + probe** — 447/25/12。**★ 分布首破「报告级全 ★0」**（12 条里 1 条 ★1，`min:0` 地板不动）。`30天=`≡`7天=` **12/12 第四轮**，已从「待复现假设」定性为**判据缺陷**（两栏 = 仓龄）。加密侧第八连轮报告级 0。`embodied data` raw=3/seen=0 连续第三轮是过滤损耗非饱和。**probe 同轮触发**：真簇 `teleop`（owners=97 / repos=589，三条件全过），`pico4` thematic=0 被拦；**owner 98→97 降而 repo 568→589 升 = 存量 owner 加仓，不是新 owner 涌入**。
 
-**11-10 heartbeat** — `defi-overview` 连败 3 轮越 🔴 线，**且逐轮读 log 证明是两个病因**：23:00Z 是 403 但跑了 13.7 分钟（`duration_api_ms:824635`），23:30Z 同 403 但秒拒（`0`），00:15Z 是 **`max_output_tokens`（76298/128000，95 turns）根本不是 403**。11-09 的「重试自愈」假设落空。**首次量化：三轮烧约 $10 换零产出**。新判别器：`duration_api_ms` 为 `0` = 请求没出网关，数千毫秒 + `num_turns:1` = 跑了才失败。副作用：`market-context.md` 停在 11-09T00:30Z，宏观快照旧两天。
+**3. `arxiv-radar` 第 42 轮** — 80 → 7，两侧失败类全 0。**新判据：「两侧失败类（未测到/未尝试）全 0」才是「读数干净、词表可不动」的前提**。ZK 侧占 3/7 是单侧读数，只证召回活着不证升温。`Look Ahead` 落 `?`，同形态连续两轮才加标签。
 
-### 剪枝与压缩
-- 起点 8174 → 中途冲高 8322 → **终点 8167 字节**；`行情口径` 那条一度被合并成 717 字符单行，已拆回 ①② 两条并各自精简。
-- `gh pr list` 全部为空（连续第八天），无 Open Improvement PRs 段可清；无 Next Priorities 段；Lessons 无失效条目，唯一改动是把「网关错误」一条补上「签名不止一种」的纠正。
-- 发现层 3 行、Lessons 12 行，均未超 10–15 行归档线。
+**4. 11-11 heartbeat — 断路器关掉了重试通道**（本轮最有价值的发现）：`defi-overview` cf=4，调度器日志实证 `RETRY_LIMIT = BREAKER_THRESHOLD`，越线后 30 分钟重试与 cron 匹配**都**守门，只剩 360m probe。**这反向解释了此前每一次「自愈」—— 重试本身就是自愈机制**。通用判据：cf 型断路器与重试上限共用阈值，会把可恢复的间歇故障变成永久故障。
+
+### 剪枝
+`gh pr list` = `[]`（连续第九天清空）→ 无 Open Improvement PRs 段。MEMORY 无 Next Priorities 段。Lessons 网关那条原地改写（补断路器结论，删已在 ops 全文的重复数字）。各节未超 10–15 行，未触发归档。
+
+### 索引
+`memory/topics/index.md` 三行更新（ops-plumbing / github-radar / lessons）。未新建 topic 文件。
 
 ### 未处理（延续）
-`on-chain-state.json.new` 遗留物、`arxvi-radar` cron 孤儿条目、`price-alert-state.json.bak` 待删、上游 `aeon.yml` 五条 disabled 技能取舍（唯一 OPERATOR 决策）、**`defi-overview` 的 cron 是否从 `0 23` 挪开 + 单轮输出量削减（两个病因须分开修）**、github-radar 下一轮戳满 7 天将自动跑 probe。
+`on-chain-state.json.new` 遗留物 · `arxvi-radar` cron 孤儿条目 · `price-alert-state.json.bak` · 上游五条 disabled 技能取舍（唯一 OPERATOR 决策）· **`defi-overview` 两条修复仍未落地**（cron 挪离 `0 23` + 削减单轮输出量），已连报两轮且断路器已跳闸，优先级上升。
 
 ## Summary
 
-- 执行 `skills/memory-flush/SKILL.md`，窗口 2026-11-09 → 2026-11-10（watermark 驱动，无缺口、无 clamp、无轮转）
-- **MEMORY.md**：4 条发现层/Lessons 事实原地改写（defillama-radar 第 15 轮、arxiv-radar 第 41 轮、github-radar 第 22 轮、defi-overview 双签名失败），未新增重复条目；8167 字节 / 42 行 / 0 超长行，在预算内
-- **memory/topics/ops-plumbing.md**：新增「三轮失败、两个签名」整节（含成本表与 `duration_api_ms` 判别器），timestamp → 2026-11-10T18:20Z
-- **memory/topics/lessons.md**：新增 3 条（双层引号失真指纹、`staking` 判据了结、周末节律），Citations 补一行，timestamp → 2026-11-10T18:22Z
-- **memory/topics/github-radar.md**：新增「第二十二轮」整节，timestamp → 2026-11-10T18:24Z
-- **memory/topics/index.md**：lessons / github-radar / ops-plumbing 三行更新
-- **memory/logs/2026-11-10.md**：追加 `### memory-flush` 条目
-- **watermark**：`memory_prep.py stamp` 已执行，`last_consolidated=2026-11-10`（state-file + MEMORY.md 镜像同步）
-- 未发通知（干净整理，无需要决定的事项）
+- 按 `skills/memory-flush/SKILL.md` 执行：step 0 `memory_prep.py window` → step 8 `memory_prep.py stamp` 全部完成，watermark 已推进到 `2026-11-11`。
+- 修改文件：`memory/MEMORY.md`（4 处原地改写，无新增 bullet）、`memory/memory-flush-state.json`（stamp 自动写）、`memory/logs/2026-11-11.md`（追加 `### memory-flush` 条目）。
+- Topic 文件：`memory/topics/github-radar.md`（+第 23 轮与 probe 整节）、`memory/topics/ops-plumbing.md`（+断路器整节）、`memory/topics/lessons.md`（+第 42 轮一条 + 2 条 citation）、`memory/topics/index.md`（3 行）。
+- 未发送 notify —— 本轮无信号，按 STRATEGY 不打扰。
+- 待办：`defi-overview` 的 cron 窗口与输出量两条修复仍未实施，是目前唯一在恶化的活跃故障。

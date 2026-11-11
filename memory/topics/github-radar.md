@@ -3,12 +3,33 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔；且 7d 下报告级全 ★0，star 只能 `min:0`**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-10T18:24:00Z
+timestamp: 2026-11-11T19:05:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
 从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十/二十一轮 7 天窗（11-07 / 11-08）实证。
+
+## 第二十三轮（2026-11-10，`days:7`，非 dry-run，probe 同轮触发）—— ★ 分布首破全 0；`30天=`≡`7天=` 12/12 第四轮；`teleop` 真簇复现但 owner 降 repo 升
+
+漏斗：原始 **447** → 幸存 **25** → 报告级 **12**，核验 **25/25 = 100%**。搜索 48 次调用，耗时 155s。丢弃 seen=190 · excl=32 · short_desc=82 · carrier=86 · neg=16 · pages=16 · 其余 0 · **fail=0**。四分类：查询失败 0 · 真零 2 · 饱和 7 · 有新增 9。
+
+- **🔴 判据级 ①（本轮头号发现）：★ 分布首次打破「报告级全 ★0」。** 12 条报告级里 11 条 ★0 + **1 条 ★1**（`nuskonghou/wm-ppo`）。22 轮的三连「全 ★0」形态在此中断。但 1/12 仍近乎零，**`min:0` 地板不动** —— 单条 ★1 不构成「star 可作排序依据」的证据。
+- **判据级 ②：`30天=` ≡ `7天=` 本轮 12/12 全等，连续第四轮**（12/12、8/8、6/6、12/12）。计数退化成「仓龄」而非活跃度，**判据缺陷延续，测「爆完即停」须改看首末提交日间隔**。`commits=100` 已标 `≥100`。
+- **判据级 ③：加密侧第八连轮报告级 0。** `intent-based`(raw=12) · `data availability`(13) · `restaking`(2) · `proof of useful work`(2) · `verifiable inference`(1) 全有召回、**全部止步报告级** → 召回存在，转化被封在门槛，不是「没有代码」。
+- **`embodied data`(raw=3, seen=0) 连续第三轮是过滤损耗，不是饱和。** 饱和 7 里 6 个是真被 seen 吸收（`world action model` 12/8 · `verifiable inference` 1/1 · `proof of useful work` 2/1 · `data availability` 13/1 · `restaking` 2/2 · `intent-based` 12/2），第 7 个单独归类别按饱和读。
+- **真零 2（仅 7d 窗）：** `robotics data engine` · `maximal extractable value` —— **单窗为零不删词**，须跨 7/30/60 都是 0 才谈删。
+- **无 `language` 3 条**（`TUHH-ITL/MRCD` · `slymachenko/vision-guided-autonomous-robot-navigation` · `Eddine-Ben/OC-JEPA-REASON`）：`MRCD` 已进报告级（desc 明写 ROS2 Humble，数据集仓），`OC-JEPA-REASON` 是 org 官方仓 → **无 language ≠ 非代码仓，须看 desc/owner 形态**。
+- **carrier 误杀对照（不下结论）：** 丢弃侧仓名自带词表词 33 / owner 去重 29 → 近 7 天存活 **28/29 = 97%**；放行侧 25/25 = 100%。差 3pt，**不构成放宽 carrier 的依据**。
+
+### probe（同轮，60d 独立窗，戳 10-29→11-10 满 7 天）
+
+种子 67（报告级 12 / 幸存 7 / 历史 24 / 丢弃堆 24）→ 候选 token 90 → 反查 28 · 热仓核验 178（未达门槛 94）。
+
+- **✅ 真簇 1 个：`teleop`** — total=589 / owners=**97** / repos=589 / 主题词 `teleoperation`×20 / cohesive=1 / thematic=1，三条件全过。代表仓 `lolopoco32/TeleopsDVB`(27★) · `ohho-robotics/ohho-omnibot`(100★) · `sdua078/TeleoPro`(7★)。
+- **⚠️ 近似 1：`pico4`**(total=16, owners=12) — cohesive=1 但 **thematic=0**（`pico` 是 PICO 头显硬件名，非机制词）→ **未过第三条件，不入候选词**，只入卡。
+- **撞名嫌疑（异质）13 个**：`rung`(532/97) · `so101`(460/95) · `roboforge`(24/22) · `roboscript`(11/10) · `robotdynamics`(3/3) · `cs224w`(28/25) · `mrcd`(10/10) · `tourian`(1/1)。通用词 `from`/`scratch`/`engine`/`with`/`randomization` 已被 `GLUE` 剔出。
+- **🟡 判据级：`teleop` 与 10-29 首见是同一簇，owner 98→97 微降而 repo 568→589 上升 → 存量 owner 加仓，不是新 owner 涌入。** 单轮不判，记形态。另注 owner:repo ≈ 1:6.07，需防「少数 owner 铺量」型假趋势 —— 与 #47 及第 17 轮「`supermimic` 132 total/99 owners = 撞名」同型。 [source: logs/2026-11-10#github-radar（第 23 轮 + probe）]
 
 ## 第二十二轮（2026-11-09，`days:7` 手动传参，非 dry-run）—— 低频词分档逐轮翻转；`30天=`≡`7天=` 6/6 第三轮；加密侧第七连轮 0
 
