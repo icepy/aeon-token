@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-09T22:06:23Z",
+  "last_analyzed": "2026-11-11T22:10:43Z",
   "quality_score": 4,
-  "assessment": "Solid discovery push: 3 filtered hits with specific arXiv IDs/categories, plus transparent window/probe methodology and a clear term-disambiguation note; fits the discovery-only job.",
+  "assessment": "Clean, well-structured discovery output: reports the funnel (83→4), groups hits under mechanism words, gives arXiv IDs, titles, one-line mechanism-oriented digests, and notes the side imbalance without overstepping into judgment.",
   "flags": [],
-  "avg_score": 3.27,
+  "avg_score": 3.3,
   "history": [
-    {
-      "date": "2026-10-24",
-      "score": 3,
-      "ts": "2026-10-24T10:23:33Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-24",
       "score": 2,
@@ -184,6 +178,12 @@
       "date": "2026-11-09",
       "score": 4,
       "ts": "2026-11-09T22:06:23Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-11",
+      "score": 4,
+      "ts": "2026-11-11T22:10:43Z",
       "harness": "claude"
     }
   ]

@@ -1,0 +1,302 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 原始 83 → 幸存 4"
+      },
+      "children": [
+        "hdr",
+        "sep1",
+        "sec-embodied",
+        "emb-stack",
+        "sep2",
+        "sec-dex",
+        "dex-stack",
+        "sep3",
+        "sec-consensus",
+        "con-stack",
+        "sep4",
+        "side-heading",
+        "side-stack"
+      ]
+    },
+    "hdr": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "hdr-heading",
+        "hdr-badge",
+        "stat-raw",
+        "stat-surv"
+      ]
+    },
+    "hdr-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "arxiv-radar",
+        "level": "h1"
+      }
+    },
+    "hdr-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 30 天",
+        "variant": "secondary"
+      }
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "83",
+        "trend": "neutral"
+      }
+    },
+    "stat-surv": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "4",
+        "delta": "4/83",
+        "trend": "down"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-embodied": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据",
+        "level": "h2"
+      }
+    },
+    "emb-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "e1",
+        "e2"
+      ]
+    },
+    "e1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "e1-link",
+        "e1-desc"
+      ]
+    },
+    "e1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ego Guidance",
+        "href": "https://arxiv.org/abs/2611.13685",
+        "source": "arXiv"
+      }
+    },
+    "e1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "用无动作标签的第一视角人类视频增强机器人策略学习",
+        "variant": "caption"
+      }
+    },
+    "e2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "e2-link",
+        "e2-desc"
+      ]
+    },
+    "e2-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "From Egocentric Human Video to Robot Manipulation",
+        "href": "https://arxiv.org/abs/2611.13610",
+        "source": "arXiv"
+      }
+    },
+    "e2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "第一视角人类视频到机器人操作的综述（具身智能时代）",
+        "variant": "caption"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-dex": {
+      "type": "Heading",
+      "props": {
+        "text": "灵巧操作",
+        "level": "h2"
+      }
+    },
+    "dex-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "d1"
+      ]
+    },
+    "d1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "d1-link",
+        "d1-desc"
+      ]
+    },
+    "d1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DexSeed",
+        "href": "https://arxiv.org/abs/2611.14092",
+        "source": "arXiv"
+      }
+    },
+    "d1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "把人类手物交互扩增成机器人演示，用于灵巧策略学习",
+        "variant": "caption"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec-consensus": {
+      "type": "Heading",
+      "props": {
+        "text": "共识",
+        "level": "h2"
+      }
+    },
+    "con-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "c1"
+      ]
+    },
+    "c1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "c1-link",
+        "c1-desc"
+      ]
+    },
+    "c1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Useful Work Can Increase Energy Use",
+        "href": "https://arxiv.org/abs/2611.13131",
+        "source": "arXiv"
+      }
+    },
+    "c1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "需求弹性下，有用工作量证明反而可能抬高能耗",
+        "variant": "caption"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "side-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "单侧读数",
+        "level": "h3"
+      }
+    },
+    "side-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "side-text",
+        "side-badges"
+      ]
+    },
+    "side-text": {
+      "type": "Text",
+      "props": {
+        "text": "本轮 4 条里 3 条在机器人侧，加密侧仅 1 条。",
+        "variant": "body"
+      }
+    },
+    "side-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-robot",
+        "badge-crypto"
+      ]
+    },
+    "badge-robot": {
+      "type": "Badge",
+      "props": {
+        "text": "机器人侧 3",
+        "variant": "default"
+      }
+    },
+    "badge-crypto": {
+      "type": "Badge",
+      "props": {
+        "text": "加密侧 1 · proof-of-useful-work",
+        "variant": "outline"
+      }
+    }
+  }
+}

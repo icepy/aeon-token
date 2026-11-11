@@ -1,93 +1,54 @@
 [
  {
-  "id": "2611.12636",
-  "term": "zero-knowledge",
+  "id": "2611.13131",
+  "term": "proof-of-useful-work",
   "terms": [
-   "zero-knowledge"
+   "proof-of-useful-work"
   ],
   "window": 30,
-  "name": "BioBind",
-  "title": "BioBind: Binding Biometric Deduplication to Zero-Knowledge Authentication",
+  "name": "",
+  "title": "Useful Work Can Increase Energy Use: Demand Elasticity and Proof of Useful Work",
   "published": "2026-11-09",
-  "link": "https://arxiv.org/abs/2611.12636",
-  "carrier": "protocol"
+  "link": "https://arxiv.org/abs/2611.13131",
+  "carrier": "proof"
  },
  {
-  "id": "2611.11477",
-  "term": "zero-knowledge",
-  "terms": [
-   "zero-knowledge"
-  ],
-  "window": 30,
-  "name": "",
-  "title": "Robust and Private Swarm Learning via Zero-Knowledge Validator Admission and Consensus Aggregation",
-  "published": "2026-11-08",
-  "link": "https://arxiv.org/abs/2611.11477",
-  "carrier": "protocol"
- },
- {
-  "id": "2611.10020",
-  "term": "zero-knowledge",
-  "terms": [
-   "zero-knowledge"
-  ],
-  "window": 30,
-  "name": "ZKP",
-  "title": "zk-DEAP: A Zero-Knowledge Decentralized Encrypted Aggregation Protocol",
-  "published": "2026-11-04",
-  "link": "https://arxiv.org/abs/2611.10020",
-  "carrier": "protocol"
- },
- {
-  "id": "2611.10254",
-  "term": "ti:\"consensus\" AND cat:cs.DC",
-  "terms": [
-   "ti:\"consensus\" AND cat:cs.DC"
-  ],
-  "window": 30,
-  "name": "FirstSwap",
-  "title": "FirstSwap: Pre-Consensus Trade Approvals for Decentralized Market Design",
-  "published": "2026-11-06",
-  "link": "https://arxiv.org/abs/2611.10254",
-  "carrier": "protocol"
- },
- {
-  "id": "2611.10769",
-  "term": "embodied AI",
-  "terms": [
-   "embodied AI"
-  ],
-  "window": 30,
-  "name": "",
-  "title": "Look Ahead: Search-Driven Reasoning in Embodied AI",
-  "published": "2026-11-07",
-  "link": "https://arxiv.org/abs/2611.10769",
-  "carrier": "robotic"
- },
- {
-  "id": "2611.12149",
+  "id": "2611.13685",
   "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
    "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "EgoLabel",
-  "title": "EgoLabel: Zero-Shot Egocentric Auto-Labeling with Cross-Modal Consistency",
-  "published": "2026-11-09",
-  "link": "https://arxiv.org/abs/2611.12149",
-  "carrier": "sensor"
+  "name": "",
+  "title": "Ego Guidance: Enhancing Robot Policy Learning with Action-Free Human Egocentric Videos",
+  "published": "2026-11-10",
+  "link": "https://arxiv.org/abs/2611.13685",
+  "carrier": "robot"
  },
  {
-  "id": "2611.10994",
+  "id": "2611.13610",
   "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
    "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "RoboMoCap",
-  "title": "RoboMoCap: A Large-Scale Whole-Body Motion Capture Dataset with Egocentric Vision for Robot Learning",
-  "published": "2026-11-07",
-  "link": "https://arxiv.org/abs/2611.10994",
+  "name": "",
+  "title": "From Egocentric Human Video to Robot Manipulation in the Era of Embodied Intelligence",
+  "published": "2026-11-10",
+  "link": "https://arxiv.org/abs/2611.13610",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.14092",
+  "term": "ti:\"hand-object\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"hand-object\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "DexSeed",
+  "title": "DexSeed: Expanding Human Hand-Object Interactions into Robot Demonstrations for Dexterous Policy Learning",
+  "published": "2026-11-10",
+  "link": "https://arxiv.org/abs/2611.14092",
   "carrier": "robot"
  }
 ]

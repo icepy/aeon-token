@@ -1,19 +1,13 @@
-**arxiv-radar** · 窗口 30 天 · 幸存 7 · 索引到 11-09（正常）
-
-**零知识**
-- `BioBind` - 把生物特征去重的绑定关系接到零知识认证上 · https://arxiv.org/abs/2611.12636
-- `zk-DEAP` - 零知识去中心化加密聚合协议 · https://arxiv.org/abs/2611.10020
-- `[零知识]` `Swarm Learning` - 用 ZK validator admission + 共识做私有群学习的接入控制 · https://arxiv.org/abs/2611.11477
-
-**共识**
-- `FirstSwap` - 共识前的交易预批准，去中心化市场设计 · https://arxiv.org/abs/2611.10254
+**arxiv-radar** · 窗口 30 天 · 原始 83 → 幸存 4
 
 **具身数据**
-- `EgoLabel` - 第一视角零样本自动打标，跨模态一致性 · https://arxiv.org/abs/2611.12149
-- `RoboMoCap` - 大规模全身动捕数据集，带第一视角视觉 · https://arxiv.org/abs/2611.10994
+- `Ego Guidance` - 用无动作标签的第一视角人类视频增强机器人策略学习 · https://arxiv.org/abs/2611.13685
+- `From Egocentric Human Video to Robot Manipulation` - 第一视角人类视频到机器人操作的综述（具身智能时代） · https://arxiv.org/abs/2611.13610
 
-**未归类**
-- `Look Ahead` - 具身 AI 里搜索驱动的推理 · https://arxiv.org/abs/2611.10769
+**灵巧操作**
+- `DexSeed` - 把人类手物交互扩增成机器人演示，用于灵巧策略学习 · https://arxiv.org/abs/2611.14092
 
----
-跨窗：`verifiable inference` / `restaking` 60d+90d 仍 0（连两轮），下一轮先量同义写法再判；其余 8 个零命中词跨窗有货 → 窗口太短，词表不动。
+**共识**
+- `Useful Work Can Increase Energy Use` - 需求弹性下，有用工作量证明反而可能抬高能耗 · https://arxiv.org/abs/2611.13131
+
+单侧读数：本轮 4 条里 3 条在机器人侧，加密侧仅 1 条（`proof-of-useful-work`）。
