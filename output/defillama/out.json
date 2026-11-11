@@ -1,33 +1,65 @@
 [
  {
-  "id": "9370",
-  "name": "Hollow",
-  "slug": "hollow",
+  "id": "9379",
+  "name": "Hyper Tokens",
+  "slug": "hyper-tokens",
   "chains": [
-   "Ethereum"
+   "Hyperliquid L1"
   ],
-  "tvl": 10698.342229103919,
-  "category": "Reserve Currency",
-  "listedAt": 1794249485,
-  "url": "https://hollow.cash",
-  "description": "An ETH-backed currency with a floor that only rises. Every HLO is backed by at least 1.3x its floor in ETH hel",
+  "tvl": 103732.1845849603,
+  "category": "Derivatives",
+  "listedAt": 1794269582,
+  "url": "",
+  "description": "Non-custodial front end for ~6x leveraged BTC exposure tokens (VOL / iVOL) on HyperEVM that auto-rebalance and",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false
  },
  {
-  "id": "9367",
-  "name": "MING",
-  "slug": "ming",
+  "id": "9374",
+  "name": "Roulana",
+  "slug": "roulana",
   "chains": [
-   "Binance"
+   "Solana"
   ],
-  "tvl": 744.6458651847188,
-  "category": "Gamified Mining",
-  "listedAt": 1794249038,
+  "tvl": 6340.500362375524,
+  "category": "Luck Games",
+  "listedAt": 1794265687,
   "url": "",
-  "description": "MING is a mining game on BSC: each round players deploy BNB on a 5 x 5 grid of tiles, one tile is drawn, and t",
-  "misrepresentedTokens": true,
+  "description": "One live 3D European roulette table on Solana. Real USDC, the number drawn on-chain, every bet can be checked,",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9377",
+  "name": "Kyte",
+  "slug": "kyte",
+  "chains": [
+   "Robinhood Chain"
+  ],
+  "tvl": 1.6764450405395035,
+  "category": "Options",
+  "listedAt": 1794269199,
+  "url": "",
+  "description": "Non-custodial, fully collateralised call and put options on Robinhood Chain.",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9373",
+  "name": "GraveStake",
+  "slug": "gravestake",
+  "chains": [
+   "Solana"
+  ],
+  "tvl": 0,
+  "category": "Staking Pool",
+  "listedAt": 1794265259,
+  "url": "",
+  "description": "GraveStake is a no-code staking platform on Solana. Projects launch staking pools for their NFTs (legacy, pNFT",
+  "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false
  }

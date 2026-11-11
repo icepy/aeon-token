@@ -1,8 +1,10 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=8966 · parent=5 · category=1 · 链白名单=1 · 拉取失败=0
-全量 8975 · 新增 id 9（可报 2 / 过滤标记 7）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=8975 · parent=3 · category=1 · 链白名单=7 · 拉取失败=0
+全量 8990 · 新增 id 15（可报 4 / 过滤标记 11）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1904 · Base=927 · Solana=473 · Arbitrum=1053 · Ink=33 · Binance=1153 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=215 · Robinhood Chain=310
-单侧读数: 加密侧 2 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  Hollow · Ethereum · tvl=10698.342229103919 · Reserve Currency · 1794249485
-  MING · Binance · tvl=744.6458651847188 · Gamified Mining · 1794249038
+链命中: Ethereum=1904 · Base=927 · Solana=475 · Arbitrum=1053 · Ink=33 · Binance=1153 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=311
+单侧读数: 加密侧 4 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+  Hyper Tokens · Hyperliquid L1 · tvl=103732.1845849603 · Derivatives · 1794269582
+  Roulana · Solana · tvl=6340.500362375524 · Luck Games · 1794265687
+  Kyte · Robinhood Chain · tvl=1.6764450405395035 · Options · 1794269199
+  GraveStake · Solana · tvl=0 · Staking Pool · 1794265259

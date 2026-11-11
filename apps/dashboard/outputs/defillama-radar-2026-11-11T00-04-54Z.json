@@ -1,0 +1,67 @@
+{
+  "type": "Table",
+  "props": {
+    "columns": [
+      "协议",
+      "id",
+      "原因"
+    ],
+    "rows": [
+      [
+        "Kinetiq Elysium Bridge",
+        "9380",
+        "$46.7M，parent#kinetiq"
+      ],
+      [
+        "Kalos DEX",
+        "9383",
+        "parentProtocol 子版本"
+      ],
+      [
+        "Kalos Fate",
+        "9384",
+        "parentProtocol 子版本"
+      ],
+      [
+        "EYED",
+        "9375",
+        "类目 Interface"
+      ],
+      [
+        "ArkhamPad",
+        "9376",
+        "Elysium Kinetiq，链不在白名单"
+      ],
+      [
+        "ipUSD",
+        "9378",
+        "Soneium，链不在白名单"
+      ],
+      [
+        "Aurumlend",
+        "9387",
+        "Arc，链不在白名单"
+      ],
+      [
+        "Ascend Launchpad",
+        "9381",
+        "chains=[]"
+      ],
+      [
+        "AssetClaw",
+        "9385",
+        "chains=[]"
+      ],
+      [
+        "LoopUP",
+        "9386",
+        "chains=[]"
+      ],
+      [
+        "Montra",
+        "9388",
+        "chains=[]"
+      ]
+    ]
+  }
+}

@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-10T00:10:00Z
+timestamp: 2026-11-11T00:15:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,53 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-10 第 15 轮）
+## 本轮漏斗口径（11-11 第 16 轮）
+
+全量 **8990** · 新增 id **15**（可报 **4** / 过滤 11）· `seen` 命中 8975 · `parent` 3 · `category` 1 · 空 `chains` 5 · 链不在白名单 5 · 无 id 0 · 拉取失败 0 · 重报 0。
+
+**可报四条（已发通知、已标 `notified`）：**
+- **`Hyper Tokens`**(9379) · `Hyperliquid L1` · TVL **$103.7K** · `Derivatives` · HyperEVM 上约 6× 杠杆 BTC 敞口代币（VOL/iVOL）的非托管前端，自动再平衡、由 Hyperliquid perps 背书。`url` 空、`twitter=HyperTokensHQ`、`listedAt 2026-11-10T00:13:02Z`。
+- **`Roulana`**(9374) · `Solana` · TVL **$6.34K** · `Luck Games` · 单桌 3D 欧式轮盘，真 USDC 下注、开奖上链可查。`address=solana:ttH5rJW…pump`。
+- **`Kyte`**(9377) · `Robinhood Chain` · TVL **$1.68** / `staking` **$2,027.9** · `Options` · 非托管全额抵押期权。
+- **`GraveStake`**(9373) · `Solana` · TVL **$0** / `staking` **$39,892.9** · `Staking Pool` · 无代码 NFT / SPL 质押池平台。
+
+**过滤 11 条的真边际逐条可数：** `parent` 3 里 **只有 `Kinetiq Elysium Bridge`(9380) 是真边际**（$46.7M，去掉 parent 就能过全部桶），另两条 `Kalos DEX`(9383)/`Kalos Fate`(9384) 是 parent + 非白名单链双帽 · `category` 1（`EYED` 9375）是 category + 空链双帽 → **真边际 0** · 空链 4（`Ascend Launchpad`/`AssetClaw`/`LoopUP`/`Montra`）· 链不在白名单 4（`ArkhamPad` Elysium / `ipUSD` Soneium / `Aurumlend` Arc，加 `Kalos` 两条里的链成分）。**可报集的 TVL 合计 $111.7K，与单条 9380 的 $46.7M 差 418 倍** —— 「可报 TVL 和不代表新增体量」的极端例。
+
+### 加链的收益这次可以逐条数清：Elysium 簇（11-11 第 16 轮）
+
+15 条新增里 **6 条与 `Elysium Kinetiq`（Kinetiq 的 Arbitrum Orbit L3）相关**：官方桥 `Kinetiq Elysium Bridge`(9380，$46.7M)、`Kalos DEX`(9383，$73.7K)、`Kalos Fate`(9384，$2.2K)、`ArkhamPad`(9376，$514)、`Ascend Launchpad`(9381)、`Montra`(9388)。该链**不在 `CHAINS`**。
+
+**该链不是空白地带**：全量已有 15 条 Elysium 系协议，包括 `Uniswap V2/V3/V4`、`Ramses Legacy V2/CL V2/DLMM`、`Aero Slipstream`/`Aero Basic`、`Metric V1`、`nest AMM` —— 即**大协议早已把这条链当部署目标，DefiLlama 侧口径成熟**。
+
+**加链的净收益实算（不是 15% 的宽口径）：**
+
+| 本轮候选 | 加 `Elysium Kinetiq` 后 | 结果 |
+|---|---|---|
+| `ArkhamPad`(9376) | `chains=['Elysium Kinetiq']`、无 parent、非 EXCL | **唯一真可报**（$514） |
+| `Kalos DEX`(9383) | 仍 `parent=parent#kalos` | 仍挡 |
+| `Kalos Fate`(9384) | 仍 `parent=parent#kalos` | 仍挡 |
+| `Ascend`(9381) / `Montra`(9388) | 仍 `chains=[]` | **救不了** |
+
+**所以加链本轮只多 1 条 $514 的候选。** 与上文「旁路/加链都在小量级」一致，且**加链必须删 seen 重做基线**（一次 8990 条重灌），代价远大于收益。**结论：不加。** 想看 Elysium 的名，走旁路（`url`/`description` 并集）比加链便宜。
+
+**另注意 `Ascend Launchpad` / `Montra` 的描述都写着 Elysium，但 `chains=[]`** —— 若日后做 description 旁路，这类条目会被捞回；本轮不动。
+
+### `9382` 是「暂未回填的分配号」—— 该机制连续七轮空转后首次复现（11-11）
+
+本轮 id `9381` → `9383`，**`9382` 不在 payload**（单独复查确认）。前七轮 9300 起连续无缺口，本轮是「暂未回填」形态的首次实盘复现。
+
+**判据照旧：缺席 ≠ 永久空洞。** 9382 是已分配的号、数据要几天后才出现在 `/protocols`（与 11-02→11-03 的 9290–9293 同类，那 4 条后来以 Kraken/Coinbase/Upbit/Bithumb 身份出现）。**不许把它写成「永久缺口」，也不许据此改求差逻辑。** 只有当它出现时，才会落进差集、按新条目过漏斗。
+
+### `listedAt` 滞后于 `/protocols` 出现 —— 不能用来测延迟（11-11 首次实测）
+
+`GraveStake`(9373) 的 `listedAt = 2026-11-09T23:00:59Z`，但**上一轮（第 15 轮）payload 的 `last-modified` 是 2026-11-09T23:38:34Z** —— 上一轮快照生成时 9373 已登记 37 分钟，却不在那份 payload 里。
+
+**修正后的口径：**
+- `listedAt` 是**登记意图时刻**，`/protocols` 的实际出现可晚于它**半小时以上**。
+- 因此 **`listedAt` 不能倒推「上一轮为何漏了它」，也不能用来估算录入延迟。** 要测延迟只能用「seen 首次出现日 vs `listedAt`」的粗粒度差（粒度 = 轮次间隔，本 skill 每日一轮 = 24h）。
+- 主结论不变：**新度只能靠 id 求差**，`listedAt` 只做交叉校验。
+
+## 上一轮漏斗口径（11-10 第 15 轮）
 
 全量 **8975** · 新增 id **9**（可报 **2** / 过滤 7）· `seen` 命中 8966 · `parent` 5 · `category` 1 · 空 `chains`/链白名单 1 · 无 id 0 · 拉取失败 0 · 重报 0。**报告级 2 —— 自第 11 轮以来首次真正出报告并发送。**
 
@@ -354,6 +400,18 @@ id 9300–9363 **连续无缺口**（含本轮 9363），**连续六轮无「暂
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-11 第 16 轮；常规 `HIT` 8990 条、etag `W/"6af3aaea-91df7e"`、`last-modified Tue, 10 Nov 2026 23:38:18 GMT`、`cache-control: public, max-age=300`（`age` 头缺失）；`?_cb=` 源站 `MISS` 8990 条、**etag 与 `last-modified` 与 HIT 完全相同**、`only_hit=0 only_miss=0`；15 条新增 11 字段两份快照零差异）
+- 实测数据：同上 9379 `Hyper Tokens` · `chains=['Hyperliquid L1']` · `category='Derivatives'` · `tvl=103732.1845849603` · `parentProtocol=None` · `listedAt=1794269582`（2026-11-10T00:13:02Z）· `url=''` · `twitter='HyperTokensHQ'` · `misrepresentedTokens=false`
+- 实测数据：同上 9374 `Roulana` · `chains=['Solana']` · `category='Luck Games'` · `tvl=6340.500362375524` · `address='solana:ttH5rJWVxCFBdjd3x2AnBxtYDJtRCFa9ty4QpmUpump'` · `listedAt=1794265687`
+- 实测数据：同上 9377 `Kyte` · `chains=['Robinhood Chain']` · `category='Options'` · `tvl=1.6764450405395035` · `chainTvls={'Robinhood Chain':1.6764,'Robinhood Chain-staking':2027.9011,'staking':2027.9011}` · `listedAt=1794269199`
+- 实测数据：同上 9373 `GraveStake` · `chains=['Solana']` · `category='Staking Pool'` · `tvl=0` · `chainTvls={'Solana':0,'Solana-staking':39892.8557,'staking':39892.8557}` · `address='solana:DEADsWJZaonaiZPFkrqEEBGf43mzA5uHeHpwgy9dW666'` · `listedAt=1794265259`（2026-11-09T23:00:59Z，**早于第 15 轮 `last-modified` 23:38:34Z**）
+- 实测数据：同上 9380 `Kinetiq Elysium Bridge` · `category='Canonical Bridge'` · `parentProtocol='parent#kinetiq'` · `chains=['Hyperliquid L1']` · `tvl=46699401.3277` · `listedAt=1794265401` · `audits='2'` · **唯一「去掉 parent 即全通过」的条目**
+- 实测数据：同上 9376 `ArkhamPad`（`chains=['Elysium Kinetiq']`、`tvl=514.13`、无 parent、`Launchpad`）· 9383 `Kalos DEX`（`parent#kalos`、`Elysium Kinetiq`、`tvl=73695.21`）· 9384 `Kalos Fate`（`parent#kalos`、`Elysium Kinetiq`、`tvl=2199.51`）· 9381 `Ascend Launchpad`（`chains=[]`、描述含 Elysium）· 9388 `Montra`（`chains=[]`、`address='elysium:0x063F7Cc…'`）
+- 实测数据：同上 9375 `EYED`（`Interface`、`chains=[]`、`url='https://eyed.cc'`）· 9378 `ipUSD`（`Soneium`、`tvl=626397.58`）· 9387 `Aurumlend`（`Arc`、`tvl=10201.67`）· 9385 `AssetClaw` / 9386 `LoopUP`（`chains=[]`）
+- 实测数据（Elysium 存量）：`chains` 含 `Elysium Kinetiq` 的 15 条 —— `Uniswap V2`(2197)/`V3`(2198)/`V4`(5690)、`Ramses Legacy V2`(8057)/`CL V2`(8058)/`DLMM`(8295)、`Aero Slipstream`(8691)/`Aero Basic`(9172)、`Metric V1`(8306)、`nest AMM`(7253)，加本轮 9376/9383/9384
+- 实测数据（id 连续性）：**`9382` 不在 payload**（9381→9383 缺 1），其余 9300–9388 连续；数字 id 8989 条、`min=2 max=9388`、250 个历史缺口；非数字 id 仅 `<5471>`
+- 实测数据（`chains=[]` 占比）：1603/8990 = 17.83%
+- 实测数据（新增 `listedAt`）：跨度 23.16h（2026-11-09T23:00:59Z → 2026-11-10T22:10:31Z）；最小间隔 4s（9383→9384，同 `parent#kalos`）；新增内同秒 ≥3 条 0 组；全量现存 29 组，最近仍为 2026-11-07T14:26:04Z(4)
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-10 第 15 轮；常规 `HIT` 8975 条、etag `W/"6af2597a-91a680"`、`last-modified Mon, 09 Nov 2026 23:38:34 GMT`、`age 17`；`?_cb=` 源站 `MISS` 8975 条、**etag 与 `last-modified` 与 HIT 完全相同**；id 集合两向差集仅 `only_seen=['4818']`，9 条新增两份快照零差异）
 - 实测数据：同上 9370 `Hollow` · `chains=['Ethereum']` · `category='Reserve Currency'` · `tvl=10698.342229103919` · `parentProtocol=None` · `listedAt=1794249485`（2026-11-09T18:38:05Z）· `url='https://hollow.cash'` · `misrepresentedTokens=false` · `audits=0`
 - 实测数据：同上 9367 `MING` · `chains=['Binance']` · `category='Gamified Mining'` · `tvl=744.6458651847188` · `parentProtocol=None` · `listedAt=1794249038`（2026-11-09T18:30:38Z）· `url=''` · **`misrepresentedTokens=true`** · `audits=0`
