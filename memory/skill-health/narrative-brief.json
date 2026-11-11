@@ -1,10 +1,10 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-10T10:01:28Z",
-  "quality_score": 4,
-  "assessment": "Correct, verifiable no-op: remote fetch succeeded (http=200, 23472 bytes), all 4 dated sections matched previously pushed sha256 hashes, so notification and seen-state writes were correctly skipped; includes per-section hashes and a useful note about the undetectable silent-stall gap.",
+  "last_analyzed": "2026-11-11T10:01:23Z",
+  "quality_score": 3,
+  "assessment": "Clean, correct no-op run: remote fetch succeeded (http=200, 23472 bytes), all 4 date sections matched recorded sha256 values, correctly reported UNCHANGED and skipped notification per the skill's dedup rules; final output is a short summary that verifiably reflects the run's own log, though it offers no substantive narrative content since nothing new existed.",
   "flags": [],
-  "avg_score": 3.44,
+  "avg_score": 3.42,
   "history": [
     {
       "date": "2026-10-27",
@@ -112,6 +112,12 @@
       "date": "2026-11-10",
       "score": 4,
       "ts": "2026-11-10T10:01:28Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-11",
+      "score": 3,
+      "ts": "2026-11-11T10:01:23Z",
       "harness": "claude"
     }
   ]

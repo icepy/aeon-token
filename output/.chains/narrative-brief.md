@@ -1,4 +1,3 @@
-```
 narratives http=200 bytes=23472 source=remote reason=ok
 节: 4
 新: 0
@@ -9,16 +8,15 @@ narratives http=200 bytes=23472 source=remote reason=ok
 已推过: 29/10/2026 sha256: 466aeca7ee71262c7f87c619719fd661b3cfa6e696eab8dd8b296f3f4b663d38
 结果: UNCHANGED
 notify: 跳过（已推过）
-```
 
 **下一步** — 没有。不要改 `check.py`。
 
-**你要处理的** — 这轮不用你处理。远程取数正常（http=200，未走本地回退），4 节全部是见过的哈希，Grok 自上次写入后没有新内容；4 节正好卡在「超过 4 才提示」的门槛内，无需清理。
+**你要处理的** — 这轮不用你处理。
 
 ## Summary
 
-- 跑了一遍 `skills/narrative-brief/check.py`（一次 bash，无额外抓取），远程 `memory/topics/narratives.md` 返回 `http=200`，23472 字节，`reason=ok`。
-- 结果 `UNCHANGED`：文件内 4 个日期节（29/10、02/11、05/11、09/11）的 sha256 全部已在 `memory/narrative-brief-seen.json` 或近期日志的 `推送: yes` 记录中。
-- 未发送通知、未写 `seen`、未覆盖 `output/narrative-brief/report.md`；脚本自行落了一行日志，未追加 `### narrative-brief` 节。
-- 文件创建/修改：无。
-- 后续动作：无。若 `narratives.md` 连续多日停在 09/11 一节，那是 Grok 自动化 `crypto-narrative-brief-3day` 未写入的问题，本 skill 检测不到静默停摆（`距上次推送: N 天` 尚未实现）。
+- 执行 `skills/narrative-brief/check.py`：远程 `memory/topics/narratives.md` 抓取成功（http=200，23472 bytes，`reason=ok`），未走本地回退。
+- 文件共 4 个日期节，全部命中 `memory/narrative-brief-seen.json` 的 sha256 记录（09/11、05/11、02/11、29/10），本轮 `新: 0`。
+- 结果 `UNCHANGED`：按规则不发通知、不写 seen、不覆盖 `report.md`、不追加日志节。
+- 文件/产物改动：无。
+- 后续动作：无。与 `narrative-brief` 未实现项一致 —— stdout 里仍缺「距上次推送: N 天」那一行，`check.py` 只写 `notified_at` 不读，因此本轮的「无新内容」与「Grok 自动化静默停摆」在输出上仍无法区分；若 Grok 端连续数日未写入，需人工核对 `narratives.md` 的最新日期节（当前最新为 09/11/2026）。
