@@ -603,3 +603,12 @@
 - [Quinten-Wu504/RobotDynamics-CS224W-Stanford](https://github.com/Quinten-Wu504/RobotDynamics-CS224W-Stanford) ★0 · 30天=6 · 7天=6 · `jepa` · Graph learning for robot dynamics prediction: temporal GNNs, equivariance, and JEPA on MimicGen Squa
 - [nuskonghou/wm-ppo](https://github.com/nuskonghou/wm-ppo) ★1 · 30天=5 · 7天=5 · `world model` · WM-PPO: Learning to act by valuing predicted state transitions. World-model predictions + critic-bas
 - [kimsunguk0/Ishinca](https://github.com/kimsunguk0/Ishinca) ★0 · 30天=5 · 7天=5 · `vision language action` · Ishinca: Knowledge Distillation NVIDIA Alpamayo 1.5 (10B) into a 4B vision-language-action model for
+
+## 2026-11-11 · github-radar（报告级 7）
+- [eoinjordan/botbuilder](https://github.com/eoinjordan/botbuilder) ★0 · 30天=77 · 7天=77 · `sim-to-real` · Build your own small robot from the parts you have: printed biped, crank walker or wheeled, on UNO Q
+- [chanyanxuan/jiejian-physai-data](https://github.com/chanyanxuan/jiejian-physai-data) ★1 · 30天=32 · 7天=32 · `sim-to-real` · 解蹇 JieJian | FEA 错误分析 · Physics AI 高质量数据底座 — turn failed simulations into verified, labeled training
+- [jusst01/opengrasp](https://github.com/jusst01/opengrasp) ★0 · 30天=27 · 7天=27 · `teleoperation` · Browser robot-arm teleoperation game (MuJoCo + Franka Panda). Every session becomes LeRobot-format t
+- [Elletuce/6-Axis-Robotic-Arm](https://github.com/Elletuce/6-Axis-Robotic-Arm) ★0 · 30天=10 · 7天=10 · `robot manipulation` · Designing and building a custom 6-DOF robotic arm, integrating SolidWorks CAD, stepper motor actuati
+- [unclesp1d3r/llm-jepa-mlx](https://github.com/unclesp1d3r/llm-jepa-mlx) ★0 · 30天=8 · 7天=8 · `jepa` · Apple Silicon (MLX) port of LLM-JEPA: fine-tuning LLMs with a joint-embedding predictive loss (arXiv
+- [VincentHSS/stararm-lumos-feedback](https://github.com/VincentHSS/stararm-lumos-feedback) ★0 · 30天=7 · 7天=7 · `teleoperation` · StarArm 102 → Lumos teleoperation, per-joint torque-residual damping and bilingual local 3D dashboar
+- [chaamsak/vjepa2-ac-consistency-audit](https://github.com/chaamsak/vjepa2-ac-consistency-audit) ★0 · 30天=6 · 7天=6 · `jepa` · Pilot consistency audit of Meta's released V-JEPA 2-C world model (frozen weights, no training)

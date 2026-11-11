@@ -1,0 +1,159 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 7 · 近 7 天活跃 7"
+      },
+      "children": [
+        "heading",
+        "badges",
+        "sep1",
+        "repos",
+        "sep2",
+        "btn"
+      ]
+    },
+    "heading": {
+      "type": "Heading",
+      "props": {
+        "text": "github-radar",
+        "level": "h1"
+      }
+    },
+    "badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-window",
+        "badge-tier",
+        "badge-active"
+      ]
+    },
+    "badge-window": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 7 天",
+        "variant": "secondary"
+      }
+    },
+    "badge-tier": {
+      "type": "Badge",
+      "props": {
+        "text": "报告级 7",
+        "variant": "outline"
+      }
+    },
+    "badge-active": {
+      "type": "Badge",
+      "props": {
+        "text": "近 7 天活跃 7",
+        "variant": "default"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repos": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "repo-1",
+        "repo-2",
+        "repo-3",
+        "repo-4",
+        "repo-5",
+        "repo-6",
+        "repo-7"
+      ]
+    },
+    "repo-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "eoinjordan/botbuilder",
+        "href": "https://github.com/eoinjordan/botbuilder",
+        "source": "GitHub · ★0 · 30天=77 · 7天=77 · 词 sim-to-real",
+        "score": "Build your own small robot from the parts you have: printed biped, crank walker or wheeled, on UNO Q"
+      }
+    },
+    "repo-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "chanyanxuan/jiejian-physai-data",
+        "href": "https://github.com/chanyanxuan/jiejian-physai-data",
+        "source": "GitHub · ★1 · 30天=32 · 7天=32 · 词 sim-to-real",
+        "score": "解蹇 JieJian | FEA 错误分析 · Physics AI 高质量数据底座 - turn failed simulations into verified, labeled training"
+      }
+    },
+    "repo-3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "jusst01/opengrasp",
+        "href": "https://github.com/jusst01/opengrasp",
+        "source": "GitHub · ★0 · 30天=27 · 7天=27 · 词 teleoperation",
+        "score": "Browser robot-arm teleoperation game (MuJoCo + Franka Panda). Every session becomes LeRobot-format t"
+      }
+    },
+    "repo-4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Elletuce/6-Axis-Robotic-Arm",
+        "href": "https://github.com/Elletuce/6-Axis-Robotic-Arm",
+        "source": "GitHub · ★0 · 30天=10 · 7天=10 · 词 robot manipulation",
+        "score": "Designing and building a custom 6-DOF robotic arm, integrating SolidWorks CAD, stepper motor actuati"
+      }
+    },
+    "repo-5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "unclesp1d3r/llm-jepa-mlx",
+        "href": "https://github.com/unclesp1d3r/llm-jepa-mlx",
+        "source": "GitHub · ★0 · 30天=8 · 7天=8 · 词 jepa",
+        "score": "Apple Silicon (MLX) port of LLM-JEPA: fine-tuning LLMs with a joint-embedding predictive loss (arXiv"
+      }
+    },
+    "repo-6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "VincentHSS/stararm-lumos-feedback",
+        "href": "https://github.com/VincentHSS/stararm-lumos-feedback",
+        "source": "GitHub · ★0 · 30天=7 · 7天=7 · 词 teleoperation",
+        "score": "StarArm 102 → Lumos teleoperation, per-joint torque-residual damping and bilingual local 3D dashboar"
+      }
+    },
+    "repo-7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "chaamsak/vjepa2-ac-consistency-audit",
+        "href": "https://github.com/chaamsak/vjepa2-ac-consistency-audit",
+        "source": "GitHub · ★0 · 30天=6 · 7天=6 · 词 jepa",
+        "score": "Pilot consistency audit of Meta's released V-JEPA 2-C world model (frozen weights, no training)"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "btn": {
+      "type": "Button",
+      "props": {
+        "label": "在 GitHub 上查看",
+        "variant": "secondary"
+      }
+    }
+  }
+}
