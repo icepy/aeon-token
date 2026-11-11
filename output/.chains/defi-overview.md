@@ -1,56 +1,49 @@
-⚠️ Crypto · 2026-11-09 · risk-off
+⚠️ Crypto 2026-11-11 - chop (low)
 
-*Crypto - 2026-11-09* - risk-off (conviction high) | DeFi Mixed: 资金真流出，非重估
+*Crypto - 2026-11-11* - chop（conviction low）| DeFi **Mixed**：TVL 与稳定币几乎持平，DEX 量 −8.5% 独自走低
 
-**Take:** BTC **$74,691（−1.37%）** 与 ETH **$2,133（−4.60%）** 一起下台阶，**top-20 非稳定币 15 个全红（0/15）**，F&G 29 仍在 Fear。**这是 11-06 暴跌后最宽的一次同步下跌，且这次 ETH 领跌。**
+*Take:* 24h 是横盘喘息（BTC **$73,839 +0.38%**、ETH **$2,054.86 +0.54%**、top-20 等权 **+0.00%**），但 7d 广度只剩 **1/20**。**单日反弹发生在单周崩跌之内。**
+*Conviction:* low - 24h 广度从 3/20 回到 8/20（好），F&G 却从 32 回落到 29（坏）；**两个信号反着走**。
+*Evidence:* 7d 首个非稳定币收正的是 FIGR_HELOC（代币化房贷），**top-20 里没有一个真币 7d 收正**。
 
-**TVL:** $79.06B（11-08 桶，**−2.24% 1d** / −3.95% 7d / −11.21% 30d）
-**关键：** ETH 在两个桶时点只动 **+0.03%**，按 ETH 计价 −2.27% → **几乎全是真资金流出**（11-07 那轮相反，是重估）。
+**⚠️ 先纠一个错：上轮「TVL 真资金流出」的判断反了。** 上轮把 TVL 桶日期标错一天。正确配对 **11-08→11-09：USD −2.20%，ETH 价格 −5.04%，ETH 计价 +2.99%** -- 跌幅全部来自计价货币，**以 ETH 计 TVL 是涨的**。
 
-*Top chains*
-1. Ethereum - $42.11B（−2.69%）
-2. Base - $5.72B（−0.87%）
-3. Solana - $5.10B（−2.38%）
+*TVL:* $78.368B（**−0.65% 24h** / −4.29% 7d）-- 但 **ETH 计价 7d +6.13%**（ETH 同期 −9.8%）。**「资金撤退」是价格造成的，不是赎回。**
 
-*Movers*
-↑ **BSC +0.07%** - 唯一 1d 收正的链，7d 仍 −2.85%
-↓ **Hyperliquid −5.23%** - 7d −11.03%，Spot Orderbook 1d −25.65%
-↓ **Plasma −8.94%** - 1d 最差，7d −12.83%
-↑ **Avalanche 7d +12.43%** - 连续第三轮 7d 最强，但主协议零增量（长尾驱动）
+*Top chains（7d，双口径）*
+1. Ethereum $41.40B - USD −5.39% / **ETH 计 +4.92%**
+2. Base $5.83B - USD −1.37% / **ETH 计 +9.37%**
+3. Solana $5.09B - USD −5.44% / **ETH 计 +4.85%**
 
-*协议*
-↑ **Ethena USDe +1.24%**（$4.98B，7d +9.95%）
-↓ **LayerZero V2 −6.81%**（$16.56B，绝对 −1.13B，TVL 63% 在 Polygon）
-↓ **Lido −4.02%** / ether.fi −3.95% / EigenCloud −4.80% / Sky Lending −5.00% -- **ETH 生态同步失血**
+**24h 侧 13 条 ≥$500M 链无一触及 ±5%，本轮无链级异动。** 7d 最强 Avalanche **+5.56%（连续第四轮）**、Monad +3.90%；最差 Plasma −15.75%、Polygon −11.11%、Sui −8.55%。
 
-*Fees (24h)*
-1. Tether $16.57M（−0.4%）· 2. Circle $6.65M · 3. Polymarket US $3.00M（+14.8%）
-总 fees 11-08 = $57.47M，周日归 **−21.8%**
+*Movers（协议，≥$100M、|1d|≥10%）*
+↑ Figure Markets Exchange +13.2%（$0.131B→$0.145B）- OTC 撮合盘，无公开催化
+↑ Galaxy Curation +11.2%（$0.118B→$0.131B）- 风险策展，TVL 短时进款
+↓ **无合格条目** -- 跌幅最大的 NAVI Lending −8.6%、Cooler Loans −7.4%，均未过 10% 门槛，**不硬凑**。
 
-*DEX vol (24h):* **$4.913B（11-08 桶，周日归 −29.8%）**
+*Fees leaders（24h vs 7d 日均）*
+1. Tether $16.77M（+0.5%）
+2. Circle USDC $6.73M（+0.6%）
+3. Hyperliquid Perps $3.19M（**+6.6%**，7d +23.1%）
 
-*Stables:* **$295.93B（1d −0.02%）** - 稳定币没跑
-- USDS 7d **−15.00%** / USD1 7d **−11.81%** 失血
-- USDe 7d **+10.47%** / RLUSD 7d **+11.34%** 吸纳
-- 轮动从昨日 2 腿扩到 4 腿
+*DEX vol:* 24h **$8.335B（−8.49%）** -- 归一后 **11-10 周二 $8.332B = 同星中位 −19.4%**，**连续四个已结算桶全低于中位 10-19%，是持续缩量不是周末效应**。
 
-*Real yield（sustainable，≥$10M，双过滤）*
-• XUPUSDC（upshift, ETH）- 13.15% apyBase（$15M）
-• APXUSD（apyx, ETH）- 12.52% apyBase（$142M）
-• JUSD（jusd-finance, ETH）- 12.14% apyBase（$16M）
+*Stables:* **$290.08B（1d −0.44% / 7d −1.68%）** -- **吸金端熄火**：USDe 7d 从 +10.47% 砍半到 **+6.89%**、RLUSD 从 +11.34% 到 **+5.30%**；失血端 USDS **−17.88%**、USD1 **−14.38%**。USDf 折价 **−55.2bp**（连续第九轮最深）。
 
-*Incentive yield（≥$25M）*
-• CVXCRV（convex, ETH）- 40.1% apy 全 $CRV 奖励（$38M）
-• SDCRV（stake-dao, ETH）- 23.7% apy 全 $CRV 奖励（$31M）
+*Real yield（可持续，已过滤）*
+• SUSDAT（Saturn, ETH）- 23.24% apyBase（$37M）
+• HGRAM（HIPO, TON）- 16.94%（$11M）
+• SUSDX（Axis, ETH）- 15.48%（$55M）
 
-*Macro:* BTC $74,691（−1.37%）/ ETH $2,133（−4.60%）· ETH/BTC **0.02855（−3.2%）** · BTC dominance **60.20%（+0.87pp）** · F&G **29（Fear）** · 广度 **3/20**（全是稳定币）· 热盘「BTC 11/9 站上 $74,000」YES **69.2%**｜「年内跌到 $70,000」**60.5%**（昨 56.5%）
+*Incentive yield（≥$25M，奖励占比>50%）*
+• CVXCRV（Convex, ETH）- 40.67% 全为 $CRV/$CVX 奖励（$36M）
+• SDCRV（StakeDAO, ETH）- 25.11% 全奖励（$29M）
 
-*叙事*
-- AI 股外溢 **peak → 向下加速**
-- 隐私币抗跌 **fading（只剩残余）**：ZEC 7d −0.95%
-- 稳定币收益率轮动 **rising 扩散**
-- **ETH 相对 BTC 失去弹性 emerging**（新增）
-- Hyperliquid **fading 加深**：HYPE 7d −14.81%
+*Macro:* BTC $73,839（+0.38%）/ ETH $2,054.86（+0.54%）· **ETH/BTC 0.027829（两日 −2.52%）** · F&G **29（Fear，昨 32）** · 广度 **8/20 (24h) / 1/20 (7d)**
+**12 月加息盘一夜跳变：25bps increase 76.5% → 85.5%，no change 76.5% → 3.0%，50+bps 腿已 11.1%。** 上轮「三日 76.5% 横盘」终结。
+BTC 年内：触 $70k **63.5%**、$60k 18.5%，向上 $90k 仅 16.5%。
 
-*sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail | var: none*
-_注意：11-07 的 DEX 桶被回溯下修 17.1%（5.944B → 4.926B）-- 当日桶一律视为未结算，只用 ≥T-2 桶做跨日比较。_
+*Catalyst:* **10 月 CPI 在 11-12～11-14**，是 FOMC 前唯一能推翻 85.5% 定价的事件。今日 Veterans Day 债市休市，**成交簿薄，单日放大的波动先怀疑流动性缺口**。
+
+_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail | var: none_
