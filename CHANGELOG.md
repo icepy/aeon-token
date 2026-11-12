@@ -11,6 +11,20 @@ from or pin to; the template keeps serving the latest `main` to new forks.
 
 ### Added
 
+- **Telegram private replies, a Details button and a `/panel` run widget (Bot API 10.4).** In
+  instant mode the webhook Worker now answers button taps with ephemeral replies only the tapper
+  sees, tells a non-owner group member privately that buttons are owner-only, and serves a new
+  global **📄 Details** button that shows the skill's full latest output to the tapper alone.
+  `/panel` sends an HTML widget with the latest run per skill plus Run and Refresh, answered by the
+  Worker through `widget_query`. The poller falls back to posting Details and a pointer for `/panel`.
+
+- **Internet Computer (ICP) skill pack adds three skills.** `canister-status` alerts on control-plane
+  changes (new controller, module-hash upgrade, de-indexing), `sns-digest` posts an NNS and SNS proposal
+  digest, and `icp-deploy-check` runs a static pre-deploy checklist over a local repo. Public reads are
+  keyless. Also ships the icskills contribution package under `docs/icp/`. Catalog now 92 skills. (#1330)
+- **YUSA Pack listed as a community pack.** Its `yusa-skill-audit` skill reads installed `SKILL.md`,
+  `soul/` and `STRATEGY.md` the way the model does and reports hidden instructions such as Unicode TAG
+  characters. (#1340)
 - **`canister-audit` skill audits Internet Computer Rust canisters.** It models invariants, runs a semgrep IC
   ruleset and cargo-audit, checks the 12 canister-security pitfalls, and proves confirmed high or critical
   findings with a PocketIC reproduction through the shared PoC gate. Catalog now 89 skills. (#1328)
