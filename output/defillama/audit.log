@@ -1,10 +1,10 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=8975 · parent=3 · category=1 · 链白名单=7 · 拉取失败=0
-全量 8990 · 新增 id 15（可报 4 / 过滤标记 11）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=8990 · parent=11 · category=0 · 链白名单=7 · 拉取失败=0
+全量 9012 · 新增 id 22（可报 4 / 过滤标记 18）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1904 · Base=927 · Solana=475 · Arbitrum=1053 · Ink=33 · Binance=1153 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=311
+链命中: Ethereum=1905 · Base=932 · Solana=476 · Arbitrum=1055 · Ink=33 · Binance=1154 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=316
 单侧读数: 加密侧 4 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  Hyper Tokens · Hyperliquid L1 · tvl=103732.1845849603 · Derivatives · 1794269582
-  Roulana · Solana · tvl=6340.500362375524 · Luck Games · 1794265687
-  Kyte · Robinhood Chain · tvl=1.6764450405395035 · Options · 1794269199
-  GraveStake · Solana · tvl=0 · Staking Pool · 1794265259
+  Horizen Bridge · Base · tvl=24128.657811027366 · Canonical Bridge · 1794435782
+  Flowlex · Base/Robinhood Chain · tvl=7323.715382832472 · Liquidity Manager · 1794356961
+  Indexfy · Base · tvl=1421.4230329538561 · Indexes · 1794417515
+  Gully Core · Base/Binance/Robinhood Chain · tvl=0.8274234642180354 · Dexs · 1794418588

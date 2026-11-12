@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-11T00:15:00Z
+timestamp: 2026-11-12T00:10:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,50 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-11 第 16 轮）
+## 本轮漏斗口径（11-12 第 17 轮）
+
+全量 **9012** · 新增 id **22**（可报 **4** / 过滤 18）· `seen` 命中 8990 · `parent` **11（历史最高）** · `category` 0 · 空 `chains`/链白名单 7 · 无 id 0 · 拉取失败 0 · 重报 0。
+
+**可报四条（已发通知、已标 `notified`）：** `Horizen Bridge`(9405，Base，$24,128.7，Canonical Bridge，`listedAt 11-11T22:23:02Z`) · `Flowlex`(9390，Base+Robinhood Chain，$7,323.7，Liquidity Manager，Robinhood Chain 侧仅 $0.55) · `Indexfy`(9396，Base，$1,421.4，Indexes，`address=base:0x6D21812b…1ceC`) · `Gully Core`(9400，Base+Binance+Robinhood Chain，$0.83，Dexs，五条链量按 `chainTvls` 拆开均 <$0.4)。
+
+**`parent` 桶首次上双位数（11/22），且真边际首次过半 —— 4/11。** 逐条拆：
+
+| id | 名称 | TVL | 去掉 parent 后 |
+|---|---|---|---|
+| 9393 | `Pendle Loop` | **$42.0M** | **PASS**（Ethereum $40.5M + Monad $1.04M + Base $0.42M；X Layer/Robinhood Chain 均 0） |
+| 9392 | `Jupiter Vaults` | $292.1K | **PASS**（`chains=['Solana']`，量全在 Solana） |
+| 9398 | `HedgeHood Options` | $451 | **PASS** |
+| 9397 | `HedgeHood StockLend` | $53.6 | **PASS** |
+| 9402 | `STRATO DEX` | $595.6K | 仍挡（链 `Strato` 非白名单） |
+| 9389/9395/9404/9407–9409 | `Homer Swap`/`Valdora Vaults`/`GrowStreams Perps`/`ElysPump V1-V3` | 0 | 仍挡（空链） |
+
+**`HedgeHood` 是第 12–13 条子条目**（父下已有 10-28 的 `Hedge Fun`/`HedgeHood HEDGE`、`HedgeHood Stock Yield` $69.8K、11-05 的 `HedgeHood Share Lending` $290）—— 「母协议铺子协议」的连续第 N 轮，parent 遮挡正确。**`Pendle Loop` 是迄今 parent 桶吃掉的第二大条目**（仅次于 11-05 `Dexalot OmniVaults` $1.96M 的 21 倍），且它是 Pendle 官方 `app.pendle.finance/trade/loop` 的杠杆循环产品，不是野生子协议。
+
+**可报集 TVL $32.9K vs `Pendle Loop` $42.0M = 差 1279 倍**，是「可报 TVL 和不代表新增体量」迄今最极端的一例（上一轮 418 倍）。
+
+### `listedAt` 的第二例滞后 + 首次发现整分秒人工痕迹（11-12）
+
+`Valdora Vaults`(9395) `listedAt = 2026-11-10T08:40:00Z`，但上一轮快照 `last-modified = 11-10T23:38:18Z` —— **早 15 小时，本轮才出现在 payload**。与 11-11 `GraveStake`（早 37 分钟）同型，**再证 `listedAt` 是登记意图时刻，不能倒推漏报原因、不能测延迟。**
+
+**新发现：`listedAt` 存在整分 `:00` 秒的人工填写痕迹。** 全量 7336 条带 `listedAt` 的条目里只有 **69 条**是整分（0.94%），本轮新增 22 条里就占了 2 条（9395 `11-10T08:40:00Z`、9402 `11-11T17:00:00Z`）。**含义：这类值不是系统写入，是有人手填了一个整点/整分；把它当精确时间戳算跨度会失真**（本轮含 9395 的全跨度 38.15h，排除后 22.36h，差 16h）。今后算 `listedAt` 跨度先剔整分秒值。
+
+### 加链收益继续缩水：Elysium 本轮边际只有 1 条 $2.6K（11-12）
+
+`Elysium Kinetiq` 现共 **15 条**协议（`Uniswap V2/V3/V4`、`Aero Slipstream`/`Basic`、`Ramses CL V2/Legacy V2/DLMM`、`Metric V1`、`nest AMM` 均自基线轮在录）。本轮新增里挂该链的只有 `Helios DEX`(9394，**$2,632.6**) 与 `Gully Core`(9400)，后者已因 Base/Binance/Robinhood 命中白名单直接可报。
+
+**加链的净边际 = 1 条 $2.6K。上一轮是 1 条 $514。** 代价仍是删 seen 重做 9012 条基线。**结论不变：不加。**
+
+### id 缺口扩大：`9382` 连续第二轮缺席，新增 `9391`、`9412–9415`
+
+本轮 `9380`–`9411` 区间缺 **9382 / 9391**，且 `9412–9415` 也不在 payload（`max_id=9411`，而上轮 `max_id=9388`，前进 23）。按既定判据全部按**「分配了号、数据尚未回填」**处理，**不改求差逻辑、不写「永久空洞」**。注意 `9412–9415` 虽高于历史最大 id 却缺席 —— 说明「id ≥ 历史最大即新登记」这条旧规则的逆向也不成立（缺席的高号同样是待回填）。
+
+### CF 校验（11-12）
+
+常规 `cf-cache-status: HIT`、etag `W/"6af4fc70-924986"`、`last-modified Wed, 11 Nov 2026 23:38:24 GMT`、`age 31`、`cache-control: public, max-age=300`；`?_cb=` + `no-cache` 源站 `MISS`、**etag 与 `last-modified` 与 HIT 完全相同**。9012 条逐字段零差异（`only_hit=0` / `only_miss=0`），22 条新增 11 字段零差异。**`parentProtocol` 翻转连续八轮未复现。** `only_seen=['4818']` 连续第八轮。全量 `chains=[]` = 1613/9012 = **17.90%**（上轮 17.83%，九轮 17.4–17.90）。
+
+`listedAt` 跨度（剔除 9395 整分值后）**22.36h**（11-11T00:27:17Z → 22:48:57Z），最小间隔 **1s**；同秒 ≥3 条批量指纹新增 **0 组**，最近一组仍是 11-07T14:26:04Z(n=4)。`ElysPump V1/V2/V3` 相隔 **11s**（同 parent）是本轮最紧的一组，但未破同秒门槛。录入节奏：22 条里 11-11 22 时 8 条、17 时 6 条 → 两小时 64%，单轮形态不作趋势。
+
+## 上一轮漏斗口径（11-11 第 16 轮）
 
 全量 **8990** · 新增 id **15**（可报 **4** / 过滤 11）· `seen` 命中 8975 · `parent` 3 · `category` 1 · 空 `chains` 5 · 链不在白名单 5 · 无 id 0 · 拉取失败 0 · 重报 0。
 

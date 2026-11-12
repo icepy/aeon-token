@@ -1,64 +1,67 @@
 [
  {
-  "id": "9379",
-  "name": "Hyper Tokens",
-  "slug": "hyper-tokens",
+  "id": "9405",
+  "name": "Horizen Bridge",
+  "slug": "horizen-bridge",
   "chains": [
-   "Hyperliquid L1"
+   "Base"
   ],
-  "tvl": 103732.1845849603,
-  "category": "Derivatives",
-  "listedAt": 1794269582,
-  "url": "",
-  "description": "Non-custodial front end for ~6x leveraged BTC exposure tokens (VOL / iVOL) on HyperEVM that auto-rebalance and",
+  "tvl": 24128.657811027366,
+  "category": "Canonical Bridge",
+  "listedAt": 1794435782,
+  "url": "https://horizen.io/",
+  "description": "Canonical bridge between Base and Horizen, an OP Stack L3 settling to Base",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false
  },
  {
-  "id": "9374",
-  "name": "Roulana",
-  "slug": "roulana",
+  "id": "9390",
+  "name": "Flowlex",
+  "slug": "flowlex",
   "chains": [
-   "Solana"
-  ],
-  "tvl": 6340.500362375524,
-  "category": "Luck Games",
-  "listedAt": 1794265687,
-  "url": "",
-  "description": "One live 3D European roulette table on Solana. Real USDC, the number drawn on-chain, every bet can be checked,",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9377",
-  "name": "Kyte",
-  "slug": "kyte",
-  "chains": [
+   "Base",
    "Robinhood Chain"
   ],
-  "tvl": 1.6764450405395035,
-  "category": "Options",
-  "listedAt": 1794269199,
+  "tvl": 7323.715382832472,
+  "category": "Liquidity Manager",
+  "listedAt": 1794356961,
   "url": "",
-  "description": "Non-custodial, fully collateralised call and put options on Robinhood Chain.",
+  "description": "Flowlex is a non-custodial app for earning Uniswap V3 fees: deposit USDC, pick a strategy, and Flowlex opens a",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false
  },
  {
-  "id": "9373",
-  "name": "GraveStake",
-  "slug": "gravestake",
+  "id": "9396",
+  "name": "Indexfy",
+  "slug": "indexfy",
   "chains": [
-   "Solana"
+   "Base"
   ],
-  "tvl": 0,
-  "category": "Staking Pool",
-  "listedAt": 1794265259,
+  "tvl": 1421.4230329538561,
+  "category": "Indexes",
+  "listedAt": 1794417515,
+  "url": "https://indexfy.xyz",
+  "description": "Non-custodial crypto index tokens on Base. Each index (e.g. I5: BTC, ETH, XRP, SOL, BNB) is an ERC-20 fully ba",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9400",
+  "name": "Gully Core",
+  "slug": "gully-core",
+  "chains": [
+   "Base",
+   "Binance",
+   "Robinhood Chain"
+  ],
+  "tvl": 0.8274234642180354,
+  "category": "Dexs",
+  "listedAt": 1794418588,
   "url": "",
-  "description": "GraveStake is a no-code staking platform on Solana. Projects launch staking pools for their NFTs (legacy, pNFT",
+  "description": "Gully Core is an AMM and token launchpad. One Vault holds the tokens of every pool; pools are concentrated liq",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false

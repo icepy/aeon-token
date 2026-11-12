@@ -13,7 +13,7 @@
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一方向的不同成熟度：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词在几条通道上依次点亮，那个次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · 26 词 · 11-10 第 42 轮 **80 → 7**，六分类两侧失败类全 0 = 读数干净；**ZK 侧占 3/7 证明召回活着**（单轮不作趋势）。14 词仍未配 carrier 表（同 37 轮结论）。收录停 11-09 = 正常。跨窗皆 0 仍只剩 `verifiable inference`/`restaking`，换写法不删。[source: logs/2026-11-10#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-11 第 16 轮 8990 / 新增 15 / **可报 4**（`Hyper Tokens` $103.7K 等）。**主读数 = Elysium 簇**：6/15 挂 `Elysium Kinetiq`（不在 `CHAINS`），加链真边际仅 1 条 → **不加**。`9382` = 未回填编号非空洞。**`listedAt` 不能测延迟；加链须删 seen 重建基线。** [source: logs/2026-11-11#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-12 第 17 轮 9012 / 新增 22 / **可报 4**（$32.9K）。**主读数 = `parent` 桶首上双位数、真边际首过半 4/11**：`Pendle Loop` $42.0M vs 可报和差 1279 倍。**`listedAt` 整分 `:00` 值是人手填的，算跨度先剔**；高号 `9412–9415` 缺席 = 同样待回填。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-12#defillama-radar]
 - `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅在手动 `days:7` 时成立**。11-10 第 23 轮 447/25/12：`30天=`≡`7天=` **12/12 第四轮**（=仓龄，判据缺陷）· **★ 分布首破全 0**（1★1，`min:0` 不动）· 加密侧**第八连轮** 0 · probe 真簇 `teleop`。→ [topic](/topics/github-radar.md) [source: logs/2026-11-10#github-radar]
 
 
