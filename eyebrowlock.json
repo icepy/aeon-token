@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-09T12:32:38.05142721Z",
+  "generatedAt": "2026-11-12T02:12:09.892653794Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -342,7 +342,7 @@
       "files": [
         {
           "path": "CLAUDE.md",
-          "hash": "6badeb45a4c20f8c3a4ab21aa83b8fd3b9ae94de2307a9f3e5b5f641c710b411"
+          "hash": "b7d30a6491828d4a00e4251fd31b63ab891af84d50c2adb651ddd0329befb2bb"
         }
       ],
       "findings": [
@@ -356,7 +356,7 @@
           "explanation": "contains consent-bypass or prompt-injection language"
         }
       ],
-      "contentHash": "sha256-b336ea00e64ec909b942d65da4e24dfb69a765ed605ef332b259f2b89cb01fa8",
+      "contentHash": "sha256-e720fa47beaf83fb38332566e209355783f91ed872cb816451ac70b65cdad04e",
       "discoveredFrom": "CLAUDE.md"
     },
     {
@@ -559,7 +559,7 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "d17beb6d6b4350d1aa05eb0a6031a7773e32eefbd78b5978674656cf264ab9a9"
+          "hash": "3e44bff444943841caf6cca2f71c0804965183c1772e50ac7680f0f1c3e4e37a"
         },
         {
           "path": "project/package-lock.json",
@@ -617,7 +617,7 @@
           "explanation": "contains consent-bypass or prompt-injection language"
         }
       ],
-      "contentHash": "sha256-de44d713312d0a1fabc8c68171c0186e1c4ba9ea2abd26cc0cbcd924c051a756",
+      "contentHash": "sha256-dd1c32931cb3a55de39dd435b6cd0c5d564c2e4b45fdbc2f96a0c53090eafd0f",
       "discoveredFrom": "skills/remotion/SKILL.md"
     },
     {
@@ -1327,7 +1327,7 @@
       "files": [
         {
           "path": "AGENTS.md",
-          "hash": "f8a9ad2259a6161a8fa22d924d031439382d7f7555b1f33702a7cbccbd598494"
+          "hash": "8e312babb57e99449849e520f2f72f76c0d904e110e79c0ee8e33c0dfd885b01"
         }
       ],
       "findings": [
@@ -1341,7 +1341,7 @@
           "explanation": "contains consent-bypass or prompt-injection language"
         }
       ],
-      "contentHash": "sha256-934e98ebaee04358f09065b4a3b09cd52e388bf13787377e3247209cb760aff3",
+      "contentHash": "sha256-dcf2ad58025607f46e9da6ed0e0ddee366d7e96649d61805882813eefcd639e1",
       "discoveredFrom": "AGENTS.md"
     },
     {
@@ -3327,7 +3327,7 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "ef5c85ba59467580304a8656eb482cec04a76097449ca49c1dfc6dc77b7c9c76"
+          "hash": "9f5c86d9a550c1f8110a78e6d5f43eee05b9c73cda7d05983b8fdc6fd32ae85e"
         },
         {
           "path": "references/ci.md",
@@ -3339,11 +3339,11 @@
         },
         {
           "path": "references/layout.md",
-          "hash": "53ed917a377d8690f35cf44437c25fe3c2a57814f0ffd480c2e3d3c42941436f"
+          "hash": "3a29b4733a4166180d1f7a41814e679ae8c590d5bba184cd7937305099fa006a"
         },
         {
           "path": "references/mcp.md",
-          "hash": "20f08569e407d0f22b971847fb43a538c90ba60773871a7cd82693361218868c"
+          "hash": "d062d96f414dc33fa1b9f8ad1757a855ec839d41d0a6c6ee81fd1973f256d96c"
         },
         {
           "path": "references/secrets.md",
@@ -3351,7 +3351,7 @@
         },
         {
           "path": "references/skill-anatomy.md",
-          "hash": "192cb29efdd44d971d1a920ca8e06e2f0a03610ad56f5cc08c4a8aafe0c908f5"
+          "hash": "338ac232955e1f060086684d2bb471be1a21c050b712a1454409c7d8d4677a0f"
         },
         {
           "path": "scripts/mine-history.mjs",
@@ -3387,7 +3387,7 @@
           "explanation": "references sensitive credential or secret paths"
         }
       ],
-      "contentHash": "sha256-bbfb9369adf255361629fb46aba6b915d83911106ce7b0eada932fa8557f1343",
+      "contentHash": "sha256-688d209682c961d0f456c31eee0eaa2841f508863a7541042331c3902e7b5e5a",
       "discoveredFrom": ".claude/skills/aeon/SKILL.md"
     },
     {
