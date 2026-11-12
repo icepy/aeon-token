@@ -1,60 +1,18 @@
-## 🔴 heartbeat · 2026-11-11 00:31 UTC
+ℹ️ heartbeat · defi-overview 已恢复（病因未修）
 
-**P0 · `defi-overview` 连败 4 轮，断路器已跳闸 -- 这是本轮唯一的新事实。**
+## 🟡 heartbeat · 2026-11-12 00:34 UTC
 
-`consecutive_failures=4`，`last_success` 停在 **11-09T00:46Z（约 48h）**。11-10T23:00Z 那轮仍是 `403 All target providers failed`，但 `duration_api_ms:0` → 请求根本没出网关，属鉴权层秒拒，不是我这边跑挂了。
+**没有东西是坏的** -- 所有 enabled 技能最后一轮都成功。页面从 🔴 降到 🟡。
 
-**断路器改变了止损结构（此前 3 天没人报过这点）：**
+**1. `defi-overview` 昨夜恢复了，但病因没修**
+- 11-11 23:22Z 成功（自 11-09 00:46Z 以来首次），终结 4 连败。
+- 但它是靠断路器 360m probe 窗口恰好落在坏窗口之外跑通的，**不是被修好了**。
+- 两个病因原地未动：① cron 固定在 `0 23`，正落在网关 403 高发窗；② 单轮输出撞过 128k 上限。
+- **今晚 23:00Z 很可能再挂一次。** 可决策项：要不要把 cron 挪离 23 点（唯一能绕开 403 又不依赖重试的动作）。输出超限是另一码事，要单独减单轮读写量。
 
-- 23:30Z 调度器日志：`Circuit breaker OPEN: defi-overview (4 consecutive failures) - skip, next probe in 330m`
-- 今晨 00:30Z 再跑：`skip, next probe in 270m`
-- 含义：**30 分钟快速重试通道已被抑制**，现在每天只探一次，且必须「有欠槽」。
+**2. 唯一挂着的 OPERATOR 决策**
+上游 `aeon.yml` 五条（`canister-audit` / `canister-status` / `sns-digest` / `icp-deploy-check` / `flovia`）全 `enabled: false`，抄或不抄都不阻塞任何东西。
 
-**这推翻了前两天「等重试自愈」的假设 -- 反证在历史里：**
+其余：PR 队列 0（连续第九天）· 8 个 GitHub health 线程全是 scorer 自动生成、无 severity 标签 · 无 stuck · 无 chronic · `market-context.md` 已由昨夜 23:20Z 那轮刷新回新鲜。
 
-`defi-overview` 23:00Z 槽位逐日结果：
-
-| 日期 | 23:00Z | 是否被 30min 重试救回 |
-|---|---|---|
-| 11-02 | 失败 | ✅ 23:30 成功 |
-| 11-06 | 失败 | ✅ 次日 00:15 成功 |
-| 11-08 | 失败 | ✅ 次日 00:15 成功 |
-| 11-09 | 失败 | ❌ 23:30 失败 → 00:15 失败（输出超限） |
-| 11-10 | 失败 | ⛔ 断路器跳过，无重试 |
-
-**判据：11-02 / 11-06 / 11-08 三次都是靠 23:30 或 00:15 的重试跑成的 -- 重试通道本身就是自愈机制。** 11-09 那次重试撞上 `max_output_tokens`（76298/128000，95 turns）没救回来，于是 `consecutive_failures` 爬到 4，断路器跳闸，**把唯一有效的自愈路径关掉了**。
-
-所以现在不是「等它自己好」，是**故障模式已经从「间歇性 403」升级成「断路状态下每天窄窗只探一次，而那个窗口正是 403 高发时段」**。23:00Z 槽位 11-06 起 5 次里挂 5 次（11-07 例外成功），成功率已从早期 100% 掉到 0%。
-
-**可执行的两条（都不需要改代码判断，是配置决策）：**
-
-1. **把 `defi-overview` cron 从 `0 23` 挪开** -- 23:00-23:31Z 是 403 高发窗口，挪到例如 `0 20` 或 `0 2`。这是唯一能同时绕开 403 又不依赖重试的动作。
-2. **单独修输出超限**（`max_output_tokens` 是另一病因，与 403 分开）-- 应削减单轮读取/输出量，不要靠调大限额治标。
-
-**副作用**：`memory/topics/market-context.md` 的 `timestamp` 仍是 `2026-11-09T00:30:00Z` -- 宏观快照已旧 **2 天**，引用它做判断必须知道这点。
-
----
-
-**P0 其余 · 全绿**
-
-- 无 stuck（cron-state 里 `dispatched` 残留 0 条；heartbeat 自身在飞，按规则不计）
-- 无其他 `cf≥3`（enabled 范围内）
-- 无 chronic（最低 sr = `defi-overview` 0.57，仍在 0.5 线上方）
-- heartbeat 自检 24.0h（11-10T00:35Z），在 36h 线内
-
-**P1 · 无需动作**
-
-- PR 队列 **0**（连续第八天清空）
-- 8 个 open issue 全是 scorer 自动生成的 `health: <skill>` 线程，`labels: []`，无 urgent/critical/high。#13 `health: defi-overview` 于 11-10T23:01Z 更新，对应上面那次失败
-
-**P2 · 无新增**
-
-`memory/on-chain-state.json.new` 遗留物仍在（连续第十八轮）-- 所属 `onchain-monitor` 已停用，只在重开前处理，不 notify。
-
-**P3 · 无缺口**
-
-8 个 enabled 带 cron 的 skill 在 cron-state 里全有条目。`arxvi-radar` 孤儿条目仍在（`aeon.yml` 内已无该 skill），已连报十二轮，不重复 notify。
-
----
-
-**排除项（口径不变）**：`price-alert`(cf=5) · `onchain-monitor`(cf=4) · `token-movers`(cf=3) 均 `enabled: false`，连败数字冻结在 10-25，不列 findings、不 notify。
+来源：`memory/cron-state.json` · `memory/MEMORY.md` · `gh pr/issue list` · `memory/logs/2026-11-11.md`

@@ -1,0 +1,191 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "ℹ️ heartbeat · defi-overview 已恢复（病因未修）"
+      },
+      "children": [
+        "header",
+        "summary",
+        "sep1",
+        "s1h",
+        "b1",
+        "b2",
+        "b3",
+        "alert1",
+        "sep2",
+        "s2h",
+        "s2text",
+        "badges",
+        "sep3",
+        "statPR",
+        "others",
+        "sep4",
+        "sources"
+      ]
+    },
+    "header": {
+      "type": "Heading",
+      "props": {
+        "text": "🟡 heartbeat · 2026-11-12 00:34 UTC",
+        "level": "h2"
+      }
+    },
+    "summary": {
+      "type": "Text",
+      "props": {
+        "text": "没有东西是坏的 -- 所有 enabled 技能最后一轮都成功。页面从 🔴 降到 🟡。",
+        "variant": "lead"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "s1h": {
+      "type": "Heading",
+      "props": {
+        "text": "1. defi-overview 昨夜恢复了，但病因没修",
+        "level": "h3"
+      }
+    },
+    "b1": {
+      "type": "Text",
+      "props": {
+        "text": "11-11 23:22Z 成功（自 11-09 00:46Z 以来首次），终结 4 连败。",
+        "variant": "body"
+      }
+    },
+    "b2": {
+      "type": "Text",
+      "props": {
+        "text": "但它是靠断路器 360m probe 窗口恰好落在坏窗口之外跑通的，不是被修好了。",
+        "variant": "body"
+      }
+    },
+    "b3": {
+      "type": "Text",
+      "props": {
+        "text": "两个病因原地未动：① cron 固定在 0 23，正落在网关 403 高发窗；② 单轮输出撞过 128k 上限。",
+        "variant": "body"
+      }
+    },
+    "alert1": {
+      "type": "Alert",
+      "props": {
+        "title": "今晚 23:00Z 很可能再挂一次",
+        "message": "可决策项：要不要把 cron 挪离 23 点（唯一能绕开 403 又不依赖重试的动作）。输出超限是另一码事，要单独减单轮读写量。",
+        "type": "warning"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "s2h": {
+      "type": "Heading",
+      "props": {
+        "text": "2. 唯一挂着的 OPERATOR 决策",
+        "level": "h3"
+      }
+    },
+    "s2text": {
+      "type": "Text",
+      "props": {
+        "text": "上游 aeon.yml 五条（canister-audit / canister-status / sns-digest / icp-deploy-check / flovia）全 enabled: false，抄或不抄都不阻塞任何东西。",
+        "variant": "body"
+      }
+    },
+    "badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge1",
+        "badge2",
+        "badge3",
+        "badge4",
+        "badge5"
+      ]
+    },
+    "badge1": {
+      "type": "Badge",
+      "props": {
+        "text": "canister-audit",
+        "variant": "outline"
+      }
+    },
+    "badge2": {
+      "type": "Badge",
+      "props": {
+        "text": "canister-status",
+        "variant": "outline"
+      }
+    },
+    "badge3": {
+      "type": "Badge",
+      "props": {
+        "text": "sns-digest",
+        "variant": "outline"
+      }
+    },
+    "badge4": {
+      "type": "Badge",
+      "props": {
+        "text": "icp-deploy-check",
+        "variant": "outline"
+      }
+    },
+    "badge5": {
+      "type": "Badge",
+      "props": {
+        "text": "flovia",
+        "variant": "outline"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "statPR": {
+      "type": "Stat",
+      "props": {
+        "label": "PR 队列",
+        "value": "0",
+        "delta": "连续第九天",
+        "trend": "neutral"
+      }
+    },
+    "others": {
+      "type": "Text",
+      "props": {
+        "text": "8 个 GitHub health 线程全是 scorer 自动生成、无 severity 标签 · 无 stuck · 无 chronic · market-context.md 已由昨夜 23:20Z 那轮刷新回新鲜。",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sources": {
+      "type": "Text",
+      "props": {
+        "text": "来源：memory/cron-state.json · memory/MEMORY.md · gh pr/issue list · memory/logs/2026-11-11.md",
+        "variant": "caption"
+      }
+    }
+  }
+}
