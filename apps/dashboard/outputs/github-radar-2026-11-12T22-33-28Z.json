@@ -1,0 +1,404 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 12 · 近 7 天活跃 12"
+      },
+      "children": [
+        "root-stack"
+      ]
+    },
+    "root-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "stats-grid",
+        "sep1",
+        "repo-list"
+      ]
+    },
+    "stats-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-report",
+        "stat-active",
+        "stat-window"
+      ]
+    },
+    "stat-report": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "12"
+      }
+    },
+    "stat-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "12"
+      }
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "7 天"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo-list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "repo1",
+        "repo2",
+        "repo3",
+        "repo4",
+        "repo5",
+        "repo6",
+        "repo7",
+        "repo8",
+        "repo9",
+        "repo10",
+        "repo11",
+        "repo12"
+      ]
+    },
+    "repo1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link1",
+        "desc1"
+      ]
+    },
+    "link1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "arianizadi/vla-from-scratch",
+        "href": "https://github.com/arianizadi/vla-from-scratch",
+        "source": "robot manipulation",
+        "score": "★0 · 30天=87 · 7天=87"
+      }
+    },
+    "desc1": {
+      "type": "Text",
+      "props": {
+        "text": "Hands-on guide to LLMs, VLMs and VLAs for robot manipulation: every stage trained from scratch, ever",
+        "variant": "caption"
+      }
+    },
+    "repo2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link2",
+        "desc2"
+      ]
+    },
+    "link2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "wangguode/terra-world-travel",
+        "href": "https://github.com/wangguode/terra-world-travel",
+        "source": "world model",
+        "score": "★1 · 30天=67 · 7天=67"
+      }
+    },
+    "desc2": {
+      "type": "Text",
+      "props": {
+        "text": "TERRA-OASIS // 14B 自回归动作驱动可交互神经世界模型系统 · 赛博禅刹祈福殿堂与未来数字新城双模旗舰 (Playable Neural World Model Simulator)",
+        "variant": "caption"
+      }
+    },
+    "repo3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link3",
+        "desc3"
+      ]
+    },
+    "link3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "fredp74/ssm-jepa-lab",
+        "href": "https://github.com/fredp74/ssm-jepa-lab",
+        "source": "jepa",
+        "score": "★0 · 30天=17 · 7天=17"
+      }
+    },
+    "desc3": {
+      "type": "Text",
+      "props": {
+        "text": "Experimental sequence-model research: SSMs, GRUs, Transformers, JEPA objectives, continual learning,",
+        "variant": "caption"
+      }
+    },
+    "repo4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link4",
+        "desc4"
+      ]
+    },
+    "link4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "vigno0405/MetaQuestTeleop",
+        "href": "https://github.com/vigno0405/MetaQuestTeleop",
+        "source": "teleoperation",
+        "score": "★0 · 30天=12 · 7天=12"
+      }
+    },
+    "desc4": {
+      "type": "Text",
+      "props": {
+        "text": "Library for Meta Quest teleoperation.",
+        "variant": "caption"
+      }
+    },
+    "repo5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link5",
+        "desc5"
+      ]
+    },
+    "link5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Gabriel-PEZ/LeWorldModel",
+        "href": "https://github.com/Gabriel-PEZ/LeWorldModel",
+        "source": "jepa",
+        "score": "★0 · 30天=12 · 7天=12"
+      }
+    },
+    "desc5": {
+      "type": "Text",
+      "props": {
+        "text": "JEPA-based world model for visual representation learning, latent dynamics prediction, and planning",
+        "variant": "caption"
+      }
+    },
+    "repo6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link6",
+        "desc6"
+      ]
+    },
+    "link6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ahmed-Hammoda/ita-diffusion-policy",
+        "href": "https://github.com/Ahmed-Hammoda/ita-diffusion-policy",
+        "source": "robot manipulation",
+        "score": "★0 · 30天=10 · 7天=10"
+      }
+    },
+    "desc6": {
+      "type": "Text",
+      "props": {
+        "text": "Language-conditioned Transformer diffusion policy for robot manipulation: frozen DINOv2 + CLIP encod",
+        "variant": "caption"
+      }
+    },
+    "repo7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link7",
+        "desc7"
+      ]
+    },
+    "link7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "dk2472780158-ctrl/g1-navigation-rl",
+        "href": "https://github.com/dk2472780158-ctrl/g1-navigation-rl",
+        "source": "sim2real",
+        "score": "★1 · 30天=7 · 7天=7"
+      }
+    },
+    "desc7": {
+      "type": "Text",
+      "props": {
+        "text": "G1 navigation and reinforcement learning: FAST-LIO, AMCL/Nav2, Isaac Gym PPO/LSTM and Sim2Real deplo",
+        "variant": "caption"
+      }
+    },
+    "repo8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link8",
+        "desc8"
+      ]
+    },
+    "link8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "santoshrajkumar/fame-qp",
+        "href": "https://github.com/santoshrajkumar/fame-qp",
+        "source": "world model",
+        "score": "★8 · 30天=6 · 7天=6"
+      }
+    },
+    "desc8": {
+      "type": "Text",
+      "props": {
+        "text": "FAME-QP: open-source GPU QP solver for fast, real-time model predictive control (linear, Koopman and",
+        "variant": "caption"
+      }
+    },
+    "repo9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link9"
+      ]
+    },
+    "link9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ol11veira/herdr-layout-jepa",
+        "href": "https://github.com/Ol11veira/herdr-layout-jepa",
+        "source": "jepa",
+        "score": "★1 · 30天=6 · 7天=6"
+      }
+    },
+    "repo10": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link10",
+        "desc10"
+      ]
+    },
+    "link10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HDU-EILab/ur5-teleop",
+        "href": "https://github.com/HDU-EILab/ur5-teleop",
+        "source": "teleoperation",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "desc10": {
+      "type": "Text",
+      "props": {
+        "text": "UR5 VR teleoperation stack (PICO/RTDE/servoj) with data collection and LeRobot export",
+        "variant": "caption"
+      }
+    },
+    "repo11": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link11",
+        "desc11"
+      ]
+    },
+    "link11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "blueif16/vla_final",
+        "href": "https://github.com/blueif16/vla_final",
+        "source": "vision language action",
+        "score": "★2 · 30天=5 · 7天=5"
+      }
+    },
+    "desc11": {
+      "type": "Text",
+      "props": {
+        "text": "CS 6180 final project on vision-language-action models: learning chapters, status and (later) code",
+        "variant": "caption"
+      }
+    },
+    "repo12": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link12",
+        "desc12"
+      ]
+    },
+    "link12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Yukun-Zheng/LiteTwin",
+        "href": "https://github.com/Yukun-Zheng/LiteTwin",
+        "source": "robot manipulation",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "desc12": {
+      "type": "Text",
+      "props": {
+        "text": "Task-state feedback for robot manipulation. Explore 12 RLBench tasks, watch annotated comparisons in",
+        "variant": "caption"
+      }
+    }
+  }
+}

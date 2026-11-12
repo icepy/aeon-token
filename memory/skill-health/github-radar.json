@@ -1,17 +1,11 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-11-11T23:17:59Z",
+  "last_analyzed": "2026-11-12T22:33:27Z",
   "quality_score": 4,
-  "assessment": "Clean discovery output: 7 repos with URLs, star counts, commit recency, matched direction words, and descriptions — directly fulfilling the radar's discovery-only job; minor polish issues from truncated descriptions but no invented-looking specifics.",
+  "assessment": "Clean, well-structured discovery report matching the skill's stated job of scan-only: 12 repos with direction-word tags, star counts, and 7/30-day activity figures, each with a descriptive snippet — plausible and internally consistent GitHub search output, though specific counts can't be independently verified from here.",
   "flags": [],
   "avg_score": 3.27,
   "history": [
-    {
-      "date": "2026-10-25",
-      "score": 4,
-      "ts": "2026-10-25T06:42:43Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-25",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-11",
       "score": 4,
       "ts": "2026-11-11T23:17:59Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-12",
+      "score": 4,
+      "ts": "2026-11-12T22:33:27Z",
       "harness": "claude"
     }
   ]

@@ -4,56 +4,135 @@
   "terms": [
    "robot manipulation"
   ],
-  "repo": "Elletuce/6-Axis-Robotic-Arm",
-  "owner": "Elletuce",
-  "url": "https://github.com/Elletuce/6-Axis-Robotic-Arm",
+  "repo": "rajithavadde1246-dev/NovaFlow-Robot-Manipulation-",
+  "owner": "rajithavadde1246-dev",
+  "url": "https://github.com/rajithavadde1246-dev/NovaFlow-Robot-Manipulation-",
   "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 217,
+  "size_kb": 0,
   "language": null,
-  "desc": "Designing and building a custom 6-DOF robotic arm, integrating SolidWorks CAD, stepper motor actuation, ESP32 microcontroller control, and P",
-  "commits_30d": 10,
-  "commits_7d": 10,
+  "desc": "NovaFlow-inspired simulation-based prototype for robot manipulation using generated video trajectories.",
+  "commits_30d": 1,
+  "commits_7d": 1,
   "no_lang": true
  },
  {
   "term": "robot manipulation",
   "terms": [
-   "robot manipulation",
-   "vision language action"
+   "robot manipulation"
   ],
-  "repo": "MohammadWasil/Unity3d-robotics-simulation-VLA",
-  "owner": "MohammadWasil",
-  "url": "https://github.com/MohammadWasil/Unity3d-robotics-simulation-VLA",
+  "repo": "JemmaUZH/robot-value-learning",
+  "owner": "JemmaUZH",
+  "url": "https://github.com/JemmaUZH/robot-value-learning",
   "stars": 0,
-  "created": "2026-11-11",
-  "topics": [
-   "franka",
-   "robotics-simulation",
-   "vla"
-  ],
-  "size_kb": 16122,
-  "language": null,
-  "desc": "A Unity simulation environment for the Franka FR3 robot featuring custom URDF creation and robotic manipulation tasks. Captures camera and s",
-  "commits_30d": 3,
-  "commits_7d": 3,
-  "no_lang": true
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 292,
+  "language": "Python",
+  "desc": "RECAP-inspired value learning for robotic manipulation",
+  "commits_30d": 1,
+  "commits_7d": 1
  },
  {
-  "term": "teleoperation",
+  "term": "robot manipulation",
   "terms": [
-   "teleoperation"
+   "robot manipulation"
   ],
-  "repo": "MCREART/franka-teleop",
-  "owner": "MCREART",
-  "url": "https://github.com/MCREART/franka-teleop",
-  "stars": 2,
+  "repo": "ThoughtToTorque/ShiftBack",
+  "owner": "ThoughtToTorque",
+  "url": "https://github.com/ThoughtToTorque/ShiftBack",
+  "stars": 0,
   "created": "2026-11-11",
   "topics": [],
-  "size_kb": 7086,
+  "size_kb": 23283,
   "language": "Python",
-  "desc": "iPhone ARKit pose teleoperation for a MuJoCo Franka Panda, with gripper control and haptic feedback.",
+  "desc": "Training-free correction of workpiece layout changes for imitation-learned robot manipulation policies",
+  "commits_30d": 2,
+  "commits_7d": 2
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "Ahmed-Hammoda/ita-diffusion-policy",
+  "owner": "Ahmed-Hammoda",
+  "url": "https://github.com/Ahmed-Hammoda/ita-diffusion-policy",
+  "stars": 0,
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 44,
+  "language": "Python",
+  "desc": "Language-conditioned Transformer diffusion policy for robot manipulation: frozen DINOv2 + CLIP encoders, encoder–decoder Transformer built f",
+  "commits_30d": 10,
+  "commits_7d": 10
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "Bconn2000/centaur-robotics-platform",
+  "owner": "Bconn2000",
+  "url": "https://github.com/Bconn2000/centaur-robotics-platform",
+  "stars": 0,
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 0,
+  "language": "Python",
+  "desc": "Development of a mobile robotic platform integrating ROS 2, Arduino-based motor control, real-time camera streaming, ultrasonic sensors, and",
+  "commits_30d": 1,
+  "commits_7d": 1
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "arianizadi/vla-from-scratch",
+  "owner": "arianizadi",
+  "url": "https://github.com/arianizadi/vla-from-scratch",
+  "stars": 0,
+  "created": "2026-11-11",
+  "topics": [],
+  "size_kb": 211452,
+  "language": "Python",
+  "desc": "Hands-on guide to LLMs, VLMs and VLAs for robot manipulation: every stage trained from scratch, every claim backed by a run. Work in progres",
+  "commits_30d": 87,
+  "commits_7d": 87
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "Yukun-Zheng/LiteTwin",
+  "owner": "Yukun-Zheng",
+  "url": "https://github.com/Yukun-Zheng/LiteTwin",
+  "stars": 0,
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 65665,
+  "language": "Python",
+  "desc": "Task-state feedback for robot manipulation. Explore 12 RLBench tasks, watch annotated comparisons in English, 简体中文 or 繁體中文, and reproduce Op",
+  "commits_30d": 5,
+  "commits_7d": 5
+ },
+ {
+  "term": "robot manipulation",
+  "terms": [
+   "robot manipulation"
+  ],
+  "repo": "Ribilt/ST-ACT",
+  "owner": "Ribilt",
+  "url": "https://github.com/Ribilt/ST-ACT",
+  "stars": 0,
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 20,
+  "language": "Python",
+  "desc": "Standalone PyTorch reference implementation of ST-ACT: a Transformer action expert with RoPE, depth-wise temporal Conv1D smoothing, and tied",
   "commits_30d": 2,
   "commits_7d": 2
  },
@@ -62,51 +141,32 @@
   "terms": [
    "teleoperation"
   ],
-  "repo": "aishangao/Open-H-Endoluminal",
-  "owner": "aishangao",
-  "url": "https://github.com/aishangao/Open-H-Endoluminal",
-  "stars": 1,
-  "created": "2026-11-11",
-  "topics": [],
-  "size_kb": 29,
-  "language": null,
-  "desc": "Open-H-Endoluminal research: synchronized teleoperation data collection for robotic endoscopy",
-  "commits_30d": 1,
-  "commits_7d": 1,
-  "no_lang": true
- },
- {
-  "term": "teleoperation",
-  "terms": [
-   "teleoperation"
-  ],
-  "repo": "university-of-toronto-humanoid-robotics/teleop-gloves",
-  "owner": "university-of-toronto-humanoid-robotics",
-  "url": "https://github.com/university-of-toronto-humanoid-robotics/teleop-gloves",
+  "repo": "IRaC-Lab/OSCBF-Teleoperation",
+  "owner": "IRaC-Lab",
+  "url": "https://github.com/IRaC-Lab/OSCBF-Teleoperation",
   "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 5,
-  "language": null,
-  "desc": "Teleoperation gloves for manipulation data collection",
-  "commits_30d": 1,
-  "commits_7d": 1,
-  "no_lang": true
- },
- {
-  "term": "teleoperation",
-  "terms": [
-   "teleoperation"
-  ],
-  "repo": "phoenix1revv-risefromashes/Real-Time-Low-Cost-Robotic-Hand-Teleoperation-using-CV",
-  "owner": "phoenix1revv-risefromashes",
-  "url": "https://github.com/phoenix1revv-risefromashes/Real-Time-Low-Cost-Robotic-Hand-Teleoperation-using-CV",
-  "stars": 0,
-  "created": "2026-11-11",
-  "topics": [],
-  "size_kb": 6504,
+  "size_kb": 6560,
   "language": "Python",
-  "desc": "Low-cost, real-time human hand motion replication using computer vision, Python, MediaPipe, and Arduino UNO to translate human finger moveme",
+  "desc": "OMX leader–Franka follower teleoperation with operational-space control barrier functions and dynamic virtual obstacle avoidance.",
+  "commits_30d": 4,
+  "commits_7d": 4
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "favour-appsprojects-code/tinyarm5-robot-teleoperation",
+  "owner": "favour-appsprojects-code",
+  "url": "https://github.com/favour-appsprojects-code/tinyarm5-robot-teleoperation",
+  "stars": 0,
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 3241,
+  "language": "Python",
+  "desc": "Real-time robotic arm teleoperation integrating Unity, Python, MuJoCo, inverse kinematics, and UDP networking, with Meta Quest 3 integration",
   "commits_30d": 3,
   "commits_7d": 3
  },
@@ -115,289 +175,193 @@
   "terms": [
    "teleoperation"
   ],
-  "repo": "elhadriy77/robotaxi-teleop",
-  "owner": "elhadriy77",
-  "url": "https://github.com/elhadriy77/robotaxi-teleop",
+  "repo": "vigno0405/MetaQuestTeleop",
+  "owner": "vigno0405",
+  "url": "https://github.com/vigno0405/MetaQuestTeleop",
   "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 24,
+  "size_kb": 541,
   "language": "Python",
-  "desc": "Security PoC for a robotaxi teleoperation channel — attacks & defenses (HMAC, TLS, anti-replay)",
-  "commits_30d": 1,
-  "commits_7d": 1
+  "desc": "Library for Meta Quest teleoperation.",
+  "commits_30d": 12,
+  "commits_7d": 12
  },
  {
   "term": "teleoperation",
   "terms": [
    "teleoperation"
   ],
-  "repo": "VincentHSS/stararm-lumos-feedback",
-  "owner": "VincentHSS",
-  "url": "https://github.com/VincentHSS/stararm-lumos-feedback",
+  "repo": "jason-xzs/realman-vr-teleop",
+  "owner": "jason-xzs",
+  "url": "https://github.com/jason-xzs/realman-vr-teleop",
   "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 8680,
+  "size_kb": 3040,
   "language": "Python",
-  "desc": "StarArm 102 → Lumos teleoperation, per-joint torque-residual damping and bilingual local 3D dashboard",
-  "commits_30d": 7,
-  "commits_7d": 7
- },
- {
-  "term": "teleoperation",
-  "terms": [
-   "teleoperation"
-  ],
-  "repo": "jusst01/opengrasp",
-  "owner": "jusst01",
-  "url": "https://github.com/jusst01/opengrasp",
-  "stars": 0,
-  "created": "2026-11-06",
-  "topics": [
-   "hackathon",
-   "lerobot",
-   "mujoco",
-   "near",
-   "robotics",
-   "teleoperation"
-  ],
-  "size_kb": 8123,
-  "language": "JavaScript",
-  "desc": "Browser robot-arm teleoperation game (MuJoCo + Franka Panda). Every session becomes LeRobot-format training data; economics enforced by an o",
-  "commits_30d": 27,
-  "commits_7d": 27
- },
- {
-  "term": "sim2real",
-  "terms": [
-   "sim2real"
-  ],
-  "repo": "IcekyPrime/uavsa-sim2real",
-  "owner": "IcekyPrime",
-  "url": "https://github.com/IcekyPrime/uavsa-sim2real",
-  "stars": 0,
-  "created": "2026-11-11",
-  "topics": [],
-  "size_kb": 91,
-  "language": "Python",
-  "desc": "UAV algorithm sim2real platform: LLM agent + PX4/Gazebo + EGO-Planner",
-  "commits_30d": 1,
-  "commits_7d": 1
- },
- {
-  "term": "sim2real",
-  "terms": [
-   "sim2real"
-  ],
-  "repo": "brainliubrain/agibot-x1-dp3-gpu-sim2real",
-  "owner": "brainliubrain",
-  "url": "https://github.com/brainliubrain/agibot-x1-dp3-gpu-sim2real",
-  "stars": 0,
-  "created": "2026-11-10",
-  "topics": [
-   "cyclonedds",
-   "dexterous-hand",
-   "dp3",
-   "embodied-ai",
-   "mujoco-mjx",
-   "sim2real"
-  ],
-  "size_kb": 259538,
-  "language": "Python",
-  "desc": "AgiBot X1 Dexterous Hand 19-DoF Whole-Body Diffusion Policy (DP3) on Unitree G1 with 1.2ms pure GPU FPS kernel & DLS IK singularity shield",
-  "commits_30d": 2,
-  "commits_7d": 1
- },
- {
-  "term": "sim-to-real",
-  "terms": [
-   "sim-to-real"
-  ],
-  "repo": "chanyanxuan/jiejian-physai-data",
-  "owner": "chanyanxuan",
-  "url": "https://github.com/chanyanxuan/jiejian-physai-data",
-  "stars": 1,
-  "created": "2026-11-11",
-  "topics": [
-   "abaqus",
-   "ai",
-   "cae",
-   "dataset",
-   "diagnosis",
-   "digital-twin"
-  ],
-  "size_kb": 55633,
-  "language": null,
-  "desc": "解蹇 JieJian | FEA 错误分析 · Physics AI 高质量数据底座 — turn failed simulations into verified, labeled training data. Abaqus error diagnosis & repair, ",
-  "commits_30d": 32,
-  "commits_7d": 32,
-  "no_lang": true
- },
- {
-  "term": "sim-to-real",
-  "terms": [
-   "sim-to-real"
-  ],
-  "repo": "slymachenko/vision-guided-search-robot",
-  "owner": "slymachenko",
-  "url": "https://github.com/slymachenko/vision-guided-search-robot",
-  "stars": 0,
-  "created": "2026-11-10",
-  "topics": [],
-  "size_kb": 0,
-  "language": null,
-  "desc": "Autonomous sim-to-real monocular vision search agent and coverage planner deployed on an ESP32-S3 differential-drive robot",
-  "commits_30d": 1,
-  "commits_7d": 1,
-  "no_lang": true
- },
- {
-  "term": "sim-to-real",
-  "terms": [
-   "sim-to-real"
-  ],
-  "repo": "lemonbaby2/tac-r2s2r-verified-runs",
-  "owner": "lemonbaby2",
-  "url": "https://github.com/lemonbaby2/tac-r2s2r-verified-runs",
-  "stars": 0,
-  "created": "2026-11-10",
-  "topics": [
-   "dataset",
-   "embodied-manipulation",
-   "reproducibility",
-   "sim-to-real",
-   "synthetic-data"
-  ],
-  "size_kb": 2859,
-  "language": "Python",
-  "desc": "Verified GPU runs (160 seeded) for TAC-R2S2R: controlled synthetic sim-to-real transfer proxy. Not a real-robot experiment.",
-  "commits_30d": 4,
-  "commits_7d": 4
- },
- {
-  "term": "sim-to-real",
-  "terms": [
-   "sim-to-real"
-  ],
-  "repo": "Kannospark/reason2reflex",
-  "owner": "Kannospark",
-  "url": "https://github.com/Kannospark/reason2reflex",
-  "stars": 0,
-  "created": "2026-11-11",
-  "topics": [],
-  "size_kb": 6931,
-  "language": "JavaScript",
-  "desc": "Reason2Reflex: fixed-scene sim-to-real robot learning from slow reasoning to fast skills through online reinforcement learning. Research ide",
+  "desc": "RealMan dual-arm VR teleoperation, web control panel, and LeRobot data collection",
   "commits_30d": 2,
   "commits_7d": 2
  },
  {
-  "term": "sim-to-real",
+  "term": "teleoperation",
   "terms": [
-   "sim-to-real"
+   "teleoperation"
   ],
-  "repo": "eoinjordan/botbuilder",
-  "owner": "eoinjordan",
-  "url": "https://github.com/eoinjordan/botbuilder",
+  "repo": "HDU-EILab/ur5-teleop",
+  "owner": "HDU-EILab",
+  "url": "https://github.com/HDU-EILab/ur5-teleop",
   "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 17698,
+  "size_kb": 493,
   "language": "Python",
-  "desc": "Build your own small robot from the parts you have: printed biped, crank walker or wheeled, on UNO Q, Raspberry Pi, LEGO or M5Stack. Digital",
-  "commits_30d": 77,
-  "commits_7d": 77
+  "desc": "UR5 VR teleoperation stack (PICO/RTDE/servoj) with data collection and LeRobot export",
+  "commits_30d": 6,
+  "commits_7d": 6
  },
  {
-  "term": "sim-to-real",
+  "term": "teleoperation",
   "terms": [
-   "sim-to-real"
+   "teleoperation"
   ],
-  "repo": "jungihong10/IsaacLab_Project",
-  "owner": "jungihong10",
-  "url": "https://github.com/jungihong10/IsaacLab_Project",
+  "repo": "Guo1ZY/Open-H-Simulation",
+  "owner": "Guo1ZY",
+  "url": "https://github.com/Guo1ZY/Open-H-Simulation",
   "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 2,
+  "size_kb": 24009,
+  "language": "Python",
+  "desc": "Native MuJoCo dual-UR5e endoscope simulation with C3VDv2 sigmoid colon, keyboard teleoperation, and data collection.",
+  "commits_30d": 4,
+  "commits_7d": 4
+ },
+ {
+  "term": "teleoperation",
+  "terms": [
+   "teleoperation"
+  ],
+  "repo": "XCthulhudj/six-axis-master-slave-robotic-arm",
+  "owner": "XCthulhudj",
+  "url": "https://github.com/XCthulhudj/six-axis-master-slave-robotic-arm",
+  "stars": 0,
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 0,
   "language": null,
-  "desc": "A simulation-first PoC pipeline using NVIDIA IsaacLab for real-to-sim and sim-to-real workflows and NVIDIA Cosmos for synthetic data generat",
+  "desc": "Design and implement an STM32-based master-slave teleoperation system for a 6-DOF serial robotic arm. The system integrates kinematic modeli",
   "commits_30d": 2,
   "commits_7d": 2,
   "no_lang": true
  },
  {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "dk2472780158-ctrl/g1_sim2real",
+  "owner": "dk2472780158-ctrl",
+  "url": "https://github.com/dk2472780158-ctrl/g1_sim2real",
+  "stars": 1,
+  "created": "2026-11-11",
+  "topics": [],
+  "size_kb": 76771,
+  "language": "C++",
+  "desc": "G1 recurrent PPO walking: Isaac Gym training, MuJoCo evaluation and SDK2 deployment",
+  "commits_30d": 1,
+  "commits_7d": 1
+ },
+ {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "dk2472780158-ctrl/g1-navigation-rl",
+  "owner": "dk2472780158-ctrl",
+  "url": "https://github.com/dk2472780158-ctrl/g1-navigation-rl",
+  "stars": 1,
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 86246,
+  "language": "C++",
+  "desc": "G1 navigation and reinforcement learning: FAST-LIO, AMCL/Nav2, Isaac Gym PPO/LSTM and Sim2Real deployment",
+  "commits_30d": 7,
+  "commits_7d": 7
+ },
+ {
+  "term": "sim2real",
+  "terms": [
+   "sim2real"
+  ],
+  "repo": "Swc28/PM01-Humanoid-Robust-AMP-Locomotion",
+  "owner": "Swc28",
+  "url": "https://github.com/Swc28/PM01-Humanoid-Robust-AMP-Locomotion",
+  "stars": 0,
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 117,
+  "language": "Python",
+  "desc": "实现人形机器人AMP行走训练，尝试sim2real",
+  "commits_30d": 1,
+  "commits_7d": 1
+ },
+ {
   "term": "sim-to-real",
   "terms": [
    "sim-to-real"
   ],
-  "repo": "EllaCompSci/Quadruped-robot-dog-RL",
-  "owner": "EllaCompSci",
-  "url": "https://github.com/EllaCompSci/Quadruped-robot-dog-RL",
-  "stars": 0,
-  "created": "2026-11-11",
+  "repo": "iit-DLSLab/position-based-locomotion-isaaclab",
+  "owner": "iit-DLSLab",
+  "url": "https://github.com/iit-DLSLab/position-based-locomotion-isaaclab",
+  "stars": 1,
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 6,
+  "size_kb": 15642,
   "language": "Python",
-  "desc": "Training a Custom, 3D printed quadruped robot dog using PPO policy and evolutionary dynamics for determining reward functions. This project ",
-  "commits_30d": 2,
-  "commits_7d": 2
+  "desc": "An IsaacLab DirectEnv for position-based quadrupedal locomotion tasks, with sim-to-sim and sim-to-real pipelines",
+  "commits_30d": 3,
+  "commits_7d": 3
  },
  {
-  "term": "world model",
+  "term": "sim-to-real",
   "terms": [
-   "world model"
+   "sim-to-real"
   ],
-  "repo": "danitylyc/embodied-portfolio",
-  "owner": "danitylyc",
-  "url": "https://github.com/danitylyc/embodied-portfolio",
-  "stars": 1,
-  "created": "2026-11-11",
+  "repo": "shouttt1320/DualCamSO101_Sim_to_real_Project",
+  "owner": "shouttt1320",
+  "url": "https://github.com/shouttt1320/DualCamSO101_Sim_to_real_Project",
+  "stars": 0,
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 51,
+  "size_kb": 23134,
   "language": "Python",
-  "desc": "MuJoCo Mini VLA Stack: RAG knowledge base + Diffusion Policy + RSSM world-model MPPI fallback, built on DataWhale Dive into Embodied AI",
+  "desc": "Dual Cam over SO101 wrist. Isaac sim simulation to real robot project",
   "commits_30d": 1,
   "commits_7d": 1
  },
  {
-  "term": "world model",
+  "term": "sim-to-real",
   "terms": [
-   "world model"
+   "sim-to-real"
   ],
-  "repo": "d4vid-le/le-parallax",
-  "owner": "d4vid-le",
-  "url": "https://github.com/d4vid-le/le-parallax",
+  "repo": "jhyeong687/MORA",
+  "owner": "jhyeong687",
+  "url": "https://github.com/jhyeong687/MORA",
   "stars": 0,
-  "created": "2026-11-11",
-  "topics": [],
-  "size_kb": 17,
-  "language": null,
-  "desc": "A small research project on good views in action-conditioned world models.",
-  "commits_30d": 1,
-  "commits_7d": 1,
-  "no_lang": true
- },
- {
-  "term": "world model",
-  "terms": [
-   "world model"
-  ],
-  "repo": "haoyi66668/AFTER",
-  "owner": "haoyi66668",
-  "url": "https://github.com/haoyi66668/AFTER",
-  "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [
-   "pytorch",
-   "reproducibility",
+   "gazebo",
+   "mobile-manipulation",
+   "mujoco",
    "robotics",
-   "world-models"
+   "ros2",
+   "sim-to-real"
   ],
-  "size_kb": 139838,
-  "language": "Python",
-  "desc": "AFTER: A World Model with Adaptive Fast-Slow Timescales for Error-Driven Retention. Code, benchmark datasets and reproduction scripts.",
+  "size_kb": 169431,
+  "language": "HTML",
+  "desc": "MORA · Mobile Robotic Arm | TurtleBot3 × SO-ARM101: CAD, simulation evidence and cloud-GPU research toward sim-to-real",
   "commits_30d": 3,
   "commits_7d": 3
  },
@@ -406,98 +370,160 @@
   "terms": [
    "world model"
   ],
-  "repo": "brainliubrain/dreamdojo-2b-vla-edge-deploy",
-  "owner": "brainliubrain",
-  "url": "https://github.com/brainliubrain/dreamdojo-2b-vla-edge-deploy",
-  "stars": 0,
+  "repo": "santoshrajkumar/fame-qp",
+  "owner": "santoshrajkumar",
+  "url": "https://github.com/santoshrajkumar/fame-qp",
+  "stars": 8,
   "created": "2026-11-10",
   "topics": [
-   "dit",
-   "edge-computing",
-   "realsense-d455",
-   "tensorrt",
-   "vla",
-   "world-models"
+   "convex-optimization",
+   "cuda",
+   "differentiable-model-predictive-control",
+   "fused-kernels",
+   "gpu-acceleration",
+   "gpu-computing"
   ],
-  "size_kb": 71,
+  "size_kb": 47009,
   "language": "Python",
-  "desc": "DreamDojo 2B DiT Embodied World Model Edge Deployment with RealSense D455 depth hole-filling, geometric alignment, and INT8 quantization",
-  "commits_30d": 2,
+  "desc": "FAME-QP: open-source GPU QP solver for fast, real-time model predictive control (linear, Koopman and world-model MPC). Fused ADMM kernels wi",
+  "commits_30d": 6,
+  "commits_7d": 6
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "ruiling-smartbear/bayin",
+  "owner": "ruiling-smartbear",
+  "url": "https://github.com/ruiling-smartbear/bayin",
+  "stars": 1,
+  "created": "2026-11-12",
+  "topics": [
+   "audio",
+   "dataset",
+   "music",
+   "physical-modeling",
+   "rust",
+   "sound-synthesis"
+  ],
+  "size_kb": 55,
+  "language": "Rust",
+  "desc": "八音 · Instruments as physical models: actions in, sound out. Built on CHIMERA's simulation of air; made for action-conditioned audio world mo",
+  "commits_30d": 3,
+  "commits_7d": 3
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "couplet-physical-ai/orb",
+  "owner": "couplet-physical-ai",
+  "url": "https://github.com/couplet-physical-ai/orb",
+  "stars": 0,
+  "created": "2026-11-12",
+  "topics": [
+   "digital-twin",
+   "orb-lang",
+   "physical-ai",
+   "robotics",
+   "simulation"
+  ],
+  "size_kb": 228,
+  "language": "Python",
+  "desc": "Vendor-neutral language and simulator seam toolkit for physical-world models",
+  "commits_30d": 1,
   "commits_7d": 1
  },
  {
-  "term": "world action model",
+  "term": "world model",
   "terms": [
-   "world action model"
+   "world model"
   ],
-  "repo": "YelinHe58/behavior-1k-2nd-place-solution-2026",
-  "owner": "YelinHe58",
-  "url": "https://github.com/YelinHe58/behavior-1k-2nd-place-solution-2026",
+  "repo": "armature-ai-labs/robot-model-index",
+  "owner": "armature-ai-labs",
+  "url": "https://github.com/armature-ai-labs/robot-model-index",
   "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 3,
-  "language": null,
-  "desc": "Team IF1001's 2nd-place solution to the 2026 BEHAVIOR Challenge, built on a world action model (WAM). Technical report and evaluation record",
+  "size_kb": 91,
+  "language": "Python",
+  "desc": "AI models for robots, from LLMs to VLAs and world models: availability, pricing, licences, hardware fit and limitations. Every fact sourced ",
   "commits_30d": 1,
-  "commits_7d": 1,
-  "no_lang": true
+  "commits_7d": 1
+ },
+ {
+  "term": "world model",
+  "terms": [
+   "world model"
+  ],
+  "repo": "wangguode/terra-world-travel",
+  "owner": "wangguode",
+  "url": "https://github.com/wangguode/terra-world-travel",
+  "stars": 1,
+  "created": "2026-11-07",
+  "topics": [
+   "3d-gaussian-splatting",
+   "ai-agent",
+   "cross-border",
+   "embodied-ai",
+   "nextjs",
+   "robotics"
+  ],
+  "size_kb": 73469,
+  "language": "TypeScript",
+  "desc": "TERRA-OASIS // 14B 自回归动作驱动可交互神经世界模型系统 · 赛博禅刹祈福殿堂与未来数字新城双模旗舰 (Playable Neural World Model Simulator)",
+  "commits_30d": 67,
+  "commits_7d": 67
  },
  {
   "term": "vision language action",
   "terms": [
    "vision language action"
   ],
-  "repo": "nishanthbasava/finetuning_robot_policies",
-  "owner": "nishanthbasava",
-  "url": "https://github.com/nishanthbasava/finetuning_robot_policies",
+  "repo": "blueif16/vla_final",
+  "owner": "blueif16",
+  "url": "https://github.com/blueif16/vla_final",
+  "stars": 2,
+  "created": "2026-11-12",
+  "topics": [],
+  "size_kb": 832,
+  "language": "CSS",
+  "desc": "CS 6180 final project on vision-language-action models: learning chapters, status and (later) code",
+  "commits_30d": 5,
+  "commits_7d": 5
+ },
+ {
+  "term": "vision language action",
+  "terms": [
+   "vision language action"
+  ],
+  "repo": "fluffyTighnari/From_Multimodal_To_NanoVLA",
+  "owner": "fluffyTighnari",
+  "url": "https://github.com/fluffyTighnari/From_Multimodal_To_NanoVLA",
   "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
   "size_kb": 0,
   "language": null,
-  "desc": "comparing GRPO and supervised fine-tuning for vision-language-action policies",
-  "commits_30d": 1,
-  "commits_7d": 1,
-  "no_lang": true
+  "desc": "the shortest path for a jackeroo to access NanoVLA(a simple skeleton of Vision Language Action)",
+  "maybe_empty": true
  },
  {
   "term": "vision language action",
   "terms": [
    "vision language action"
   ],
-  "repo": "ZahraRezaee11/waymo-e2e-driving",
-  "owner": "ZahraRezaee11",
-  "url": "https://github.com/ZahraRezaee11/waymo-e2e-driving",
+  "repo": "heeh02/adv-vla-research",
+  "owner": "heeh02",
+  "url": "https://github.com/heeh02/adv-vla-research",
   "stars": 0,
-  "created": "2026-11-10",
-  "topics": [
-   "autonomous-driving",
-   "grpo",
-   "qwen2-5-vl",
-   "vision-language-action",
-   "waymo-open-dataset"
-  ],
-  "size_kb": 176,
-  "language": "Python",
-  "desc": "Vision-language-action model for end-to-end driving on the Waymo Open Dataset (WOD-E2E): LoRA SFT, single-GPU GRPO, learned trajectory selec",
-  "commits_30d": 1,
-  "commits_7d": 1
- },
- {
-  "term": "jepa",
-  "terms": [
-   "jepa"
-  ],
-  "repo": "OliverFanHL/JEPA-CAD",
-  "owner": "OliverFanHL",
-  "url": "https://github.com/OliverFanHL/JEPA-CAD",
-  "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 41976,
+  "size_kb": 30798,
   "language": "Python",
-  "desc": "Joint predictive representation learning for CAD: source, final benchmark matrix, and manuscript results.",
+  "desc": "Sensitivity Is Not Fragility — paper, data, and executable checks for visual responses and task outcomes in vision-language-action policies.",
   "commits_30d": 3,
   "commits_7d": 3
  },
@@ -506,39 +532,17 @@
   "terms": [
    "jepa"
   ],
-  "repo": "unclesp1d3r/llm-jepa-mlx",
-  "owner": "unclesp1d3r",
-  "url": "https://github.com/unclesp1d3r/llm-jepa-mlx",
-  "stars": 0,
-  "created": "2026-11-11",
+  "repo": "Ol11veira/herdr-layout-jepa",
+  "owner": "Ol11veira",
+  "url": "https://github.com/Ol11veira/herdr-layout-jepa",
+  "stars": 1,
+  "created": "2026-11-12",
   "topics": [
-   "apple-silicon",
-   "fine-tuning",
-   "jepa",
-   "llm",
-   "lora",
-   "mlx"
+   "herdr-layout"
   ],
-  "size_kb": 17657,
-  "language": "Python",
-  "desc": "Apple Silicon (MLX) port of LLM-JEPA: fine-tuning LLMs with a joint-embedding predictive loss (arXiv:2509.14252)",
-  "commits_30d": 8,
-  "commits_7d": 8
- },
- {
-  "term": "jepa",
-  "terms": [
-   "jepa"
-  ],
-  "repo": "chaamsak/vjepa2-ac-consistency-audit",
-  "owner": "chaamsak",
-  "url": "https://github.com/chaamsak/vjepa2-ac-consistency-audit",
-  "stars": 0,
-  "created": "2026-11-10",
-  "topics": [],
-  "size_kb": 1845,
-  "language": "Jupyter Notebook",
-  "desc": "Pilot consistency audit of Meta's released V-JEPA 2-C world model (frozen weights, no training)",
+  "size_kb": 1104,
+  "language": "JavaScript",
+  "desc": "",
   "commits_30d": 6,
   "commits_7d": 6
  },
@@ -547,33 +551,57 @@
   "terms": [
    "jepa"
   ],
-  "repo": "Tanishq251/RSJEPA",
-  "owner": "Tanishq251",
-  "url": "https://github.com/Tanishq251/RSJEPA",
+  "repo": "adamadni/RegJEPA",
+  "owner": "adamadni",
+  "url": "https://github.com/adamadni/RegJEPA",
   "stars": 0,
-  "created": "2026-11-11",
+  "created": "2026-11-12",
   "topics": [],
-  "size_kb": 1865,
+  "size_kb": 25036,
   "language": "Python",
-  "desc": "Official Implementation of \"RS-JEPA: Remote Sensing Joint-Embedding Predictive Architecture with Scan-Path Views for Cross-Sensor Image Retr",
-  "commits_30d": 3,
-  "commits_7d": 3
+  "desc": "JEPA representations for regioselectivity: reproducible data validation and molecular benchmarks",
+  "commits_30d": 4,
+  "commits_7d": 4
  },
  {
-  "term": "egocentric",
+  "term": "jepa",
   "terms": [
-   "egocentric"
+   "jepa"
   ],
-  "repo": "ExcitedButter/handpose",
-  "owner": "ExcitedButter",
-  "url": "https://github.com/ExcitedButter/handpose",
+  "repo": "fredp74/ssm-jepa-lab",
+  "owner": "fredp74",
+  "url": "https://github.com/fredp74/ssm-jepa-lab",
   "stars": 0,
-  "created": "2026-11-11",
-  "topics": [],
-  "size_kb": 114,
+  "created": "2026-11-12",
+  "topics": [
+   "continual-learning",
+   "deep-learning",
+   "gru",
+   "instruction-following",
+   "jepa",
+   "machine-learning"
+  ],
+  "size_kb": 462,
   "language": "Python",
-  "desc": "EgoForce hand keypoint algorithm (2D/3D hand pose from egocentric glove video). Stanford University.",
-  "commits_30d": 2,
-  "commits_7d": 2
+  "desc": "Experimental sequence-model research: SSMs, GRUs, Transformers, JEPA objectives, continual learning, and instruction following in PyTorch.",
+  "commits_30d": 17,
+  "commits_7d": 17
+ },
+ {
+  "term": "jepa",
+  "terms": [
+   "jepa"
+  ],
+  "repo": "Gabriel-PEZ/LeWorldModel",
+  "owner": "Gabriel-PEZ",
+  "url": "https://github.com/Gabriel-PEZ/LeWorldModel",
+  "stars": 0,
+  "created": "2026-11-10",
+  "topics": [],
+  "size_kb": 109,
+  "language": "Python",
+  "desc": "JEPA-based world model for visual representation learning, latent dynamics prediction, and planning with MPC. (WIP)",
+  "commits_30d": 12,
+  "commits_7d": 12
  }
 ]
