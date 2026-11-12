@@ -136,7 +136,7 @@
     "last_error": null
   },
   "defillama-radar": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_success": "2026-11-11T00:05:23Z",
     "total_runs": 16,
     "total_successes": 16,
@@ -144,7 +144,7 @@
     "consecutive_failures": 0,
     "success_rate": 1,
     "last_quality_score": 4,
-    "last_dispatch": "2026-11-11T00:00:46Z",
+    "last_dispatch": "2026-11-12T00:00:47Z",
     "last_error": null
   }
 }
