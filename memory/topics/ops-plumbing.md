@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-11T19:06:00Z
+timestamp: 2026-11-12T18:24:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -144,6 +144,20 @@ falsified **in a new way**: the retry channel itself was shut off.
   When you see "it used to self-heal, now it doesn't", check whether the breaker tripped before
   assuming the failure got worse. [source: logs/2026-11-11#heartbeat]
 
+### Recovery ≠ fixed: `defi-overview` came back on 11-11 but neither cause was touched
+
+2026-11-12 heartbeat: `last_success` = 11-11T23:22:51Z, `consecutive_failures` 4 → 0. The skills
+status page moved 🔴 DEGRADED → 🟡 WATCH, **not** 🟢 OK.
+
+- It succeeded because the 360m probe happened to land outside the 403 window — **not because
+  anything was repaired.** Both root causes are still in place: cron fixed at `0 23` (inside the
+  403-heavy 23:00–23:31Z band) and per-round output volume still over the 128k cap.
+- **Generalise the status rule:** a skill recovering on its own probe does not clear the finding.
+  Keep the artifact-staleness check (`market-context.md`'s own `timestamp`) until a fix lands.
+- A health-scorer issue thread (`#13 health: defi-overview`) did **not** auto-close on recovery —
+  its `updatedAt` stayed at the failure time. Thread state and `cron-state.json` are decoupled;
+  closing belongs to `skill-health`, not to whatever skill notices the mismatch. [source: logs/2026-11-12#heartbeat]
+
 ## A skill's frontmatter `var:` default is NOT injected into the run
 
 Every skill declares a `var:` default in its frontmatter (e.g. `skills/github-radar/SKILL.md:7` →
@@ -213,6 +227,20 @@ re-added with `Edit`.
   lost sections from the other skills' outputs.
 - The log is the audit trail the health loop and every `[source: logs/…]` tag point at, so a silent
   overwrite breaks citations for runs you did not touch.
+
+## Unstaging is `git restore --staged` — `git reset --hard` wipes work you already wrote
+
+2026-11-11 `defi-overview`: after writing three memory files, the run wanted to undo a `git add`.
+It ran `git reset --hard HEAD`, which discarded the working-tree contents of `market-context.md`,
+`lessons.md` and that day's log. Recovery only worked because `.tmp/` still held 37 raw JSON payloads
+and every calculation script, so all three files were rebuilt from cached data.
+
+- **To unstage, use `git restore --staged <file>`.** `git reset --hard` is for discarding *content*,
+  not staging — it rewrites the working tree and takes unrecoverable edits with it.
+- `git reset` (mixed, no `--hard`) also unstages and leaves the tree alone; `--hard` is the only
+  variant that destroys content.
+- The blast radius is worst exactly where this fleet writes: memory files are the state store, and
+  there are no PRs or branches protecting an uncommitted write. [source: logs/2026-11-11#defi-overview]
 
 ## Restarting a parked watch — seed the cursor first
 

@@ -3,12 +3,27 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔；且 7d 下报告级全 ★0，star 只能 `min:0`**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-11T19:05:00Z
+timestamp: 2026-11-12T18:20:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
 从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十/二十一轮 7 天窗（11-07 / 11-08）实证。
+
+## 第二十四轮（2026-11-11，`days:7`，非 dry-run，**probe 跳过**）—— `30天=`≡`7天=` 7/7 第五轮；加密侧第九连轮 0；`jepa` 出现「论文移植/审计」第 4、5 个样本
+
+漏斗：原始 **428** → 幸存 **30** → 报告级 **7**，核验 **30/30 = 100%**（全量）。单窗 17 / 需拆窗 1 / 二分 0，搜索 20 次调用，43s + 核验 5s。丢弃 seen=169 · excl=27 · short_desc=80 · **carrier=89** · neg=15 · pages=17 · pages_root=1 · archived=0 · scaffold=0 · farm=0 · **fail=0**。
+
+- **判据级 ①：`30天=`≡`7天=` 本轮 7/7 全等，第五轮复现**（累计 12/12、8/8、6/6、12/12、7/7）。两栏恒等 = 仓龄，**对「现在还在不在写」无判别力，已是固定缺陷而非观察项**。报告里这两栏应停止当作活跃度证据。
+- **判据级 ②：加密侧第九连轮报告级 0。** `intent-based`(raw=12) / `restaking`(2) / `verifiable inference`(1) 召回都在、全部止步门槛；`maximal extractable value` 全称 7d total=0。**这是词表写法问题不是生态问题**（MEV 生态几乎只写缩写，同 `vla`→全称双赢、`jepa`→全称灾难的分界）。下一轮恢复加密侧召回的第一动作是量 `mev` 缩写的 total_count 与重叠度，不是继续等全称。
+- **判据级 ③：报告级 ★ 分布 ★0×6 + ★1×1，连续第二轮「近乎全 0」。** 第 23 轮 1/12 破全 0 之后没有形成趋势；**`min:0` 地板不动** —— 本轮最高 ★1，开 star 地板会直接清零整轮。
+- **判据级 ④：`jepa` 出现「论文复现/移植」第 4、5 个样本。** `unclesp1d3r/llm-jepa-mlx`（desc 自述 arXiv 论文的 Apple Silicon MLX 移植）、`chaamsak/vjepa2-ac-consistency-audit`（desc 自述对 Meta V-JEPA 2-C 冻结权重做一致性审计，**明写 no training**）。两条都是「不训模型、只搬/只验」，与第 21 轮 `JEPA-research-landscape` 文献聚合仓同属低代码形态 → **`jepa` 在 GitHub 上被读成「读论文的入口」而不只是「写实现的入口」，这是本通道提前量的真实形态（论文 → 复现滞后 1–2 个月）。**
+- **判据级 ⑤：无 `language` 字段 10 个里 3 个进报告级**（`jiejian-physai-data` / `6-Axis-Robotic-Arm` / `vjepa2-ac-consistency-audit`），desc 均带实质技术描述 → 维持第 23 轮「无 language ≠ 非代码仓」，不作丢弃判据。
+- **`embodied data` raw=3 / seen=0、`proof of useful work` raw=1 / seen=0 —— 连续第四轮过滤损耗**，不许按饱和读。
+- **真零 2**（`robotics data engine` / `maximal extractable value`，仅 7d 窗）—— 单窗为零不删词。
+- **carrier 口径对照（照抄 digest，不下结论）：** 丢弃里仓名自带词表词 39 / owner 去重 35，近 7 天存活 **34/35 = 97%**；放行侧 30/30 = 100%。差 3pp，**放宽仍无依据**。
+- **probe 跳过（戳 1 天 < 7 天）→ `clusters.json` 未重写，内容仍是第 23 轮结果，本轮任何 probe 数字都不可引用。到期日 11-18。**
+- 异常 0：`failed_t=0` · 掉线 0 · 未认证调用 0 · capped 0。
 
 ## 第二十三轮（2026-11-10，`days:7`，非 dry-run，probe 同轮触发）—— ★ 分布首破全 0；`30天=`≡`7天=` 12/12 第四轮；`teleop` 真簇复现但 owner 降 repo 升
 
