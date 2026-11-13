@@ -28,7 +28,7 @@
 - **聚合字段口诀：先说清它量的是什么，再决定信不信。** `/protocols` 的 `change_1d` = 当日 00:00 桶内值，不是今昨差；`/v2/chains` 已删 `change_1d`/`change_7d` → 旧写法静默拿缺省值，链涨跌只能走 `/v2/historicalChainTvl/{chain}` 自算。**成因查 `hallmarks`**。[source: logs/2026-11-05#defi-overview]
 - **某过滤器长期「0 丢弃」先查有多少输入真经过它，再查它是不是用歧义词假装挡住了** —— `arxiv-radar` carrier 连九轮空转（14 词没配表），第 37 轮又证明 `circuit`/`network` 对超导/ML 同样成立 = 无判别力。「零假阴」≠ 规则安全。**某桶占比升高 ≠ 该桶杀伤力升高**。[source: logs/2026-11-05#arxiv-radar]
 - **漏斗退化成单通道时，0 输出的责任在词表召回，不在过滤器** —— 过滤层已无调节空间；零幸存来自饱和 ≠ 任一侧流量消失。[source: logs/2026-10-31#arxiv-radar]
-- **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据 `num_turns:1` + 0 tool calls。**失败签名不止一种**（403 配额窗口 / `max_output_tokens`），且断路器跳闸后重试通道也没了；**probe 偶然跑通 = 恢复≠修复** → [ops](/topics/ops-plumbing.md) [source: logs/2026-11-12#heartbeat]
+- **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据 `num_turns:1` + 0 tool calls。**失败签名不止一种**（403 配额窗口 / `max_output_tokens`），且断路器跳闸后重试通道也没了；**probe 偶然跑通 ≠ 修复** → [ops](/topics/ops-plumbing.md) [source: logs/2026-11-12#heartbeat]
 - **过程事故两例：** 脚本尾部崩溃 ≠ 本轮没产出（产物在崩溃点前写出，**先看 mtime 再决定重跑**）；**`git reset --hard` 会吃掉已写未提交的内容 —— 取消暂存只能用 `git restore --staged <file>`**（11-11 因此丢三个 memory 文件，靠 `.tmp` 缓存重建）。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-11#defi-overview]
 - **「0 新增」≠「废词」** —— 逐词单查 total_count 才分清「饱和」与「查询打不中」；长窗首跑推沉积、次跑归零 = `seen` 吃干；**`seen < raw 5%` 不许记饱和，须归因到具体规则**。[source: logs/2026-10-29#github-radar]
 - **查询失败会伪装成「零命中」** —— 有 `failed_t` 就先补扫，别下结论。**词干化污染：`staking` 精度 11%（撞 `stakes`）**，单词必须换长短语。详见 [lessons](/topics/lessons.md#arXiv-检索arxiv-radar)。[source: logs/2026-10-26#arxiv-radar]

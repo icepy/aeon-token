@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-12T18:24:00Z
+timestamp: 2026-11-13T00:45:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -144,19 +144,45 @@ falsified **in a new way**: the retry channel itself was shut off.
   When you see "it used to self-heal, now it doesn't", check whether the breaker tripped before
   assuming the failure got worse. [source: logs/2026-11-11#heartbeat]
 
-### Recovery ≠ fixed: `defi-overview` came back on 11-11 but neither cause was touched
+### Recovery ≠ fixed: `defi-overview` keeps coming back, and the mechanism is the ordinary retry
 
 2026-11-12 heartbeat: `last_success` = 11-11T23:22:51Z, `consecutive_failures` 4 → 0. The skills
 status page moved 🔴 DEGRADED → 🟡 WATCH, **not** 🟢 OK.
 
-- It succeeded because the 360m probe happened to land outside the 403 window — **not because
-  anything was repaired.** Both root causes are still in place: cron fixed at `0 23` (inside the
-  403-heavy 23:00–23:31Z band) and per-round output volume still over the 128k cap.
-- **Generalise the status rule:** a skill recovering on its own probe does not clear the finding.
-  Keep the artifact-staleness check (`market-context.md`'s own `timestamp`) until a fix lands.
+- **Correction (2026-11-13): the 11-11 recovery was NOT a 360m breaker probe.** The 11-12 night
+  repeated the same 23:00 + 23:30 double failure, and the scheduler log at 00:00:58Z reads
+  `Retrying failed skill: defi-overview (failed 30m ago)` → success at 00:11:57Z. That is the
+  plain 30-minute retry, gated only by `CONSEC < RETRY_LIMIT`. **Always read the retirement
+  decision out of that run's own scheduler log — do not inherit last round's explanation.** The
+  two mechanisms mean opposite things: a probe implies the breaker already tripped; a retry
+  implies it has not.
+- The distinction is load-bearing because `RETRY_LIMIT = BREAKER_THRESHOLD = 3`. Any two
+  consecutive nights of the 23:00+23:30 double failure push `cf` to 3, the retry path closes,
+  and the skill is back to one probe a day inside the worst 403 band — the 11-08→11-10 trap.
+- Both root causes are still in place after four nights of this: cron fixed at `0 23` (inside the
+  403-heavy 23:00–23:31Z band) and per-round output volume still over the 128k cap. The only
+  actionable item is the cron move, and it is an operator config decision.
+- **Generalise the status rule:** a skill recovering on its own does not clear the finding while
+  the cause stands. Keep the artifact-staleness check (`market-context.md`'s own `timestamp`)
+  until a fix lands.
 - A health-scorer issue thread (`#13 health: defi-overview`) did **not** auto-close on recovery —
-  its `updatedAt` stayed at the failure time. Thread state and `cron-state.json` are decoupled;
-  closing belongs to `skill-health`, not to whatever skill notices the mismatch. [source: logs/2026-11-12#heartbeat]
+  its `updatedAt` tracks the latest failure, not the recovery. Thread state and `cron-state.json`
+  are decoupled; closing belongs to `skill-health`, not to whatever skill notices the mismatch.
+  [source: logs/2026-11-12#heartbeat, logs/2026-11-13#heartbeat]
+
+## WebSearch is unavailable in this fleet — do not treat "no headlines" as a null result
+
+Confirmed 2026-11-13 (fifth consecutive round): in-run `WebSearch` calls return a
+no-tool/no-browsing notice rather than results. `defi-overview` has logged `websearch=fail` every
+round since 2026-11-09 and deletes its macro-catalysts section as a result.
+
+- **Consequence:** any check that depends on independently verifying a third-party headline cannot
+  be satisfied in-run. The `narrative-brief` scorer flag `unverifiable_claim` (score 2 on
+  2026-11-09 and again on 2026-11-12, filed to `#18`) is not fixable inside this repo — that skill
+  only sha256-dedups and forwards Grok-written text, and the verifying tool is absent.
+- **Working substitute for causes, not for headlines:** RSS + `WebFetch` (CoinDesk
+  `arc/outboundfeeds/rss/`) and DefiLlama `hallmarks` both worked where WebSearch did not.
+  [source: logs/2026-11-13#heartbeat, logs/2026-11-05#defi-overview]
 
 ## A skill's frontmatter `var:` default is NOT injected into the run
 
