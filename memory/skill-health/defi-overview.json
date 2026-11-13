@@ -1,10 +1,10 @@
 {
   "skill": "defi-overview",
-  "last_analyzed": "2026-11-11T23:22:23Z",
+  "last_analyzed": "2026-11-13T00:11:27Z",
   "quality_score": 4,
-  "assessment": "Complete one-pass read: regime/conviction take, DeFi verdict, dual-currency TVL with a credible self-correction of the prior round, movers with thresholds honestly unmet, fees, DEX volume vs weekday median, stablecoin flows, tiered yields, breadth, F&G and prediction markets - all sourced via enumerated llama/coingecko/fng/polymarket feeds; minor blemish is the internally inconsistent Fed line where 'no change' was also 76.5% before the jump, which cannot sum with the 25bps leg.",
+  "assessment": "Comprehensive, well-sourced single-pass read covering regime take, TVL (with a sharp ETH-vs-USD denomination nuance), chains, movers, fee leaders, spike-filtered and incentive-vs-real yields, stables, DEX volume, breadth, F&G, and Polymarket, with honest disclosure that websearch failed; held back from top marks because it omits explicit tracked-protocol health/liquidation metrics that the skill's job calls for, and the 'Fed Dec hike 25bp 87.5%' figure reads oddly given the risk-off tape and is unconfirmed.",
   "flags": [],
-  "avg_score": 3.5,
+  "avg_score": 3.53,
   "history": [
     {
       "date": "2026-10-23",
@@ -112,6 +112,12 @@
       "date": "2026-11-11",
       "score": 4,
       "ts": "2026-11-11T23:22:23Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-13",
+      "score": 4,
+      "ts": "2026-11-13T00:11:27Z",
       "harness": "claude"
     }
   ]

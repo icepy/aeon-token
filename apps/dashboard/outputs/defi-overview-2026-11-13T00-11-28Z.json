@@ -1,0 +1,750 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "DeFi Overview - Crypto 2026-11-13",
+        "description": "risk-off (conviction high) | DeFi Mixed: TVL 缩 1.1%，DEX 量 −4.2%，稳定币 −0.55%"
+      },
+      "children": [
+        "header",
+        "sep-main",
+        "tvl-section",
+        "sep-1",
+        "chains-section",
+        "sep-2",
+        "movers-section",
+        "sep-3",
+        "fees-section",
+        "sep-4",
+        "feesb-section",
+        "sep-5",
+        "dex-section",
+        "sep-6",
+        "stables-section",
+        "sep-7",
+        "realy-section",
+        "sep-8",
+        "incy-section",
+        "sep-9",
+        "macro-section",
+        "sep-10",
+        "cpi-alert",
+        "sources"
+      ]
+    },
+    "header": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "heading-main",
+        "badges",
+        "summary"
+      ]
+    },
+    "heading-main": {
+      "type": "Heading",
+      "props": {
+        "text": "Crypto - 2026-11-13",
+        "level": "h2"
+      }
+    },
+    "badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-risk",
+        "badge-conviction"
+      ]
+    },
+    "badge-risk": {
+      "type": "Badge",
+      "props": {
+        "text": "risk-off",
+        "variant": "destructive"
+      }
+    },
+    "badge-conviction": {
+      "type": "Badge",
+      "props": {
+        "text": "conviction: high",
+        "variant": "secondary"
+      }
+    },
+    "summary": {
+      "type": "Text",
+      "props": {
+        "text": "DeFi Mixed: TVL 缩 1.1%，DEX 量 −4.2%，稳定币 −0.55%",
+        "variant": "lead"
+      }
+    },
+    "sep-main": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "tvl-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "tvl-heading",
+        "tvl-stat",
+        "tvl-7d",
+        "tvl-note"
+      ]
+    },
+    "tvl-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "TVL",
+        "level": "h3"
+      }
+    },
+    "tvl-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Total TVL",
+        "value": "$76.47B",
+        "delta": "−1.14% 24h",
+        "trend": "down"
+      }
+    },
+    "tvl-7d": {
+      "type": "Text",
+      "props": {
+        "text": "7d: USD −10.07% / ETH 计价 +6.02%",
+        "variant": "body"
+      }
+    },
+    "tvl-note": {
+      "type": "Text",
+      "props": {
+        "text": "7d 跌幅仍主要是计价货币（ETH −15.2%）；但 11-11→11-12 ETH 计价也是 −1.38%，首次转负，仅一天不作趋势",
+        "variant": "muted"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "chains-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "chains-heading",
+        "chains-table"
+      ]
+    },
+    "chains-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Top chains",
+        "level": "h3"
+      }
+    },
+    "chains-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "#",
+          "Chain",
+          "TVL",
+          "24h"
+        ],
+        "rows": [
+          [
+            "1",
+            "Ethereum",
+            "$40.29B",
+            "−1.1%"
+          ],
+          [
+            "2",
+            "Base",
+            "$5.65B",
+            "−1.5%"
+          ],
+          [
+            "3",
+            "Solana",
+            "$4.99B",
+            "−0.8%"
+          ]
+        ]
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "movers-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "movers-heading",
+        "mover-up",
+        "mover-down1",
+        "mover-down2"
+      ]
+    },
+    "movers-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Movers",
+        "level": "h3"
+      }
+    },
+    "mover-up": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "mover-up-badge",
+        "mover-up-text"
+      ]
+    },
+    "mover-up-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "↑ +20.2%",
+        "variant": "default"
+      }
+    },
+    "mover-up-text": {
+      "type": "Text",
+      "props": {
+        "text": "Morpho Midnight +20.2%（$183M → $203M）- 新池上线，无公开催化",
+        "variant": "body"
+      }
+    },
+    "mover-down1": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "mover-down1-badge",
+        "mover-down1-text"
+      ]
+    },
+    "mover-down1-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "↓ −13.1%",
+        "variant": "destructive"
+      }
+    },
+    "mover-down1-text": {
+      "type": "Text",
+      "props": {
+        "text": "Nexus BTC −13.1%（$274M → $238M）- 7d −30.3%，同类中位仅 −3.6%",
+        "variant": "body"
+      }
+    },
+    "mover-down2": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "mover-down2-badge",
+        "mover-down2-text"
+      ]
+    },
+    "mover-down2-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "↓ −8.4%",
+        "variant": "destructive"
+      }
+    },
+    "mover-down2-text": {
+      "type": "Text",
+      "props": {
+        "text": "Lombard LBTC −8.4%（$466M）- BTC 封装板块普跌，非孤例",
+        "variant": "body"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "fees-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "fees-heading",
+        "fees-table"
+      ]
+    },
+    "fees-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Fees leaders (24h)",
+        "level": "h3"
+      }
+    },
+    "fees-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "#",
+          "Protocol",
+          "Fees",
+          "vs 7d avg"
+        ],
+        "rows": [
+          [
+            "1",
+            "Tether",
+            "$16.7M",
+            "+0.3%"
+          ],
+          [
+            "2",
+            "Circle USDC",
+            "$6.7M",
+            "+0.3%"
+          ],
+          [
+            "3",
+            "Ethena USDe",
+            "$3.75M",
+            "+493% (尖峰，剔除)"
+          ]
+        ]
+      }
+    },
+    "sep-4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "feesb-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "feesb-heading",
+        "feesb-text",
+        "feesb-sub"
+      ]
+    },
+    "feesb-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Fees beating TVL",
+        "level": "h3"
+      }
+    },
+    "feesb-text": {
+      "type": "Text",
+      "props": {
+        "text": "Meteora DLMM - fees +92% / TVL −4.5%（7d）- 需求跑赢存款，尖峰比 1.84× 干净",
+        "variant": "body"
+      }
+    },
+    "feesb-sub": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "feesb-badge1",
+        "feesb-badge2"
+      ]
+    },
+    "feesb-badge1": {
+      "type": "Badge",
+      "props": {
+        "text": "fees +92%",
+        "variant": "default"
+      }
+    },
+    "feesb-badge2": {
+      "type": "Badge",
+      "props": {
+        "text": "TVL −4.5%",
+        "variant": "outline"
+      }
+    },
+    "sep-5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "dex-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "dex-heading",
+        "dex-stat",
+        "dex-top",
+        "dex-note"
+      ]
+    },
+    "dex-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "DEX volume (24h)",
+        "level": "h3"
+      }
+    },
+    "dex-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "DEX volume 24h",
+        "value": "$8.00B",
+        "delta": "−4.2%",
+        "trend": "down"
+      }
+    },
+    "dex-top": {
+      "type": "Text",
+      "props": {
+        "text": "Top: Uniswap V3 $1.29B, Uniswap V4 $0.92B, Aero $0.85B",
+        "variant": "body"
+      }
+    },
+    "dex-note": {
+      "type": "Text",
+      "props": {
+        "text": "同星中位归一后连续六个已结算桶低于中位 6-24%",
+        "variant": "muted"
+      }
+    },
+    "sep-6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stables-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "stables-heading",
+        "stables-stat",
+        "stables-text"
+      ]
+    },
+    "stables-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Stables",
+        "level": "h3"
+      }
+    },
+    "stables-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Stablecoin market cap",
+        "value": "$288.4B",
+        "delta": "−0.55%",
+        "trend": "down"
+      }
+    },
+    "stables-text": {
+      "type": "Text",
+      "props": {
+        "text": "PYUSD −6.6%、USD1 −2.7% 单日最大失血；USDf 折价 −49.3bp 连十轮最深后首次收窄",
+        "variant": "body"
+      }
+    },
+    "sep-7": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "realy-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "realy-heading",
+        "realy-table"
+      ]
+    },
+    "realy-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Real yield (sustainable, ≥$10M, 已过滤)",
+        "level": "h3"
+      }
+    },
+    "realy-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Pool",
+          "Protocol",
+          "Chain",
+          "APY base",
+          "TVL"
+        ],
+        "rows": [
+          [
+            "APXUSD",
+            "apyx",
+            "ETH",
+            "13.07%",
+            "$137M"
+          ],
+          [
+            "STUSDS",
+            "Sky",
+            "ETH",
+            "12.35%",
+            "$162M"
+          ]
+        ]
+      }
+    },
+    "sep-8": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "incy-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "incy-heading",
+        "incy-table"
+      ]
+    },
+    "incy-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Incentive yield (points/emissions, ≥$25M)",
+        "level": "h3"
+      }
+    },
+    "incy-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Pool",
+          "Protocol",
+          "Chain",
+          "APY",
+          "Reward",
+          "TVL"
+        ],
+        "rows": [
+          [
+            "SDCRV",
+            "StakeDAO",
+            "ETH",
+            "25.2%",
+            "全为 $CRV 奖励",
+            "$29M"
+          ],
+          [
+            "CVXCRV",
+            "Convex",
+            "ETH",
+            "17.7%",
+            "全为奖励",
+            "$35M"
+          ]
+        ]
+      }
+    },
+    "sep-9": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "macro-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "macro-heading",
+        "macro-stats",
+        "macro-text",
+        "poly-heading",
+        "poly-stats"
+      ]
+    },
+    "macro-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Macro",
+        "level": "h3"
+      }
+    },
+    "macro-stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "btc-stat",
+        "eth-stat",
+        "fng-stat"
+      ]
+    },
+    "btc-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "BTC",
+        "value": "$71,366",
+        "delta": "−3.5%",
+        "trend": "down"
+      }
+    },
+    "eth-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "ETH",
+        "value": "$2,017",
+        "delta": "−1.9%",
+        "trend": "down"
+      }
+    },
+    "fng-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "F&G",
+        "value": "20",
+        "delta": "Extreme Fear",
+        "trend": "down"
+      }
+    },
+    "macro-text": {
+      "type": "Text",
+      "props": {
+        "text": "F&G 20 Extreme Fear（30 日最低，昨 28）· breadth 3/20（7d 非稳定币 0/16）",
+        "variant": "body"
+      }
+    },
+    "poly-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Polymarket",
+        "level": "h3"
+      }
+    },
+    "poly-stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "poly-btc-stat",
+        "poly-btc-progress",
+        "poly-fed-stat",
+        "poly-fed-progress"
+      ]
+    },
+    "poly-btc-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "BTC 触 $70,000 by Dec 31",
+        "value": "84.5%",
+        "delta": "昨 63.5%，+21pp",
+        "trend": "up"
+      }
+    },
+    "poly-btc-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 84.5,
+        "max": 100,
+        "label": "BTC 触 $70,000 by Dec 31"
+      }
+    },
+    "poly-fed-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Fed 12 月加息 25bp",
+        "value": "87.5%"
+      }
+    },
+    "poly-fed-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 87.5,
+        "max": 100,
+        "label": "Fed 12 月加息 25bp"
+      }
+    },
+    "sep-10": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "cpi-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "10 月 CPI",
+        "message": "落在 11-12～11-14 窗口，48h 内 -- 双向都是本周最大波动源",
+        "type": "warning"
+      }
+    },
+    "sources": {
+      "type": "Text",
+      "props": {
+        "text": "sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail | var: none",
+        "variant": "caption"
+      }
+    }
+  }
+}
