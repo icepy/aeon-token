@@ -1,26 +1,18 @@
-Watermark advanced to 2026-11-12 and MEMORY.md is within budget. Done.
+The flush is complete. Watermark advanced to 2026-11-13, MEMORY.md within budget.
 
-## 本轮 memory-flush 做了什么
+## Summary
 
-**扫描窗口 `2026-11-11 → 2026-11-12`**（watermark 由 `memory_prep.py` 算出，读 2 个日文件；无 >14 天缺口，未 clamp；日志轮转 0 个月，23 个日文件未过阈值）。
+**扫描窗口**：`2026-11-12 → 2026-11-13`（watermark = 11-12），读 2 个日文件；无 >14 天缺口、未 clamp；轮转归档 0 个月（24 个日文件，阈值 45）。
 
-### promoted 四条事实（全部原地改写，无重复标题）
-1. **arxiv-radar 第 43 轮** `83 → 4`（`seen` 吃掉 95%）。头号判据是**单侧读数会「换边」亮**：第 42 轮 ZK 占 3/7、本轮机器人占 3/4 —— 这反证「某侧升温」，指向「加密侧长期 0–1 条」的结构常数。另记**词级/论文级计数首次不等**（`egocentric` 一词出 2 条），跨轮别混口径。→ lessons +1 条
-2. **github-radar 第 24 轮** `428/30/7`。`30天=`≡`7天=` **7/7 第五轮**（两栏已定死为「仓龄」，不该再当活跃度证据）；加密侧**第九连轮**报告级 0，下一步量 `mev` 缩写；`jepa` 连出第 4、5 个「不训模型、只搬/只验」样本 = GitHub 上它是「读论文的入口」；probe 未跑，`clusters.json` 不可引用。→ github-radar +1 整节
-3. **defi-overview 恢复 + 三条口径**：①**桶编号必须由 ts 换算 UTC 日期** —— 上一份文件把 11-09 的值贴了 11-08 的标签，「真资金流出」翻转成「纯计价贬值、ETH 计价仍在流入」；②**F&G 会回溯修订**（28→29→32→29 是冲高回落，不是持平）；③**「缩量」须报同星中位**（连四桶 −10~−24% 才是合格证据）
-4. **两例过程事故**：`git reset --hard` 吃掉已写未提交内容（取消暂存只能用 `git restore --staged`）；**probe 偶然跑通 = 恢复≠修复**（`defi-overview` 两病根原地未动，状态页只该 🔴→🟡）。→ ops +2 节
+**预算**：8,041 字节 / 42 行 / **3 条超长行（353、306、308 字符）** → **8,127 字节 / 43 行 / 0 条超长行**，余 65 字节，`within budget`。压缩的是三条超长行（发现层 arxiv-radar 行、行情口径 ①②），只削修饰词，事实与 source 标签一条未丢。
 
-### 剪枝
-`gh pr list --state open --search "improve:"` = `[]`（连续第十天清空），无 Open Improvement PRs 段。未删任何 lesson —— 唯一的「作废」是 11-09 那条桶编号结论，已在 lessons 显式标注保留作反向样本。各节未超 10–15 行，未触发归档。
+**promote 三处（全部原地改写，无新增重复段）**
+1. **arxiv-radar 第 44 轮**：原始 75 → 幸存 0。关键判断是**零来自 `seen` 吃干，不是词表失效** —— 12 个零命中词里 10 个跨窗有命中，窗口太短不许删；仅 `verifiable inference`/`restaking` 跨窗皆 0（第三轮），同义写法四窗也全 0，但按「换写法→降频→删词」不跳级，下一步放开 `ti:` 查 `all:`。→ MEMORY 行 + lessons 一条。
+2. **github-radar 第 25 轮**：420/33/12，核验 33/33。`30天=`≡`7天=` **12/12 第六轮** → 降为既成前提；加密侧**第十连轮** 0 且 `mev` 缩写仍未量；入口换代到 `robot manipulation`（新收 8，`world model` 返回 147 但新收仅 5）；★8 是 7d 窗自第 20 轮最高，`min:0` 地板不动。→ MEMORY 行 + topic 整节。
+3. **defi-overview 11-13 三条口径 + 一条 ops**：`/overview/fees` 的 `protocols[]` 无 `tvl` 字段（筛出 0 条与「无信号」同形）、`/global/market_cap_chart` 是 PRO-only（401）、real-yield 计数 270→235 是收益率收缩不是池子变少；ops 补 `defi-overview` 成功率 0.56（19/34），再一段连败即破 chronic 线。
 
-### 自查修正一处
-写 defillama-radar 索引行时先写成「第 16/17 轮是 `parent` 连续两轮不回落」，核对日志后第 16 轮实为 **3**（15 轮 5 → 16 轮 3 → 17 轮 11）→ 不存在连续上行，已改为「单轮跳升，仍按两轮连续读数判」。
+**剪枝**：`gh pr list --search "improve:"` = `[]`（连续第十一天），无 PR 段可清；无 Next Priorities 段 → 新增一条**「待盯」**行收唯一 OPERATOR 决策（cron `0 23` + WebSearch 缺位）；未删任何 lesson（本轮均为判据加强，无被推翻项）；各节未超 10–15 行，未触发归档。
 
-### 预算
-起点 8,060 → 终点 **8,167 字节 / 42 行 / 0 超 300 字符**（余 25 字节）。中途一度冲到 8,857（超 665）且 line 33 达 327 字符，靠合并口径 ①②③ 为两行、合并两例事故、削冗余修饰词回线 —— 只削字，未丢事实或 source 标签。
+**文件改动**：`memory/MEMORY.md`、`memory/topics/lessons.md`、`memory/topics/github-radar.md`、`memory/topics/ops-plumbing.md`、`memory/topics/index.md`（四行）、`memory/logs/2026-11-13.md`（`### memory-flush`）、`memory/memory-flush-state.json`（已 stamp 至 2026-11-13）。
 
-### 文件改动
-`memory/MEMORY.md`（发现层 3 行 + Lessons 2 行原地改写）、`memory/topics/lessons.md`、`memory/topics/github-radar.md`、`memory/topics/ops-plumbing.md`、`memory/topics/index.md`（四行）、`memory/logs/2026-11-12.md`、`memory/memory-flush-state.json`（stamp）。
-
-### 待跟进（operator 决策，非本 skill 可动）
-**`defi-overview` 两条修复仍未落地** —— cron 挪离 `0 23`（403 高发窗）、削减单轮输出量。心跳已连报三轮，今晚 23:00Z 复发概率仍高。另有 `arxvi-radar` cron-state 孤儿条目、上游 `aeon.yml` 五条 disabled 技能取舍。
+**待跟进**：`defi-overview` 的两条病根（cron 挪离 `0 23`、削减单轮输出量）仍是 OPERATOR 决策，本轮未擅自改；`arxvi-radar` cron-state 孤儿条目与 `on-chain-state.json.new` 遗留物继续挂起。

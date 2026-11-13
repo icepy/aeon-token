@@ -3,12 +3,24 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔；且 7d 下报告级全 ★0，star 只能 `min:0`**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-12T18:20:00Z
+timestamp: 2026-11-13T18:30:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
 从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十/二十一轮 7 天窗（11-07 / 11-08）实证。
+
+## 第二十五轮（2026-11-12，`days:7`，非 dry-run，**probe 跳过**）—— `30天=`≡`7天=` 12/12 第六轮；加密侧第十连轮 0；入口换代到 `robot manipulation`
+
+漏斗：原始 **420** → 幸存 **33** → 报告级 **12**，核验 **33/33 = 100%**（全量），黑名单 3 owner。单窗 17 / 需拆窗 1 / 二分 0，搜索 20 次调用。丢弃 seen=170 · excl=27 · short_desc=81 · carrier=83 · neg=13 · pages=12 · pages_root=1 · archived=0 · scaffold=0 · farm=0 · **fail=0**。四分类：查询失败 0 · 真零 2 · 全已见 9 · 有新增 7。
+
+- **判据级 ①：`30天=` ≡ `7天=` 本轮 12/12 全等，第六轮**（累计 12/12、8/8、6/6、12/12、7/7、12/12）。**两栏定死为「仓龄」，报告里不再当活跃度证据** —— 这条已从「观察项」降为既成前提，后续不必逐轮举证。
+- **判据级 ②：加密侧第十连轮报告级 0。** 7 个加密词全有分类读数、无一条进报告级：`data availability`(12/1) · `intent-based`(11/2) · `restaking`(2/2) 有召回但止步门槛，`verifiable inference`(1/1) 饱和，`proof of useful work`(1/0) 过滤损耗，`maximal extractable value` / `robotics data engine` total=0。12 条报告级清一色 AI/机器人。**上轮定的下一动作（量 `mev` 缩写的 total_count 与重叠度）本轮仍未做 —— 这仍是恢复加密侧召回的唯一已知入口。**
+- **判据级 ③：★ 分布出现单条 ★8（`santoshrajkumar/fame-qp`，30d=6/7d=6，GPU QP solver）= 7d 窗自第 20 轮以来最高 star。** 其余 ★0×7 · ★1×3 · ★2×1。**`min:0` 地板依旧正确 —— 抬到 ★1 会砍掉 7/12。**（不作跨窗比较：30d 窗第 31 轮曾有 ★89。）
+- **判据级 ④：入口继续换代，`robot manipulation` 新收 8 居首（报告级 3 条）、`teleoperation` 新收 7（报告级 2 条）；`world model` 返回 147 最多但新收仅 5。** 与「看新收/返回比值不看返回量」同向。报告级里两条有实体工程读数：`HDU-EILab/ur5-teleop`（UR5 VR 遥操作栈，PICO/RTDE/servoj + LeRobot 导出，高校实验室账号）与 `dk2472780158-ctrl/g1-navigation-rl`（FAST-LIO + Nav2 + Isaac Gym PPO/LSTM）；其余多为课程/实验/研究笔记形态（`vla_final` 自述 CS 6180 课程作业、`vla-from-scratch` 是教程、`ssm-jepa-lab` 是实验记录）。**只记形态，不判质量。**
+- **`embodied data`(raw=3) / `proof of useful work`(raw=1) 双双 seen=0 —— 连续第五轮过滤损耗**（与第 21–24 轮同形），不许按饱和读。
+- **异常：** 无 `language` 2（`NovaFlow-Robot-Manipulation-` / `six-axis-master-slave-robotic-arm`，均未进报告级）· 空仓 409 1 · carrier 误杀对照 丢弃侧 30/31 = 97% vs 放行侧 32/32 = 100%（**7d 窗恒不可读，不作放宽依据**）。
+- **`probe` 跳过（戳 2 天 < 7 天）→ `clusters.json` 未重写**，本轮任何 probe 数字不可引用。
 
 ## 第二十四轮（2026-11-11，`days:7`，非 dry-run，**probe 跳过**）—— `30天=`≡`7天=` 7/7 第五轮；加密侧第九连轮 0；`jepa` 出现「论文移植/审计」第 4、5 个样本
 

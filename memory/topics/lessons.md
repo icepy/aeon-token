@@ -4,7 +4,7 @@ description: Detail behind the one-line lessons in MEMORY.md, kept here so MEMOR
 tags:
   - lessons
   - runbook
-timestamp: 2026-11-12T18:22:00Z
+timestamp: 2026-11-13T18:30:00Z
 ---
 
 # Lessons learned — archive
@@ -229,6 +229,10 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **🔴 `apyReward` 为 `null` 的池会被 `(.apyReward // 0) > 0` 整批漏掉（2026-11-11 实测）。** 若先写 `select((.apyReward // 0) > 0)` 再算奖励占比，**纯 base 收益池（reward 为 null）会被整体排除** —— 本轮初跑因此把 real-yield 榜首全线弄丢（SUSDAT 23.24%、HGRAM 16.94% 都不见了）。**判据：先按 `apyBase` 分流（real yield 只看 base），再用 `apyReward` 算占比；不要把 null 当 0 参与「有没有奖励」的存在性判断。** 顺带：`rewardTokens` 是**地址字符串数组**，不是对象数组，`r.get('symbol')` 会 `AttributeError`。 [source: logs/2026-11-11#defi-overview]
 - **`/protocols` 是裸数组，`/overview/dexs|fees` 才是 `{protocols:[...]}`（2026-11-11 踩坑）。** 同一轮里 `jq '.protocols[]' .tmp/protocols.json` 报 `Cannot index array with string "protocols"` —— 两个端点名字像、形状不同。**纪律：写 jq 前先 `. | type` 一次，别按上一个端点的形状套。** 另：`/protocols` 里 `change_1d` 可为 `null`，`sort_by(-.change_1d)` 会直接报 `null cannot be negated`，必须先 `select(.change_1d != null)`。 [source: logs/2026-11-11#defi-overview]
 
+- **🔴 `/overview/fees` 的 `protocols[]` 根本没有 `tvl` 字段 —— fees-beating-TVL 过滤器必须 join `/protocols`（2026-11-13 实测）。** 初版按 `tvl>=1e8` 直接筛，返回 **0 条**，读起来和「本轮无信号」一模一样，实际是**字段缺失**（`tvl` 不在 fees payload 里）。修法：以 `name` 为键 join `/protocols` 取 `tvl` 与 `change_7d`，再加闸（`fees24h ≥$100k`、`24h÷7d日均 ∈(20%,200%]`、`TVL ≥$100M`、`TVL 7d <+5%`、`24h÷30d日均 <3×`）后得 5 条，仅 1 条入正文。**判据：任何「筛出 0 条」先打印一行样本的 key 集合，确认被筛字段真存在 —— 缺字段与被筛空同形。** 与 [假零](/topics/lessons.md#假零与断层) 同族。 [source: logs/2026-11-13#defi-overview]
+- **🟡 CoinGecko `/global/market_cap_chart` 是 PRO-only，免费 key 返回 401（2026-11-13 实测）。** 想算 BTC dominance 日变化走不通该端点；可用替代：拿当前 `/global` 的 `market_cap_percentage` 与本仓上一轮快照比（本轮 `59.41%` vs 上轮 `59.90%` = −0.49pp），并在报告里注明这是「对上一份快照」而非「对昨日」。**判据：401/403 在聚合 API 上通常意味「端点分级」而不是 key 失效 —— 先查端点是否 PRO-only，再怀疑鉴权。** [source: logs/2026-11-13#defi-overview]
+- **🟡 real-yield 计数单轮掉 13% 是「收益率收缩」，不是「池子变少」（2026-11-13 实测：270 → 235）。** 掉的那些不是被摘牌，而是 `apyMean30d` 闸在暴跌后跟不上：30 日均值仍含高位、当前 APY 已下来，`apyMean30d >= apy*0.5` 之外的池被砍。**判据：real-yield 计数本身是一个收益率读数，不是供给读数；计数骤降须同时报「是不是均值闸砍的」再下结论。** [source: logs/2026-11-13#defi-overview]
+
 ## Keyless Base reads
 
 - **Keys are unset in this repo's runs** (`ALCHEMY_`, `ETHERSCAN_`, `COINGECKO_API_KEY`). Keyless Base reads work only via Tenderly's public gateway, capped at 1,000 blocks per `eth_getLogs` — and 20,000 results, so always pass an `address` filter. See [Base RPC access](/topics/base-rpc-access.md).
@@ -344,6 +348,7 @@ Base 约 2 秒一块，但**不保证**。2026-10-24 按 `head-1800` 取窗，�
 - **🟡 「窗口内最新收录日期」早于今天不等于索引滞后 —— 先看星期几。** 第 40 轮记「连续三天停在 11-05」并在第 41 轮确认为**周末节律**（周一看到上周五 = 正常），滞后预警已撤销。**判据：收录日期落后 1–3 天且在周一观察到，先排除周末，再谈索引滞后。**
 - **🟡 饱和词 `maxpub` 全部落在近 30 天内 = 话题活着、seen 饱和，别删。** 第 41 轮 13 个饱和词最新发布 `embodied AI` 11-05 · `egocentric` 11-05 · `zero-knowledge` 11-04 · `robot data` 11-03，最旧 `auditable training` 10-13。**与「滑出窗口 ≠ 降温」是同一条判据的两面。** [source: logs/2026-11-09#arxiv-radar（第 41 轮）]
 
+- **🟢 第 44 轮：幸存归零，但零来自 `seen` 吃干，不是词表失效（2026-11-12）。** 原始 **75** → 幸存 **0**（第 43 轮 83 → 4）；六分类：未测到 0 · 未尝试 0 · 窗口内零命中 12 · 低频 0 · 全已见 14 · **有新增 0**，两侧失败类仍全 0 = 读数干净。**12 个零命中词里 10 个跨窗（60/90d）有命中 → 窗口太短，不许删。** 只剩 `verifiable inference` / `restaking` 跨窗皆 0（连续第三轮），本轮补做「换写法」这一级：`ti:"shared security"` 与 `ti:"verifiable machine learning"` **7/30/60/90 四窗全 0、已见 0/100** —— 同义写法同样零召回。**但按「换写法 → 降频 → 删词」不许跳级，本轮仍不删词；下一步是放开 `ti:` 改查全字段（`all:`），确认不是标题限定造成的假零。** 饱和侧 14 词 raw 最新发布仍在 30 天内（最旧 `data availability sampling` 10-15 = 28 天）→ 无降温候选。 [source: logs/2026-11-12#arxiv-radar（第 44 轮）]
 - **🟢 第 43 轮：单侧读数会「换边」亮，这本身是对「某侧升温」的反证（2026-11-11）。** 原始 **83** → 丢弃 `seen` 79（95%）→ 幸存 **4**（词级 3 / 论文级 4，`egocentric` 一词出 2 条 —— **词计数与论文计数首次不等，跨轮比较别混口径**）。六分类两侧失败类再度全 0 → 读数干净。**第 42 轮 ZK 侧占 3/7，本轮机器人侧占 3/4** —— 两个不同单侧连续亮，形态上更像「加密侧长期 0–1 条」这一结构常数在起作用，而不是某一侧升温；**单侧读数按铁律不作趋势读**。另：13 个饱和词的最新发布日期全部仍在近 30 天内（最旧 `auditable training` 10-13 = 29 天）→ **无一进入「停 60 天可考虑降温」区间**；`proof-of-useful-work` raw=2/新收 1 是加密侧本轮唯一读数，同族 `verifiable training`/`auditable training`/`proof of training` 全饱和或零命中 → 该簇仍是「有词、无流量」。**九成五的原始量被 `seen` 吃掉，要提召回只能加词，加窗口无效。** [source: logs/2026-11-11#arxiv-radar（第 43 轮）]
 - **🟢 第 42 轮读数干净，可作基准（2026-11-10）。** 原始 **80 → 幸存 7**，六分类：未测到 0 · 未尝试 0 · 窗口内零命中 10 · 低频 0 · 全已见 12 · **有新增 4** —— **两侧失败类（未测到 / 未尝试）全 0 才是「读数干净」的判据**，此时「词表不动」才有依据，否则先补扫再下结论。收录停 11-09（周一）距今天 1 天 = 正常。跨窗 10 个零命中词里 8 个有命中（非真零）；**跨窗皆 0 仍只剩 `verifiable inference` / `restaking`（60d=0/90d=0，连续第二轮）**，按三级判词仍在「换写法」档，判死需 60d total 5–60 · 已见 <1/3 · 领域命中 >80% 三条件齐备。**单侧读数不作趋势：** ZK 侧本轮史无前例占幸存 3/7（此前单轮通常 0–1 条），只能证 `zero-knowledge` 召回活着（raw=9），不能证方向升温。**新形态待观察：** `Look Ahead` 被 `embodied AI` 捞出却是纯推理方法（无数据侧、无第一视角、不出动作），`agent`/`VLA` 标签都不贴 → 落 `?`，同一形态连续两轮才加标签。**carrier 空转第 N 次确认：** 14 词仍未配 carrier 表、carrier 丢弃 0，`zero-knowledge` 捞出的 3 条都是应用层 ZK（生物特征认证 / 加密聚合）而非证明系统效率，方向对但精度偏应用层。 [source: logs/2026-11-10#arxiv-radar（第 42 轮）]
 

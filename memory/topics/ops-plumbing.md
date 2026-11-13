@@ -162,6 +162,9 @@ status page moved 🔴 DEGRADED → 🟡 WATCH, **not** 🟢 OK.
 - Both root causes are still in place after four nights of this: cron fixed at `0 23` (inside the
   403-heavy 23:00–23:31Z band) and per-round output volume still over the 128k cap. The only
   actionable item is the cron move, and it is an operator config decision.
+- **Margin, as of 2026-11-13:** `defi-overview` success rate is **0.56 (19/34)** — one more long
+  bad stretch crosses the `<0.5` chronic line (`total_runs >= 5` already satisfied). That is the
+  score-level argument for moving the cron, not a new mechanism.
 - **Generalise the status rule:** a skill recovering on its own does not clear the finding while
   the cause stands. Keep the artifact-staleness check (`market-context.md`'s own `timestamp`)
   until a fix lands.

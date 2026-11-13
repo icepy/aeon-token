@@ -5,15 +5,16 @@
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**；`arxvi-radar` 孤儿待清。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
 - **`aeon-update` 基线 `2ff25a3`**：PR #24 已关未合，内容由 catalog commit 直落 main（ICP 三件套、catalog 96、lockfile 99）。**待决策：上游 `aeon.yml` 5 条新技能未抄。** [source: logs/2026-11-09#aeon-update]
+- **待盯（唯一 OPERATOR 决策）：`defi-overview` 成功率 0.56，cron 仍卡 `0 23`（403 窗），再连败即破 chronic 线。** WebSearch 连 5 轮不可用 → `narrative-brief` 的 `unverifiable_claim` 本仓不可修。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-13#heartbeat]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
 > **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000，扳机 = 首笔 ETH。
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一成熟度阶梯：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-11 第 43 轮 **83 → 4**，两侧失败类全 0 = 读数干净。**单侧会换边亮**（上轮 ZK 3/7、本轮机器人 3/4）→ 单侧不作趋势。13 饱和词 maxpub 全在 30 天内。`verifiable inference`/`restaking` 连续第三轮跨窗全 0，先量同义写法。14 词仍未配 carrier 表。[source: logs/2026-11-11#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-13 第 18 轮 9026 / 新增 14 / **可报 4**（$9.28M）。**`9412–9415` 回填 → 任何 id 缺席都不构成永久空洞证据**（`9382` 连缺三轮）。加链边际 $514→$2.6K→$48.5K 在升但仍是条数量级 → **不加**；**边际数「能救的条数」不是「挂该链的条数」**。`wstO Vault` 白名单链裸 tvl 全 0、$3.97M 在 staking = 「chains 是声明、chainTvls 才是量」最极端例。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-13#defillama-radar]
-- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-11 第 24 轮 428/30/7：`30天=`≡`7天=` **7/7 第五轮**（判据缺陷）· 加密侧**第九连轮** 0（下一步量 `mev` 缩写）· `jepa` 连出论文移植/审计第 4、5 例。→ [topic](/topics/github-radar.md) [source: logs/2026-11-11#github-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-12 第 44 轮 **75 → 0**（上轮 83→4），两侧失败类全 0 = 读数干净。12 个零命中词里 **10 个跨窗有命中 → 窗口太短不许删**；`verifiable inference`/`restaking` 跨窗皆 0 且同义写法四窗也全 0 → 下一步放开 `ti:` 查 `all:` 再谈删词。14 词仍未配 carrier 表。[source: logs/2026-11-12#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-13 第 18 轮 9026 / 新增 14 / **可报 4**（$9.28M）。**任何 id 缺席都不是永久空洞证据**（`9412–9415` 已回填，`9382` 连缺三轮）。加链边际在升但仍属条数量级 → **不加**；**边际数「能救的条数」≠「挂该链的条数」**。**`chains` 是声明、`chainTvls` 才是量**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-13#defillama-radar]
+- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-12 第 25 轮 420/33/12：`30天=`≡`7天=` **12/12 第六轮**（定死为仓龄）· 加密侧**第十连轮** 0（`mev` 缩写仍未量）· 入口换代到 `robot manipulation`。→ [topic](/topics/github-radar.md) [source: logs/2026-11-12#github-radar]
 
 
 ## Lessons Learned
@@ -23,8 +24,8 @@
 - **假零八：CDN 快照让 id 差集恒为 0**（10-28）—— 差集为空先断言 `cf-cache-status != HIT` 或加 `?_cb=` 复取。**反向也有坑：id 集合相同 ≠ 字段值最新**，`parentProtocol` 这类补录字段会在两份快照间翻转（11-03）。
 - **`eth_getLogs` 判别力测试：** 真 topic0 必回真日志、**故意错 1 字符必回 0**。不可区分 = 端点坏。公共 RPC 硬限 1000 块，长窗 999 分片。
 - **链上速查（DEUS 归档后仍通用）：** Solidly Swap 字序 `(a0In,a1In,a0Out,a1Out)`，按 UniV2 解会读反 → 用储备差对照符号。**`eth_getCode`=`0x` 才 EOA，`0xef0100…` 是 7702；地址左补零且全小写。** 买单真伪只认终点余额升高且留住。**门槛先核对分子分母同单位。**[lessons](/topics/lessons.md)
-- **行情口径 ①（结算纪律）：** 只用桶结算值，live 不参与 delta；**当日桶 24h 内未结算，隔日复查才可当历史引用**（11-07 次日下修 −17.1%）；7d/30d 必须脚本算；跨 series diff 按日期对齐（per-chain delta 总和 = aggregate）。**桶编号必须从 ts 换算 UTC 日期**，「倒数第 N 个」差一位会把结论方向翻反（11-11 实测）。[lessons](/topics/lessons.md#行情取数形状defillama--coingecko) [source: logs/2026-11-11#defi-overview]
-- **行情口径 ②（字段与噪声）：** `change_7d` 实为 `total24h/total7DaysAgo−1`，真 7d-over-7d 在 `change_7dover7d`；DEX 量/fees ~23% 星期效应须先归一；fees 增速剔单日尖峰（>14 日中位 3×）**且剔后按日均比**；广度须连续三日同向；价格单日 |Δ|>5% 当日 F&G 作废；**「缩量」须报同星中位**而非 7d 均值；**F&G 会回溯修订**，跨轮必须拉 ≥3 日序列。[lessons](/topics/lessons.md) [source: logs/2026-11-11#defi-overview]
+- **行情口径 ①（结算纪律）：** 只用桶结算值，live 不参与 delta；**当日桶隔日复查才可当历史引用**（11-07 下修 −17.1%）；7d/30d 脚本算；跨 series 按日期对齐（per-chain 总和 = aggregate）。**桶编号须由 ts 换算 UTC 日期**，「倒数第 N 个」差一位会把结论翻反（11-11 实测）。[lessons](/topics/lessons.md#行情取数形状defillama--coingecko) [source: logs/2026-11-11#defi-overview]
+- **行情口径 ②（字段与噪声）：** `change_7d` 实为 `total24h/total7DaysAgo−1`，真 7d 在 `change_7dover7d`；**`/overview/fees` 的 `protocols[]` 无 `tvl`，须 join `/protocols`**；星期效应先归一；fees 剔尖峰后按日均比；|Δ|>5% 当日 F&G 作废；**「缩量」报同星中位**；**F&G 会回溯修订**须拉 ≥3 日序列。[lessons](/topics/lessons.md) [source: logs/2026-11-13#defi-overview]
 - **聚合字段口诀：先说清它量的是什么，再决定信不信。** `/protocols` 的 `change_1d` = 当日 00:00 桶内值，不是今昨差；`/v2/chains` 已删 `change_1d`/`change_7d` → 旧写法静默拿缺省值，链涨跌只能走 `/v2/historicalChainTvl/{chain}` 自算。**成因查 `hallmarks`**。[source: logs/2026-11-05#defi-overview]
 - **某过滤器长期「0 丢弃」先查有多少输入真经过它，再查它是不是用歧义词假装挡住了** —— `arxiv-radar` carrier 连九轮空转（14 词没配表），第 37 轮又证明 `circuit`/`network` 对超导/ML 同样成立 = 无判别力。「零假阴」≠ 规则安全。**某桶占比升高 ≠ 该桶杀伤力升高**。[source: logs/2026-11-05#arxiv-radar]
 - **漏斗退化成单通道时，0 输出的责任在词表召回，不在过滤器** —— 过滤层已无调节空间；零幸存来自饱和 ≠ 任一侧流量消失。[source: logs/2026-10-31#arxiv-radar]
