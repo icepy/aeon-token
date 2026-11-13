@@ -1,12 +1,10 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-12T10:01:54Z",
-  "quality_score": 2,
-  "assessment": "Well-structured brief that clearly tracks change/new/dead items across sections, but several headline specifics read as invented and unverifiable (Anthropic pre-IPO implied $1.9T valuation, Nvidia board weighing Jensen ouster, \"Mythos\" porting Claude to AMD), capping it at 2.",
-  "flags": [
-    "unverifiable_claim"
-  ],
-  "avg_score": 3.35,
+  "last_analyzed": "2026-11-13T10:01:25Z",
+  "quality_score": 4,
+  "assessment": "Clean, verifiable no-op run: fetched remote source (http=200, 22808 bytes, reason=ok), computed per-section sha256 for all 4 dated sections, matched against seen-state, correctly concluded UNCHANGED and skipped notify without rewriting report.md; hashes and dates are concrete and internally consistent, though it is a routine dedup pass rather than an insightful analysis.",
+  "flags": [],
+  "avg_score": 3.38,
   "history": [
     {
       "date": "2026-10-27",
@@ -126,6 +124,12 @@
       "date": "2026-11-12",
       "score": 2,
       "ts": "2026-11-12T10:01:54Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-13",
+      "score": 4,
+      "ts": "2026-11-13T10:01:25Z",
       "harness": "claude"
     }
   ]
