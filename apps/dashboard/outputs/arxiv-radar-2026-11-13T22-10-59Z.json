@@ -1,0 +1,194 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "第 45 轮 · 窗口 30 天 · 原始 76 → 幸存 5"
+      },
+      "children": [
+        "metaStack",
+        "statsGrid",
+        "sep1",
+        "vcHeading",
+        "vcList",
+        "sep2",
+        "consensusHeading",
+        "consensusList",
+        "sep3",
+        "embodiedHeading",
+        "embodiedList"
+      ]
+    },
+    "metaStack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badgeRound",
+        "badgeWindow"
+      ]
+    },
+    "badgeRound": {
+      "type": "Badge",
+      "props": {
+        "text": "第 45 轮",
+        "variant": "secondary"
+      }
+    },
+    "badgeWindow": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 30 天",
+        "variant": "outline"
+      }
+    },
+    "statsGrid": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "statRaw",
+        "statSurvived"
+      ]
+    },
+    "statRaw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "76",
+        "trend": "neutral"
+      }
+    },
+    "statSurvived": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "5",
+        "trend": "down"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "vcHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "可验证计算（1）",
+        "level": "h2"
+      }
+    },
+    "vcList": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "vc1"
+      ]
+    },
+    "vc1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Batch, Pack, and Prove",
+        "href": "https://arxiv.org/abs/2611.16922",
+        "source": "arXiv",
+        "score": "CKKS 同态密文的批量打包与证明，降低可验证计算开销"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "consensusHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "共识（2）",
+        "level": "h2"
+      }
+    },
+    "consensusList": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "cs1",
+        "cs2"
+      ]
+    },
+    "cs1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Plurality Consensus for h-Majority via First-Repetition Rules",
+        "href": "https://arxiv.org/abs/2611.16037",
+        "source": "arXiv",
+        "score": "用首次重复规则做的 h-多数派共识"
+      }
+    },
+    "cs2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SoK: Design Choices in Tendermint BFT Consensus",
+        "href": "https://arxiv.org/abs/2611.15847",
+        "source": "arXiv",
+        "score": "Tendermint BFT 设计选择的系统化梳理"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "embodiedHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据（2）",
+        "level": "h2"
+      }
+    },
+    "embodiedList": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "em1",
+        "em2"
+      ]
+    },
+    "em1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HEIR",
+        "href": "https://arxiv.org/abs/2611.17238",
+        "source": "arXiv",
+        "score": "把语音、注视与第一视角视频配成人类意图数据集 + 基准，带遥操作导航-操作轨迹"
+      }
+    },
+    "em2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoX",
+        "href": "https://arxiv.org/abs/2611.16728",
+        "source": "arXiv",
+        "score": "人/真机/仿真示范对齐到统一观测-动作格式的跨本体预训练，含\"embodiment dreaming\"未来潜变量目标"
+      }
+    }
+  }
+}

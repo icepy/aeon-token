@@ -1,1 +1,67 @@
-[]
+[
+ {
+  "id": "2611.16922",
+  "term": "verifiable computation",
+  "terms": [
+   "verifiable computation"
+  ],
+  "window": 30,
+  "name": "CKKS",
+  "title": "Batch, Pack, and Prove: More Efficient Verifiable Computation for CKKS",
+  "published": "2026-11-12",
+  "link": "https://arxiv.org/abs/2611.16922",
+  "carrier": "protocol"
+ },
+ {
+  "id": "2611.16037",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
+  "terms": [
+   "ti:\"consensus\" AND cat:cs.DC"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Plurality Consensus for $h$-Majority via First-Repetition Rules",
+  "published": "2026-11-11",
+  "link": "https://arxiv.org/abs/2611.16037",
+  "carrier": "round"
+ },
+ {
+  "id": "2611.15847",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
+  "terms": [
+   "ti:\"consensus\" AND cat:cs.DC"
+  ],
+  "window": 30,
+  "name": "SoK",
+  "title": "SoK: Design Choices in Tendermint BFT Consensus",
+  "published": "2026-11-11",
+  "link": "https://arxiv.org/abs/2611.15847",
+  "carrier": "protocol"
+ },
+ {
+  "id": "2611.17238",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "HEIR",
+  "title": "HEIR: Harness Egocentric Intent for Human-Robot Interactions",
+  "published": "2026-11-12",
+  "link": "https://arxiv.org/abs/2611.17238",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.16728",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "EgoX",
+  "title": "EgoX: Egocentric Cross-Embodiment Manipulation with Embodiment Dreaming",
+  "published": "2026-11-12",
+  "link": "https://arxiv.org/abs/2611.16728",
+  "carrier": "robot"
+ }
+]

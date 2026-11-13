@@ -1,13 +1,12 @@
-**arxiv-radar** · 窗口 30 天 · 原始 83 → 幸存 4
+**arxiv-radar** · 第 45 轮 · 窗口 30 天 · 原始 76 → 幸存 5
 
-**具身数据**
-- `Ego Guidance` — 用无动作标签的第一视角人类视频增强机器人策略学习 · https://arxiv.org/abs/2611.13685
-- `From Egocentric Human Video to Robot Manipulation` — 第一视角人类视频到机器人操作的综述（具身智能时代） · https://arxiv.org/abs/2611.13610
+**可验证计算**（1）
+- `Batch, Pack, and Prove` — CKKS 同态密文的批量打包与证明，降低可验证计算开销 · https://arxiv.org/abs/2611.16922
 
-**灵巧操作**
-- `DexSeed` — 把人类手物交互扩增成机器人演示，用于灵巧策略学习 · https://arxiv.org/abs/2611.14092
+**共识**（2）
+- `Plurality Consensus for h-Majority via First-Repetition Rules` — 用首次重复规则做的 h-多数派共识 · https://arxiv.org/abs/2611.16037
+- `SoK: Design Choices in Tendermint BFT Consensus` — Tendermint BFT 设计选择的系统化梳理 · https://arxiv.org/abs/2611.15847
 
-**共识**
-- `Useful Work Can Increase Energy Use` — 需求弹性下，有用工作量证明反而可能抬高能耗 · https://arxiv.org/abs/2611.13131
-
-单侧读数：本轮 4 条里 3 条在机器人侧，加密侧仅 1 条（`proof-of-useful-work`）。
+**具身数据**（2）
+- `HEIR` — 把语音、注视与第一视角视频配成人类意图数据集 + 基准，带遥操作导航-操作轨迹 · https://arxiv.org/abs/2611.17238
+- `EgoX` — 人/真机/仿真示范对齐到统一观测-动作格式的跨本体预训练，含"embodiment dreaming"未来潜变量目标 · https://arxiv.org/abs/2611.16728
