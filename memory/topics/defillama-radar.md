@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-12T00:10:00Z
+timestamp: 2026-11-13T00:20:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,55 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-12 第 17 轮）
+## 本轮漏斗口径（11-13 第 18 轮）
+
+全量 **9026** · 新增 id **14**（可报 **4** / 过滤 10）· `seen` 命中 9012 · `parent` 6 · `category` **0（真 0）** · 空 `chains`/链白名单 4 · 无 id 0 · 拉取失败 0 · 重报 0。
+
+**可报四条（已发通知、已标 `notified`，TVL 合计 $9.28M）：** `Swan DAO`(9415，Ethereum，$5.19M + staking $113.4K，CDP，wstETH 背书的 DAO 稳定币，`audits=2` 全轮唯一) · `Sigma Labs`(9412，Ethereum，$3.89M，Risk Curators，无 url/address/审计) · `DeltaUSD`(9420，Base+X Layer+Berachain+Plasma+Binance，$162.0K，Basis Trading，delta 中性) · `NoxFund`(9424，Binance，$43.0K，**`Ponzi`**，45 天锁仓七级推荐)。
+
+### 可报集首次吃到 $M 级体量，前两轮的「差 418/1279 倍」形态本轮消失
+
+前两轮都在记「可报 TVL 和不代表新增体量」。本轮可报合计 **$9.28M**，是 17 轮来第一次可报集本身就是体量最大的一侧。原因不是漏斗放宽，是**恰好有两条 $M 级条目既无 parent、类目不属 EXCL、又挂在 Ethereum**（`Swan DAO` $5.19M / `Sigma Labs` $3.89M）。**所以那个倍数读数依赖单轮运气，不是结构性判据 —— 以后不要把它当常态指标追。**
+
+**注意本轮不可比的那一半**：新增里体量最大的被丢弃条目是 `wstO Vault`(9425) 的 **staking $3.97M**（`tvl=0`）。它是 `staking` 不是 `tvl`，**不能与可报集的 `tvl` 直接相加或求倍**。「可报 TVL 和 vs 新增体量」这个比较只在两边都是 `tvl` 口径时成立。
+
+### `wstO Vault`：`tvl=0` 但 $3.97M 全在 staking，且白名单链上 tvl 是 0
+
+`chains=['Robinhood Chain','Base']`（**两条都在白名单**），但 `chainTvls` 里两条链的裸 `tvl` **都是 0**，量全在 `Robinhood Chain-staking` $3.67M + `Base-staking` $296.7K。这是「`chains` 是部署声明、`chainTvls` 才是实际量」迄今最极端的一例：**一条挂在纯白名单链上的条目，白名单链的 `tvl` 是 0，全部价值在质押侧。** 只看 `tvl` 会把它判成空壳。该类目记 `Yield`、`parent#o1-exchange`（parent 桶挡掉，遮挡正确）。
+
+### 加链边际继续上升但仍是条数量级：Elysium 本轮 $48.5K，结论不变
+
+该链存量 **15 → 18 条**。本轮 3 条新增挂该链，但加链净边际只有 **`Kleos`(9419) 1 条 $48.5K** —— `Boxa V1`(9421，$80.9K，**体量比 Kleos 大**) 有 `parent#boxa`、`Boxa V2`(9422) `chains=[]`，**加链都救不了**。
+
+三轮实测边际：**$514 → $2.6K → $48.5K**（11-11 → 11-12 → 11-13）。**在单调上升，但仍是个位数条数**，代价是删 9026 条 seen 重做基线。**结论不变：不加。** 判据补充：**加链边际要看「加链能救的条数」，不是「挂该链的条数」** —— 本轮后者 3、前者 1，差 3 倍。
+
+### `9412–9415` 回填：高号缺席确实会回来，机制第二次实盘复现
+
+上轮（11-12）记录「`9412–9415` 虽高于历史最大 id 却缺席 → 高号也可能待回填」。**本轮 `9412`(Sigma Labs) 与 `9415`(Swan DAO) 双双出现，连同 `9413`/`9414` 四条整段补齐。** 这是「分配号 + 延迟回填」机制的**第二次实盘复现**（首次是 11-02→11-03 的 9290–9293 那批 CEX）。
+
+**由此把判据钉死：任何 id 缺席都不构成「永久空洞」证据，无论它低于还是高于历史最大 id。** 仍然缺 `9382`（连续第三轮）、`9391`（连续第二轮），照旧按待回填处理。
+
+### `listedAt` 整分秒值本轮 0 条（上轮 2 条）
+
+新增 14 条 `listedAt` **无一为整分 `:00`**，与上轮 22 条里 2 条形成对照 —— **说明整分秒是逐条人工填写的偶发现象，不是某类批次的固定指纹**。全量仍 **69/7350 = 0.94%**。跨度 **23.91h**（11-11T22:48:59Z → 11-12T22:43:27Z），最小间隔 **4s**（`Boxa V1`→`V2`，同 `parent#boxa`，是本轮最紧一组但未破同秒门槛）。同秒 ≥3 条批量指纹新增 **0 组**，最近一组仍是 11-07T14:26:04Z(n=4)。
+
+### `parent` 桶真边际 0/6（本轮与上轮相反）
+
+6 条 `parent` 逐条拆：`wstO Vault`(9425) 去掉 parent 后白名单链 `tvl` 仍为 0（量在 staking，但 `tvl` 侧挡不住结论要看口径）· `Kalos Marketplace`/`Launchpad`/`Trade`(9416/9417/9418) 三条 `chains=[]` 双帽 · `Boxa V1` 链 `Elysium Kinetiq` 非白名单 · `Boxa V2` 空链。
+
+**本轮无一「本可报却被误挡」的条目。** 与上轮 `parent` 真边际 4/11 相反 —— 又一次证明**单轮桶读数不作趋势**。
+
+### `Kalos` 与 `Boxa` 是本轮两组「母协议铺子条目」
+
+`Kalos` 三条 `listedAt` 相隔 **5s / 5s**（18:25:14 → 18:25:24Z），同 `parent#kalos`、全 `chains=[]`；`Kalos DEX`/`Kalos Fate` 是 11-11 已入库的第 1–2 条 → **该父下现有 5 条**。`Boxa V1/V2` 相隔 **4s**、同 `parent#boxa`。与 11-08 `Jupiter` 同型（但未到同秒 ≥3 门槛）。**判新度时：同 parent + 间隔 <10s ⇒ 一条都不必细看。**
+
+### CF 校验（11-13）
+
+常规 `cf-cache-status: HIT`、etag `W/"6af64df0-928e7c"`、`last-modified Thu, 12 Nov 2026 23:38:24 GMT`、`cache-control: public, max-age=300`（`age` 头缺失）；`?_cb=` + `no-cache` 源站 `MISS`、**etag 与 `last-modified` 与 HIT 完全相同**。9026 条逐条相同（`only_a=[]` / `only_b=[]`），14 条新增 11 字段零差异。**`parentProtocol` 翻转连续九轮未复现。** `only_seen=['4818']` 连续第九轮。全量 `chains=[]` = 1618/9026 = **17.93%**（上轮 17.90%，十轮 17.4–17.93）。非数字 id 仍只有 `<5471>`（`OpenTrade`，$237.6M），`seen` 键带尖括号、`'5471'` 不存在。
+
+**本轮无 degraded 事件**：`STATUS: DEFILLAMA_RADAR_OK`，无拉取失败、无 seen 损坏、无 ⚠️ 链名警告（`BSC`/`OP Mainnet` 孪生为 0 属正常，`Binance`/`Optimism` 分别 1157/394）。
+
+## 上一轮漏斗口径（11-12 第 17 轮）
 
 全量 **9012** · 新增 id **22**（可报 **4** / 过滤 18）· `seen` 命中 8990 · `parent` **11（历史最高）** · `category` 0 · 空 `chains`/链白名单 7 · 无 id 0 · 拉取失败 0 · 重报 0。
 
@@ -443,6 +491,19 @@ id 9300–9363 **连续无缺口**（含本轮 9363），**连续六轮无「暂
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-13 第 18 轮；常规 `HIT` 9026 条、9,604,732 B、etag `W/"6af64df0-928e7c"`、`last-modified Thu, 12 Nov 2026 23:38:24 GMT`、`cache-control: public, max-age=300`（`age` 头缺失）；`?_cb=` 源站 `MISS` 9026 条、**etag 与 `last-modified` 与 HIT 完全相同**、`only_a=[] only_b=[]`；14 条新增 11 字段零差异）
+- 实测数据：同上 9415 `Swan DAO` · `chains=['Ethereum']` · `category='CDP'` · `tvl=5190597.344618308` · `chainTvls={'Ethereum':5190597.34,'Ethereum-staking':113439.06,'staking':113439.06}` · `parentProtocol=None` · `listedAt=1794505952`（2026-11-12T17:52:32Z）· `url='https://www.swanusd.com/'` · `twitter='MonolithMarket'` · `audits='2'`
+- 实测数据：同上 9412 `Sigma Labs` · `chains=['Ethereum']` · `category='Risk Curators'` · `tvl=3888682.2073668046` · `parentProtocol=None` · `listedAt=1794437339`（2026-11-11T22:48:59Z）· `url=''` · `address=None` · `twitter='sigmalabsfi'` · `audits='0'`
+- 实测数据：同上 9420 `DeltaUSD` · `chains=['Base','X Layer','Berachain','Plasma','Binance']` · `chainTvls={'Binance':7.116,'Plasma':751.589,'Base':81074.621,'X Layer':59761.522,'Berachain':20442.620}` · `tvl=162037.4677824773` · `category='Basis Trading'` · `listedAt=1794519483` · 白名单链（Base+Binance）占 **50.0%**
+- 实测数据：同上 9424 `NoxFund` · `chains=['Binance']` · `category='Ponzi'` · `tvl=43038.436798328825` · `parentProtocol=None` · `listedAt=1794522907`（2026-11-12T22:35:07Z）· `twitter='NoxFundROI'`
+- 实测数据：同上 9425 `wstO Vault` · `chains=['Robinhood Chain','Base']` · `category='Yield'` · `tvl=0` · `chainTvls={'Robinhood Chain':0,'Base':0,'Robinhood Chain-staking':3672290.875,'Base-staking':296736.583,'staking':3969027.459}` · `parentProtocol='parent#o1-exchange'` · `address='base:0x182fa643e5f29d5eca75e7b9cf9336a3fe4620b2'` · `url='https://staking.o1.exchange/'`
+- 实测数据：同上 9416/9417/9418 `Kalos Marketplace`/`Kalos Launchpad`/`Kalos Trade` · 全 `chains=[]`、`tvl=None`、`parentProtocol='parent#kalos'` · `listedAt=1794507914/1794507919/1794507924`（相隔 5s/5s）
+- 实测数据：同上 9421/9422 `Boxa V1`/`Boxa V2` · `parentProtocol='parent#boxa'` · V1 `chains=['Elysium Kinetiq']` `tvl=80879.15` staking=34136.74 · V2 `chains=[]` `tvl=None` · `listedAt=1794520057/1794520061`（相隔 4s）
+- 实测数据：同上 9419 `Kleos` · `chains=['Elysium Kinetiq']` · `category='Launchpad'` · `tvl=48460.914` · `address='elysium:0x51C343Ed5131F17895991849860B61C2cb0E7e7a'` · `listedAt=1794519302`
+- 实测数据：同上 9413 `Solflare Card`（`Crypto Card Issuer`、`chains=[]`、`url='https://www.solflare.com/crypto-card/'`）· 9414 `Perpsplexity`（`Sui`、`tvl=70006.85`、`Derivatives`）· 9423 `Hubble Sonic`（`Sonic`、`tvl=3326.20`、`Algo-Stables`）
+- 实测数据（Elysium 存量 18 条）：`2197`/`2198`/`5690` Uniswap V2/V3/V4 · `4602` vfat.io · `7253` nest AMM · `8057`/`8058`/`8295` Ramses · `8306` Metric V1 · `8691`/`9172` Aero · `9376` ArkhamPad · `9383`/`9384` Kalos · `9394` Helios DEX · `9400` Gully Core · 本轮 `9419`/`9421`
+- 实测数据（`chains=[]` 占比）：1618/9026 = 17.93% · `max_id=9425` · 缺口 `9382`/`9391` · 非数字 id 仅 `<5471>`（`OpenTrade`，$237,581,727.12，`chains=['Avalanche','Ethereum','Plume Mainnet']`）
+- 实测数据（新增 `listedAt`）：跨度 23.91h（2026-11-11T22:48:59Z → 2026-11-12T22:43:27Z）；最小间隔 4s；整分 `:00` 值 **0 条**（全量 69/7350 = 0.94%）；同秒 ≥3 条新增 0 组，最近仍为 2026-11-07T14:26:04Z(4)
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-11 第 16 轮；常规 `HIT` 8990 条、etag `W/"6af3aaea-91df7e"`、`last-modified Tue, 10 Nov 2026 23:38:18 GMT`、`cache-control: public, max-age=300`（`age` 头缺失）；`?_cb=` 源站 `MISS` 8990 条、**etag 与 `last-modified` 与 HIT 完全相同**、`only_hit=0 only_miss=0`；15 条新增 11 字段两份快照零差异）
 - 实测数据：同上 9379 `Hyper Tokens` · `chains=['Hyperliquid L1']` · `category='Derivatives'` · `tvl=103732.1845849603` · `parentProtocol=None` · `listedAt=1794269582`（2026-11-10T00:13:02Z）· `url=''` · `twitter='HyperTokensHQ'` · `misrepresentedTokens=false`
 - 实测数据：同上 9374 `Roulana` · `chains=['Solana']` · `category='Luck Games'` · `tvl=6340.500362375524` · `address='solana:ttH5rJWVxCFBdjd3x2AnBxtYDJtRCFa9ty4QpmUpump'` · `listedAt=1794265687`

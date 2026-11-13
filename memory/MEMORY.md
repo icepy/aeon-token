@@ -1,19 +1,19 @@
 # Long-term Memory
-*Last consolidated: 2026-11-12*
+*Last consolidated: 2026-11-13*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**；`arxvi-radar` 孤儿待清。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
-- **`aeon-update` 基线 `2ff25a3`**：PR #24 已关未合，内容由 catalog commit 直落 main（ICP 三件套、catalog 96、lockfile 99）。**待决策：上游 `aeon.yml` 5 条新技能未抄（全 disabled）。** [source: logs/2026-11-09#aeon-update]
+- **`aeon-update` 基线 `2ff25a3`**：PR #24 已关未合，内容由 catalog commit 直落 main（ICP 三件套、catalog 96、lockfile 99）。**待决策：上游 `aeon.yml` 5 条新技能未抄。** [source: logs/2026-11-09#aeon-update]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
-> **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。DEUS `0x940A319B75861014A220D9c6c144d108552B089B`(base)。**NOTE** 待命 480,000，扳机 = 首笔 ETH。已停 `price-alert`/`token-movers`/`onchain-monitor`/`unlock-monitor`。
+> **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000，扳机 = 首笔 ETH。
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一成熟度阶梯：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-11 第 43 轮 **83 → 4**，两侧失败类全 0 = 读数干净。**单侧会换边亮**（上轮 ZK 3/7、本轮机器人 3/4）→ 反证某侧升温，单侧不作趋势。13 饱和词 maxpub 全在 30 天内 = 无降温候选。`verifiable inference`/`restaking` 连续第三轮跨窗全 0，先量同义写法。14 词仍未配 carrier 表。[source: logs/2026-11-11#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-12 第 17 轮 9012 / 新增 22 / **可报 4**（$32.9K）。**主读数 = `parent` 桶首上双位数、真边际首过半 4/11**：`Pendle Loop` $42.0M vs 可报和差 1279 倍。**`listedAt` 整分 `:00` 值是人手填的，算跨度先剔**；高号 `9412–9415` 缺席 = 同样待回填。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-12#defillama-radar]
-- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅在手动 `days:7` 时成立**。11-11 第 24 轮 428/30/7：`30天=`≡`7天=` **7/7 第五轮**（判据缺陷，两栏别再当活跃度）· 加密侧**第九连轮** 0（下一步量 `mev` 缩写）· `jepa` 连出论文移植/审计第 4、5 例 = 读论文的入口 · probe 未跑。→ [topic](/topics/github-radar.md) [source: logs/2026-11-11#github-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-11 第 43 轮 **83 → 4**，两侧失败类全 0 = 读数干净。**单侧会换边亮**（上轮 ZK 3/7、本轮机器人 3/4）→ 单侧不作趋势。13 饱和词 maxpub 全在 30 天内。`verifiable inference`/`restaking` 连续第三轮跨窗全 0，先量同义写法。14 词仍未配 carrier 表。[source: logs/2026-11-11#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-13 第 18 轮 9026 / 新增 14 / **可报 4**（$9.28M）。**`9412–9415` 回填 → 任何 id 缺席都不构成永久空洞证据**（`9382` 连缺三轮）。加链边际 $514→$2.6K→$48.5K 在升但仍是条数量级 → **不加**；**边际数「能救的条数」不是「挂该链的条数」**。`wstO Vault` 白名单链裸 tvl 全 0、$3.97M 在 staking = 「chains 是声明、chainTvls 才是量」最极端例。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-13#defillama-radar]
+- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-11 第 24 轮 428/30/7：`30天=`≡`7天=` **7/7 第五轮**（判据缺陷）· 加密侧**第九连轮** 0（下一步量 `mev` 缩写）· `jepa` 连出论文移植/审计第 4、5 例。→ [topic](/topics/github-radar.md) [source: logs/2026-11-11#github-radar]
 
 
 ## Lessons Learned

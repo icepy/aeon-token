@@ -1,67 +1,65 @@
 [
  {
-  "id": "9405",
-  "name": "Horizen Bridge",
-  "slug": "horizen-bridge",
+  "id": "9415",
+  "name": "Swan DAO",
+  "slug": "swan-dao",
   "chains": [
-   "Base"
+   "Ethereum"
   ],
-  "tvl": 24128.657811027366,
-  "category": "Canonical Bridge",
-  "listedAt": 1794435782,
-  "url": "https://horizen.io/",
-  "description": "Canonical bridge between Base and Horizen, an OP Stack L3 settling to Base",
+  "tvl": 5190597.344618308,
+  "category": "CDP",
+  "listedAt": 1794505952,
+  "url": "https://www.swanusd.com/",
+  "description": "A DAO-owned stablecoin backed by wstETH offering zero-interest loans as an option.",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false
  },
  {
-  "id": "9390",
-  "name": "Flowlex",
-  "slug": "flowlex",
+  "id": "9412",
+  "name": "Sigma Labs",
+  "slug": "sigma-labs",
+  "chains": [
+   "Ethereum"
+  ],
+  "tvl": 3888682.2073668046,
+  "category": "Risk Curators",
+  "listedAt": 1794437339,
+  "url": "",
+  "description": "Sigma Labs is an on-chain research lab specialising in risk analysis, quantitative strategies, and multi-chain",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9420",
+  "name": "DeltaUSD",
+  "slug": "deltausd",
   "chains": [
    "Base",
-   "Robinhood Chain"
+   "Binance"
   ],
-  "tvl": 7323.715382832472,
-  "category": "Liquidity Manager",
-  "listedAt": 1794356961,
+  "tvl": 162037.4677824773,
+  "category": "Basis Trading",
+  "listedAt": 1794519483,
   "url": "",
-  "description": "Flowlex is a non-custodial app for earning Uniswap V3 fees: deposit USDC, pick a strategy, and Flowlex opens a",
+  "description": "DeltaUSD is a yield-accruing synthetic dollar with operator-managed backing deployed in DeFi strategies. Its s",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false
  },
  {
-  "id": "9396",
-  "name": "Indexfy",
-  "slug": "indexfy",
+  "id": "9424",
+  "name": "NoxFund",
+  "slug": "noxfund",
   "chains": [
-   "Base"
+   "Binance"
   ],
-  "tvl": 1421.4230329538561,
-  "category": "Indexes",
-  "listedAt": 1794417515,
-  "url": "https://indexfy.xyz",
-  "description": "Non-custodial crypto index tokens on Base. Each index (e.g. I5: BTC, ETH, XRP, SOL, BNB) is an ERC-20 fully ba",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9400",
-  "name": "Gully Core",
-  "slug": "gully-core",
-  "chains": [
-   "Base",
-   "Binance",
-   "Robinhood Chain"
-  ],
-  "tvl": 0.8274234642180354,
-  "category": "Dexs",
-  "listedAt": 1794418588,
+  "tvl": 43038.436798328825,
+  "category": "Ponzi",
+  "listedAt": 1794522907,
   "url": "",
-  "description": "Gully Core is an AMM and token launchpad. One Vault holds the tokens of every pool; pools are concentrated liq",
+  "description": "NoxFund is a BNB Chain deposit-based ROI protocol offering fixed daily USDT rewards, a 45-day principal lock a",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false

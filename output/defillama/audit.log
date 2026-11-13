@@ -1,10 +1,10 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=8990 · parent=11 · category=0 · 链白名单=7 · 拉取失败=0
-全量 9012 · 新增 id 22（可报 4 / 过滤标记 18）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=9012 · parent=6 · category=0 · 链白名单=4 · 拉取失败=0
+全量 9026 · 新增 id 14（可报 4 / 过滤标记 10）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1905 · Base=932 · Solana=476 · Arbitrum=1055 · Ink=33 · Binance=1154 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=316
+链命中: Ethereum=1907 · Base=934 · Solana=476 · Arbitrum=1056 · Ink=33 · Binance=1157 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=317
 单侧读数: 加密侧 4 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  Horizen Bridge · Base · tvl=24128.657811027366 · Canonical Bridge · 1794435782
-  Flowlex · Base/Robinhood Chain · tvl=7323.715382832472 · Liquidity Manager · 1794356961
-  Indexfy · Base · tvl=1421.4230329538561 · Indexes · 1794417515
-  Gully Core · Base/Binance/Robinhood Chain · tvl=0.8274234642180354 · Dexs · 1794418588
+  Swan DAO · Ethereum · tvl=5190597.344618308 · CDP · 1794505952
+  Sigma Labs · Ethereum · tvl=3888682.2073668046 · Risk Curators · 1794437339
+  DeltaUSD · Base/Binance · tvl=162037.4677824773 · Basis Trading · 1794519483
+  NoxFund · Binance · tvl=43038.436798328825 · Ponzi · 1794522907
