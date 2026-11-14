@@ -1,16 +1,35 @@
-**HEARTBEAT · 🟡 WATCH** - 2026-11-13 00:40 UTC
+🚨 心跳巡检：两个 skill 断路器跳闸（402）
 
-**1. `defi-overview` 昨夜 23:00 窗口第 5 次复发，且这次救回来的不是断路器 probe。**
-- 11-12 23:00 挂、23:30 重试挂，两次都是 `403 All target providers failed` + `duration_api_ms:0` + `num_turns:1` → 请求没出网关，`#13` 同时被追加两条 regression。
-- 11-13 00:00 调度器日志 `Retrying failed skill: defi-overview (failed 30m ago)` → 00:11 成功。**走的是普通 30 分钟重试，不是昨天写的「360m probe 窗口」。** 昨天状态页那句预测成立：「今晚 23:00 复发概率仍高」。
-- 含义：这条自愈路径只在 `consecutive_failures < 3`（断路器阈值）时存在。连续两晚 23:00+23:30 双挂就会把重试通道一起关掉--这正是 11-08→11-10 那次「结构性卡死」的形成过程。
-- 成功率 **0.56（19/34）**，再连败 5 轮破 `<0.5` chronic 线。
-- 病根原地未动：cron 仍是 `0 23`（23:00-23:31Z 是 403 高发窗）、单轮输出量仍有 `max_output_tokens` 风险。**唯一可执行动作需你拍板：把 cron 挪出 `0 23`。**
+## 🔴 两个 skill 断路器跳闸，且错误码从 403 换成了 402
 
-**2. `narrative-brief` 质量分第 3 次跌到 2（`unverifiable_claim`）。**
-- `#18` 线程 10-27、11-09、11-12 三次同类。11-12 那条被点的具体条目：Nvidia 董事会拟罢免 Jensen、Anthropic Hyperliquid 预 IPO 隐含 $1.9T、Mythos 把 Claude 移植到 AMD。
-- 根因不在本 skill（它只做转发），在 Grok 侧 `narratives.md`。**但本仓现在无法独立核验**--WebSearch 端点连续第 5 轮不可用（本轮我实测两个查询，均回「无浏览权限」）。`defi-overview` 的 macro catalysts 整节也一直因此删缺。
+**`defi-overview` cf=3 · `github-radar` cf=3**，两者昨晚同一批失败，签名相同：`402 All target providers failed`。
 
-**3. 待办（延续）：** 上游五条 disabled 技能（`canister-audit` / `canister-status` / `sns-digest` / `icp-deploy-check` / `flovia`）取舍，仍是唯一挂着的 OPERATOR 决策。
+### 关键判据：403 → 402 不是同一件事
+- 此前多轮是 `403`（认证窗），会自己恢复，所以「重试一下就好」成立。
+- 本轮是 `402`（付款/余额），且 `github-radar` 22:30 那跳**先跑了 6 turn、花了 $0.18 才 402** -- 说明额度是跑到一半耗尽的，不是网关门禁拒绝。
+- **含义：断路器每 ~5h 自动 probe 会继续失败，直到余额补上或 pin 换一个 `gateway.provider`。** 这不是等窗口能等回来的。
 
-数据源：`memory/cron-state.json`、run `43325097185` / `43329474008` / `43333604092`、scheduler run `43333548961`、`memory/skill-health/narrative-brief.json`、issue `#13` / `#18`、`aeon.yml:29`。
+### 明细
+| skill | 失败时刻 (UTC) | 轮次 | 备注 |
+|---|---|---|---|
+| github-radar | 11-13 22:30 | 6 turn / $0.18 | 跑到中途 402 |
+| github-radar | 11-13 23:00 | 1 turn / $0 | 未出网关 |
+| github-radar | 11-13 23:30 | 1 turn / $0 | 未出网关 |
+| defi-overview | 11-13 23:00 | 1 turn / $0 | 未出网关 |
+| defi-overview | 11-13 23:30 | 1 turn / $0 | 未出网关 |
+| defi-overview | 11-14 00:11 | **119 turn / 9.7min** | **另一因：`max_output_tokens` 128k 超限** |
+
+- 断路器状态（`scheduler: cron` run `43534664526` 日志原文）：`Circuit breaker OPEN: defi-overview (3 consecutive failures) - skip, next probe in 331m` / `github-radar ... 301m`。
+- `defi-overview` 成功率 **51%（19/37）**，再连败 2 轮破 `<50%` chronic 线（19/38=50.0% 不算，19/39=48.7% 才算）。
+- `defi-overview` 00:11 那跳证明：**即使网关恢复，单轮输出量本身也会撞 128k 上限** -- 这是两个独立病，缺一不可修。
+
+### 已排除
+- `memory-flush` / `arxiv-radar` / `narrative-brief` / `defillama-radar` / `aeon-update` 全绿，无 stuck、无 chronic。
+- PR 队列 **0**（连续第十一天）。
+- 状态页已重写：`docs/status.md`，🟡 WATCH → **🔴 DEGRADED**。
+
+### 需要你拍板（两件，都属配置/账户，我没擅自改）
+1. **网关余额**：`gateway.provider: hivemindos`。补余额，或 pin 到另一个 provider。
+2. **`defi-overview` 两条结构性病**（已挂四轮未动）：cron 挪离 `0 23`（`aeon.yml:29`）+ 削减单轮输出量以免撞 128k。
+
+来源：`memory/cron-state.json`、`scheduler: cron` run `43534664526`、`skill: defi-overview` run `43531239772`、`skill: github-radar` run `43527668402` / `43519867759`。

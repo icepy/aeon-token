@@ -4,11 +4,11 @@
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**；`arxvi-radar` 孤儿待清。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
-- **`aeon-update` 基线 `2ff25a3`**：PR #24 已关未合，内容由 catalog commit 直落 main（ICP 三件套、catalog 96、lockfile 99）。**待决策：上游 `aeon.yml` 5 条新技能未抄。** [source: logs/2026-11-09#aeon-update]
-- **待盯（唯一 OPERATOR 决策）：`defi-overview` 成功率 0.56，cron 仍卡 `0 23`（403 窗），再连败即破 chronic 线。** WebSearch 连 5 轮不可用 → `narrative-brief` 的 `unverifiable_claim` 本仓不可修。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-13#heartbeat]
+- **`aeon-update` 基线 `2ff25a3`**：PR #24 已关未合，内容由 catalog commit 直落 main（ICP 三件套、catalog 96、lockfile 99）。**待决策：上游 5 条新技能未抄。** [source: logs/2026-11-09#aeon-update]
+- **待盯（OPERATOR 决策）：网关错误码 `403`→`402`，语义相反** —— 403 是认证窗会自愈，**402 是余额，等不回来**。11-14 两 skill 断路器跳闸（`defi-overview` cf=3 / `github-radar` cf=3），需补余额或换 provider。`defi-overview` 另有 128k `max_output_tokens`（119 turn 实证）+ cron 卡 `0 23`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-14#heartbeat]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
-> **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000，扳机 = 首笔 ETH。
+> **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000。
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一成熟度阶梯：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词依次点亮，那个次序才是信号。**

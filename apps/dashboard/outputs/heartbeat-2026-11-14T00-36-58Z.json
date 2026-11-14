@@ -1,0 +1,336 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "🚨 心跳巡检：两个 skill 断路器跳闸（402）",
+        "description": "scheduler: cron run 43534664526"
+      },
+      "children": [
+        "alert-degraded",
+        "heading-main",
+        "badges-row",
+        "text-signature",
+        "sep1",
+        "heading-criteria",
+        "criteria-stack",
+        "sep2",
+        "heading-detail",
+        "table-failures",
+        "detail-stack",
+        "progress-success",
+        "sep3",
+        "heading-excluded",
+        "excluded-stack",
+        "sep4",
+        "heading-decide",
+        "decide-stack",
+        "sep5",
+        "heading-source",
+        "source-text"
+      ]
+    },
+    "alert-degraded": {
+      "type": "Alert",
+      "props": {
+        "title": "状态：🔴 DEGRADED（原 🟡 WATCH）",
+        "message": "defi-overview 与 github-radar 两个 skill 断路器跳闸，错误码由 403 变为 402（付款/余额）。",
+        "type": "error"
+      }
+    },
+    "heading-main": {
+      "type": "Heading",
+      "props": {
+        "text": "🔴 两个 skill 断路器跳闸，且错误码从 403 换成了 402",
+        "level": "h2"
+      }
+    },
+    "badges-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-defi",
+        "badge-github"
+      ]
+    },
+    "badge-defi": {
+      "type": "Badge",
+      "props": {
+        "text": "defi-overview cf=3",
+        "variant": "destructive"
+      }
+    },
+    "badge-github": {
+      "type": "Badge",
+      "props": {
+        "text": "github-radar cf=3",
+        "variant": "destructive"
+      }
+    },
+    "text-signature": {
+      "type": "Text",
+      "props": {
+        "text": "两者昨晚同一批失败，签名相同：`402 All target providers failed`。",
+        "variant": "body"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-criteria": {
+      "type": "Heading",
+      "props": {
+        "text": "关键判据：403 → 402 不是同一件事",
+        "level": "h3"
+      }
+    },
+    "criteria-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "criterion-1",
+        "criterion-2",
+        "criterion-3"
+      ]
+    },
+    "criterion-1": {
+      "type": "Text",
+      "props": {
+        "text": "此前多轮是 `403`（认证窗），会自己恢复，所以「重试一下就好」成立。",
+        "variant": "body"
+      }
+    },
+    "criterion-2": {
+      "type": "Text",
+      "props": {
+        "text": "本轮是 `402`（付款/余额），且 `github-radar` 22:30 那跳先跑了 6 turn、花了 $0.18 才 402 -- 说明额度是跑到一半耗尽的，不是网关门禁拒绝。",
+        "variant": "body"
+      }
+    },
+    "criterion-3": {
+      "type": "Text",
+      "props": {
+        "text": "含义：断路器每 ~5h 自动 probe 会继续失败，直到余额补上或 pin 换一个 `gateway.provider`。这不是等窗口能等回来的。",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-detail": {
+      "type": "Heading",
+      "props": {
+        "text": "明细",
+        "level": "h3"
+      }
+    },
+    "table-failures": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "skill",
+          "失败时刻 (UTC)",
+          "轮次",
+          "备注"
+        ],
+        "rows": [
+          [
+            "github-radar",
+            "11-13 22:30",
+            "6 turn / $0.18",
+            "跑到中途 402"
+          ],
+          [
+            "github-radar",
+            "11-13 23:00",
+            "1 turn / $0",
+            "未出网关"
+          ],
+          [
+            "github-radar",
+            "11-13 23:30",
+            "1 turn / $0",
+            "未出网关"
+          ],
+          [
+            "defi-overview",
+            "11-13 23:00",
+            "1 turn / $0",
+            "未出网关"
+          ],
+          [
+            "defi-overview",
+            "11-13 23:30",
+            "1 turn / $0",
+            "未出网关"
+          ],
+          [
+            "defi-overview",
+            "11-14 00:11",
+            "119 turn / 9.7min",
+            "另一因：`max_output_tokens` 128k 超限"
+          ]
+        ]
+      }
+    },
+    "detail-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "detail-1",
+        "detail-2",
+        "detail-3"
+      ]
+    },
+    "detail-1": {
+      "type": "Text",
+      "props": {
+        "text": "断路器状态（`scheduler: cron` run `43534664526` 日志原文）：`Circuit breaker OPEN: defi-overview (3 consecutive failures) - skip, next probe in 331m` / `github-radar ... 301m`。",
+        "variant": "body"
+      }
+    },
+    "detail-2": {
+      "type": "Text",
+      "props": {
+        "text": "`defi-overview` 成功率 51%（19/37），再连败 2 轮破 <50% chronic 线（19/38=50.0% 不算，19/39=48.7% 才算）。",
+        "variant": "body"
+      }
+    },
+    "detail-3": {
+      "type": "Text",
+      "props": {
+        "text": "`defi-overview` 00:11 那跳证明：即使网关恢复，单轮输出量本身也会撞 128k 上限 -- 这是两个独立病，缺一不可修。",
+        "variant": "body"
+      }
+    },
+    "progress-success": {
+      "type": "Progress",
+      "props": {
+        "value": 51,
+        "max": 100,
+        "label": "defi-overview 成功率 51%（19/37）"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-excluded": {
+      "type": "Heading",
+      "props": {
+        "text": "已排除",
+        "level": "h3"
+      }
+    },
+    "excluded-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "excluded-1",
+        "excluded-2",
+        "excluded-3"
+      ]
+    },
+    "excluded-1": {
+      "type": "Text",
+      "props": {
+        "text": "`memory-flush` / `arxiv-radar` / `narrative-brief` / `defillama-radar` / `aeon-update` 全绿，无 stuck、无 chronic。",
+        "variant": "body"
+      }
+    },
+    "excluded-2": {
+      "type": "Text",
+      "props": {
+        "text": "PR 队列 0（连续第十一天）。",
+        "variant": "body"
+      }
+    },
+    "excluded-3": {
+      "type": "Text",
+      "props": {
+        "text": "状态页已重写：`docs/status.md`，🟡 WATCH → 🔴 DEGRADED。",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-decide": {
+      "type": "Heading",
+      "props": {
+        "text": "需要你拍板（两件，都属配置/账户，我没擅自改）",
+        "level": "h3"
+      }
+    },
+    "decide-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "decide-1",
+        "decide-2"
+      ]
+    },
+    "decide-1": {
+      "type": "Text",
+      "props": {
+        "text": "1. 网关余额：`gateway.provider: hivemindos`。补余额，或 pin 到另一个 provider。",
+        "variant": "body"
+      }
+    },
+    "decide-2": {
+      "type": "Text",
+      "props": {
+        "text": "2. `defi-overview` 两条结构性病（已挂四轮未动）：cron 挪离 `0 23`（`aeon.yml:29`）+ 削减单轮输出量以免撞 128k。",
+        "variant": "body"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-source": {
+      "type": "Heading",
+      "props": {
+        "text": "来源",
+        "level": "h3"
+      }
+    },
+    "source-text": {
+      "type": "Text",
+      "props": {
+        "text": "来源：`memory/cron-state.json`、`scheduler: cron` run `43534664526`、`skill: defi-overview` run `43531239772`、`skill: github-radar` run `43527668402` / `43519867759`。",
+        "variant": "caption"
+      }
+    }
+  }
+}

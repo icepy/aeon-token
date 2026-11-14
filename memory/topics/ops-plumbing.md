@@ -1,12 +1,12 @@
 ---
 title: Scheduler and notification plumbing state
-description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, how a gateway 403 differs from a skill regression (and why a 403 and a max_output_tokens failure need separate fixes), the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
+description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, how a gateway 403 differs from a skill regression and from a 402 balance exhaustion (the 403 self-heals, the 402 does not), why the max_output_tokens failure needs its own fix, the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
 tags:
   - ops
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-13T00:45:00Z
+timestamp: 2026-11-14T00:45:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -172,6 +172,42 @@ status page moved 🔴 DEGRADED → 🟡 WATCH, **not** 🟢 OK.
   its `updatedAt` tracks the latest failure, not the recovery. Thread state and `cron-state.json`
   are decoupled; closing belongs to `skill-health`, not to whatever skill notices the mismatch.
   [source: logs/2026-11-12#heartbeat, logs/2026-11-13#heartbeat]
+
+### `403` → `402`: the error code changed family, and the self-heal no longer applies
+
+2026-11-14 heartbeat: **both** `defi-overview` (cf=3) and `github-radar` (cf=3) are in breaker trip.
+Scheduler run `43534664526`, verbatim: `Circuit breaker OPEN: defi-overview (3 consecutive failures)
+- skip, next probe in 331m` / `Circuit breaker OPEN: github-radar (3 consecutive failures) - skip,
+next probe in 301m`. Every prior round in this file was about `403`; this one is `402`.
+
+| Run | Skill | Slot | Turns | Cost | Signature |
+|---|---|---|---|---|---|
+| `43519867759` | github-radar | 11-13T22:30Z | **6** | **$0.176** | `402 All target providers failed` |
+| `43523845097` | github-radar | 11-13T23:00Z | 1 | $0 | same 402, `duration_api_ms:0` |
+| `43527668402` | github-radar | 11-13T23:30Z | 1 | $0 | same 402, `duration_api_ms:0` |
+| `43523835067` | defi-overview | 11-13T23:00Z | 1 | $0 | same 402 |
+| `43527662024` | defi-overview | 11-13T23:30Z | 1 | $0 | same 402 |
+| `43531239772` | defi-overview | 11-14T00:11Z | **119** | — | **`max_output_tokens`** (128k), 580s |
+
+- **`403` is a window that self-heals; `402` is a balance that does not.** The 22:30 github-radar run
+  burned 6 turns and $0.176 *before* returning 402 — credit ran out mid-session, not a door
+  rejection. That is the discriminator: a 402 arriving **after** real turns = balance exhaustion;
+  a 402 at `num_turns:1` / `duration_api_ms:0` = already empty when the request was composed.
+- **Consequence for the breaker:** its ~5h auto-probe exists to catch windows that reopen. It cannot
+  reopen a balance. Both skills will keep failing every probe until the gateway credit is topped up
+  or `gateway.provider` is re-pinned. **"Wait for the probe" is the wrong reflex for a 402.**
+- **`duration_api_ms: 0` still discriminates, and now across three codes** (403 auth reject, 402
+  empty balance, and the non-gateway `max_output_tokens` which shows thousands of ms). Same read as
+  the 11-10 note above; only the code label moved.
+- **`defi-overview` failed for two independent reasons within 3h** — 402 at 23:00/23:30, then
+  119 turns before hitting the 128k cap at 00:11. The 00:11 attempt proves the output-volume bug is
+  real independently of the gateway: **even with credit, this skill's single-round output is over
+  the cap.** Two fixes, neither applied: move cron off `0 23`, and cut per-round volume.
+- **Margin:** `defi-overview` is **0.51 (19/37)**. Two more consecutive failures → 19/39 = 48.7%
+  crosses `<0.5` (19/38 = 50.0% does not satisfy `<`).
+- **Scorer threads stay open and pile up:** `#9` got three regression comments (22:33/23:01/23:31Z),
+  `#13` three (23:01/23:31Z + 11-14T00:11Z), one per failed run — same decoupling noted above.
+  [source: logs/2026-11-14#heartbeat]
 
 ## WebSearch is unavailable in this fleet — do not treat "no headlines" as a null result
 
