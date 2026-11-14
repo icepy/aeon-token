@@ -1,10 +1,10 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-13T10:01:25Z",
-  "quality_score": 4,
-  "assessment": "Clean, verifiable no-op run: fetched remote source (http=200, 22808 bytes, reason=ok), computed per-section sha256 for all 4 dated sections, matched against seen-state, correctly concluded UNCHANGED and skipped notify without rewriting report.md; hashes and dates are concrete and internally consistent, though it is a routine dedup pass rather than an insightful analysis.",
+  "last_analyzed": "2026-11-14T10:01:34Z",
+  "quality_score": 3,
+  "assessment": "Legitimate no-op: fetch succeeded (http=200, 22808 bytes, remote source), all 4 sections matched recorded sha256 values, correctly returned UNCHANGED and skipped notification — task completed as specified, with verifiable per-section hashes.",
   "flags": [],
-  "avg_score": 3.38,
+  "avg_score": 3.36,
   "history": [
     {
       "date": "2026-10-27",
@@ -130,6 +130,12 @@
       "date": "2026-11-13",
       "score": 4,
       "ts": "2026-11-13T10:01:25Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-14",
+      "score": 3,
+      "ts": "2026-11-14T10:01:34Z",
       "harness": "claude"
     }
   ]

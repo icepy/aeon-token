@@ -16,7 +16,8 @@ notify: 跳过（已推过）
 
 ## Summary
 
-- 执行 `skills/narrative-brief/check.py`，一次调用完成：远程 raw 地址 `http=200`、22808 字节、`reason=ok`（未走 fallback）。
-- 文件内共 4 个日期节（02/11、05/11、09/11、12/11），4 个节 sha256 全部已在 `memory/narrative-brief-seen.json` 中 → `结果: UNCHANGED`，未发 notify、未写 seen、未覆盖 `report.md`。
-- 未修改任何文件。日志由脚本自行写入，未手工追加 `### narrative-brief`。
-- 注：最新节 12/11，距今天 1 天，Grok 侧无停摆迹象。
+- 执行 `skills/narrative-brief/check.py`，一次调用完成抓取、按节 sha256 去重、决定是否推送。
+- 远程 `memory/topics/narratives.md` 取到 `http=200`、22808 字节、`reason=ok`，未走本地回退。
+- 文件里 4 个日期节（12/11、09/11、05/11、02/11），全部已在 `memory/narrative-brief-seen.json` 记录，`新: 0` → `结果: UNCHANGED`，未推送、未写 seen、未覆盖 `report.md`。
+- 未创建或修改任何文件（脚本按 UNCHANGED 静默路径自行处理日志）。
+- 本次无异常，无需补发或人工介入。
