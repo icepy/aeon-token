@@ -1,53 +1,80 @@
-**defillama-radar** · 第 18 轮 · 可报 4 条 · 全量 9026 / 新增 14
+本轮无通知（零可报），产物与记忆已落盘。以下是本轮实质内容。
 
-## 一、可报（4 条，TVL 合计 $9.28M）
+---
 
-- **Swan DAO**（9415）· Ethereum · TVL **$5.19M** / staking $113.4K · `CDP` · 由 wstETH 背书的 DAO 自有稳定币（swanUSD），主打零息贷款。`audits=2`，全轮唯一带审计的新条目。`url=swanusd.com`、`twitter=MonolithMarket`、`listedAt 11-12T17:52:32Z`
-- **Sigma Labs**（9412）· Ethereum · TVL **$3.89M** · `Risk Curators` · 链上风险研究与量化策略实验室，做多链基础设施。`address` 空、`url` 空、`audits=0`、`listedAt 11-11T22:48:59Z`
-- **DeltaUSD**（9420）· Base / X Layer / Berachain / Plasma / Binance · TVL **$162.0K** · `Basis Trading` · 收益累积型合成美元，运营方主动管理背书，策略写明 delta 中性资金费/基差/价差。按 `chainTvls` 拆：Base $81.1K、X Layer $59.8K、Berachain $20.4K、Plasma $751.6、Binance $7.1 → **白名单链只占 50.0%**（Base+Binance），另 50% 在非白名单链。`listedAt 11-12T21:38:03Z`
-- **NoxFund**（9424）· Binance · TVL **$43.0K** · **`Ponzi`** · BNB Chain 上按日固定 USDT 返利、45 天本金锁仓、七级推荐分成。**类目原样带、不做判断**，但 `category` 已自报为 Ponzi。`listedAt 11-12T22:35:07Z`
+## defillama-radar 第 19 轮 · 可报 0
 
-## 二、过滤 10 条的真边际（逐条可数）
+**结论：结构性零可报，非故障。** 全量 9028 条、新增 2 条、两条都只被空 `chains` 桶挡掉。
 
-**`parent` 桶 6 条，真边际 3 条（全部仍被别桶挡）：**
+### 漏斗读数
 
-| id | 名称 | 去掉 parent 后 |
-|---|---|---|
-| 9425 | `wstO Vault` | 仍挡（`parent#o1-exchange` 之外，白名单链链上 TVL 全为 0，量全在 staking $3.97M） |
-| 9416/9417/9418 | `Kalos Marketplace` / `Launchpad` / `Trade` | 仍挡（`chains=[]`，三条同父 `parent#kalos`，18:25:14→24Z 相隔 5s/5s） |
-| 9421/9422 | `Boxa V1` / `V2` | 仍挡（V2 `chains=[]`；V1 链 `Elysium Kinetiq` 非白名单） |
+| 项 | 值 |
+|---|---|
+| 全量 `/protocols` | **9028**（上轮 9026） |
+| 新增 id | **2**（可报 **0** / 过滤 2） |
+| `seen` 命中 | 9026 |
+| `parent` 桶 | 0 |
+| `category` 桶 | 0（真 0，EXCL 类目本轮一条都没有） |
+| 空 `chains` / 链白名单桶 | **2**（两条都是空链，真正「链不在白名单」= 0） |
+| 拉取失败 / 重报 | 0 / 0 |
+| `STATUS` | `DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️ |
 
-**空 `chains` / 链白名单桶 4 条：** `Solflare Card`(9413，`Crypto Card Issuer`，`chains=[]`，Solflare 官方自托管 Visa 卡) · `Perpsplexity`(9414，`Sui`，$70.0K) · `Kleos`(9419，`Elysium Kinetiq`，$48.5K) · `Hubble Sonic`(9423，`Sonic`，$3.3K)。
+### 两条新增（均被过滤，已钉成 `filtered`）
 
-**本轮无一「本可报却被误挡」的条目** -- `parent` 的 3 条真边际全部同时被空链/非白名单链挡掉，去掉 parent 也进不来。
+- **`eleos`**(9426) · Launchpad · `chains=[]` · `tvl=None` · `module=dummy.js` · `listedAt 2026-11-13T19:25:51Z` · `twitter=eleosfun`。描述：Elysium 上的代币发射台，bonding-curve + direct-to-pool，永久锁定 Uniswap v4 流动性。
+- **`Volta`**(9427) · Launchpad · `chains=[]` · `tvl=None` · `module=dummy.js` · `listedAt 2026-11-13T19:32:21Z` · `address='elysium:0x0f79931689Af199e7CF868ed1107bBA2C83c68f7'` · `symbol=VOLTA`。描述：同样在 Elysium 上建 Uniswap v4 池，带回购与持币奖励。
 
-## 三、洞察
+两条 `parentProtocol=None`、类目不属 EXCL、`audits=0`、无 `url`。**过滤正确，无一「本可报却被误挡」。**
 
-### 1. `Elysium Kinetiq` 第三次出现，加链结论仍不变：不加
-本轮 3 条新增挂该链：`Kleos` $48.5K、`Boxa V1` $80.9K（被 parent 挡）、`Boxa V2`（空链）。该链存量已 **18 条**（上轮 15 → 本轮 18）。**但本轮加链的净边际 = 1 条 `Kleos` $48.5K** -- `Boxa V1` 有 parent、`Boxa V2` 空链，加链救不了。三轮边际：$514 → $2.6K → $48.5K，**在升但仍然是个位数条数**，代价是删 9026 条 seen 重做基线。**结论不变：不加。**
+### 关键核实：新增从 14 掉到 2，不是假零
 
-### 2. `9412`/`9415` 回填 -- 上轮缺席的高号真的回来了
-上轮记录「`9412-9415` 虽高于历史最大 id 却缺席，证明高号也可能待回填」。本轮 **`9412`（Sigma Labs）、`9415`（Swan DAO）双双出现**，正落在那段区间里。**「分配号 + 延迟回填」机制第二次实盘复现**（首次 11-02→11-03 的 9290-9293）。`9413`/`9414` 同批出现。仍然缺 `9382`（连续第三轮）、`9391`（连续第二轮）。
+落差 7 倍，第一嫌疑是撞同一份边缘缓存。实取两轮排除：
 
-### 3. 可报 TVL 和 vs 单条体量：本轮**首次不比了**
-前两轮都在记「可报 TVL 和不代表新增体量」（418× / 1279×）。本轮可报合计 **$9.28M**，新增 14 条里最大的被丢弃条目是 `wstO Vault` 的 **staking $3.97M**（`tvl=0`）-- 但它是 `staking` 不是 `tvl`，**不可直接与可报集的 `tvl` 相加比较**。可比的 `tvl` 侧本轮没有单条超过可报最大值。**读数：这是 17 轮来第一次可报集本身就吃到了大体量，因为两条 $M 级（Swan DAO / Sigma Labs）恰好既无 parent、类目不属 EXCL、又挂在 Ethereum。**
+- 常规 `HIT`：etag `W/"6af79f6b-9295df"`、`last-modified Fri, 13 Nov 2026 23:38:19 GMT`、9,606,623 B
+- `?_cb=` + `no-cache` 源站 `MISS`：**etag 与 last-modified 与 HIT 逐字节相同**
+- 9028 个 id 两向差集 `only_a=[]` / `only_b=[]`，**全量 TVL 逐条零差异**（两份总和同为 $467,524,826,393.90），2 条新增 12 字段零差异
 
-### 4. `wstO Vault` 是「`tvl=0` 但 $3.97M 在 staking」的极端例
-`chainTvls` 里 `Robinhood Chain=0`、`Base=0`，量全在两条链的 `-staking` 子项（$3.67M / $296.7K）。**这是「`chains` 是部署声明、`chainTvls` 才是实际量」迄今最极端的一例** -- 一条 `chains=['Robinhood Chain','Base']`（都是白名单）的条目，白名单链上的 `tvl` 是 0，全部价值在质押侧。若只看 `tvl` 会误判为空壳。
+即既不是「差集恒 0」那种假零，也不是 11-03 记的「id 集合相同但字段值旧」那种。**2 条是登记节奏** —— 前例 11-05 的 18 条录入潮后 11-06 立刻回到 8，单轮不作趋势。
 
-### 5. `listedAt` 整分秒值本轮 0 条
-新增 14 条 `listedAt` **无一为整分 `:00`**（上轮 22 条里 2 条）。全量仍 69/7350 = 0.94%。跨度 **23.91h**（11-11T22:48:59Z → 11-12T22:43:27Z），最小间隔 **4s**（`Boxa V1`→`V2`，同 `parent#boxa`）。同秒 ≥3 条批量指纹新增 **0 组**，最近一组仍是 11-07T14:26:04Z(n=4)。
+### 本轮新钉死：空 `chains` ⟺ `module=dummy.js`
 
-### 6. `XMAQUINA`(9317) 仍在 `filtered`，无变化
-第 9 轮被空链钉成 `filtered` 的清单内协议，本轮复查 `chains` 仍为 `[]`、`tvl=None`。**补链不补报，设计如此，不动 seen。**
+全量空 `chains` 1621 条与 `module=dummy.js` 1621 条**集合完全相等**（两向差集皆空），这 1621 条 `tvlCodePath` 与 `tvl` 全为 `None`。
 
-## 四、审计与校验
+由此修正一条旧读法：**`chains=[]` ⇒ `tvl` 缺失成立，反向不成立。** 反例 850 条 —— `chains` 非空但 `tvl=None`（`Synthetix v1+v2`、`RenVM`、`hBTC` 等老条目，`module` 是真实适配器）。
 
-- **CF 校验通过：** 常规 `HIT`、etag `W/"6af64df0-928e7c"`、`last-modified Thu, 12 Nov 2026 23:38:24 GMT`、`cache-control: public, max-age=300`；`?_cb=` + `no-cache` 源站 `MISS`，**etag 与 last-modified 与 HIT 完全相同**，`only_hit=[]` / `only_miss=[]`，9026 条逐条相同；14 条新增 11 字段两份快照**零差异**。`parentProtocol` 翻转连续九轮未复现。
-- **漏斗：** 全量 9026 · 新增 14（可报 4 / 过滤 10）· seen 命中 9012 · `parent` 6 · `category` **0（真 0，本轮无 CEX/Chain/Interface 新增）** · 空链/链白名单 4 · 无 id 0 · 拉取失败 0 · 重报 0。
-- **`only_seen=['4818']`、`only_raw=[]` 连续第九轮** → 真下架，保持引用。
-- **`chains=[]` 全量 1618/9026 = 17.93%**（上轮 17.90%，十轮区间 17.4-17.93）。
-- **`max_id=9425`**，`9382`（连续第三轮）/`9391`（连续第二轮）缺席按「待回填」处理，不改求差逻辑。非数字 id 仍只有 **`<5471>`（`OpenTrade`，$237.6M）** 一条，`seen` 里键仍是带尖括号的形式 -- 字符串键未归一化的裂缝依旧存在。
-- **单侧读数：** 加密侧 4 / AI 侧 0 -- 本源只有加密，**高命中不是词表变准**。
+空链群体结构（首次量化）：带 `listedAt` 642（39.6%）· 带 `parent` 647（39.9%）· 有 `url` 1292（79.7%）· EXCL 类目 430（26.5%）· 类目空 0。**近 30 天有 `listedAt` 的 297 条里 150 条属该群体 = 50.5%** —— 新登记一半是「有站点、无 TVL 适配器」的条目。这也解释了任何空链旁路（url/description 并集）捞回的东西体量特征恒为零。
 
-数据源：`https://api.llama.fi/protocols` · 2026-11-13 第 18 轮 · `dl-v1`
+### Elysium launchpad 簇扩到 11 条
+
+| 状态 | 条目 |
+|---|---|
+| 挂 `Elysium Kinetiq`（3 条） | `Kleos`(9419, $53.6K) · `Boxa V1`(9421, $79.3K) · `ArkhamPad`(9376, $0) |
+| `chains=[]`（8 条，全 0） | `Ascend`(9381) · `Montra`(9388) · `ElysPump V1-V3`(9407–9409) · `Boxa V2`(9422) · **`eleos`(9426)** · **`Volta`(9427)** |
+
+`Volta` 的 `address='elysium:0x0f79…c68f7'`、`eleos` 描述里的 "on Elysium" 都指向同一生态，但 `chains=[]` —— 与 11-11 的 `Ascend`/`Montra` 同型。**这是 Elysium 生态的系统性录入习惯（不带 `chains` 字段），不是个别遗漏。**
+
+**加链判据仍「不加」，且四轮边际被打断**：$514 → $2.6K → $48.5K → **$0**（两条新增皆空链，加 `Elysium Kinetiq` 一条也救不了）。上轮记的「单调上升」不再是趋势，进一步确认那是条数量级抖动。
+
+### 差集与 id 连续性
+
+- `only_seen=['4818']` **连续第十轮** → 真下架，可当稳定结论；`only_raw=[]`
+- `max_id=9427`、`min=2`、数字 id 9027 条；**9380–9427 缺 `9382`（连续第四轮）、`9391`（连续第三轮）** → 按「分配号待回填」处理，不改求差逻辑
+- 非数字 id 仍只有 `<5471>`（`OpenTrade`）
+- `chains=[]` = **1621/9028 = 17.96%**（十一轮区间 17.4–17.96）
+- 同秒 ≥3 条批量指纹：全量仍 29 组，最近仍 2026-11-07T14:26:04Z(n=4, Jupiter)，本轮新增 0 组。`eleos`/`Volta` 相距 390s，属同批录入但未破门槛
+- `listedAt` 整分 `:00` 新增 0 条（全量 69/7352 = 0.94%）
+
+### 产物
+
+- `output/defillama/audit.log`（本轮审计）· `out.json`（`[]`）· `report.md` **未改写**（零可报，按铁律）
+- `memory/defillama-seen.json` 9029 条（新增 2 条 `filtered`）
+- 通知：**发送 0 次**（零可报不吵）
+
+## Summary
+
+- 执行 `skills/defillama-radar/scan.py` 第 19 轮：全量 9028、新增 2、**可报 0**，`STATUS: DEFILLAMA_RADAR_OK`。
+- 额外做了 CF 双取校验（第二轮独立请求，HIT vs `?_cb=` 源站），排除「新增量骤降 = 缓存假零」这个唯一实质风险；两份快照 9028 条逐条相同、TVL 零差异。
+- 修正并记录一条判据：空 `chains` 与 `module=dummy.js` 完全等价，`chains=[]` ⇒ `tvl` 缺失但反向不成立（850 条反例）。
+- 更新文件：`memory/topics/defillama-radar.md`（新增第 19 轮节 + 12 条 Citations，timestamp 提到 2026-11-14T00:20:00Z）· `memory/MEMORY.md`（defillama 行改写，同时压缩 arxiv 行以满足 8KB 预算，现 8107 字节）· 新建 `memory/logs/2026-11-14.md`。
+- 未发通知、未改写 `report.md` —— 零可报。工作流会在收尾时 `git add -A` 提交这些写入。
+- 无需运营方跟进；下轮照常。若 `9382`/`9391` 继续缺席，仍按待回填处理、不改求差逻辑。

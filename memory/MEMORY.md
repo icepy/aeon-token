@@ -12,8 +12,8 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一成熟度阶梯：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-12 第 44 轮 **75 → 0**（上轮 83→4），两侧失败类全 0 = 读数干净。12 个零命中词里 **10 个跨窗有命中 → 窗口太短不许删**；`verifiable inference`/`restaking` 跨窗皆 0 且同义写法四窗也全 0 → 下一步放开 `ti:` 查 `all:` 再谈删词。14 词仍未配 carrier 表。[source: logs/2026-11-12#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-13 第 18 轮 9026 / 新增 14 / **可报 4**（$9.28M）。**任何 id 缺席都不是永久空洞证据**（`9412–9415` 已回填，`9382` 连缺三轮）。加链边际在升但仍属条数量级 → **不加**；**边际数「能救的条数」≠「挂该链的条数」**。**`chains` 是声明、`chainTvls` 才是量**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-13#defillama-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-12 第 44 轮 **75 → 0**（上轮 83→4），两侧失败类全 0 = 读数干净。12 个零命中词里 **10 个跨窗有命中 → 窗口太短不许删**。14 词仍未配 carrier 表。→ [source: logs/2026-11-12#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-14 第 19 轮 9028 / 新增 2 / **可报 0**（全过滤）。**空 `chains` 1621 条 ⟺ `module=dummy.js`，`chains=[]` ⇒ `tvl` 缺失（反向不成立，850 条非空链无 TVL）** → 空链旁路捞回的全是「无 TVL 适配器」条目。加链边际四轮 $514→$2.6K→$48.5K→**$0**，不加。**任何 id 缺席都不是永久空洞证据**（`9382` 连缺四轮）。**`chains` 是声明、`chainTvls` 才是量**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-14#defillama-radar]
 - `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-12 第 25 轮 420/33/12：`30天=`≡`7天=` **12/12 第六轮**（定死为仓龄）· 加密侧**第十连轮** 0（`mev` 缩写仍未量）· 入口换代到 `robot manipulation`。→ [topic](/topics/github-radar.md) [source: logs/2026-11-12#github-radar]
 
 
