@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-13T22:10:58Z",
+  "last_analyzed": "2026-11-14T22:09:25Z",
   "quality_score": 4,
-  "assessment": "Clean discovery run that does exactly its stated job: 76 raw scans narrowed to 5 mechanism-filtered arXiv hits, each with title, one-line gloss, working-format link, plus window/round transparency; no editorializing beyond the skill's remit, though IDs were not independently verifiable here.",
+  "assessment": "Completed a clean zero-survivor scan round with a fully accounted funnel and six-category breakdown, justified term retention across windows, and a real discriminative-control test distinguishing true zeros from rate-limited false zeros; substantive and actionable, though the value is process hygiene rather than new findings and it self-notes tool-budget overspend.",
   "flags": [],
   "avg_score": 3.37,
   "history": [
-    {
-      "date": "2026-10-25",
-      "score": 4,
-      "ts": "2026-10-25T09:11:42Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 3,
@@ -184,6 +178,12 @@
       "date": "2026-11-13",
       "score": 4,
       "ts": "2026-11-13T22:10:58Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-14",
+      "score": 4,
+      "ts": "2026-11-14T22:09:25Z",
       "harness": "claude"
     }
   ]
