@@ -284,7 +284,7 @@
       "description": "Finds instructions hidden from the operator in installed skills, soul and strategy files: Unicode TAG smuggling, zero-width splits, look-alike letters, hidden HTML, base64. Keyless, read-only, no network.",
       "author": "yusasecurity",
       "license": "MIT",
-      "homepage": "https://yusa-two.vercel.app",
+      "homepage": "https://yusasecurity.xyz",
       "category": "dev",
       "trust_level": "community",
       "skills": [
@@ -315,6 +315,28 @@
       "capabilities": [
         "external_api",
         "sends_notifications"
+      ]
+    },
+    {
+      "repo": "normancomics/phantomoperator-aeon-pack",
+      "name": "PhantomOperator Aeon Skill Pack",
+      "description": "Authorized privacy and public-exposure checks through PhantomOperator, with documented Base x402 spend limits.",
+      "author": "normancomics",
+      "license": "MIT",
+      "homepage": "https://freysaai.freysa.dev",
+      "category": "security",
+      "trust_level": "community",
+      "skills": [
+        "phantomoperator"
+      ],
+      "secrets_required": [
+        "AEON_X402_WALLET_PRIVATE_KEY",
+        "PHANTOMOPERATOR_PERSON_LOOKUP_ALLOWLIST"
+      ],
+      "capabilities": [
+        "external_api",
+        "writes_external_host",
+        "onchain_writes"
       ]
     }
   ]
