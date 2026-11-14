@@ -1,19 +1,19 @@
 # Long-term Memory
-*Last consolidated: 2026-11-13*
+*Last consolidated: 2026-11-14*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**；`arxvi-radar` 孤儿待清。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
 - **`aeon-update` 基线 `2ff25a3`**：PR #24 已关未合，内容由 catalog commit 直落 main（ICP 三件套、catalog 96、lockfile 99）。**待决策：上游 5 条新技能未抄。** [source: logs/2026-11-09#aeon-update]
-- **待盯（OPERATOR 决策）：网关错误码 `403`→`402`，语义相反** —— 403 是认证窗会自愈，**402 是余额，等不回来**。11-14 两 skill 断路器跳闸（`defi-overview` cf=3 / `github-radar` cf=3），需补余额或换 provider。`defi-overview` 另有 128k `max_output_tokens`（119 turn 实证）+ cron 卡 `0 23`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-14#heartbeat]
+- **待盯（OPERATOR 决策）：网关 `403`→`402`，语义相反** —— 403 是认证窗会自愈，**402 是余额，等不回来**。11-14 两 skill 断路器跳闸（`defi-overview` / `github-radar` 各 cf=3），需补余额或换 provider。`defi-overview` 另有 128k `max_output_tokens`（119 turn 实证）+ cron 卡 `0 23`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-14#heartbeat]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
 > **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000。
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一成熟度阶梯：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-12 第 44 轮 **75 → 0**（上轮 83→4），两侧失败类全 0 = 读数干净。12 个零命中词里 **10 个跨窗有命中 → 窗口太短不许删**。14 词仍未配 carrier 表。→ [source: logs/2026-11-12#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-14 第 19 轮 9028 / 新增 2 / **可报 0**（全过滤）。**空 `chains` 1621 条 ⟺ `module=dummy.js`，`chains=[]` ⇒ `tvl` 缺失（反向不成立，850 条非空链无 TVL）** → 空链旁路捞回的全是「无 TVL 适配器」条目。加链边际四轮 $514→$2.6K→$48.5K→**$0**，不加。**任何 id 缺席都不是永久空洞证据**（`9382` 连缺四轮）。**`chains` 是声明、`chainTvls` 才是量**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-14#defillama-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-13 第 45 轮 **76 → 5**（上轮 75→0），两侧失败类全 0。**五条全落受控表、首次无 `?`**；`egocentric` raw=20 稳居最大召回词。11 个零命中词里 9 个跨窗有命中 → 不许删。加密侧**真有召回 3 条** ⟺ github-radar 加密侧十连轮 0 = **跨通道错位，不互证**。14 词仍未配 carrier 表。→ [source: logs/2026-11-13#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-14 第 19 轮 9028 / 新增 2 / **可报 0**（两条皆空链）。**空 `chains` ≡ `module=dummy.js`（1621 条集合相等）；`chains=[]` ⇒ `tvl` 缺失，反向不成立**。加链边际四轮 $514→$2.6K→$48.5K→**$0**，不加。**id 缺席不是空洞证据**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-14#defillama-radar]
 - `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-12 第 25 轮 420/33/12：`30天=`≡`7天=` **12/12 第六轮**（定死为仓龄）· 加密侧**第十连轮** 0（`mev` 缩写仍未量）· 入口换代到 `robot manipulation`。→ [topic](/topics/github-radar.md) [source: logs/2026-11-12#github-radar]
 
 

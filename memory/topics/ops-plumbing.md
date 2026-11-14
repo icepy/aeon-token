@@ -209,6 +209,16 @@ next probe in 301m`. Every prior round in this file was about `403`; this one is
   `#13` three (23:01/23:31Z + 11-14T00:11Z), one per failed run — same decoupling noted above.
   [source: logs/2026-11-14#heartbeat]
 
+## Reading `gh run view --log`: colour-escaped lines are the script body, not output
+
+2026-11-14 heartbeat burned two attempts grepping `gh run view --log | grep -i error` and got
+nothing but the workflow YAML echoing itself back (`^[[36;1m…` lines).
+
+- **The discriminator:** any log line still carrying ANSI escapes (`^[[36;1m`, `^[[0;1;31m`) is the
+  *script source* echoed for the run header — it is never program output. Filter it out first:
+  `grep -v "36;1m"`, then look for `claude exited` / `api_error_status` / `Circuit breaker OPEN`.
+  [source: logs/2026-11-14#heartbeat]
+
 ## WebSearch is unavailable in this fleet — do not treat "no headlines" as a null result
 
 Confirmed 2026-11-13 (fifth consecutive round): in-run `WebSearch` calls return a
