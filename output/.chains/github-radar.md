@@ -1,14 +1,27 @@
-**github-radar** · 窗口 7 天 · 报告级 12 · 近 7 天活跃 12
+**github-radar** · 窗口 30 天 · 报告级 25 · 近 7 天活跃 23
 
-- [arianizadi/vla-from-scratch](https://github.com/arianizadi/vla-from-scratch) ★0 · 30天=87 · 7天=87 · 词 `robot manipulation` · Hands-on guide to LLMs, VLMs and VLAs for robot manipulation: every stage trained from scratch, ever
-- [wangguode/terra-world-travel](https://github.com/wangguode/terra-world-travel) ★1 · 30天=67 · 7天=67 · 词 `world model` · TERRA-OASIS // 14B 自回归动作驱动可交互神经世界模型系统 · 赛博禅刹祈福殿堂与未来数字新城双模旗舰 (Playable Neural World Model Simulator)
-- [fredp74/ssm-jepa-lab](https://github.com/fredp74/ssm-jepa-lab) ★0 · 30天=17 · 7天=17 · 词 `jepa` · Experimental sequence-model research: SSMs, GRUs, Transformers, JEPA objectives, continual learning,
-- [vigno0405/MetaQuestTeleop](https://github.com/vigno0405/MetaQuestTeleop) ★0 · 30天=12 · 7天=12 · 词 `teleoperation` · Library for Meta Quest teleoperation.
-- [Gabriel-PEZ/LeWorldModel](https://github.com/Gabriel-PEZ/LeWorldModel) ★0 · 30天=12 · 7天=12 · 词 `jepa` · JEPA-based world model for visual representation learning, latent dynamics prediction, and planning 
-- [Ahmed-Hammoda/ita-diffusion-policy](https://github.com/Ahmed-Hammoda/ita-diffusion-policy) ★0 · 30天=10 · 7天=10 · 词 `robot manipulation` · Language-conditioned Transformer diffusion policy for robot manipulation: frozen DINOv2 + CLIP encod
-- [dk2472780158-ctrl/g1-navigation-rl](https://github.com/dk2472780158-ctrl/g1-navigation-rl) ★1 · 30天=7 · 7天=7 · 词 `sim2real` · G1 navigation and reinforcement learning: FAST-LIO, AMCL/Nav2, Isaac Gym PPO/LSTM and Sim2Real deplo
-- [santoshrajkumar/fame-qp](https://github.com/santoshrajkumar/fame-qp) ★8 · 30天=6 · 7天=6 · 词 `world model` · FAME-QP: open-source GPU QP solver for fast, real-time model predictive control (linear, Koopman and
-- [Ol11veira/herdr-layout-jepa](https://github.com/Ol11veira/herdr-layout-jepa) ★1 · 30天=6 · 7天=6 · 词 `jepa` · 
-- [HDU-EILab/ur5-teleop](https://github.com/HDU-EILab/ur5-teleop) ★0 · 30天=6 · 7天=6 · 词 `teleoperation` · UR5 VR teleoperation stack (PICO/RTDE/servoj) with data collection and LeRobot export
-- [blueif16/vla_final](https://github.com/blueif16/vla_final) ★2 · 30天=5 · 7天=5 · 词 `vision language action` · CS 6180 final project on vision-language-action models: learning chapters, status and (later) code
-- [Yukun-Zheng/LiteTwin](https://github.com/Yukun-Zheng/LiteTwin) ★0 · 30天=5 · 7天=5 · 词 `robot manipulation` · Task-state feedback for robot manipulation. Explore 12 RLBench tasks, watch annotated comparisons in
+- [zacharyyamaoka/sim2real](https://github.com/zacharyyamaoka/sim2real) ★0 · 30天=≥100 · 7天=≥100 · 词 `sim2real` · BAM sim2real (private; mirrored from the workstation for cloud sim jobs)
+- [zeyuyuyu/rsi-framework](https://github.com/zeyuyuyu/rsi-framework) ★0 · 30天=≥100 · 7天=≥100 · 词 `world model` · Two-level recursive self-improvement (RSI) training framework: code world model + OpenVLA, pre-regis
+- [dreaminglizard/llm-driven-robot-policy-learning](https://github.com/dreaminglizard/llm-driven-robot-policy-learning) ★1 · 30天=45 · 7天=45 · 词 `robot manipulation` · LLM-driven development and training of robot manipulation policies: learned weight updates, source c
+- [PavanSuryaChintada/metacognition-memory-dynamics](https://github.com/PavanSuryaChintada/metacognition-memory-dynamics) ★0 · 30天=43 · 7天=43 · 词 `jepa` · Implementation of dynamical memory framework (replay, diffusion, attractor formation) using I-JEPA e
+- [KhushiJ2911/microVLA](https://github.com/KhushiJ2911/microVLA) ★7 · 30天=42 · 7天=42 · 词 `vision language action` · A small pi0.5-style vision-language-action model you can train from scratch on a 4 GB laptop GPU, pl
+- [gawbi/plugbot](https://github.com/gawbi/plugbot) ★2 · 30天=≥100 · 7天=37 · 词 `sim-to-real` · Low-cost robot arm that learns to plug into a moving ship socket. Real-to-Real 40/40, Sim-to-Real 39
+- [CK5515/fly-reflex-teleop](https://github.com/CK5515/fly-reflex-teleop) ★0 · 30天=33 · 7天=33 · 词 `teleoperation` · Junction 2026: Rokoko teleoperation with a fly-brain reflex layer
+- [aminuyusufmr/cp_jepa](https://github.com/aminuyusufmr/cp_jepa) ★2 · 30天=27 · 7天=27 · 词 `jepa` · CP-JEPA: Context-Predictive Low-Rank Adaptation of CLIP for Face Presentation Attack Detection. Code
+- [yiduoqu/part-aware-sim-control](https://github.com/yiduoqu/part-aware-sim-control) ★0 · 30天=≥100 · 7天=26 · 词 `robot manipulation` · An open interactive toolkit that accelerates human and agentic physics-based Real2Sim of Robot Manip
+- [justinbrianhwang/when-recovery-hurts](https://github.com/justinbrianhwang/when-recovery-hurts) ★0 · 30天=13 · 7天=13 · 词 `robot manipulation` · When Recovery Hurts: harm-constrained intervention (Continue / Refresh / Retreat-Retry) for robotic 
+- [xblick/xblick-vjepa2](https://github.com/xblick/xblick-vjepa2) ★0 · 30天=10 · 7天=10 · 词 `jepa` · Durchblick node for V-JEPA 2: video features and actions for a camera stream
+- [eljandoubi/jepa-planner](https://github.com/eljandoubi/jepa-planner) ★0 · 30天=9 · 7天=9 · 词 `jepa` · A small JEPA-style latent world model with CEM planning on a two-rooms task: collapse ablation, a fa
+- [OHMFOHS/vla-manipulation-sim](https://github.com/OHMFOHS/vla-manipulation-sim) ★1 · 30天=8 · 7天=8 · 词 `robot manipulation` · Language-guided robotic manipulation in MuJoCo/robosuite: RGB-D perception, closed-loop failure reco
+- [abdul-mannan-khan/warehouse-sim-rl](https://github.com/abdul-mannan-khan/warehouse-sim-rl) ★0 · 30天=7 · 7天=7 · 词 `sim-to-real` · SimPy discrete-event warehouse simulator with a Gymnasium dispatch environment, Optuna sim-to-real c
+- [ShenYiTan/stm32-robotic-arm-teleop](https://github.com/ShenYiTan/stm32-robotic-arm-teleop) ★0 · 30天=6 · 7天=6 · 词 `teleoperation` · 5-DOF robotic arm powered by STM32F103 and ESP32-C3 over BLE, featuring dual-joystick manual control
+- [Daniel-Lawless/FYP-Robotic-Manipulation-Uncertainty](https://github.com/Daniel-Lawless/FYP-Robotic-Manipulation-Uncertainty) ★0 · 30天=35 · 7天=5 · 词 `robot manipulation` · Investigating Ensemble Uncertainty for Failure Detection and Intervention in Robotic Manipulation
+- [WW-Web-Infra/world-model-ai-safety-test](https://github.com/WW-Web-Infra/world-model-ai-safety-test) ★0 · 30天=23 · 7天=5 · 词 `jepa` · Can we read a latent planner's intent before it acts? Interpreting a JEPA world model, and testing w
+- [CypressLi01/Future-Forcing](https://github.com/CypressLi01/Future-Forcing) ★0 · 30天=5 · 7天=5 · 词 `vision language action` · Project page for Future Forcing: Learning to Anticipate for Efficient Vision-Language-Action Policie
+- [aymen-000/VLAForge](https://github.com/aymen-000/VLAForge) ★0 · 30天=5 · 7天=5 · 词 `vision language action` · VLAForge is a modular Python framework for building Vision-Language-Action models. It provides share
+- [harryjo97/dreamfree](https://github.com/harryjo97/dreamfree) ★9 · 30天=6 · 7天=4 · 词 `world action model` · Official codebase for Future Representation Distillation for Imagination-free World Action Models.
+- [ansarbuilds/prh-jepa](https://github.com/ansarbuilds/prh-jepa) ★0 · 30天=12 · 7天=3 · 词 `jepa` · Independent replication and audit of 'Proving and Improving the Platonic Representation Hypothesis w
+- [thijswelling/Imitation_Learning_Final_Version](https://github.com/thijswelling/Imitation_Learning_Final_Version) ★0 · 30天=5 · 7天=3 · 词 `teleoperation` · Imitation Learning Diffucion policy by Teleoperation between Phantom Omni and UR3e with Camera input
+- [meta-lucky-builds/transfer](https://github.com/meta-lucky-builds/transfer) ★0 · 30天=5 · 7天=3 · 词 `world model` · A robot-arm world model that keeps learning on the job: a full spec plus tested first-stage code, in
+- [Huy-Quang-Dao/instantTrack](https://github.com/Huy-Quang-Dao/instantTrack) ★200 · 30天=19 · 7天=0 [爆完即停] · 词 `world model` · Whole-body motion tracking for the Unitree G1 in under 3 minutes on average on one GPU: return 0.82 
+- [danitylyc/vla-lang-push-pybullet](https://github.com/danitylyc/vla-lang-push-pybullet) ★1 · 30天=13 · 7天=0 [爆完即停] · 词 `vision language action` · Tiny end-to-end VLA (vision-language-action) trained from scratch: Chinese instruction + camera -> p

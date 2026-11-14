@@ -292,3 +292,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-11-14,narrative-brief,claude-opus-5-5,33601,835,61696,0
 2026-11-14,memory-flush,claude-opus-5-5,93228,43320,3542528,0
 2026-11-14,arxiv-radar,claude-opus-5-5,90598,37297,4659968,0
+2026-11-14,github-radar,claude-opus-5-5,42390,5049,254720,0
