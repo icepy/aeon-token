@@ -1,17 +1,13 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-14T22:09:25Z",
+  "last_analyzed": "2026-11-15T22:09:38Z",
   "quality_score": 4,
-  "assessment": "Completed a clean zero-survivor scan round with a fully accounted funnel and six-category breakdown, justified term retention across windows, and a real discriminative-control test distinguishing true zeros from rate-limited false zeros; substantive and actionable, though the value is process hygiene rather than new findings and it self-notes tool-budget overspend.",
-  "flags": [],
-  "avg_score": 3.37,
+  "assessment": "A complete, internally consistent round-47 report: 70 raw correctly funneled to 0 survivors with all 70 explained by seen-memory saturation, notification and label writes correctly withheld per its own rule, plus two genuinely diagnostic findings (round-46 keyword downgrade inert because PR #25 is still unmerged; a one-day window slide alone flipping a saturated word to zero-hit) and a concrete action item.",
+  "flags": [
+    "stale_data"
+  ],
+  "avg_score": 3.4,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 3,
-      "ts": "2026-10-26T06:33:53Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 4,
@@ -184,6 +180,12 @@
       "date": "2026-11-14",
       "score": 4,
       "ts": "2026-11-14T22:09:25Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-15",
+      "score": 4,
+      "ts": "2026-11-15T22:09:38Z",
       "harness": "claude"
     }
   ]
