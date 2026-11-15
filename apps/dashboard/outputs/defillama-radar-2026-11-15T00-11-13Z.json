@@ -1,0 +1,256 @@
+{
+  "root": "root",
+  "state": {},
+  "elements": {
+    "root": {
+      "type": "Card",
+      "props": {
+        "title": "defillama-radar 更正（2/2）：桥类批次不属同类目"
+      },
+      "children": [
+        "main"
+      ]
+    },
+    "main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h1",
+        "intro",
+        "point1-heading",
+        "point1-text",
+        "cat-table",
+        "point2-heading",
+        "point2-text",
+        "clusters-grid",
+        "examples-text",
+        "sep1",
+        "conclusion-heading",
+        "conclusion-stack",
+        "reportables",
+        "sep2",
+        "rootcause-heading",
+        "rootcause-text"
+      ]
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "defillama-radar 更正（第二处，最后一条）",
+        "level": "h2"
+      }
+    },
+    "intro": {
+      "type": "Text",
+      "props": {
+        "text": "上一条更正里「与 10-07 那批 22 条桥同型」仍不准确，改两点：",
+        "variant": "body"
+      }
+    },
+    "point1-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "① 10-07 那批桥不是同类目",
+        "level": "h3"
+      }
+    },
+    "point1-text": {
+      "type": "Text",
+      "props": {
+        "text": "横跨四个类目字符串，属「类目也混」的另一类：",
+        "variant": "body"
+      }
+    },
+    "cat-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "类目字符串",
+          "数量"
+        ],
+        "rows": [
+          [
+            "Cross Chain Bridge",
+            "15"
+          ],
+          [
+            "Canonical Bridge",
+            "5"
+          ],
+          [
+            "Bridge Aggregator",
+            "1"
+          ],
+          [
+            "Bridge",
+            "1"
+          ]
+        ]
+      }
+    },
+    "point2-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "② 不是「第三次」",
+        "level": "h3"
+      }
+    },
+    "point2-text": {
+      "type": "Text",
+      "props": {
+        "text": "全量 31 组同秒簇分三类。本轮加密卡属第二类（同类目跨 parent）。",
+        "variant": "body"
+      }
+    },
+    "clusters-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat-total",
+        "stat-a",
+        "stat-b",
+        "stat-c"
+      ]
+    },
+    "stat-total": {
+      "type": "Stat",
+      "props": {
+        "label": "全量同秒簇",
+        "value": "31 组"
+      }
+    },
+    "stat-a": {
+      "type": "Stat",
+      "props": {
+        "label": "同 parent",
+        "value": "5 组"
+      }
+    },
+    "stat-b": {
+      "type": "Stat",
+      "props": {
+        "label": "同类目跨 parent",
+        "value": "4 组"
+      }
+    },
+    "stat-c": {
+      "type": "Stat",
+      "props": {
+        "label": "类目与 parent 都混",
+        "value": "22 组"
+      }
+    },
+    "examples-text": {
+      "type": "Text",
+      "props": {
+        "text": "前有 2022-06-18 Lending、2024-03-12 Dexs。",
+        "variant": "caption"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "conclusion-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "净结论不变",
+        "level": "h3"
+      }
+    },
+    "conclusion-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-enc",
+        "badge-newness"
+      ]
+    },
+    "stat-enc": {
+      "type": "Stat",
+      "props": {
+        "label": "加密卡条数",
+        "value": "6 条"
+      }
+    },
+    "badge-newness": {
+      "type": "Badge",
+      "props": {
+        "text": "常规同类目跨 parent 同秒回填 · 不新 · 不必细看",
+        "variant": "secondary"
+      }
+    },
+    "reportables": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "text-report",
+        "badge-paboxo",
+        "badge-zkapi",
+        "badge-flagged"
+      ]
+    },
+    "text-report": {
+      "type": "Text",
+      "props": {
+        "text": "可报仍是：",
+        "variant": "body"
+      }
+    },
+    "badge-paboxo": {
+      "type": "Badge",
+      "props": {
+        "text": "Paboxo",
+        "variant": "default"
+      }
+    },
+    "badge-zkapi": {
+      "type": "Badge",
+      "props": {
+        "text": "zkAPI",
+        "variant": "default"
+      }
+    },
+    "badge-flagged": {
+      "type": "Badge",
+      "props": {
+        "text": "已标记",
+        "variant": "outline"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "rootcause-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "根因",
+        "level": "h4"
+      }
+    },
+    "rootcause-text": {
+      "type": "Text",
+      "props": {
+        "text": "拿本轮差集当全量去断言「首次 / 第 N 次」。已记进 lessons。",
+        "variant": "body"
+      }
+    }
+  }
+}

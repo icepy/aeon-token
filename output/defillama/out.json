@@ -1,1 +1,34 @@
-[]
+[
+ {
+  "id": "9449",
+  "name": "Paboxo",
+  "slug": "paboxo",
+  "chains": [
+   "Robinhood Chain"
+  ],
+  "tvl": 4864.398010785981,
+  "category": "Lending",
+  "listedAt": 1794684137,
+  "url": "",
+  "description": "Lending market for Stock Tokens on Robinhood Chain: deposit USDG to earn, or borrow USDG against Stock Tokens ",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9431",
+  "name": "zkAPI",
+  "slug": "zkapi",
+  "chains": [
+   "Ethereum"
+  ],
+  "tvl": 1478.0930229079192,
+  "category": "Privacy",
+  "listedAt": 1794608688,
+  "url": "https://zkapi.openanonymity.ai/",
+  "description": "zkAPI lets users prepay for API usage with ETH and authorize requests with zero-knowledge proofs that keep usa",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ }
+]

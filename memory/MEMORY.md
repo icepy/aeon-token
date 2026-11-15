@@ -12,8 +12,8 @@
 
 ## 发现层（主线）
 三条**平行**探针，同一批方向词，测同一成熟度阶梯：论文（~4 个月）→ 代码（~1–2 个月）→ 代币（未建）。**同一个词依次点亮，那个次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-13 第 45 轮 **76 → 5**（上轮 75→0），两侧失败类全 0。**五条全落受控表、首次无 `?`**；`egocentric` raw=20 稳居最大召回词。11 个零命中词里 9 个跨窗有命中 → 不许删。加密侧**真有召回 3 条** ⟺ github-radar 加密侧十连轮 0 = **跨通道错位，不互证**。14 词仍未配 carrier 表。→ [source: logs/2026-11-13#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-14 第 19 轮 9028 / 新增 2 / **可报 0**（两条皆空链）。**空 `chains` ≡ `module=dummy.js`（1621 条集合相等）；`chains=[]` ⇒ `tvl` 缺失，反向不成立**。加链边际四轮 $514→$2.6K→$48.5K→**$0**，不加。**id 缺席不是空洞证据**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-14#defillama-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-13 第 45 轮 **76 → 5**，两侧失败类全 0，五条全落受控表。`egocentric` raw=20 稳居最大召回词；11 个零命中词里 9 个跨窗有命中 → 不许删。加密侧真有召回 3 条 ⟺ github-radar 加密侧十连轮 0 = **跨通道错位，不互证**。→ [source: logs/2026-11-13#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-15 第 20 轮 9050 / 新增 **22** / 可报 **2**（$6,342，已发）。**审计行 `本次通知` 恒写「零可报」=`scan.py:301` 硬编码，可报>0 时不可信**。`parent` 真边际 1 条但吃掉 $561.6K。加链边际 $6.6K，不加。**`chains=[]`⇒`tvl` 缺失，反向不成立**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-15#defillama-radar]
 - `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-12 第 25 轮 420/33/12：`30天=`≡`7天=` **12/12 第六轮**（定死为仓龄）· 加密侧**第十连轮** 0（`mev` 缩写仍未量）· 入口换代到 `robot manipulation`。→ [topic](/topics/github-radar.md) [source: logs/2026-11-12#github-radar]
 
 
