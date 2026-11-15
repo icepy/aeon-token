@@ -1,47 +1,30 @@
-github-radar gh-v3 · 第 26 轮 · 扫 18 词 × 二分至一页（单窗 13 / 需拆窗 5 · 二分 2 次 · 搜索调用 40）| 原始 1974 | 幸存 74 | 报告级 25 | var=''
+github-radar gh-v3 · 第 27 轮 · 扫 18 词 × 二分至一页（单窗 17 / 需拆窗 1 · 二分 0 次 · 搜索调用 20）| 原始 421 | 幸存 21 | 报告级 9 | var='days:7'
 全文 output/ghradar/audit.log（stdout 只打 digest；加 --full 打全文）
 快照 output/ghradar/out.json
-丢弃 seen=890 excl=128 archived=0 short_desc=352 carrier=407 neg=58 pages=61 pages_root=1 scaffold=0 farm=3 fail=0
-核验 74/74 (100.0%) · 模式 全量 · 黑名单 3 owner
-词表四分类 —— 查询失败 0 / 真零 0 / 全已见(饱和) 4 / 有新增 14
-耗时 搜索 103s · 核验 9s · 总 127s
-ℹ️ carrier 只靠 topics 放行 2 个（desc 里没有 carrier 词）: RoboticsResearchHubVN/InstantAMP · Huy-Quang-Dao/instantTrack
-ℹ️ 被 carrier 规则丢弃 407 个（desc 与 topics 均无 carrier 词）—— 全量在 dropped.json，最近 20: Unjuno/local-model-portfolio(2026-11-14) · rahul-mahadik/driving-world-model-inference(2026-11-14) · ml-circuits-research/soplang-words-lib(2026-11-14) · paradoxailab/paradox-world-model(2026-11-14) · kumar-selvakumaran/agent_world(2026-11-14) · Calhem/typedb-semantic-world-model(2026-11-14) · pedramgoshATgmail/EVALATHAN(2026-11-14) · Appeon-a-Lew/VLM_world_models(2026-11-14) · SiyuanMaCS/PixelWorld(2026-11-14) · tianqiongenze/smartfnb-agent-platform(2026-11-14) · haggler3/av_world_rl(2026-11-14) · elon00/narwhal-tusk-sequencer(2026-11-14) · Maltysnack/worldcup-model(2026-11-14) · MengmaoR/VoxWM(2026-11-14) · ServOMorph/WorldModel(2026-11-14) · klyrostack/browse-clean(2026-11-14) · wrlengo/latent-molecular-rollout(2026-11-14) · eljandoubi/jepa-planner(2026-11-14) · Jetsupertesla/eurasian-hack(2026-11-14) · CansyLand/Uprise(2026-11-14)
-ℹ️ carrier 误杀口径（对照，不下结论）：丢弃里仓名自带词表词 162 个，owner 去重 157 个，本轮核 148 个 → 近 7 天存活 59/148 = 40%
-   对照（放行的幸存者，已核 73）：近 7 天存活 70/73 = 96%
-ℹ️ 被 short_desc 规则丢弃 352 个（len(desc)<25 且无 topics）—— 全量在 dropped.json，最近 20: sp12138/SPT-JEPA(2026-11-14) · collateraris/TurkeyWorld(2026-11-14) · theshambhavipatil/KAVACH-JEPA(2026-11-14) · huytruong1810/jepa-ipomdp(2026-11-14) · shauray8/Kestrel(2026-11-14) · Todd7777/World-Models-to-solve-global-adversities(2026-11-14) · Ayush-00-hui/world-model(2026-11-14) · wageshsharma20/kitscenes-world-model(2026-11-14) · PeterMoehle/jetracer-sim2real(2026-11-14) · amorarc/Func-JEPA(2026-11-14) · 1zeryu/embodied-datasets(2026-11-14) · andreasatle/Jepa(2026-11-14) · SUDHAVALLI-17/World-model-brain-mri-(2026-11-14) · kizilkayaom/t-jepa-transaction-fraud-detect(2026-11-14) · danmas/jepa-lab(2026-11-14) · ysnjin/Market-JEPA(2026-11-14) · arion-a/Law-JEPA(2026-11-14) · pexp13/dimabsa-jepa(2026-11-14) · dreamerToTOE/robot-rl-sim2real(2026-11-14) · riic-lab/TTA-JEPA(2026-11-14)
-ℹ️ 饱和（raw>0 且 0 新增）4 —— 其中真被 seen 吸收 4 个（**别删**）: embodied data(raw=13 seen=3) · robotics data engine(raw=1 seen=1) · proof of useful work(raw=5 seen=4) · intent-based(raw=46 seen=3)
-词表返回/新收/已见: world model=695/9/157 · jepa=349/15/148 · teleoperation=224/13/158 · robot manipulation=152/13/102 · sim-to-real=110/3/91 · sim2real=92/4/47 · vision language action=79/8/60 · egocentric=78/2/64 · data availability=63/1/2 · intent-based=46/0/3 · world action model=37/2/28 · robot dataset=16/1/14 · embodied data=13/0/3 · restaking=7/1/5 · verifiable inference=5/2/3 · proof of useful work=5/0/4 · maximal extractable value=2/1/0 · robotics data engine=1/0/1
-ℹ️ 被 NEG 规则丢弃 58 个: Kharismaleader/Jepang-N3-N2 · rizqyariefpurba-code/Kelas-Jepang · sukron03/Restoran-Jepang · wisnumacheda/belajar-jepang · wildanindi/jepang_learning_backend · YayakSatya/suka2jepang · karinanuranggraeni-ckp/game-sakura-jepang · hamzskuy/landing-page-makanan-jepang · ibsalfikramansara-hub/silang-man1jepara · fahmiwidya27-ops/web-belajar-bahasa-jepang-pemula · salsa0909/Game-Ular-Tangga-b.-Jepang · kenziWBJF/belajar-jepang
-ℹ️ 被 pages 后缀规则丢弃 61 个: CorradoZhang/Stage-Wise-RL-Project-Page(152856KB) · Ryan-DAI01/ryan-dai01.github.io(7282KB) · YvonneoO/ego2contact-project-page(16854KB) · reward-grana/reward-grana.github.io(235143KB) · xuanqisun/one-g-humanoid-showcase(104371KB) · nicolasmahr/hybrid-teleoperation-showcase(3816KB) · aizhiqi-work/aizhiqi-work(1KB) · hayfung-hue/hayfung-hue(1KB) · value-sim2real/value-sim2real.github.io(25439KB) · agentic-sim2real/agentic-sim2real.github.io(8954KB) · Clarence-Pfister/Clarence-Pfister.github.io(9719KB) · agentic-real2sim2real/agentic-real2sim2real.github.io(110552KB)
-ℹ️ 被 pages 根目录规则丢弃 1 个（index.html+.nojekyll 且无代码骨架）: Japluto/Daily-ARXIV
-逐词核验数: jepa=15 · robot manipulation=13 · teleoperation=13 · world model=8 · vision language action=8 · sim2real=4 · sim-to-real=3 · world action model=2 · egocentric=2 · verifiable inference=2 · robot dataset=1 · data availability=1 · restaking=1 · maximal extractable value=1 · embodied data=0 · robotics data engine=0 · proof of useful work=0 · intent-based=0
-⚠️ 30 天零提交（star 在骗人）1: CINAPSLab/pi0.5-xArm7-cinaps-stacking
-⚠️ 爆完即停（30d 有量 / 7d 归零）3: rpadgue/dual-arm-robot · Huy-Quang-Dao/instantTrack · danitylyc/vla-lang-push-pybullet
-⚠️ 无 language 字段（疑似非代码仓）15: ghassanchair/UR5-Robotic-Manipulation · rpadgue/dual-arm-robot · heimseiten/humanoid-robots-dataset · elon00/boston-quadruped-teleop · totoleon/xgoduck-sim2real · space-explorer-4231/oarbot-sim-to-real · DouglasLafortune7668/virtual-card-usdt-world-models-embodied-ai-sim-vcc · chakravarthi589/frontier-action-models · RainBowLuoCS/Gamer · leoasalkind-cpu/autonomous-biped-robot · DrewAnderson/JEPAI · zannatyazizaoashi/brain-symmetry-3d-tumour-segmentation
-ℹ️ probe 跳过（戳 4 天 < 7 天）—— clusters.json 未重写，是上次结果，别当本轮
-  zacharyyamaoka/sim2real ★0 30d=≥100 7d=≥100
-  zeyuyuyu/rsi-framework ★0 30d=≥100 7d=≥100
-  dreaminglizard/llm-driven-robot-policy-learning ★1 30d=45 7d=45
-  PavanSuryaChintada/metacognition-memory-dynamics ★0 30d=43 7d=43
-  KhushiJ2911/microVLA ★7 30d=42 7d=42
-  gawbi/plugbot ★2 30d=≥100 7d=37
-  CK5515/fly-reflex-teleop ★0 30d=33 7d=33
-  aminuyusufmr/cp_jepa ★2 30d=27 7d=27
-  yiduoqu/part-aware-sim-control ★0 30d=≥100 7d=26
-  justinbrianhwang/when-recovery-hurts ★0 30d=13 7d=13
-  xblick/xblick-vjepa2 ★0 30d=10 7d=10
-  eljandoubi/jepa-planner ★0 30d=9 7d=9
-  OHMFOHS/vla-manipulation-sim ★1 30d=8 7d=8
-  abdul-mannan-khan/warehouse-sim-rl ★0 30d=7 7d=7
-  ShenYiTan/stm32-robotic-arm-teleop ★0 30d=6 7d=6
-  Daniel-Lawless/FYP-Robotic-Manipulation-Uncertainty ★0 30d=35 7d=5
-  WW-Web-Infra/world-model-ai-safety-test ★0 30d=23 7d=5
-  CypressLi01/Future-Forcing ★0 30d=5 7d=5
-  aymen-000/VLAForge ★0 30d=5 7d=5
-  harryjo97/dreamfree ★9 30d=6 7d=4
-  ansarbuilds/prh-jepa ★0 30d=12 7d=3
-  thijswelling/Imitation_Learning_Final_Version ★0 30d=5 7d=3
-  meta-lucky-builds/transfer ★0 30d=5 7d=3
-  Huy-Quang-Dao/instantTrack ★200 30d=19 [爆完即停] 7d=0
-  danitylyc/vla-lang-push-pybullet ★1 30d=13 [爆完即停] 7d=0
+丢弃 seen=176 excl=25 archived=0 short_desc=93 carrier=84 neg=11 pages=10 pages_root=1 scaffold=0 farm=0 fail=0
+核验 21/21 (100.0%) · 模式 全量 · 黑名单 3 owner
+词表四分类 —— 查询失败 0 / 真零 1 / 全已见(饱和) 10 / 有新增 7
+耗时 搜索 43s · 核验 4s · 总 50s
+ℹ️ 被 carrier 规则丢弃 84 个（desc 与 topics 均无 carrier 词）—— 全量在 dropped.json，最近 20: loominate-if/loominate-if(2026-11-15) · ml-circuits-research/soplang-words-lib(2026-11-15) · npow/recall(2026-11-15) · arunnadarasa/opencareq-nhs(2026-11-15) · singh-bhawana/MediCloud(2026-11-15) · deboradum/tfwm-extensions(2026-11-15) · kumar-selvakumaran/agent_world(2026-11-15) · mangnathan/day-ahead-load(2026-11-15) · Levi-0805/EAGM(2026-11-15) · pramodhkp/reel-vault(2026-11-15) · Kaninchentu/eeg-world(2026-11-15) · NyxFelineLabs/CT-WM(2026-11-15) · UncleSema2/unclesema.top(2026-11-15) · lonevetad/WorldModeler(2026-11-15) · daksaanand2505/ZevRA(2026-11-15) · CedricDada/flou-world-models(2026-11-15) · minwoo0611/OneLatentWorld(2026-11-15) · YI-HAIBO/the-well(2026-11-15) · Chen-PG007/TTV-CSF-Multicenter-Study(2026-11-15) · 007875/UNITY-Transport-Emissions(2026-11-15)
+ℹ️ carrier 误杀口径（对照，不下结论）：丢弃里仓名自带词表词 34 个，owner 去重 34 个，本轮核 34 个 → 近 7 天存活 33/34 = 97%
+   对照（放行的幸存者，已核 21）：近 7 天存活 21/21 = 100%
+ℹ️ 被 short_desc 规则丢弃 93 个（len(desc)<25 且无 topics）—— 全量在 dropped.json，最近 20: PR0G3T/nasa-farm-jepa(2026-11-15) · turab-usmani/jepa-memory(2026-11-15) · tiantianxcs/JEPA-Tuner(2026-11-15) · danmas/jepa-lab(2026-11-15) · Srujankowluru/ros2-vision-guided-robotic-manipulation(2026-11-15) · PeterMoehle/jetracer-sim2real(2026-11-15) · Maverick-Ansh/AgenticWorldModel(2026-11-15) · wageshsharma20/kitscenes-world-model(2026-11-15) · SUDHAVALLI-17/World-model-brain-mri-(2026-11-15) · Roshan-1009/World-Model-Training(2026-11-15) · VinceTree/SieveJEPA(2026-11-15) · dreamerToTOE/robot-rl-sim2real(2026-11-15) · bright-moon-67/H-JEPA(2026-11-15) · 000Shreeharish000/PERCEPT-Fly-Pose-driven-Egocentric-Reconstruction-of-Connectome-constrained-Perception-Tracks(2026-11-15) · Ayush-00-hui/world-model(2026-11-15) · deepak282886/jepa-lm(2026-11-15) · theshambhavipatil/KAVACH-JEPA(2026-11-14) · amorarc/Func-JEPA(2026-11-14) · 1zeryu/embodied-datasets(2026-11-14) · kizilkayaom/t-jepa-transaction-fraud-detect(2026-11-14)
+⚠️ 真零命中（total=0，窗 7 天；单窗为零不删，跨 7/30/60 都是 0 才谈删词）: robotics data engine
+ℹ️ 饱和（raw>0 且 0 新增）10 —— 其中真被 seen 吸收 8 个（**别删**）: robot dataset(raw=2 seen=2) · world action model(raw=4 seen=3) · vision language action(raw=23 seen=18) · verifiable inference(raw=3 seen=3) · data availability(raw=18 seen=1) · restaking(raw=1 seen=1) · intent-based(raw=8 seen=1) · maximal extractable value(raw=1 seen=1)
+   └ 全是过滤损耗 2 个（seen=0，**不是饱和**，别按饱和读）: embodied data(raw=4) · proof of useful work(raw=1)
+词表返回/新收/已见: world model=134/2/27 · jepa=86/4/29 · teleoperation=44/7/31 · robot manipulation=32/4/21 · sim-to-real=26/2/21 · sim2real=25/1/13 · vision language action=23/0/18 · data availability=18/0/1 · egocentric=9/2/4 · intent-based=8/0/1 · embodied data=4/0/0 · world action model=4/0/3 · verifiable inference=3/0/3 · robot dataset=2/0/2 · proof of useful work=1/0/0 · restaking=1/0/1 · maximal extractable value=1/0/1 · robotics data engine=0/0/0
+ℹ️ 被 NEG 规则丢弃 11 个: rizqyariefpurba-code/Kelas-Jepang · hannaruhil/jepara-woodtech · sukron03/Restoran-Jepang · wisnumacheda/belajar-jepang · YayakSatya/suka2jepang · wildanindi/jepang_learning_backend · karinanuranggraeni-ckp/game-sakura-jepang · hamzskuy/landing-page-makanan-jepang · ibsalfikramansara-hub/silang-man1jepara · fahmiwidya27-ops/web-belajar-bahasa-jepang-pemula · salsa0909/Game-Ular-Tangga-b.-Jepang
+ℹ️ 被 pages 后缀规则丢弃 10 个: xuanqisun/one-g-humanoid-showcase(104371KB) · value-sim2real/value-sim2real.github.io(25439KB) · zmling22/WorldRuler-Homepage(74203KB) · SidScott1410/SidScott1410(1KB) · Duo-v1/Duo-v1.github.io(133254KB) · cusdn/embodied-control-showcase(4491KB) · Travis-Yu/Travis-Yu.github.io(9KB) · mpodolinsky/tug.github.io(2328KB) · vla-refresh/VLA-Refresh(0KB) · muhammad-ahmed-ssuet/muhammad-ahmed-ssuet.github.io(73KB)
+ℹ️ 被 pages 根目录规则丢弃 1 个（index.html+.nojekyll 且无代码骨架）: fruitrabbit/WinDEX
+逐词核验数: teleoperation=6 · robot manipulation=4 · jepa=4 · sim-to-real=2 · world model=2 · egocentric=2 · sim2real=1 · embodied data=0 · robot dataset=0 · world action model=0 · vision language action=0 · robotics data engine=0 · verifiable inference=0 · proof of useful work=0 · data availability=0 · restaking=0 · intent-based=0 · maximal extractable value=0
+⚠️ 无 language 字段（疑似非代码仓）4: physicalai-ihubrobotics/daksha · princeton-vl/DAPPT · lucidrains/PMW-pytorch · jaranwayne/UroJEPA
+ℹ️ probe 跳过（戳 5 天 < 7 天）—— clusters.json 未重写，是上次结果，别当本轮
+  vctr-dng/manip-rubiks ★0 30d=38 7d=38
+  Rohitjangra7370/physical-ai-stack ★0 30d=14 7d=14
+  shview/FlowPolicy-Jittor ★0 30d=9 7d=9
+  ThanujMaligi/ExoLink-Vision-HRI ★0 30d=49 7d=6
+  svend4/open-cycle-jepa ★0 30d=6 7d=6
+  srcJin/raven-ego-gaze ★0 30d=6 7d=6
+  lucidrains/PMW-pytorch ★2 30d=5 7d=5 [无语言]
+  fan-gu-hao/smart-car ★0 30d=5 7d=5
+  EntangledQuantum/quest-teleop ★0 30d=5 7d=5

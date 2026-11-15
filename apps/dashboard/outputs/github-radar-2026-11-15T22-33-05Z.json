@@ -1,0 +1,300 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 9 · 近 7 天活跃 9"
+      },
+      "children": [
+        "heading",
+        "meta",
+        "sep1",
+        "list"
+      ]
+    },
+    "heading": {
+      "type": "Heading",
+      "props": {
+        "text": "github-radar",
+        "level": "h2"
+      }
+    },
+    "meta": {
+      "type": "Text",
+      "props": {
+        "text": "窗口 7 天 · 报告级 9 · 近 7 天活跃 9",
+        "variant": "muted"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "item1",
+        "item2",
+        "item3",
+        "item4",
+        "item5",
+        "item6",
+        "item7",
+        "item8",
+        "item9"
+      ]
+    },
+    "item1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link1",
+        "desc1"
+      ]
+    },
+    "link1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "vctr-dng/manip-rubiks",
+        "href": "https://github.com/vctr-dng/manip-rubiks",
+        "source": "robot manipulation",
+        "score": "★0 · 30天=38 · 7天=38"
+      }
+    },
+    "desc1": {
+      "type": "Text",
+      "props": {
+        "text": "Robotic manipulation of Rubik's cubes using tactile sensing",
+        "variant": "caption"
+      }
+    },
+    "item2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link2",
+        "desc2"
+      ]
+    },
+    "link2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Rohitjangra7370/physical-ai-stack",
+        "href": "https://github.com/Rohitjangra7370/physical-ai-stack",
+        "source": "world model",
+        "score": "★0 · 30天=14 · 7天=14"
+      }
+    },
+    "desc2": {
+      "type": "Text",
+      "props": {
+        "text": "Physical AI stack, built bottom-up: MuJoCo RL, CUDA edge compute, vision-language-action, world mode",
+        "variant": "caption"
+      }
+    },
+    "item3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link3",
+        "desc3"
+      ]
+    },
+    "link3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "shview/FlowPolicy-Jittor",
+        "href": "https://github.com/shview/FlowPolicy-Jittor",
+        "source": "robot manipulation",
+        "score": "★0 · 30天=9 · 7天=9"
+      }
+    },
+    "desc3": {
+      "type": "Text",
+      "props": {
+        "text": "A Jittor reimplementation of FlowPolicy for 3D robot manipulation, with reproducible training and Me",
+        "variant": "caption"
+      }
+    },
+    "item4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link4",
+        "desc4"
+      ]
+    },
+    "link4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ThanujMaligi/ExoLink-Vision-HRI",
+        "href": "https://github.com/ThanujMaligi/ExoLink-Vision-HRI",
+        "source": "teleoperation",
+        "score": "★0 · 30天=49 · 7天=6"
+      }
+    },
+    "desc4": {
+      "type": "Text",
+      "props": {
+        "text": "⚡ Contactless AI Teleoperation & 3D Digital Twin Interface via Webcam Hand Tracking (No Gloves/IMUs)",
+        "variant": "caption"
+      }
+    },
+    "item5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link5",
+        "desc5"
+      ]
+    },
+    "link5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "svend4/open-cycle-jepa",
+        "href": "https://github.com/svend4/open-cycle-jepa",
+        "source": "jepa",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "desc5": {
+      "type": "Text",
+      "props": {
+        "text": "Open-Cycle JEPA: theory of open/deformed cycles over V-JEPA / H-JEPA with Kryukov sphere hierarchy, ",
+        "variant": "caption"
+      }
+    },
+    "item6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link6",
+        "desc6"
+      ]
+    },
+    "link6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "srcJin/raven-ego-gaze",
+        "href": "https://github.com/srcJin/raven-ego-gaze",
+        "source": "egocentric",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "desc6": {
+      "type": "Text",
+      "props": {
+        "text": "EgoGaze: record egocentric frames and gaze for inspectable robot attention datasets.",
+        "variant": "caption"
+      }
+    },
+    "item7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link7",
+        "desc7"
+      ]
+    },
+    "link7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "lucidrains/PMW-pytorch",
+        "href": "https://github.com/lucidrains/PMW-pytorch",
+        "source": "world model",
+        "score": "★2 · 30天=5 · 7天=5"
+      }
+    },
+    "desc7": {
+      "type": "Text",
+      "props": {
+        "text": "A practical implementation of PWM: Policy Learning with Multi-Task World Models",
+        "variant": "caption"
+      }
+    },
+    "item8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link8",
+        "desc8"
+      ]
+    },
+    "link8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "fan-gu-hao/smart-car",
+        "href": "https://github.com/fan-gu-hao/smart-car",
+        "source": "teleoperation",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "desc8": {
+      "type": "Text",
+      "props": {
+        "text": "Jetson Orin Nano + STM32F412 smart RC car: onboard vision, 5G teleoperation, four-direction ranging,",
+        "variant": "caption"
+      }
+    },
+    "item9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link9",
+        "desc9"
+      ]
+    },
+    "link9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EntangledQuantum/quest-teleop",
+        "href": "https://github.com/EntangledQuantum/quest-teleop",
+        "source": "teleoperation",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "desc9": {
+      "type": "Text",
+      "props": {
+        "text": "Generic VR teleoperation for Meta Quest headsets (OpenXR, tested on Quest 2): native app + Python se",
+        "variant": "caption"
+      }
+    }
+  }
+}

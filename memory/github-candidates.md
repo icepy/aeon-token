@@ -653,3 +653,14 @@
 - [meta-lucky-builds/transfer](https://github.com/meta-lucky-builds/transfer) ★0 · 30天=5 · 7天=3 · `world model` · A robot-arm world model that keeps learning on the job: a full spec plus tested first-stage code, in
 - [Huy-Quang-Dao/instantTrack](https://github.com/Huy-Quang-Dao/instantTrack) ★200 · 30天=19 · 7天=0 [爆完即停] · `world model` · Whole-body motion tracking for the Unitree G1 in under 3 minutes on average on one GPU: return 0.82 
 - [danitylyc/vla-lang-push-pybullet](https://github.com/danitylyc/vla-lang-push-pybullet) ★1 · 30天=13 · 7天=0 [爆完即停] · `vision language action` · Tiny end-to-end VLA (vision-language-action) trained from scratch: Chinese instruction + camera -> p
+
+## 2026-11-15 · github-radar（报告级 9）
+- [vctr-dng/manip-rubiks](https://github.com/vctr-dng/manip-rubiks) ★0 · 30天=38 · 7天=38 · `robot manipulation` · Robotic manipulation of Rubik's cubes using tactile sensing
+- [Rohitjangra7370/physical-ai-stack](https://github.com/Rohitjangra7370/physical-ai-stack) ★0 · 30天=14 · 7天=14 · `world model` · Physical AI stack, built bottom-up: MuJoCo RL, CUDA edge compute, vision-language-action, world mode
+- [shview/FlowPolicy-Jittor](https://github.com/shview/FlowPolicy-Jittor) ★0 · 30天=9 · 7天=9 · `robot manipulation` · A Jittor reimplementation of FlowPolicy for 3D robot manipulation, with reproducible training and Me
+- [ThanujMaligi/ExoLink-Vision-HRI](https://github.com/ThanujMaligi/ExoLink-Vision-HRI) ★0 · 30天=49 · 7天=6 · `teleoperation` · ⚡ Contactless AI Teleoperation & 3D Digital Twin Interface via Webcam Hand Tracking (No Gloves/IMUs)
+- [svend4/open-cycle-jepa](https://github.com/svend4/open-cycle-jepa) ★0 · 30天=6 · 7天=6 · `jepa` · Open-Cycle JEPA: theory of open/deformed cycles over V-JEPA / H-JEPA with Kryukov sphere hierarchy, 
+- [srcJin/raven-ego-gaze](https://github.com/srcJin/raven-ego-gaze) ★0 · 30天=6 · 7天=6 · `egocentric` · EgoGaze: record egocentric frames and gaze for inspectable robot attention datasets.
+- [lucidrains/PMW-pytorch](https://github.com/lucidrains/PMW-pytorch) ★2 · 30天=5 · 7天=5 · `world model` · A practical implementation of PWM: Policy Learning with Multi-Task World Models
+- [fan-gu-hao/smart-car](https://github.com/fan-gu-hao/smart-car) ★0 · 30天=5 · 7天=5 · `teleoperation` · Jetson Orin Nano + STM32F412 smart RC car: onboard vision, 5G teleoperation, four-direction ranging,
+- [EntangledQuantum/quest-teleop](https://github.com/EntangledQuantum/quest-teleop) ★0 · 30天=5 · 7天=5 · `teleoperation` · Generic VR teleoperation for Meta Quest headsets (OpenXR, tested on Quest 2): native app + Python se
