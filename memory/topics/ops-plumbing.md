@@ -1,12 +1,12 @@
 ---
 title: Scheduler and notification plumbing state
-description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, how a gateway 403 differs from a skill regression and from a 402 balance exhaustion (the 403 self-heals, the 402 does not), why the max_output_tokens failure needs its own fix, the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
+description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, how a gateway 403 differs from a skill regression and from a 402 balance exhaustion, **why a flapping code sequence (`402`→`max_output_tokens`→`403` in one slot) means the gateway state itself is unstable so no diagnosis can rest on the code alone — `duration_api_ms:0` tells you it never left the gateway, real turns tell you it died mid-session**, why the max_output_tokens failure needs its own fix, the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
 tags:
   - ops
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-14T00:45:00Z
+timestamp: 2026-11-15T00:00:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -208,6 +208,30 @@ next probe in 301m`. Every prior round in this file was about `403`; this one is
 - **Scorer threads stay open and pile up:** `#9` got three regression comments (22:33/23:01/23:31Z),
   `#13` three (23:01/23:31Z + 11-14T00:11Z), one per failed run — same decoupling noted above.
   [source: logs/2026-11-14#heartbeat]
+
+#### Correction (11-15): the code itself flaps — do not diagnose from one code
+
+The 11-14 conclusion ("`402` = balance, it will not self-heal") was too strong. Three-day sequence
+for the **same** skill: `402` (11-13T23:00) → `402` (11-13T23:30) → `max_output_tokens` (11-14T00:11,
+119 turns) → back to **`403`** (11-14T23:00, run `43651034939`: `api_error_status: 403`,
+`duration_api_ms: 0`, `num_turns: 1`, 0 tool calls, `$0`).
+
+- **Two different codes for one skill inside one 23:00Z slot, three nights running = the gateway's
+  own routing/credit state is flapping.** The signature still discriminates *where* it failed
+  (0 ms = request never left the gateway; real turns = died mid-session), but **the code does not
+  identify a cause.** Stop inferring "top up the balance" from `402` alone.
+- **The operator decision does not change** (top up credit, or re-pin `gateway.provider`) — only the
+  confidence in "waiting is useless" does. Report the sequence, not the single code.
+- **`github-radar` self-healed on its own** (11-14T22:30 run `43648482742` `success`, cf back to 0,
+  81% = 39/48) — so the two-skill trip was not one shared outage.
+- **`defi-overview` now sits at exactly 0.50 (19/38).** The chronic rule is `success_rate < 0.5`
+  (strict) and `total_runs >= 5`, so 19/38 does not qualify; **one more failure → 19/39 = 48.7%
+  crosses it.** One loss away, not two.
+- **Staleness has a downstream cost:** `market/topics/market-context.md` is pinned at
+  `2026-11-13T00:15:00Z` (48.3h), because every `defi-overview` round since has failed before the
+  write. Any judgement citing it is quoting two-day-old macro readings. `github-radar` recovery did
+  not touch it — only `defi-overview` refreshes it.
+  [source: logs/2026-11-15#heartbeat]
 
 ## Reading `gh run view --log`: colour-escaped lines are the script body, not output
 

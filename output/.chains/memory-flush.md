@@ -1,31 +1,36 @@
-记忆整理完成（`memory-flush`）。扫描窗口 `2026-11-13 → 2026-11-14`，读 2 个日文件，无缺口未 clamp，轮转归档 0 个月。
+memory-flush 已跑完，水位线已推进到 2026-11-15。
 
-## 预算轨迹
+## 本次刷新
 
-起点 8,190 字节 / 43 行 / 1 条超长行（第 16 行 366 字符）→ 中途被新增内容顶到 8,331 → 三步压回 **8,185 字节 / 43 行 / 0 条超 300 字符**（余 7 字节，`within budget`）。压缩只在措辞层，事实与 `[source:]` 标签一条未丢；`chains`/`chainTvls` 那句从 MEMORY 行移进 topic（那里已有第 19 轮整节）。
+**扫描窗口 `2026-11-14 → 2026-11-15`**（读 2 个日文件，无 >14 天缺口、未 clamp；日志轮转 0 个月，26 个日文件 / 阈值 45）。
 
-## promote 三条
+### 提升进长期记忆的四件事
 
-**① arxiv-radar 第 45 轮 → 发现层行原地改写 + lessons 两条**
+1. **defillama-radar 第 20 轮**（9050 / 新增 22 / 可报 2）— 更新了发现层那一行。新增 22 条与 11-12 并列在案最高，但仍按「单轮不作趋势」写。真正值钱的是两个口径：`parent` 唯一真边际 1 条（`Drakewell SPYdw`，$561,619 = 全部可报的 89 倍），以及**「新增」= 新进 `/protocols`，不是新登记** —— 3 条新增的 `listedAt` 早于上轮快照 4 小时以上，两条时间轴不同源。审计行 `本次通知` 恒写「零可报」是 `scan.py:301` 硬编码，可报 >0 时不可信。
 
-原始 76 → 幸存 5（上轮 75→0），六分类 未测到 0 / 未尝试 0 / 零命中 11 / 低频 0 / 全已见 12 / 有新增 3，两侧失败类全 0。**五条全落受控表、首次无 `?`**。最可操作的一条：`ti:"human data"` 与 `ti:"egocentric"` 首扫分别 `read timeout` / 429，冷却 20s 后补扫**都救回**，而 `egocentric` 本来就是本轮最大召回词（raw=20 / 新收 2）—— 不补扫会白丢最活的词。零命中 11 词里 9 个跨窗有命中 → 不许删。新判据（跨通道错位）：arxiv 加密侧真有召回 3 条 ⟺ github-radar 加密侧十连轮 0，两者有效域不同（0–3/窗 vs 0/窗），**不互证**。
+2. **github-radar 第 26 轮 —— 推翻了一条被降成「定律」的判据。** 前六轮 `30天=`≡`7天=` 都是 12/12、8/8、7/7 全等，上一轮把它从「观察项」降为「既成前提、后续不必逐轮举证」。第 26 轮 25 条报告级里 **6 条两数不等**（最大仓龄 35 天，一条 19→0）。它一直是「候选仓龄全部 < 30 天」这个样本属性，不是窗口的数学后果。topic 里已把降级撤回。另一条：加密侧 4 词有 raw 新增却零报告级 —— **raw 有、幸存无 = 过滤层吃掉的**，与「召回打不中」是两种病、两种修法。
 
-**② defillama-radar 第 19 轮 → 发现层行原地改写 + index 行**
+3. **arxiv-radar 第 46 轮 —— 判别力对照首次做实，这是本轮最可操作的一条。** 真词 `abs:blockchain` 7d=11、故意错拼 `all:restakinq` 7d=0，且对照组自己的 30/60/90d 三档撞了 429 被记为「查询失败」—— 反过来证明失败在这个工具里能被识别，所以那个「0」是真 0。写法：**不要给「零」找理由，给「零」配对照。** 另两个跨窗全零词走完换写法后降 `LOW_FREQ` 不删（已有货但 60d=2 低于门槛的词，「有货但不够」与「无货」动作相同，都降频）。
 
-9028 / 新增 2 / 可报 0（`eleos` 9426、`Volta` 9427 皆 `chains=[]`、`tvl=None`、`module=dummy.js`）。新钉死：全量空 `chains` 1621 条与 `module=dummy.js` 1621 条**集合完全相等**（双向差集皆空）→ `chains=[]` ⇒ `tvl` 缺失成立，反向不成立（850 条非空链无 TVL）。新增 14→2 已用 CF 双取（`HIT` vs `?_cb=` 源站 `MISS`，etag/last-modified 逐字节相同、全量 TVL 零差异）排除假零。加链边际 $514→$2.6K→$48.5K→**$0**，上轮的「单调上升」被打断，四轮无趋势。
+4. **heartbeat 11-15 —— 一条判据更正，写进 ops。** 昨天记的「402 是余额、等不回来」下得太强：同一个 skill 在同一时段的码序是 `402`→`402`→`max_output_tokens`→**`403`**，**两种码交替 = 网关侧状态自己在抖，不能据单一码推测成因**。能判的只剩失败位置（`duration_api_ms:0` = 请求没出网关；有真 turn = 半路死）。OPERATOR 的决策本身不变（补余额 / pin 换 provider），变的只是「等着没用」这个推断的置信度。同时 `github-radar` 已自愈（cf=0、81%），`defi-overview` 停在 **0.50（19/38）—— 规则是严格 `<`，再败 1 轮即 48.7% 破 chronic 线**，而 `market-context.md` 已冻结 48.3 小时，因为只有它会刷新那个文件。
 
-**③ heartbeat 11-14 → ops 新增一节 + index 行**
+### 剪枝与预算
 
-`403`→`402` 是错误码换族、自愈路径相反：403 认证窗会恢复，402 是余额等不回来。`github-radar` 22:30 那跳跑 6 turn 花 $0.176 才 402 = 额度跑到一半耗尽；另两跳 `num_turns:1`/`duration_api_ms:0` = 请求没出网关。`defi-overview` 三个失败是两种病（23:00/23:30 是 402，00:11 是 `max_output_tokens` 119 turn/580s）—— 即使余额恢复，单轮输出量本身也撞上限。成功率 **0.51（19/37）**，再连败 2 轮破 `<0.5`。另记一条取数事故判据：`gh run view --log` 里带 ANSI 转义（`^[[36;1m`）的行永远是脚本体回显，不是运行输出，先 `grep -v "36;1m"` 再筛 `claude exited`/`api_error_status`。
+`gh pr list --search "improve:"` = `[]`（连续第十三天），无 Open Improvement PRs 段可清。全量 open PR 有 1 条（`#25`，chore 类、未满 24h），不构成需跟踪的队列，未入档。**未删任何旧 lesson** —— 本轮无被推翻项，ops 那条是「更正」而非删除，旧推理作为历史留在新小节里。
 
-## 剪枝
+预算先涨到 8,607 字节、三条行超 300 字符，压回 **8,181 / 43 行 / 0 条超长行（余 11 字节）**：手段是只留判据、把数值细节下沉到 `lessons.md` 和两个 topic，事实与 source 标签一条没丢。
 
-`gh pr list --state open --search "improve:"` = `[]`（连续第十二天），无 PR 段可清；MEMORY 无 Next Priorities 段；未删任何 lesson（本轮新增均为判据加强，无被推翻项）；各节未超 10–15 行，未触发归档。
+### 遗留（未处理，延续）
+
+- `defi-overview` 两条修复仍未落地（cron 挪离 `0 23`、削减单轮输出量）— 配置决策，须 OPERATOR 拍板
+- 网关抖动未定位前，断路器 probe 会继续失败
+- `defillama-radar` 的 `scan.py:301` 审计行缺陷待 PR
+- `arxvi-radar` cron-state 孤儿条目（连报十七轮）、`memory/on-chain-state.json.new`、`memory/topics/price-alert-state.json.bak`
 
 ## Summary
 
-- 扫描窗口 `2026-11-13 → 2026-11-14`，watermark 已从 `2026-11-13` 推进到 `2026-11-14`（`memory-flush-state.json` + MEMORY.md 镜像行双写，`updated_at` 2026-11-14T18:06:47Z）。
-- 修改文件：`memory/MEMORY.md`、`memory/logs/2026-11-14.md`、`memory/memory-flush-state.json`、`memory/topics/index.md`、`memory/topics/lessons.md`、`memory/topics/ops-plumbing.md`。
-- 未新建 topic / archive 文件，故索引无新增条目，只更新三行。
-- 未处理（延续）：`defi-overview` 两条修复（cron 挪离 `0 23`、削减单轮输出量）属配置决策，须 OPERATOR 拍板；网关余额未补前两 skill 的断路器 probe 会继续 402；`memory/topics/market-context.md` 仍是 `2026-11-13T00:15:00Z`（昨夜 defi-overview 00:11 那跳在写出前已失败）。
-- 本轮为常规维护、无信号，未发通知。
+- 扫描 11-14 / 11-15 两个日文件，提升 4 组事实（defillama-radar 第 20 轮、github-radar 第 26 轮、arxiv-radar 第 46 轮、heartbeat 错误码判据更正）。
+- 修改：`memory/MEMORY.md`（发现层 3 行 + 「待盯」行原地改写，未新增重复段）、`memory/topics/lessons.md`（+3 条）、`memory/topics/ops-plumbing.md`（+1 更正小节 + frontmatter）、`memory/topics/github-radar.md`（+第二十六轮整节 + frontmatter 撤回旧降级）、`memory/topics/index.md`（4 行更新）、`memory/logs/2026-11-15.md`（`### memory-flush` 记录）。
+- 预算 8,132 → 8,181 字节（余 11），43 行，0 条超长行。
+- 水位线已 stamp 到 `2026-11-15`（`memory/memory-flush-state.json` + MEMORY.md 镜像）。
+- 未提交 git —— 按 skill 约定由工作流处理；未发通知（无触发条件成立的新信号）。

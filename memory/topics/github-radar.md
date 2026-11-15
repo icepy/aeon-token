@@ -1,14 +1,26 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔；且 7d 下报告级全 ★0，star 只能 `min:0`**）
+description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-13T18:30:00Z
+timestamp: 2026-11-15T00:00:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
 从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十/二十一轮 7 天窗（11-07 / 11-08）实证。
+
+## 第二十六轮（2026-11-14，7 天窗，非 dry-run，**probe 跳过**）—— `30天=`≡`7天=` 的前提**被打破**：25 条里 6 条不等；加密侧四词有 raw 但零报告级
+
+漏斗：原始 **1974** → 幸存 **74** → 报告级 **25**，核验 **74/74 = 100%**（全量），黑名单 3 owner。单窗 13 / 需拆窗 5 / 二分 2 次 / 搜索 40 次调用。丢弃 seen=890 · excl=128 · archived=0 · short_desc=352 · carrier=407 · neg=58 · pages=61 · pages_root=1 · scaffold=0 · farm=3 · **fail=0**。耗时 搜索 103s / 核验 9s / 总 127s。四分类：查询失败 0 · 真零 0 · 全已见 4 · 有新增 14。
+
+- **🔴 判据级 ①：`30天=` ≡ `7天=` 不再普适，前六轮的「12/12 全等」不是定律。** 25 条报告级里 **6 条两数不等**：`Daniel-Lawless/FYP-…` 35→5 · `WW-Web-Infra/…` 23→5 · `harryjo97/dreamfree` 6→4 · `ansarbuilds/prh-jepa` 12→3 · `meta-lucky-builds/transfer` 5→3 · `Huy-Quang-Dao/instantTrack` 19→0；其余 **19 条相等**。
+  **正确读法：两栏恒等于「候选仓龄全部 < 30 天」这个样本属性，不是窗口的定律。** 前六轮样本量小（6–12 条）、低流量、且新人仓居多，所以必然同值；本轮最大仓到 35 天，衰减斜率就露出来了。**推论：判「爆完即停」仍应用首末提交日间隔，但两栏不等时它本身已是有效信号（差值 = 30 天前的活动量）；两栏相等时只说明该仓不满 30 天，别无信息。** 前几轮把这条从「观察项」降为「既成前提、后续不必逐轮举证」——**降级降错了一步，它该一直是可失效的样本条件**。
+- **🔴 判据级 ②：加密侧四词有 raw 新增但报告级零，且成因是过滤层不是召回** —— `restaking` 1 · `data availability` 1 · `verifiable inference` 2 · `maximal extractable value` 1，共 5 条新增 raw；报告级 25 条清一色 AI / 机器人（sim2real / jepa / teleop / VLA）。**raw 有、幸存无 = `neg` / `carrier` / `short_desc` 吃掉的**，与「召回打不中」是两种病、两种修法。加密侧连轮 0 报告级的说法因此要改成「**raw 能捞到、过不了过滤器**」。
+- **题眼三条并列：** `jepa` 新增 15（最大新增词）· `teleoperation` 13 · `robot manipulation` 13。`world model` raw 695 但新增仅 9 —— **大盘词的返回量与新增量脱钩，口径噪声也最大**。
+- **饱和 4（raw>0 且 0 新增，全被 seen 吸收，别删）：** `embodied data` 13/3 · `robotics data engine` 1/1 · `proof of useful work` 5/4 · `intent-based` 46/3。
+- **异常行：** 30 天零提交（star 在骗人）1 条 `CINAPSLab/pi0.5-xArm7-cinaps-stacking` · 爆完即停 3 条（`rpadgue/dual-arm-robot` / `Huy-Quang-Dao/instantTrack` / `danitylyc/vla-lang-push-pybullet`）· 无 language 15 条，多为 sim/world-model 名义站或农场（`DouglasLafortune7668/*-vcc` 是 VCC 卡农场）。★200 的 `instantTrack` 是唯一高星仓但 **7d=0** —— 又一次「star 不当活跃度信号」。
+- **probe 跳过（戳 4 天 < 7 天）→ `clusters.json` 未重写**，本轮无新簇卡、无新候选词。 [source: logs/2026-11-14#github-radar（第 26 轮）]
 
 ## 第二十五轮（2026-11-12，`days:7`，非 dry-run，**probe 跳过**）—— `30天=`≡`7天=` 12/12 第六轮；加密侧第十连轮 0；入口换代到 `robot manipulation`
 
