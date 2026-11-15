@@ -1,6 +1,6 @@
 {
   "heartbeat": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_failed": "2026-10-21T06:54:07Z",
     "total_runs": 31,
     "total_successes": 29,
@@ -9,7 +9,7 @@
     "success_rate": 0.94,
     "last_error": null,
     "last_success": "2026-11-14T00:37:24Z",
-    "last_dispatch": "2026-11-14T00:30:44Z"
+    "last_dispatch": "2026-11-15T00:30:50Z"
   },
   "onchain-monitor": {
     "last_status": "failed",
