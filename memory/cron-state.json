@@ -63,8 +63,8 @@
     "last_error": "hivemindos: Failed to authenticate. API Error: 403 All target providers failed."
   },
   "defi-overview": {
-    "last_dispatch": "2026-11-15T23:00:58Z",
-    "last_status": "failed",
+    "last_dispatch": "2026-11-16T23:00:46Z",
+    "last_status": "dispatched",
     "last_success": "2026-11-13T00:11:57Z",
     "total_runs": 39,
     "total_successes": 19,
@@ -89,7 +89,7 @@
     "last_error": null
   },
   "github-radar": {
-    "last_status": "failed",
+    "last_status": "dispatched",
     "last_success": "2026-11-15T22:33:23Z",
     "total_runs": 50,
     "total_successes": 40,
@@ -99,7 +99,7 @@
     "last_quality_score": 4,
     "last_failed": "2026-11-16T22:31:18Z",
     "last_error": "hivemindos: Failed to authenticate. API Error: 403 All target providers failed.",
-    "last_dispatch": "2026-11-16T22:30:45Z"
+    "last_dispatch": "2026-11-16T23:00:46Z"
   },
   "arxvi-radar": {
     "last_status": "success",
