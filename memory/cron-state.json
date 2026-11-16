@@ -89,7 +89,7 @@
     "last_error": null
   },
   "github-radar": {
-    "last_status": "failed",
+    "last_status": "dispatched",
     "last_success": "2026-11-15T22:33:23Z",
     "total_runs": 51,
     "total_successes": 40,
@@ -99,7 +99,7 @@
     "last_quality_score": 4,
     "last_failed": "2026-11-16T23:01:38Z",
     "last_error": "hivemindos: Failed to authenticate. API Error: 403 All target providers failed.",
-    "last_dispatch": "2026-11-16T23:00:46Z"
+    "last_dispatch": "2026-11-16T23:30:52Z"
   },
   "arxvi-radar": {
     "last_status": "success",
