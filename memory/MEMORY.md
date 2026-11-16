@@ -13,7 +13,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · 26 词 · 11-15 第 47 轮 **70 → 0**，两侧失败类 0 = 结构性饱和。**「低频探针=0」= 第 46 轮降级卡 PR #25 未合**（main `LOW_FREQ` 仅 1 词）→ 该字段=改动是否生效的状态灯。**窗口滑一天即把饱和翻成零命中**（maxpub 恰卡起点），非词表失效。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-15#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-15 第 20 轮 9050 / 新增 **22** / 可报 **2**（$6,342，已发）。**审计行 `本次通知` = `scan.py:301` 硬编码，可报>0 时不可信**。`parent` 真边际 1 条却吃掉 $561.6K；加链边际 $6.6K，不加。「新增」=新进 `/protocols`，非新登记。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-15#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-16 第 21 轮 9055 / 新增 **5** / 可报 **1**（$15.7K，已发）。**「同秒≥3条」抓不到「14 分钟窗 + id 连号」的批量录入** → 补判据：差集内部连号子段跨度 ≤30min 即同批。Stellar/Flare 加链均不加。`scan.py:301` 审计行仍硬编码。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-16#defillama-radar]
 - `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-14 第 26 轮 1974/74/25：**`30天=`≡`7天=` 的前提被打破，25 条里 6 条不等** —— 它一直是「候选仓龄全 <30 天」的样本条件，不是定律。加密侧 4 词有 raw 却被过滤层吃掉、零报告级。→ [topic](/topics/github-radar.md) [source: logs/2026-11-14#github-radar]
 
 

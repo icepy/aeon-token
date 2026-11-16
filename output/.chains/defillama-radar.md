@@ -1,12 +1,16 @@
-ℹ️ defillama-radar 更正（2/2）：桥类批次不属同类目
+**defillama-radar 第 21 轮** · 新增 5 · 可报 **1**
 
-**defillama-radar 更正（第二处，最后一条）**
+## Hookr - Robinhood Chain · $15,662 · Liquidity Automation
+- 一句话：让用户开自定义规则的 Uniswap v4 池，并发行以手续费收入背书的代币。
+- 原始字段：`chains=['Robinhood Chain']` · `tvl=15661.55`（另有 `Robinhood Chain-staking` **$27,757**，未计入 tvl）· `listedAt=1794767239`（2026-11-15T18:27:19Z）· `audits=0` · `parentProtocol=None` · `address=robinhood:0x18e674231a58c239dc7daedcffe15ec3a24cff5c` · `https://hookr.fun/`
+- 参照：`Liquidity Automation` 类目存量 14 条，同链同类已有多条 -- `Mosh` $232.7K、`What The Hook` $176.5K、`TickerSpring Vaults` $66.7K、`EARN` $47.4K。Hookr 排第 6。
 
-上一条更正里「与 10-07 那批 22 条桥同型」仍不准确，改两点：
+## 本轮被过滤 4 条（不可报，列名字备查）
+- `AurixDEX`(9450) · Flare · $1,058 · Dexs -- 链不在白名单
+- `BLNT V3`(9451) · Stellar · $277K · Lending -- 链不在白名单（本轮体量最大）
+- `Stoa`(9452) · 空 `chains` · DEX Aggregator
+- `GreenDildo`(9453) · 空 `chains` · Launchpad
 
-- **10-07 那批桥不是同类目**：横跨 `Cross Chain Bridge`(15)/`Canonical Bridge`(5)/`Bridge Aggregator`(1)/`Bridge`(1) 四个类目字符串，属「类目也混」的另一类。
-- **不是「第三次」**：全量 31 组同秒簇分三类 -- 同 parent 5 组、同类目跨 parent 4 组、类目与 parent 都混 22 组。本轮加密卡属第二类，前有 2022-06-18 Lending、2024-03-12 Dexs。
-
-**净结论不变**：6 条加密卡是常规的同类目跨 parent 同秒回填，不新、不必细看；可报仍是 `Paboxo` + `zkAPI` 两条，已标记。
-
-根因一条：拿本轮差集当全量去断言「首次/第 N 次」。已记进 lessons。
+## 读数
+- 全量 9055 · 新增 id 5 · `seen` 命中 9050 · `parent` 0 · `category` 0 · 空链/链白名单 4 · 重报 0 · `STATUS: DEFILLAMA_RADAR_OK`
+- 数据源 `https://api.llama.fi/protocols`；CF `HIT`(age 187) 与 `?_cb=` `MISS` 两份 id 集合逐条相同（`only_hit`/`only_miss` 皆空），非缓存假零。

@@ -1,0 +1,371 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "defillama-radar 第 21 轮 · 新增 5 · 可报 1",
+        "description": "DeFiLlama 新协议雷达扫描结果"
+      },
+      "children": [
+        "main"
+      ]
+    },
+    "main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "heading-hookr",
+        "stack-hookr",
+        "separator-1",
+        "heading-filtered",
+        "table-filtered",
+        "separator-2",
+        "heading-reads",
+        "grid-reads",
+        "text-status",
+        "text-source-label",
+        "link-source",
+        "alert-cache"
+      ]
+    },
+    "heading-hookr": {
+      "type": "Heading",
+      "props": {
+        "text": "Hookr - Robinhood Chain · $15,662 · Liquidity Automation",
+        "level": "h2"
+      },
+      "children": []
+    },
+    "stack-hookr": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "text-oneliner",
+        "grid-stats",
+        "text-original-label",
+        "text-original",
+        "link-hookr",
+        "text-ref",
+        "table-peers"
+      ]
+    },
+    "text-oneliner": {
+      "type": "Text",
+      "props": {
+        "text": "一句话：让用户开自定义规则的 Uniswap v4 池，并发行以手续费收入背书的代币。",
+        "variant": "lead"
+      },
+      "children": []
+    },
+    "grid-stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "md"
+      },
+      "children": [
+        "stat-tvl",
+        "stat-staking",
+        "stat-listedat",
+        "stat-audits"
+      ]
+    },
+    "stat-tvl": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$15,661.55"
+      },
+      "children": []
+    },
+    "stat-staking": {
+      "type": "Stat",
+      "props": {
+        "label": "Robinhood Chain-staking（未计入 tvl）",
+        "value": "$27,757"
+      },
+      "children": []
+    },
+    "stat-listedat": {
+      "type": "Stat",
+      "props": {
+        "label": "listedAt",
+        "value": "2026-11-15T18:27:19Z"
+      },
+      "children": []
+    },
+    "stat-audits": {
+      "type": "Stat",
+      "props": {
+        "label": "audits",
+        "value": "0"
+      },
+      "children": []
+    },
+    "text-original-label": {
+      "type": "Text",
+      "props": {
+        "text": "原始字段",
+        "variant": "caption"
+      },
+      "children": []
+    },
+    "text-original": {
+      "type": "Text",
+      "props": {
+        "text": "chains=['Robinhood Chain'] · tvl=15661.55（另有 Robinhood Chain-staking $27,757，未计入 tvl）· listedAt=1794767239（2026-11-15T18:27:19Z）· audits=0 · parentProtocol=None · address=robinhood:0x18e674231a58c239dc7daedcffe15ec3a24cff5c",
+        "variant": "body"
+      },
+      "children": []
+    },
+    "link-hookr": {
+      "type": "Link",
+      "props": {
+        "label": "https://hookr.fun/",
+        "href": "https://hookr.fun/"
+      },
+      "children": []
+    },
+    "text-ref": {
+      "type": "Text",
+      "props": {
+        "text": "参照：Liquidity Automation 类目存量 14 条，同链同类已有多条 -- Mosh $232.7K、What The Hook $176.5K、TickerSpring Vaults $66.7K、EARN $47.4K。Hookr 排第 6。",
+        "variant": "body"
+      },
+      "children": []
+    },
+    "table-peers": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "协议",
+          "TVL",
+          "同链同类别排名"
+        ],
+        "rows": [
+          [
+            "Mosh",
+            "$232.7K",
+            "1"
+          ],
+          [
+            "What The Hook",
+            "$176.5K",
+            "2"
+          ],
+          [
+            "TickerSpring Vaults",
+            "$66.7K",
+            "3"
+          ],
+          [
+            "EARN",
+            "$47.4K",
+            "4"
+          ],
+          [
+            "Hookr",
+            "$15,662",
+            "6"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "separator-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "heading-filtered": {
+      "type": "Heading",
+      "props": {
+        "text": "本轮被过滤 4 条（不可报，列名字备查）",
+        "level": "h2"
+      },
+      "children": []
+    },
+    "table-filtered": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "名称(id)",
+          "链",
+          "TVL",
+          "类别",
+          "过滤原因"
+        ],
+        "rows": [
+          [
+            "AurixDEX (9450)",
+            "Flare",
+            "$1,058",
+            "Dexs",
+            "链不在白名单"
+          ],
+          [
+            "BLNT V3 (9451)",
+            "Stellar",
+            "$277K",
+            "Lending",
+            "链不在白名单（本轮体量最大）"
+          ],
+          [
+            "Stoa (9452)",
+            "空 chains",
+            "-",
+            "DEX Aggregator",
+            "空 chains"
+          ],
+          [
+            "GreenDildo (9453)",
+            "空 chains",
+            "-",
+            "Launchpad",
+            "空 chains"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "separator-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "heading-reads": {
+      "type": "Heading",
+      "props": {
+        "text": "读数",
+        "level": "h2"
+      },
+      "children": []
+    },
+    "grid-reads": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "md"
+      },
+      "children": [
+        "stat-total",
+        "stat-newids",
+        "stat-seen",
+        "stat-parent",
+        "stat-category",
+        "stat-emptychain",
+        "stat-redup",
+        "stat-status"
+      ]
+    },
+    "stat-total": {
+      "type": "Stat",
+      "props": {
+        "label": "全量",
+        "value": "9055"
+      },
+      "children": []
+    },
+    "stat-newids": {
+      "type": "Stat",
+      "props": {
+        "label": "新增 id",
+        "value": "5"
+      },
+      "children": []
+    },
+    "stat-seen": {
+      "type": "Stat",
+      "props": {
+        "label": "seen 命中",
+        "value": "9050"
+      },
+      "children": []
+    },
+    "stat-parent": {
+      "type": "Stat",
+      "props": {
+        "label": "parent",
+        "value": "0"
+      },
+      "children": []
+    },
+    "stat-category": {
+      "type": "Stat",
+      "props": {
+        "label": "category",
+        "value": "0"
+      },
+      "children": []
+    },
+    "stat-emptychain": {
+      "type": "Stat",
+      "props": {
+        "label": "空链/链白名单",
+        "value": "4"
+      },
+      "children": []
+    },
+    "stat-redup": {
+      "type": "Stat",
+      "props": {
+        "label": "重报",
+        "value": "0"
+      },
+      "children": []
+    },
+    "stat-status": {
+      "type": "Stat",
+      "props": {
+        "label": "STATUS",
+        "value": "DEFILLAMA_RADAR_OK"
+      },
+      "children": []
+    },
+    "text-status": {
+      "type": "Text",
+      "props": {
+        "text": "全量 9055 · 新增 id 5 · seen 命中 9050 · parent 0 · category 0 · 空链/链白名单 4 · 重报 0 · STATUS: DEFILLAMA_RADAR_OK",
+        "variant": "body"
+      },
+      "children": []
+    },
+    "text-source-label": {
+      "type": "Text",
+      "props": {
+        "text": "数据源",
+        "variant": "caption"
+      },
+      "children": []
+    },
+    "link-source": {
+      "type": "Link",
+      "props": {
+        "label": "https://api.llama.fi/protocols",
+        "href": "https://api.llama.fi/protocols"
+      },
+      "children": []
+    },
+    "alert-cache": {
+      "type": "Alert",
+      "props": {
+        "title": "缓存校验通过",
+        "message": "CF HIT(age 187) 与 ?_cb= MISS 两份 id 集合逐条相同（only_hit / only_miss 皆空），非缓存假零。",
+        "type": "info"
+      },
+      "children": []
+    }
+  }
+}

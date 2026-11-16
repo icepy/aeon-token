@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-15T00:30:00Z
+timestamp: 2026-11-16T00:05:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,60 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-15 第 20 轮）
+## 本轮漏斗口径（11-16 第 21 轮）
+
+全量 **9055** · 新增 id **5**（可报 **1** / 过滤 4）· `seen` 命中 9050 · `parent` **0** · `category` **0** · 空 `chains`/链白名单 **4** · 无 id 0 · 拉取失败 0 · 重报 0。`STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️ 链名警告（`BSC`/`OP Mainnet` 孪生 0，`Binance`/`Optimism` 分别 1157/394）。
+
+**可报 1 条已发通知、已标 `notified`：** `Hookr`(9454，Robinhood Chain，$15,662，`Liquidity Automation`，Uniswap v4 自定义池 + 手续费背书代币，`audits=0`，`address=robinhood:0x18e674231a58c239dc7daedcffe15ec3a24cff5c`，`https://hookr.fun/`)。另有 `Robinhood Chain-staking` **$27,757** 未计入 `tvl`（按 `methodology`：池内 HOOKR 计在 staking，且**与 Uniswap V4 TVL 重叠**）。
+
+### 本轮 5 条是同一个 14 分钟窗口、连号 9450–9454 —— 首次出现「非 `listedAt` 同秒」的批量指纹
+
+`listedAt` 全部落在 **2026-11-15T18:13:19Z → 18:27:19Z**（跨度 14.0 分钟，最小间隔 4s），id **连号无缺口 9450–9454**，`parent` 全为 `None`、类目互不相同（`Dexs` / `Lending` / `DEX Aggregator` / `Launchpad` / `Liquidity Automation`）。**不构成「同秒 ≥3 条」—— 现有判据按秒分组，这组 5 条分属 5 个不同秒，所以判据本身抓不到它。**
+
+补了一条互补判据（本轮首次实测）：**id 连号段 + `listedAt` 跨度 ≤ 30 分钟 ⇒ 同一次录入。** 全量 231 段连号（≥3 条）里 80 段 `listedAt` 齐全，跨度排序前两名为 **19.4 分钟（2781–2784）** 与 **21.5 分钟（6833–6838）** —— 都是不同类目、不同链的混装，与 9450–9454 同型。**结论：`listedAt` 密集 + id 连号 = 常规批量录入，不是「一个母协议铺开」，也不是新类目。** 反例边界：9450–9454 所在的连号段其实从 9392 起连续到 9454（63 条），跨度必然远大于 30 分钟，**所以该判据要按「本轮差集内部的连号子段」算，不能按全量连号段算**。
+
+### 5 条里 4 条被链桶挡，且两条是「非白名单链」而非空链
+
+| id | 名称 | 链 | TVL | 类目 | 真实原因 |
+|---|---|---|---|---|---|
+| 9450 | `AurixDEX` | `['Flare']` | $1,058 | Dexs | 链不在白名单 |
+| 9451 | `BLNT V3` | `['Stellar']` | **$276,993** | Lending | 链不在白名单（本轮体量最大） |
+| 9452 | `Stoa` | `[]` | None | DEX Aggregator | 空 `chains` |
+| 9453 | `GreenDildo` | `[]` | None | Launchpad | 空 `chains` |
+
+`链白名单=4` 里 **2 条真空链、2 条非白名单链**。11-08 记的「桶名比桶语义窄」第三次复现 —— **审计行只给一个 `chain` 桶，读数必须先拆空链/非白名单两半再解读。**
+
+### 加链边际：Stellar / Flare 都不加（本轮首次把这两条算成候选）
+
+按 30 日窗（`listedAt ≥ 2026-10-19`）计「只挂该链、无 parent、非 EXCL」的净可救条数：
+
+| 候选链 | 30d 存量 | 净可救 | TVL |
+|---|---|---|---|
+| Stellar | 2 | **1**（`BLNT V3` $277K） | $277K |
+| Flare | 3 | **2**（`The Cellar` $6.4K + `AurixDEX` $1.1K） | $7.4K |
+| Hemi | 1 | 1（`BNQ` $535） | $535 |
+| Monad | 3 | 1（`Setsuna` $0） | $0 |
+| Elysium Kinetiq | 11 | 3（`StockiumSwap` $6.9K 为主） | $6.9K |
+
+**结论：不加。** Stellar 的 $277K 是唯一像样的单条，但 30 日窗口只此 1 条、非 CEX 存量 36 条里绝大多数是 `Onchain Capital Allocator`/`RWA` 大协议（`Upshift` $483M、`Huma` $358M），加链等于把静态大协议一起放进可报面 —— 边际是「每周多 1 条」的量级，与 11-02 记的旁路上限同量级。**且加链必须删 `seen` 重做基线，代价与收益完全不对等。**
+
+### CF 双取通过，非假零
+
+常规 `HIT`（etag `W/"6afa4251-92ec90"`、`last-modified Sun, 15 Nov 2026 23:37:53 GMT`、`age 187`）与 `?_cb=` + `no-cache` 源站 `MISS`：**9055 个 id 两向差集 `only_hit=[]` / `only_miss=[]`，etag 与 `last-modified` 逐字节相同**。`cache-control: public, max-age=300`（上轮记的是 1798，**已缩短到 300 秒**，比对的时效性变好）。
+
+### 差集与 id 连续性
+
+`only_seen=['4818']` **连续第十二轮**（真下架）· `only_raw=[]` · `max_id=9454` · 数字 id 9054 条 `min=2`。9000 以上缺口 **`9135` / `9257` / `9382`（连六）/ `9391`（连五）**，全部不在 `seen` 里，按「分配号待回填」处理。**本轮首次记下 `9135`/`9257` 这两个更早的缺口** —— 说明缺口不集中在尾部，既有「连五连六仍未回填」的稳定空洞，也有随机散点。非数字 id 仍只有 `<5471>`。
+
+全量 `chains=[]` = **1639/9055 = 18.10%**（上轮 18.09%，十二轮区间 17.4–18.10，**本轮创新高但仅 +0.01pt，可视为持平**）；空链集合与 `module=dummy.js` 集合**仍完全相等**（1639/1639，第四轮复核成立）；空链里 `tvl` 非空 **0 条**。
+
+同秒 ≥3 条簇仍 **31 组**（本轮 +0，最近仍是 2026-11-14T13:53:56Z）。整分 `:00` 值 **69/7376 = 0.94%**，本轮新增 0 条。`listedAt` 缺失 1679 条。
+
+### 可报集 TVL 与最大被挡条的落差本轮反向缩小
+
+可报 `Hookr` **$15,662**，最大被挡 `BLNT V3` **$276,993** = **17.7 倍**（11-05 为 19 倍、11-15 为 89 倍）。**「可报集 TVL 和不代表本轮新增体量」这条依然成立，但倍数在 17–89 倍间大幅波动，不能当稳定量级引用。**
+
+## 上一轮漏斗口径（11-15 第 20 轮）
 
 全量 **9050** · 新增 id **22**（可报 **2** / 过滤 20）· `seen` 命中 9028 · `parent` 5 · `category` **2** · 空 `chains`/链白名单 **13** · 无 id 0 · 拉取失败 0 · 重报 0。`STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️ 链名警告。
 
@@ -611,6 +664,14 @@ id 9300–9363 **连续无缺口**（含本轮 9363），**连续六轮无「暂
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-16 第 21 轮；常规 `HIT` 9055 条、etag `W/"6afa4251-92ec90"`、`last-modified Sun, 15 Nov 2026 23:37:53 GMT`、`age 187`、`cache-control: public, max-age=300`；`?_cb=1763251200` + `no-cache` 源站 `MISS` 9055 条、**etag 与 `last-modified` 与 HIT 完全相同**、`only_hit=[] only_miss=[]`；全量 TVL $450,273,746,143.23）
+- 实测数据：同上 9454 `Hookr` · `chains=['Robinhood Chain']` · `category='Liquidity Automation'` · `tvl=15661.550715531479` · `chainTvls={'Robinhood Chain':15661.55,'Robinhood Chain-staking':27756.597,'staking':27756.597}` · `symbol='HOOKR'` · `mcap=None` · `twitter='hookrfun'` · `audits='0'` · `parentProtocol=None` · `listedAt=1794767239`（2026-11-15T18:27:19Z）· `address='robinhood:0x18e674231a58c239dc7daedcffe15ec3a24cff5c'` · `url='https://hookr.fun/'` · `tvlCodePath='https://github.com/DefiLlama/DefiLlama-Adapters/blob/main/projects/hookr/index.js'` · `methodology` 明写「Pools overlap Uniswap V4 TVL」「Hookr-launched tokens are excluded」「HOOKR held in these pools is counted under staking」
+- 实测数据：同上本轮其余 4 条 · 9450 `AurixDEX`（`Flare`、$1,058.14、Dexs、`18:13:19Z`）· 9451 `BLNT V3`（`Stellar`、$276,992.87、Lending、`18:13:23Z`）· 9452 `Stoa`（`[]`、None、DEX Aggregator、`18:19:43Z`）· 9453 `GreenDildo`（`[]`、None、Launchpad、`18:23:07Z`）· 五条 `parentProtocol` 全 `None`、`audits` 全 `0`、类目两两不同
+- 实测数据（`Liquidity Automation` 存量 14 条）：`Mosh`(8923, $232,714) · `What The Hook`(8432, $176,508) · `Revert Compoundor`(1947, $113,417) · `TickerSpring Vaults`(8702, $66,729) · `EARN`(8597, $47,442) · `Hookr`(9454, $15,662) · `GlueHook`(8406, $7,529) · `Orbit`(2103, $1,026) · `Alokumi`(9268, $12) · 其余 5 条 tvl=0；`Robinhood Chain` 挂该类目 6 条
+- 实测数据（id 连号段）：全量连号（数字 id 相邻）≥3 条的段 231 段，其中 `listedAt` 齐全 80 段；按跨度排序最紧两组为 **19.4 分钟（2781–2784：`NFT360`/`Aktionariat`/`Scrub Invest`/`Ysmart`，四种类目四种链）** 与 **21.5 分钟（6833–6838：`Echo Movement Bridge`/`Invariant Group`/`Aborean AMM`/`Aborean CL`/`Ferra CLMM`/`Ferra DLMM`）**；9450–9454 跨 14.0 分钟、最小间隔 4s，但其所处连号段为 9392–9454（63 条）
+- 实测数据（链边际，30d 窗 `listedAt ≥ 2026-10-19`，口径「只挂该链 + 无 parent + 非 EXCL」）：Stellar 存量 2 / 净救 1（`BLNT V3` $276,993，全链 47 条中 CEX 11 条、非 CEX 36 条、非 CEX 无 parent 20 条）· Flare 存量 3 / 净救 2（`The Cellar` $6,388 + `AurixDEX` $1,058；全链 54 条、非 CEX 50 条）· Hemi 1/1（`BNQ` $535）· Monad 3/1（`Setsuna` $0）· Elysium Kinetiq 11/3（`StockiumSwap` $6,873 + `Helios DEX` $61 + `ArkhamPad` $0）
+- 实测数据（id 连续性）：`max_id=9454`、数字 id 9054 条、`min=2`；9000 以上缺口 `9135`/`9257`/`9382`/`9391`，四条均不在 `seen`；非数字 id 仅 `<5471>`；`only_seen=['4818']` 连续第十二轮
+- 实测数据（`chains=[]` 占比）：1639/9055 = 18.10%，与 `module='dummy.js'` 集合两向差集皆空（1639/1639），其中 `tvl` 非空 0 条；全量同秒 ≥3 条簇 31 组（本轮 +0）；整分 `:00` 值 69/7376 = 0.94%；`listedAt` 缺失 1679 条
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-14 第 19 轮；常规 `HIT` 9028 条、9,606,623 B、etag `W/"6af79f6b-9295df"`、`last-modified Fri, 13 Nov 2026 23:38:19 GMT`；`?_cb=` 源站 `MISS` **etag 与 `last-modified` 与 HIT 完全相同**、`only_a=[] only_b=[]`、全量 TVL 逐条零差异（两份额度同为 $467,524,826,393.90）；2 条新增 12 字段零差异）
 - 实测数据：同上 9426 `eleos` · `chains=[]` · `category='Launchpad'` · `tvl=None` · `chainTvls={}` · `module='dummy.js'` · `tvlCodePath=None` · `parentProtocol=None` · `listedAt=1794597951`（2026-11-13T19:25:51Z）· `url=''` · `twitter='eleosfun'` · `address=None` · `audits='0'` · `dimensions={"fees":"eleos","dexs":"eleos"}` · `misrepresentedTokens=false`
 - 实测数据：同上 9427 `Volta` · `chains=[]` · `category='Launchpad'` · `tvl=None` · `chainTvls={}` · `module='dummy.js'` · `tvlCodePath=None` · `parentProtocol=None` · `listedAt=1794598341`（2026-11-13T19:32:21Z）· `url=''` · `twitter='VoltaFamily'` · `address='elysium:0x0f79931689Af199e7CF868ed1107bBA2C83c68f7'` · `symbol='VOLTA'` · `dimensions={"fees":"volta"}`
