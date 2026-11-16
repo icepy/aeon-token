@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-15T00:00:00Z
+timestamp: 2026-11-16T00:00:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -232,6 +232,26 @@ for the **same** skill: `402` (11-13T23:00) → `402` (11-13T23:30) → `max_out
   write. Any judgement citing it is quoting two-day-old macro readings. `github-radar` recovery did
   not touch it — only `defi-overview` refreshes it.
   [source: logs/2026-11-15#heartbeat]
+
+#### Update (11-16): the flap converged, the chronic line was crossed
+
+- **The code sequence stopped flapping and settled on `403`:** `402`→`402`→`max_output_tokens`→
+  `403`→`403`. The 11-15 reading ("do not diagnose from a single code") still stands — convergence on
+  one code is *not* a diagnosis. The last failure (`run 43772461867`, 11-15T23:01Z, job 26 s:
+  `23:01:06→23:01:32`) carries `Gateway cascade failed (hivemindos): Failed to authenticate. API Error:
+  403 All target providers failed` — authentication is named, but a cascade across all providers can
+  still be quota, routing or key state. **Cause remains undetermined.**
+- **`defi-overview` crossed the chronic line: 49% (19/39), `consecutive_failures=5`,** so
+  `success_rate<0.5` ∧ `total_runs>=5` now holds. The 11-15 note said "one more failure crosses it";
+  that failure happened.
+- **Staleness compounds:** `market-context.md` is now 72h stale (`2026-11-13T00:15:00Z`). Because
+  `defi-overview` is its only writer, the freeze grows by a day per failure — treat any citation of it
+  as a three-day-old reading.
+- **A queued PR can invalidate a skill's own numbers.** PR #25 (word-list downgrade) crossed the 24 h
+  stalled line; while it is open, `arxiv-radar`'s 「低频探针 N=0」 is the status light for *an
+  unmerged change*, not a reading about the corpus. See [lessons](/topics/lessons.md#arXiv-检索arxiv-radar).
+  Do not self-merge a config decision; log it as WATCH.
+  [source: logs/2026-11-16#heartbeat]
 
 ## Reading `gh run view --log`: colour-escaped lines are the script body, not output
 

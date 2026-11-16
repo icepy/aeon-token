@@ -1,14 +1,26 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**）
+description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-15T00:00:00Z
+timestamp: 2026-11-16T00:00:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
 从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十/二十一轮 7 天窗（11-07 / 11-08）实证。
+
+## 第二十七轮（2026-11-15，`days:7`，非 dry-run，**probe 跳过**）—— `30d==7d` 9 条里 8 条成立；★2 仓被证「先占坑」；加密侧连 2 轮空转
+
+漏斗：原始 **421** → 幸存 **21** → 报告级 **9**，核验 **21/21 = 100%**。单窗 17 / 需拆窗 1 / 二分 0 次 / 搜索 20 次。丢弃 seen=176 · excl=25 · archived=0 · short_desc=93 · carrier=84 · neg=11 · pages=10 · pages_root=1 · scaffold=0 · farm=0 · **fail=0**。耗时 50s。四分类：查询失败 0 · 真零 1 · 全已见 10 · 有新增 7。
+
+- **`30d==7d` 9 条里 8 条成立、1 条例外**（`ThanujMaligi/ExoLink-Vision-HRI` 49/6）。**读法不变：按「候选仓龄全 < 30 天」的样本条件读，不当定律** —— 与第 26 轮「25 条里 6 条不等」方向一致，两轮都已证明它会失效。
+- **★2 的 `lucidrains/PMW-pytorch` 是「先占坑」仓**：`contents` 复核根目录仅 `.gitignore` / `LICENSE` / `README.md`，**无代码骨架**。★数与作者身份（老牌 ML 作者）都不作数。**判据：`无 language` + 根目录无代码骨架 ⇒ 先占坑，应并入页面规则，不要再靠人工逐轮 `contents` 复核。** 本轮另有 3 条无 `language`（`physicalai-ihubrobotics/daksha` · `princeton-vl/DAPPT` · `jaranwayne/UroJEPA`）未判页形态。
+- **carrier 误杀对照**：丢弃侧仓名自带词表词 34 个、近 7 天存活 33/34 = 97%；幸存侧 21/21 = 100%。**两侧存活率接近 ⇒ 无证据表明 carrier 在误杀活跃仓，本轮不改。**
+- **加密侧四词 raw 合计 28**（`data availability` 18 / `intent-based` 8 / `restaking` 1 / `MEV` 1），全落 seen 或过滤损耗，报告级 0 —— **连续第 2 轮加密侧空转**，产出集中 AI / 机器人侧，与 SKILL 预期一致。
+- **饱和 8（真被 seen 吸收，别删）**：robot dataset 2/2 · world action model 4/3 · vision language action 23/18 · verifiable inference 3/3 · data availability 18/1 · restaking 1/1 · intent-based 8/1 · maximal extractable value 1/1。**伪饱和·过滤损耗 2（seen=0，不是饱和）**：embodied data（raw=4）· proof of useful work（raw=1）。
+- **真零 1**：`robotics data engine`（total=0）。跨 7/30/60 都为 0 才谈删词，本轮不动。
+- 逐词新收：`teleoperation` 7 · `jepa` 4 · `robot manipulation` 4 · `world model` 2 · `egocentric` 2 · `sim-to-real` 2。报告级 9 条里 8 条 ★0，唯一 ★2 即上条先占坑仓。 [source: logs/2026-11-15#github-radar（第 27 轮）]
 
 ## 第二十六轮（2026-11-14，7 天窗，非 dry-run，**probe 跳过**）—— `30天=`≡`7天=` 的前提**被打破**：25 条里 6 条不等；加密侧四词有 raw 但零报告级
 

@@ -1,36 +1,31 @@
-memory-flush 已跑完，水位线已推进到 2026-11-15。
+## 记忆整理（memory-flush）完成 — 扫描窗口 2026-11-15 → 2026-11-16
 
-## 本次刷新
+**窗口与预算**
+- watermark 始值 `2026-11-15`，读 2 个日文件（11-15、11-16），无 >14 天缺口、未 clamp；日志轮转 0 个月（27 个日文件，阈值 45）。
+- MEMORY.md 起点 **8,429 字节 / 43 行 / 1 条超长行（第 7 行 342 字符）已 OVER BUDGET 237 字节**，终点 **8,156 字节 / 43 行 / 0 条超长（余 36 字节）**。削的是冗余表述（`aeon-update`、`defi-overview`、`github-radar` 三条发现层行 + 过滤器空转、过程事故两例、行情口径 ① 共 5 条长行），**事实与 `[source:]` 标签一条未丢**。
 
-**扫描窗口 `2026-11-14 → 2026-11-15`**（读 2 个日文件，无 >14 天缺口、未 clamp；日志轮转 0 个月，26 个日文件 / 阈值 45）。
+**本轮 promote 的四件事**
+1. **`defi-overview` 破 chronic 线**（改写 MEMORY「待盯」行 + ops 新增 11-16 小节）：成功率 **49%（19/39）**、`consecutive_failures=5`，`success_rate<0.5` ∧ `total_runs>=5` 首次成立 —— 11-15 记的是「再败 1 轮即破线」，那一轮已发生。错误码从抖动**收敛为持续 `403`**（`402`→`402`→`max_output_tokens`→`403`→`403`），末条原文 `Gateway cascade failed (hivemindos): Failed to authenticate. 403 All target providers failed`，job 26s 起止 = 请求没出网关。**保留并加固 11-15 判据：收敛到一个码 ≠ 定因**，cascade 全 provider 失败仍可能是配额/路由/密钥任一。`market-context.md` 48.3h → **72h**，唯一写入者就是它，冻结按天累加。
+2. **新类事实：挂着未合的 PR 会让 skill 自己的审计数字失真**（MEMORY 新增 About This Repo 一行）。PR #25 跨过 24h stalled 线，而 `arxiv-radar` 的「低频探针 N=0」实为「降级改动没合进 main」的状态灯 —— 此前只把 PR 队列当流程债。
+3. **`github-radar` 第 27 轮**（MEMORY 发现层行改写 + topic 新增整节）：421/21/9。`30d==7d` **9 条里 8 条成立、1 条例外** → 继续当「候选仓龄全 <30 天」的样本条件读。新判据：★2 的 `lucidrains/PMW-pytorch` 经 `contents` 复核根目录仅 `.gitignore`/`LICENSE`/`README.md` = **「先占坑」仓，★与作者身份都不作数，「无 language + 根目录无代码骨架」应并入页面规则**。carrier 两侧存活率 97% vs 100% 接近 ⇒ 无证据误杀活跃仓。加密侧四词连 2 轮报告级 0。
+4. **`defillama-radar` 第 21 轮**（行改写 + index）：9055/5/可报 1（$15.7K，已发）。**判据级：「同秒 ≥3 条」抓不到「14 分钟窗 + id 连号」的批量录入** → 补互补判据「**差集内部**连号子段 + `listedAt` 跨度 ≤30min ⇒ 同一次批量录入」，已用全量 231 段连号验过（最紧 19.4 / 21.5 分钟）。首次把 Stellar / Flare 算成加链候选，**结论都是不加**（Stellar 只救 1 条 $277K，代价是删 `seen` 重做基线）。可报集 vs 最大被挡条倍数 89 → 17.7 倍，**区间 17–89 倍，不能当稳定量级引用**。
 
-### 提升进长期记忆的四件事
+**剪枝**
+- `gh pr list --search "improve:"` = `[]`（连续第十四天）→ 无 Open Improvement PRs 段可清；全量 open PR 仍 1 个（#25，非 improve 类，已记 WATCH）。
+- 未删任何 lesson：本轮无被推翻项，ops 的 11-15 条保留原文、11-16 以新增小节更正。各节未超 10–15 行，未触发归档。
 
-1. **defillama-radar 第 20 轮**（9050 / 新增 22 / 可报 2）— 更新了发现层那一行。新增 22 条与 11-12 并列在案最高，但仍按「单轮不作趋势」写。真正值钱的是两个口径：`parent` 唯一真边际 1 条（`Drakewell SPYdw`，$561,619 = 全部可报的 89 倍），以及**「新增」= 新进 `/protocols`，不是新登记** —— 3 条新增的 `listedAt` 早于上轮快照 4 小时以上，两条时间轴不同源。审计行 `本次通知` 恒写「零可报」是 `scan.py:301` 硬编码，可报 >0 时不可信。
+**文件改动**：`memory/MEMORY.md`、`memory/topics/ops-plumbing.md`（+11-16 小节，timestamp bump）、`memory/topics/github-radar.md`（+第 27 轮整节，timestamp bump）、`memory/topics/index.md`（三行）、`memory/logs/2026-11-16.md`、`memory/memory-flush-state.json`（stamp 到 `2026-11-16`，MEMORY 镜像行已同步）。
 
-2. **github-radar 第 26 轮 —— 推翻了一条被降成「定律」的判据。** 前六轮 `30天=`≡`7天=` 都是 12/12、8/8、7/7 全等，上一轮把它从「观察项」降为「既成前提、后续不必逐轮举证」。第 26 轮 25 条报告级里 **6 条两数不等**（最大仓龄 35 天，一条 19→0）。它一直是「候选仓龄全部 < 30 天」这个样本属性，不是窗口的数学后果。topic 里已把降级撤回。另一条：加密侧 4 词有 raw 新增却零报告级 —— **raw 有、幸存无 = 过滤层吃掉的**，与「召回打不中」是两种病、两种修法。
-
-3. **arxiv-radar 第 46 轮 —— 判别力对照首次做实，这是本轮最可操作的一条。** 真词 `abs:blockchain` 7d=11、故意错拼 `all:restakinq` 7d=0，且对照组自己的 30/60/90d 三档撞了 429 被记为「查询失败」—— 反过来证明失败在这个工具里能被识别，所以那个「0」是真 0。写法：**不要给「零」找理由，给「零」配对照。** 另两个跨窗全零词走完换写法后降 `LOW_FREQ` 不删（已有货但 60d=2 低于门槛的词，「有货但不够」与「无货」动作相同，都降频）。
-
-4. **heartbeat 11-15 —— 一条判据更正，写进 ops。** 昨天记的「402 是余额、等不回来」下得太强：同一个 skill 在同一时段的码序是 `402`→`402`→`max_output_tokens`→**`403`**，**两种码交替 = 网关侧状态自己在抖，不能据单一码推测成因**。能判的只剩失败位置（`duration_api_ms:0` = 请求没出网关；有真 turn = 半路死）。OPERATOR 的决策本身不变（补余额 / pin 换 provider），变的只是「等着没用」这个推断的置信度。同时 `github-radar` 已自愈（cf=0、81%），`defi-overview` 停在 **0.50（19/38）—— 规则是严格 `<`，再败 1 轮即 48.7% 破 chronic 线**，而 `market-context.md` 已冻结 48.3 小时，因为只有它会刷新那个文件。
-
-### 剪枝与预算
-
-`gh pr list --search "improve:"` = `[]`（连续第十三天），无 Open Improvement PRs 段可清。全量 open PR 有 1 条（`#25`，chore 类、未满 24h），不构成需跟踪的队列，未入档。**未删任何旧 lesson** —— 本轮无被推翻项，ops 那条是「更正」而非删除，旧推理作为历史留在新小节里。
-
-预算先涨到 8,607 字节、三条行超 300 字符，压回 **8,181 / 43 行 / 0 条超长行（余 11 字节）**：手段是只留判据、把数值细节下沉到 `lessons.md` 和两个 topic，事实与 source 标签一条没丢。
-
-### 遗留（未处理，延续）
-
-- `defi-overview` 两条修复仍未落地（cron 挪离 `0 23`、削减单轮输出量）— 配置决策，须 OPERATOR 拍板
-- 网关抖动未定位前，断路器 probe 会继续失败
-- `defillama-radar` 的 `scan.py:301` 审计行缺陷待 PR
-- `arxvi-radar` cron-state 孤儿条目（连报十七轮）、`memory/on-chain-state.json.new`、`memory/topics/price-alert-state.json.bak`
+**没推送通知** —— 记忆整理是元操作，无可执行的仓位动作；STRATEGY 的「只在触发条件成立时推送」照旧。
 
 ## Summary
+- 执行 memory-flush：窗口 2026-11-15 → 2026-11-16，扫 2 个日文件，11 条候选逐条做 subject 级 dedup。
+- MEMORY.md 从 8,429 字节（超预算）压到 8,156 字节，0 条超长行；三处发现层行原地改写而非新增。
+- 新增 1 节（ops 11-16 心跳）、1 节（github-radar 第 27 轮）、1 条 MEMORY 新事实（PR 未合会污染 skill 读数）。
+- 剪枝：improvement PR 队列为空、无 lesson 可删、无节超行需归档。
+- 已在 `2026-11-16` 日志写入 `### memory-flush` 记录并执行 `memory_prep.py stamp`。
 
-- 扫描 11-14 / 11-15 两个日文件，提升 4 组事实（defillama-radar 第 20 轮、github-radar 第 26 轮、arxiv-radar 第 46 轮、heartbeat 错误码判据更正）。
-- 修改：`memory/MEMORY.md`（发现层 3 行 + 「待盯」行原地改写，未新增重复段）、`memory/topics/lessons.md`（+3 条）、`memory/topics/ops-plumbing.md`（+1 更正小节 + frontmatter）、`memory/topics/github-radar.md`（+第二十六轮整节 + frontmatter 撤回旧降级）、`memory/topics/index.md`（4 行更新）、`memory/logs/2026-11-15.md`（`### memory-flush` 记录）。
-- 预算 8,132 → 8,181 字节（余 11），43 行，0 条超长行。
-- 水位线已 stamp 到 `2026-11-15`（`memory/memory-flush-state.json` + MEMORY.md 镜像）。
-- 未提交 git —— 按 skill 约定由工作流处理；未发通知（无触发条件成立的新信号）。
+**需要 OPERATOR 处理的（延续项）**
+- `defi-overview` 已破 chronic 线，两条修复（cron 挪离 `0 23`、削减单轮输出量）仍未落地 —— 需拍板补余额或 pin 换 provider。
+- 合并 PR #25，否则 `arxiv-radar` 的词表降级不生效，审计数字持续失真。
+- `defillama-radar` 的 `scan.py:301` 审计行硬编码缺陷待开 PR（连续两轮复现）。
