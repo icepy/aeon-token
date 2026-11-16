@@ -1,19 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-15T22:09:38Z",
-  "quality_score": 4,
-  "assessment": "A complete, internally consistent round-47 report: 70 raw correctly funneled to 0 survivors with all 70 explained by seen-memory saturation, notification and label writes correctly withheld per its own rule, plus two genuinely diagnostic findings (round-46 keyword downgrade inert because PR #25 is still unmerged; a one-day window slide alone flipping a saturated word to zero-hit) and a concrete action item.",
-  "flags": [
-    "stale_data"
-  ],
-  "avg_score": 3.4,
+  "last_analyzed": "2026-11-16T22:05:53Z",
+  "quality_score": 3,
+  "assessment": "Clean, on-job discovery output: one hit with ID, title, date, matched filter term, and URL, plus transparent accounting of why 69 candidates were dropped — adequate and plausibly sourced, but thin beyond the single line item.",
+  "flags": [],
+  "avg_score": 3.37,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 4,
-      "ts": "2026-10-26T07:33:47Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 4,
@@ -186,6 +178,12 @@
       "date": "2026-11-15",
       "score": 4,
       "ts": "2026-11-15T22:09:38Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-16",
+      "score": 3,
+      "ts": "2026-11-16T22:05:53Z",
       "harness": "claude"
     }
   ]

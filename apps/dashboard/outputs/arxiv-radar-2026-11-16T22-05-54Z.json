@@ -1,0 +1,139 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 词 26 · 原始 70 · 幸存 1"
+      },
+      "children": [
+        "root-stack"
+      ]
+    },
+    "root-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "stats-grid",
+        "sep-1",
+        "section-heading",
+        "story",
+        "story-meta",
+        "sep-2",
+        "notes-heading",
+        "note-1",
+        "note-2",
+        "note-3"
+      ]
+    },
+    "stats-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "sm"
+      },
+      "children": [
+        "stat-window",
+        "stat-words",
+        "stat-raw",
+        "stat-survived"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      }
+    },
+    "stat-words": {
+      "type": "Stat",
+      "props": {
+        "label": "词",
+        "value": "26"
+      }
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "70"
+      }
+    },
+    "stat-survived": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "1"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "[具身数据/VLA]",
+        "level": "h3"
+      }
+    },
+    "story": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Agentic-Teacher: An Agentic Data Engine for Failure-Driven VLA Post-Training",
+        "href": "https://arxiv.org/abs/2611.17394",
+        "source": "arXiv · 2026-11-12",
+        "score": "2611.17394"
+      }
+    },
+    "story-meta": {
+      "type": "Text",
+      "props": {
+        "text": "命中词 ti:\"data engine\" AND cat:cs.RO",
+        "variant": "caption"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "notes-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "其余 69 条全被 seen 吃掉",
+        "level": "h4"
+      }
+    },
+    "note-1": {
+      "type": "Text",
+      "props": {
+        "text": "饱和 12 词",
+        "variant": "body"
+      }
+    },
+    "note-2": {
+      "type": "Text",
+      "props": {
+        "text": "窗口内零命中 11 词（跨窗均有命中，非真零）",
+        "variant": "body"
+      }
+    },
+    "note-3": {
+      "type": "Text",
+      "props": {
+        "text": "低频探针 2 词（verifiable inference / restaking）",
+        "variant": "body"
+      }
+    }
+  }
+}
