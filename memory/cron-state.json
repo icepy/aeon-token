@@ -89,15 +89,15 @@
     "last_error": null
   },
   "github-radar": {
-    "last_status": "dispatched",
+    "last_status": "failed",
     "last_success": "2026-11-15T22:33:23Z",
-    "total_runs": 51,
+    "total_runs": 52,
     "total_successes": 40,
-    "total_failures": 11,
-    "consecutive_failures": 2,
-    "success_rate": 0.78,
+    "total_failures": 12,
+    "consecutive_failures": 3,
+    "success_rate": 0.77,
     "last_quality_score": 4,
-    "last_failed": "2026-11-16T23:01:38Z",
+    "last_failed": "2026-11-16T23:31:22Z",
     "last_error": "hivemindos: Failed to authenticate. API Error: 403 All target providers failed.",
     "last_dispatch": "2026-11-16T23:30:52Z"
   },
