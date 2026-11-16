@@ -150,6 +150,15 @@ LOW_FREQ = {
     # → 不是死词，也不是缺同义词；真实写法已被 `proof of training` 覆盖。
     # **不要再加 verifiable 变体**；下一个候选是 `attestation` 类，但要先 check: 量。
     "verifiable training",
+    # 第 46 轮结清：`all:"verifiable inference"` 7d=0 / 30d=1 / 60d=2 / 90d=2，已见 0/2。
+    # 有货但极稀疏，且 60d=2 低于换写法采用门槛（60d total 5–60）→ 不进主力词表。
+    # 不删：`可验证计算` 方向仍有 verifiable computation / proof of training 等词扛召回。
+    "verifiable inference",
+    # 第 46 轮结清：四种写法全期零命中 —— ti:（90d=0）· all:"restaking"（90d=0）·
+    # all:restaking（90d=0）· abs:restaking（90d=0）。同场次 crypto 词有判别力
+    # （zero-knowledge raw=9、consensus raw=12、MEV 60d=3），故不是限流吞零。
+    # 按梯子「换写法 → 降频 → 删」降为低频探针，本轮不跳到删词。
+    "restaking",
 }
 
 if NAMES_MODE and os.path.exists(NAMES_FILE):
