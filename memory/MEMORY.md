@@ -4,7 +4,7 @@
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**；`arxvi-radar` 孤儿待清。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
-- **`aeon-update` 基线 `2ff25a3`**：PR #24 已关未合，内容由 catalog commit 直落 main（ICP 三件套、catalog 96、lockfile 99）。**待决策：上游 5 条新技能未抄。** [source: logs/2026-11-09#aeon-update]
+- **`aeon-update` 基线 `7b20c95`**（PR #27 待合，2026-11-16）。上一轮 PR #24 已关但内容由 catalog commit 直落 main，所以本轮 50 条上游提交**净变更为零**。**判据：`CLEAN-MERGE>0` 但 `git diff --stat` 为空 ⇒ 本轮没改东西。** 6 条冲突全是「技能计数漂移」（本地 96 vs 上游 92），一次性解法 = state 文件加 `keep_local: ["docs/**", ".github/README.md"]`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#aeon-update]
 - **待盯（OPERATOR）：网关错误码在抖，别按单一码下结论** —— 三日同槽 `402`→`402`→`max_output_tokens`→`403` = 网关侧状态不稳。`github-radar` 已自愈；`defi-overview` cf=4、**0.50（19/38）**，**再败 1 轮即破 `<0.5` chronic 线**；`market-context.md` 已 48h 未刷新。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-15#heartbeat]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）

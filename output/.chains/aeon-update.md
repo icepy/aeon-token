@@ -1,19 +1,19 @@
-✅ aeon-update
+ℹ️ aeon-update：PR #27（净变更为零）
 
-**aeon-update - 2026-11-09**
+**aeon-update - 2026-11-16**
 
-同步了 33 个上游 commit → PR #24 已开。
+同步 50 条上游提交（`ec7a50c..7b20c95`，11-02 → 11-14），PR #27 待你合。
 
-上游 `aeonfun/aeon` 领先 33 个 commit（11-02 → 11-08）。干净应用 15 个文件，9 个需人工看。
+**但净变更为零。** 上一轮 PR #24 关了没合，内容却已经通过 catalog commit 落到 main 上，所以这 50 条在本地树里全都已经在位。`apply` 报 4 个 `CLEAN-MERGE`，`git diff --stat` 却是空的 -- 这次实际只推进了 watermark。
 
-**新增 3 个 ICP 技能：** `canister-status`（控制面监控）、`sns-digest`（治理提案摘要）、`icp-deploy-check`（上线前静态检查）。eyebrow 扫描无 findings。
+已逐项核对过：上游 HEAD 的 1036 个路径本地全在，抽查 `flovia` / `canister-audit` / `skill-scan.sh` / `notify.sh` 与上游逐字节一致。
 
-**9 个冲突已逐个核对，没有一条是真逻辑冲突：** 5 个文档卡在技能数上（本地 93 / 上游 87→92，**保持 93**）；`.gitignore` 本地是上游超集；`AGENTS.md` 的 `deleted-locally` 是误报；dashboard 图标冲突已被重生成覆盖；`docs/icp/README.md` 本地版比上游更准，保留本地。
+**6 条冲突全是同一个原因**：本地 96 个技能 vs 上游 92（多 `arxiv-radar` / `defillama-radar` / `github-radar` / `narrative-brief`），上游这批只改了文档里的 87→92 数字。没有逻辑冲突，不用一条条看。
 
-**顺手修了工具一个坑：** `apply` 的 eyebrow 重扫在 `AGENTS.md` 暂存删除的瞬间跑，把它从 lockfile 里剔掉了。已按原值补回（最终 99 条 = 96 + 3）。以后再看到「非新增技能的条目被删」，先怀疑扫的是暂存区。
+**一个建议动作**：在 `memory/topics/aeon-update-state.json` 加 `"keep_local": ["docs/**", ".github/README.md"]`，这 5 个只改计数的文档以后不再每轮重复报到你面前。要我加就说一声。
 
-**需要你决定的一件事：** 上游 `aeon.yml` 新增了 `canister-audit`、`canister-status`、`sns-digest`、`icp-deploy-check`、`flovia` 五条（全部默认关闭）。要跟就跟，不跟也不影响这次技能文件落地。
+新技能（ICP 四件套 + `flovia`）早已在 `aeon.yml` 里，全部 `enabled: false`，无须手工合并。
 
-PR: https://github.com/icepy/aeon-token/pull/24
+PR: https://github.com/icepy/aeon-token/pull/27
 
-🔗 https://github.com/icepy/aeon-token/pull/24
+🔗 https://github.com/icepy/aeon-token/pull/27

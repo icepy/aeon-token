@@ -395,6 +395,32 @@ rather than a permission rule:
 - Write the state file directly with `Write` rather than trying to shell-copy the old one first. A
   missing backup is survivable; a half-written state file is not.
 
+## `aeon-update` can report `CLEAN-MERGE 4` and have changed nothing
+
+2026-11-16: the plan counted 4 `CLEAN-MERGE` files (`.github/workflows/aeon.yml`,
+`.github/workflows/messages.yml`, `AGENTS.md`, `apps/dashboard/lib/skill-icons.data.ts`), the 3-way
+merge exited 0 for all four, and `apply` returned `AEON_UPDATE_APPLIED` — but `git diff --stat HEAD`
+was **empty**. The whole 50-commit sync was the `baseline_sha` bump alone.
+
+Why: PR #24 (the prior sync) was closed unmerged while its *content* reached `main` in a catalog
+commit. So the local tree already carried upstream's HEAD content; a 3-way merge of identical
+`local`/`head` produces no hunks, which the plan still records as `CLEAN-MERGE`.
+
+**Reading rule:** a non-zero `CLEAN-MERGE`/`CLEAN-UPDATE` count is *not* evidence of synced content.
+After `apply`, check `git diff --stat HEAD`; if it lists only `memory/topics/aeon-update-state.json`,
+the run was a watermark advance — say so in the PR body instead of implying 4 fixes landed.
+
+Two related traps found the same run:
+
+- **A staged `D` on a generated file reads as `deleted-locally`.** The session opened with
+  `AGENTS.md` deleted-and-staged, so the first `plan` classified it `CONFLICT deleted-locally`. After
+  `git checkout -- AGENTS.md` the same plan returned `CLEAN-MERGE` and conflicts dropped 7→6. Run
+  `git status` before trusting a `deleted-locally` verdict on a file upstream generates.
+- **Perpetual doc conflicts are a `keep_local` miss, not drift to reconcile.** All 6 conflicts were
+  the same upstream 87→92 skill-count edit against a fork that legitimately ships 96. Adding
+  `"keep_local": ["docs/**", ".github/README.md"]` to the state file stops the list regrowing every
+  run (`.gitignore` is worth keeping visible until upstream stops editing it).
+
 # Citations
 
 - `gh run list` showing `scheduler: cron` with `event: schedule`, `success`, 2026-10-21T10:09:10Z.

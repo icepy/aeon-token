@@ -1,0 +1,348 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "aeon-update",
+        "description": "ℹ️ aeon-update：PR #27（净变更为零）"
+      },
+      "children": [
+        "main"
+      ]
+    },
+    "main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "headline",
+        "lead",
+        "statsGrid",
+        "alertNetZero",
+        "textSync1",
+        "textSync2",
+        "badgeRow1",
+        "sep1",
+        "hVerify",
+        "textVerify",
+        "sep2",
+        "hConflicts",
+        "textConflict1",
+        "badgeRow2",
+        "textConflict2",
+        "sep3",
+        "hAction",
+        "textAction",
+        "sep4",
+        "hNewSkills",
+        "textNewSkills",
+        "badgeRow3",
+        "sep5",
+        "linkPR",
+        "linkPR2"
+      ]
+    },
+    "headline": {
+      "type": "Heading",
+      "props": {
+        "text": "aeon-update - 2026-11-16",
+        "level": "h1"
+      }
+    },
+    "lead": {
+      "type": "Text",
+      "props": {
+        "text": "同步 50 条上游提交（ec7a50c..7b20c95，11-02 → 11-14），PR #27 待你合。",
+        "variant": "lead"
+      }
+    },
+    "statsGrid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "statCommits",
+        "statNet",
+        "statConflicts",
+        "statSkills",
+        "statPaths",
+        "statMerges"
+      ]
+    },
+    "statCommits": {
+      "type": "Stat",
+      "props": {
+        "label": "上游提交同步",
+        "value": "50",
+        "delta": "11-02 → 11-14",
+        "trend": "neutral"
+      }
+    },
+    "statNet": {
+      "type": "Stat",
+      "props": {
+        "label": "净变更",
+        "value": "0",
+        "trend": "neutral"
+      }
+    },
+    "statConflicts": {
+      "type": "Stat",
+      "props": {
+        "label": "冲突条目",
+        "value": "6",
+        "trend": "neutral"
+      }
+    },
+    "statSkills": {
+      "type": "Stat",
+      "props": {
+        "label": "本地技能 vs 上游",
+        "value": "96 vs 92",
+        "trend": "neutral"
+      }
+    },
+    "statPaths": {
+      "type": "Stat",
+      "props": {
+        "label": "已核对上游路径",
+        "value": "1036",
+        "trend": "neutral"
+      }
+    },
+    "statMerges": {
+      "type": "Stat",
+      "props": {
+        "label": "CLEAN-MERGE",
+        "value": "4",
+        "trend": "neutral"
+      }
+    },
+    "alertNetZero": {
+      "type": "Alert",
+      "props": {
+        "title": "但净变更为零。",
+        "message": "上一轮 PR #24 关了没合，内容却已经通过 catalog commit 落到 main 上，所以这 50 条在本地树里全都已经在位。",
+        "type": "info"
+      }
+    },
+    "textSync1": {
+      "type": "Text",
+      "props": {
+        "text": "上一轮 PR #24 关了没合，内容却已经通过 catalog commit 落到 main 上，所以这 50 条在本地树里全都已经在位。",
+        "variant": "body"
+      }
+    },
+    "textSync2": {
+      "type": "Text",
+      "props": {
+        "text": "apply 报 4 个 CLEAN-MERGE，git diff --stat 却是空的 -- 这次实际只推进了 watermark。",
+        "variant": "body"
+      }
+    },
+    "badgeRow1": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badgeCleanMerge",
+        "badgeEmptyDiff"
+      ]
+    },
+    "badgeCleanMerge": {
+      "type": "Badge",
+      "props": {
+        "text": "CLEAN-MERGE ×4",
+        "variant": "secondary"
+      }
+    },
+    "badgeEmptyDiff": {
+      "type": "Badge",
+      "props": {
+        "text": "git diff --stat 为空",
+        "variant": "outline"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hVerify": {
+      "type": "Heading",
+      "props": {
+        "text": "逐项核对",
+        "level": "h2"
+      }
+    },
+    "textVerify": {
+      "type": "Text",
+      "props": {
+        "text": "已逐项核对过：上游 HEAD 的 1036 个路径本地全在，抽查 flovia / canister-audit / skill-scan.sh / notify.sh 与上游逐字节一致。",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hConflicts": {
+      "type": "Heading",
+      "props": {
+        "text": "6 条冲突",
+        "level": "h2"
+      }
+    },
+    "textConflict1": {
+      "type": "Text",
+      "props": {
+        "text": "6 条冲突全是同一个原因：本地 96 个技能 vs 上游 92（多 arxiv-radar / defillama-radar / github-radar / narrative-brief），上游这批只改了文档里的 87→92 数字。",
+        "variant": "body"
+      }
+    },
+    "badgeRow2": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badgeLocalSkills",
+        "badgeUpstreamSkills",
+        "badgeDocCount"
+      ]
+    },
+    "badgeLocalSkills": {
+      "type": "Badge",
+      "props": {
+        "text": "本地 96 个技能",
+        "variant": "default"
+      }
+    },
+    "badgeUpstreamSkills": {
+      "type": "Badge",
+      "props": {
+        "text": "上游 92 个技能",
+        "variant": "secondary"
+      }
+    },
+    "badgeDocCount": {
+      "type": "Badge",
+      "props": {
+        "text": "文档计数 87→92",
+        "variant": "outline"
+      }
+    },
+    "textConflict2": {
+      "type": "Text",
+      "props": {
+        "text": "没有逻辑冲突，不用一条条看。",
+        "variant": "body"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hAction": {
+      "type": "Heading",
+      "props": {
+        "text": "一个建议动作",
+        "level": "h2"
+      }
+    },
+    "textAction": {
+      "type": "Text",
+      "props": {
+        "text": "在 memory/topics/aeon-update-state.json 加 \"keep_local\": [\"docs/**\", \".github/README.md\"]，这 5 个只改计数的文档以后不再每轮重复报到你面前。要我加就说一声。",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hNewSkills": {
+      "type": "Heading",
+      "props": {
+        "text": "新技能",
+        "level": "h2"
+      }
+    },
+    "textNewSkills": {
+      "type": "Text",
+      "props": {
+        "text": "新技能（ICP 四件套 + flovia）早已在 aeon.yml 里，全部 enabled: false，无须手工合并。",
+        "variant": "body"
+      }
+    },
+    "badgeRow3": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badgeICP",
+        "badgeFlovia",
+        "badgeDisabled"
+      ]
+    },
+    "badgeICP": {
+      "type": "Badge",
+      "props": {
+        "text": "ICP 四件套",
+        "variant": "default"
+      }
+    },
+    "badgeFlovia": {
+      "type": "Badge",
+      "props": {
+        "text": "flovia",
+        "variant": "default"
+      }
+    },
+    "badgeDisabled": {
+      "type": "Badge",
+      "props": {
+        "text": "enabled: false",
+        "variant": "outline"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "linkPR": {
+      "type": "Link",
+      "props": {
+        "label": "PR: https://github.com/icepy/aeon-token/pull/27",
+        "href": "https://github.com/icepy/aeon-token/pull/27"
+      }
+    },
+    "linkPR2": {
+      "type": "Link",
+      "props": {
+        "label": "🔗 https://github.com/icepy/aeon-token/pull/27",
+        "href": "https://github.com/icepy/aeon-token/pull/27"
+      }
+    }
+  }
+}
