@@ -1,50 +1,57 @@
 [
  {
-  "token": "teleop",
-  "total": 589,
-  "owners": 97,
-  "cohesive": true,
-  "thematic": true,
-  "theme": [
-   [
-    "teleoperation",
-    20
-   ]
-  ],
+  "token": "supermimic",
+  "total": 195,
+  "owners": 98,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
   "one_man": false,
   "generic": false,
-  "not_in_out": 100,
+  "not_in_out": 98,
   "hot": [
    {
-    "repo": "lolopoco32/TeleopsDVB",
-    "stars": 5,
-    "commits_30d": 27,
-    "commits_7d": 9
-   },
-   {
-    "repo": "ohho-robotics/ohho-omnibot",
-    "stars": 6,
-    "commits_30d": 100,
+    "repo": "miao-org/awesome-supermimic",
+    "stars": 628,
+    "commits_30d": 39,
     "commits_7d": 5
    },
    {
-    "repo": "sdua078/TeleoPro",
-    "stars": 118,
-    "commits_30d": 7,
+    "repo": "Motphys/Uni-SuperMimic",
+    "stars": 311,
+    "commits_30d": 71,
+    "commits_7d": 2
+   },
+   {
+    "repo": "HybridRobotics/supermimic",
+    "stars": 1746,
+    "commits_30d": 10,
+    "commits_7d": 2
+   },
+   {
+    "repo": "zita-ch/supermimic_vibed",
+    "stars": 906,
+    "commits_30d": 17,
+    "commits_7d": 1
+   },
+   {
+    "repo": "CumulusAlpha/Dex-Supermimic",
+    "stars": 148,
+    "commits_30d": 19,
     "commits_7d": 0
    },
    {
-    "repo": "shy020501/dex-teleop",
-    "stars": 5,
-    "commits_30d": 6,
+    "repo": "CuboiLeo/SuperMimic-Reproduced",
+    "stars": 467,
+    "commits_30d": 8,
     "commits_7d": 0
    }
   ]
  },
  {
-  "token": "rung",
-  "total": 532,
-  "owners": 97,
+  "token": "dobot",
+  "total": 149,
+  "owners": 90,
   "cohesive": false,
   "thematic": false,
   "theme": [],
@@ -53,288 +60,144 @@
   "not_in_out": 99,
   "hot": [
    {
-    "repo": "CalQuity/rung",
-    "stars": 4,
+    "repo": "shc0507/dobot_mg400",
+    "stars": 1,
+    "commits_30d": 100,
+    "commits_7d": 69
+   },
+   {
+    "repo": "spvce028/Applied-Robotics",
+    "stars": 2,
     "commits_30d": 49,
-    "commits_7d": 7
+    "commits_7d": 28
    },
    {
-    "repo": "sa1ntsinner/rung",
-    "stars": 3,
-    "commits_30d": 65,
-    "commits_7d": 2
+    "repo": "embodied-dobot/dobot-lumo-sdk-cpp",
+    "stars": 1,
+    "commits_30d": 11,
+    "commits_7d": 5
    },
    {
-    "repo": "goldendevuz/rung",
+    "repo": "Millie-UoG/Dobot-Code-ELEE1144",
     "stars": 1,
     "commits_30d": 6,
-    "commits_7d": 0
-   },
-   {
-    "repo": "aadityad12/rung",
-    "stars": 1,
-    "commits_30d": 5,
     "commits_7d": 0
    }
   ]
  },
  {
-  "token": "so101",
-  "total": 460,
-  "owners": 95,
+  "token": "deepvision",
+  "total": 41,
+  "owners": 36,
   "cohesive": false,
   "thematic": false,
   "theme": [],
   "one_man": false,
   "generic": false,
-  "not_in_out": 100,
+  "not_in_out": 40,
   "hot": [
    {
-    "repo": "NeoWang213/adaptive-horizon-so101",
-    "stars": 4,
+    "repo": "VAIBHAV-w1/DeepVision",
+    "stars": 0,
+    "commits_30d": 57,
+    "commits_7d": 8
+   },
+   {
+    "repo": "yulin-luo/deepvision-vla",
+    "stars": 2,
+    "commits_30d": 7,
+    "commits_7d": 7
+   },
+   {
+    "repo": "Zhou-guangxuan/DeepVision",
+    "stars": 1,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "ziyuhaokun/deepvisionsharp",
+    "stars": 1,
+    "commits_30d": 21,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "lookie",
+  "total": 17,
+  "owners": 12,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": false,
+  "not_in_out": 16,
+  "hot": [
+   {
+    "repo": "AgilexOpensource/lookie_ros",
+    "stars": 0,
+    "commits_30d": 37,
+    "commits_7d": 37
+   },
+   {
+    "repo": "L3DPrints26/lookie",
+    "stars": 0,
+    "commits_30d": 5,
+    "commits_7d": 2
+   }
+  ]
+ },
+ {
+  "token": "dreamfar",
+  "total": 5,
+  "owners": 5,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": false,
+  "not_in_out": 4,
+  "hot": [
+   {
+    "repo": "amazon-far/dreamfar",
+    "stars": 3,
     "commits_30d": 5,
     "commits_7d": 5
    },
    {
-    "repo": "Combatant1/so101_Ros2_gazebo_actualrobot",
-    "stars": 6,
-    "commits_30d": 16,
+    "repo": "Dou-Yiming/DreamFAR",
+    "stars": 1,
+    "commits_30d": 13,
     "commits_7d": 3
-   },
-   {
-    "repo": "chaseab/so101-toolchanger",
-    "stars": 6,
-    "commits_30d": 12,
-    "commits_7d": 1
-   },
-   {
-    "repo": "sgyli7/Sai_Rotbots",
-    "stars": 4,
-    "commits_30d": 35,
-    "commits_7d": 0
    }
   ]
  },
  {
-  "token": "roboforge",
-  "total": 24,
-  "owners": 22,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": false,
-  "not_in_out": 23,
-  "hot": [
-   {
-    "repo": "Hellow-Wind/firstbyte-roboforge",
-    "stars": 1,
-    "commits_30d": 10,
-    "commits_7d": 10
-   },
-   {
-    "repo": "Sztrum/roboforge",
-    "stars": 0,
-    "commits_30d": 37,
-    "commits_7d": 0
-   },
-   {
-    "repo": "RoboForgeGR/RoboForge",
-    "stars": 0,
-    "commits_30d": 15,
-    "commits_7d": 0
-   },
-   {
-    "repo": "zzw705140-cpu/RoboForge",
-    "stars": 1,
-    "commits_30d": 5,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "roboscript",
-  "total": 11,
-  "owners": 10,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": false,
-  "not_in_out": 10,
-  "hot": [
-   {
-    "repo": "rasschaert/roboscriptorium",
-    "stars": 0,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "cheebow/roboscript",
-    "stars": 1,
-    "commits_30d": 18,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "robotdynamics",
-  "total": 3,
-  "owners": 3,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": false,
-  "not_in_out": 2,
-  "hot": [
-   {
-    "repo": "Quinten-Wu504/RobotDynamics-CS224W-Stanford",
-    "stars": 0,
-    "commits_30d": 6,
-    "commits_7d": 6
-   },
-   {
-    "repo": "aapaul29/RobotDynamics",
-    "stars": 0,
-    "commits_30d": 15,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "cs224w",
-  "total": 28,
-  "owners": 25,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": false,
-  "not_in_out": 27,
-  "hot": [
-   {
-    "repo": "NDC227/CS224W",
-    "stars": 0,
-    "commits_30d": 18,
-    "commits_7d": 11
-   }
-  ]
- },
- {
-  "token": "pico4",
-  "total": 16,
-  "owners": 12,
+  "token": "egocentric",
+  "total": 168,
+  "owners": 89,
   "cohesive": true,
   "thematic": false,
   "theme": [
    [
-    "pico",
-    6
+    "video",
+    29
    ]
   ],
   "one_man": false,
   "generic": false,
-  "not_in_out": 15,
+  "not_in_out": 96,
   "hot": [
    {
-    "repo": "freiseisdose-bot/pico4-ultra-mujoco-teleop",
-    "stars": 1,
-    "commits_30d": 17,
-    "commits_7d": 0
+    "repo": "LambdaHumanoid/openlambda",
+    "stars": 166,
+    "commits_30d": 25,
+    "commits_7d": 3
    }
   ]
  },
  {
-  "token": "mrcd",
-  "total": 10,
-  "owners": 10,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": false,
-  "not_in_out": 9,
-  "hot": [
-   {
-    "repo": "TUHH-ITL/MRCD",
-    "stars": 0,
-    "commits_30d": 6,
-    "commits_7d": 6
-   }
-  ]
- },
- {
-  "token": "tourian",
-  "total": 1,
-  "owners": 1,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": false,
-  "not_in_out": 0,
-  "hot": [
-   {
-    "repo": "vlumi/tourian",
-    "stars": 0,
-    "commits_30d": 74,
-    "commits_7d": 74
-   }
-  ]
- },
- {
-  "token": "agridseq",
-  "total": 1,
-  "owners": 1,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": false,
-  "not_in_out": 0,
-  "hot": [
-   {
-    "repo": "LiuLiShenShe/AgriDSeq-JEPA",
-    "stars": 0,
-    "commits_30d": 22,
-    "commits_7d": 22
-   }
-  ]
- },
- {
-  "token": "ishinca",
-  "total": 1,
-  "owners": 1,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": false,
-  "not_in_out": 0,
-  "hot": [
-   {
-    "repo": "kimsunguk0/Ishinca",
-    "stars": 0,
-    "commits_30d": 5,
-    "commits_7d": 5
-   }
-  ]
- },
- {
-  "token": "k7m2x",
-  "total": 23,
-  "owners": 16,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": false,
-  "not_in_out": 22,
-  "hot": []
- },
- {
-  "token": "telearm",
+  "token": "telesis",
   "total": 4,
   "owners": 4,
   "cohesive": false,
@@ -343,383 +206,92 @@
   "one_man": false,
   "generic": false,
   "not_in_out": 3,
-  "hot": []
+  "hot": [
+   {
+    "repo": "aidavaliyeva/telesis",
+    "stars": 0,
+    "commits_30d": 7,
+    "commits_7d": 7
+   }
+  ]
  },
  {
-  "token": "imbench",
-  "total": 2,
-  "owners": 2,
+  "token": "predseg",
+  "total": 1,
+  "owners": 1,
   "cohesive": false,
   "thematic": false,
   "theme": [],
   "one_man": false,
   "generic": false,
-  "not_in_out": 1,
+  "not_in_out": 0,
+  "hot": [
+   {
+    "repo": "Rango-bit/PredSeg",
+    "stars": 0,
+    "commits_30d": 9,
+    "commits_7d": 9
+   }
+  ]
+ },
+ {
+  "token": "quantaguard",
+  "total": 1,
+  "owners": 1,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": false,
+  "not_in_out": 0,
+  "hot": [
+   {
+    "repo": "Edootrx/quantaguard",
+    "stars": 0,
+    "commits_30d": 9,
+    "commits_7d": 9
+   }
+  ]
+ },
+ {
+  "token": "robotmanipulationpolicysimulation",
+  "total": 1,
+  "owners": 1,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": false,
+  "not_in_out": 0,
   "hot": []
  },
  {
-  "token": "from",
-  "total": 252475,
-  "owners": 91,
-  "cohesive": true,
+  "token": "interactvla",
+  "total": 1,
+  "owners": 1,
+  "cohesive": false,
   "thematic": false,
-  "theme": [
-   [
-    "open",
-    24
-   ],
-   [
-    "source",
-    21
-   ]
-  ],
+  "theme": [],
   "one_man": false,
-  "generic": true,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "storytold/photocraft",
-    "stars": 78484,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "yetone/magpie",
-    "stars": 33858,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/pdfcraft",
-    "stars": 20293,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/filmcraft",
-    "stars": 17993,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/lightcraft",
-    "stars": 15813,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/vectorcraft",
-    "stars": 11595,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/effectcraft",
-    "stars": 8628,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "horizon-rust/horizon",
-    "stars": 8571,
-    "commits_30d": 100,
-    "commits_7d": 100
-   }
-  ]
+  "generic": false,
+  "not_in_out": 0,
+  "hot": []
  },
  {
-  "token": "scratch",
-  "total": 23292,
-  "owners": 90,
-  "cohesive": true,
+  "token": "robotarflow",
+  "total": 1,
+  "owners": 1,
+  "cohesive": false,
   "thematic": false,
-  "theme": [
-   [
-    "written",
-    30
-   ],
-   [
-    "rust",
-    27
-   ],
-   [
-    "open",
-    23
-   ],
-   [
-    "source",
-    20
-   ]
-  ],
+  "theme": [],
   "one_man": false,
-  "generic": true,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "storytold/photocraft",
-    "stars": 78484,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/pdfcraft",
-    "stars": 20293,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/filmcraft",
-    "stars": 17993,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/lightcraft",
-    "stars": 15813,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/vectorcraft",
-    "stars": 11595,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "storytold/effectcraft",
-    "stars": 8628,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "horizon-rust/horizon",
-    "stars": 8571,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "HeyPuter/everything",
-    "stars": 8007,
-    "commits_30d": 100,
-    "commits_7d": 77
-   }
-  ]
+  "generic": false,
+  "not_in_out": 0,
+  "hot": []
  },
  {
   "token": "engine",
-  "total": 124274,
-  "owners": 97,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": true,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "Niko1221/Strata",
-    "stars": 42850,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "mw00/project-maya",
-    "stars": 2766,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "NandhaKishorM/laya",
-    "stars": 35356,
-    "commits_30d": 100,
-    "commits_7d": 94
-   },
-   {
-    "repo": "SubmitGame/awesome-decomp-games",
-    "stars": 3006,
-    "commits_30d": 38,
-    "commits_7d": 6
-   },
-   {
-    "repo": "Inkloom-art/inkloom",
-    "stars": 3250,
-    "commits_30d": 5,
-    "commits_7d": 1
-   },
-   {
-    "repo": "academa-labs/manimgx",
-    "stars": 2695,
-    "commits_30d": 36,
-    "commits_7d": 0
-   },
-   {
-    "repo": "deepopen-com/deepopen",
-    "stars": 3075,
-    "commits_30d": 6,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "with",
-  "total": 904972,
-  "owners": 99,
-  "cohesive": false,
-  "thematic": false,
-  "theme": [],
-  "one_man": false,
-  "generic": true,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "horizon-rust/horizon",
-    "stars": 8572,
-    "commits_30d": 100,
-    "commits_7d": 100
-   },
-   {
-    "repo": "NandhaKishorM/laya",
-    "stars": 35356,
-    "commits_30d": 100,
-    "commits_7d": 94
-   },
-   {
-    "repo": "Ebony-Vinyl/dsh-our-free-model",
-    "stars": 68674,
-    "commits_30d": 100,
-    "commits_7d": 69
-   },
-   {
-    "repo": "lemomo-ai/lemo-opuscar",
-    "stars": 14467,
-    "commits_30d": 100,
-    "commits_7d": 47
-   },
-   {
-    "repo": "google/elephant-goldfish-model",
-    "stars": 17131,
-    "commits_30d": 100,
-    "commits_7d": 37
-   },
-   {
-    "repo": "wheresryan22/anatomy",
-    "stars": 26487,
-    "commits_30d": 83,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "randomization",
-  "total": 22062,
-  "owners": 99,
-  "cohesive": true,
-  "thematic": false,
-  "theme": [
-   [
-    "random",
-    75
-   ]
-  ],
-  "one_man": false,
-  "generic": true,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "Meisho-Doto25/scr-roulette-web",
-    "stars": 70,
-    "commits_30d": 100,
-    "commits_7d": 30
-   },
-   {
-    "repo": "harpal25/Sc-Rhyan57-Random-Mod-Vault",
-    "stars": 68,
-    "commits_30d": 100,
-    "commits_7d": 30
-   },
-   {
-    "repo": "temik2226-arch/unsplash-walls",
-    "stars": 149,
-    "commits_30d": 24,
-    "commits_7d": 21
-   },
-   {
-    "repo": "xl03-bit/sm120-nvfp4-training",
-    "stars": 63,
-    "commits_30d": 15,
-    "commits_7d": 8
-   },
-   {
-    "repo": "deeeeone/gitdrive",
-    "stars": 133,
-    "commits_30d": 54,
-    "commits_7d": 0
-   },
-   {
-    "repo": "CYBERVERSE-Research/skyline-speeder",
-    "stars": 209,
-    "commits_30d": 13,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "guided",
-  "total": 46645,
-  "owners": 99,
-  "cohesive": true,
-  "thematic": false,
-  "theme": [
-   [
-    "guides",
-    22
-   ]
-  ],
-  "one_man": false,
-  "generic": true,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "riyadhHDA/wichforks",
-    "stars": 556,
-    "commits_30d": 30,
-    "commits_7d": 30
-   },
-   {
-    "repo": "windows-GPU-UNLOCK/Windows-GPU-UNLOCK",
-    "stars": 2066,
-    "commits_30d": 100,
-    "commits_7d": 26
-   },
-   {
-    "repo": "LuwuDynamics/xgoduck_hardware",
-    "stars": 1880,
-    "commits_30d": 28,
-    "commits_7d": 10
-   },
-   {
-    "repo": "Nutlope/bygga",
-    "stars": 673,
-    "commits_30d": 100,
-    "commits_7d": 0
-   },
-   {
-    "repo": "agharsallah/esp-labs-web",
-    "stars": 781,
-    "commits_30d": 53,
-    "commits_7d": 0
-   },
-   {
-    "repo": "AbdelStark/awesome-typesafe-jev",
-    "stars": 616,
-    "commits_30d": 31,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "vision",
-  "total": 38427,
+  "total": 127340,
   "owners": 98,
   "cohesive": false,
   "thematic": false,
@@ -729,135 +301,122 @@
   "not_in_out": 100,
   "hot": [
    {
-    "repo": "onehumanbeing/esp32-iphone-agent",
-    "stars": 4810,
-    "commits_30d": 100,
-    "commits_7d": 46
-   },
-   {
-    "repo": "LucaPazienza/gravityrush_pc",
-    "stars": 354,
-    "commits_30d": 100,
-    "commits_7d": 16
-   },
-   {
-    "repo": "CroqueMr/libreelec-x86-DV",
-    "stars": 313,
-    "commits_30d": 100,
-    "commits_7d": 15
-   },
-   {
-    "repo": "fudan-generative-vision/Remory",
-    "stars": 659,
-    "commits_30d": 31,
-    "commits_7d": 10
-   },
-   {
-    "repo": "LMIXR/CV_Deployment_skill",
-    "stars": 749,
-    "commits_30d": 23,
-    "commits_7d": 7
-   },
-   {
-    "repo": "pullboard-dev/pullboard",
-    "stars": 803,
-    "commits_30d": 100,
-    "commits_7d": 0
-   }
-  ]
- },
- {
-  "token": "reason",
-  "total": 6078,
-  "owners": 90,
-  "cohesive": true,
-  "thematic": false,
-  "theme": [
-   [
-    "reasoning",
-    31
-   ]
-  ],
-  "one_man": false,
-  "generic": true,
-  "not_in_out": 100,
-  "hot": [
-   {
-    "repo": "lijiaqi-AI-Product-Manager/dsh-agent-compare",
-    "stars": 296,
+    "repo": "Niko1221/Strata",
+    "stars": 45288,
     "commits_30d": 100,
     "commits_7d": 100
    },
    {
-    "repo": "tianjanahary05-source/reason-14-installer",
-    "stars": 773,
-    "commits_30d": 21,
-    "commits_7d": 19
-   },
-   {
-    "repo": "reason-machines/reason-network",
-    "stars": 1714,
+    "repo": "mw00/project-maya",
+    "stars": 2995,
     "commits_30d": 100,
-    "commits_7d": 12
+    "commits_7d": 100
    },
    {
-    "repo": "reason-machines/aspen",
-    "stars": 114,
-    "commits_30d": 8,
-    "commits_7d": 8
+    "repo": "shinyobjectz/raea",
+    "stars": 2731,
+    "commits_30d": 100,
+    "commits_7d": 100
    },
    {
-    "repo": "PKU-VaLuE-Lab/OmniReasoning",
-    "stars": 248,
-    "commits_30d": 22,
+    "repo": "SubmitGame/awesome-decomp-games",
+    "stars": 3109,
+    "commits_30d": 29,
+    "commits_7d": 7
+   },
+   {
+    "repo": "academa-labs/manimgx",
+    "stars": 2789,
+    "commits_30d": 30,
     "commits_7d": 0
    },
    {
-    "repo": "KaiserWhoLearns/ReasoningEffortLLM",
-    "stars": 109,
+    "repo": "deepopen-com/deepopen",
+    "stars": 3075,
+    "commits_30d": 6,
+    "commits_7d": 0
+   },
+   {
+    "repo": "Inkloom-art/inkloom",
+    "stars": 3227,
     "commits_30d": 5,
     "commits_7d": 0
    }
   ]
  },
  {
-  "token": "banana",
-  "total": 2626,
-  "owners": 64,
+  "token": "long",
+  "total": 19661,
+  "owners": 98,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "Fei2411/DS-Bot",
+    "stars": 8231,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "haziqahmedqasmi/PeakCut",
+    "stars": 853,
+    "commits_30d": 24,
+    "commits_7d": 24
+   },
+   {
+    "repo": "Prefrontal-AI/latent-sparse-attention",
+    "stars": 468,
+    "commits_30d": 23,
+    "commits_7d": 11
+   },
+   {
+    "repo": "mikamikasuki/forest",
+    "stars": 355,
+    "commits_30d": 50,
+    "commits_7d": 5
+   },
+   {
+    "repo": "RainBowLuoCS/Gamer",
+    "stars": 518,
+    "commits_30d": 5,
+    "commits_7d": 5
+   },
+   {
+    "repo": "sarpstar/cinecode",
+    "stars": 2665,
+    "commits_30d": 9,
+    "commits_7d": 2
+   },
+   {
+    "repo": "zeekk0/OpenAmika",
+    "stars": 671,
+    "commits_30d": 76,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "unit",
+  "total": 38020,
+  "owners": 97,
   "cohesive": true,
   "thematic": false,
   "theme": [
    [
-    "image",
-    90
+    "head",
+    42
    ],
    [
-    "gemini",
-    75
+    "units",
+    41
    ],
    [
-    "compatible",
-    68
-   ],
-   [
-    "openai",
-    68
-   ],
-   [
-    "preview",
-    60
-   ],
-   [
-    "cost",
-    57
-   ],
-   [
-    "minimum",
-    49
-   ],
-   [
-    "flash",
-    43
+    "android",
+    23
    ]
   ],
   "one_man": false,
@@ -865,47 +424,63 @@
   "not_in_out": 100,
   "hot": [
    {
-    "repo": "JorreFog/BananaLinux",
-    "stars": 124,
+    "repo": "robertnisipeanu/mgu-store",
+    "stars": 898,
     "commits_30d": 100,
     "commits_7d": 100
    },
    {
-    "repo": "GabrieleLozupone/kokon",
-    "stars": 331,
+    "repo": "cauliflowermossgrape/idrive7-apps",
+    "stars": 726,
     "commits_30d": 100,
-    "commits_7d": 25
+    "commits_7d": 100
    },
    {
-    "repo": "orkunisitmak/banana-studio",
-    "stars": 333,
+    "repo": "robertnisipeanu/idrive-apps",
+    "stars": 459,
     "commits_30d": 100,
-    "commits_7d": 20
+    "commits_7d": 100
    },
    {
-    "repo": "apimart-awesome-ai-api-proxy/nano-banana-pro-api",
-    "stars": 139,
-    "commits_30d": 29,
-    "commits_7d": 7
+    "repo": "JoppieToppie/Galaxy-on-Fire-2-Unity-Remake",
+    "stars": 295,
+    "commits_30d": 100,
+    "commits_7d": 100
    },
    {
-    "repo": "wquguru/shisei",
-    "stars": 478,
+    "repo": "cauliflowermossgrape/idrive7-8-ssh-root",
+    "stars": 561,
+    "commits_30d": 59,
+    "commits_7d": 3
+   },
+   {
+    "repo": "rPlayAI/carcast-public",
+    "stars": 332,
+    "commits_30d": 33,
+    "commits_7d": 1
+   },
+   {
+    "repo": "shihabal3amri/DiPlay",
+    "stars": 13950,
     "commits_30d": 100,
     "commits_7d": 0
    }
   ]
  },
  {
-  "token": "domain",
-  "total": 16734,
-  "owners": 100,
+  "token": "horizon",
+  "total": 7730,
+  "owners": 95,
   "cohesive": true,
   "thematic": false,
   "theme": [
    [
-    "domains",
-    29
+    "long",
+    28
+   ],
+   [
+    "forza",
+    25
    ]
   ],
   "one_man": false,
@@ -913,34 +488,299 @@
   "not_in_out": 100,
   "hot": [
    {
-    "repo": "scaleapi/agentenv-framework",
-    "stars": 427,
+    "repo": "seedds/nxnative",
+    "stars": 16032,
     "commits_30d": 100,
     "commits_7d": 100
    },
    {
-    "repo": "Clearailhc/clearai-dsh",
-    "stars": 692,
-    "commits_30d": 41,
-    "commits_7d": 31
+    "repo": "horizon-rust/horizon",
+    "stars": 11099,
+    "commits_30d": 100,
+    "commits_7d": 100
    },
    {
-    "repo": "sums001/OpenInbox",
-    "stars": 309,
-    "commits_30d": 37,
-    "commits_7d": 19
+    "repo": "FH1-ReImagined/ForzaHorizon1-ReImagined",
+    "stars": 479,
+    "commits_30d": 100,
+    "commits_7d": 70
    },
    {
-    "repo": "firelex/jeff",
-    "stars": 1595,
-    "commits_30d": 8,
-    "commits_7d": 8
+    "repo": "RokkuDayo/ForzaHorizon2_ExtraOptions",
+    "stars": 474,
+    "commits_30d": 63,
+    "commits_7d": 20
+   },
+   {
+    "repo": "mikamikasuki/forest",
+    "stars": 355,
+    "commits_30d": 50,
+    "commits_7d": 5
+   },
+   {
+    "repo": "RainBowLuoCS/Gamer",
+    "stars": 518,
+    "commits_30d": 5,
+    "commits_7d": 5
+   },
+   {
+    "repo": "TencentARC/GameHorizon",
+    "stars": 602,
+    "commits_30d": 7,
+    "commits_7d": 3
    }
   ]
  },
  {
-  "token": "stanford",
-  "total": 807,
+  "token": "anchored",
+  "total": 2952,
+  "owners": 99,
+  "cohesive": true,
+  "thematic": false,
+  "theme": [
+   [
+    "anchor",
+    28
+   ],
+   [
+    "anchors",
+    20
+   ]
+  ],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 99,
+  "hot": [
+   {
+    "repo": "geer1895/rfauto",
+    "stars": 47,
+    "commits_30d": 79,
+    "commits_7d": 14
+   },
+   {
+    "repo": "sailingexodus/exodus-radar",
+    "stars": 133,
+    "commits_30d": 9,
+    "commits_7d": 6
+   },
+   {
+    "repo": "floatdotxyz/float",
+    "stars": 157,
+    "commits_30d": 16,
+    "commits_7d": 4
+   },
+   {
+    "repo": "SpaceDataRig/space-data-rig",
+    "stars": 150,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "HetaoLu-Creater/uwb-localisation",
+    "stars": 102,
+    "commits_30d": 54,
+    "commits_7d": 0
+   },
+   {
+    "repo": "Darhkfox/MickeyAndDonaldCollection",
+    "stars": 66,
+    "commits_30d": 27,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "path",
+  "total": 28750,
+  "owners": 99,
+  "cohesive": true,
+  "thematic": false,
+  "theme": [
+   [
+    "paths",
+    26
+   ]
+  ],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "miuuyy/Octopus-SI-OS",
+    "stars": 773,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "meshy-dev/ThreeRT",
+    "stars": 563,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "data-goblin/claude-code-filetree",
+    "stars": 449,
+    "commits_30d": 100,
+    "commits_7d": 19
+   },
+   {
+    "repo": "lili-luo/dsh-plugin-bundle",
+    "stars": 340,
+    "commits_30d": 16,
+    "commits_7d": 7
+   },
+   {
+    "repo": "mikamikasuki/forest",
+    "stars": 355,
+    "commits_30d": 50,
+    "commits_7d": 5
+   },
+   {
+    "repo": "NVIDIAGameWorks/rtx-remix-minecraft",
+    "stars": 787,
+    "commits_30d": 31,
+    "commits_7d": 2
+   }
+  ]
+ },
+ {
+  "token": "tests",
+  "total": 210273,
+  "owners": 98,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "BaaRai/ARTEX",
+    "stars": 6539,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "expo/exact",
+    "stars": 4602,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "cranebeaker/coop-anything",
+    "stars": 2161,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "kaankiziltug/logo-design-skill",
+    "stars": 7177,
+    "commits_30d": 9,
+    "commits_7d": 1
+   },
+   {
+    "repo": "rehan-remade/universal-modder",
+    "stars": 9750,
+    "commits_30d": 92,
+    "commits_7d": 0
+   },
+   {
+    "repo": "jiwoochris/artex-global",
+    "stars": 3791,
+    "commits_30d": 6,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "tower",
+  "total": 7223,
+  "owners": 98,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "CIS-C0/RFSentinel",
+    "stars": 231,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "Gumpolas/TooTawersRecomp",
+    "stars": 113,
+    "commits_30d": 100,
+    "commits_7d": 45
+   },
+   {
+    "repo": "aablinov/malina",
+    "stars": 109,
+    "commits_30d": 100,
+    "commits_7d": 7
+   },
+   {
+    "repo": "Shagg88/Athelas",
+    "stars": 210,
+    "commits_30d": 35,
+    "commits_7d": 5
+   },
+   {
+    "repo": "lvgalvao/ImersaoControlTower",
+    "stars": 159,
+    "commits_30d": 59,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "level",
+  "total": 43555,
+  "owners": 98,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "krisgfx9/Wireless-Device-Battery-Monitor",
+    "stars": 2537,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "T-Auto/dsh-ops",
+    "stars": 5894,
+    "commits_30d": 100,
+    "commits_7d": 50
+   },
+   {
+    "repo": "chenxiachan/textfold",
+    "stars": 1239,
+    "commits_30d": 100,
+    "commits_7d": 31
+   },
+   {
+    "repo": "HeyOkay/HaloBattery",
+    "stars": 790,
+    "commits_30d": 100,
+    "commits_7d": 10
+   },
+   {
+    "repo": "LTSharpe/OblivionRemasteredPerformanceFix",
+    "stars": 503,
+    "commits_30d": 43,
+    "commits_7d": 2
+   }
+  ]
+ },
+ {
+  "token": "robotics",
+  "total": 27236,
   "owners": 93,
   "cohesive": false,
   "thematic": false,
@@ -950,29 +790,41 @@
   "not_in_out": 100,
   "hot": [
    {
-    "repo": "xuyiqing/regression-lectures",
-    "stars": 89,
-    "commits_30d": 17,
-    "commits_7d": 3
+    "repo": "Open-RUA/uni-robot-agent",
+    "stars": 442,
+    "commits_30d": 100,
+    "commits_7d": 18
    },
    {
-    "repo": "FL-Bin/stanford-ai-course",
-    "stars": 66,
-    "commits_30d": 21,
+    "repo": "ManfredCh/Lyapunov",
+    "stars": 1231,
+    "commits_30d": 26,
+    "commits_7d": 8
+   },
+   {
+    "repo": "LuwuDynamics/xgoduck_hardware",
+    "stars": 1966,
+    "commits_30d": 31,
+    "commits_7d": 4
+   },
+   {
+    "repo": "robosimstudio/robosimstudio",
+    "stars": 602,
+    "commits_30d": 16,
     "commits_7d": 1
    },
    {
-    "repo": "wanghao-SunSky/cs329z-chinese",
-    "stars": 565,
-    "commits_30d": 6,
-    "commits_7d": 1
+    "repo": "BinceQu/RoboHarness",
+    "stars": 522,
+    "commits_30d": 22,
+    "commits_7d": 0
    }
   ]
  },
  {
-  "token": "grasp",
-  "total": 763,
-  "owners": 94,
+  "token": "robotic",
+  "total": 26217,
+  "owners": 93,
   "cohesive": false,
   "thematic": false,
   "theme": [],
@@ -981,29 +833,236 @@
   "not_in_out": 100,
   "hot": [
    {
-    "repo": "Cyanat-qt/ros2_vision_grasp",
-    "stars": 10,
-    "commits_30d": 5,
-    "commits_7d": 0
+    "repo": "Open-RUA/uni-robot-agent",
+    "stars": 442,
+    "commits_30d": 100,
+    "commits_7d": 18
    },
    {
-    "repo": "Barrybarry-Smith/TROGraspV2",
-    "stars": 7,
-    "commits_30d": 5,
+    "repo": "ManfredCh/Lyapunov",
+    "stars": 1231,
+    "commits_30d": 26,
+    "commits_7d": 8
+   },
+   {
+    "repo": "LuwuDynamics/xgoduck_hardware",
+    "stars": 1966,
+    "commits_30d": 31,
+    "commits_7d": 4
+   },
+   {
+    "repo": "robosimstudio/robosimstudio",
+    "stars": 602,
+    "commits_30d": 16,
+    "commits_7d": 1
+   },
+   {
+    "repo": "BinceQu/RoboHarness",
+    "stars": 522,
+    "commits_30d": 22,
     "commits_7d": 0
    }
   ]
  },
  {
-  "token": "jepa",
-  "total": 689,
-  "owners": 97,
+  "token": "manipulation",
+  "total": 4163,
+  "owners": 92,
   "cohesive": false,
   "thematic": false,
   "theme": [],
   "one_man": false,
   "generic": true,
   "not_in_out": 100,
-  "hot": []
+  "hot": [
+   {
+    "repo": "LambdaHumanoid/openlambda",
+    "stars": 166,
+    "commits_30d": 25,
+    "commits_7d": 3
+   },
+   {
+    "repo": "Robbyant/lingbot-touch",
+    "stars": 759,
+    "commits_30d": 10,
+    "commits_7d": 2
+   },
+   {
+    "repo": "robosimstudio/robosimstudio",
+    "stars": 602,
+    "commits_30d": 16,
+    "commits_7d": 1
+   },
+   {
+    "repo": "CumulusAlpha/Dex-Supermimic",
+    "stars": 148,
+    "commits_30d": 19,
+    "commits_7d": 0
+   },
+   {
+    "repo": "Ropedia/ropedia-w0",
+    "stars": 297,
+    "commits_30d": 9,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "embodied",
+  "total": 1378,
+  "owners": 92,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "OpenSenseNova/SenseNova-RoboRSI",
+    "stars": 829,
+    "commits_30d": 74,
+    "commits_7d": 2
+   },
+   {
+    "repo": "THUSI-Lab/GameScaling",
+    "stars": 558,
+    "commits_30d": 7,
+    "commits_7d": 1
+   },
+   {
+    "repo": "zengxiong111/Foundation_of_Embodied_AI",
+    "stars": 245,
+    "commits_30d": 40,
+    "commits_7d": 0
+   },
+   {
+    "repo": "BinceQu/RoboHarness",
+    "stars": 522,
+    "commits_30d": 22,
+    "commits_7d": 0
+   },
+   {
+    "repo": "eust-w/opengeniemaster",
+    "stars": 467,
+    "commits_30d": 6,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "matching",
+  "total": 16590,
+  "owners": 97,
+  "cohesive": true,
+  "thematic": false,
+  "theme": [
+   [
+    "decompilation",
+    38
+   ]
+  ],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "skuza-oss/downhill-revived",
+    "stars": 226,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "OpenRAC/OpenRAC",
+    "stars": 210,
+    "commits_30d": 100,
+    "commits_7d": 100
+   },
+   {
+    "repo": "zengxiong111/Foundation_of_Embodied_AI",
+    "stars": 245,
+    "commits_30d": 40,
+    "commits_7d": 0
+   },
+   {
+    "repo": "cvg/FlexGlue",
+    "stars": 345,
+    "commits_30d": 14,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "hackathon",
+  "total": 45911,
+  "owners": 96,
+  "cohesive": true,
+  "thematic": false,
+  "theme": [
+   [
+    "built",
+    20
+   ]
+  ],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "SapiensCampus/EventSapiens",
+    "stars": 37,
+    "commits_30d": 64,
+    "commits_7d": 6
+   },
+   {
+    "repo": "hackathon-crew/contest-detective",
+    "stars": 31,
+    "commits_30d": 100,
+    "commits_7d": 0
+   },
+   {
+    "repo": "rust-spielberg/G.L.A.S.S",
+    "stars": 58,
+    "commits_30d": 47,
+    "commits_7d": 0
+   },
+   {
+    "repo": "KunalGolaIBM/IBM_Db2_TechX_Project_Submission",
+    "stars": 42,
+    "commits_30d": 8,
+    "commits_7d": 0
+   }
+  ]
+ },
+ {
+  "token": "portfolio",
+  "total": 364494,
+  "owners": 98,
+  "cohesive": false,
+  "thematic": false,
+  "theme": [],
+  "one_man": false,
+  "generic": true,
+  "not_in_out": 100,
+  "hot": [
+   {
+    "repo": "8hjkkwikl8/ai-portfolio",
+    "stars": 105,
+    "commits_30d": 12,
+    "commits_7d": 12
+   },
+   {
+    "repo": "jcarrillomantilla-web/telegram-bots-portfolio",
+    "stars": 153,
+    "commits_30d": 11,
+    "commits_7d": 8
+   },
+   {
+    "repo": "ceyyy427/finathink",
+    "stars": 247,
+    "commits_30d": 42,
+    "commits_7d": 3
+   }
+  ]
  }
 ]

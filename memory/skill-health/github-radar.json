@@ -1,17 +1,11 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-11-15T22:33:03Z",
+  "last_analyzed": "2026-11-17T22:35:50Z",
   "quality_score": 4,
-  "assessment": "Delivers the discovery job cleanly: 9 newly active repos by direction keyword with star counts, 30-day/7-day activity deltas, matched terms, and one-line descriptions — exactly the 'is anyone writing code' signal the skill targets, with no editorializing beyond scope; minor deduction for several descriptions truncated mid-sentence.",
+  "assessment": "Clean, well-structured discovery list matching the skill's narrow job: 20 new repos with URLs, stars, activity counts, matched direction words, and descriptions, sorted sensibly; truncated descriptions suggest real fetched metadata rather than invention, though the metric labels (30天/7天) are undefined and no per-word coverage summary is given.",
   "flags": [],
-  "avg_score": 3.27,
+  "avg_score": 3.3,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 3,
-      "ts": "2026-10-26T05:10:37Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 3,
@@ -184,6 +178,12 @@
       "date": "2026-11-15",
       "score": 4,
       "ts": "2026-11-15T22:33:03Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-17",
+      "score": 4,
+      "ts": "2026-11-17T22:35:50Z",
       "harness": "claude"
     }
   ]

@@ -1,11 +1,22 @@
-**github-radar** · 窗口 7 天 · 报告级 9 · 近 7 天活跃 9
+**github-radar** · 窗口 7 天 · 报告级 20 · 近 7 天活跃 20
 
-- [vctr-dng/manip-rubiks](https://github.com/vctr-dng/manip-rubiks) ★0 · 30天=38 · 7天=38 · 词 `robot manipulation` · Robotic manipulation of Rubik's cubes using tactile sensing
-- [Rohitjangra7370/physical-ai-stack](https://github.com/Rohitjangra7370/physical-ai-stack) ★0 · 30天=14 · 7天=14 · 词 `world model` · Physical AI stack, built bottom-up: MuJoCo RL, CUDA edge compute, vision-language-action, world mode
-- [shview/FlowPolicy-Jittor](https://github.com/shview/FlowPolicy-Jittor) ★0 · 30天=9 · 7天=9 · 词 `robot manipulation` · A Jittor reimplementation of FlowPolicy for 3D robot manipulation, with reproducible training and Me
-- [ThanujMaligi/ExoLink-Vision-HRI](https://github.com/ThanujMaligi/ExoLink-Vision-HRI) ★0 · 30天=49 · 7天=6 · 词 `teleoperation` · ⚡ Contactless AI Teleoperation & 3D Digital Twin Interface via Webcam Hand Tracking (No Gloves/IMUs)
-- [svend4/open-cycle-jepa](https://github.com/svend4/open-cycle-jepa) ★0 · 30天=6 · 7天=6 · 词 `jepa` · Open-Cycle JEPA: theory of open/deformed cycles over V-JEPA / H-JEPA with Kryukov sphere hierarchy, 
-- [srcJin/raven-ego-gaze](https://github.com/srcJin/raven-ego-gaze) ★0 · 30天=6 · 7天=6 · 词 `egocentric` · EgoGaze: record egocentric frames and gaze for inspectable robot attention datasets.
-- [lucidrains/PMW-pytorch](https://github.com/lucidrains/PMW-pytorch) ★2 · 30天=5 · 7天=5 · 词 `world model` · A practical implementation of PWM: Policy Learning with Multi-Task World Models
-- [fan-gu-hao/smart-car](https://github.com/fan-gu-hao/smart-car) ★0 · 30天=5 · 7天=5 · 词 `teleoperation` · Jetson Orin Nano + STM32F412 smart RC car: onboard vision, 5G teleoperation, four-direction ranging,
-- [EntangledQuantum/quest-teleop](https://github.com/EntangledQuantum/quest-teleop) ★0 · 30天=5 · 7天=5 · 词 `teleoperation` · Generic VR teleoperation for Meta Quest headsets (OpenXR, tested on Quest 2): native app + Python se
+- [AgilexOpensource/lookie_ros](https://github.com/AgilexOpensource/lookie_ros) ★0 · 30天=37 · 7天=37 · 词 `teleoperation` · ROS 2 packages for the Lookie robots (Trio and Neo): drivers, whole-body control with kstone, RViz a
+- [lucidrains/supermimic-pytorch](https://github.com/lucidrains/supermimic-pytorch) ★6 · 30天=16 · 7天=16 · 词 `world model` · Unofficial implementation of Supermimic, Scaling Humanoid Whole-Body Control with One Differentiable
+- [JIAlonglong/Anchored-Path-Matching](https://github.com/JIAlonglong/Anchored-Path-Matching) ★2 · 30天=12 · 7天=12 · 词 `world action model` · Distilling World Action Models for Efficient Bimanual Manipulation via Anchored Path Matching
+- [tower-benchmark/TOWER](https://github.com/tower-benchmark/TOWER) ★0 · 30天=11 · 7天=11 · 词 `robot manipulation` · TOWER is an open, reproducible benchmark for robot manipulation in tower-building and block-transfer
+- [DongzheZheng/world-models-as-unit-tests](https://github.com/DongzheZheng/world-models-as-unit-tests) ★0 · 30天=11 · 7天=11 · 词 `world model` · Code and recorded results for an early exploration in which coding agents write a task's world model
+- [joyjeet-singh/rwm-robot-level](https://github.com/joyjeet-singh/rwm-robot-level) ★0 · 30天=96 · 7天=10 · 词 `world model` · Independent robot-level tests of the Robotic World Model (RWM, RWM-U): do a learned simulator's accu
+- [Rango-bit/PredSeg](https://github.com/Rango-bit/PredSeg) ★0 · 30天=9 · 7天=9 · 词 `jepa` · This repository contains the official implementation of “Exploiting Latent Predictive Priors for Med
+- [Edootrx/quantaguard](https://github.com/Edootrx/quantaguard) ★0 · 30天=9 · 7天=9 · 词 `proof of useful work` · PQ-ready ERC-4337 smart-account wallet for QMS Network — guardian recovery anchored to post-quantum 
+- [GuninderSinghBhatia/egocentric-qc-engine](https://github.com/GuninderSinghBhatia/egocentric-qc-engine) ★0 · 30天=8 · 7天=8 · 词 `egocentric` · Egocentric data quality engine: QC pipeline for first-person video clips
+- [yulin-luo/deepvision-vla](https://github.com/yulin-luo/deepvision-vla) ★2 · 30天=7 · 7天=7 · 词 `vision language action` · Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models (A
+- [Saanvi51/dobot-robotics-portfolio](https://github.com/Saanvi51/dobot-robotics-portfolio) ★0 · 30天=7 · 7天=7 · 词 `robot manipulation` · Five robotics projects showcasing computer vision, autonomous planning, robotic manipulation, and hu
+- [aidavaliyeva/telesis](https://github.com/aidavaliyeva/telesis) ★0 · 30天=7 · 7天=7 · 词 `teleoperation` · Operator-state sensing for safe teleoperation: contactless heart rate (rPPG) in the browser
+- [FlagOpen/HumanCOIN](https://github.com/FlagOpen/HumanCOIN) ★1 · 30天=7 · 7天=6 · 词 `egocentric` · The Human-Signal Dataset at the Scale of Egocentric Manipulation
+- [MirlonAndres/lunar-landing-site-navigator](https://github.com/MirlonAndres/lunar-landing-site-navigator) ★0 · 30天=6 · 7天=6 · 词 `teleoperation` · NASA Space Apps Challenge 2026 - Autonomous Artemis Polar Landing Site Selection, WebGL 3D Digital T
+- [amazon-far/dreamfar](https://github.com/amazon-far/dreamfar) ★3 · 30天=5 · 7天=5 · 词 `robot manipulation` · DreamFAR: a real-time, long-horizon action-conditioned world model for bimanual robot manipulation, 
+- [BGI-Hangzhou-OmicsAI/PerturbJEPA](https://github.com/BGI-Hangzhou-OmicsAI/PerturbJEPA) ★2 · 30天=5 · 7天=5 · 词 `jepa` · PerturbJEPA: portable Parse10M Tiny experiments and Linear Ridge, with English and Chinese documenta
+- [isDel1026/embodied-ai-knowledge-notes](https://github.com/isDel1026/embodied-ai-knowledge-notes) ★0 · 30天=5 · 7天=5 · 词 `robot dataset` · A structured knowledge base of embodied AI, covering simulation platforms, robotics datasets, evalua
+- [fauzan111/sim2real_manipulation_SO101](https://github.com/fauzan111/sim2real_manipulation_SO101) ★0 · 30天=5 · 7天=5 · 词 `sim2real` · A pick-and-place policy learned by imitation (ACT / diffusion policy), trained in MuJoCo with domain
+- [KongphopP/Room-Acoustics-Analyser](https://github.com/KongphopP/Room-Acoustics-Analyser) ★0 · 30天=5 · 7天=5 · 词 `sim-to-real` · Sim-to-real room acoustics: simulate & validate room impulse responses, extract ISO 3382 metrics (RT
+- [LianYi233/PrimingVLA](https://github.com/LianYi233/PrimingVLA) ★0 · 30天=12 · 7天=1 · 词 `vision language action` · PrimingVLA: Self-Supervised Action Priming for Parameter-Efficient Vision--Language--Action Adaptati

@@ -1,0 +1,429 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 20 · 近 7 天活跃 20"
+      },
+      "children": [
+        "stats",
+        "sep-1",
+        "grid"
+      ]
+    },
+    "stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "st-window",
+        "st-report",
+        "st-active"
+      ]
+    },
+    "st-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "7 天",
+        "trend": "neutral"
+      }
+    },
+    "st-report": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "20",
+        "trend": "neutral"
+      }
+    },
+    "st-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "20",
+        "trend": "neutral"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 1,
+        "gap": "md"
+      },
+      "children": [
+        "r1",
+        "r1d",
+        "r2",
+        "r2d",
+        "r3",
+        "r3d",
+        "r4",
+        "r4d",
+        "r5",
+        "r5d",
+        "r6",
+        "r6d",
+        "r7",
+        "r7d",
+        "r8",
+        "r8d",
+        "r9",
+        "r9d",
+        "r10",
+        "r10d",
+        "r11",
+        "r11d",
+        "r12",
+        "r12d",
+        "r13",
+        "r13d",
+        "r14",
+        "r14d",
+        "r15",
+        "r15d",
+        "r16",
+        "r16d",
+        "r17",
+        "r17d",
+        "r18",
+        "r18d",
+        "r19",
+        "r19d",
+        "r20",
+        "r20d"
+      ]
+    },
+    "r1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "AgilexOpensource/lookie_ros",
+        "href": "https://github.com/AgilexOpensource/lookie_ros",
+        "source": "GitHub · teleoperation",
+        "score": "★0 · 30天=37 · 7天=37"
+      }
+    },
+    "r1d": {
+      "type": "Text",
+      "props": {
+        "text": "ROS 2 packages for the Lookie robots (Trio and Neo): drivers, whole-body control with kstone, RViz a",
+        "variant": "caption"
+      }
+    },
+    "r2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "lucidrains/supermimic-pytorch",
+        "href": "https://github.com/lucidrains/supermimic-pytorch",
+        "source": "GitHub · world model",
+        "score": "★6 · 30天=16 · 7天=16"
+      }
+    },
+    "r2d": {
+      "type": "Text",
+      "props": {
+        "text": "Unofficial implementation of Supermimic, Scaling Humanoid Whole-Body Control with One Differentiable",
+        "variant": "caption"
+      }
+    },
+    "r3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "JIAlonglong/Anchored-Path-Matching",
+        "href": "https://github.com/JIAlonglong/Anchored-Path-Matching",
+        "source": "GitHub · world action model",
+        "score": "★2 · 30天=12 · 7天=12"
+      }
+    },
+    "r3d": {
+      "type": "Text",
+      "props": {
+        "text": "Distilling World Action Models for Efficient Bimanual Manipulation via Anchored Path Matching",
+        "variant": "caption"
+      }
+    },
+    "r4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "tower-benchmark/TOWER",
+        "href": "https://github.com/tower-benchmark/TOWER",
+        "source": "GitHub · robot manipulation",
+        "score": "★0 · 30天=11 · 7天=11"
+      }
+    },
+    "r4d": {
+      "type": "Text",
+      "props": {
+        "text": "TOWER is an open, reproducible benchmark for robot manipulation in tower-building and block-transfer",
+        "variant": "caption"
+      }
+    },
+    "r5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DongzheZheng/world-models-as-unit-tests",
+        "href": "https://github.com/DongzheZheng/world-models-as-unit-tests",
+        "source": "GitHub · world model",
+        "score": "★0 · 30天=11 · 7天=11"
+      }
+    },
+    "r5d": {
+      "type": "Text",
+      "props": {
+        "text": "Code and recorded results for an early exploration in which coding agents write a task's world model",
+        "variant": "caption"
+      }
+    },
+    "r6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "joyjeet-singh/rwm-robot-level",
+        "href": "https://github.com/joyjeet-singh/rwm-robot-level",
+        "source": "GitHub · world model",
+        "score": "★0 · 30天=96 · 7天=10"
+      }
+    },
+    "r6d": {
+      "type": "Text",
+      "props": {
+        "text": "Independent robot-level tests of the Robotic World Model (RWM, RWM-U): do a learned simulator's accu",
+        "variant": "caption"
+      }
+    },
+    "r7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Rango-bit/PredSeg",
+        "href": "https://github.com/Rango-bit/PredSeg",
+        "source": "GitHub · jepa",
+        "score": "★0 · 30天=9 · 7天=9"
+      }
+    },
+    "r7d": {
+      "type": "Text",
+      "props": {
+        "text": "This repository contains the official implementation of “Exploiting Latent Predictive Priors for Med",
+        "variant": "caption"
+      }
+    },
+    "r8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Edootrx/quantaguard",
+        "href": "https://github.com/Edootrx/quantaguard",
+        "source": "GitHub · proof of useful work",
+        "score": "★0 · 30天=9 · 7天=9"
+      }
+    },
+    "r8d": {
+      "type": "Text",
+      "props": {
+        "text": "PQ-ready ERC-4337 smart-account wallet for QMS Network - guardian recovery anchored to post-quantum ",
+        "variant": "caption"
+      }
+    },
+    "r9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "GuninderSinghBhatia/egocentric-qc-engine",
+        "href": "https://github.com/GuninderSinghBhatia/egocentric-qc-engine",
+        "source": "GitHub · egocentric",
+        "score": "★0 · 30天=8 · 7天=8"
+      }
+    },
+    "r9d": {
+      "type": "Text",
+      "props": {
+        "text": "Egocentric data quality engine: QC pipeline for first-person video clips",
+        "variant": "caption"
+      }
+    },
+    "r10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "yulin-luo/deepvision-vla",
+        "href": "https://github.com/yulin-luo/deepvision-vla",
+        "source": "GitHub · vision language action",
+        "score": "★2 · 30天=7 · 7天=7"
+      }
+    },
+    "r10d": {
+      "type": "Text",
+      "props": {
+        "text": "Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models (A",
+        "variant": "caption"
+      }
+    },
+    "r11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Saanvi51/dobot-robotics-portfolio",
+        "href": "https://github.com/Saanvi51/dobot-robotics-portfolio",
+        "source": "GitHub · robot manipulation",
+        "score": "★0 · 30天=7 · 7天=7"
+      }
+    },
+    "r11d": {
+      "type": "Text",
+      "props": {
+        "text": "Five robotics projects showcasing computer vision, autonomous planning, robotic manipulation, and hu",
+        "variant": "caption"
+      }
+    },
+    "r12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "aidavaliyeva/telesis",
+        "href": "https://github.com/aidavaliyeva/telesis",
+        "source": "GitHub · teleoperation",
+        "score": "★0 · 30天=7 · 7天=7"
+      }
+    },
+    "r12d": {
+      "type": "Text",
+      "props": {
+        "text": "Operator-state sensing for safe teleoperation: contactless heart rate (rPPG) in the browser",
+        "variant": "caption"
+      }
+    },
+    "r13": {
+      "type": "StoryLink",
+      "props": {
+        "title": "FlagOpen/HumanCOIN",
+        "href": "https://github.com/FlagOpen/HumanCOIN",
+        "source": "GitHub · egocentric",
+        "score": "★1 · 30天=7 · 7天=6"
+      }
+    },
+    "r13d": {
+      "type": "Text",
+      "props": {
+        "text": "The Human-Signal Dataset at the Scale of Egocentric Manipulation",
+        "variant": "caption"
+      }
+    },
+    "r14": {
+      "type": "StoryLink",
+      "props": {
+        "title": "MirlonAndres/lunar-landing-site-navigator",
+        "href": "https://github.com/MirlonAndres/lunar-landing-site-navigator",
+        "source": "GitHub · teleoperation",
+        "score": "★0 · 30天=6 · 7天=6"
+      }
+    },
+    "r14d": {
+      "type": "Text",
+      "props": {
+        "text": "NASA Space Apps Challenge 2026 - Autonomous Artemis Polar Landing Site Selection, WebGL 3D Digital T",
+        "variant": "caption"
+      }
+    },
+    "r15": {
+      "type": "StoryLink",
+      "props": {
+        "title": "amazon-far/dreamfar",
+        "href": "https://github.com/amazon-far/dreamfar",
+        "source": "GitHub · robot manipulation",
+        "score": "★3 · 30天=5 · 7天=5"
+      }
+    },
+    "r15d": {
+      "type": "Text",
+      "props": {
+        "text": "DreamFAR: a real-time, long-horizon action-conditioned world model for bimanual robot manipulation, ",
+        "variant": "caption"
+      }
+    },
+    "r16": {
+      "type": "StoryLink",
+      "props": {
+        "title": "BGI-Hangzhou-OmicsAI/PerturbJEPA",
+        "href": "https://github.com/BGI-Hangzhou-OmicsAI/PerturbJEPA",
+        "source": "GitHub · jepa",
+        "score": "★2 · 30天=5 · 7天=5"
+      }
+    },
+    "r16d": {
+      "type": "Text",
+      "props": {
+        "text": "PerturbJEPA: portable Parse10M Tiny experiments and Linear Ridge, with English and Chinese documenta",
+        "variant": "caption"
+      }
+    },
+    "r17": {
+      "type": "StoryLink",
+      "props": {
+        "title": "isDel1026/embodied-ai-knowledge-notes",
+        "href": "https://github.com/isDel1026/embodied-ai-knowledge-notes",
+        "source": "GitHub · robot dataset",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "r17d": {
+      "type": "Text",
+      "props": {
+        "text": "A structured knowledge base of embodied AI, covering simulation platforms, robotics datasets, evalua",
+        "variant": "caption"
+      }
+    },
+    "r18": {
+      "type": "StoryLink",
+      "props": {
+        "title": "fauzan111/sim2real_manipulation_SO101",
+        "href": "https://github.com/fauzan111/sim2real_manipulation_SO101",
+        "source": "GitHub · sim2real",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "r18d": {
+      "type": "Text",
+      "props": {
+        "text": "A pick-and-place policy learned by imitation (ACT / diffusion policy), trained in MuJoCo with domain",
+        "variant": "caption"
+      }
+    },
+    "r19": {
+      "type": "StoryLink",
+      "props": {
+        "title": "KongphopP/Room-Acoustics-Analyser",
+        "href": "https://github.com/KongphopP/Room-Acoustics-Analyser",
+        "source": "GitHub · sim-to-real",
+        "score": "★0 · 30天=5 · 7天=5"
+      }
+    },
+    "r19d": {
+      "type": "Text",
+      "props": {
+        "text": "Sim-to-real room acoustics: simulate & validate room impulse responses, extract ISO 3382 metrics (RT",
+        "variant": "caption"
+      }
+    },
+    "r20": {
+      "type": "StoryLink",
+      "props": {
+        "title": "LianYi233/PrimingVLA",
+        "href": "https://github.com/LianYi233/PrimingVLA",
+        "source": "GitHub · vision language action",
+        "score": "★0 · 30天=12 · 7天=1"
+      }
+    },
+    "r20d": {
+      "type": "Text",
+      "props": {
+        "text": "PrimingVLA: Self-Supervised Action Priming for Parameter-Efficient Vision--Language--Action Adaptati",
+        "variant": "caption"
+      }
+    }
+  }
+}
