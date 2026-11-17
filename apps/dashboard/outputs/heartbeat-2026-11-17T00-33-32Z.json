@@ -1,0 +1,200 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Heartbeat: github-radar 连败 3 轮",
+        "description": "发现层丢了一轮；两个 skill 撞同一堵墙，网关间歇性失败"
+      },
+      "children": [
+        "alert1",
+        "h1",
+        "p1",
+        "code1",
+        "p1b",
+        "p2",
+        "sep1",
+        "h2",
+        "stats",
+        "table1",
+        "sep2",
+        "p3",
+        "p4",
+        "sep3",
+        "p5"
+      ]
+    },
+    "alert1": {
+      "type": "Alert",
+      "props": {
+        "title": "🚨 Heartbeat: github-radar 连败 3 轮",
+        "message": "github-radar 连败达到 3 轮；defi-overview 出现完全相同的失败签名，判定为共用依赖（网关）间歇性失败",
+        "type": "error"
+      }
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "🔴 github-radar 也倒了 -- 发现层丢了一轮",
+        "level": "h2"
+      }
+    },
+    "p1": {
+      "type": "Text",
+      "props": {
+        "text": "consecutive_failures 到 3，11-16 23:31 UTC 那跳失败，最后一次成功停在 11-15 22:33。11-16 的第 28 轮扫盘等于没发生。",
+        "variant": "body"
+      }
+    },
+    "code1": {
+      "type": "Text",
+      "props": {
+        "text": "hivemindos: Failed to authenticate. API Error: 403 All target providers failed",
+        "variant": "muted"
+      }
+    },
+    "p1b": {
+      "type": "Text",
+      "props": {
+        "text": "失败签名和 defi-overview 一模一样。1 turn / 0 tool calls = 请求根本没出网关。",
+        "variant": "body"
+      }
+    },
+    "p2": {
+      "type": "Text",
+      "props": {
+        "text": "判据变了：同一晚 23:00-23:30 两个 skill 连续撞同一堵墙，而 22:00 的 arxiv-radar、18:00 的 memory-flush、00:00 的 defillama-radar 全绿。网关是间歇性失败，不是宕机 -- 现在把两个 skill 当个案修就错了，方向是那个共用依赖。",
+        "variant": "lead"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h2": {
+      "type": "Heading",
+      "props": {
+        "text": "附带读数",
+        "level": "h3"
+      }
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat1",
+        "stat2",
+        "stat3",
+        "stat4",
+        "stat5"
+      ]
+    },
+    "stat1": {
+      "type": "Stat",
+      "props": {
+        "label": "github-radar consecutive_failures",
+        "value": "3",
+        "delta": "+1",
+        "trend": "up"
+      }
+    },
+    "stat2": {
+      "type": "Stat",
+      "props": {
+        "label": "defi-overview 连败",
+        "value": "6",
+        "delta": "+1",
+        "trend": "up"
+      }
+    },
+    "stat3": {
+      "type": "Stat",
+      "props": {
+        "label": "defi-overview 成功率",
+        "value": "48% (19/40)",
+        "delta": "-1%",
+        "trend": "down"
+      }
+    },
+    "stat4": {
+      "type": "Stat",
+      "props": {
+        "label": "market-context.md 冻结",
+        "value": "~96h",
+        "delta": "+24h (11-13 00:15 UTC)",
+        "trend": "up"
+      }
+    },
+    "stat5": {
+      "type": "Stat",
+      "props": {
+        "label": "heartbeat 自检",
+        "value": "24.0h",
+        "delta": "在线内",
+        "trend": "neutral"
+      }
+    },
+    "table1": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "项目",
+          "现状",
+          "上次报告"
+        ],
+        "rows": [
+          [
+            "defi-overview",
+            "连败 6，成功率 48%（19/40）",
+            "连败 5，49%"
+          ],
+          [
+            "market-context.md 冻结",
+            "~96h（11-13 00:15 UTC）",
+            "~72h"
+          ]
+        ]
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "p3": {
+      "type": "Text",
+      "props": {
+        "text": "defi-overview 这轮没单独推（48h 内报过），但 market-context 从 72h 累到 96h -- 任何引用它的判断都在用四天前的宏观读数。",
+        "variant": "body"
+      }
+    },
+    "p4": {
+      "type": "Text",
+      "props": {
+        "text": "可执行动作没变，还是那三选一：补 HivemindOS 余额 / pin 换 provider / 砍单轮输出量。现在多一条理由：再拖下去丢的是发现层的日常轮次，不是单个报告。",
+        "variant": "body"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "p5": {
+      "type": "Text",
+      "props": {
+        "text": "其余 enabled skill 全绿，无 stuck，heartbeat 自检 24.0h 在线内。",
+        "variant": "muted"
+      }
+    }
+  }
+}
