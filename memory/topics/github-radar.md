@@ -3,12 +3,24 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-16T00:00:00Z
+timestamp: 2026-11-17T00:00:00Z
 ---
 
 # github-radar — 实现缺陷与判据
 
 从 [lessons](/topics/lessons.md#过滤器设计) 抽出的 skill 专属条目。三十三轮（2026-11-06）+ 第二十/二十一轮 7 天窗（11-07 / 11-08）实证。
+
+## 轮次缺口：第 28 轮（2026-11-16）没跑成，不是零命中
+
+`last_status: failed`（11-16T23:31:22Z），`consecutive_failures` 到 3，成功率 77%（40/52），最后一次成功停在
+11-15T22:33:23Z。失败签名 `hivemindos: Failed to authenticate. API Error: 403 All target providers failed`，与
+`defi-overview` 11-16T23:01:11Z 那跳逐字相同 —— **是共用网关的间歇性拒绝，不是本 skill 回归**（同窗口
+`arxiv-radar` 22:06Z / `memory-flush` 18:05Z / `defillama-radar` 11-17T00:09Z 全绿）。见
+[ops-plumbing](/topics/ops-plumbing.md)。
+
+**读法：缺口轮次不能算进「连续零报告级」这类序列判据。** 11-15 第 27 轮记的「加密侧连 2 轮空转」，到这里
+必须停在 2 —— 第 28 轮是没产出，不是空转。任何「连续 N 轮」的计数先确认那 N 轮真的跑成了。
+[source: logs/2026-11-17#heartbeat]
 
 ## 第二十七轮（2026-11-15，`days:7`，非 dry-run，**probe 跳过**）—— `30d==7d` 9 条里 8 条成立；★2 仓被证「先占坑」；加密侧连 2 轮空转
 

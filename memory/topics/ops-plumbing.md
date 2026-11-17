@@ -1,12 +1,12 @@
 ---
 title: Scheduler and notification plumbing state
-description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, how a gateway 403 differs from a skill regression and from a 402 balance exhaustion, **why a flapping code sequence (`402`→`max_output_tokens`→`403` in one slot) means the gateway state itself is unstable so no diagnosis can rest on the code alone — `duration_api_ms:0` tells you it never left the gateway, real turns tell you it died mid-session**, why the max_output_tokens failure needs its own fix, the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
+description: What actually fires this agent's schedules, what "enabled" in aeon.yml does and does not prove, how a gateway 403 differs from a skill regression and from a 402 balance exhaustion, **why a flapping code sequence (`402`→`max_output_tokens`→`403` in one slot) means the gateway state itself is unstable so no diagnosis can rest on the code alone — `duration_api_ms:0` tells you it never left the gateway, real turns tell you it died mid-session**, **and why two enabled skills failing inside the same 23:00–23:31Z half hour with a byte-identical signature makes the shared gateway the object and any per-skill cron/verbosity fix the wrong layer — plus why a growing `total_runs` denominator makes `chronic` self-reinforcing so "recovered once" never clears it**, why the max_output_tokens failure needs its own fix, the daily-log append-only rule, and the notification-format rules that supersede the old hand-formatting notes.
 tags:
   - ops
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-16T00:00:00Z
+timestamp: 2026-11-17T00:00:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -252,6 +252,33 @@ for the **same** skill: `402` (11-13T23:00) → `402` (11-13T23:30) → `max_out
   unmerged change*, not a reading about the corpus. See [lessons](/topics/lessons.md#arXiv-检索arxiv-radar).
   Do not self-merge a config decision; log it as WATCH.
   [source: logs/2026-11-16#heartbeat]
+
+#### Update (11-17): it is one shared gateway, not two skill regressions
+
+On the night of 2026-11-16 two *enabled* skills failed inside the same half hour with a byte-identical
+signature (`hivemindos: Failed to authenticate. API Error: 403 All target providers failed`):
+`defi-overview` at 23:01:11Z (cf 5→6, 19/40 = 48%) and `github-radar` at 23:31:22Z (cf→3, 40/52 = 77%,
+last success 11-15T22:33:23Z — so its 第 28 轮 produced nothing at all, which is *not* a zero-hit round).
+
+- **The discriminator is the same window, not the same skill.** In that window `arxiv-radar` (22:06Z),
+  `memory-flush` (18:05Z) and `defillama-radar` (11-17T00:09Z) all succeeded → the gateway is
+  **intermittently rejecting**, not down, and this is **not** a single-skill regression. Earlier rounds
+  framed `defi-overview` as an individual case and proposed moving its cron or trimming its per-round
+  output; with two skills hit at once, those are **low-level fixes on the wrong object**. The object is
+  the shared HivemindOS gateway (quota / auth / routing — still undetermined which).
+- **The design intent puts the fleet inside the failure band.** The 23:00–23:31Z slot is exactly where
+  `defi-overview` (23:00) and `github-radar` (22:30 dispatch, 23:31 fail) run. Any future "batch the
+  nightly skills after 23:00" plan re-creates the same collision.
+- **A growing denominator makes `chronic` self-reinforcing.** `defi-overview` went 19/39 → 19/40
+  because a failure increments `total_runs` while the numerator stays put — every further failure
+  pushes `success_rate` further below 0.5. So "recovered once" does **not** clear it; only a run of
+  successes lifts the rate back over the line. Read the pair `(num/den)` before calling a skill fixed.
+- **Downstream state keeps aging:** `market-context.md` pinned at `2026-11-13T00:15:00Z` → ~96 h. Only
+  `defi-overview` writes it, so the freeze grows a day per failure. Do not cite it as current.
+- **PR queue is empty and the earlier WATCH items are closed:** PR #25 merged 2026-11-16T01:10:30Z
+  (word-list downgrade — the 「低频探针 N=0」 status light went green, judgement closed) and PR #27
+  (the 50-commit upstream sync, a watermark-only change) merged 2026-11-16T11:42:57Z.
+  [source: logs/2026-11-17#heartbeat]
 
 ## Reading `gh run view --log`: colour-escaped lines are the script body, not output
 

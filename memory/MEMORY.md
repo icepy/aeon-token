@@ -1,21 +1,21 @@
 # Long-term Memory
-*Last consolidated: 2026-11-16*
+*Last consolidated: 2026-11-17*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
-- **`aeon-update` 基线 `7b20c95`**（PR #27 待合，11-16）：50 条上游提交**净变更为零**。判据 `CLEAN-MERGE>0` + `git diff --stat` 空 ⇒ 什么都没改；6 条冲突全是技能计数漂移，解法 = `keep_local`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#aeon-update]
-- **待盯（OPERATOR）：`defi-overview` 已破 chronic 线** —— 49%（19/39）、cf=5；码收敛为持续 `403`（`duration_api_ms:0` = 没出网关），成因仍不可判。`market-context.md` 冻结 72h，唯一写入者正是它。门槛未变：补余额 / pin 换 provider。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#heartbeat]
+- **`aeon-update` 基线 `7b20c95`**（PR #27 已合 11-16T11:42Z）：50 条提交**净变更为零**。判据 `CLEAN-MERGE>0` + `git diff --stat` 空 ⇒ 没改；6 冲突全是技能计数漂移 → `keep_local`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#aeon-update]
+- **待盯（OPERATOR）：网关级故障，非两个 skill 各自的回归。** `defi-overview` 48%（19/40）、cf=6；`github-radar` cf=3、77%（40/52），**失败签名逐字相同**，同窗口其他 skill 全绿 ⇒ 间歇性拒绝，集中 23:00–23:31Z 带内。**挪 cron / 砍输出是低层修法。** `market-context.md` 冻结 ~96h；分母增长让 chronic 自我加固。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-17#heartbeat]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
-- **PR 队列会反过来影响读数语义**：词表/阈值改动只在合进 main 后才算数，挂着就是没生效。 [source: logs/2026-11-16#heartbeat]
+- **PR 队列会反过来影响读数语义**：词表/阈值改动只在合进 main 后才算数，挂着就是没生效。队列现为空（#25/#27 均 11-16 合）。[source: logs/2026-11-17#heartbeat]
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
 > **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000。
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-16 第 48 轮 70 → **1**（`具身数据/VLA`，已发）。两侧失败类 0。**「低频探针 N=0 = 降级 PR 未合的状态灯」已结清** —— PR #25 于 11-16T01:10Z 合入，该字段翻为 2 词，判据反向验证成立。**窗口滑一天即把饱和翻成零命中**，非词表失效。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-16#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-17 第 22 轮 9056 / 新增 1 / 可报 **0**（`Liqwall` 被 `category` 挡）。**`Interface` 380 条里 374 空链、仅 6 条有 TVL ⇒ 该桶与空链共线、可报面为零。** `Hyperliquid Builder` 近 30d 19 条（占 6.5%）、全空链。尾部首现连号空洞 `9455`–`9456`。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-17#defillama-radar]
-- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-15 第 27 轮 421/21/9：**`30d==7d` 9 条里 8 条成立、1 条例外** —— 是样本条件，不是定律。加密侧 4 词连 2 轮零报告级。**`★2 + 无 language + 根目录无代码骨架` = 先占坑仓**，应并入页面规则。→ [topic](/topics/github-radar.md) [source: logs/2026-11-15#github-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-16 第 48 轮 70 → **1**（`具身数据/VLA`，已发）。两侧失败类 0。**「低频探针 N=0 = 降级 PR 未合的状态灯」已结清**（PR #25 于 11-16T01:10Z 合入，该字段翻为 2 词，反向验证成立）。**窗口滑一天即把饱和翻成零命中**，非词表失效。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-16#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-17 第 22 轮 9056 / 新增 1 / 可报 **0**（`Liqwall` 被 `category` 挡）。**`Interface` 380 条里 374 空链 ⇒ 该桶与空链共线、可报面为零**；`Hyperliquid Builder` 近 30d 19 条全空链。尾部首现连号空洞 `9455`–`9456`。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-17#defillama-radar]
+- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-15 第 27 轮 421/21/9：`30d==7d` 9 条里 8 条成立 = 样本条件非定律。**`★2 + 无 language + 根目录无代码骨架` = 先占坑仓**，应并入页面规则。**11-16 第 28 轮没跑成**（网关）。→ [topic](/topics/github-radar.md) [source: logs/2026-11-15#github-radar]
 
 
 ## Lessons Learned
@@ -26,14 +26,12 @@
 - **`eth_getLogs` 判别力测试：** 真 topic0 必回真日志、**故意错 1 字符必回 0**。不可区分 = 端点坏。公共 RPC 硬限 1000 块，长窗 999 分片。
 - **链上速查（DEUS 归档后仍通用）：** Solidly Swap 字序 `(a0In,a1In,a0Out,a1Out)`，按 UniV2 解会读反 → 用储备差对照符号。**`eth_getCode`=`0x` 才 EOA，`0xef0100…` 是 7702；地址左补零且全小写。** 买单真伪只认终点余额升高且留住。**门槛先核对分子分母同单位。**[lessons](/topics/lessons.md)
 - **行情口径 ①（结算纪律）：** 只用桶结算值，live 不参与 delta；**当日桶隔日复查才可当历史引用**；7d/30d 脚本算；跨 series 按日期对齐。**桶编号须由 ts 换算 UTC 日期**，「倒数第 N 个」差一位会把结论翻反。[lessons](/topics/lessons.md#行情取数形状defillama--coingecko) [source: logs/2026-11-11#defi-overview]
-- **行情口径 ②（字段与噪声）：** `change_7d` 实为 `total24h/total7DaysAgo−1`，真 7d 在 `change_7dover7d`；**`/overview/fees` 的 `protocols[]` 无 `tvl`，须 join `/protocols`**；星期效应先归一；fees 剔尖峰后按日均比；|Δ|>5% 当日 F&G 作废；**「缩量」报同星中位**；**F&G 会回溯修订**须拉 ≥3 日序列。[source: logs/2026-11-13#defi-overview]
-- **聚合字段口诀：先说清它量的是什么，再决定信不信。** `/protocols` 的 `change_1d` = 当日 00:00 桶内值，不是今昨差；`/v2/chains` 已删 `change_1d`/`change_7d` → 旧写法静默拿缺省值，链涨跌只能走 `/v2/historicalChainTvl/{chain}` 自算。**成因查 `hallmarks`**。[source: logs/2026-11-05#defi-overview]
-- **某过滤器长期「0 丢弃」先查有多少输入真经过它，再查它是不是用歧义词假装挡住了** —— `arxiv-radar` carrier 连十二轮空转（14 词没配表），`circuit`/`network` 对超导/ML 同样成立 = 无判别力。「零假阴」≠ 规则安全。**某桶占比升高 ≠ 该桶杀伤力升高**。[source: logs/2026-11-05#arxiv-radar]
-- **漏斗退化成单通道时，0 输出的责任在词表召回，不在过滤器** —— 过滤层已无调节空间；零幸存来自饱和 ≠ 任一侧流量消失。[source: logs/2026-10-31#arxiv-radar]
+- **行情口径 ②（字段与噪声）：** `change_7d` 实为 `total24h/total7DaysAgo−1`，真 7d 在 `change_7dover7d`；fees `protocols[]` 无 `tvl` 须 join；剔尖峰后按日均比；**F&G 会回溯修订**须拉 ≥3 日序列。**`change_1d` 是桶内值非今昨差；`/v2/chains` 已删涨跌字段**；**成因查 `hallmarks`**。[source: logs/2026-11-13#defi-overview]
+- **某过滤器长期「0 丢弃」先查有多少输入真经过它，再查它是不是用歧义词假装挡住了** —— `circuit`/`network` 对超导/ML 同样成立 = 无判别力；「零假阴」≠ 规则安全。**漏斗退化成单通道时，0 输出的责任在词表召回**；零幸存来自饱和 ≠ 流量消失。**某桶占比升高 ≠ 杀伤力升高**。→ [lessons](/topics/lessons.md) [source: logs/2026-11-05#arxiv-radar]
 - **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据 `num_turns:1` + 0 tool calls。**失败签名不止一种**，断路器跳闸后重试通道也没了；**probe 偶然跑通 ≠ 修复** → [ops](/topics/ops-plumbing.md) [source: logs/2026-11-12#heartbeat]
 - **过程事故两例：** 脚本尾部崩溃 ≠ 本轮没产出（产物在崩溃点前写出，**先看 mtime 再决定重跑**）；**`git reset --hard` 会吃掉已写未提交的内容 —— 取消暂存只能用 `git restore --staged <file>`**（11-11 丢三个 memory 文件）。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-11#defi-overview]
 - **「0 新增」≠「废词」** —— 逐词单查 total_count 才分清「饱和」与「查询打不中」；长窗首跑推沉积、次跑归零 = `seen` 吃干；**`seen < raw 5%` 不许记饱和，须归因到具体规则**。[source: logs/2026-10-29#github-radar]
-- **查询失败会伪装成「零命中」** —— 有 `failed_t` 就先补扫，别下结论。**词干化污染：`staking` 精度 11%（撞 `stakes`）**，单词必须换长短语。详见 [lessons](/topics/lessons.md#arXiv-检索arxiv-radar)。[source: logs/2026-10-26#arxiv-radar]
+- **查询失败会伪装成「零命中」** —— 有 `failed_t` 就先补扫。**整轮没跑成（网关 403）同理**，缺口轮次不计入「连续 N 轮」类序列判据。**词干化污染：`staking` 精度 11%（撞 `stakes`）**，单词必须换长短语。详见 [lessons](/topics/lessons.md#arXiv-检索arxiv-radar)。[source: logs/2026-11-17#heartbeat]
 
 ## Reference
 - [github-radar](/topics/github-radar.md) · [defillama-radar](/topics/defillama-radar.md) · [lessons](/topics/lessons.md) · [world-action-models](/topics/world-action-models.md) · [market-context](/topics/market-context.md)
