@@ -1,12 +1,10 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-16T10:01:50Z",
-  "quality_score": 2,
-  "assessment": "Well-structured, substantive brief with per-narrative scoring, counterpoints, and holdings relevance, but it hinges on extraordinary unverifiable specifics (Jensen Huang resigning as Nvidia CEO, Anthropic IPO at ~$1.4T with ticker ANT and 70-78 pricing) plus precise figures and X status URLs that read as fabricated upstream, so verifiability caps it.",
-  "flags": [
-    "unverifiable_claim"
-  ],
-  "avg_score": 3.33,
+  "last_analyzed": "2026-11-17T10:01:30Z",
+  "quality_score": 3,
+  "assessment": "Legitimate no-op: fetched remote narratives.md (http=200, 23432 bytes), found 4 sections, all sha256 hashes already in the seen-state, correctly returned UNCHANGED and skipped notify; self-notes an unimplemented staleness warning but asserts no invented facts.",
+  "flags": [],
+  "avg_score": 3.32,
   "history": [
     {
       "date": "2026-10-27",
@@ -150,6 +148,12 @@
       "date": "2026-11-16",
       "score": 2,
       "ts": "2026-11-16T10:01:50Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-17",
+      "score": 3,
+      "ts": "2026-11-17T10:01:30Z",
       "harness": "claude"
     }
   ]
