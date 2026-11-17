@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-16T00:05:00Z
+timestamp: 2026-11-17T00:05:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,62 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-16 第 21 轮）
+## 本轮漏斗口径（11-17 第 22 轮）
+
+全量 **9056** · 新增 id **1**（可报 **0** / 过滤 1）· `seen` 命中 9055 · `parent` **0** · `category` **1** · 空 `chains`/链白名单 **0** · 无 id 0 · 拉取失败 0 · 重报 0。`STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️ 链名警告（孪生 `BSC`/`OP Mainnet` 仍 0，`Binance`/`Optimism` 分别 1157/394）。**报告级 0 → 未发通知、`report.md` 保持第 21 轮内容未覆写（按铁律）。**
+
+唯一新增 `Liqwall`(9457) 走的是 `category` 桶：`category='Interface'`、`chains=[]`、`tvl=None`、`parentProtocol=None`、`listedAt=1794870502`（2026-11-16T23:08:22Z）、`tags=['Hyperliquid Builder']`、`https://liqwall.com`。**这是「空链 + EXCL 类目双帽」，桶序上先撞 `category` 所以空链桶读数 0** —— 与 11-08「桶名比桶语义窄」同源，读数时别把 `链白名单=0` 读成「今天没有空链条目」。
+
+### `Interface` 桶的真实形态：380 条里 374 条空链，该桶基本等于「空链 + 无 TVL」
+
+首次把 `EXCL_CATEGORY` 三类的结构摊开（同一份 payload，9056 条）：
+
+| category | 存量 | 空 `chains` | 带 parent | `tvl` 非空 |
+|---|---|---|---|---|
+| CEX | 84 | 4 | 1 | **79** |
+| Chain | 85 | 58 | 0 | 23 |
+| Interface | **380** | **374（98.4%）** | 252 | **6** |
+
+**三类完全不是一回事**：CEX 是「有链有量」的真实体；`Chain` 半空；`Interface` 几乎是一个纯空壳类目 —— 374/380 空链、只有 6 条有 TVL（`Ventuals` $266K / `Jupiter Prediction` $98K / `LiquidBots` $68.8K / `DESK CLOB` $2.0K / `otomate.trade` $1.8K / `DFlow Prediction Market` $741）。
+
+**推论一：`category='Interface'` 与「空 `chains`」高度共线，`category` 桶对 Interface 的边际贡献是重复计数而非独立信号。** 全量 EXCL 549 条里 436 条空链（79.4%），其中 Interface 独占 374 条。11-07 记的「`parent` 吞掉 61% 本该记给 `category` 的条目」在 Interface 内部同样成立：252/380 带 parent。
+
+**推论二：`Interface` 类目下可报集合基本不存在。** 除了上面那 6 条有 TVL 的（且其中 3 条还带 parent），其余 374 条进不了任何白名单链。**这就是为什么「`Interface` 类条目一律过滤」不会损失发现面 —— 损失面是零，因为该类目本身不产生 TVL 读数。**
+
+### `Hyperliquid Builder` 标签：30 天 19 条、占同期登记 6.5%，是当前最密的一条单标签流
+
+`Liqwall` 带 `tags=['Hyperliquid Builder']`。全量该标签 **227 条，全部 `category='Interface'`**，空链 226、`tvl` 非空仅 1 条（`LiquidBots` $68.8K）。带 `listedAt` 的 126 条里，近 7d **4** 条、近 30d **19** 条、近 90d **124** 条 —— 即**该标签近一个月才开始密集出现**（最早一条是 2026-03-24，但 3–10 月合计只有 2 条）。
+
+30d 那 19 条的共同指纹：**全部 `chains=[]`、全部 `tvl=None`**。`parent` 仅 7 条带（`Blackboard Perps` / `Sparkling Hyperliquid` / `Syndicate Perps` / `Bitso Onchain Perps` / `Bitso Onchain Spot` / `MOJO Perps` / `MOJO Spot`），其余 12 条无 parent 但也无链，所以空链桶照样挡。同期全量 30d 登记 293 条 → **该标签占 6.5%**。
+
+**判据：这是一条「同一赛道的产品页批量录进 DefiLlama」的流，不是发现信号的富矿。** 它们全部无链、无 TVL，按现行铁律一条都不会进报告（`category` 或空链必挡其一）。**记下来是为了两件事**：① 未来若把 `Hyperliquid L1` 的旁路做实（`tags` 含 `Hyperliquid Builder` ⇒ 视为挂 `Hyperliquid L1`），这 19 条会一次性涌进可报面；② 反过来，这 19 条的真实体量不可知，**不该被当成「Hyperliquid 生态在扩张」的证据** —— 它们是同一张录入模板的产物。
+
+### CF 双取通过，非假零
+
+常规（无 `?_cb=`）`HIT`，`age 291`、etag `W/"6afb93ea-92f029"`、`last-modified Mon, 16 Nov 2026 23:38:18 GMT`；`?_cb=1763337600` + `no-cache` 源站 `MISS`，**etag 与 `last-modified` 与 HIT 逐字节相同**。两份 9056 条 id 两向差集空、`tvl` 逐条零差异。`cache-control: public, max-age=300`（连续第三轮 300s）。
+
+**注意本轮 `last-modified` 是 23:38Z 的日更快照，而唯一新增 `Liqwall` 的 `listedAt` 是 23:08Z —— 早于快照本身。** 即它是一个半小时前就登记好、随 23:38 那次发布一起进 `/protocols` 的条目，不是「扫描时刚好被写进去」。
+
+### 差集与 id 连续性
+
+`only_seen=['4818']` **连续第十三轮**（真下架）· `only_raw=[]` · `max_id=9457` · 数字 id 9055 条。**9000 以上缺口首次变成 5 段**：`9135`（单，连续两轮）· `9257`（单，连续两轮）· `9382`（单，连续第七轮）· `9391`（单，连续第六轮）· **`9455`/`9456`（连续两号，本轮新增）**。
+
+`9455`/`9456` 是继 11-02 那批「Kraken/Coinbase/Upbit/Bithumb 延迟回填」之后**第一次在尾部出现连号空洞**，且夹在 9454（`Hookr`，11-15 登记）与 9457（`Liqwall`）之间。按 11-03 修正后的判据，它们属「暂未回填的分配号」，**下轮或数日内可能出现，且届时会是真新增** —— 这是给下一轮的一条预告，不是异常。
+
+非数字 id 仍只有 `<5471>`。
+
+### 其余结构读数（连续观测）
+
+- `chains=[]` = **1648/9056 = 18.20%**（上轮 18.10%，**连续第二轮创新高**；十三轮区间 17.4–18.20，累计 +0.8pt）。空链集合与 `module='dummy.js'` 集合仍完全相等（1648/1648，第五轮复核成立）；空链里 `tvl` 非空 **0 条**；空链中带 parent 652、`category∈EXCL` 436。
+- 同秒 ≥3 条簇 **31 组**（+0），最近仍是 2026-11-14T13:53:56Z（`Exodus Pay`/`Send Card`/`COCA Card`，三条「Card」类同批）。整分 `:00` 值 **69/7377 = 0.94%**，与本轮新增 0 条。
+- `listedAt` 缺失 **1679 条**（持平）。`tvl=None` 2500 条。全量 `tvl` 合计 **$453,328,350,251.35**（上轮 $450,273,746,143.23，**+$3.05B / +0.68%**）。
+- 本轮无「连号子段 + `listedAt` 跨度 ≤30 分钟」形态可测 —— 差集只有 1 条，判据不适用。
+
+### 审计行缺陷第三轮复现（未修）
+
+`scan.py:301` 的 `本次通知` 仍按 `可报` 硬编码，但本轮可报恰好 0，所以显示正确。**该缺陷只在「可报 >0 且未带 `send`」时暴露** —— 11-16 第 21 轮（可报 1 → 显示「跳过（零可报）」）是第二次。**读法不变：以 `可报 N` 与 `STATUS` 为准，`本次通知` 字段不可信。**
+
+## 上一轮漏斗口径（11-16 第 21 轮）
 
 全量 **9055** · 新增 id **5**（可报 **1** / 过滤 4）· `seen` 命中 9050 · `parent` **0** · `category` **0** · 空 `chains`/链白名单 **4** · 无 id 0 · 拉取失败 0 · 重报 0。`STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️ 链名警告（`BSC`/`OP Mainnet` 孪生 0，`Binance`/`Optimism` 分别 1157/394）。
 
@@ -664,6 +719,12 @@ id 9300–9363 **连续无缺口**（含本轮 9363），**连续六轮无「暂
 
 # Citations
 
+- 实测数据：`https://api.llama.fi/protocols`（2026-11-17 第 22 轮；常规 `HIT` 9056 条、etag `W/"6afb93ea-92f029"`、`last-modified Mon, 16 Nov 2026 23:38:18 GMT`、`age 291`、`cache-control: public, max-age=300`；`?_cb=1763337600` + `no-cache` 源站 `MISS` 9056 条、**etag 与 `last-modified` 与 HIT 完全相同**、`only_hit=[] only_miss=[]`、`tvl` 逐条零差异；全量 TVL $453,328,350,251.35）
+- 实测数据：同上 9457 `Liqwall` · `category='Interface'` · `chains=[]` · `chainTvls={}` · `tvl=None` · `tvlCodePath=None` · `module='dummy.js'` · `parentProtocol=None` · `listedAt=1794870502`（2026-11-16T23:08:22Z）· `tags=['Hyperliquid Builder']` · `url='https://liqwall.com'` · `twitter='liqwall'` · `audits='0'` · `address=None` · `dimensions={"fees":"liqwall","derivatives":"liqwall"}` · `misrepresentedTokens=false`
+- 实测数据（`EXCL_CATEGORY` 结构，同一份 payload）：CEX 84 条 / 空链 4 / 带 parent 1 / `tvl` 非空 79 · Chain 85 / 58 / 0 / 23 · Interface 380 / **374** / 252 / **6**；EXCL 合计 549、空链 436（79.4%）；Interface 有 TVL 的 6 条为 `Ventuals`(7011, $266,049.88, Hyperliquid L1) · `Jupiter Prediction`(7089, $98,387.29, Solana, `parent#jupiter`) · `LiquidBots`(8125, $68,844.89, Hyperliquid L1) · `DESK CLOB`(6607, $2,056.75, Arbitrum, `parent#desk`) · `otomate.trade`(7494, $1,815.01, Ink) · `DFlow Prediction Market`(7241, $741.35, Solana, `parent#dflow`)
+- 实测数据（`Hyperliquid Builder` 标签）：全量 227 条、**全部 `category='Interface'`**、空链 226、`tvl` 非空 1（`LiquidBots` $68,844.89）、带 parent 179；带 `listedAt` 126 条，近 7d 4 / 近 30d **19** / 近 90d 124；最早一条 `Silhouette Naked Perps`（2026-03-24T16:36:47Z），30d 内 19 条全部 `chains=[]` 且 `tvl=None`；同期全量 30d 登记 293 条 → 占比 6.5%
+- 实测数据（id 连续性）：`max_id=9457`、数字 id 9055 条、`min=2`；9000 以上缺口 5 段 —— `9135` / `9257` / `9382` / `9391`（四条单号）与 **`9455`–`9456`（连号 2 个，本轮新增）**，全部不在 `seen`；非数字 id 仅 `<5471>`；`only_seen=['4818']` 连续第十三轮
+- 实测数据（`chains=[]` 占比）：**1648/9056 = 18.20%**，与 `module='dummy.js'` 集合两向差集皆空（1648/1648），其中 `tvl` 非空 0 条、带 parent 652、`category∈EXCL` 436；全量同秒 ≥3 条簇 31 组（+0，最近 2026-11-14T13:53:56Z `Exodus Pay`/`Send Card`/`COCA Card`）；整分 `:00` 值 69/7377 = 0.94%；`listedAt` 缺失 1679 条；`tvl=None` 2500 条
 - 实测数据：`https://api.llama.fi/protocols`（2026-11-16 第 21 轮；常规 `HIT` 9055 条、etag `W/"6afa4251-92ec90"`、`last-modified Sun, 15 Nov 2026 23:37:53 GMT`、`age 187`、`cache-control: public, max-age=300`；`?_cb=1763251200` + `no-cache` 源站 `MISS` 9055 条、**etag 与 `last-modified` 与 HIT 完全相同**、`only_hit=[] only_miss=[]`；全量 TVL $450,273,746,143.23）
 - 实测数据：同上 9454 `Hookr` · `chains=['Robinhood Chain']` · `category='Liquidity Automation'` · `tvl=15661.550715531479` · `chainTvls={'Robinhood Chain':15661.55,'Robinhood Chain-staking':27756.597,'staking':27756.597}` · `symbol='HOOKR'` · `mcap=None` · `twitter='hookrfun'` · `audits='0'` · `parentProtocol=None` · `listedAt=1794767239`（2026-11-15T18:27:19Z）· `address='robinhood:0x18e674231a58c239dc7daedcffe15ec3a24cff5c'` · `url='https://hookr.fun/'` · `tvlCodePath='https://github.com/DefiLlama/DefiLlama-Adapters/blob/main/projects/hookr/index.js'` · `methodology` 明写「Pools overlap Uniswap V4 TVL」「Hookr-launched tokens are excluded」「HOOKR held in these pools is counted under staking」
 - 实测数据：同上本轮其余 4 条 · 9450 `AurixDEX`（`Flare`、$1,058.14、Dexs、`18:13:19Z`）· 9451 `BLNT V3`（`Stellar`、$276,992.87、Lending、`18:13:23Z`）· 9452 `Stoa`（`[]`、None、DEX Aggregator、`18:19:43Z`）· 9453 `GreenDildo`（`[]`、None、Launchpad、`18:23:07Z`）· 五条 `parentProtocol` 全 `None`、`audits` 全 `0`、类目两两不同

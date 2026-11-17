@@ -1,18 +1,1 @@
-[
- {
-  "id": "9454",
-  "name": "Hookr",
-  "slug": "hookr",
-  "chains": [
-   "Robinhood Chain"
-  ],
-  "tvl": 15661.550715531479,
-  "category": "Liquidity Automation",
-  "listedAt": 1794767239,
-  "url": "https://hookr.fun/",
-  "description": "Hookr lets users create Uniswap v4 pools with custom rules and issue tokens backed by fee income.",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- }
-]
+[]

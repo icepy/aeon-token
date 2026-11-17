@@ -1,10 +1,10 @@
 {
   "skill": "defillama-radar",
-  "last_analyzed": "2026-11-16T00:06:15Z",
+  "last_analyzed": "2026-11-17T00:09:01Z",
   "quality_score": 4,
-  "assessment": "Delivers the discovery job cleanly: one qualifying new protocol with full raw floor fields (id, chains, tvl, listedAt, audits, parent, address, URL), plus the four filtered entries named for auditability and a run readout with cache cross-check supporting verifiability; the category/rank context is mild extra beyond 'names and floor fields only' but does not undermine the core output.",
+  "assessment": "A rigorous, internally coherent round-22 scan result: correctly finds the single new id (Liqwall), filters it under the specified-chain job, reports 0 reportable, and backs the no-fake-zero claim with a Cloudflare HIT-vs-?_cb= two-way id diff and TVL/etag checks; strong structure and actionable next-round predictions, though it runs well past the skill's 'discovery only, no judgment' mandate and a few self-generated details (e.g. cache-buster epoch) are internally odd.",
   "flags": [],
-  "avg_score": 3.9,
+  "avg_score": 3.91,
   "history": [
     {
       "date": "2026-10-28",
@@ -130,6 +130,12 @@
       "date": "2026-11-16",
       "score": 4,
       "ts": "2026-11-16T00:06:15Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-17",
+      "score": 4,
+      "ts": "2026-11-17T00:09:01Z",
       "harness": "claude"
     }
   ]

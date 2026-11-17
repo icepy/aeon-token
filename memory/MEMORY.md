@@ -4,8 +4,8 @@
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
-- **`aeon-update` 基线 `7b20c95`**（PR #27 待合，11-16）：50 条上游提交**净变更为零**。判据 `CLEAN-MERGE>0` + `git diff --stat` 空 ⇒ 什么都没改；6 条冲突全是技能计数漂移（96 vs 92），解法 = `keep_local`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#aeon-update]
-- **待盯（OPERATOR）：`defi-overview` 已破 chronic 线** —— 49%（19/39）、cf=5；码收敛为持续 `403`（`duration_api_ms:0` = 没出网关），但成因仍不可判。`market-context.md` 冻结 72h，唯一写入者正是它。门槛未变：补余额 / pin 换 provider。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#heartbeat]
+- **`aeon-update` 基线 `7b20c95`**（PR #27 待合，11-16）：50 条上游提交**净变更为零**。判据 `CLEAN-MERGE>0` + `git diff --stat` 空 ⇒ 什么都没改；6 条冲突全是技能计数漂移，解法 = `keep_local`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#aeon-update]
+- **待盯（OPERATOR）：`defi-overview` 已破 chronic 线** —— 49%（19/39）、cf=5；码收敛为持续 `403`（`duration_api_ms:0` = 没出网关），成因仍不可判。`market-context.md` 冻结 72h，唯一写入者正是它。门槛未变：补余额 / pin 换 provider。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#heartbeat]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
 - **PR 队列会反过来影响读数语义**：词表/阈值改动只在合进 main 后才算数，挂着就是没生效。 [source: logs/2026-11-16#heartbeat]
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
@@ -13,9 +13,9 @@
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-16 第 48 轮 70 → **1**（`具身数据/VLA`，已发）。两侧失败类 0。**「低频探针 N=0 = 降级 PR 未合的状态灯」已结清** —— PR #25 于 11-16T01:10Z 合入，本轮该字段翻为 2 词，判据反向验证成立。**窗口滑一天即把饱和翻成零命中**，非词表失效。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-16#arxiv-radar（第 48 轮）]
-- `defillama-radar` ✅ `dl-v1` · 11-16 第 21 轮 9055 / 新增 **5** / 可报 **1**（$15.7K，已发）。**「同秒≥3条」抓不到「14 分钟窗 + id 连号」的批量录入** → 补判据：差集内部连号子段跨度 ≤30min 即同批。Stellar/Flare 加链边际仍不加。`scan.py:301` 审计行仍硬编码。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-16#defillama-radar]
-- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-15 第 27 轮 421/21/9：**`30d==7d` 9 条里 8 条成立、1 条例外** —— 它一直是样本条件，不是定律。加密侧 4 词连 2 轮零报告级。**`★2 + 无 language + 根目录无代码骨架` = 先占坑仓**，应并入页面规则。→ [topic](/topics/github-radar.md) [source: logs/2026-11-15#github-radar（第 27 轮）]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-16 第 48 轮 70 → **1**（`具身数据/VLA`，已发）。两侧失败类 0。**「低频探针 N=0 = 降级 PR 未合的状态灯」已结清** —— PR #25 于 11-16T01:10Z 合入，该字段翻为 2 词，判据反向验证成立。**窗口滑一天即把饱和翻成零命中**，非词表失效。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-16#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-17 第 22 轮 9056 / 新增 1 / 可报 **0**（`Liqwall` 被 `category` 挡）。**`Interface` 380 条里 374 空链、仅 6 条有 TVL ⇒ 该桶与空链共线、可报面为零。** `Hyperliquid Builder` 近 30d 19 条（占 6.5%）、全空链。尾部首现连号空洞 `9455`–`9456`。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-17#defillama-radar]
+- `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-15 第 27 轮 421/21/9：**`30d==7d` 9 条里 8 条成立、1 条例外** —— 是样本条件，不是定律。加密侧 4 词连 2 轮零报告级。**`★2 + 无 language + 根目录无代码骨架` = 先占坑仓**，应并入页面规则。→ [topic](/topics/github-radar.md) [source: logs/2026-11-15#github-radar]
 
 
 ## Lessons Learned
