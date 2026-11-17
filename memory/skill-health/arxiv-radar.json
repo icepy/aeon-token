@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-16T22:05:53Z",
-  "quality_score": 3,
-  "assessment": "Clean, on-job discovery output: one hit with ID, title, date, matched filter term, and URL, plus transparent accounting of why 69 candidates were dropped — adequate and plausibly sourced, but thin beyond the single line item.",
+  "last_analyzed": "2026-11-17T22:05:57Z",
+  "quality_score": 4,
+  "assessment": "Compact but complete discovery push: round/window/funnel stats plus two mechanism-filtered hits with arXiv links, short rationales, and tags — thin (no dates or abstracts) but fits the skill's stated scope of discovery only.",
   "flags": [],
   "avg_score": 3.37,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 4,
-      "ts": "2026-10-26T10:18:32Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 2,
@@ -184,6 +178,12 @@
       "date": "2026-11-16",
       "score": 3,
       "ts": "2026-11-16T22:05:53Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-17",
+      "score": 4,
+      "ts": "2026-11-17T22:05:57Z",
       "harness": "claude"
     }
   ]

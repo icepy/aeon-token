@@ -1,15 +1,28 @@
 [
  {
-  "id": "2611.17394",
-  "term": "ti:\"data engine\" AND cat:cs.RO",
+  "id": "2611.20792",
+  "term": "ti:\"data generation\" AND cat:cs.RO",
   "terms": [
-   "ti:\"data engine\" AND cat:cs.RO"
+   "ti:\"data generation\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "VLA",
-  "title": "Agentic-Teacher: An Agentic Data Engine for Failure-Driven VLA Post-Training",
-  "published": "2026-11-12",
-  "link": "https://arxiv.org/abs/2611.17394",
-  "carrier": "simulation"
+  "name": "TRR",
+  "title": "TRR: A Thermal Interaction Engine for Robot Simulation and RGBT Data Generation",
+  "published": "2026-11-16",
+  "link": "https://arxiv.org/abs/2611.20792",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.18919",
+  "term": "ti:\"human demonstration\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"human demonstration\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Correcting Persistent Failures in Point-Cloud Grasping Policies using Human Demonstrations in Virtual Reality",
+  "published": "2026-11-13",
+  "link": "https://arxiv.org/abs/2611.18919",
+  "carrier": "robot"
  }
 ]
