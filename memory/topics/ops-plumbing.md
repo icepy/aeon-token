@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-17T00:00:00Z
+timestamp: 2026-11-18T18:00:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -279,6 +279,30 @@ last success 11-15T22:33:23Z — so its 第 28 轮 produced nothing at all, whic
   (word-list downgrade — the 「低频探针 N=0」 status light went green, judgement closed) and PR #27
   (the 50-commit upstream sync, a watermark-only change) merged 2026-11-16T11:42:57Z.
   [source: logs/2026-11-17#heartbeat]
+
+#### Update (11-18): the shared-gateway reading was half wrong — the other half is max_output_tokens
+
+One full run log (`44195522715`, 2026-11-17) settles it for `defi-overview`: `num_turns: 138`,
+`output_tokens: 147604` against `maxOutputTokens: 128000`, 1026 s, $4.88, cache_read 7.1 M,
+`permission_denials: []`, `terminal_reason: api_error`, `api_error: max_output_tokens`.
+
+- **The two diseases are distinguishable in one line each — do not merge them.** A gateway refusal is
+  `num_turns: 1` with 0 tool calls and `duration_api_ms: 0` (request never left). A token-ceiling death
+  is a *large* `num_turns` plus `output_tokens` at/over the limit — the session ran fine for 138 turns
+  and died while writing. The 11-17 note framed the two skills as one shared-gateway object; that was
+  **true for the 403 signature and false for this failure**, which is not a gateway refusal at all.
+- **The "move the cron off 23:00–23:31Z" fix lost its object.** Last night's run started 23:01:01Z and
+  ended 23:18:45Z — the whole session inside the allegedly bad band, gateway reachable throughout. The
+  403 band did not reproduce. Any later "batch the nightly fleet after 23:00" concern is unfounded
+  *for 11-17*; keep it as a hypothesis, not a standing rule.
+- **`github-radar` self-healed:** success 11-17T22:36:40Z, cf 3→0, 41/53 = 77%, and its 第 28 轮 was
+  actually produced on 11-17 (see [github-radar](/topics/github-radar.md)). So "two skills hit the same
+  wall" no longer holds as a diagnosis. Health issue `#9` was never revisited after the recovery —
+  **issue thread state and dispatch state are decoupled** (same lesson as 11-12, now with a second case).
+- **The chronic counter is still sliding:** `defi-overview` cf 6→7, `total_runs` 41, 19/41 = **46%**
+  (48% → 46%). Third consecutive round where only the denominator moved. `market-context.md` frozen at
+  `2026-11-13T00:15:00Z` = ~120 h, single writer still `defi-overview`.
+  [source: logs/2026-11-18#heartbeat]
 
 ## Reading `gh run view --log`: colour-escaped lines are the script body, not output
 
