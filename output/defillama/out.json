@@ -1,1 +1,35 @@
-[]
+[
+ {
+  "id": "9469",
+  "name": "Trestly",
+  "slug": "trestly",
+  "chains": [
+   "Ethereum",
+   "Binance"
+  ],
+  "tvl": 9266.974934505155,
+  "category": "Bridge",
+  "listedAt": 1794942041,
+  "url": "",
+  "description": "Trestly bridges USDT from Ethereum and BNB Chain to Kaspa as kUSDT, backed 1:1 by the USDT locked in its vault",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9468",
+  "name": "Polydash",
+  "slug": "polydash",
+  "chains": [
+   "Robinhood Chain"
+  ],
+  "tvl": 21.985322871022593,
+  "category": "Launchpad",
+  "listedAt": 1794941859,
+  "url": "https://polypad.family",
+  "description": "Polydash is an onchain ecosystem on Robinhood Chain with the Polypad launchpad, tokenized fund vaults, and per",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ }
+]

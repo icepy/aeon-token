@@ -14,7 +14,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · 26 词 · 11-16 第 48 轮 70 → **1**（`具身数据/VLA`，已发）。两侧失败类 0。**「低频探针 N=0 = 降级 PR 未合的状态灯」已结清**（PR #25 于 11-16T01:10Z 合入，该字段翻为 2 词，反向验证成立）。**窗口滑一天即把饱和翻成零命中**，非词表失效。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-16#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-17 第 22 轮 9056 / 新增 1 / 可报 **0**（`Liqwall` 被 `category` 挡）。**`Interface` 380 条里 374 空链 ⇒ 该桶与空链共线、可报面为零**；`Hyperliquid Builder` 近 30d 19 条全空链。尾部首现连号空洞 `9455`–`9456`。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-17#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-18 第 23 轮 9070 / 新增 14 / 可报 **2**（`Trestly` $9.3K 桥→Kaspa · `Polydash` $22 Robinhood Chain 发射台，已发）。**上轮预告的 `9455`/`9456` 空洞双双回填，且 `listedAt` 比上轮快照早 ~35 分钟却不在其中 ⇒ `/protocols` 可见性滞后约 20h，`listedAt` 不能反推入库时间**（推翻第 22 轮「随日更一起进」）。`parent` 8/12 无真损失，`category` 真 0。空链 18.24% 三轮连创新高；全量 TVL 首次回落 −$1.97B。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-18#defillama-radar]
 - `github-radar` 22:30 · 18 词 · gh-v3。**cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。**11-17 第 28 轮（11-16 那次网关挂）445/66/20**：真零 1 / 饱和 5（其中 2 个 `seen=0` 是过滤损耗不是饱和）/ 有新增 12。**`30d==7d` 本轮 0 条 ⇒ 上轮「9 条里 8 条成立」只是样本条件**。carrier 误杀对照两侧都 100% ⇒ 无活跃仓被误杀。probe 过三条件 **0 个**。**digest 缺陷：撞名嫌疑计数 11 只打出 8 行。** `★2 + 无 language + 根目录无代码骨架` = 先占坑仓，应并入页面规则。→ [topic](/topics/github-radar.md) [source: logs/2026-11-17#github-radar]
 
 

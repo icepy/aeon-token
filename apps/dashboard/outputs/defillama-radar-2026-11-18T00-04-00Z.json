@@ -1,0 +1,333 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "defillama-radar · 第 23 轮 · 可报 2 条"
+      },
+      "children": [
+        "statsRow",
+        "sep1",
+        "h1",
+        "badges1",
+        "tvl1",
+        "desc1",
+        "meta1",
+        "sep2",
+        "h2",
+        "badges2",
+        "tvl2",
+        "desc2",
+        "link2",
+        "meta2",
+        "sep3",
+        "hSpot",
+        "tSpot",
+        "sep4",
+        "hFiltered",
+        "tFiltered",
+        "sep5",
+        "hForecast",
+        "tForecast",
+        "sep6",
+        "hCF",
+        "tCF",
+        "sep7",
+        "hSource",
+        "linkSource",
+        "tSource",
+        "badgeStatus"
+      ]
+    },
+    "statsRow": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "statTotal",
+        "statNew",
+        "statReportable",
+        "statFiltered"
+      ]
+    },
+    "statTotal": {
+      "type": "Stat",
+      "props": {
+        "label": "全量",
+        "value": "9070"
+      }
+    },
+    "statNew": {
+      "type": "Stat",
+      "props": {
+        "label": "新增",
+        "value": "14"
+      }
+    },
+    "statReportable": {
+      "type": "Stat",
+      "props": {
+        "label": "可报",
+        "value": "2"
+      }
+    },
+    "statFiltered": {
+      "type": "Stat",
+      "props": {
+        "label": "过滤",
+        "value": "12"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "1. Trestly",
+        "level": "h3"
+      }
+    },
+    "badges1": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b1a",
+        "b1b",
+        "b1c"
+      ]
+    },
+    "b1a": {
+      "type": "Badge",
+      "props": {
+        "text": "Bridge",
+        "variant": "secondary"
+      }
+    },
+    "b1b": {
+      "type": "Badge",
+      "props": {
+        "text": "Ethereum",
+        "variant": "outline"
+      }
+    },
+    "b1c": {
+      "type": "Badge",
+      "props": {
+        "text": "Binance",
+        "variant": "outline"
+      }
+    },
+    "tvl1": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$9,267"
+      }
+    },
+    "desc1": {
+      "type": "Text",
+      "props": {
+        "text": "把 USDT 从 Ethereum 和 BNB Chain 桥到 Kaspa，铸成 1:1 全额抵押的 kUSDT（USDT 锁在自家金库）。",
+        "variant": "body"
+      }
+    },
+    "meta1": {
+      "type": "Text",
+      "props": {
+        "text": "id 9469 · listedAt 2026-11-17T19:00:41Z · 无官网字段 · 无 parent",
+        "variant": "caption"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h2": {
+      "type": "Heading",
+      "props": {
+        "text": "2. Polydash",
+        "level": "h3"
+      }
+    },
+    "badges2": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b2a",
+        "b2b"
+      ]
+    },
+    "b2a": {
+      "type": "Badge",
+      "props": {
+        "text": "Launchpad",
+        "variant": "secondary"
+      }
+    },
+    "b2b": {
+      "type": "Badge",
+      "props": {
+        "text": "Robinhood Chain",
+        "variant": "outline"
+      }
+    },
+    "tvl2": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$21.99"
+      }
+    },
+    "desc2": {
+      "type": "Text",
+      "props": {
+        "text": "Robinhood Chain 上的生态入口，含 Polypad 发射台 + 代币化基金金库。",
+        "variant": "body"
+      }
+    },
+    "link2": {
+      "type": "Link",
+      "props": {
+        "label": "https://polypad.family",
+        "href": "https://polypad.family"
+      }
+    },
+    "meta2": {
+      "type": "Text",
+      "props": {
+        "text": "id 9468 · listedAt 2026-11-17T18:57:39Z · 无 parent",
+        "variant": "caption"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hSpot": {
+      "type": "Heading",
+      "props": {
+        "text": "看点",
+        "level": "h4"
+      }
+    },
+    "tSpot": {
+      "type": "Text",
+      "props": {
+        "text": "Polydash 是 Robinhood Chain 新冒出来的发射台入口，TVL 只有 $22 -- 名字先到、量还没到，属「基础设施先上」那一类，不是有资金进场。Trestly 是纯桥，量集中在 USDT→Kaspa 这条单一路径，$9.3K 同样是小额起步。",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hFiltered": {
+      "type": "Heading",
+      "props": {
+        "text": "被过滤的 12 条里没有误杀",
+        "level": "h4"
+      }
+    },
+    "tFiltered": {
+      "type": "Text",
+      "props": {
+        "text": "8 条 parentProtocol 子条目（EscapeSwap/EscapeHub Launchpad/Liquidium WTF/GrowStreams Spot/dreamDEX Perps/Buttonwood Cash/Kalos V4/BTR V2）+ 4 条空 chains 且无 TVL（Cool Eggs/Nyraa/Marg）。唯一「有白名单链但被 parent 挡」的是 EscapeHub Launchpad（Robinhood Chain+Solana+Base，$1,510）与 Buttonwood Cash（Robinhood Chain，$13）-- 都是母协议铺子条目，符合铁律。",
+        "variant": "body"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hForecast": {
+      "type": "Heading",
+      "props": {
+        "text": "上轮预告兑现",
+        "level": "h4"
+      }
+    },
+    "tForecast": {
+      "type": "Text",
+      "props": {
+        "text": "第 22 轮记的尾部空洞 9455/9456 本轮双双出现，即 Buttonwood Cash 与 Kalos V4，listedAt 分别 11-16T22:59:19Z / 23:03:51Z -- 都早于上轮快照的 23:38Z。这正面验证了 11-03 修正后的判据：id 分配先于数据入库，「永久空洞」不存在，只有「暂未回填的分配号」。",
+        "variant": "body"
+      }
+    },
+    "sep6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hCF": {
+      "type": "Heading",
+      "props": {
+        "text": "CF 校验",
+        "level": "h4"
+      }
+    },
+    "tCF": {
+      "type": "Text",
+      "props": {
+        "text": "?_cb= 源站取数 cf=MISS，etag W/\"6afce57d-933178\"、last-modified Tue, 17 Nov 2026 23:38:37 GMT、9070 条。两向差集 only_raw=[]、only_seen=['4818']（连续第十四轮真下架）。",
+        "variant": "body"
+      }
+    },
+    "sep7": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hSource": {
+      "type": "Heading",
+      "props": {
+        "text": "数据源",
+        "level": "h4"
+      }
+    },
+    "linkSource": {
+      "type": "Link",
+      "props": {
+        "label": "https://api.llama.fi/protocols",
+        "href": "https://api.llama.fi/protocols"
+      }
+    },
+    "tSource": {
+      "type": "Text",
+      "props": {
+        "text": "口径 dl-v1",
+        "variant": "caption"
+      }
+    },
+    "badgeStatus": {
+      "type": "Badge",
+      "props": {
+        "text": "STATUS: DEFILLAMA_RADAR_OK",
+        "variant": "default"
+      }
+    }
+  }
+}

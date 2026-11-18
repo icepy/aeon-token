@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-17T00:05:00Z
+timestamp: 2026-11-18T00:20:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,82 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-17 第 22 轮）
+## 本轮漏斗口径（11-18 第 23 轮）
+
+全量 **9070** · 新增 id **14**（可报 **2** / 过滤 12）· `seen` 命中 9056 · `parent` **8** · `category` **0** · 空 `chains`/链白名单 **4** · 无 id 0 · 拉取失败 0 · 重报 0。`STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️ 链名警告（孪生 `BSC`/`OP Mainnet` 仍 0，`Binance`/`Optimism` 分别 1158/394）。**报告级 2 → 已发通知、2 条标 `notified`。**
+
+### 上轮预告精确兑现：`9455`/`9456` 双双回填，且 `listedAt` 都早于上轮快照
+
+第 22 轮把 `9455`/`9456` 记为「尾部首次连号空洞」，判为待回填。本轮两条同时出现：
+
+| id | 名称 | listedAt | 与上轮快照（11-16T23:38:18Z）的关系 |
+|---|---|---|---|
+| 9455 | `Buttonwood Cash`（`Lending`，Robinhood Chain，$13.0，`parent#buttonwood`） | 2026-11-16T22:59:19Z | **早 39 分钟** |
+| 9456 | `Kalos V4`（`Dexs`，`Elysium Kinetiq`，$21.1K，`parent#kalos`） | 2026-11-16T23:03:51Z | **早 34 分钟** |
+
+**这正面验证 11-03 修正后的判据：id 分配先于数据入库，「永久空洞」不存在。** 更要紧的是**时序**：两条的 `listedAt` 都早于上轮那份 23:38Z 的快照，却不在那份快照里 —— 即 **`/protocols` 的可见性滞后于 `listedAt`，滞后量约 20 小时**（不是上轮判的「半小时内」）。第 22 轮曾据 `Liqwall`（listedAt 23:08Z、出现在 23:38Z 快照）推断「随日更一起进」，本轮证明那个样本太短、不能推广：**同一批 23:00Z 前后的条目，有的进了 23:38Z 快照，有的没进，下一份 11-17T23:38Z 快照才带出。** 判「新」时不要拿 `listedAt` 反推入库时间。
+
+### 可报 2 条：一条 Robinhood Chain 发射台、一条 USDT→Kaspa 桥
+
+| id | 名称 | 链 | TVL | 类目 | 说明 |
+|---|---|---|---|---|---|
+| 9469 | `Trestly` | Ethereum / Binance | **$9,266.97** | Bridge | USDT→Kaspa 铸 kUSDT，1:1 由金库 USDT 抵押；`url` 字段为空 |
+| 9468 | `Polydash` | Robinhood Chain | **$21.99** | Launchpad | Polypad 发射台 + 代币化基金金库，`https://polypad.family` |
+
+**两条都不是「新词表命中」，是「新结构值得记」：** `Polydash` 把 Robinhood Chain 的**发射台**这一环补上了（此前该链上的可报条目多是 DEX / 借贷 / 流动性自动化）；TVL $22 说明名字先到、量没到。`Trestly` 是单一路径桥（USDT→Kaspa），$9.3K 同为小额起步，但**Kaspa 首次出现在白名单链的桥接目的地里**。
+
+### 14 条新增是一个 21.6 小时、跨 9455–9469 的连续段 —— 「连续段」判据本轮必须拆开
+
+`9455`–`9469` **连号无缺口（15 个号，本轮差集 14 条，缺 9457 因上轮已入库）**，`listedAt` 从 11-16T22:59:19Z 到 11-17T19:00:41Z，**跨度 21.6 小时**。按 11-16 补的「连号子段 + `listedAt` 跨度 ≤30 分钟 ⇒ 同一次录入」判据，**本轮跨度远超阈值，不判为单次录入**；但它也不是散点 —— 内部有两个明显的分钟级簇：
+
+- `9464`/`9465` 同一秒（11-17T18:31:21Z）：`CipherTrade DEX`(`Coti`) 与 `EscapeSwap`(`parent#escapehub`)，同秒但**不同 parent、不同链**，属巧合而非批量录入。
+- `9466`/`9467`/`9468`/`9469` 集中在 18:49:52Z–19:00:41Z（11 分钟）：`dreamDEX Perps` / `Marg` / `Polydash` / `Trestly`，类目各异（Derivatives / Dexs / Launchpad / Bridge）、parent 三条为空一条为 `dreamdex`。
+
+**读数纪律：15 连号 + 21.6 小时 = 常规录入节奏，不构成批量指纹。** 11-16 那条 30 分钟判据在连号段被跨日拉长时**只对子段有效**，本轮是它的第一个反例形式（连号成立、跨度不成立）。
+
+### 被过滤的 12 条逐条归属（parent 真边际 8/12，无一条被误杀）
+
+| id | 名称 | 主因 | 是否有白名单链 |
+|---|---|---|---|
+| 9455 | `Buttonwood Cash` | `parent#buttonwood` | 是（Robinhood Chain，$13） |
+| 9456 | `Kalos V4` | `parent#kalos` | 否（Elysium Kinetiq） |
+| 9458 | `BTR V2` | `parent#btr` | 否（Monad，$196.7K） |
+| 9460 | `Liquidium WTF` | `parent#liquidium` | 否（空链） |
+| 9461 | `EscapeHub Launchpad` | `parent#escapehub` | 是（Robinhood Chain/Solana/Base，$1,510） |
+| 9462 | `GrowStreams Spot` | `parent#growstreams` | 否（空链） |
+| 9465 | `EscapeSwap` | `parent#escapehub` | 否（空链） |
+| 9466 | `dreamDEX Perps` | `parent#dreamdex` | 否（空链） |
+| 9459 | `Cool Eggs` | 空链（Gaming） | 否 |
+| 9463 | `Nyraa` | 空链（Launchpad） | 否 |
+| 9467 | `Marg` | 空链（Dexs，CLMM） | 否 |
+| 9464 | `CipherTrade DEX` | 链不在白名单（`Coti`，$3,560） | 否 |
+
+**`parent` 本轮的边际可逐条数清：8 条带 parent，其中 2 条（`Buttonwood Cash` / `EscapeHub Launchpad`）有白名单链** —— 但两条 TVL 分别 $13 与 $1,510，且都是母协议铺子条目，遮挡正确、无真损失。**`category` 桶本轮 0 且是真 0**（14 条里没有一条 `CEX`/`Chain`/`Interface`，与 11-17 的「Interface 双帽」形成对照）。**`链白名单=4` 里只有 1 条真属「非白名单链」（`CipherTrade DEX`），其余 3 条是空 `chains`** —— 11-08 记的「桶名比桶语义窄」第五次复现。
+
+### 最大被挡体量：`BTR V2` $196.7K，是两条可报合计（$9.3K）的 21 倍
+
+`out.json` 按定义不含体量信息。本轮最大新增是 `BTR V2`(9458，Monad，$196,658)，只被 `parent` 一个桶挡；可报两条合计 $9,289。**11-05 与 11-16 记的「可报集 TVL 不代表本轮新增体量」第三次成立，本轮倍数 21×。** 读「今天有什么大的」必须回看差集全集。
+
+### CF 双取通过，非假零
+
+`?_cb=` + `no-cache` 取源站 `cf=MISS`，`etag W/"6afce57d-933178"`、`last-modified Tue, 17 Nov 2026 23:38:37 GMT`、9070 条。**两向差集：`only_raw=[]`、`only_seen=['4818']`（连续第十四轮真下架）。** 注意本轮日更快照仍是 11-17T23:38Z 那一份，而两条可报的 `listedAt` 是 11-17T18:57–19:00Z —— **早于快照 4.5 小时，属同一份快照内的新条目，与上节 9455/9456 的「滞后 20 小时」是两组不同的滞后期。**
+
+### 差集与 id 连续性
+
+`max_id=9469` · 数字 id 9069 条 · 非数字仍只有 `<5471>`。**9000 以上缺口 4 段：`9135`（单，连三轮）· `9257`（单，连三轮）· `9382`（单，连八轮）· `9391`（单，连七轮）。** 上轮的 `9455`/`9456` **双双回填，尾部连号空洞清零** —— 与「暂未回填的分配号」机制一致，缺口不是永久的。
+
+### 其余结构读数（连续观测）
+
+- `chains=[]` = **1654/9070 = 18.24%**（上轮 18.20%，**连续第三轮创新高**；十四轮区间 17.4–18.24）。空链 ⟺ `module='dummy.js'` **第六轮复核仍完全相等（1654/1654，两向差集空）**；空链中 `tvl` 非空 **0 条**、带 parent **655**、`category∈EXCL` **436**。
+- 同秒 ≥3 条簇 **31 组**（+0），最近仍是 2026-11-14T13:53:56Z（`Exodus Pay` / `Send Card` / `COCA Card`）。`listedAt` 总数 7391。
+- `listedAt` 缺失 **1679 条**（持平）。`tvl=None` **2506**（上轮 2500）。**全量 TVL $451,355,543,931.37（上轮 $453,328,350,251.35，−$1.97B / −0.44%）—— 十轮来首次回落。** 动用的是源站 `MISS` 那份，非缓存假动。
+- 近 7d 登记 **76** 条、近 30d **305** 条（上轮 30d 293）。**7d 76 条里可报 2 条 = 2.6%** —— 与「`Interface` + 空链共线吃掉九成」的历史读数一致。
+
+### 审计行 `本次通知` 缺陷本轮第四次暴露（仍未修）
+
+`scan.py:301` 把 `本次通知` 按「可报 / 基线 / dry-run」硬编码，**本轮可报 2 且未带 `send`，实际显示「跳过（零可报）」，与现实相反**。读法不变：**以 `可报 N` 与 `STATUS` 为准，`本次通知` 字段不可信。** 修复需在同一行判断 `out` 是否非空，属审计口径改动，不与「只做发现」冲突，可单独提 PR。
+
+## 上一轮漏斗口径（11-17 第 22 轮）
 
 全量 **9056** · 新增 id **1**（可报 **0** / 过滤 1）· `seen` 命中 9055 · `parent` **0** · `category` **1** · 空 `chains`/链白名单 **0** · 无 id 0 · 拉取失败 0 · 重报 0。`STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️ 链名警告（孪生 `BSC`/`OP Mainnet` 仍 0，`Binance`/`Optimism` 分别 1157/394）。**报告级 0 → 未发通知、`report.md` 保持第 21 轮内容未覆写（按铁律）。**
 
