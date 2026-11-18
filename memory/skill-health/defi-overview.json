@@ -1,10 +1,10 @@
 {
   "skill": "defi-overview",
-  "last_analyzed": "2026-11-13T00:11:27Z",
+  "last_analyzed": "2026-11-18T23:13:26Z",
   "quality_score": 4,
-  "assessment": "Comprehensive, well-sourced single-pass read covering regime take, TVL (with a sharp ETH-vs-USD denomination nuance), chains, movers, fee leaders, spike-filtered and incentive-vs-real yields, stables, DEX volume, breadth, F&G, and Polymarket, with honest disclosure that websearch failed; held back from top marks because it omits explicit tracked-protocol health/liquidation metrics that the skill's job calls for, and the 'Fed Dec hike 25bp 87.5%' figure reads oddly given the risk-off tape and is unconfirmed.",
+  "assessment": "Comprehensive one-pass DeFi read hitting every required component (regime, TVL, chains, movers, fees, yields, DEX/stablecoin flow, F&G, breadth, Polymarket) with genuine analysis and honest source-status disclosure; specific figures are internally consistent and plausibly API-derived, though the near-certain December rate-hike read and WebSearch-less macro layer keep it from a 5.",
   "flags": [],
-  "avg_score": 3.53,
+  "avg_score": 3.55,
   "history": [
     {
       "date": "2026-10-23",
@@ -118,6 +118,12 @@
       "date": "2026-11-13",
       "score": 4,
       "ts": "2026-11-13T00:11:27Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-18",
+      "score": 4,
+      "ts": "2026-11-18T23:13:26Z",
       "harness": "claude"
     }
   ]

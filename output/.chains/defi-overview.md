@@ -1,42 +1,57 @@
-*Crypto - 2026-11-13* - risk-off (conviction high) | DeFi Mixed: TVL 缩 1.1%，DEX 量 −4.2%，稳定币 −0.55%
+⚠️ 行情 · 2026-11-18 · risk-off
 
-*TVL:* $76.47B（−1.14% 24h，7d USD −10.07% / **ETH 计价 +6.02%**）
-_7d 跌幅仍主要是计价货币（ETH −15.2%）；但 11-11→11-12 ETH 计价也是 −1.38%，首次转负，仅一天不作趋势_
+**行情 · 2026-11-18**
 
-*Top chains*
-1. Ethereum - $40.29B（−1.1%）
-2. Base - $5.65B（−1.5%）
-3. Solana - $4.99B（−0.8%）
+**判断：risk-off（信心 high）**
+BTC **$62,180（24h −3.87%，7d −16.36%）** -- 比 11-13 那份快照的 $71,366 又跌了 **12.87%**。非稳定币 7d 广度 **0/16**，全红。
+唯一的反向信号是稳定币总量几乎没动（24h **−0.12%**）-- **这轮是杠杆出清，不是资金离场。**
 
-*Movers*
-↑ Morpho Midnight +20.2%（$183M → $203M）- 新池上线，无公开催化
-↓ Nexus BTC −13.1%（$274M → $238M）- 7d −30.3%，同类中位仅 −3.6%
-↓ Lombard LBTC −8.4%（$466M）- BTC 封装板块普跌，非孤例
+**TVL：$139.98B（7d −10.12%）**
+同比 ETH 计价口径是 **+4.58%**，说明跌幅多由币价贡献。但绝对规模从 11-05 的 $172.90B 到现在 **−19.0%** -- 这部分汇率解释不了。
 
-*Fees leaders（24h）*
-1. Tether - $16.7M（+0.3% vs 7d 日均）
-2. Circle USDC - $6.7M（+0.3%）
-3. Ethena USDe - $3.75M（+493%，尖峰，剔除）
+**主力链**
+1. Ethereum - $36.39B（24h −2.66%，7d −10.08%）
+2. Base - $5.03B（24h −3.14%，7d −12.64%）
+3. Solana - $4.71B（24h **−0.08%**，7d −6.45%）-- 24h 几乎收平，7d 跌幅最小
 
-*Fees beating TVL*
-• Meteora DLMM - fees +92% / TVL −4.5%（7d）- 需求跑赢存款，尖峰比 1.84× 干净
+_13 条 ≥$500M 的链，24h 无一触及 ±5% 门槛（最好 Monad +1.42%、Tron +0.50%；最差 Bitcoin −3.35%）。不是某个链出事，是全线阴跌。_
 
-*DEX vol (24h):* $8.00B（−4.2%）top: Uniswap V3 $1.29B, Uniswap V4 $0.92B, Aero $0.85B
-_同星中位归一后连续六个已结算桶低于中位 6-24%_
+**异动协议**
+↑ **Tydro +44.8%**（$281M → $406M）-- Aave 驱动的 Ink 链借贷，7d **+261.5%**，新协议放量
+↑ **Kraken Bitcoin +28.7%**（$603M → $776M）-- 托管型 BTC 桥逆势吸金，7d +10.2%
+↓ **Figure Markets Prime −12.1%**（$158M → $139M）-- Provenance 链借贷，7d −19.2%，无明确成因
 
-*Stables:* $288.4B（−0.55%）- PYUSD −6.6%、USD1 −2.7% 单日最大失血；USDf 折价 −49.3bp 连十轮最深后首次收窄
+**手续费前三（24h）**
+1. Tether - **$17.08M**（对 7d 日均 +0.7%）
+2. Circle USDC - $6.81M（+0.7%）
+3. Hyperliquid Perps - $3.38M（7d-over-7d **+18.7%**）
 
-*Real yield（sustainable，≥$10M，已过滤）*
-• APXUSD (apyx, ETH) - 13.07% apyBase（$137M）
-• STUSDS (Sky, ETH) - 12.35% apyBase（$162M）
+**费收跑赢 TVL（7d）**
+• **Jupiter Lend** - 费用 **+46.7%** / TVL **−2.2%**
+• **Fluid Lending** - 费用 **+46.7%** / TVL **−4.6%**（7d-over-7d +57.2%，最强）
 
-*Incentive yield（points/emissions，≥$25M）*
-• SDCRV (StakeDAO, ETH) - 25.2% 全为 $CRV 奖励（$29M）
-• CVXCRV (Convex, ETH) - 17.7% 全为奖励（$35M）
+**DEX 量：$7.480B（24h −11.72%）**
+前三 Uniswap V3 $949M、Uniswap V4 $881M、Aero Slipstream $715M。
+_但 7d-over-7d 转正 **+2.46%**（上轮 −18.22%）-- 缩量趋势断了，绝对值仍在低位。_
 
-*Macro:* BTC $71,366（−3.5%）/ ETH $2,017（−1.9%）· **F&G 20 Extreme Fear（30 日最低，昨 28）** · breadth 3/20（7d 非稳定币 **0/16**）
-*Polymarket:* **BTC 触 $70,000 by Dec 31 → 84.5%**（昨 63.5%，+21pp）；Fed 12 月加息 25bp **87.5%**
+**稳定币：$287.01B（24h −0.12%，7d −1.17%）**
+失血速度在收窄。PYUSD 7d **−14.69%**、USD1 **−10.83%** 还在跑，RLUSD **+3.33%** 在接。稳定币占全市场市值 **13.31%**（上轮 11.95%）-- 分母缩得比分子快。
 
-⚠️ *10 月 CPI 落在 11-12～11-14 窗口，48h 内 -- 双向都是本周最大波动源*
+**真实收益（可持续，≥$10M，已过滤）**
+• APXUSD（apyx，Ethereum）- **12.92%** apyBase（$134M）
+• USDC（accountable，Ethereum）- **12.12%** apyBase（$17M）
+• REUSDE（re，Ethereum）- **11.82%** apyBase（$30M）
+_榜首的 ETH-WBTC 26.6%、WETH-USDT 20.4% 是无常损失型 DEX 池，不算真收益。_
 
-_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail | var: none_
+**激励收益（积分/排放，≥$25M）**
+• CVXCRV（Convex）- **20.5%**（$30M，**apyBase=0，奖励就是全部**）
+• USD1（Dolomite）- 10.9%（base 4.0 + 奖励 6.9，$35M）
+
+**宏观读数**
+· F&G **11（Extreme Fear）**，昨 12。13 天内从 11-05 的 50 掉到 11，**已在 10-13 横了 5 天 -- 抄底了但没弹起来。**
+· 广度 **2/20**（24h 只有 TRX +0.38%、FIGR_HELOC +0.50%）
+· **Polymarket：年内跌到 $60,000 → YES 75.5%**（现价 $62,180，只差 **3.5%**）；跌到 $55,000 → 39.5%，$50,000 → 23.2%；向上到 $90,000 仅 5.5%
+· 12 月加息 +25bp → **91.5%**（上轮 87.5%），已近上限、无边际空间
+· **今日是 11 月 BTC 期权到期日**，现价卡在 60k/65k 两大行权价之间 -- 未来 24h 唯一确定的波动源
+
+_sources: DeFiLlama TVL/DEX/费用/稳定币/收益率 ok · CoinGecko ok · alternative.me ok · Polymarket ok · WebSearch **fail**（连续第六轮无浏览权限，宏观催化剂只从 Polymarket 结算日历推，未引用任何新闻）_
