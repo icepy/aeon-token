@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-17T22:05:57Z",
-  "quality_score": 4,
-  "assessment": "Compact but complete discovery push: round/window/funnel stats plus two mechanism-filtered hits with arXiv links, short rationales, and tags — thin (no dates or abstracts) but fits the skill's stated scope of discovery only.",
+  "last_analyzed": "2026-11-18T22:05:13Z",
+  "quality_score": 3,
+  "assessment": "On-job discovery digest: 3 filter-surviving preprints with titles, one-line glosses, and arXiv links, plus funnel counts (71→3), but it never shows which mechanism words matched, so the filtering is unauditable and the per-item substance is thin.",
   "flags": [],
-  "avg_score": 3.37,
+  "avg_score": 3.4,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 2,
-      "ts": "2026-10-26T11:31:36Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 3,
@@ -184,6 +178,12 @@
       "date": "2026-11-17",
       "score": 4,
       "ts": "2026-11-17T22:05:57Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-18",
+      "score": 3,
+      "ts": "2026-11-18T22:05:13Z",
       "harness": "claude"
     }
   ]

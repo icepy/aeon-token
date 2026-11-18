@@ -1,0 +1,168 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "第 50 轮 · 窗口 30 天 · 原始 71 → 幸存 3"
+      },
+      "children": [
+        "statsStack",
+        "sep1",
+        "sectionHeading",
+        "itemsStack"
+      ]
+    },
+    "statsStack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "statRound",
+        "statWindow",
+        "statRaw",
+        "statSurvivors"
+      ]
+    },
+    "statRound": {
+      "type": "Stat",
+      "props": {
+        "label": "轮次",
+        "value": "50",
+        "trend": "neutral"
+      }
+    },
+    "statWindow": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天",
+        "trend": "neutral"
+      }
+    },
+    "statRaw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "71",
+        "trend": "neutral"
+      }
+    },
+    "statSurvivors": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "3",
+        "delta": "71 → 3",
+        "trend": "down"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sectionHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据",
+        "level": "h3"
+      }
+    },
+    "itemsStack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "item1",
+        "item2",
+        "item3"
+      ]
+    },
+    "item1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story1",
+        "desc1"
+      ]
+    },
+    "story1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Hidden Variables Behind Real-Robot Data Quality",
+        "href": "https://arxiv.org/abs/2611.22388",
+        "source": "arXiv"
+      }
+    },
+    "desc1": {
+      "type": "Text",
+      "props": {
+        "text": "用数十万小时真机数据反推影响数据质量的隐藏变量",
+        "variant": "caption"
+      }
+    },
+    "item2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story2",
+        "desc2"
+      ]
+    },
+    "story2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HubEgo-100K",
+        "href": "https://arxiv.org/abs/2611.21938",
+        "source": "arXiv"
+      }
+    },
+    "desc2": {
+      "type": "Text",
+      "props": {
+        "text": "野外第一视角熟练作业视频集，面向机器人学习",
+        "variant": "caption"
+      }
+    },
+    "item3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story3",
+        "desc3"
+      ]
+    },
+    "story3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "FailureGen",
+        "href": "https://arxiv.org/abs/2611.22367",
+        "source": "arXiv"
+      }
+    },
+    "desc3": {
+      "type": "Text",
+      "props": {
+        "text": "用世界模型规模化生成机器人失败数据",
+        "variant": "caption"
+      }
+    }
+  }
+}

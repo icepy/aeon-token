@@ -1,28 +1,41 @@
 [
  {
-  "id": "2611.20792",
+  "id": "2611.22388",
+  "term": "robot data",
+  "terms": [
+   "robot data"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Hidden Variables Behind Real-Robot Data Quality: Lessons from Hundreds of Thousands of Hours",
+  "published": "2026-11-17",
+  "link": "https://arxiv.org/abs/2611.22388",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.21938",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "HubEgo-100K",
+  "title": "HubEgo-100K: In-the-Wild Egocentric Video of Skilled Work for Robot Learning",
+  "published": "2026-11-16",
+  "link": "https://arxiv.org/abs/2611.21938",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.22367",
   "term": "ti:\"data generation\" AND cat:cs.RO",
   "terms": [
    "ti:\"data generation\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "TRR",
-  "title": "TRR: A Thermal Interaction Engine for Robot Simulation and RGBT Data Generation",
-  "published": "2026-11-16",
-  "link": "https://arxiv.org/abs/2611.20792",
-  "carrier": "robot"
- },
- {
-  "id": "2611.18919",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 30,
-  "name": "",
-  "title": "Correcting Persistent Failures in Point-Cloud Grasping Policies using Human Demonstrations in Virtual Reality",
-  "published": "2026-11-13",
-  "link": "https://arxiv.org/abs/2611.18919",
+  "name": "FailureGen",
+  "title": "FailureGen: Scalable Robot Failure Data Generation with World Models",
+  "published": "2026-11-17",
+  "link": "https://arxiv.org/abs/2611.22367",
   "carrier": "robot"
  }
 ]
