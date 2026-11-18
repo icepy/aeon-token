@@ -89,7 +89,7 @@
     "last_error": null
   },
   "github-radar": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_success": "2026-11-17T22:36:40Z",
     "total_runs": 53,
     "total_successes": 41,
@@ -99,7 +99,7 @@
     "last_quality_score": 4,
     "last_failed": "2026-11-16T23:31:22Z",
     "last_error": null,
-    "last_dispatch": "2026-11-17T22:30:47Z"
+    "last_dispatch": "2026-11-18T22:30:53Z"
   },
   "arxvi-radar": {
     "last_status": "success",
