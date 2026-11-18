@@ -11,14 +11,13 @@ narratives http=200 bytes=23432 source=remote reason=ok
 notify: 跳过（已推过）
 ```
 
-**下一步** — 没有。不要改 `check.py`。
+远程 200 拿到全文，4 节日期的 sha256 全部在 `memory/narrative-brief-seen.json` 里，没有未推过的正文 —— 这轮安静，未发通知，未写 seen。
 
-**你要处理的** — 这轮不用你处理。
+- **下一步** — 没有。不要改 `check.py`。
+- **你要处理的** — 这轮不用你处理。
 
 ## Summary
-
-- 执行 `skills/narrative-brief`，单次调用 `check.py`（全程 1 次工具调用，符合铁律）。
-- 远程 `narratives.md` 抓取正常（`http=200`，23432 bytes，`reason=ok`，未走 local fallback），共 4 个日期节：16/11、12/11、09/11、05/11。
-- 四节 sha256 全部已在 `memory/narrative-brief-seen.json` 中，`新: 0` → `结果: UNCHANGED`，未发送 notify（按"正常就是安静"）。
-- 未修改任何文件：没有覆盖 `report.md`（脚本仅在 NEW 时写），未动 `narratives.md`（归 Grok 所有），未自行追加 `### narrative-brief` 日志（脚本负责）。
-- 注意：最新一节是 11-16，距今 1 天，仍在 3 天窗口内；但 SKILL.md 末尾记录的「距上次推送: N 天」告警仍未在 `check.py` 中实现，所以 Grok 若静默停摆，本轮输出与「今天没新内容」不可区分。当前仅在 11-16 有写入，尚不构成停摆信号。
+- 执行 `skills/narrative-brief/SKILL.md`，全程 1 次工具调用（`python3 skills/narrative-brief/check.py ""`）。
+- 结果 `UNCHANGED`：`memory/topics/narratives.md` 远程 http=200、23432 字节、4 个日期节，sha256 均已见过。未发 notify，未改动 seen / `report.md`。
+- 日志 `### narrative-brief` 由脚本自行写入 `memory/logs/2026-11-18.md`（`推送: no`），本 skill 不重复追加。
+- 未创建/修改任何文件。
