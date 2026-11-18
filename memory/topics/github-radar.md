@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-18T18:00:00Z
+timestamp: 2026-11-18T22:45:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,35 @@ timestamp: 2026-11-18T18:00:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第二十九轮（2026-11-18，`days:7`）—— 467/39/9；`30d==7d` 从 0/9 翻到 9/9，判据落定为「同源批次」
+
+18 词 × 二分至一页（单窗 17 / 需拆窗 1 · 二分 0 次 · 搜索调用 20）。漏斗：原始 **467** → 幸存 **39** → 报告级
+**9**；丢弃 `seen=187` / `excl=33` / `short_desc=95` / `carrier=89` / `neg=12` / `pages=11` / `pages_root=1` /
+`archived=0` / `scaffold=0` / `farm=0` / `fail=0`。核验 39/39（100% 全量）。四分类：查询失败 **0** · 真零 **1**
+（`robotics data engine`） · 饱和 **7** · 有新增 **10**。
+
+- **判据落定：`30d==7d` 三轮三值（9 中 8 → 0/9 → 9/9），它不是窗口定律，也不该当噪声。** 本轮 9 条全部
+  `30d==7d`，且 desc 一律论文句式（`Failure-Aware Hierarchical Control: ...` / `Code for "Does the Action
+  Matter?"` / `Cosmos3 and VLA-JEPA eval on LIBERO-10` / `A small vision-language-action model trained on
+  LIBERO`）⇒ **整批同源 = paper code release，刚挂上、推一轮就停的概率高。** 读法改成：**先看 desc 是不是
+  论文句式，再决定「7d==30d」说明「新仓」还是「一次性发布」。** 这与 11-15「9 中 8」、11-17「0/9」不矛盾 ——
+  三轮分别是「同源批次 / 混源批次 / 混合」，样本属性在变，窗口没变。
+- **`intent-based` 过滤损耗连两轮同形状**（第 28 轮 raw=6/seen=0，本轮 7/0）⇒ 不是饱和。按 10-29 判据，须归因
+  到具体丢弃桶（候选：`short_desc` 95 / `carrier` 89 之一在吃它），**至今未归因，属待修**。
+- **carrier 误杀对照两侧第三次都 100%**（丢弃里带词表的 34 → 存活 34/34；放行幸存者已核 38 → 38/38）。
+  **两侧全满 = 该口径在 7d 窗零判别力**，不能当规则安全的证据（第三轮同向）。
+- **★ 分布：报告级 9 条里 8 个 ★0 + 1 个 ★1，最高 46 commits。** 本轮未按 star 排序、39 个全核，所以是真分布
+  ⇒ 与「star 排序切掉 ★0 长尾」互证。排序里不该出现 star。
+- **「论文标题式仓名 + 无 language」第二次观察，仍未进代码。** 5 个无 `language`：`AgnesAI-Labs/Embodied-RSI`、
+  `xuejun7777/HumanoidEmbodiedRSI`、`cccjj55/robot-sim-benchmarks`、
+  `MouhebAbdelhafidh/Memory-in-Action-Conditioned-World-Models-GRU-vs.-Transformer-vs-xLSTM`、`Yuecheng919/4D-JEPA`。
+  后两个仓名就是论文标题 ⇒ **应把「论文标题句式仓名 + 无 language + 无代码骨架」并进页面/先占坑规则**（承接
+  第 28 轮 ★2 那条）。
+- **双侧同步第二例：** 本轮 AI/机器人 **9** · 加密 **0**；同日 `arxiv-radar` 第 50 轮是 AI **3** · 加密 **0**
+  （`restaking` / `data availability` / `MEV` 全饱和或零新增）。两条通道同向空转加密侧，不是单侧的窗口问题。
+- 空仓（409）1 个：`Yun-fan001/event-driven-physics-warp`，不计失败。无限速、无未认证降级。probe 跳过（戳 1 天）。
+  [source: logs/2026-11-18#github-radar]
 
 ## 第二十八轮（2026-11-17，`days:7`）—— 445/66/20；`30d==7d` 归零，上轮结论降为样本条件
 

@@ -1,0 +1,541 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar"
+      },
+      "children": [
+        "stats-grid",
+        "sep-main",
+        "repo-1",
+        "repo-2",
+        "repo-3",
+        "repo-4",
+        "repo-5",
+        "repo-6",
+        "repo-7",
+        "repo-8",
+        "repo-9"
+      ]
+    },
+    "stats-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-window",
+        "stat-report",
+        "stat-active"
+      ]
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "7 天"
+      }
+    },
+    "stat-report": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "9"
+      }
+    },
+    "stat-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "9"
+      }
+    },
+    "sep-main": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo-1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-1-link",
+        "repo-1-meta",
+        "repo-1-desc"
+      ]
+    },
+    "repo-1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "m-alan08/failure-aware-robot-control",
+        "href": "https://github.com/m-alan08/failure-aware-robot-control",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo-1-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-1-badge",
+        "repo-1-metrics"
+      ]
+    },
+    "repo-1-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词: robot manipulation",
+        "variant": "secondary"
+      }
+    },
+    "repo-1-metrics": {
+      "type": "Text",
+      "props": {
+        "text": "30天=46 · 7天=46",
+        "variant": "caption"
+      }
+    },
+    "repo-1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Failure-Aware Hierarchical Control: Selective Residual Reinforcement Learning for Robust Robotic Man",
+        "variant": "muted"
+      }
+    },
+    "repo-2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-2-link",
+        "repo-2-meta",
+        "repo-2-desc"
+      ]
+    },
+    "repo-2-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "pk002-hunter/microduck-sim2real",
+        "href": "https://github.com/pk002-hunter/microduck-sim2real",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo-2-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-2-badge",
+        "repo-2-metrics"
+      ]
+    },
+    "repo-2-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词: sim2real",
+        "variant": "secondary"
+      }
+    },
+    "repo-2-metrics": {
+      "type": "Text",
+      "props": {
+        "text": "30天=17 · 7天=17",
+        "variant": "caption"
+      }
+    },
+    "repo-2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Sim-to-Real Bipedal Locomotion, Backlash Compensation & Dynamic Fall Recovery (VelStand) on Microduc",
+        "variant": "muted"
+      }
+    },
+    "repo-3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-3-link",
+        "repo-3-meta",
+        "repo-3-desc"
+      ]
+    },
+    "repo-3-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "timengelbracht/forcetwin",
+        "href": "https://github.com/timengelbracht/forcetwin",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo-3-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-3-badge",
+        "repo-3-metrics"
+      ]
+    },
+    "repo-3-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词: robot manipulation",
+        "variant": "secondary"
+      }
+    },
+    "repo-3-metrics": {
+      "type": "Text",
+      "props": {
+        "text": "30天=9 · 7天=9",
+        "variant": "caption"
+      }
+    },
+    "repo-3-desc": {
+      "type": "Text",
+      "props": {
+        "text": "ForceTwin: Physics-informed Digital Twins for Robotic Manipulation from Instrumented Human Interacti",
+        "variant": "muted"
+      }
+    },
+    "repo-4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-4-link",
+        "repo-4-meta",
+        "repo-4-desc"
+      ]
+    },
+    "repo-4-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "binayksingh/does-action-matter",
+        "href": "https://github.com/binayksingh/does-action-matter",
+        "source": "GitHub",
+        "score": "★1"
+      }
+    },
+    "repo-4-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-4-badge",
+        "repo-4-metrics"
+      ]
+    },
+    "repo-4-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词: world model",
+        "variant": "secondary"
+      }
+    },
+    "repo-4-metrics": {
+      "type": "Text",
+      "props": {
+        "text": "30天=8 · 7天=8",
+        "variant": "caption"
+      }
+    },
+    "repo-4-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Code for \"Does the Action Matter? Probing Action-Conditioned Semantic Forecasting as a World Model f",
+        "variant": "muted"
+      }
+    },
+    "repo-5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-5-link",
+        "repo-5-meta",
+        "repo-5-desc"
+      ]
+    },
+    "repo-5-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "aiden890/rby1-robocasa",
+        "href": "https://github.com/aiden890/rby1-robocasa",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo-5-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-5-badge",
+        "repo-5-metrics"
+      ]
+    },
+    "repo-5-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词: sim-to-real",
+        "variant": "secondary"
+      }
+    },
+    "repo-5-metrics": {
+      "type": "Text",
+      "props": {
+        "text": "30天=8 · 7天=8",
+        "variant": "caption"
+      }
+    },
+    "repo-5-desc": {
+      "type": "Text",
+      "props": {
+        "text": "RB-Y1 lab-assistant tasks: RoboCasa sim to real",
+        "variant": "muted"
+      }
+    },
+    "repo-6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-6-link",
+        "repo-6-meta",
+        "repo-6-desc"
+      ]
+    },
+    "repo-6-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "mpodolinsky/WAM-eval",
+        "href": "https://github.com/mpodolinsky/WAM-eval",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo-6-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-6-badge",
+        "repo-6-metrics"
+      ]
+    },
+    "repo-6-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词: jepa",
+        "variant": "secondary"
+      }
+    },
+    "repo-6-metrics": {
+      "type": "Text",
+      "props": {
+        "text": "30天=8 · 7天=8",
+        "variant": "caption"
+      }
+    },
+    "repo-6-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Cosmos3 and VLA-JEPA eval on LIBERO-10.",
+        "variant": "muted"
+      }
+    },
+    "repo-7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-7-link",
+        "repo-7-meta",
+        "repo-7-desc"
+      ]
+    },
+    "repo-7-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "pccmast/embodied-dataops",
+        "href": "https://github.com/pccmast/embodied-dataops",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo-7-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-7-badge",
+        "repo-7-metrics"
+      ]
+    },
+    "repo-7-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词: embodied data",
+        "variant": "secondary"
+      }
+    },
+    "repo-7-metrics": {
+      "type": "Text",
+      "props": {
+        "text": "30天=7 · 7天=7",
+        "variant": "caption"
+      }
+    },
+    "repo-7-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Multimodal embodied-data production platform: LeRobot/MCAP/Ego ingest, canonical 10 Hz contract, lea",
+        "variant": "muted"
+      }
+    },
+    "repo-8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-8-link",
+        "repo-8-meta",
+        "repo-8-desc"
+      ]
+    },
+    "repo-8-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "irfanalimd/nanovla",
+        "href": "https://github.com/irfanalimd/nanovla",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo-8-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-8-badge",
+        "repo-8-metrics"
+      ]
+    },
+    "repo-8-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词: vision language action",
+        "variant": "secondary"
+      }
+    },
+    "repo-8-metrics": {
+      "type": "Text",
+      "props": {
+        "text": "30天=7 · 7天=7",
+        "variant": "caption"
+      }
+    },
+    "repo-8-desc": {
+      "type": "Text",
+      "props": {
+        "text": "A small vision-language-action model trained on LIBERO",
+        "variant": "muted"
+      }
+    },
+    "repo-9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-9-link",
+        "repo-9-meta",
+        "repo-9-desc"
+      ]
+    },
+    "repo-9-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Aarong22-colex/Robotic-Refueling",
+        "href": "https://github.com/Aarong22-colex/Robotic-Refueling",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo-9-meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo-9-badge",
+        "repo-9-metrics"
+      ]
+    },
+    "repo-9-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "词: robot manipulation",
+        "variant": "secondary"
+      }
+    },
+    "repo-9-metrics": {
+      "type": "Text",
+      "props": {
+        "text": "30天=6 · 7天=6",
+        "variant": "caption"
+      }
+    },
+    "repo-9-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Interactive simulator inspired by NASA's Robotic Refueling Mission, featuring robotic manipulation,",
+        "variant": "muted"
+      }
+    }
+  }
+}
