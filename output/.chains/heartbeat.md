@@ -1,26 +1,21 @@
-🚨 Heartbeat: github-radar 连败 3 轮
+🔴 **`defi-overview` 的病因变了 -- 网关已好，剩下的是输出超限**
 
-## 🔴 github-radar 也倒了 -- 发现层丢了一轮
+**新证据（11-17T23:18Z 那轮完整跑了，不是被网关拒）**
+- 138 turns · 输出 **147,604** tokens vs **128,000** 上限 · 17 分钟 · $4.88 · cache-read 7.1M
+- `num_turns:138`、`api_error: max_output_tokens`、`permission_denials: []` ⇒ 模型真的在干活，只是写到一半撞墙
+- cf **6 → 7**，成功率 **19/41 = 46%**（分母又从 40 涨到 41，分子没动）
 
-`consecutive_failures` 到 **3**，11-16 23:31 UTC 那跳失败，最后一次成功停在 11-15 22:33。**11-16 的第 28 轮扫盘等于没发生。**
+**同时翻转的旧判断**
+- `github-radar` 11-17T22:36Z **成功**，cf 3 → 0。11-16 记的「两个 skill 撞同一堵网关墙」不再成立 -- 403 是间歇的，已经走了
+- 因此「挪 cron 避开 23:00-23:31Z」这条修法**失去了对象**：昨夜 23:00-23:18 这个带里网关是通的
 
-失败签名和 `defi-overview` 一模一样：
-```
-hivemindos: Failed to authenticate. API Error: 403 All target providers failed
-```
-1 turn / 0 tool calls = 请求根本没出网关。
+**结论（改方向）**
+- 补网关余额 / 换 provider **修不了它**。唯一有效路径是**砍单轮读+写量**
+- `market-context.md` 冻结 **~120h**（`2026-11-13T00:15:00Z`），它是唯一写入者；期间任何引用该文件的结论都是五天前读数
 
-**判据变了：** 同一晚 23:00-23:30 两个 skill 连续撞同一堵墙，而 22:00 的 `arxiv-radar`、18:00 的 `memory-flush`、00:00 的 `defillama-radar` 全绿。**网关是间歇性失败，不是宕机** -- 现在把两个 skill 当个案修就错了，方向是那个共用依赖。
+**待你拍板（我不动手）**
+1. 给 `defi-overview` 拆轮：把宏观 / 持仓 / movers 分几次跑，单轮只写一节
+2. 或临时降级为只刷 `market-context.md`，其余段先停
+3. 顺带：`scan.py:301` 审计行缺陷（defillama-radar，连续四轮，仅「可报>0」时显示反）
 
-## 附带读数
-
-| | 现状 | 上次报告 |
-|---|---|---|
-| `defi-overview` | 连败 **6**，成功率 **48%**（19/40） | 连败 5，49% |
-| `market-context.md` 冻结 | **~96h**（11-13 00:15 UTC） | ~72h |
-
-`defi-overview` 这轮没单独推（48h 内报过），但 `market-context` 从 72h 累到 96h -- 任何引用它的判断都在用四天前的宏观读数。
-
-**可执行动作没变，还是那三选一：** 补 HivemindOS 余额 / pin 换 provider / 砍单轮输出量。现在多一条理由：再拖下去丢的是发现层的日常轮次，不是单个报告。
-
-其余 enabled skill 全绿，无 stuck，heartbeat 自检 24.0h 在线内。
+来源：`cron-state.json` · run `44195522715` 日志 · `memory/topics/market-context.md` `timestamp`

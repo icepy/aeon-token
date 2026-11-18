@@ -1,0 +1,308 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "heartbeat · defi-overview 病因变了",
+        "description": "网关已好，剩下的是输出超限"
+      },
+      "children": [
+        "h_main",
+        "alert_evidence",
+        "stats_grid",
+        "badges_row",
+        "text_evidence",
+        "stat_success",
+        "progress_success",
+        "sep_1",
+        "h_flip",
+        "grid_flip",
+        "text_flip_1",
+        "text_flip_2",
+        "sep_2",
+        "h_conclusion",
+        "alert_conclusion",
+        "alert_market",
+        "sep_3",
+        "h_decision",
+        "decision_stack",
+        "sep_4",
+        "text_source"
+      ]
+    },
+    "h_main": {
+      "type": "Heading",
+      "props": {
+        "text": "🔴 defi-overview 的病因变了 -- 网关已好，剩下的是输出超限",
+        "level": "h2"
+      }
+    },
+    "alert_evidence": {
+      "type": "Alert",
+      "props": {
+        "title": "新证据",
+        "message": "11-17T23:18Z 那轮完整跑了，不是被网关拒",
+        "type": "info"
+      }
+    },
+    "stats_grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat_turns",
+        "stat_tokens",
+        "stat_duration",
+        "stat_cost",
+        "stat_cache",
+        "stat_cf"
+      ]
+    },
+    "stat_turns": {
+      "type": "Stat",
+      "props": {
+        "label": "turns",
+        "value": "138",
+        "delta": "num_turns: 138",
+        "trend": "neutral"
+      }
+    },
+    "stat_tokens": {
+      "type": "Stat",
+      "props": {
+        "label": "输出 tokens",
+        "value": "147,604",
+        "delta": "上限 128,000 · 超 19,604",
+        "trend": "up"
+      }
+    },
+    "stat_duration": {
+      "type": "Stat",
+      "props": {
+        "label": "耗时",
+        "value": "17 分钟",
+        "trend": "neutral"
+      }
+    },
+    "stat_cost": {
+      "type": "Stat",
+      "props": {
+        "label": "成本",
+        "value": "$4.88",
+        "trend": "neutral"
+      }
+    },
+    "stat_cache": {
+      "type": "Stat",
+      "props": {
+        "label": "cache-read",
+        "value": "7.1M",
+        "trend": "neutral"
+      }
+    },
+    "stat_cf": {
+      "type": "Stat",
+      "props": {
+        "label": "defi-overview 连续失败 (cf)",
+        "value": "7",
+        "delta": "6 → 7",
+        "trend": "up"
+      }
+    },
+    "badges_row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge_num_turns",
+        "badge_api_error",
+        "badge_permissions"
+      ]
+    },
+    "badge_num_turns": {
+      "type": "Badge",
+      "props": {
+        "text": "num_turns: 138",
+        "variant": "secondary"
+      }
+    },
+    "badge_api_error": {
+      "type": "Badge",
+      "props": {
+        "text": "api_error: max_output_tokens",
+        "variant": "destructive"
+      }
+    },
+    "badge_permissions": {
+      "type": "Badge",
+      "props": {
+        "text": "permission_denials: []",
+        "variant": "outline"
+      }
+    },
+    "text_evidence": {
+      "type": "Text",
+      "props": {
+        "text": "⇒ 模型真的在干活，只是写到一半撞墙。cf 6 → 7，成功率 19/41 = 46%（分母又从 40 涨到 41，分子没动）",
+        "variant": "body"
+      }
+    },
+    "stat_success": {
+      "type": "Stat",
+      "props": {
+        "label": "defi-overview 成功率 (19/41)",
+        "value": "46%",
+        "delta": "分母 40 → 41，分子没动",
+        "trend": "down"
+      }
+    },
+    "progress_success": {
+      "type": "Progress",
+      "props": {
+        "value": 46,
+        "max": 100,
+        "label": "成功率 19/41 = 46%"
+      }
+    },
+    "sep_1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h_flip": {
+      "type": "Heading",
+      "props": {
+        "text": "同时翻转的旧判断",
+        "level": "h3"
+      }
+    },
+    "grid_flip": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat_github_cf"
+      ]
+    },
+    "stat_github_cf": {
+      "type": "Stat",
+      "props": {
+        "label": "github-radar 连续失败 (cf)",
+        "value": "0",
+        "delta": "3 → 0（11-17T22:36Z 成功）",
+        "trend": "down"
+      }
+    },
+    "text_flip_1": {
+      "type": "Text",
+      "props": {
+        "text": "github-radar 11-17T22:36Z 成功，cf 3 → 0。11-16 记的「两个 skill 撞同一堵网关墙」不再成立 -- 403 是间歇的，已经走了",
+        "variant": "body"
+      }
+    },
+    "text_flip_2": {
+      "type": "Text",
+      "props": {
+        "text": "因此「挪 cron 避开 23:00-23:31Z」这条修法失去了对象：昨夜 23:00-23:18 这个带里网关是通的",
+        "variant": "body"
+      }
+    },
+    "sep_2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h_conclusion": {
+      "type": "Heading",
+      "props": {
+        "text": "结论（改方向）",
+        "level": "h3"
+      }
+    },
+    "alert_conclusion": {
+      "type": "Alert",
+      "props": {
+        "title": "结论（改方向）",
+        "message": "补网关余额 / 换 provider 修不了它。唯一有效路径是砍单轮读+写量",
+        "type": "warning"
+      }
+    },
+    "alert_market": {
+      "type": "Alert",
+      "props": {
+        "title": "market-context.md 冻结 ~120h",
+        "message": "冻结于 2026-11-13T00:15:00Z，它是唯一写入者；期间任何引用该文件的结论都是五天前读数",
+        "type": "warning"
+      }
+    },
+    "sep_3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h_decision": {
+      "type": "Heading",
+      "props": {
+        "text": "待你拍板（我不动手）",
+        "level": "h3"
+      }
+    },
+    "decision_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "decision_1",
+        "decision_2",
+        "decision_3"
+      ]
+    },
+    "decision_1": {
+      "type": "Text",
+      "props": {
+        "text": "1. 给 defi-overview 拆轮：把宏观 / 持仓 / movers 分几次跑，单轮只写一节",
+        "variant": "body"
+      }
+    },
+    "decision_2": {
+      "type": "Text",
+      "props": {
+        "text": "2. 或临时降级为只刷 market-context.md，其余段先停",
+        "variant": "body"
+      }
+    },
+    "decision_3": {
+      "type": "Text",
+      "props": {
+        "text": "3. 顺带：scan.py:301 审计行缺陷（defillama-radar，连续四轮，仅「可报>0」时显示反）",
+        "variant": "body"
+      }
+    },
+    "sep_4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "text_source": {
+      "type": "Text",
+      "props": {
+        "text": "来源：cron-state.json · run 44195522715 日志 · memory/topics/market-context.md timestamp",
+        "variant": "muted"
+      }
+    }
+  }
+}
