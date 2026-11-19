@@ -1,41 +1,56 @@
 [
  {
-  "id": "2611.22388",
-  "term": "robot data",
+  "id": "2611.24833",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
   "terms": [
-   "robot data"
+   "ti:\"consensus\" AND cat:cs.DC"
   ],
   "window": 30,
-  "name": "",
-  "title": "Hidden Variables Behind Real-Robot Data Quality: Lessons from Hundreds of Thousands of Hours",
-  "published": "2026-11-17",
-  "link": "https://arxiv.org/abs/2611.22388",
+  "name": "DispersedBFT",
+  "title": "DispersedBFT: Bottleneck-Free Primary-Backup Consensus using Dispersed Replication",
+  "published": "2026-11-18",
+  "link": "https://arxiv.org/abs/2611.24833",
+  "carrier": "protocol"
+ },
+ {
+  "id": "2611.24585",
+  "term": "ti:\"human data\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"human data\" AND cat:cs.RO",
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "SHAPE",
+  "title": "SHAPE: Discrete Supervision and Parallel Continuous Streams for Learning Dexterous Manipulation from Egocentric Human Data",
+  "published": "2026-11-18",
+  "link": "https://arxiv.org/abs/2611.24585",
   "carrier": "robot"
  },
  {
-  "id": "2611.21938",
+  "id": "2611.24138",
+  "term": "ti:\"human data\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"human data\" AND cat:cs.RO",
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "Ego2X",
+  "title": "Ego2X: Contact-aware Transfer from Egocentric Human Data to Any Robot",
+  "published": "2026-11-18",
+  "link": "https://arxiv.org/abs/2611.24138",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.24247",
   "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
    "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "HubEgo-100K",
-  "title": "HubEgo-100K: In-the-Wild Egocentric Video of Skilled Work for Robot Learning",
-  "published": "2026-11-16",
-  "link": "https://arxiv.org/abs/2611.21938",
-  "carrier": "robot"
- },
- {
-  "id": "2611.22367",
-  "term": "ti:\"data generation\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"data generation\" AND cat:cs.RO"
-  ],
-  "window": 30,
-  "name": "FailureGen",
-  "title": "FailureGen: Scalable Robot Failure Data Generation with World Models",
-  "published": "2026-11-17",
-  "link": "https://arxiv.org/abs/2611.22367",
-  "carrier": "robot"
+  "name": "UAV",
+  "title": "Allocentric Memory, Egocentric Acting: A Dual-Frame VLA for Urban Aerial Navigation",
+  "published": "2026-11-18",
+  "link": "https://arxiv.org/abs/2611.24247",
+  "carrier": "dataset"
  }
 ]

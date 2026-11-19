@@ -1,0 +1,223 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 原始 74 → 幸存 4 · 索引最新 11-18"
+      },
+      "children": [
+        "stats",
+        "sep-1",
+        "h-embodied",
+        "links-embodied",
+        "h-vla",
+        "links-vla",
+        "h-consensus",
+        "links-consensus",
+        "sep-2",
+        "h-readout",
+        "readout-stats",
+        "readout-note"
+      ]
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 4,
+        "gap": "md"
+      },
+      "children": [
+        "stat-raw",
+        "stat-survived",
+        "stat-window",
+        "stat-index"
+      ]
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "74"
+      },
+      "children": []
+    },
+    "stat-survived": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "4",
+        "delta": "-70",
+        "trend": "down"
+      },
+      "children": []
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      },
+      "children": []
+    },
+    "stat-index": {
+      "type": "Stat",
+      "props": {
+        "label": "索引最新",
+        "value": "11-18"
+      },
+      "children": []
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "h-embodied": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "links-embodied": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "link-shape",
+        "link-ego2x"
+      ]
+    },
+    "link-shape": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SHAPE - 用第一视角人类数据学灵巧操作，离散监督 + 并行连续流",
+        "href": "https://arxiv.org/abs/2611.24585",
+        "source": "arXiv"
+      },
+      "children": []
+    },
+    "link-ego2x": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ego2X - 接触感知的第一视角人类数据跨本体迁移",
+        "href": "https://arxiv.org/abs/2611.24138",
+        "source": "arXiv"
+      },
+      "children": []
+    },
+    "h-vla": {
+      "type": "Heading",
+      "props": {
+        "text": "VLA / 第一视角感知",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "links-vla": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "link-allocentric"
+      ]
+    },
+    "link-allocentric": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Allocentric Memory, Egocentric Acting - 双坐标系 VLA，城市空中导航",
+        "href": "https://arxiv.org/abs/2611.24247",
+        "source": "arXiv"
+      },
+      "children": []
+    },
+    "h-consensus": {
+      "type": "Heading",
+      "props": {
+        "text": "共识",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "links-consensus": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "link-dispersedbft"
+      ]
+    },
+    "link-dispersedbft": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DispersedBFT - 用分散复制去掉主备共识的瓶颈",
+        "href": "https://arxiv.org/abs/2611.24833",
+        "source": "arXiv"
+      },
+      "children": []
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "h-readout": {
+      "type": "Heading",
+      "props": {
+        "text": "单侧读数",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "readout-stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat-ai-robot",
+        "stat-crypto"
+      ]
+    },
+    "stat-ai-robot": {
+      "type": "Stat",
+      "props": {
+        "label": "AI/机器人",
+        "value": "3"
+      },
+      "children": []
+    },
+    "stat-crypto": {
+      "type": "Stat",
+      "props": {
+        "label": "加密",
+        "value": "1"
+      },
+      "children": []
+    },
+    "readout-note": {
+      "type": "Alert",
+      "props": {
+        "title": "饱和与命中",
+        "message": "饱和 11 词（`robot data` / `data generation` 最新 11-17 仍在动）· 窗口内零命中 10 词全部跨窗有命中 ⇒ 仍是窗口太短，未动词表。",
+        "type": "info"
+      },
+      "children": []
+    }
+  }
+}
