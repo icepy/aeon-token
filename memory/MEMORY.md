@@ -1,11 +1,11 @@
 # Long-term Memory
-*Last consolidated: 2026-11-18*
+*Last consolidated: 2026-11-19*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
 - **`aeon-update` 基线 `7b20c95`**（PR #27 已合 11-16T11:42Z）：50 条提交**净变更为零**。判据 `CLEAN-MERGE>0` + `git diff --stat` 空 ⇒ 没改；6 冲突全是技能计数漂移 → `keep_local`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#aeon-update]
-- **待盯（OPERATOR）：`defi-overview` 病因已定 = 单轮输出超限，不是网关。** run `44195522715`：138 轮 · 147604 tok vs 128000 · `max_output_tokens`；网关拒绝是 `num_turns:1`+0 工具调用，一行可辨。cf 6→7，19/41=**46%**；`market-context.md` 冻结 ~120h。`github-radar` 已自愈。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-18#heartbeat]
+- **待盯（OPERATOR）：`defi-overview` 已自愈（cf 7→0），但 20/42 = 48% 仍在 50% 线下 —— 连绿数轮才可摘 chronic。** 修法即「砍单轮输出」（48 tool calls、取数全走 python 摘要）首轮兑现；`market-context.md` 解冻 → 11-18T23:10Z。**文件恢复写入 ≠ 成功率恢复**，两者分记。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-19#heartbeat]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
 - **PR 队列会反过来影响读数语义**：词表/阈值改动只在合进 main 后才算数，挂着就是没生效。队列现为空（#25/#27 均 11-16 合）。[source: logs/2026-11-17#heartbeat]
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
@@ -13,9 +13,9 @@
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-17 第 49 轮 71 → **2**（`TRR` 仿真/RGBT · VR 纠正点云抓取）。两侧失败类 0。**11 个零命中词 11/11 是「窗口太短」**⇒对低频词窗口决定可见性，60d 才 1–2 条的该用 `days:90` 补。**「低频探针 0」是未量**（`cross_windows()` 不量降级词）。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-17#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-19 第 24 轮 9075 / 新增 5 / 可报 **1**（`Coffer Protocol` 验证者质押固息债券 $56.4K）。**`listedAt` 有日精度回填（`Pons V1/V2` 同秒 `T00:00:00Z`）⇒ 「可见性滞后 ~20h」的推断只对秒级条目成立**。`parent` 4 条真边际 0（去掉仍被空链挡，3 条再被 Interface 挡）。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-19#defillama-radar]
-- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-17 第 28 轮补上：445/66/20，真零 1 / 饱和 5（2 个 `seen=0` 是损耗）/ 有新增 12。**`30d==7d` 本轮 0 条 ⇒ 上轮「9 中 8」只是样本条件**；carrier 两侧 100% ⇒ 无误杀。probe 三条件 0；digest 计 11 出 8 行。→ [topic](/topics/github-radar.md) [source: logs/2026-11-17#github-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-18 第 50 轮 71 → **3**，全来自 `robot` carrier。**11 个零命中词 11/11 是「窗口太短」，第二轮全数复现 —— 该动窗口不是词表**（`days:90`）。**「低频探针 0」是未量**。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-18#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-19 第 24 轮 9075 / 新增 5 / 可报 **1**（`Coffer Protocol` 验证者质押固息债券 $56.4K）。**`listedAt` 有日精度回填（`Pons V1/V2` 同秒 `T00:00:00Z`）⇒「滞后 ~20h」只对秒级条目的推断成立**。`parent` 4 条真边际 0。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-19#defillama-radar]
+- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-18 第 29 轮 467→39→报 9。**`30d==7d` 三轮 8/9→0/9→9/9 ⇒ 非窗口定律也非噪声，是整批同源（paper code release）**；报告级 star 全 ≤1。`intent-based` 7/0 两轮=过滤损耗。carrier 两侧 100% 测不出误杀。→ [topic](/topics/github-radar.md) [source: logs/2026-11-18#github-radar]
 
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。判据速查：

@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-18T18:00:00Z
+timestamp: 2026-11-19T18:10:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -303,6 +303,25 @@ One full run log (`44195522715`, 2026-11-17) settles it for `defi-overview`: `nu
   (48% → 46%). Third consecutive round where only the denominator moved. `market-context.md` frozen at
   `2026-11-13T00:15:00Z` = ~120 h, single writer still `defi-overview`.
   [source: logs/2026-11-18#heartbeat]
+
+#### Update (11-19): the output-budget fix worked on its first try — but the chronic counter is still red
+
+- **`defi-overview` self-healed: `last_success=2026-11-18T23:14:04Z`, `last_dispatch=23:00:44Z`,
+  `consecutive_failures` 7 → 0, `total_runs` 41 → 42.** The previous round died at `num_turns:138` /
+  `output_tokens:147604` vs 128000; this round logged **48 tool calls**, all data pulling aggregated in
+  python with only summary lines printed. Same-day diagnosis → same-day fix → success. **This is the
+  positive control for the 11-18 entry: the "large `num_turns` + tokens at ceiling" disease is fixable
+  by squeezing per-turn I/O; it does not require a provider change.**
+- **`market-context.md` unfroze:** `2026-11-13T00:15:00Z` → `2026-11-18T23:10:00Z`, ending a ~120 h
+  freeze. Third full lifecycle sample of "single writer dies ⇒ derived file freezes." **Recovery of
+  writes ≠ recovery of success rate — record them separately.**
+- **The success rate is still 20/42 = 48%, below the 50% chronic line, so it stays in the chronic
+  bucket this round.** A 42-run mean cannot be moved by one green night. `STATUS_PAGE` moved
+  🔴 DEGRADED → 🟡 WATCH, not 🟢. Rule unchanged from 11-14: several consecutive green runs before
+  calling it a durable fix.
+- **Remaining orphan: `arxvi-radar`'s cron-state row (22nd consecutive round).** `aeon.yml` has zero
+  mentions of that skill, but `state` still holds a `total_runs:1` record from 10-26.
+  [source: logs/2026-11-19#heartbeat]
 
 ## Reading `gh run view --log`: colour-escaped lines are the script body, not output
 
