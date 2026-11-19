@@ -1,10 +1,10 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-18T10:02:17Z",
-  "quality_score": 3,
-  "assessment": "Clean, correct no-op: remote fetch succeeded (http=200, 23432 bytes, 4 sections), all four section sha256 hashes matched the seen store, so no notification was sent and no files were modified — a legitimate completed quiet run, though with no substantive content beyond the dedup verdict.",
+  "last_analyzed": "2026-11-19T10:02:00Z",
+  "quality_score": 4,
+  "assessment": "Substantive, well-structured cross-asset narrative brief with per-section entries, contrarian takes, scoring, and a change/delta log that evidences the new-content and dedup gating the skill is meant to perform; internally consistent and actionable, though independent verifiability of the tweet IDs and IPO figures is limited.",
   "flags": [],
-  "avg_score": 3.31,
+  "avg_score": 3.33,
   "history": [
     {
       "date": "2026-10-27",
@@ -160,6 +160,12 @@
       "date": "2026-11-18",
       "score": 3,
       "ts": "2026-11-18T10:02:17Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-19",
+      "score": 4,
+      "ts": "2026-11-19T10:02:00Z",
       "harness": "claude"
     }
   ]
