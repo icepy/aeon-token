@@ -1,57 +1,49 @@
-⚠️ 行情 · 2026-11-18 · risk-off
+ℹ️ Crypto 2026-11-19 - chop / DeFi Sideways
 
-**行情 · 2026-11-18**
+**Crypto - 2026-11-19** - chop（conviction low）| DeFi **Sideways**：磨底无方向
 
-**判断：risk-off（信心 high）**
-BTC **$62,180（24h −3.87%，7d −16.36%）** -- 比 11-13 那份快照的 $71,366 又跌了 **12.87%**。非稳定币 7d 广度 **0/16**，全红。
-唯一的反向信号是稳定币总量几乎没动（24h **−0.12%**）-- **这轮是杠杆出清，不是资金离场。**
+**TVL:** $71.32B（已结算 11-18 桶，+0.49% 24h / **−7.11%** 7d）
 
-**TVL：$139.98B（7d −10.12%）**
-同比 ETH 计价口径是 **+4.58%**，说明跌幅多由币价贡献。但绝对规模从 11-05 的 $172.90B 到现在 **−19.0%** -- 这部分汇率解释不了。
+**广度是本轮唯一变化：** 24h **13/20 绿**（上轮 2/20、11-13 以来首次转正），但 **7d 仍 4/20**；剔稳定币后 24h **10/16**、7d **2/16**。**止跌，不是反转。**
 
-**主力链**
-1. Ethereum - $36.39B（24h −2.66%，7d −10.08%）
-2. Base - $5.03B（24h −3.14%，7d −12.64%）
-3. Solana - $4.71B（24h **−0.08%**，7d −6.45%）-- 24h 几乎收平，7d 跌幅最小
+**Top chains**（7d）
+1. Ethereum $37.34B（1d −0.12% / 7d −7.73%）
+2. Base $5.20B（1d +0.10% / 7d −9.71%）
+3. Solana $4.80B（1d +1.89% / 7d −4.60%）
 
-_13 条 ≥$500M 的链，24h 无一触及 ±5% 门槛（最好 Monad +1.42%、Tron +0.50%；最差 Bitcoin −3.35%）。不是某个链出事，是全线阴跌。_
+**Movers**
+↑ Aave V3 +11.3%（$14.03B → $15.17B，7d +2.3%）- 十亿级唯一双正，同类借贷搬家
+↓ Sky Lending −41.2%（$3.59B → $2.11B，7d −46.3%）- USDS 口径改写疑云，见下
 
-**异动协议**
-↑ **Tydro +44.8%**（$281M → $406M）-- Aave 驱动的 Ink 链借贷，7d **+261.5%**，新协议放量
-↑ **Kraken Bitcoin +28.7%**（$603M → $776M）-- 托管型 BTC 桥逆势吸金，7d +10.2%
-↓ **Figure Markets Prime −12.1%**（$158M → $139M）-- Provenance 链借贷，7d −19.2%，无明确成因
+**Fees leaders (24h)**
+1. Tether $17.0M（1d −0.2% / 7d +1.9%）
+2. Circle USDC $6.8M（1d −0.4% / 7d +1.0%）
+3. Ethena USDe $3.1M（`change_7d` 返回 122505681% = 低基数尖峰，无效读数）
 
-**手续费前三（24h）**
-1. Tether - **$17.08M**（对 7d 日均 +0.7%）
-2. Circle USDC - $6.81M（+0.7%）
-3. Hyperliquid Perps - $3.38M（7d-over-7d **+18.7%**）
+**Fees beating TVL**
+• PumpSwap - fees +34.0% / TVL −6.8%（7d）
+• Jupiter Perps - fees +30.1% / TVL −6.5%，7dover7d +53.5%
 
-**费收跑赢 TVL（7d）**
-• **Jupiter Lend** - 费用 **+46.7%** / TVL **−2.2%**
-• **Fluid Lending** - 费用 **+46.7%** / TVL **−4.6%**（7d-over-7d +57.2%，最强）
+**DEX vol (24h):** $7.78B（+3.83%） top: Uniswap V3 $1.08B、Uniswap V4 $0.81B、Aero Slipstream $0.73B
 
-**DEX 量：$7.480B（24h −11.72%）**
-前三 Uniswap V3 $949M、Uniswap V4 $881M、Aero Slipstream $715M。
-_但 7d-over-7d 转正 **+2.46%**（上轮 −18.22%）-- 缩量趋势断了，绝对值仍在低位。_
+**Stables:** $284.70B（1d **−0.90%**，失血重新加速；7d −1.84%）
+• USDS $3.24B（1d −38.2%）- **DefiLlama 侧单边读数，CoinGecko 仍报 $6.42B，两源差一倍 ⇒ 疑口径改写非真赎回，待确认**
+• USDf $1.61B（1d +8.4%，折价 −36.6bp 连续两轮收窄）- 折价修复 + 资金回流同向第二日
 
-**稳定币：$287.01B（24h −0.12%，7d −1.17%）**
-失血速度在收窄。PYUSD 7d **−14.69%**、USD1 **−10.83%** 还在跑，RLUSD **+3.33%** 在接。稳定币占全市场市值 **13.31%**（上轮 11.95%）-- 分母缩得比分子快。
+**Real yield（可持续，含 `ilRisk=no` 硬闸）**
+• USDC / Hyperliquid HLP - 18.6% apyBase（$154M）⚠️ m30 仅 9.6%，30 日均值不到当前一半
+• APXUSD / apyx - 13.6% apyBase（$125M，m30 13.2% 稳）
+• USDDW / drakewell - 12.1% apyBase（$17M）
 
-**真实收益（可持续，≥$10M，已过滤）**
-• APXUSD（apyx，Ethereum）- **12.92%** apyBase（$134M）
-• USDC（accountable，Ethereum）- **12.12%** apyBase（$17M）
-• REUSDE（re，Ethereum）- **11.82%** apyBase（$30M）
-_榜首的 ETH-WBTC 26.6%、WETH-USDT 20.4% 是无常损失型 DEX 池，不算真收益。_
+**Incentive yield（points / 排放）**
+• USDS / sparklend - 17.3% apy 纯奖励（$89M）⚠️ Spark 生态本轮 TVL 塌方，可持续性存疑
+• HYPERUSDCA / morpho-blue - 11.6%（base 10.7 + rew 0.9，$31M）
 
-**激励收益（积分/排放，≥$25M）**
-• CVXCRV（Convex）- **20.5%**（$30M，**apyBase=0，奖励就是全部**）
-• USD1（Dolomite）- 10.9%（base 4.0 + 奖励 6.9，$35M）
+**Macro:** BTC $62,127（−0.13% / 7d −13.0%）· ETH $1,759（+0.15%）· F&G **10**（Extreme Fear，昨 11，底部横 5 天）· 非稳定币广度 7d **2/16**
+**Hot market:** 「BTC 年内触 $60,000」YES **81.5%**（上轮 75.5%，+6pp）- 但 11 月盘「触 60k」只从 63.5% 到 64.5%，**概率在涨、时间点被推后**
 
-**宏观读数**
-· F&G **11（Extreme Fear）**，昨 12。13 天内从 11-05 的 50 掉到 11，**已在 10-13 横了 5 天 -- 抄底了但没弹起来。**
-· 广度 **2/20**（24h 只有 TRX +0.38%、FIGR_HELOC +0.50%）
-· **Polymarket：年内跌到 $60,000 → YES 75.5%**（现价 $62,180，只差 **3.5%**）；跌到 $55,000 → 39.5%，$50,000 → 23.2%；向上到 $90,000 仅 5.5%
-· 12 月加息 +25bp → **91.5%**（上轮 87.5%），已近上限、无边际空间
-· **今日是 11 月 BTC 期权到期日**，现价卡在 60k/65k 两大行权价之间 -- 未来 24h 唯一确定的波动源
+**两条读数陷阱（本轮最值钱的）：**
+1. **总 TVL 两套口径并存，比值恒 ~2.0** - legacy `/charts` 报 $138.5B，`/v2` 求和报 $69.4B。直连会造出 −50% 假暴跌。上轮报的 $139.98B 还是当天 live 值，隔日已修订为 $143.29B。
+2. **11-18 BTC 期权到期未选方向** - 上轮标它是"唯一确定波动源"，结果 BTC 只动 −0.09%。**到期无波动 = 无承接盘，比有波动信息量更大。**
 
-_sources: DeFiLlama TVL/DEX/费用/稳定币/收益率 ok · CoinGecko ok · alternative.me ok · Polymarket ok · WebSearch **fail**（连续第六轮无浏览权限，宏观催化剂只从 Polymarket 结算日历推，未引用任何新闻）_
+_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=**fail（第七轮）** | var: none | positions: NO_CONFIG_
