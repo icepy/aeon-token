@@ -1,0 +1,236 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "✅ Heartbeat: defi-overview 自愈"
+      },
+      "children": [
+        "main"
+      ]
+    },
+    "main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h_recover",
+        "p_success",
+        "p_compare",
+        "grid_compare",
+        "p_thaw",
+        "sep1",
+        "alert_unstable",
+        "grid_stats",
+        "p_rate_note",
+        "alert_refail",
+        "sep2",
+        "p_others",
+        "p_page",
+        "badges_page",
+        "sep3",
+        "h_todo",
+        "p_todo",
+        "link_status"
+      ]
+    },
+    "h_recover": {
+      "type": "Heading",
+      "props": {
+        "text": "🟢 自愈：defi-overview 恢复",
+        "level": "h2"
+      }
+    },
+    "p_success": {
+      "type": "Text",
+      "props": {
+        "text": "11-18 23:14 UTC 成功 -- 连败 7 轮后首次，且是第一次用「砍单轮输出」的修法跑通。",
+        "variant": "lead"
+      }
+    },
+    "p_compare": {
+      "type": "Text",
+      "props": {
+        "text": "对比：11-17 那轮 138 轮 / 147,604 tok vs 上限 128,000（撞顶）；本轮 48 次工具调用，取数全在 Python 里聚合、上下文只打摘要行。",
+        "variant": "body"
+      }
+    },
+    "grid_compare": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat_prev",
+        "stat_now"
+      ]
+    },
+    "stat_prev": {
+      "type": "Stat",
+      "props": {
+        "label": "11-17 那轮",
+        "value": "138 轮 / 147,604 tok",
+        "delta": "上限 128,000（撞顶）",
+        "trend": "up"
+      }
+    },
+    "stat_now": {
+      "type": "Stat",
+      "props": {
+        "label": "本轮工具调用",
+        "value": "48 次",
+        "delta": "全在 Python 聚合，上下文只打摘要行",
+        "trend": "neutral"
+      }
+    },
+    "p_thaw": {
+      "type": "Text",
+      "props": {
+        "text": "market-context.md 解冻：2026-11-13T00:15Z → 2026-11-18T23:10Z，~120h 的冻结期结束。",
+        "variant": "body"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "alert_unstable": {
+      "type": "Alert",
+      "props": {
+        "title": "但还不能算稳：",
+        "message": "尾部成功率仍在 50% 慢性线以下；再失败一次就重回 🔴。",
+        "type": "warning"
+      }
+    },
+    "grid_stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat_rate",
+        "progress_rate"
+      ]
+    },
+    "stat_rate": {
+      "type": "Stat",
+      "props": {
+        "label": "尾部成功率（42 轮均值）",
+        "value": "48%",
+        "delta": "20/42",
+        "trend": "down"
+      }
+    },
+    "progress_rate": {
+      "type": "Progress",
+      "props": {
+        "value": 48,
+        "max": 100,
+        "label": "尾部成功率 20/42 = 48%（慢性线 50%）"
+      }
+    },
+    "p_rate_note": {
+      "type": "Text",
+      "props": {
+        "text": "仍在 50% 慢性线以下 -- 这是 42 轮的均值，需要连绿多轮才抬得动，不代表当前有病。",
+        "variant": "body"
+      }
+    },
+    "alert_refail": {
+      "type": "Alert",
+      "props": {
+        "title": "再失败一次就重回 🔴。",
+        "message": "要连续几晚都绿才能判为持久修复。",
+        "type": "error"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "p_others": {
+      "type": "Text",
+      "props": {
+        "text": "其余全线正常：8 个定时 skill 全部在自己周期内跑通成功，无 stuck、无 cf≥3、无 chronic（除上面那条均值口径）。",
+        "variant": "body"
+      }
+    },
+    "p_page": {
+      "type": "Text",
+      "props": {
+        "text": "页面：",
+        "variant": "body"
+      }
+    },
+    "badges_page": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge_degraded",
+        "badge_arrow",
+        "badge_watch"
+      ]
+    },
+    "badge_degraded": {
+      "type": "Badge",
+      "props": {
+        "text": "🔴 DEGRADED",
+        "variant": "destructive"
+      }
+    },
+    "badge_arrow": {
+      "type": "Badge",
+      "props": {
+        "text": "→",
+        "variant": "outline"
+      }
+    },
+    "badge_watch": {
+      "type": "Badge",
+      "props": {
+        "text": "🟡 WATCH",
+        "variant": "secondary"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h_todo": {
+      "type": "Heading",
+      "props": {
+        "text": "待办（不需你动手）",
+        "level": "h3"
+      }
+    },
+    "p_todo": {
+      "type": "Text",
+      "props": {
+        "text": "MEMORY.md「待盯」行仍是「输出超限病因已定」的旧写法，18:00 的 memory-flush 应改写；health issue #13 / #9 两次自愈后均未回访，属线程未闭环。",
+        "variant": "body"
+      }
+    },
+    "link_status": {
+      "type": "Link",
+      "props": {
+        "label": "🔗 https://github.com/icepy/aeon-token/blob/main/docs/status.md",
+        "href": "https://github.com/icepy/aeon-token/blob/main/docs/status.md"
+      }
+    }
+  }
+}
