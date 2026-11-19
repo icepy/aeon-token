@@ -1,12 +1,12 @@
 ---
 title: DefiLlama Radar
-description: 第二层（名字）发现通道 —— 用全量 id 求差找白名单链上新登记的协议。机制、四态、判据与已知陷阱（含延迟批量回填使「永久 id 空洞」判据作废、parentProtocol 跨快照翻转、address 前缀不可替代 chains、旁路收益的窄口径、桶序有损、非数字 id 归一化会让老条目冒充新协议）。
+description: 第二层（名字）发现通道 —— 用全量 id 求差找白名单链上新登记的协议。机制、四态、判据与已知陷阱（含延迟批量回填使「永久 id 空洞」判据作废、parentProtocol 跨快照翻转、address 前缀不可替代 chains、旁路收益的窄口径、桶序有损、非数字 id 归一化会让老条目冒充新协议、listedAt 存在日精度回填会污染滞后期推断、债券类 Lending 的 borrow/tvl 不可按 0–1 量纲读）。
 tags:
   - crypto
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-18T00:20:00Z
+timestamp: 2026-11-19T00:10:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,64 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-18 第 23 轮）
+## 本轮漏斗口径（11-19 第 24 轮）
+
+全量 **9075** · 新增 id **5**（可报 **1** / 过滤 4）· `seen` 命中 9070 · `parent` **4** · `category` **0** · 空 `chains`/链白名单 **0** · 无 id 0 · 拉取失败 0 · 重报 0 · `STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️（孪生 `BSC`/`OP Mainnet` 仍 0，`Binance`/`Optimism` 分别 1158/394）。**报告级 1 → 已发通知、1 条标 `notified`。**
+
+### 可报 1 条：`Coffer Protocol` —— 验证者质押抵押的固息债券
+
+| id | 名称 | 链 | TVL | 类目 | 说明 |
+|---|---|---|---|---|---|
+| 9470 | `Coffer Protocol` | Ethereum | **$56,435.83** | Lending | 无许可、非托管债券：验证者以自身质押为抵押发行固息债券募 ETH，持券人吃固息，债券是可转让 NFT。`url` 空、`parent` 空、`listedAt 2026-11-18T00:00:55Z` |
+
+**口径待查（本通道不下判断，只记读数）**：`chainTvls` 里 `Ethereum=56,435.83`、`Ethereum-borrowed = borrowed = 222,212.06`。**borrow/tvl = 3.94**，而全量 Lending 头部 12 家该比值区间是 **0.06–0.93**（Aave V3 0.76、Morpho 0.54、Jupiter Lend 0.93 最高）。债券类协议用「发行面额 / 底层质押」记账时这个比值本来就不是 0–1 量纲，**不能直接判为串号或重复计量**，但它意味着 `tvl` 字段在这里不代表资金规模。记一笔，下次遇到债券/固定收益类 Lending 先核 `chainTvls` 的键语义。
+
+### `parent` 本轮的边际是 0 —— 桶序有损第七次复现
+
+4 条被过滤全部撞 `parent` 桶，但逐条拆开后 **parent 的真边际是 0**：
+
+| id | 名称 | 类目 | parent | 去掉 parent 后 |
+|---|---|---|---|---|
+| 9471 | `EtherFi Cash Swaps` | DEX Aggregator | `parent#ether-fi` | 仍被空 `chains` 挡 |
+| 9472 | `True Markets Perps` | **Interface** | `parent#true-markets` | 空链 + EXCL 双帽 |
+| 9473 | `True Markets Spot` | **Interface** | `parent#true-markets` | 空链 + EXCL 双帽 |
+| 9474 | `RXN Prediction Markets` | **Interface** | `parent#rxn` | 空链 + EXCL 双帽 |
+
+四条 `tvl` 全为 `null`、`module='dummy.js'`、`chains=[]` —— **本轮唯一一次「parent 主导 + 零真损失」的组合**。`category=0` 与此前几轮的「假 0」同因：3 条 Interface 被 parent 先吃掉。
+
+### 判据级新增：`listedAt` 存在日精度回填，滞后期推断会被污染
+
+本轮 `Coffer Protocol` 的 `listedAt = 2026-11-18T00:00:55Z`，落在整点后 55 秒。查全量：**`listedAt` 落在 `HH:00` 这一分钟的有 6 条**，其中 **`Pons V1` / `Pons V2` 秒级完全相同（`2026-07-31T00:00:00Z`）** —— 两条独立协议不可能同秒登记，这只能是**日精度回填（`Date` 而非 `Datetime`）**。
+
+**推论两条：**
+
+1. **`listedAt` 的秒级精度不全局成立。** 多数条目秒级可信（11-16/11-17 的连号子段判据依赖秒级），但有一部分只有日精度，换算成 epoch 后全落在 `T00:00:00Z`。
+2. **第 23 轮记的「`/protocols` 可见性滞后 `listedAt` 约 20 小时」必须加限定**：那条是从 `9455`/`9456`（`22:59:19Z` / `23:03:51Z`）推出来的，秒级可信，结论本身不动；但**任何用「`listedAt` 早于上轮快照却缺席 ⇒ 滞后 N 小时」推滞后期的方法，遇到日精度条目会算出最多 +24h 的假滞后**。判滞后期前先看该条 `listedAt` 的秒位是否恰好为 0。
+
+### 同秒批量：无新簇，`True Markets` 两条是同 parent 低速铺开
+
+`9472`/`9473` 相隔 4 秒且同 `parent#true-markets` —— 属 11-08 记的「单一母协议一次性铺子条目」形态，但**未达 ≥3 同秒阈值，不进批量指纹**。全量同秒 ≥3 簇仍 **31 组（+0）**，最近仍是 `2026-11-14T13:53:56Z`（`Exodus Pay` / `Send Card` / `COCA Card`）。
+
+### CF 双取通过，非假零
+
+常规取 `HIT`（etag `W/"6afe36e5-935b27"`、`last-modified Wed, 18 Nov 2026 23:38:13 GMT`、9075 条）；`?_cb=` + `no-cache` 取到 **`MISS`，id 集合逐条相同、`tvl` 差异 0 条**。**两向差集：`only_raw=[]`、`only_seen=['4818']`（连续第十五轮真下架）。** 本轮 1 条可报来自同一份 11-18T23:38Z 日更快照。
+
+### 差集与 id 连续性
+
+`max_id=9474` · 数字 id 9074 条 · 非数字仍只有 `<5471>`。**9470–9474 连号无缺口。** 9000 以上缺口仍 4 段：`9135`（单）· `9257`（单）· `9382`（单，连九轮）· `9391`（单，连八轮）。上轮的尾部连号空洞已由 `9470+` 接续填平。
+
+### 其余结构读数（连续观测）
+
+- `chains=[]` = **1658/9075 = 18.27%**（上轮 18.24%，**连续第四轮创新高**；十五轮区间 17.4–18.27）。空链 ⟺ `module='dummy.js'` **第七轮复核仍完全相等（1658/1658，两向差集空）**；空链中 `tvl` 非空 **0 条**、带 parent **660**、`category∈EXCL` **439**。
+- 同秒 ≥3 条簇 **31 组**（+0）；`listedAt` 总数 7396（+5）。
+- `listedAt` 缺失 **1679 条**（持平）。`tvl=None` **2508**（上轮 2506）。**全量 TVL $442,770,149,183.67（上轮 $451,328,350,251.35，−$8.56B / −1.90%）—— 连续第二轮回落。** 动用的是源站 `MISS` 那份，非缓存假动。
+- 近 7d 登记 **59** 条、近 30d **300** 条（上轮 76 / 305）—— 纯窗口滚动的正常回落，不是登记放缓；**7d 59 条里可报 1 条 = 1.7%**。全量 `parent` 2729 条，其中 EXCL 257 条（9.4%）。
+
+### 审计行 `本次通知` 缺陷第五次暴露（仍未修）
+
+`scan.py:301` 把 `本次通知` 按「可报 / 基线 / dry-run」硬编码，**本轮可报 1 且未带 `send`，实际显示「跳过（零可报）」，与现实相反**。读法不变：**以 `可报 N` 与 `STATUS` 为准，`本次通知` 字段不可信。**
+
+## 上一轮漏斗口径（11-18 第 23 轮）
 
 全量 **9070** · 新增 id **14**（可报 **2** / 过滤 12）· `seen` 命中 9056 · `parent` **8** · `category` **0** · 空 `chains`/链白名单 **4** · 无 id 0 · 拉取失败 0 · 重报 0。`STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️ 链名警告（孪生 `BSC`/`OP Mainnet` 仍 0，`Binance`/`Optimism` 分别 1158/394）。**报告级 2 → 已发通知、2 条标 `notified`。**
 

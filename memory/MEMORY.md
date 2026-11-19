@@ -14,7 +14,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · 26 词 · 11-17 第 49 轮 71 → **2**（`TRR` 仿真/RGBT · VR 纠正点云抓取）。两侧失败类 0。**11 个零命中词 11/11 是「窗口太短」**⇒对低频词窗口决定可见性，60d 才 1–2 条的该用 `days:90` 补。**「低频探针 0」是未量**（`cross_windows()` 不量降级词）。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-17#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-18 第 23 轮 9070 / 新增 14 / 可报 **2**（`Trestly` $9.3K→Kaspa · `Polydash` $22 RH 发射台）。**`listedAt` 早于上轮快照 ~35min 却缺席 ⇒ `/protocols` 滞后 ~20h，`listedAt` 不可反推入库时间**。空链 18.24% 三轮新高。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-18#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-19 第 24 轮 9075 / 新增 5 / 可报 **1**（`Coffer Protocol` 验证者质押固息债券 $56.4K）。**`listedAt` 有日精度回填（`Pons V1/V2` 同秒 `T00:00:00Z`）⇒ 「可见性滞后 ~20h」的推断只对秒级条目成立**。`parent` 4 条真边际 0（去掉仍被空链挡，3 条再被 Interface 挡）。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-19#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-17 第 28 轮补上：445/66/20，真零 1 / 饱和 5（2 个 `seen=0` 是损耗）/ 有新增 12。**`30d==7d` 本轮 0 条 ⇒ 上轮「9 中 8」只是样本条件**；carrier 两侧 100% ⇒ 无误杀。probe 三条件 0；digest 计 11 出 8 行。→ [topic](/topics/github-radar.md) [source: logs/2026-11-17#github-radar]
 
 ## Lessons Learned

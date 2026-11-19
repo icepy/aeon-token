@@ -1,8 +1,7 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=9056 · parent=8 · category=0 · 链白名单=4 · 拉取失败=0
-全量 9070 · 新增 id 14（可报 2 / 过滤标记 12）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=9070 · parent=4 · category=0 · 链白名单=0 · 拉取失败=0
+全量 9075 · 新增 id 5（可报 1 / 过滤标记 4）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1907 · Base=932 · Solana=476 · Arbitrum=1056 · Ink=33 · Binance=1158 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=324
-单侧读数: 加密侧 2 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  Trestly · Ethereum/Binance · tvl=9266.974934505155 · Bridge · 1794942041
-  Polydash · Robinhood Chain · tvl=21.985322871022593 · Launchpad · 1794941859
+链命中: Ethereum=1908 · Base=932 · Solana=476 · Arbitrum=1056 · Ink=33 · Binance=1158 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=325
+单侧读数: 加密侧 1 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+  Coffer Protocol · Ethereum · tvl=56435.829451165235 · Lending · 1794960055
