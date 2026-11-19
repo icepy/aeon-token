@@ -1,11 +1,29 @@
-**github-radar** · 窗口 7 天 · 报告级 9 · 近 7 天活跃 9
+**github-radar** · 窗口 30 天 · 报告级 27 · 近 7 天活跃 24
 
-- [m-alan08/failure-aware-robot-control](https://github.com/m-alan08/failure-aware-robot-control) ★0 · 30天=46 · 7天=46 · 词 `robot manipulation` · Failure-Aware Hierarchical Control: Selective Residual Reinforcement Learning for Robust Robotic Man
-- [pk002-hunter/microduck-sim2real](https://github.com/pk002-hunter/microduck-sim2real) ★0 · 30天=17 · 7天=17 · 词 `sim2real` · Sim-to-Real Bipedal Locomotion, Backlash Compensation & Dynamic Fall Recovery (VelStand) on Microduc
-- [timengelbracht/forcetwin](https://github.com/timengelbracht/forcetwin) ★0 · 30天=9 · 7天=9 · 词 `robot manipulation` · ForceTwin: Physics-informed Digital Twins for Robotic Manipulation from Instrumented Human Interacti
-- [binayksingh/does-action-matter](https://github.com/binayksingh/does-action-matter) ★1 · 30天=8 · 7天=8 · 词 `world model` · Code for "Does the Action Matter? Probing Action-Conditioned Semantic Forecasting as a World Model f
-- [aiden890/rby1-robocasa](https://github.com/aiden890/rby1-robocasa) ★0 · 30天=8 · 7天=8 · 词 `sim-to-real` · RB-Y1 lab-assistant tasks: RoboCasa sim to real
-- [mpodolinsky/WAM-eval](https://github.com/mpodolinsky/WAM-eval) ★0 · 30天=8 · 7天=8 · 词 `jepa` · Cosmos3 and VLA-JEPA eval on LIBERO-10.
-- [pccmast/embodied-dataops](https://github.com/pccmast/embodied-dataops) ★0 · 30天=7 · 7天=7 · 词 `embodied data` · Multimodal embodied-data production platform: LeRobot/MCAP/Ego ingest, canonical 10 Hz contract, lea
-- [irfanalimd/nanovla](https://github.com/irfanalimd/nanovla) ★0 · 30天=7 · 7天=7 · 词 `vision language action` · A small vision-language-action model trained on LIBERO
-- [Aarong22-colex/Robotic-Refueling](https://github.com/Aarong22-colex/Robotic-Refueling) ★0 · 30天=6 · 7天=6 · 词 `robot manipulation` · Interactive simulator inspired by NASA's Robotic Refueling Mission, featuring robotic manipulation, 
+- [codelady-ship/jeparla](https://github.com/codelady-ship/jeparla) ★0 · 30天=≥100 · 7天=≥100 · 词 `jepa` · Jeparla: qızıl, gümüş və brilyant zərgərlik mağazaları üçün çoxmağazalı kataloq (Next.js + Spring Bo
+- [Sunilkumarchavhan9/horos-probe-1](https://github.com/Sunilkumarchavhan9/horos-probe-1) ★2 · 30天=≥100 · 7天=66 · 词 `world model` · World model for Humanoid Robotics · Physical Intelligence Research A dedicated research repository f
+- [KuNaL8103/sim2real](https://github.com/KuNaL8103/sim2real) ★0 · 30天=94 · 7天=46 · 词 `sim2real` · End-to-end sim-to-real data pipeline and VLA fine-tuning framework (MuJoCo + ROS 2 Jazzy)
+- [shivankusingh/red-panda-bot](https://github.com/shivankusingh/red-panda-bot) ★1 · 30天=45 · 7天=39 · 词 `sim-to-real` · A small red panda robot that walks, rears up into a tripod on its tail, and comes back down. Skills 
+- [amayadiegoalejandro05/PhysalisHarvest](https://github.com/amayadiegoalejandro05/PhysalisHarvest) ★0 · 30天=21 · 7天=21 · 词 `robot manipulation` · Modular ROS 2 research platform for selective cape gooseberry harvesting, integrating RGB-D percepti
+- [Kripta-Studios/melee-world-model-research](https://github.com/Kripta-Studios/melee-world-model-research) ★0 · 30天=20 · 7天=20 · 词 `jepa` · Investigación: JEPA / LeWorldModel / world models aplicados a un agente de Super Smash Bros. Melee
+- [niktheod/reactbench-ad](https://github.com/niktheod/reactbench-ad) ★0 · 30天=19 · 7天=16 · 词 `world action model` · ReactBench-AD: Do Driving VLAs and World-Action Models React to Imminent Hazards in Their Path?
+- [iiEliJas/learn_jepa](https://github.com/iiEliJas/learn_jepa) ★0 · 30天=19 · 7天=13 · 词 `jepa` · A cool and interactive way of learning SigReg and the LeJEPA model.
+- [ZhengQingJing/jepa-ttt-reproduction](https://github.com/ZhengQingJing/jepa-ttt-reproduction) ★0 · 30天=13 · 7天=13 · 词 `jepa` · JEPA-TTT reproduction: native task pipelines, Two-Room experimental results, and adaptation controls
+- [Cle2ment/roboduck](https://github.com/Cle2ment/roboduck) ★0 · 30天=14 · 7天=12 · 词 `sim-to-real` · 基于 MicroDuck 和 XgoDuck 生态的双足机器鸭研究项目，涵盖 Radxa ZERO 3W 控制、强化学习步态、MuJoCo 仿真与 sim-to-real 验证。
+- [avneeshdubey99/drivejepa](https://github.com/avneeshdubey99/drivejepa) ★0 · 30天=12 · 7天=9 · 词 `world model` · Action-conditioned JEPA world model for autonomous driving - STAT 683 capstone
+- [weibinlee2024/LA-JEPA-LI](https://github.com/weibinlee2024/LA-JEPA-LI) ★1 · 30天=9 · 7天=9 · 词 `world model` · Independent reproduction of “La-JEPA”(Compact Robot Policies with Latent World Modeling, [arXiv:2611
+- [FidanKarimli/graph-jepa-protein-stability](https://github.com/FidanKarimli/graph-jepa-protein-stability) ★0 · 30天=9 · 7天=9 · 词 `jepa` · Self-supervised Graph-JEPA pretraining on unlabeled protein structures to predict mutation-induced s
+- [wangwen-banban/EgoHandWorld](https://github.com/wangwen-banban/EgoHandWorld) ★1 · 30天=8 · 7天=8 · 词 `egocentric` · Egocentric Monocular Video to Metric 3D Hand Motion in World Coordinates (NVIDIA EgoHand + ViPE)
+- [agile-crypto/citius-c-api](https://github.com/agile-crypto/citius-c-api) ★0 · 30天=25 · 7天=7 · 词 `intent-based` · C API headers for the citius intent-based cryptographic API
+- [KonstantinosKantie/ros2-mediapipe-robotic-hand](https://github.com/KonstantinosKantie/ros2-mediapipe-robotic-hand) ★0 · 30天=7 · 7天=7 · 词 `teleoperation` · Real-time 6-DOF robotic hand teleoperation using MediaPipe computer vision, ROS 2 Jazzy, and micro-R
+- [usiddiquie/A2WorldFineTuned](https://github.com/usiddiquie/A2WorldFineTuned) ★0 · 30天=27 · 7天=6 · 词 `world model` · A UR5e + Robotiq 2F-85 in Isaac Sim picks objects from drawers and a shelf and places them in a cont
+- [zacxu/SC4001_World_models](https://github.com/zacxu/SC4001_World_models) ★0 · 30天=12 · 7天=6 · 词 `world model` · Shared Imagination and Policy Distillation: A Study of Teacher Policy Distillation in Multi-Agent Wo
+- [Tbx998/FailureLab](https://github.com/Tbx998/FailureLab) ★0 · 30天=5 · 7天=5 · 词 `robot manipulation` · Interactive research website for complex robotic manipulation failures
+- [YiNocode/sim2real](https://github.com/YiNocode/sim2real) ★0 · 30天=5 · 7天=5 · 词 `sim2real` · OmniDrones to PX4 single-drone Sim2Real platform and lab workbench
+- [heinhtet14/edge-ai-engine](https://github.com/heinhtet14/edge-ai-engine) ★0 · 30天=8 · 7天=2 · 词 `vision language action` · Vision-language-action robot policies (SmolVLA → pi0) on an 8 GB Jetson Orin Nano — optimized with T
+- [slp-lab-research/ForeSign](https://github.com/slp-lab-research/ForeSign) ★0 · 30天=5 · 7天=2 · 词 `jepa` · ForeSign: self-supervised pose JEPA for sign language on canonicalised 3D MediaPipe keypoints
+- [Jeffaaay/cadenza-robotics](https://github.com/Jeffaaay/cadenza-robotics) ★0 · 30天=14 · 7天=1 · 词 `teleoperation` · OpenArm-based robotics platform, teleoperation baselines, control research and removable custom shel
+- [tayade-aniket/real_time_bot](https://github.com/tayade-aniket/real_time_bot) ★0 · 30天=5 · 7天=1 · 词 `teleoperation` · 🤖 Real-time robot teleoperation & network reliability simulator built with FastAPI, React, TypeScrip
+- [Celveen/JEPA-Stall](https://github.com/Celveen/JEPA-Stall) ★0 · 30天=29 · 7天=0 [爆完即停] · 词 `jepa` · Stall detection and escape for latent world-model MPC
+- [kwesi07/nsrmp-mini](https://github.com/kwesi07/nsrmp-mini) ★0 · 30天=22 · 7天=0 [爆完即停] · 词 `robot manipulation` · From-scratch mini re-implementation of 'Learning Neuro-symbolic Programs for Language Guided Robot M
+- [pavanyadava007/franka-cucumber-peel](https://github.com/pavanyadava007/franka-cucumber-peel) ★0 · 30天=12 · 7天=0 [爆完即停] · 词 `teleoperation` · Bimanual Franka Panda cucumber peeling: MuJoCo simulation, GELLO teleoperation path, Reactive Diffus

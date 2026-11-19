@@ -1,0 +1,158 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar 更正"
+      },
+      "children": [
+        "main"
+      ]
+    },
+    "main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "heading",
+        "alert",
+        "stats",
+        "badges",
+        "sep",
+        "details",
+        "rest"
+      ]
+    },
+    "heading": {
+      "type": "Heading",
+      "props": {
+        "text": "⚠️ 报告级第 1 条是误报",
+        "level": "h2"
+      }
+    },
+    "alert": {
+      "type": "Alert",
+      "props": {
+        "title": "github-radar 更正",
+        "message": "第 30 轮报告级 27 条里，第 1 位 codelady-ship/jeparla 是误报。",
+        "type": "warning"
+      }
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat1",
+        "stat2",
+        "stat3"
+      ]
+    },
+    "stat1": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级条目",
+        "value": "27"
+      }
+    },
+    "stat2": {
+      "type": "Stat",
+      "props": {
+        "label": "误报",
+        "value": "1"
+      }
+    },
+    "stat3": {
+      "type": "Stat",
+      "props": {
+        "label": "不受影响",
+        "value": "26"
+      }
+    },
+    "badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "b1": {
+      "type": "Badge",
+      "props": {
+        "text": "codelady-ship/jeparla",
+        "variant": "outline"
+      }
+    },
+    "b2": {
+      "type": "Badge",
+      "props": {
+        "text": "NEG_BY_TERM[\"jepa\"]",
+        "variant": "secondary"
+      }
+    },
+    "b3": {
+      "type": "Badge",
+      "props": {
+        "text": "30d/7d 双 ≥100 提交",
+        "variant": "destructive"
+      }
+    },
+    "sep": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "details": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    "t1": {
+      "type": "Text",
+      "props": {
+        "text": "desc 为阿塞拜疆语珠宝店电商目录（Next.js + Spring Boot），与 JEPA 无关。",
+        "variant": "body"
+      }
+    },
+    "t2": {
+      "type": "Text",
+      "props": {
+        "text": "原因：NEG_BY_TERM[\"jepa\"] 现有 [jepang, jepara, jepan]，而 jeparla 不含 jepara 子串。",
+        "variant": "body"
+      }
+    },
+    "t3": {
+      "type": "Text",
+      "props": {
+        "text": "它靠 30d/7d 双 ≥100 提交排到首位，是「无关仓用提交数压过真仓」的又一例。",
+        "variant": "body"
+      }
+    },
+    "rest": {
+      "type": "Text",
+      "props": {
+        "text": "其余 26 条不受影响。",
+        "variant": "muted"
+      }
+    }
+  }
+}
