@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-16T01:10:50.820307848Z",
+  "generatedAt": "2026-11-20T04:07:07.453184228Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -466,26 +466,6 @@
       ],
       "contentHash": "sha256-843b93076035aa6f117a50f524ccb9b595c52b54ec7b5b6a7d62e4097f49959e",
       "discoveredFrom": "skills/icp-deploy-check/SKILL.md"
-    },
-    {
-      "id": "961221e21a6642cb",
-      "tool": "aeon",
-      "scope": "project:.",
-      "type": "skill",
-      "name": "icp-mcp",
-      "source": {
-        "kind": "local",
-        "ref": "skills/icp-mcp"
-      },
-      "capabilities": {},
-      "files": [
-        {
-          "path": "SKILL.md",
-          "hash": "ef95f3933d2f3af6015b9054631d2b809098b52720f4a9353bb49524d5a408a1"
-        }
-      ],
-      "contentHash": "sha256-4bbd12ab4df65420dd5dd8907bbe0eec9337e93318e07928a6f4874a2637c06b",
-      "discoveredFrom": "skills/icp-mcp/SKILL.md"
     },
     {
       "id": "247033d77fff1c08",
@@ -1910,6 +1890,26 @@
       ],
       "contentHash": "sha256-2e983ebe4feb43448a9d7beeebfc02ea8e16b7c61643cffeb89da7804deca7e7",
       "discoveredFrom": "skills/executor-mcp/SKILL.md"
+    },
+    {
+      "id": "961221e21a6642cb",
+      "tool": "aeon",
+      "scope": "project:.",
+      "type": "skill",
+      "name": "icp-mcp",
+      "source": {
+        "kind": "local",
+        "ref": "skills/icp-mcp"
+      },
+      "capabilities": {},
+      "files": [
+        {
+          "path": "SKILL.md",
+          "hash": "c6f7dd232273b7d9b8db5057764c55bd005654be9ca2d4b3d3098ef9cb644bd3"
+        }
+      ],
+      "contentHash": "sha256-1647c8c6d931824bd00be98a56ee8e95c001db6597373799e3296c452807531a",
+      "discoveredFrom": "skills/icp-mcp/SKILL.md"
     },
     {
       "id": "963b1cff6e9f141a",
@@ -3347,15 +3347,11 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "9f5c86d9a550c1f8110a78e6d5f43eee05b9c73cda7d05983b8fdc6fd32ae85e"
+          "hash": "82fa178ed224629983d9601ce26e77198910d5d74d1d081cb61d5718ec893b57"
         },
         {
           "path": "references/ci.md",
           "hash": "eaa1d1bec27d6e8a594fe542ad54ad228f5f7a2506b5493943073ae79cbed496"
-        },
-        {
-          "path": "references/history-mining.md",
-          "hash": "ad5c316a34f6a67c83bacf7f74825626d3b0b2a48ccab6e497abb2f4c174eabf"
         },
         {
           "path": "references/layout.md",
@@ -3363,7 +3359,7 @@
         },
         {
           "path": "references/mcp.md",
-          "hash": "d062d96f414dc33fa1b9f8ad1757a855ec839d41d0a6c6ee81fd1973f256d96c"
+          "hash": "1b3ebd4c92d813b0c154f9e806f9fb552a70069096349585a7007bc933fce5eb"
         },
         {
           "path": "references/secrets.md",
@@ -3371,11 +3367,7 @@
         },
         {
           "path": "references/skill-anatomy.md",
-          "hash": "338ac232955e1f060086684d2bb471be1a21c050b712a1454409c7d8d4677a0f"
-        },
-        {
-          "path": "scripts/mine-history.mjs",
-          "hash": "d9ba2d1385621703ef4af28452516ba5b419c2db4c15e4e0b6ff641e0f592f9f"
+          "hash": "e95afa9a0fe271cfe9e50541150e6fe853bba904064e63deeb3b78f12dfde399"
         }
       ],
       "findings": [
@@ -3384,7 +3376,7 @@
           "severity": "high",
           "owasp": "ASK-06",
           "file": "SKILL.md",
-          "line": 47,
+          "line": 46,
           "snippet": "**Handling secrets:** never ask the user to paste a key, token, or private key into the chat, and never echo, log, or co…",
           "explanation": "references sensitive credential or secret paths"
         },
@@ -3393,7 +3385,7 @@
           "severity": "high",
           "owasp": "ASK-06",
           "file": "SKILL.md",
-          "line": 458,
+          "line": 424,
           "snippet": "- **Never include secrets, tokens, keys, `.env` values, or private repo contents.** If the report would carry the user's…",
           "explanation": "references sensitive credential or secret paths"
         },
@@ -3407,7 +3399,7 @@
           "explanation": "references sensitive credential or secret paths"
         }
       ],
-      "contentHash": "sha256-688d209682c961d0f456c31eee0eaa2841f508863a7541042331c3902e7b5e5a",
+      "contentHash": "sha256-aca373878c2c1bc376ba4172261db617b386dbcd90f74fd6b5c9637168a081b9",
       "discoveredFrom": ".claude/skills/aeon/SKILL.md"
     },
     {
