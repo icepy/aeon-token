@@ -328,3 +328,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-11-20,defillama-radar,claude-opus-5-5,56650,14424,1246592,0
 2026-11-20,heartbeat,claude-opus-5-5,63164,33999,795904,0
 2026-11-20,narrative-brief,claude-opus-5-5,33629,876,61440,0
+2026-11-20,memory-flush,claude-opus-5-5,101222,59854,6371456,0

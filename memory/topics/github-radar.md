@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-18T22:45:00Z
+timestamp: 2026-11-20T18:20:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,37 @@ timestamp: 2026-11-18T22:45:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第三十轮（2026-11-19，默认 30 天窗）—— 2008/74/27；NEG 表漏同源变体，漏网者排报告级第一
+
+18 词 × 二分至一页（单窗 13 / 需拆窗 5 · 二分 2 次 · 搜索调用 41）。漏斗：原始 **2008** → 幸存 **74** → 报告级
+**27**（近 7 天活跃 24）；丢弃 `seen=919` / `excl=136` / `short_desc=353` / `carrier=405` / `neg=54` / `pages=63` /
+`pages_root=1` / `farm=3` / `fail=0`。核验 74/74（100% 全量）。四分类：查询失败 **0** · 真零 **1**（`robotics data
+engine` total=0） · 饱和 **6** · 有新增 **11**。
+
+- **判据级 ①：`NEG_BY_TERM["jepa"]` 漏了 `jeparla`，而它排在报告级第一位。** `codelady-ship/jeparla` 的 desc 是
+  阿塞拜疆语珠宝店电商（Next.js + Spring Boot），与 JEPA 无关。现有表是 `["jepang","jepara","jepan"]` ——
+  **`jeparla` 不含 `jepara` 子串**（`jepar-la` vs `jepar-a`），所以不是匹配失效，是**同源变体未覆盖**。它靠
+  30d / 7d 双 ≥100 commits 冲到第一位 —— **又一次印证 star/commits 与相关性反相关，无关仓用提交数压过真仓。**
+  **动作含义：「缩写若留着必须配 NEG」这条铁律的实际形态是「逐变体登记」，补一个词根挡不住一族。**
+- **判据级 ②：`data availability` 落进「真被 seen 吸收」栏，但 seen=3 / raw=64 = 4.7%，低于既存规则线（`seen < raw
+  5%` 不许记饱和）。** 六条饱和的 `seen/raw`：verifiable inference 6/6 · robot dataset 12/13 · proof of useful work
+  5/6 · maximal extractable value 1/2 · embodied data 3/17（17.6%）· **data availability 3/64（4.7%）**。前四条是真
+  饱和；后两条（尤其 data availability）**须先归因到 excl/carrier/neg 再谈放宽**，本轮不据此改词表。这与第 28 轮
+  「饱和栏里也会误读」是同一条规则的第二次实证，但这次比值更极端（4.7% vs 17.6%）。
+- **判据级 ③：carrier 两组对照拉到本轮最大差 —— 但仍不到「无判别力」。** 丢弃侧「仓名自带词表词」165 → owner 去重
+  158 → 核验 148 → 7d 存活 **59/148 = 40%**；幸存侧 **64/73 = 88%**。**挡掉的大半确已停写，但四成仍活** ⇒ 误杀面
+  成立、却不是全损，放宽前仍只看这两行、不作单指标决策。
+- **窗口备注：`var=""` ⇒ 默认 30 天，原始 2008 不可与第 29 轮的 467（7 天窗）直接比。** MEMORY 的「cron 不注入
+  `var` ⇒ 7d 仅手动 `days:7` 时成立」本轮再确认（第二次）。
+- 词表返回/新收/已见（前六）：world model=701/14/155 · jepa=356/13/153 · teleoperation=222/13/160 ·
+  robot manipulation=153/12/104 · sim-to-real=116/3/95 · sim2real=93/5/52。`intent-based`=45/1/3 —— **本轮终于有
+  新收 1**，与第 28/29 轮连续 0 不同，但 raw 仅 45，单轮不足以下「过滤损耗解除」结论。
+- 异常行：爆完即停 9 · 无 `language` 12 · 空仓 409 1（123jisi/onboardmimic-g1）· 查询失败 0。probe 跳过（戳 2 天
+  < 7 天），`clusters.json` 未重写、不作读数。通知已发（27 条方向段，probe 不入正文）。
+- 过程备注：`printf | node -e` 追加被沙箱判为「array subscript with expansion」（正文含 `%d` 类片段）拒绝一次，改
+  用 Edit 追加，未产生重复条目。
+  [source: logs/2026-11-19#github-radar]
 
 ## 第二十九轮（2026-11-18，`days:7`）—— 467/39/9；`30d==7d` 从 0/9 翻到 9/9，判据落定为「同源批次」
 

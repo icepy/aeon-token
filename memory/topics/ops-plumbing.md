@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-19T18:10:00Z
+timestamp: 2026-11-20T18:20:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -322,6 +322,23 @@ One full run log (`44195522715`, 2026-11-17) settles it for `defi-overview`: `nu
 - **Remaining orphan: `arxvi-radar`'s cron-state row (22nd consecutive round).** `aeon.yml` has zero
   mentions of that skill, but `state` still holds a `total_runs:1` record from 10-26.
   [source: logs/2026-11-19#heartbeat]
+
+#### Update (11-20): second consecutive green — the arithmetic now says one more success clears the line
+
+- **`defi-overview` green again: `last_success=2026-11-19T23:10:25Z`, `last_dispatch=23:00:51Z`,
+  `consecutive_failures` stays 0, `total_runs` 42 → 43.** Two consecutive green rounds since the 11-18
+  fix — the 11-19 "several consecutive greens before calling it durable" bar is now two-thirds walked.
+  `market-context.md` written again, so the ~120 h freeze has not recurred.
+- **Success rate 20/42 = 48% → 21/43 = 49%.** The denominator gains +1 every round and the numerator only
+  on success, so **one more green run takes it to 22/44 = 50.0% and out of the chronic bucket.** Until
+  then it stays red; a green run that does not happen also keeps it under. **This is the only quantified
+  forward movement this round.**
+- **`consecutive_failures` does not decay when a skill is disabled.** Three rows sit at cf≥3 —
+  `price-alert` cf=5, `onchain-monitor` cf=4, `token-movers` cf=3 — but all three are `enabled: false` in
+  `aeon.yml` with last dispatch stuck at 10-25, and one shared error signature (`hivemindos 403 All
+  target providers failed`, a gateway-layer refusal). **Read: the cf counter is a ledger, not a status
+  light — it says the 10-25 gateway outage was never reconciled, not that anything is failing now.**
+  [source: logs/2026-11-20#heartbeat]
 
 ## Reading `gh run view --log`: colour-escaped lines are the script body, not output
 

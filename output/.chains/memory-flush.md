@@ -1,40 +1,35 @@
-Flush complete. Structure intact (the two "blank-before-heading" hits are the original template shape: `# Long-term Memory` → date line → `## About This Repo`).
+Memory flush complete. Scan window was 2026-11-19 → 2026-11-20 (2 daily files, no gap/clamp, 0 months rotated).
 
-## memory-flush — 2026-11-19
+## 本轮晋升的四条事实
 
-**扫描窗口：`2026-11-18 → 2026-11-19`**（watermark 自动读取，读 2 个日文件，无 >14 天缺口、未 clamp；轮转未触发，30 个日文件 / 阈值 45）。
+**1. 总 TVL 有两套并行口径 —— 混用会造出 −50% 假暴跌**（11-19 defi-overview）
+legacy `api.llama.fi/charts`（`totalLiquidityUSD`，`date` 是字符串）11-19 live 桶 **$138.48B**；`/v2/historicalChainTvl`（`tvl`，`date` 是整数）同桶 **$69.44B**。逐日比值 11-05 **2.049** → 11-19 **1.994**，稳定在 2 附近不是偶发。11-18 报的 $139.98B 是 legacy live 值、隔日修订为 $143.29B；直接拿 /v2 的数对它做 delta 会得 −50.4%。**判据：比 delta 前先验字段名同源。**
 
-### 提入长期记忆的四条
+同轮另两条：USDS −38% 是单源突变（CoinGecko 报 $6.42B / −0.21%，差近一倍 ⇒ 更像 sUSDS 剥离再挂，同族 Spark 四条同步下坠不构成独立验证）；BTC 期权到期后 −0.09% 无方向 = 无承接盘，事件到期而无波动本身是读数。
 
-- **`defi-overview` 已自愈，是「砍单轮输出」修法的首轮兑现。** `last_success` 11-18T23:14:04Z、`consecutive_failures` **7 → 0**、`total_runs` 41 → 42。上一轮死于 `num_turns:138` / `output_tokens:147604` vs 128000；本轮 **48 tool calls**、取数全在 python 聚合只打摘要行。11-18 定的病因与修法同轮兑现 ⇒ 该病可修，不必换网关。
-  - 附带：`market-context.md` 解冻（`11-13T00:15Z` → `11-18T23:10Z`，~120h 冻结结束）。
-  - **但成功率仍 20/42 = 48%，在 50% 线下** —— 文件恢复写入 ≠ 成功率恢复，两者分开记；`STATUS_PAGE` 只升到 🟡 WATCH。
-- **arxiv-radar 第 50 轮：11 个零命中词第二轮全数复现 11/11 落「窗口太短」，词级数字逐条相同。** 结论升级 —— 这是这批词的稳定属性，不是单轮样本；**该动的是窗口（`days:90`）不是词表**。本轮 3 条幸存全来自 `robot` carrier 且全是数据侧贡献，加密侧 0（单侧 AI 3 · 加密 0）。
-- **github-radar 第 29 轮：`30d==7d` 三轮三值（9 中 8 → 0/9 → 9/9），落定为「整批同源」判据。** 9 条 desc 全是论文句式 ⇒ paper code release；先看 desc 再读「7d==30d」。报告级 9 条 ★ 全 ≤1 且未按 star 排序 ⇒ 真分布，star 不该进排序。
-- **defi-overview 三条接口口径事故（新 lesson）**：`/markets?slug=` 恒回空数组须走 `/events?slug=` 展开；`groupItemTitle` 混已结算档必须按 3%–97% 过滤（BTC 年内盘 47 条只有 6 条有效）；`tag_slug=crypto` 带排序返 406；`historicalChainTvl` 字段是 `tvl`、`/charts` 的 `date` 是字符串。
+**2. arxiv「10 月断流」判定被推翻**（11-19 第 51 轮）
+上轮记的 `ti:"human data" AND cat:cs.RO` 断流不成立 —— 本轮 30d 窗内新收 2 条、2/2 全幸存，零命中集从 11 缩到 10，少的那一个正是它。**是延迟入索引，不是话题停。** 判据：`30d=0 / 60d=6` 只证明「30 天内没有新索引」，不证明「没有新论文」。出货词组从 `robot` carrier 换成 `human data`/`egocentric` 系仍落同一簇 ⇒ 数据侧召回是整簇属性。
 
-### 剪枝
+**3. `NEG_BY_TERM["jepa"]` 漏同源变体，漏网者排报告级第一**（11-19 第 30 轮）
+`codelady-ship/jeparla` 是阿塞拜疆语珠宝店电商。现有表 `["jepang","jepara","jepan"]` 不含 `jeparla`（`jepar-la` ≠ `jepar-a`）—— 不是匹配失效，是逐变体未覆盖。另：`data availability` seen/raw = **4.7%** 仍被记进「真饱和」栏，违反既存 `seen < raw 5%` 判据。
 
-`gh pr list --state open` = `[]`（连续第十七天）→ 无 PR 段、无 Next Priorities 段可清。**未删任何 lesson** —— 本轮无被推翻项，三条旧判据全被复现强化。各节均未过 10–15 行归档阈值。
+**4. cf 计数不因 skill 停用而衰减**（11-20 heartbeat）
+`price-alert` cf=5 / `onchain-monitor` cf=4 / `token-movers` cf=3 全部 `enabled: false`、停在 10-25、同一网关错误签名 ⇒ **cf 是账本不是状态灯**。`defi-overview` 连绿第二轮，**21/43 = 49%，再绿一轮即 22/44 = 50.0% 出 chronic 线**。
 
-### 预算
+## 剪枝与预算
 
-**7,973 → 7,838 字节 · 41 → 41 行 · 超长行 1 → 0**（余 354 字节）。压回全靠同义压缩，细节落 topic，事实与 `[source: ...]` 标签一条未丢。另修复了一处自动编辑吞掉的空行（`## Lessons Learned` 前）。
+PR 队列连续第十八天空（`improve:` 搜索返回 `[]`）→ 无可清段落。无 lesson 被删除；唯一被推翻的 arxiv「断流」**就地加子条标注推翻并保留原文**，因为「索引计数 vs 论文日期」这层区分本身仍有价值。未触发 3d 归档（各节均未过 10–15 行阈值）。
 
-### 文件
-
-- 修改：`memory/MEMORY.md`、`memory/logs/2026-11-19.md`、`memory/memory-flush-state.json`、`memory/topics/index.md`、`memory/topics/lessons.md`、`memory/topics/ops-plumbing.md`
-- `lessons.md` / `ops-plumbing.md` 的 `timestamp` 已 bump 到 `2026-11-19T18:10:00Z`；`github-radar.md`（11-18T22:45Z）与 `defillama-radar.md`（11-19T00:10Z）已新于来源，未动。
-- 未新建 topic / archive，故索引只做四行原地扩写。
-
-### 遗留（延续，非本轮新增）
-
-`defi-overview` 须连绿数轮才可出 chronic 口径；`scan.py:301` 审计行缺陷（第五次暴露）；`intent-based` 过滤损耗未归因；arxiv 14 词缺 carrier 表 + 11 词该跑 `days:90`（连两轮提，未执行）；`arxvi-radar` cron-state 孤儿条目（第二十二轮）；health issue `#9`/`#13` 未闭环。
-
-**STATUS: MEMORY_FLUSH_OK**，watermark 已 stamp 到 2026-11-19。
+预算从中途冲高 8,099（3 条超长行）压回 **7,887 字节 / 41 行 / 0 超长**，余 305 字节。压缩全靠删副项（`hallmarks`、`/v2/chains`、`market-context` 解冻半句），这些细节都还在 lessons 与 ops 全文里，事实和 `[source:]` 标签一条未丢。
 
 ## Summary
 
-- 按 `skills/memory-flush/SKILL.md` 执行完整 flush：步骤 0 由 `memory_prep.py window` 定窗口，步骤 8 由 `memory_prep.py stamp` 落 watermark。
-- 提入四条（`defi-overview` 自愈 + 修法兑现、arxiv 第 50 轮窗口属性二次证实、github 第 29 轮同源批次判据、defi-overview 三条接口口径），剪枝零删除，MEMORY.md 压回预算内。
-- 修改六个 memory 文件，未新建 topic。无 PR 可清，无归档触发。
+- **MEMORY.md** — 发现层三行（arxiv / defillama / github）整条改写、「待盯（OPERATOR）」行重写、行情口径 ② 并入两套 TVL 口径；7,887 字节 / 41 行 / 0 超长
+- **`memory/topics/lessons.md`** — +3 条行情口径、+1 条 arxiv 推翻子条、+1 条整簇属性子条
+- **`memory/topics/github-radar.md`** — 新增「第三十轮」整节
+- **`memory/topics/ops-plumbing.md`** — 新增 `Update (11-20)` 小节
+- **`memory/topics/index.md`** — 四行原地扩写
+- **`memory/logs/2026-11-20.md`** — `### memory-flush` 条目
+- **`memory/memory-flush-state.json`** — 水印已推进到 2026-11-20（step 8 已执行）
+
+**待办（延续，未处理）**：`arxiv-radar` 的 `days:90` 补历史已提四轮未执行；`github-radar` 的 `NEG` 表须补 `jeparla` 等同族变体；`defillama-radar` 的 `scan.py:301` 审计行缺陷第六次暴露，可单独提 PR。
