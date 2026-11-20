@@ -1,3 +1,15 @@
-⚠️ github-radar 更正：报告级第 1 条是误报
+**github-radar** · 窗口 30 天 · 报告级 13 · 近 7 天活跃 13
 
-第 30 轮报告级 27 条里，第 1 位 codelady-ship/jeparla 是误报 -- desc 为阿塞拜疆语珠宝店电商目录（Next.js + Spring Boot），与 JEPA 无关。原因：NEG_BY_TERM["jepa"] 现有 [jepang, jepara, jepan]，而 jeparla 不含 jepara 子串。它靠 30d/7d 双 ≥100 提交排到首位，是「无关仓用提交数压过真仓」的又一例。其余 26 条不受影响。
+- [MaryGit-24/egocentric-dishwashing-segmentation](https://github.com/MaryGit-24/egocentric-dishwashing-segmentation) ★0 · 30天=13 · 7天=13 · 词 `egocentric` · Instance segmentation of hands and kitchen objects in first person video from a Lagos kitchen, with 
+- [chengjianglong/HCWSimV2](https://github.com/chengjianglong/HCWSimV2) ★0 · 30天=18 · 7天=11 · 词 `vision language action` · HCWSimV2 trains digital humans via self-improving reinforcement learning to navigate a photo-realist
+- [robomotic/ElRobotSysId](https://github.com/robomotic/ElRobotSysId) ★0 · 30天=9 · 7天=9 · 词 `sim2real` · A sys id for El Robot for sim2real
+- [aicumene/BOID-JEPA](https://github.com/aicumene/BOID-JEPA) ★0 · 30天=9 · 7天=9 · 词 `jepa` · BOID for JEPA: counting the oscillatory modes that a JEPA world model latent sustains in time, under
+- [A-WangJie/RoboStudio-VR](https://github.com/A-WangJie/RoboStudio-VR) ★0 · 30天=8 · 7天=8 · 词 `teleoperation` · Robot simulation, VR teleoperation and data collection with RoboStudio and RoboData
+- [mrpmoffical/sim2real-drone-detection](https://github.com/mrpmoffical/sim2real-drone-detection) ★0 · 30天=8 · 7天=8 · 词 `sim2real` · A reproducible benchmark that measures how much Blender-generated synthetic data improves small dron
+- [dev2703/so101-bowling-rl](https://github.com/dev2703/so101-bowling-rl) ★0 · 30天=7 · 7天=7 · 词 `sim-to-real` · Sim-to-real dual-camera RL (PPO -> SAC) for SO-101 3-pin tabletop bowling
+- [chengjianglong/vla-qwen](https://github.com/chengjianglong/vla-qwen) ★0 · 30天=7 · 7天=7 · 词 `vision language action` · A compact vision-language-action (VLA) policy built on Qwen3-VL-2B-Instruct and fine-tuned with LoRA
+- [at0risa/vlm-robotic-manipulation-research](https://github.com/at0risa/vlm-robotic-manipulation-research) ★0 · 30天=5 · 7天=5 · 词 `robot manipulation` · Exploring vision-language models for natural language-guided robotic manipulation using the Franka F
+- [eric58000/bala2-ppo-sim2real-v2-6obs-kalman](https://github.com/eric58000/bala2-ppo-sim2real-v2-6obs-kalman) ★0 · 30天=5 · 7天=5 · 词 `sim2real` · Extending Shawn Hymel's BALA2 reinforcement learning project with 6 observations, Kalman filtering, 
+- [sidtr09/ap-research-portfolio](https://github.com/sidtr09/ap-research-portfolio) ★0 · 30天=5 · 7天=5 · 词 `sim-to-real` · AP Research digital portfolio: curriculum learning via sim-to-real discrepancy for autonomous racing
+- [chengjianglong/wam-qwen](https://github.com/chengjianglong/wam-qwen) ★0 · 30天=5 · 7天=5 · 词 `world action model` · A compact world action model built on Qwen3-VL-2B-Instruct with LoRA on LIBERO data that imagines fu
+- [enw/jepa-looking-glass](https://github.com/enw/jepa-looking-glass) ★0 · 30天=5 · 7天=5 · 词 `jepa` · An Apple Silicon experiment in visual surprise using V-JEPA and CLIP

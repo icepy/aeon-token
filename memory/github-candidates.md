@@ -726,3 +726,18 @@
 - [Celveen/JEPA-Stall](https://github.com/Celveen/JEPA-Stall) ★0 · 30天=29 · 7天=0 [爆完即停] · `jepa` · Stall detection and escape for latent world-model MPC
 - [kwesi07/nsrmp-mini](https://github.com/kwesi07/nsrmp-mini) ★0 · 30天=22 · 7天=0 [爆完即停] · `robot manipulation` · From-scratch mini re-implementation of 'Learning Neuro-symbolic Programs for Language Guided Robot M
 - [pavanyadava007/franka-cucumber-peel](https://github.com/pavanyadava007/franka-cucumber-peel) ★0 · 30天=12 · 7天=0 [爆完即停] · `teleoperation` · Bimanual Franka Panda cucumber peeling: MuJoCo simulation, GELLO teleoperation path, Reactive Diffus
+
+## 2026-11-20 · github-radar（报告级 13）
+- [MaryGit-24/egocentric-dishwashing-segmentation](https://github.com/MaryGit-24/egocentric-dishwashing-segmentation) ★0 · 30天=13 · 7天=13 · `egocentric` · Instance segmentation of hands and kitchen objects in first person video from a Lagos kitchen, with 
+- [chengjianglong/HCWSimV2](https://github.com/chengjianglong/HCWSimV2) ★0 · 30天=18 · 7天=11 · `vision language action` · HCWSimV2 trains digital humans via self-improving reinforcement learning to navigate a photo-realist
+- [robomotic/ElRobotSysId](https://github.com/robomotic/ElRobotSysId) ★0 · 30天=9 · 7天=9 · `sim2real` · A sys id for El Robot for sim2real
+- [aicumene/BOID-JEPA](https://github.com/aicumene/BOID-JEPA) ★0 · 30天=9 · 7天=9 · `jepa` · BOID for JEPA: counting the oscillatory modes that a JEPA world model latent sustains in time, under
+- [A-WangJie/RoboStudio-VR](https://github.com/A-WangJie/RoboStudio-VR) ★0 · 30天=8 · 7天=8 · `teleoperation` · Robot simulation, VR teleoperation and data collection with RoboStudio and RoboData
+- [mrpmoffical/sim2real-drone-detection](https://github.com/mrpmoffical/sim2real-drone-detection) ★0 · 30天=8 · 7天=8 · `sim2real` · A reproducible benchmark that measures how much Blender-generated synthetic data improves small dron
+- [dev2703/so101-bowling-rl](https://github.com/dev2703/so101-bowling-rl) ★0 · 30天=7 · 7天=7 · `sim-to-real` · Sim-to-real dual-camera RL (PPO -> SAC) for SO-101 3-pin tabletop bowling
+- [chengjianglong/vla-qwen](https://github.com/chengjianglong/vla-qwen) ★0 · 30天=7 · 7天=7 · `vision language action` · A compact vision-language-action (VLA) policy built on Qwen3-VL-2B-Instruct and fine-tuned with LoRA
+- [at0risa/vlm-robotic-manipulation-research](https://github.com/at0risa/vlm-robotic-manipulation-research) ★0 · 30天=5 · 7天=5 · `robot manipulation` · Exploring vision-language models for natural language-guided robotic manipulation using the Franka F
+- [eric58000/bala2-ppo-sim2real-v2-6obs-kalman](https://github.com/eric58000/bala2-ppo-sim2real-v2-6obs-kalman) ★0 · 30天=5 · 7天=5 · `sim2real` · Extending Shawn Hymel's BALA2 reinforcement learning project with 6 observations, Kalman filtering, 
+- [sidtr09/ap-research-portfolio](https://github.com/sidtr09/ap-research-portfolio) ★0 · 30天=5 · 7天=5 · `sim-to-real` · AP Research digital portfolio: curriculum learning via sim-to-real discrepancy for autonomous racing
+- [chengjianglong/wam-qwen](https://github.com/chengjianglong/wam-qwen) ★0 · 30天=5 · 7天=5 · `world action model` · A compact world action model built on Qwen3-VL-2B-Instruct with LoRA on LIBERO data that imagines fu
+- [enw/jepa-looking-glass](https://github.com/enw/jepa-looking-glass) ★0 · 30天=5 · 7天=5 · `jepa` · An Apple Silicon experiment in visual surprise using V-JEPA and CLIP
