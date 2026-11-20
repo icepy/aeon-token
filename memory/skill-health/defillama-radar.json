@@ -1,8 +1,8 @@
 {
   "skill": "defillama-radar",
-  "last_analyzed": "2026-11-19T00:05:21Z",
+  "last_analyzed": "2026-11-20T00:03:17Z",
   "quality_score": 4,
-  "assessment": "Delivers the discovery job cleanly: 1 reportable protocol with name, id, chain, TVL, category and source path, plus transparent filtering of 4 parent-only null-TVL entries; internal arithmetic and double-fetch reconciliation check out, though most of the text is process instrumentation beyond the narrow names+floor-fields mandate.",
+  "assessment": "Delivers the skill's job cleanly (1 new Ethereum protocol with name, TVL, category, chain, listedAt) plus a full audit trail with double-fetch verification, scale reference, and self-disclosed code defect; substantive and well-sourced, though the +4 total doesn't fully reconcile with 5 new ids minus 2 delistings (9075+5-2=9078≠9079).",
   "flags": [],
   "avg_score": 3.92,
   "history": [
@@ -148,6 +148,12 @@
       "date": "2026-11-19",
       "score": 4,
       "ts": "2026-11-19T00:05:21Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-20",
+      "score": 4,
+      "ts": "2026-11-20T00:03:17Z",
       "harness": "claude"
     }
   ]

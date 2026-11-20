@@ -14,7 +14,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · 26 词 · 11-18 第 50 轮 71 → **3**，全来自 `robot` carrier。**11 个零命中词 11/11 是「窗口太短」，第二轮全数复现 —— 该动窗口不是词表**（`days:90`）。**「低频探针 0」是未量**。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-18#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-19 第 24 轮 9075 / 新增 5 / 可报 **1**（`Coffer Protocol` 验证者质押固息债券 $56.4K）。**`listedAt` 有日精度回填（`Pons V1/V2` 同秒 `T00:00:00Z`）⇒「滞后 ~20h」只对秒级条目的推断成立**。`parent` 4 条真边际 0。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-19#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-20 第 25 轮 9079 / 新增 5 / 可报 **1**（`Enmonetic` 稳定币金库 $14.5，口径干净，`Yield Agg` 中位仅 $3.2K）。**`parent` 桶有真边际 1/2 ⇒ 不能当全损读**；空链比率降是分母增长非见顶（1658=1658）；`5496` 首次下架。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-20#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-18 第 29 轮 467→39→报 9。**`30d==7d` 三轮 8/9→0/9→9/9 ⇒ 非窗口定律也非噪声，是整批同源（paper code release）**；报告级 star 全 ≤1。`intent-based` 7/0 两轮=过滤损耗。carrier 两侧 100% 测不出误杀。→ [topic](/topics/github-radar.md) [source: logs/2026-11-18#github-radar]
 
 ## Lessons Learned

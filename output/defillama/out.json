@@ -1,16 +1,16 @@
 [
  {
-  "id": "9470",
-  "name": "Coffer Protocol",
-  "slug": "coffer-protocol",
+  "id": "9475",
+  "name": "Enmonetic",
+  "slug": "enmonetic",
   "chains": [
    "Ethereum"
   ],
-  "tvl": 56435.829451165235,
-  "category": "Lending",
-  "listedAt": 1794960055,
-  "url": "",
-  "description": "Permissionless, non-custodial bonds backed by Ethereum validator stake. Validators raise ETH by issuing fixed-",
+  "tvl": 14.511182960816967,
+  "category": "Yield Aggregator",
+  "listedAt": 1795049594,
+  "url": "https://enmonetic.com",
+  "description": "Enmonetic offers yield-bearing stablecoin vaults. Capital is allocated across private credit, tokenized treasu",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false

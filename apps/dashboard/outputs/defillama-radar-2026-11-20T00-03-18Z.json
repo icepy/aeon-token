@@ -1,0 +1,7 @@
+{
+  "type": "Text",
+  "props": {
+    "text": "口径：chainTvls 只有 Ethereum 一档，与 tvl 完全相等，无上轮 Coffer 那种 borrowed/tvl 3.94 倍的错配。",
+    "variant": "muted"
+  }
+}

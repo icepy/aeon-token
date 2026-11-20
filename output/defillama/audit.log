@@ -1,7 +1,7 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=9070 · parent=4 · category=0 · 链白名单=0 · 拉取失败=0
-全量 9075 · 新增 id 5（可报 1 / 过滤标记 4）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=9074 · parent=2 · category=1 · 链白名单=1 · 拉取失败=0
+全量 9079 · 新增 id 5（可报 1 / 过滤标记 4）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1908 · Base=932 · Solana=476 · Arbitrum=1056 · Ink=33 · Binance=1158 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=325
+链命中: Ethereum=1910 · Base=933 · Solana=477 · Arbitrum=1056 · Ink=34 · Binance=1161 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=325
 单侧读数: 加密侧 1 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  Coffer Protocol · Ethereum · tvl=56435.829451165235 · Lending · 1794960055
+  Enmonetic · Ethereum · tvl=14.511182960816967 · Yield Aggregator · 1795049594
