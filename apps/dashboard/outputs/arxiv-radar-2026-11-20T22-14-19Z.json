@@ -1,0 +1,73 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 幸存 1"
+      },
+      "children": [
+        "meta",
+        "sep",
+        "category",
+        "story",
+        "desc"
+      ]
+    },
+    "meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badgeWindow",
+        "badgeCount"
+      ]
+    },
+    "badgeWindow": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 30 天",
+        "variant": "secondary"
+      }
+    },
+    "badgeCount": {
+      "type": "Badge",
+      "props": {
+        "text": "幸存 1",
+        "variant": "default"
+      }
+    },
+    "sep": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "category": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据 / 第一视角感知",
+        "level": "h3"
+      }
+    },
+    "story": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HumanCOIN",
+        "href": "https://arxiv.org/abs/2611.26434",
+        "source": "arXiv"
+      }
+    },
+    "desc": {
+      "type": "Text",
+      "props": {
+        "text": "12,500 小时第一视角操作数据集，标注人类意图",
+        "variant": "body"
+      }
+    }
+  }
+}
