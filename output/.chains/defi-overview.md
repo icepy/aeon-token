@@ -1,53 +1,44 @@
-⚠️ Crypto 2026-11-20 · risk-off 破位，DEUS 跌破 0.012 恐慌位
+ℹ️ Crypto 2026-11-21 · risk-off 中的第一根反弹
 
-**Crypto - 2026-11-20** - risk-off（破位）· conviction high
-DeFi **Risk-off** - 三向同向下行，放量杀跌
+*Crypto - 2026-11-21* · risk-off 中第一根反弹（未确认）(conviction low) | DeFi **Mixed**：TVL 缓跌、量放大
 
-**⚠️ 仓位提醒：DEUS $0.010734（−6.95% 24h / −20.11% 7d），首次跌破 $0.012 恐慌位。**
-1h 最大波动仅 −3.17%（11-20 16:00Z），**远不到二级 unstake 门槛 ±20%，冷却期不用启动**。距一级 $0.025 +133%、$0.032 +198%、出口 $0.041 +282%。现货少，不构成动作。
+*TVL:* 已结算 11-20 桶 **$69.56B**（1d −1.00%，7d −8.50%）· live 11-21 $67.75B（1d −2.60%）
 
-**TVL:** $66.39B live（1d −5.56%）· 已结算 11-19 $70.30B（1d −1.43% / 7d −9.01%）- **首次跌破 $70B**
+*Top chains*（已结算 11-20 桶）
+1. Ethereum - $36.30B（1d −1.3% / 7d −9.5%）
+2. Base - $4.89B（1d −3.7% / 7d −13.8%）
+3. Solana - $4.71B（1d −0.03% / 7d −5.8%）
 
-**Top chains**
-1. Ethereum - $34.44B（−6.39%）
-2. Base - $4.61B（−9.21%）
-3. Solana - $4.56B（−3.28%）
+*Movers*
+↑ Ink +19.6%（$0.546B → $0.564B）- 新链继续铺量，7d +219.2%
+↓ Grove Finance −19.5%（$1.07B → $0.86B）- 无明确催化剂，单一 allocator 撤出
+↑ Sky Lending +18.5%（$2.13B → $2.53B）- 7d 仍 −32.4%，超跌反抽非修复
+↓ Spark Liquidity Layer −8.8%（$2.17B → $1.98B）- 同生态连续第 4 轮失血
 
-**Movers**
-↓ Base $4.61B → −9.21% - 全线去杠杆中最重，无单独催化剂
-↓ Arbitrum $1.20B → −8.19% - L2 同步，跌幅略轻于 Base
-↓ SparkLend $3.12B → −14.78%（7d −29.74%）- Sky 生态第三轮塌方
-↓ Spark Liquidity Layer $2.14B → −12.33%（7d −24.52%）- 同上，单一生态事件
-↑ Ink $0.59B → +24.27%（7d +231.68%）- 新链上线资金，基数小不可外推
-↑ 无 ≥$100M 协议涨超 10% - 全场无逆势者
+*Fees leaders (24h)*
+1. Tether - $170.7M（= 7d 日均 100.2%）
+2. Circle USDC - $67.4M（99.8%，持平）
+3. Hyperliquid Perps - $55.0M（**138.8%**，1d +36.6%）
 
-**Fees leaders（24h）**
-1. Tether - $17.06M（100.2% of 7d avg）
-2. Circle USDC - $6.72M（99.4%）
-3. Hyperliquid Perps - $4.02M（106.5%，1d +30.14%）
+*Fees beating TVL*
+• Morpho Blue - fees 7d +25.0% / TVL 7d −9.1% - 清算周转，非新增存款
+• Polymarket Intl - fees +27.1% / TVL −4.1% - 大选后市持续
 
-**Fees beating TVL（7d）**
-• Aave V3 - fees +75.56% / TVL +0.13%，$2.25M 24h = 7d 日均 148.5%
-• Aave V4 - fees +118.22% / TVL +1.95%
-（注：二者是清算费，不是新增借贷需求 -- TVL 同期在跌）
+*DEX vol (24h):* **$10.94B（+26.3%）** top: Uniswap V3 $11.48B、Aero Slipstream $9.23B（+21.0%）、PancakeSwap V3 $8.60B（+55.6%）
 
-**DEX vol（24h）:** $8.653B（+11.17%）top: Uniswap V3 $1.475B（+78.43%）、Uniswap V4 $1.318B（+51.12%）、Aero Slipstream $0.892B（+27.42%）
-**⚠️ 放量但广度 0/20 -- 是强制平仓放量，不是承接**
+*Stables:* **$283.35B**（1d −0.38%，失血减速）- RLUSD +1.7% 唯一持续双正；USDf 折价 −46.5bp 连续第 14 轮最深
 
-**Stables:** $283.47B（1d −0.90%，与上轮同幅）- 失血未加速 ⇒ 下跌不由稳定币出逃驱动
-USDT 折价 −20.2bp（上轮 −11.1bp，恶化 9.1bp）· USDf −44.0bp 最深
+*Real yield (sustainable, ≥$10M, 已滤 outlier/IL)*
+• USDC/hyperliquid-hlp - 18.03% apyBase（$149M，⚠️30d 均值仅 10.44%）
+• APXUSD/apyx - 13.68% apyBase（$123M，30d 13.22% 稳定）
+• SUSDAT/saturn - 13.01% apyBase（$33M，30d 16.47%）
 
-**Real yield（可持续，≥$10M，ilRisk=no）**
-• USDC/hyperliquid-hlp - 18.28% apyBase（$153.7M，m30 9.96%，均值偏离大）
-• APXUSD/apyx - 13.66% apyBase（$122.1M，m30 13.20% 稳定）
-• USDC/fluid-lending - 13.47% apyBase（$146.1M，m30 6.90%）
+*Incentive yield (points / emissions, ≥$25M)*
+• USDS/sparklend - 10.70% 纯奖励（$128M）- ⚠️Spark 生态 7d −27.6%
+• USDS/sky-lending - 10.29% 纯奖励（$62M）- ⚠️USDS 7d −42.2%
 
-**Incentive yield（纯奖励，≥$25M）**
-• USDS/sky-lending - 12.43% apy（纯 $USDS 奖励，$54.7M）- Spark 生态 7d −24.52%，对手方风险上升
-• USDS/sparklend - 12.42% apy（纯 $USDS 奖励，$111.2M）
+*Macro:* BTC **$60,041（+1.72%）** / ETH **$1,677.62（+3.58%）** · F&G **12（Extreme Fear，连续 8 天 ≤13）** · 广度 **14/20**（上轮 0/20）· 非稳定币 7d 仅 4/16 绿 · hot market: "BTC dip to $55,000 by 2027" YES **59%**
 
-**Macro:** BTC $59,034（−4.98%）/ ETH $1,619（−7.95%）/ SOL $69.25（−5.38%）
-F&G **12（Extreme Fear，昨 10）** · 广度 **0/20 24h · 2/20 7d** · ETH/BTC 0.027426（−3.14%）
-Polymarket：年内跌到 **$55,000 61.5%**（已成主导档）；11 月回到 $65,000 仅 **25.5%**（上轮 57.0%，−31.5pp）
+*⚠️ 三条否决反弹的读数：* ①已结算 TVL 7d −8.5%，14 条大链 11 条 1d 为负（链上没跟上现货）②F&G 零反应，情绪未参与 ③总 mcap −0.95% 与现货反弹背离 ⇒ 头部修复，非全面回暖。
 
-_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（第八轮）| var: none_
+_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（第九轮）| var: none_

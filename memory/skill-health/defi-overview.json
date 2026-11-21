@@ -1,10 +1,10 @@
 {
   "skill": "defi-overview",
-  "last_analyzed": "2026-11-20T23:08:47Z",
-  "quality_score": 4,
-  "assessment": "Complete one-pass crypto read covering every required element (position health, TVL, movers, fees, yields, breadth, F&G, prediction markets) with internally consistent math, cross-signal interpretation (forced-liquidation volume vs. absorption, Aave fees as liquidations, stablecoin bleed not accelerating), and a clear risk-off take; source log shows all primary feeds ok and websearch failure did not block output.",
+  "last_analyzed": "2026-11-21T23:15:05Z",
+  "quality_score": 3,
+  "assessment": "Complete, well-structured one-pass overview covering regime take, DeFi verdict, movers, fees, yields, breadth, F&G, and prediction markets, with a genuinely insightful three-point disconfirming read; however data accuracy is shaky — fee figures look like 7d totals labeled 24h, Ink's +19.6% doesn't match its $0.546B→$0.564B (+3.3%) numbers, and the DEX 'top' figure exceeds the stated 24h total, so it's adequate but not fully trustworthy.",
   "flags": [],
-  "avg_score": 3.59,
+  "avg_score": 3.57,
   "history": [
     {
       "date": "2026-10-23",
@@ -136,6 +136,12 @@
       "date": "2026-11-20",
       "score": 4,
       "ts": "2026-11-20T23:08:47Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-21",
+      "score": 3,
+      "ts": "2026-11-21T23:15:05Z",
       "harness": "claude"
     }
   ]
