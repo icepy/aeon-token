@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-20T18:20:00Z
+timestamp: 2026-11-21T18:20:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,34 @@ timestamp: 2026-11-20T18:20:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第三十一轮（2026-11-20，默认 30 天窗）—— 2028/37/13；`seen/raw<5%` 的误记仍未归因，单 owner 铺多仓首次成规模
+
+18 词 × 二分至一页（单窗 13 / 需拆窗 5 · 二分 3 次 · 搜索调用 43）。漏斗：原始 **2028** → 幸存 **37** → 报告级
+**13**（近 7 天活跃 13）；丢弃 `seen=960` / `excl=131` / `short_desc=355` / `carrier=416` / `neg=54` / `pages=67` /
+`pages_root=5` / `farm=3` / `fail=0`。核验 37/37（100%）。四分类：查询失败 **0** · 真零 **1**（`robotics data
+engine` total=0，仅 30d 窗，单窗为零不删词） · 饱和 **8** · 有新增 **9**。
+
+- **判据级 ①：`seen/raw < 5%` 被记进「饱和」栏的第二例与第三例同轮出现，且都没归因。** 八条饱和里
+  `data availability` **3/65 = 4.6%**（连续第二轮，11-18 为 4.7%）、`intent-based` **4/51 = 7.8%**（第三轮：
+  11-18 0/7、11-19 0/45、11-20 0/51）；其余六条（robot dataset 10/11 · verifiable inference 5/5 · proof of useful
+  work 5/6 · restaking 7/8 · embodied data 3/17 · MEV 1/2）才是真吸收。**按 10-29 lesson 这不是饱和而是某条规则在
+  吃它，须归因到 excl/carrier/neg 具体桶。digest 把两类混在一栏打是字段缺陷 —— 该补分母，不是补调用。**
+- **判据级 ②：单 owner 铺多仓首次在报告级成规模。** `chengjianglong` 一人占 **3/13**（HCWSimV2 18/11 ·
+  vla-qwen 7/7 · wam-qwen 5/5），三条 desc 全是「Qwen3-VL-2B + LoRA + LIBERO」同一脚手架的不同切片。**报告级
+  owner 去重后只剩 10 个 —— 读趋势按 10 不按 13。** 「单 owner 多仓不构成趋势」这条判据应从 probe 前移到方向段。
+- **判据级 ③：`30d == 7d` 12/13，与第 29 轮 9/9 同形。** 唯一例外 HCWSimV2（18 vs 11）。三轮（29/30/31）合并看，
+  **「30d==7d」是这批本体（paper code release 一次性挂上）的属性，不是窗口定律。**
+- **判据级 ④：carrier 误杀率回落到 38%，仍有判别力。** 丢弃侧「仓名自带词表词」164 → owner 去重 157 → 核验
+  146 → 7d 存活 **56/146 = 38%**；幸存侧 **36/36 = 100%**。与第 30 轮 40% vs 88% 同向，**规则在挡真东西、但六成
+  确已停写**，维持不放宽（不据单轮改 `scan.py`）。
+- **页形态缺口第二次观察：** `sidtr09/ap-research-portfolio`（desc 直写 "AP Research digital portfolio"，★0，5/5）
+  过 `pages` 规则进了报告级 —— `SITE_SUFFIX` 只看 `.github.io`/`-page`/`-site`，**`-portfolio` 不在表内**。
+- **过程备注：** 首调用 `scan.py "${var}"` 被权限层拒（「braces 无法预检」）→ 改无参走默认 30d。**SKILL.md Step 1
+  的 `${var}` 示例本身不可执行**，与「frontmatter `var:` 不注入」是两件事。
+- 单侧读数 **AI 13 · 加密 0**（restaking / data availability / MEV 全饱和或零新增），第三次加密侧为零。通知已发
+  （9 条方向段，probe 跳过 —— 戳 3 天 < 7 天）。
+  [source: logs/2026-11-20#github-radar]
 
 ## 第三十轮（2026-11-19，默认 30 天窗）—— 2008/74/27；NEG 表漏同源变体，漏网者排报告级第一
 

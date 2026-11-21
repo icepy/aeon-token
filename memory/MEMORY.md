@@ -1,11 +1,11 @@
 # Long-term Memory
-*Last consolidated: 2026-11-20*
+*Last consolidated: 2026-11-21*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
 - **`aeon-update` 基线 `7b20c95`**（PR #27 已合 11-16T11:42Z）：50 条提交**净变更为零**。判据 `CLEAN-MERGE>0` + `git diff --stat` 空 ⇒ 没改；6 冲突全是技能计数漂移 → `keep_local`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#aeon-update]
-- **待盯（OPERATOR）：`defi-overview` 连绿两轮（cf 0，21/43 = 49%），再绿一轮即 22/44 = 50.0% 出 chronic 线。** 修法「砍单轮输出」两轮兑现。**cf 不因 skill 停用而衰减** —— `price-alert`/`onchain-monitor`/`token-movers` 的 cf 5/4/3 是 10-25 网关故障的账未清，非当前故障。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-20#heartbeat]
+- **`defi-overview` 11-21 三连绿、出 chronic 线（22/44 = 50.0%）—— 只是踩线**：再失败即 22/45 = 48.9% 回 🔴。**只看 cf 与最近三轮，不看 44 轮均值。cf 不因 skill 停用而衰减**（5/4/3 = 10-25 网关账未清）。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-21#heartbeat]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
 - **PR 队列会反过来影响读数语义**：词表/阈值改动只在合进 main 后才算数，挂着就是没生效。队列现为空（#25/#27 均 11-16 合）。[source: logs/2026-11-17#heartbeat]
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
@@ -13,9 +13,9 @@
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-19 第 51 轮 74 → 4。**10 词「窗口太短」第三轮复现；`ti:"human data"` 本轮 30d 新收 2 条全幸存 ⇒ 上轮「10 月断流」推翻，是延迟入索引**（窗口内零 ≠ 话题停）。出货词组换但同簇 ⇒ 数据侧召回是整簇属性。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-19#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-21 第 26 轮 9085 / 新增 6 / 可报 **2**（`Biribi` Arbitrum 轮盘 $1,996 · `Gmoon` Robinhood Chain 发币台 $2.58）。**TVL −3.77% 经 `/v2/historicalChainTvl`（−5.25%）证实是行情非口径，两源 6.4× 只比 delta**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-21#defillama-radar]
-- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-19 第 30 轮 2008→74→报 27（30d 窗，不可与 7d 轮直比）。**`jeparla` 绕过 `NEG_BY_TERM["jepa"]` 排第一 ⇒ NEG 须逐变体登记**；`data availability` seen/raw=4.7% 仍记饱和 = 误读第二例。→ [topic](/topics/github-radar.md) [source: logs/2026-11-19#github-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-20 第 52 轮 71 → 1。**上轮出货的 `consensus`/`human data` 本轮双双饱和，AI 侧召回宽度只剩 `egocentric` 一条 —— 它一吃干就结构性归零，换窗无用、须加词。`ti:"human data"` 新收 0 ⇒ 上轮 2 条是一次性补录。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-20#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-21 第 26 轮 9085 / 新增 6 / 可报 **2**（`Biribi` Arbitrum 轮盘 $1,996 · `Gmoon` Robinhood Chain 发币台 $2.58）。**TVL −3.77% 经 `/v2/historicalChainTvl`（−5.25%）证实是行情；两源 6.4× 只比 delta。`parent` 真边际 0/2。** → [topic](/topics/defillama-radar.md) [src: 11-21#defillama-radar]
+- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-20 第 31 轮 2028→37→报 13，**单 owner 铺 3/13 仓 ⇒ 读趋势按 owner 去重 10 不按 13**。**`seen/raw<5%`（`data availability` 4.6%）仍被记饱和 = 误读第三例，须归因 excl/carrier/neg。** → [topic](/topics/github-radar.md) [source: logs/2026-11-20#github-radar]
 
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。判据速查：

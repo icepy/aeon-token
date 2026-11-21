@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-20T18:20:00Z
+timestamp: 2026-11-21T18:20:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -339,6 +339,19 @@ One full run log (`44195522715`, 2026-11-17) settles it for `defi-overview`: `nu
   target providers failed`, a gateway-layer refusal). **Read: the cf counter is a ledger, not a status
   light — it says the 10-25 gateway outage was never reconciled, not that anything is failing now.**
   [source: logs/2026-11-20#heartbeat]
+
+#### Update (11-21): third consecutive green — the line is crossed, but only as a hairline
+
+- **`defi-overview` 22/44 = 50.0%, out of the chronic bucket.** `last_success=2026-11-20T23:09:22Z`,
+  `last_dispatch=23:00:52Z`, cf **0**, `total_runs` 43 → 44. The 11-18 "cut the single-round output"
+  fix has now paid off three rounds running (11-18 / 11-19 / 11-20), and the arithmetic both earlier
+  heartbeats predicted ("one more green ⇒ 22/44") landed.
+- **50.0% is standing on the line, not clear of it.** The ladder tests `success_rate < 0.5`, so 50.0%
+  passes by exactly zero. **The next failure is 22/45 = 48.9% (straight back to 🔴), the next success
+  23/45 = 51.1%.** 22 of the 44 failures are almost all one 7-round losing streak (11-14 → 11-17), so
+  the mean needs *weeks* to move away from the threshold. **Read `defi-overview` by cf and the last three
+  rounds only — never by the 44-round mean.**
+  [source: logs/2026-11-21#heartbeat]
 
 ## Reading `gh run view --log`: colour-escaped lines are the script body, not output
 
