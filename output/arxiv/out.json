@@ -1,15 +1,1 @@
-[
- {
-  "id": "2611.26434",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
-  ],
-  "window": 30,
-  "name": "HumanCOIN",
-  "title": "HumanCOIN: A 12,500-Hour Dataset for Human Intent in Egocentric Manipulation",
-  "published": "2026-11-19",
-  "link": "https://arxiv.org/abs/2611.26434",
-  "carrier": "manipulation"
- }
-]
+[]

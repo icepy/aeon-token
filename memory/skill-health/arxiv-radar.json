@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-18T22:05:13Z",
-  "quality_score": 3,
-  "assessment": "On-job discovery digest: 3 filter-surviving preprints with titles, one-line glosses, and arXiv links, plus funnel counts (71→3), but it never shows which mechanism words matched, so the filtering is unauditable and the per-item substance is thin.",
+  "last_analyzed": "2026-11-21T22:05:31Z",
+  "quality_score": 4,
+  "assessment": "Legitimate zero-survivor round delivered as a completed no-op: clean funnel, six-category breakdown, saturation diagnosis, cross-window evidence, and concrete next actions — internally consistent, substantive, and actionable, though it pushed no new papers by design.",
   "flags": [],
-  "avg_score": 3.4,
+  "avg_score": 3.43,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 3,
-      "ts": "2026-10-26T12:50:02Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-18",
       "score": 3,
       "ts": "2026-11-18T22:05:13Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-21",
+      "score": 4,
+      "ts": "2026-11-21T22:05:31Z",
       "harness": "claude"
     }
   ]
