@@ -50,7 +50,7 @@ concurrency:
 
 jobs:
   format:
-    timeout-minutes: 5
+    timeout-minutes: 2
     name: format - biome
     runs-on: ${{ vars.AEON_RUNNER || 'ubuntu-24.04' }}
     steps:
@@ -66,7 +66,7 @@ jobs:
         run: npx --yes @biomejs/biome@2.5.15 ci --reporter=github .
 
   dashboard:
-    timeout-minutes: 5
+    timeout-minutes: 3
     name: dashboard — typecheck, test, build
     runs-on: ${{ vars.AEON_RUNNER || 'ubuntu-24.04' }}
     defaults:
@@ -74,9 +74,13 @@ jobs:
         working-directory: apps/dashboard
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      # Node 24, not 22: the unit tests run in random order (see the test step),
+      # and node --test only shuffles on 24.16+. Nothing here ships on Node 22:
+      # the dashboard runs on the operator's own Node, so 22 was just the
+      # default every job copied.
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
-          node-version: '22'
+          node-version: '24'
           cache: npm
           cache-dependency-path: apps/dashboard/package-lock.json
       - name: Install deps
@@ -88,14 +92,20 @@ jobs:
       # gate is green on the existing tree (see apps/dashboard/eslint.config.mjs).
       - name: Lint (eslint)
         run: npm run lint
-      - name: Unit tests
+      # Random order, so a test that leans on another one's leftovers fails here
+      # instead of hiding. The log prints "Randomized test order seed: N"; replay
+      # a red run locally on Node 24 with
+      # NODE_OPTIONS='--test-randomize --test-random-seed=N' npm test
+      - name: Unit tests (random order)
         run: npm test
+        env:
+          NODE_OPTIONS: --test-randomize
       # Kept separate from the typecheck on purpose — see the TS7 note above.
       - name: Production build
         run: npm run build
 
   cli:
-    timeout-minutes: 5
+    timeout-minutes: 2
     name: cli — typecheck
     runs-on: ${{ vars.AEON_RUNNER || 'ubuntu-24.04' }}
     steps:
@@ -132,7 +142,7 @@ jobs:
         run: bash apps/cli/test/init-sandbox.sh
 
   mcp-server:
-    timeout-minutes: 5
+    timeout-minutes: 2
     name: mcp-server — build
     runs-on: ${{ vars.AEON_RUNNER || 'ubuntu-24.04' }}
     defaults:
@@ -140,9 +150,11 @@ jobs:
         working-directory: apps/mcp-server
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      # Node 24 for the random-order tests below (node --test shuffles on
+      # 24.16+). The package declares engines node >=18, so 24 is in range.
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
-          node-version: '22'
+          node-version: '24'
           cache: npm
           cache-dependency-path: apps/mcp-server/package-lock.json
       - name: Install deps
@@ -155,11 +167,14 @@ jobs:
       # Hermetic (temp repo root, fake run-harness, no network): the var is
       # cleaned once and the same value reaches the capability check, the
       # prompt and the log, so a padded shadow selector still runs read-only.
-      - name: Unit tests
+      # Random order; the seed is printed, replay as in the dashboard job.
+      - name: Unit tests (random order)
         run: npm test
+        env:
+          NODE_OPTIONS: --test-randomize
 
   webhook:
-    timeout-minutes: 5
+    timeout-minutes: 2
     name: webhook — worker bundle
     runs-on: ${{ vars.AEON_RUNNER || 'ubuntu-24.04' }}
     defaults:
