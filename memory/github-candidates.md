@@ -741,3 +741,17 @@
 - [sidtr09/ap-research-portfolio](https://github.com/sidtr09/ap-research-portfolio) ★0 · 30天=5 · 7天=5 · `sim-to-real` · AP Research digital portfolio: curriculum learning via sim-to-real discrepancy for autonomous racing
 - [chengjianglong/wam-qwen](https://github.com/chengjianglong/wam-qwen) ★0 · 30天=5 · 7天=5 · `world action model` · A compact world action model built on Qwen3-VL-2B-Instruct with LoRA on LIBERO data that imagines fu
 - [enw/jepa-looking-glass](https://github.com/enw/jepa-looking-glass) ★0 · 30天=5 · 7天=5 · `jepa` · An Apple Silicon experiment in visual surprise using V-JEPA and CLIP
+
+## 2026-11-21 · github-radar（报告级 12）
+- [amaan784/foresight-worlds](https://github.com/amaan784/foresight-worlds) ★0 · 30天=75 · 7天=75 · `world model` · Predicts how real objects will move over the next 5 seconds from 3 seconds of video, using physics i
+- [M-amir1998/ManipulatorCore](https://github.com/M-amir1998/ManipulatorCore) ★0 · 30天=32 · 7天=32 · `robot manipulation` · Modern Classical Robot Manipulation Algorithms, Kinematics, Dynamics, Planning, Control, Simulation,
+- [JithinLalPradeepK/fr3-duo-gello-teleop](https://github.com/JithinLalPradeepK/fr3-duo-gello-teleop) ★0 · 30天=31 · 7天=31 · `teleoperation` · Bimanual Franka FR3 teleoperation with GELLO Duo, Robotiq grippers, cameras, foot pedal and PyQt GUI
+- [matveho/intent-preserving-teleop](https://github.com/matveho/intent-preserving-teleop) ★1 · 30天=22 · 7天=22 · `teleoperation` · Intent-preserving learned policy arbitration for contact-rich manipulation under teleoperation.
+- [rje/jepamath](https://github.com/rje/jepamath) ★0 · 30天=18 · 7天=18 · `jepa` · JEPA number-sense: procedural video twins, V-JEPA evals, small video JEPA training
+- [Skyzuo9/proofchain](https://github.com/Skyzuo9/proofchain) ★0 · 30天=13 · 7天=13 · `proof of useful work` · Bitcoin-inspired Proof-of-Useful-Work platform for collaborative multi-agent Lean 4 theorem proving,
+- [LisavilaLee/TacInno](https://github.com/LisavilaLee/TacInno) ★5 · 30天=11 · 7天=11 · `vision language action` · Code for TacInno: Teaching Vision-Language-Action Models the Contact Dynamics Beyond Vision and Acti
+- [kishordgupta/jepa-od](https://github.com/kishordgupta/jepa-od) ★1 · 30天=11 · 7天=11 · `jepa` · JEPA-OD: Joint-Embedding Predictive Architectures for outlier detection (PyOD-compatible, tabular an
+- [tahakocp/picovla](https://github.com/tahakocp/picovla) ★0 · 30天=7 · 7天=7 · `vision language action` · A vision-language-action robot policy from scratch in ~470 lines of PyTorch. Trains in 40 min on a C
+- [xiaoxinlaoshi-667/DexterousHand_Sim2Real_Controller](https://github.com/xiaoxinlaoshi-667/DexterousHand_Sim2Real_Controller) ★0 · 30天=6 · 7天=6 · `sim2real` · A C++ native Sim-to-Real controller for 16-DOF Allegro Hand & Inspire-Robots RH56F1 without external
+- [heliang-pu/phoenix-wam-realtime-toolkit](https://github.com/heliang-pu/phoenix-wam-realtime-toolkit) ★0 · 30天=6 · 7天=6 · `world action model` · Post-training, inference and inference acceleration for Phoenix-MWA (a world action model) on a new 
+- [Kkenize/liquid-restaking](https://github.com/Kkenize/liquid-restaking) ★0 · 30天=5 · 7天=1 · `restaking` · Reproducible experiments for collateral architecture and correlated slashing

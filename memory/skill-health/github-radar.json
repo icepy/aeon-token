@@ -1,17 +1,11 @@
 {
   "skill": "github-radar",
-  "last_analyzed": "2026-11-19T22:35:00Z",
-  "quality_score": 3,
-  "assessment": "Legitimate self-correction with clear root-cause analysis (substring gap in NEG_BY_TERM) and scoped impact statement, but it is a short correction notice rather than a discovery report and its repo-specific claims carry no supporting evidence.",
+  "last_analyzed": "2026-11-21T22:34:45Z",
+  "quality_score": 4,
+  "assessment": "Clean, on-job discovery scan: 12 repos ranked by activity with direction-word tags, star counts, and verbatim descriptions; highly verifiable and well-structured, though descriptions are truncated and no per-repo sanity notes are added.",
   "flags": [],
   "avg_score": 3.27,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 4,
-      "ts": "2026-10-26T06:33:34Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-19",
       "score": 3,
       "ts": "2026-11-19T22:35:00Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-21",
+      "score": 4,
+      "ts": "2026-11-21T22:34:45Z",
       "harness": "claude"
     }
   ]

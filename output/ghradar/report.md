@@ -1,15 +1,14 @@
-**github-radar** · 窗口 30 天 · 报告级 13 · 近 7 天活跃 13
+**github-radar** · 窗口 30 天 · 报告级 12 · 近 7 天活跃 12
 
-- [MaryGit-24/egocentric-dishwashing-segmentation](https://github.com/MaryGit-24/egocentric-dishwashing-segmentation) ★0 · 30天=13 · 7天=13 · 词 `egocentric` · Instance segmentation of hands and kitchen objects in first person video from a Lagos kitchen, with 
-- [chengjianglong/HCWSimV2](https://github.com/chengjianglong/HCWSimV2) ★0 · 30天=18 · 7天=11 · 词 `vision language action` · HCWSimV2 trains digital humans via self-improving reinforcement learning to navigate a photo-realist
-- [robomotic/ElRobotSysId](https://github.com/robomotic/ElRobotSysId) ★0 · 30天=9 · 7天=9 · 词 `sim2real` · A sys id for El Robot for sim2real
-- [aicumene/BOID-JEPA](https://github.com/aicumene/BOID-JEPA) ★0 · 30天=9 · 7天=9 · 词 `jepa` · BOID for JEPA: counting the oscillatory modes that a JEPA world model latent sustains in time, under
-- [A-WangJie/RoboStudio-VR](https://github.com/A-WangJie/RoboStudio-VR) ★0 · 30天=8 · 7天=8 · 词 `teleoperation` · Robot simulation, VR teleoperation and data collection with RoboStudio and RoboData
-- [mrpmoffical/sim2real-drone-detection](https://github.com/mrpmoffical/sim2real-drone-detection) ★0 · 30天=8 · 7天=8 · 词 `sim2real` · A reproducible benchmark that measures how much Blender-generated synthetic data improves small dron
-- [dev2703/so101-bowling-rl](https://github.com/dev2703/so101-bowling-rl) ★0 · 30天=7 · 7天=7 · 词 `sim-to-real` · Sim-to-real dual-camera RL (PPO -> SAC) for SO-101 3-pin tabletop bowling
-- [chengjianglong/vla-qwen](https://github.com/chengjianglong/vla-qwen) ★0 · 30天=7 · 7天=7 · 词 `vision language action` · A compact vision-language-action (VLA) policy built on Qwen3-VL-2B-Instruct and fine-tuned with LoRA
-- [at0risa/vlm-robotic-manipulation-research](https://github.com/at0risa/vlm-robotic-manipulation-research) ★0 · 30天=5 · 7天=5 · 词 `robot manipulation` · Exploring vision-language models for natural language-guided robotic manipulation using the Franka F
-- [eric58000/bala2-ppo-sim2real-v2-6obs-kalman](https://github.com/eric58000/bala2-ppo-sim2real-v2-6obs-kalman) ★0 · 30天=5 · 7天=5 · 词 `sim2real` · Extending Shawn Hymel's BALA2 reinforcement learning project with 6 observations, Kalman filtering, 
-- [sidtr09/ap-research-portfolio](https://github.com/sidtr09/ap-research-portfolio) ★0 · 30天=5 · 7天=5 · 词 `sim-to-real` · AP Research digital portfolio: curriculum learning via sim-to-real discrepancy for autonomous racing
-- [chengjianglong/wam-qwen](https://github.com/chengjianglong/wam-qwen) ★0 · 30天=5 · 7天=5 · 词 `world action model` · A compact world action model built on Qwen3-VL-2B-Instruct with LoRA on LIBERO data that imagines fu
-- [enw/jepa-looking-glass](https://github.com/enw/jepa-looking-glass) ★0 · 30天=5 · 7天=5 · 词 `jepa` · An Apple Silicon experiment in visual surprise using V-JEPA and CLIP
+- [amaan784/foresight-worlds](https://github.com/amaan784/foresight-worlds) ★0 · 30天=75 · 7天=75 · 词 `world model` · Predicts how real objects will move over the next 5 seconds from 3 seconds of video, using physics i
+- [M-amir1998/ManipulatorCore](https://github.com/M-amir1998/ManipulatorCore) ★0 · 30天=32 · 7天=32 · 词 `robot manipulation` · Modern Classical Robot Manipulation Algorithms, Kinematics, Dynamics, Planning, Control, Simulation,
+- [JithinLalPradeepK/fr3-duo-gello-teleop](https://github.com/JithinLalPradeepK/fr3-duo-gello-teleop) ★0 · 30天=31 · 7天=31 · 词 `teleoperation` · Bimanual Franka FR3 teleoperation with GELLO Duo, Robotiq grippers, cameras, foot pedal and PyQt GUI
+- [matveho/intent-preserving-teleop](https://github.com/matveho/intent-preserving-teleop) ★1 · 30天=22 · 7天=22 · 词 `teleoperation` · Intent-preserving learned policy arbitration for contact-rich manipulation under teleoperation.
+- [rje/jepamath](https://github.com/rje/jepamath) ★0 · 30天=18 · 7天=18 · 词 `jepa` · JEPA number-sense: procedural video twins, V-JEPA evals, small video JEPA training
+- [Skyzuo9/proofchain](https://github.com/Skyzuo9/proofchain) ★0 · 30天=13 · 7天=13 · 词 `proof of useful work` · Bitcoin-inspired Proof-of-Useful-Work platform for collaborative multi-agent Lean 4 theorem proving,
+- [LisavilaLee/TacInno](https://github.com/LisavilaLee/TacInno) ★5 · 30天=11 · 7天=11 · 词 `vision language action` · Code for TacInno: Teaching Vision-Language-Action Models the Contact Dynamics Beyond Vision and Acti
+- [kishordgupta/jepa-od](https://github.com/kishordgupta/jepa-od) ★1 · 30天=11 · 7天=11 · 词 `jepa` · JEPA-OD: Joint-Embedding Predictive Architectures for outlier detection (PyOD-compatible, tabular an
+- [tahakocp/picovla](https://github.com/tahakocp/picovla) ★0 · 30天=7 · 7天=7 · 词 `vision language action` · A vision-language-action robot policy from scratch in ~470 lines of PyTorch. Trains in 40 min on a C
+- [xiaoxinlaoshi-667/DexterousHand_Sim2Real_Controller](https://github.com/xiaoxinlaoshi-667/DexterousHand_Sim2Real_Controller) ★0 · 30天=6 · 7天=6 · 词 `sim2real` · A C++ native Sim-to-Real controller for 16-DOF Allegro Hand & Inspire-Robots RH56F1 without external
+- [heliang-pu/phoenix-wam-realtime-toolkit](https://github.com/heliang-pu/phoenix-wam-realtime-toolkit) ★0 · 30天=6 · 7天=6 · 词 `world action model` · Post-training, inference and inference acceleration for Phoenix-MWA (a world action model) on a new 
+- [Kkenize/liquid-restaking](https://github.com/Kkenize/liquid-restaking) ★0 · 30天=5 · 7天=1 · 词 `restaking` · Reproducible experiments for collateral architecture and correlated slashing
