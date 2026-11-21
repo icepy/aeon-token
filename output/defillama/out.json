@@ -1,16 +1,32 @@
 [
  {
-  "id": "9475",
-  "name": "Enmonetic",
-  "slug": "enmonetic",
+  "id": "9482",
+  "name": "Biribi",
+  "slug": "biribi",
   "chains": [
-   "Ethereum"
+   "Arbitrum"
   ],
-  "tvl": 14.511182960816967,
-  "category": "Yield Aggregator",
-  "listedAt": 1795049594,
-  "url": "https://enmonetic.com",
-  "description": "Enmonetic offers yield-bearing stablecoin vaults. Capital is allocated across private credit, tokenized treasu",
+  "tvl": 1995.8352004648536,
+  "category": "Luck Games",
+  "listedAt": 1795197601,
+  "url": "",
+  "description": "An on-chain roulette protocol on Arbitrum with separate BRB, USDC and DAI bankroll vaults. Depositors supply r",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9485",
+  "name": "Gmoon",
+  "slug": "gmoon",
+  "chains": [
+   "Robinhood Chain"
+  ],
+  "tvl": 2.580404522652,
+  "category": "Launchpad",
+  "listedAt": 1795205460,
+  "url": "https://gmoon.trade/",
+  "description": "Gmoon is a Robinhood Chain coin launchpad that creates locked Uniswap v4 pools and converts trading fees into ",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false

@@ -14,7 +14,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · 26 词 · 11-19 第 51 轮 74 → 4。**10 词「窗口太短」第三轮复现；`ti:"human data"` 本轮 30d 新收 2 条全幸存 ⇒ 上轮「10 月断流」推翻，是延迟入索引**（窗口内零 ≠ 话题停）。出货词组换但同簇 ⇒ 数据侧召回是整簇属性。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-19#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-20 第 25 轮 9079 / 新增 5 / 可报 **1**（`Enmonetic` 稳定币金库 **$14.51**，`Yield Agg` 中位 $3.2K ⇒ 极早期）。**`parent` 桶真边际 1/2；体量最大的新增恰是被挡的 `BIMA Lending`**；`5496` 首次下架。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-20#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-21 第 26 轮 9085 / 新增 6 / 可报 **2**（`Biribi` Arbitrum 轮盘 $1,996 · `Gmoon` Robinhood Chain 发币台 $2.58）。**TVL −3.77% 经 `/v2/historicalChainTvl`（−5.25%）证实是行情非口径，两源 6.4× 只比 delta**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-21#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-19 第 30 轮 2008→74→报 27（30d 窗，不可与 7d 轮直比）。**`jeparla` 绕过 `NEG_BY_TERM["jepa"]` 排第一 ⇒ NEG 须逐变体登记**；`data availability` seen/raw=4.7% 仍记饱和 = 误读第二例。→ [topic](/topics/github-radar.md) [source: logs/2026-11-19#github-radar]
 
 ## Lessons Learned
