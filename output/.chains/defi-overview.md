@@ -1,44 +1,43 @@
-ℹ️ Crypto 2026-11-21 · risk-off 中的第一根反弹
+⚠️ Crypto 2026-11-22 - Risk-off (校正)
 
-*Crypto - 2026-11-21* · risk-off 中第一根反弹（未确认）(conviction low) | DeFi **Mixed**：TVL 缓跌、量放大
+**Crypto - 2026-11-22** - risk-off（conviction medium）| DeFi Risk-off: 链上两条破 -2%，反抽确认失败
 
-*TVL:* 已结算 11-20 桶 **$69.56B**（1d −1.00%，7d −8.50%）· live 11-21 $67.75B（1d −2.60%）
+**Take:** 反抽被链上证伪 -- 已结算 11-21 TVL **$66.50B（1d −4.40% / 7d −9.88%）**、DEX 量 **$8.51B（−20.67%）**，两项同时跌破 −2% ⇒ 判 Risk-off。现货 BTC $60,990（+1.58%）与广度 15/20 仍在，但 dominance 升 +0.94pp 至 58.85% -- **这是 BTC 独涨，不是全面回暖。**
 
-*Top chains*（已结算 11-20 桶）
-1. Ethereum - $36.30B（1d −1.3% / 7d −9.5%）
-2. Base - $4.89B（1d −3.7% / 7d −13.8%）
-3. Solana - $4.71B（1d −0.03% / 7d −5.8%）
+**TVL:** 已结算 $66.50B（−4.40% 24h, −9.88% 7d）· live $69.74B（+4.86%，不可引用）
 
-*Movers*
-↑ Ink +19.6%（$0.546B → $0.564B）- 新链继续铺量，7d +219.2%
-↓ Grove Finance −19.5%（$1.07B → $0.86B）- 无明确催化剂，单一 allocator 撤出
-↑ Sky Lending +18.5%（$2.13B → $2.53B）- 7d 仍 −32.4%，超跌反抽非修复
-↓ Spark Liquidity Layer −8.8%（$2.17B → $1.98B）- 同生态连续第 4 轮失血
+**Top chains（已结算 11-21）**
+1. Ethereum - $34.63B（−4.61%）
+2. Base - $4.57B（−6.53%）
+3. Solana - $4.55B（−3.42%，头部最抗跌）
 
-*Fees leaders (24h)*
-1. Tether - $170.7M（= 7d 日均 100.2%）
-2. Circle USDC - $67.4M（99.8%，持平）
-3. Hyperliquid Perps - $55.0M（**138.8%**，1d +36.6%）
+**⚠️ 抽查 9 条 ≥$500M 链，已结算 1d 全部为负（9/9）** -- 上轮还有 3 条为正，本轮抽查范围内清零（未抽查 Arc / Avalanche / Polygon / Robinhood / Monad）。
 
-*Fees beating TVL*
-• Morpho Blue - fees 7d +25.0% / TVL 7d −9.1% - 清算周转，非新增存款
-• Polymarket Intl - fees +27.1% / TVL −4.1% - 大选后市持续
+**Movers**
+↑ Uniswap V4 +33.8%（$1.34B）- 费用 1d +858%，同源量能 $2.27B（+78%），交易类回升
+↑ PancakeSwap AMM V3 +61.2%（$0.96B）- 7d +49.1%，BSC 链 TVL +10.8% 同步
+↓ Spark Liquidity Layer −8.0%（$1.82B，7d −32.8%）- 同生态 USDS 7d −38.7%，赎回未止
+↓ LayerZero V2 −3.3%（$17.11B，7d +3.2%）- 十亿级唯一 7d 正，但 1d 转负
 
-*DEX vol (24h):* **$10.94B（+26.3%）** top: Uniswap V3 $11.48B、Aero Slipstream $9.23B（+21.0%）、PancakeSwap V3 $8.60B（+55.6%）
+**Fees leaders (24h)**
+1. Tether - $17.0M（100% of 7d avg）
+2. Uniswap V4 - $7.8M（1139% -- 7d 基数极低，异常放大）
+3. Circle USDC - $6.7M（100%）
 
-*Stables:* **$283.35B**（1d −0.38%，失血减速）- RLUSD +1.7% 唯一持续双正；USDf 折价 −46.5bp 连续第 14 轮最深
+**DEX vol (24h):** $8.51B（−20.67%）top: Uniswap V4 $2.27B · Aero Slipstream $0.72B · PancakeSwap $0.70B
+**Stables:** $283.73B（+0.05% 1d / −1.45% 7d）首次单日转正；USDS +4.86% 但 7d 仍 −38.72%
 
-*Real yield (sustainable, ≥$10M, 已滤 outlier/IL)*
-• USDC/hyperliquid-hlp - 18.03% apyBase（$149M，⚠️30d 均值仅 10.44%）
-• APXUSD/apyx - 13.68% apyBase（$123M，30d 13.22% 稳定）
-• SUSDAT/saturn - 13.01% apyBase（$33M，30d 16.47%）
+**Real yield（可持续，≥$10M，已过滤）**
+• ETH-WBTC（uniswap-v4, ETH）- 38.47% base（$19M，⚠️ 30d 均值仅 26.28%，不稳）
+• USDC（hyperliquid-hlp）- 17.42% base（$149M，m30 10.90 = 63%，卡闸边缘）
+• APXUSD（apyx, ETH）- 13.72% base（$124M，m30 13.25 稳定）
 
-*Incentive yield (points / emissions, ≥$25M)*
-• USDS/sparklend - 10.70% 纯奖励（$128M）- ⚠️Spark 生态 7d −27.6%
-• USDS/sky-lending - 10.29% 纯奖励（$62M）- ⚠️USDS 7d −42.2%
+**Incentive yield（奖励驱动，≥$25M）**
+• USD1（dolomite, ETH）- 10.10%（奖励 6.40% 来自 $0xdA5e…BeF6，$44M）
+• USDS（sparklend, ETH）- 9.70% 纯奖励（$139M）⚠️ 生态 7d 塌 32.8%
 
-*Macro:* BTC **$60,041（+1.72%）** / ETH **$1,677.62（+3.58%）** · F&G **12（Extreme Fear，连续 8 天 ≤13）** · 广度 **14/20**（上轮 0/20）· 非稳定币 7d 仅 4/16 绿 · hot market: "BTC dip to $55,000 by 2027" YES **59%**
+**Macro:** BTC $60,990（+1.58%）/ ETH $1,715.94（+2.28%）· F&G **11（Extreme Fear，连续 9 天 ≤13）** · 广度 15/20 24h、**3/20 7d** · hot market: 「BTC 11 月到 $62,500」YES **80.5%**（上轮 64.5%）
 
-*⚠️ 三条否决反弹的读数：* ①已结算 TVL 7d −8.5%，14 条大链 11 条 1d 为负（链上没跟上现货）②F&G 零反应，情绪未参与 ③总 mcap −0.95% 与现货反弹背离 ⇒ 头部修复，非全面回暖。
+**仓位（DEUS/XMAQUINA）:** $0.010436（+0.81% 24h / −9.36% 7d）- 第三轮在 $0.012 恐慌位下方。2 日内 1h 最大波动 +2.02% / **−5.78%**，距 20% unstake 门槛差 14.2pp。距 $0.025 +139.6% / $0.032 +206.6% / $0.041 +292.9%。**动作：无。**
 
-_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（第九轮）| var: none_
+_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（第十轮）| var: none_
