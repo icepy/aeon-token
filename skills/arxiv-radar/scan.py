@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """arxiv-radar 扫描器。vM
 
+vN = vM + 世界模型簇加词（`ti:"latent dynamics" AND cat:cs.RO`，唯一落在 5–60 带的写法）。
 vM = vL + 饱和词的「raw 命中最新发布日期」。
      原来审计只记 raw 计数不记日期分布，于是「seen 饱和」和「话题降温」字面一模一样
      （第十一轮实测：`embodied AI` raw=21/新收=0，无法判断话题是否还活着）。
@@ -45,7 +46,7 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
-VERSION = "vM"
+VERSION = "vN"
 
 OUTD = "output/arxiv"
 OUT, OUTDRY = OUTD + "/out.json", OUTD + "/out.dry.json"
@@ -137,6 +138,15 @@ ti:"data generation" AND cat:cs.RO
 ti:"human demonstration" AND cat:cs.RO
 # vK 新增：同上。90d total=9 而已见 **0/9** —— 与现有 24 词零重叠；7d=3。
 ti:"hand-object" AND cat:cs.RO
+# vN 新增：世界模型簇。第 53/54 轮连续结构性归零（67→62 raw 全在 seen、AI 侧只剩
+#   `egocentric` 一条且已吃干）⇒ 动作是加簇，不是换窗。
+#   四个候选实测（第 54 轮，均已见/raw 极低、领域命中 100%）：
+#     ti:"world model" / ti:"world modeling"  → 30d 88 · 60d 199 · 90d 274  ← 太宽，超 5–60 带
+#     ti:"world-action model" / 连字符版      → 30d 48 · 60d 153 · 90d 198  ← 也超带，单轮会灌 48 条
+#     ti:"latent dynamics" AND cat:cs.RO     → 7d 0 · 30d 3 · 60d 5 · 90d 5 · 已见 0/5  ← 唯一合规
+#   按梯子判据（60d total 5–60）只收最窄那个；宽的那两个须单独跑一次 days:90 补历史，
+#   不许在日常 30d 里静默加（会一次性把 48 条 unseen 当"新"推出去）。
+ti:"latent dynamics" AND cat:cs.RO
 # ── 持仓依赖的机制 ──
 ti:"EIP-1559"
 """.strip().split("\n") if t.strip() and not t.strip().startswith("#")]

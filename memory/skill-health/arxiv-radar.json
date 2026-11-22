@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-21T22:05:31Z",
+  "last_analyzed": "2026-11-22T22:12:16Z",
   "quality_score": 4,
-  "assessment": "Legitimate zero-survivor round delivered as a completed no-op: clean funnel, six-category breakdown, saturation diagnosis, cross-window evidence, and concrete next actions — internally consistent, substantive, and actionable, though it pushed no new papers by design.",
+  "assessment": "Clean discovery report: 3 keyword hits grouped by theme with arXiv links, plus a useful meta-note that only the newly added term fired and all hits are backfill rather than fresh releases — substantive and transparent, though descriptions are one-liners with no dates or abstracts.",
   "flags": [],
   "avg_score": 3.43,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 4,
-      "ts": "2026-10-26T14:37:18Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-21",
       "score": 4,
       "ts": "2026-11-21T22:05:31Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-22",
+      "score": 4,
+      "ts": "2026-11-22T22:12:16Z",
       "harness": "claude"
     }
   ]

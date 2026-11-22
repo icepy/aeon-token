@@ -1,1 +1,41 @@
-[]
+[
+ {
+  "id": "2611.11242",
+  "term": "ti:\"latent dynamics\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"latent dynamics\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "DeepSoMo",
+  "title": "DeepSoMo: Deformable Object Motion Estimation under Proprioceptive Partial Observability via Predictive Latent Dynamics",
+  "published": "2026-11-08",
+  "link": "https://arxiv.org/abs/2611.11242",
+  "carrier": "round"
+ },
+ {
+  "id": "2611.07403",
+  "term": "ti:\"latent dynamics\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"latent dynamics\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Dynamic Watermarking and Action-Conditioned Latent Dynamics for Secure Vision-Based Controllers",
+  "published": "2026-11-05",
+  "link": "https://arxiv.org/abs/2611.07403",
+  "carrier": "network"
+ },
+ {
+  "id": "2611.03294",
+  "term": "ti:\"latent dynamics\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"latent dynamics\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "ForceLDM",
+  "title": "ForceLDM: A Force-aware Latent Dynamics Model for Contact-Rich Manipulation",
+  "published": "2026-11-02",
+  "link": "https://arxiv.org/abs/2611.03294",
+  "carrier": "deployment"
+ }
+]

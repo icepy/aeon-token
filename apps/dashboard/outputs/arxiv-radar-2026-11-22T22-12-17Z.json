@@ -1,0 +1,189 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 幸存 3 · 加词后首次开火"
+      },
+      "children": [
+        "statsGrid",
+        "queryText",
+        "sep1",
+        "h1",
+        "s1",
+        "h2",
+        "s2",
+        "h3",
+        "s3",
+        "sep2",
+        "note"
+      ]
+    },
+    "statsGrid": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "statWindow",
+        "statSurvived",
+        "statZero"
+      ]
+    },
+    "statWindow": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      }
+    },
+    "statSurvived": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "3",
+        "delta": "加词后首次开火",
+        "trend": "up"
+      }
+    },
+    "statZero": {
+      "type": "Stat",
+      "props": {
+        "label": "其余 26 词新收",
+        "value": "0",
+        "delta": "仍为 0",
+        "trend": "neutral"
+      }
+    },
+    "queryText": {
+      "type": "Text",
+      "props": {
+        "text": "新加的 ti:\"latent dynamics\" AND cat:cs.RO 是本轮唯一出货来源，3 条全部来自它。其余 26 词仍是 0 新收。",
+        "variant": "body"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "世界模型 / 第一视角感知",
+        "level": "h3"
+      }
+    },
+    "s1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p1link",
+        "p1desc"
+      ]
+    },
+    "p1link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DeepSoMo",
+        "href": "https://arxiv.org/abs/2611.11242",
+        "source": "arXiv"
+      }
+    },
+    "p1desc": {
+      "type": "Text",
+      "props": {
+        "text": "本体感知部分可观测下的可形变物体运动估计，用预测式 latent dynamics",
+        "variant": "caption"
+      }
+    },
+    "h2": {
+      "type": "Heading",
+      "props": {
+        "text": "世界模型 / 抓取与操作",
+        "level": "h3"
+      }
+    },
+    "s2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p2link",
+        "p2desc"
+      ]
+    },
+    "p2link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ForceLDM",
+        "href": "https://arxiv.org/abs/2611.03294",
+        "source": "arXiv"
+      }
+    },
+    "p2desc": {
+      "type": "Text",
+      "props": {
+        "text": "力感知 latent dynamics 模型，面向接触密集操作",
+        "variant": "caption"
+      }
+    },
+    "h3": {
+      "type": "Heading",
+      "props": {
+        "text": "世界模型",
+        "level": "h3"
+      }
+    },
+    "s3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p3link",
+        "p3desc"
+      ]
+    },
+    "p3link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Dynamic Watermarking and Action-Conditioned Latent Dynamics",
+        "href": "https://arxiv.org/abs/2611.07403",
+        "source": "arXiv"
+      }
+    },
+    "p3desc": {
+      "type": "Text",
+      "props": {
+        "text": "动作条件 latent dynamics 用于视觉控制器安全水印（无独立代号）",
+        "variant": "caption"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "note": {
+      "type": "Alert",
+      "props": {
+        "title": "沉积说明",
+        "message": "三条都是 11-02 ~ 11-08 的沉积，不是新发布 -- 加词补历史，不是话题刚升温。",
+        "type": "info"
+      }
+    }
+  }
+}
