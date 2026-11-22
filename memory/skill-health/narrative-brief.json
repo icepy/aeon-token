@@ -1,10 +1,10 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-21T10:01:33Z",
+  "last_analyzed": "2026-11-22T10:01:32Z",
   "quality_score": 4,
-  "assessment": "Clean, correct dedupe no-op: remote fetch succeeded (http=200, 24KB, reason=ok), all 4 sections matched stored sha256, notify correctly skipped, and the Mon/Thu cadence cross-check against 2026-11-21 (Saturday) sensibly rules out a stall rather than asserting one.",
+  "assessment": "Correct and complete dedupe run: all 4 sections already seen with matching sha256s, result UNCHANGED, notify correctly skipped; adds useful cadence note and honest caveat that the days-since-push alert isn't implemented.",
   "flags": [],
-  "avg_score": 3.38,
+  "avg_score": 3.4,
   "history": [
     {
       "date": "2026-10-27",
@@ -178,6 +178,12 @@
       "date": "2026-11-21",
       "score": 4,
       "ts": "2026-11-21T10:01:33Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-22",
+      "score": 4,
+      "ts": "2026-11-22T10:01:32Z",
       "harness": "claude"
     }
   ]
