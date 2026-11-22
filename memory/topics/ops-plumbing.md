@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-21T18:20:00Z
+timestamp: 2026-11-22T18:20:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -352,6 +352,23 @@ One full run log (`44195522715`, 2026-11-17) settles it for `defi-overview`: `nu
   the mean needs *weeks* to move away from the threshold. **Read `defi-overview` by cf and the last three
   rounds only — never by the 44-round mean.**
   [source: logs/2026-11-21#heartbeat]
+
+#### Update (11-22): clear of the line at 51.1%, and the MEMORY-lag watch-item is retired
+
+- **`defi-overview` is now genuinely off the chronic line: 23/45 = 51.1%**, cf **0**, four consecutive
+  greens (11-18 → 11-21). The 11-21 rule applies as written — **cf 0 + last three rounds green = no
+  fault; the 45-round mean is no longer a criterion.**
+- **The "MEMORY 待盯 line is stale" watch-item is structural timing, not a bookkeeping miss.** The
+  line is written only by the 18:00 `memory-flush`, while `defi-overview` runs at 23:00 — so the
+  line is *necessarily* one day behind any new round. 11-21 flagged it 🟡 only because the recorded
+  number (49%) had been contradicted; from 11-22 on, a number that was accurate at consolidation time
+  and merely superseded later is normal. **It no longer counts as a P2 watch-item and no longer tints
+  the status page.** Any future staleness of that line is expected and should not be re-reported.
+- **`STATUS_PAGE` 🟡 WATCH → 🟢 OK** on this basis; the only P1 residue is nine scorer-generated
+  `health: <skill>` issue threads with no labels and no urgent/critical/high severity (three point at
+  disabled skills = dead threads, six at self-healed skills = unclosed threads). PR queue empty,
+  twentieth consecutive day.
+  [source: logs/2026-11-22#heartbeat]
 
 ## Reading `gh run view --log`: colour-escaped lines are the script body, not output
 

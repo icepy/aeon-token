@@ -1,11 +1,11 @@
 # Long-term Memory
-*Last consolidated: 2026-11-21*
+*Last consolidated: 2026-11-22*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
 - **`aeon-update` 基线 `7b20c95`**（PR #27 已合 11-16T11:42Z）：50 条提交**净变更为零**。判据 `CLEAN-MERGE>0` + `git diff --stat` 空 ⇒ 没改；6 冲突全是技能计数漂移 → `keep_local`。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-16#aeon-update]
-- **`defi-overview` 11-21 三连绿、出 chronic 线（22/44 = 50.0%）—— 只是踩线**：再失败即 22/45 = 48.9% 回 🔴。**只看 cf 与最近三轮，不看 44 轮均值。cf 不因 skill 停用而衰减**（5/4/3 = 10-25 网关账未清）。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-21#heartbeat]
+- **`defi-overview` 11-22 真脱线 23/45 = 51.1%、cf 0、四连绿**（11-21 曾踩线 50.0%）。**只看 cf 与最近三轮，不看 45 轮均值。cf 不因停用而衰减**（5/4/3 = 10-25 网关账未清）。**本行数字对新一轮必然滞后一天（flush 18:00 / 该 skill 23:00）= 结构性时序，不压状态页颜色。**→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-22#heartbeat]
 - **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
 - **PR 队列会反过来影响读数语义**：词表/阈值改动只在合进 main 后才算数，挂着就是没生效。队列现为空（#25/#27 均 11-16 合）。[source: logs/2026-11-17#heartbeat]
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
@@ -13,9 +13,9 @@
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-20 第 52 轮 71 → 1。**`consensus`/`human data` 双双饱和，AI 侧召回只剩 `egocentric` 一条 —— 它一吃干就结构性归零，换窗无用、须加词。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-20#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-22 第 27 轮 9088 / 新增 3 / 可报 **0**（唯一带 TVL 的 `InoVaults` Cronos $2.5K 被链白名单挡）。**日桶 24h 龄仍被改写成 +4.43% ⇒ 上轮「11-20 −5.25%」实为 −1.05%，虚报 5 倍；结算只看两轮回读差、不看桶龄。7d 51→39 是第 7 天桶 15 条滚出，非变慢。** → [topic](/topics/defillama-radar.md) [src: 11-22#defillama-radar]
-- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-20 第 31 轮 2028→37→报 13，**单 owner 铺 3/13 仓 ⇒ 读趋势按 owner 去重 10 不按 13**。**`seen/raw<5%`（`data availability` 4.6%）仍被记饱和 = 误读第三例，须归因 excl/carrier/neg。** → [topic](/topics/github-radar.md) [source: logs/2026-11-20#github-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-21 第 53 轮 67 → **0**，13 饱和 + 11 窗口内零命中，失败/过滤损耗全 0。**上轮预告的结构性归零已兑现：`egocentric` raw 20→19、新收 0、maxpub 停在 11-19（话题活着）⇒ AI 侧无词可出，`days:90` 只会重拉同一批 67 条，必须加词/换写法。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-21#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-22 第 27 轮 9088 / 新增 3 / 可报 **0**（唯一带 TVL 的 `InoVaults` Cronos $2.5K 被链白名单挡）。**日桶 24h 龄仍被改写成 +4.43% ⇒ 上轮「11-20 −5.25%」实为 −1.05%，虚报 5 倍；结算只看两轮回读差、不看桶龄。7d 51→39 是第 7 天桶 15 条滚出，非变慢。** → [topic](/topics/defillama-radar.md) [source: logs/2026-11-22#defillama-radar]
+- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-21 第 32 轮 2013→32→报 12，**owner 全不重复**。**`data availability` 64/3 = 4.7%、`intent-based` 54/4 = 7.4% 仍被记饱和 = `seen/raw<5%` 误读第四例，须归因 excl/carrier/neg** → [topic](/topics/github-radar.md) [source: logs/2026-11-21#github-radar]
 
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。判据速查：

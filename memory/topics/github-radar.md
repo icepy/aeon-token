@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-21T18:20:00Z
+timestamp: 2026-11-22T18:20:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,29 @@ timestamp: 2026-11-21T18:20:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第三十二轮（2026-11-21，默认 30 天窗）—— 2013/32/12；`seen/raw<5%` 误记第四例，owner 叠仓回落为零
+
+18 词 × 二分至一页（单窗 13 / 需拆窗 5 · 二分 2 次 · 搜索调用 40）· min:0 · 核验门槛 5。漏斗：原始 **2013**
+→ 幸存 **32** → 报告级 **12**。丢弃：`seen=962` / `excl=127` / `archived=0` / `short_desc=353` / `carrier=414` /
+`neg=54` / `pages=68` / `farm=3` / `fail=0`。核验 32/32（100%）。四分类：查询失败 0 · 真零 1（`robotics data
+engine` total=0，单窗为零不删，须跨 7/30/60 复核） · 饱和 5 · 有新增 12。
+
+- **判据级 ①：`seen/raw < 5%` 误记进「饱和」的第四例。** `data availability` **64/3 = 4.7%**（第三、四轮连续
+  低吸收率）与 `intent-based` **54/4 = 7.4%**（第四轮）同轮再落饱和栏。前几轮（11-17/11-20）已定为
+  「该补分母不是补调用」—— **归因方向是 excl/carrier/neg 某条规则在吃它，不是流量消失**；本轮仍未把它拆到具体
+  规则，属连轮待办。
+- **判据级 ②：单 owner 叠仓不是常态。** 上一轮（11-20）`chengjianglong` 一人铺 3/13 仓，本轮报告级 12 条
+  **owner 全不重复（12 owner / 12 仓）** ⇒ 上轮立的「读趋势按 owner 去重」是**该轮样本属性**，不是固定口径；
+  只有在真的出现多仓同 owner 时才去重。
+- **carrier 对照：** 丢弃侧仓名自带词表词 157 仓 / owner 去重 150 / 本轮核 146 → 近 7 天存活 **60/146 = 41%**；
+  放行幸存者 **28/30 = 93%**。两组差距（41% vs 93%）与第三十一轮同向，**误杀面成立但仍不到无判别力**，维持
+  不放宽。
+- **异常：** 未核验 2（`Luna-robotics31/fr10_teleop` · `mizuharaa/stretch3-vr-teleop`）· 爆完即停 2
+  （`magickkdd/world_model_research` · `magickkdd/twm`）· 无 `language` 3（`Shyam-SN/EpisodeForge` ·
+  `brownrasr/agentic-robotics-sim-to-real` · `m49909999-hash/Feefire-bot-architecture`）。
+- **probe 跳过**（戳 4 天 < 7 天），`clusters.json` 未重写，**仍是上次结果，不可引用**。
+[source: logs/2026-11-21#github-radar]
 
 ## 第三十一轮（2026-11-20，默认 30 天窗）—— 2028/37/13；`seen/raw<5%` 的误记仍未归因，单 owner 铺多仓首次成规模
 

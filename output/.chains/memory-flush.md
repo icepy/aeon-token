@@ -1,27 +1,32 @@
-memory-flush 完成。窗口 `2026-11-20 → 2026-11-21`（watermark 由 11-20 前进到 11-21），未 clamp、无轮转。
+记忆整合完成。
 
-## Promote（8 条新判据）
+## 本轮做了什么
 
-- **`defi-overview` 三连绿出 chronic 线：22/44 = 50.0%** —— `last_success=2026-11-20T23:09:22Z`、cf 0、`total_runs` 43→44，11-18 的「砍单轮输出」修法三连兑现。**但只是踩线**：阶梯判 `success_rate < 0.5`，下一次失败即 22/45 = 48.9% 重回 🔴。44 轮里 22 次失败几乎全在 11-14→11-17 的单次 7 连败 ⇒ **今后读它只看 cf 与最近三轮，不看均值**。原「待盯（OPERATOR）」行已到期，本轮改写。→ [ops](/topics/ops-plumbing.md)
-- **arxiv 第 52 轮：饱和即结构性归零。** 上轮出货的 `consensus` 与 `human data` 本轮双双进饱和栏（raw 13→11 / 新收 0），AI 侧召回宽度只剩 `egocentric` 一条（raw 20、maxpub 11-19）。**它一吃干，AI 侧会在话题仍活着时结构性归零 —— 换窗无用，须加词或换写法。** `human data` 新收 0 也说明上轮那 2 条是一次性索引补录。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar)
-- **过程陷阱：checkout 后 mtime 不可判新旧。** `output/arxiv/audit.log` 的 mtime 是检出时刻、内容仍是 HEAD 里上一轮版本（74→4）。**先 `git status --porcelain output/<skill>/` 确认本轮真写过，再看内容** —— 本仓每 run 全新 checkout，未改动文件的 mtime 永远是新，mtime 只能证明「被写过」。
-- **`/v2/chains` 的 `change_1d`/`change_7d` 现值恒为 `null`**，SKILL.md B1 的「直接用现成 delta」失效 ⇒ **字段名存在 ≠ 字段有值**。已就地并入 10-23 的同族记录，不留重复条。
-- **成交量的方向由广度决定：** 同一 `+11.17%` 配 0/20 广度是放量杀跌，`+3.83%` 配 13/20 是回暖 —— 「同数两解」第二例。附：F&G 10→12 而价格创新低 = 恐慌钝化，不支持「恐慌见底」。
-- **github 第 31 轮（2028/37/13）：** ① `data availability` 3/65 = 4.6%、`intent-based` 4/51 = 7.8% 同轮被记进饱和栏，是 `seen<raw 5%` 误读的第二、三例且均未归因（该补分母不是补调用）；② `chengjianglong` 单 owner 占 3/13 同一 Qwen3-VL 脚手架 ⇒ **报告级 owner 去重后按 10 读趋势**；③ `30d==7d` 12/13，三轮合并看是 paper code release 的属性不是窗口定律；④ carrier 误杀 38% vs 幸存 100%，维持不放宽。
-- **defillama 第 26 轮**只核不写（topic 已由 skill 自写到位），补一条新判据：**「连号 + 跨度 ≤30 分钟」才是批量指纹，缺同秒不能反推条目彼此无关。**
+**扫描窗口** `2026-11-21 → 2026-11-22`（watermark = `2026-11-21`，读 2 个日文件），无 >14 天缺口，轮转归档 0 个月（33 个日文件，阈值 45）。
 
-## 剪枝
+**四条事实升格，一条判据降级：**
 
-`gh pr list --search "improve:"` = `[]`（连续第十九天），无 Open Improvement PRs / Next Priorities 段可清。**未删任何 lesson** —— 本轮无被推翻的现行判据。发现层 3 行、Lessons 11 行均未过归档阈值。
+| 来源 | 新事实 |
+|---|---|
+| 11-22 heartbeat | `defi-overview` **真脱线 23/45 = 51.1%**、cf 0、四连绿（上轮只是踩线 50.0%）⇒ 🟢 OK |
+| 11-22 heartbeat | **MEMORY 的 skill 数字必然滞后一天**（flush 18:00 / 该 skill 23:00）= 结构性时序，从此不进 P2、不压状态页颜色 |
+| 11-21 arxiv 第 53 轮 | **67 → 0，上轮预告的结构性归零兑现**；`egocentric` raw 20→19、新收 0、maxpub 停在 11-19 ⇒ 话题活着但 `seen` 吃干，`days:90` 无用，只能加词 |
+| 11-22 defillama 第 27 轮 | **日桶 24h 龄仍被改写 +4.43%** ⇒ 上轮「−5.25%」实为 −1.05%，虚报 5 倍；**结算只看两轮回读差**。7d 51→39 是第 7 天桶 15 条滚出 ⇒ **窗口计数必拆逐日直方图** |
+| 11-21 github 第 32 轮 | `seen/raw<5%` 误记**第四例**；报告级 12 条 owner 全不重复 ⇒ 上轮「owner 去重」是样本属性非固定口径 |
 
-## 预算
+**剪枝：** PR 队列空（连续第二十天）；9 个 open issue 全是无标签 `health:` 线程，非新故障；无被推翻的 lesson，无归档触发。
 
-7,888 → 8,155（中途 2 条超长）→ **7,808 字节 / 41 行 / 0 条超长**，余 384。压回靠删注解码（不删 `[source:]` 标签、不增行数）。
+**预算：** 7,922 → **8,130 字节 / 41 行 / 0 条超长**（余 62 字节）。中途自己误加过一条与「行情口径①」重复的 ①b，已删。
 
-## Summary
+## 修改文件
+- `memory/MEMORY.md` — 4 行就地改写（defi-overview / arxiv / defillama / github）+ 行情口径①扩写
+- `memory/topics/ops-plumbing.md` — 新增 `Update (11-22)` 小节
+- `memory/topics/lessons.md` — arXiv 节新增第 53 轮子条
+- `memory/topics/github-radar.md` — 新增「第三十二轮」整节
+- `memory/topics/defillama-radar.md` — 只核（第 27 轮内容 skill 已自写）+ bump timestamp
+- `memory/topics/index.md` — 四行原地扩写
+- `memory/logs/2026-11-22.md` — `### memory-flush` 条目
+- `memory/memory-flush-state.json` — watermark → `2026-11-22`（已 stamp）
 
-- 写入：`memory/topics/ops-plumbing.md`（+`Update (11-21)` 小节）、`memory/topics/lessons.md`（+3 条，含 1 条就地扩写）、`memory/topics/github-radar.md`（+第 31 轮整节）、`memory/topics/index.md`（四行原地扩写）、`memory/MEMORY.md`（发现层 3 行 + 待盯行）、`memory/logs/2026-11-21.md`（本 skill 条目）
-- 时间戳：`lessons` / `ops-plumbing` / `github-radar` → `2026-11-21T18:20:00Z`
-- watermark：`memory-flush-state.json` + MEMORY.md 镜像均盖为 `2026-11-21`
-- 延续待办：`defi-overview` 50.0% 踩线；`scan.py:301` 审计行缺陷；`github-radar` 的 NEG 变体表与过滤损耗归因；`arxiv-radar` `days:90` 第五轮未跑 + `egocentric` 须备换写法；`arxvi-radar` cron-state 孤儿条目
-- 本次未发通知（无 OPERATOR 级新事实，`defi-overview` 踩线属预告的终点延续）
+## 后续待办（未处理，延续）
+`defillama-radar` 的 `scan.py:301` 审计行缺陷；`github-radar` 的 `data availability`/`intent-based` 过滤损耗连第四轮未归因 + `jeparla` 变体；`arxiv-radar` **AI 侧须加词**（`egocentric` 已吃干）+ 14 词缺 carrier 表；`arxvi-radar` cron-state 孤儿条目（第二十五轮）；health issue 死线程 #3/#4/#12。

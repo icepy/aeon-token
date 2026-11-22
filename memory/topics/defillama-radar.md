@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-22T00:10:00Z
+timestamp: 2026-11-22T18:20:00Z
 ---
 
 # DefiLlama Radar
