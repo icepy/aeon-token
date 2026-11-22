@@ -13,8 +13,8 @@
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · 26 词 · 11-20 第 52 轮 71 → 1。**上轮出货的 `consensus`/`human data` 本轮双双饱和，AI 侧召回宽度只剩 `egocentric` 一条 —— 它一吃干就结构性归零，换窗无用、须加词。`ti:"human data"` 新收 0 ⇒ 上轮 2 条是一次性补录。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-20#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-21 第 26 轮 9085 / 新增 6 / 可报 **2**（`Biribi` Arbitrum 轮盘 $1,996 · `Gmoon` Robinhood Chain 发币台 $2.58）。**TVL −3.77% 经 `/v2/historicalChainTvl`（−5.25%）证实是行情；两源 6.4× 只比 delta。`parent` 真边际 0/2。** → [topic](/topics/defillama-radar.md) [src: 11-21#defillama-radar]
+- `arxiv-radar` ✅ 07:30 · 26 词 · 11-20 第 52 轮 71 → 1。**`consensus`/`human data` 双双饱和，AI 侧召回只剩 `egocentric` 一条 —— 它一吃干就结构性归零，换窗无用、须加词。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-20#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-22 第 27 轮 9088 / 新增 3 / 可报 **0**（唯一带 TVL 的 `InoVaults` Cronos $2.5K 被链白名单挡）。**日桶 24h 龄仍被改写成 +4.43% ⇒ 上轮「11-20 −5.25%」实为 −1.05%，虚报 5 倍；结算只看两轮回读差、不看桶龄。7d 51→39 是第 7 天桶 15 条滚出，非变慢。** → [topic](/topics/defillama-radar.md) [src: 11-22#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-20 第 31 轮 2028→37→报 13，**单 owner 铺 3/13 仓 ⇒ 读趋势按 owner 去重 10 不按 13**。**`seen/raw<5%`（`data availability` 4.6%）仍被记饱和 = 误读第三例，须归因 excl/carrier/neg。** → [topic](/topics/github-radar.md) [source: logs/2026-11-20#github-radar]
 
 ## Lessons Learned
@@ -24,7 +24,7 @@
 - **假零八：CDN 快照让 id 差集恒为 0**（10-28）—— 差集为空先断言 `cf-cache-status != HIT` 或加 `?_cb=` 复取。**反向也有坑：id 集合相同 ≠ 字段值最新**，`parentProtocol` 这类补录字段会在两份快照间翻转（11-03）。
 - **`eth_getLogs` 判别力测试：** 真 topic0 必回真日志、**故意错 1 字符必回 0**。不可区分 = 端点坏。公共 RPC 硬限 1000 块，长窗 999 分片。
 - **链上速查（DEUS 归档后仍通用）：** Solidly Swap 字序 `(a0In,a1In,a0Out,a1Out)`，按 UniV2 解会读反 → 用储备差对照符号。**`eth_getCode`=`0x` 才 EOA，`0xef0100…` 是 7702；地址左补零且全小写。** 买单真伪只认终点余额升高且留住。**门槛先核对分子分母同单位。**[lessons](/topics/lessons.md)
-- **行情口径 ①（结算纪律）：** 只用桶结算值，live 不参与 delta；**当日桶隔日复查才可当历史引用**；7d/30d 脚本算；跨 series 按日期对齐。**桶编号须由 ts 换算 UTC 日期**，「倒数第 N 个」差一位会把结论翻反。[lessons](/topics/lessons.md#行情取数形状defillama--coingecko) [source: logs/2026-11-11#defi-overview]
+- **行情口径 ①（结算纪律）：** 只用桶结算值，live 不参与 delta；**结算不看桶龄，只看「同一天两轮回读差」>0.5% 即未定稿（11-22 实测 24h 龄桶仍被改 +4.43%）**；7d/30d 脚本算；跨 series 按日期对齐。**桶编号须由 ts 换算 UTC 日期**。**「近 N 天 X 条」必拆逐日直方图 —— 窗口计数是二阶量，批量桶滚出会伪装成趋势。**[lessons](/topics/lessons.md#行情取数形状defillama--coingecko) [source: logs/2026-11-22#defillama-radar]
 - **行情口径 ②（字段与噪声）：** `change_7d` 实为 `total24h/total7DaysAgo−1`，真 7d 在 `change_7dover7d`；fees `protocols[]` 无 `tvl` 须 join；**F&G 回溯修订**须拉 ≥3 日序列。**`change_1d` 是桶内值非今昨差**。**总 TVL 两套口径（`totalLiquidityUSD` vs `/v2` `tvl`）比值恒 ~2.0，混用造 −50% 假暴跌 —— 比 delta 前先验同源。** [source: logs/2026-11-19#defi-overview]
 - **某过滤器长期「0 丢弃」先查有多少输入真经过它，再查它是不是用歧义词假装挡住了** —— `circuit`/`network` 对超导/ML 同样成立 = 无判别力；「零假阴」≠ 规则安全。**漏斗退化成单通道时，0 输出的责任在词表召回**；零幸存来自饱和 ≠ 流量消失。**某桶占比升高 ≠ 杀伤力升高**。**任何「N=0」字段先确认分母没被过滤掉 —— 没进的输入不是零结果**（`cross_windows()` 不量降级词）。→ [lessons](/topics/lessons.md) [source: logs/2026-11-17#arxiv-radar]
 - **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据 `num_turns:1` + 0 tool calls。**失败签名不止一种**，断路器跳闸后重试通道也没了；**probe 偶然跑通 ≠ 修复** → [ops](/topics/ops-plumbing.md) [source: logs/2026-11-12#heartbeat]

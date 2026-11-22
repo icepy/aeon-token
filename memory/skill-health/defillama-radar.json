@@ -1,10 +1,10 @@
 {
   "skill": "defillama-radar",
-  "last_analyzed": "2026-11-21T00:03:57Z",
+  "last_analyzed": "2026-11-22T00:05:30Z",
   "quality_score": 4,
-  "assessment": "Delivers the skill's discovery job with 2 named, field-complete new protocols plus per-id filtering of 4 blocked ones; specifics (ids, TVLs, etags, timestamps) are consistent and cross-checked against a second endpoint, and the output proactively flags its own audit-line bug rather than papering over it — dense but substantive and actionable.",
+  "assessment": "Legitimate zero-report round: scanned 9088 protocols, 3 new IDs tabulated with names/chain/TVL (the skill's core names+floor fields), no notification per the zero-report rule; highly verifiable with self-checking arithmetic and CF double-fetch, though it drifts well past the discovery-only 'names+floor' remit into heavy judgment/methodology analysis.",
   "flags": [],
-  "avg_score": 3.92,
+  "avg_score": 3.93,
   "history": [
     {
       "date": "2026-10-28",
@@ -160,6 +160,12 @@
       "date": "2026-11-21",
       "score": 4,
       "ts": "2026-11-21T00:03:57Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-22",
+      "score": 4,
+      "ts": "2026-11-22T00:05:30Z",
       "harness": "claude"
     }
   ]
