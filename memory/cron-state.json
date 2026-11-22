@@ -124,10 +124,10 @@
     "last_error": null
   },
   "narrative-brief": {
-    "last_status": "dispatched",
-    "last_success": "2026-11-21T10:01:37Z",
-    "total_runs": 29,
-    "total_successes": 29,
+    "last_status": "success",
+    "last_success": "2026-11-22T10:01:35Z",
+    "total_runs": 30,
+    "total_successes": 30,
     "total_failures": 0,
     "consecutive_failures": 0,
     "success_rate": 1,
