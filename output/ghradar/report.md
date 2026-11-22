@@ -1,14 +1,21 @@
-**github-radar** · 窗口 30 天 · 报告级 12 · 近 7 天活跃 12
+**github-radar** · 窗口 7 天 · 报告级 19 · 近 7 天活跃 19
 
-- [amaan784/foresight-worlds](https://github.com/amaan784/foresight-worlds) ★0 · 30天=75 · 7天=75 · 词 `world model` · Predicts how real objects will move over the next 5 seconds from 3 seconds of video, using physics i
-- [M-amir1998/ManipulatorCore](https://github.com/M-amir1998/ManipulatorCore) ★0 · 30天=32 · 7天=32 · 词 `robot manipulation` · Modern Classical Robot Manipulation Algorithms, Kinematics, Dynamics, Planning, Control, Simulation,
-- [JithinLalPradeepK/fr3-duo-gello-teleop](https://github.com/JithinLalPradeepK/fr3-duo-gello-teleop) ★0 · 30天=31 · 7天=31 · 词 `teleoperation` · Bimanual Franka FR3 teleoperation with GELLO Duo, Robotiq grippers, cameras, foot pedal and PyQt GUI
-- [matveho/intent-preserving-teleop](https://github.com/matveho/intent-preserving-teleop) ★1 · 30天=22 · 7天=22 · 词 `teleoperation` · Intent-preserving learned policy arbitration for contact-rich manipulation under teleoperation.
-- [rje/jepamath](https://github.com/rje/jepamath) ★0 · 30天=18 · 7天=18 · 词 `jepa` · JEPA number-sense: procedural video twins, V-JEPA evals, small video JEPA training
-- [Skyzuo9/proofchain](https://github.com/Skyzuo9/proofchain) ★0 · 30天=13 · 7天=13 · 词 `proof of useful work` · Bitcoin-inspired Proof-of-Useful-Work platform for collaborative multi-agent Lean 4 theorem proving,
-- [LisavilaLee/TacInno](https://github.com/LisavilaLee/TacInno) ★5 · 30天=11 · 7天=11 · 词 `vision language action` · Code for TacInno: Teaching Vision-Language-Action Models the Contact Dynamics Beyond Vision and Acti
-- [kishordgupta/jepa-od](https://github.com/kishordgupta/jepa-od) ★1 · 30天=11 · 7天=11 · 词 `jepa` · JEPA-OD: Joint-Embedding Predictive Architectures for outlier detection (PyOD-compatible, tabular an
-- [tahakocp/picovla](https://github.com/tahakocp/picovla) ★0 · 30天=7 · 7天=7 · 词 `vision language action` · A vision-language-action robot policy from scratch in ~470 lines of PyTorch. Trains in 40 min on a C
-- [xiaoxinlaoshi-667/DexterousHand_Sim2Real_Controller](https://github.com/xiaoxinlaoshi-667/DexterousHand_Sim2Real_Controller) ★0 · 30天=6 · 7天=6 · 词 `sim2real` · A C++ native Sim-to-Real controller for 16-DOF Allegro Hand & Inspire-Robots RH56F1 without external
-- [heliang-pu/phoenix-wam-realtime-toolkit](https://github.com/heliang-pu/phoenix-wam-realtime-toolkit) ★0 · 30天=6 · 7天=6 · 词 `world action model` · Post-training, inference and inference acceleration for Phoenix-MWA (a world action model) on a new 
-- [Kkenize/liquid-restaking](https://github.com/Kkenize/liquid-restaking) ★0 · 30天=5 · 7天=1 · 词 `restaking` · Reproducible experiments for collateral architecture and correlated slashing
+- [AungKaung1928/photon-to-torque](https://github.com/AungKaung1928/photon-to-torque) ★0 · 30天=71 · 7天=71 · 词 `sim-to-real` · Study app in 6 chapters: one robot control tick from sensor to torque, PPO, ROS 2 QoS, sim-to-real, 
+- [kartik-joshi/sardrone](https://github.com/kartik-joshi/sardrone) ★0 · 30天=81 · 7天=69 · 词 `sim-to-real` · Search-and-rescue drone in simulation: the robotics data loop end to end (PX4, Gazebo, MCAP, FiftyOn
+- [lollinng/latent-planner](https://github.com/lollinng/latent-planner) ★0 · 30天=67 · 7天=67 · 词 `jepa` · A small JEPA world model learns a two-room world from pixels and plans in its own latent space, live
+- [mohymabrouk/deep-hedging-sim-to-real](https://github.com/mohymabrouk/deep-hedging-sim-to-real) ★0 · 30天=32 · 7天=32 · 词 `sim-to-real` · Deep hedgers trained in 4 simulated BTC markets (bootstrap, GARCH, rough vol, diffusion), tested on 
+- [zackholt05-tech/roboforge-observatory](https://github.com/zackholt05-tech/roboforge-observatory) ★0 · 30天=≥100 · 7天=30 · 词 `robot manipulation` · Behavior cloning vs. a conditional diffusion policy on simulated 3D robot manipulation (robosuite + 
+- [46-rossi/astrax-so101](https://github.com/46-rossi/astrax-so101) ★0 · 30天=15 · 7天=15 · 词 `sim-to-real` · AstraX | AI-powered SO-101 robotic arm for autonomous pick-and-place using NVIDIA Isaac Sim, LeRobot
+- [dynamicro-era/era-hand-manipulation](https://github.com/dynamicro-era/era-hand-manipulation) ★1 · 30天=14 · 7天=14 · 词 `world model` · Torque feedback, world models and dexterous manipulation with the ERA five-finger hand.
+- [wikieden/humanoid-robotics-skills](https://github.com/wikieden/humanoid-robotics-skills) ★0 · 30天=13 · 7天=13 · 词 `teleoperation` · Open agent skills for humanoid robotics development, from teleoperation and policy training to safet
+- [teerthsharma/Alcyone-W](https://github.com/teerthsharma/Alcyone-W) ★3 · 30天=10 · 7天=10 · 词 `jepa` · Alcyone: to our knowledge the first JEPA that predicts topology (a watershed computed exactly from p
+- [abishek1123/egocut](https://github.com/abishek1123/egocut) ★0 · 30天=10 · 7天=10 · 词 `egocentric` · Action-aware egocentric video summarization for XR. EgoCut detects verb–noun actions with VideoMAE-L
+- [jhyeong687/regrasp-or-skip](https://github.com/jhyeong687/regrasp-or-skip) ★0 · 30天=9 · 7天=9 · 词 `robot manipulation` · Regrasp or Skip? Tactile Probing for Agentic Robot Manipulation · SO-ARM101, PaXini, MuJoCo pilot, a
+- [affogato33/rgbd-object-tracking](https://github.com/affogato33/rgbd-object-tracking) ★0 · 30天=9 · 7天=9 · 词 `robot manipulation` · RGB-D object tracking and robotic manipulation with 3D perception, occlusion handling, uncertainty e
+- [adityapgupta/Crys_METH](https://github.com/adityapgupta/Crys_METH) ★0 · 30天=9 · 7天=9 · 词 `jepa` · Implementation for Crys_METH, a pipeline to test graph based reference selections for Crys_JEPA
+- [Anirudh-Senani/jepa-world-model-from-scratch](https://github.com/Anirudh-Senani/jepa-world-model-from-scratch) ★0 · 30天=8 · 7天=8 · 词 `world model` · Build an action-conditioned Joint Embedding Predictive Architecture (JEPA) world model in pure PyTor
+- [fysical-ai/lebox](https://github.com/fysical-ai/lebox) ★0 · 30天=7 · 7天=7 · 词 `robot manipulation` · LeBox: an open-source, self-resetting, self-scoring test bench for robot manipulation policies. Four
+- [Junaeid-Shoaib/citrus-sim2real-grading](https://github.com/Junaeid-Shoaib/citrus-sim2real-grading) ★0 · 30天=7 · 7天=7 · 词 `sim2real` · Grading oranges as fresh, green or defective with a CNN, and testing whether a model trained only on
+- [zeweijin86-hub/vjepa2-router](https://github.com/zeweijin86-hub/vjepa2-router) ★0 · 30天=7 · 7天=7 · 词 `jepa` · Per-video classifier routing for V-JEPA 2 frozen video classification: focal loss, non-target divers
+- [GonzaloFuentes1/llm-jepa-sigreg](https://github.com/GonzaloFuentes1/llm-jepa-sigreg) ★0 · 30天=6 · 7天=6 · 词 `jepa` · Reproduction of LLM-JEPA fine-tuning on Llama-3.2-1B, an audit of the official pad=eos bug, and a SI
+- [MikoAL/TAICA_w10](https://github.com/MikoAL/TAICA_w10) ★0 · 30天=6 · 7天=6 · 词 `jepa` · TAICA w10: JEPA LLM Wiki + teaching slide deck
