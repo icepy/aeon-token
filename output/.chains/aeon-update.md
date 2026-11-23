@@ -1,19 +1,15 @@
-ℹ️ aeon-update：PR #27（净变更为零）
+ℹ️ aeon-update
 
-**aeon-update - 2026-11-16**
+*aeon-update - 2026-11-23*
 
-同步 50 条上游提交（`ec7a50c..7b20c95`，11-02 → 11-14），PR #27 待你合。
+**同步 13 条上游提交 → PR #28**，但净变更为零。
 
-**但净变更为零。** 上一轮 PR #24 关了没合，内容却已经通过 catalog commit 落到 main 上，所以这 50 条在本地树里全都已经在位。`apply` 报 4 个 `CLEAN-MERGE`，`git diff --stat` 却是空的 -- 这次实际只推进了 watermark。
+上游 `aeonfun/aeon` 从 `7b20c95` 到 `f94f39e` 有 13 条提交。三个可自动合并的文件（`aeon.yml` 的 MCP deny-list、`messages.yml` 的 1200s 超时、dashboard 技能图标）**本地早已与上游 HEAD 逐字节相同** -- 上一轮之后手工同步已超前，3-way 合并没有产生任何差异。这个 PR 的唯一实质作用是**把 baseline 推进到 `f94f39e`**，让下一轮只拉真正的新东西。
 
-已逐项核对过：上游 HEAD 的 1036 个路径本地全在，抽查 `flovia` / `canister-audit` / `skill-scan.sh` / `notify.sh` 与上游逐字节一致。
+上游这 13 条里值得知道的两条：新增 `icp-mcp` 技能（托管 ICP MCP，默认停用）；`skill-scan.sh` 改为扫描整个技能目录而不只看 `SKILL.md`（本地已同步）。
 
-**6 条冲突全是同一个原因**：本地 96 个技能 vs 上游 92（多 `arxiv-radar` / `defillama-radar` / `github-radar` / `narrative-brief`），上游这批只改了文档里的 87→92 数字。没有逻辑冲突，不用一条条看。
+**需要你决定的只有一件事：** 5 条冲突全是文档里的「92 → 93 skills」计数漂移，跟上一轮 PR #27 一模一样。要么把这 5 个路径写进 `keep_local`，要么接受上游的数字 -- 二选一，否则每轮都会挂在这里。清单在 PR 正文里。
 
-**一个建议动作**：在 `memory/topics/aeon-update-state.json` 加 `"keep_local": ["docs/**", ".github/README.md"]`，这 5 个只改计数的文档以后不再每轮重复报到你面前。要我加就说一声。
+PR: https://github.com/icepy/aeon-token/pull/28
 
-新技能（ICP 四件套 + `flovia`）早已在 `aeon.yml` 里，全部 `enabled: false`，无须手工合并。
-
-PR: https://github.com/icepy/aeon-token/pull/27
-
-🔗 https://github.com/icepy/aeon-token/pull/27
+`pending_conflicts` 6 条（含沿用的 `.gitignore`）。

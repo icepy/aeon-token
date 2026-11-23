@@ -1,0 +1,262 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "aeon-update",
+        "description": "2026-11-23"
+      },
+      "children": [
+        "heading",
+        "lead",
+        "sep1",
+        "stats",
+        "sep2",
+        "notable",
+        "sep3",
+        "decision",
+        "alert",
+        "links",
+        "sep4",
+        "pending"
+      ]
+    },
+    "heading": {
+      "type": "Heading",
+      "props": {
+        "text": "同步 13 条上游提交 → PR #28",
+        "level": "h2"
+      }
+    },
+    "lead": {
+      "type": "Text",
+      "props": {
+        "text": "净变更为零。",
+        "variant": "lead"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat1",
+        "stat2",
+        "stat3"
+      ]
+    },
+    "stat1": {
+      "type": "Stat",
+      "props": {
+        "label": "上游提交数",
+        "value": "13",
+        "delta": "7b20c95 → f94f39e",
+        "trend": "neutral"
+      }
+    },
+    "stat2": {
+      "type": "Stat",
+      "props": {
+        "label": "可自动合并文件",
+        "value": "3",
+        "delta": "已逐字节相同",
+        "trend": "neutral"
+      }
+    },
+    "stat3": {
+      "type": "Stat",
+      "props": {
+        "label": "净变更",
+        "value": "0",
+        "delta": "无差异",
+        "trend": "neutral"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "notable": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "notableHeading",
+        "notableText",
+        "sepNotable",
+        "notable2Heading",
+        "notable2Text"
+      ]
+    },
+    "notableHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "上游值得知道的两条",
+        "level": "h3"
+      }
+    },
+    "notableText": {
+      "type": "Text",
+      "props": {
+        "text": "新增 icp-mcp 技能（托管 ICP MCP，默认停用）。",
+        "variant": "body"
+      }
+    },
+    "sepNotable": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "notable2Heading": {
+      "type": "Heading",
+      "props": {
+        "text": "skill-scan.sh 改动",
+        "level": "h4"
+      }
+    },
+    "notable2Text": {
+      "type": "Text",
+      "props": {
+        "text": "改为扫描整个技能目录而不只看 SKILL.md（本地已同步）。",
+        "variant": "body"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "decision": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "decisionHeading",
+        "decisionText",
+        "decisionBadges"
+      ]
+    },
+    "decisionHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "需要你决定的只有一件事",
+        "level": "h3"
+      }
+    },
+    "decisionText": {
+      "type": "Text",
+      "props": {
+        "text": "5 条冲突全是文档里的「92 → 93 skills」计数漂移，跟上一轮 PR #27 一模一样。要么把这 5 个路径写进 keep_local，要么接受上游的数字 -- 二选一，否则每轮都会挂在这里。清单在 PR 正文里。",
+        "variant": "body"
+      }
+    },
+    "decisionBadges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge1",
+        "badge2"
+      ]
+    },
+    "badge1": {
+      "type": "Badge",
+      "props": {
+        "text": "选项一：keep_local",
+        "variant": "outline"
+      }
+    },
+    "badge2": {
+      "type": "Badge",
+      "props": {
+        "text": "选项二：接受上游数字",
+        "variant": "outline"
+      }
+    },
+    "alert": {
+      "type": "Alert",
+      "props": {
+        "title": "冲突未决",
+        "message": "5 条计数漂移冲突需二选一，否则每轮更新都会阻塞。",
+        "type": "warning"
+      }
+    },
+    "links": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "prLink"
+      ]
+    },
+    "prLink": {
+      "type": "StoryLink",
+      "props": {
+        "title": "PR #28: 同步 13 条上游提交",
+        "href": "https://github.com/icepy/aeon-token/pull/28",
+        "source": "GitHub"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "pending": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "pendingHeading",
+        "pendingBadge",
+        "pendingText"
+      ]
+    },
+    "pendingHeading": {
+      "type": "Heading",
+      "props": {
+        "text": "pending_conflicts",
+        "level": "h3"
+      }
+    },
+    "pendingBadge": {
+      "type": "Badge",
+      "props": {
+        "text": "6 条",
+        "variant": "secondary"
+      }
+    },
+    "pendingText": {
+      "type": "Text",
+      "props": {
+        "text": "6 条（含沿用的 .gitignore）。",
+        "variant": "muted"
+      }
+    }
+  }
+}
