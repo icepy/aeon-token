@@ -1,0 +1,265 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arXiv 雷达 · 第 55 轮",
+        "description": "arxiv-radar · 窗口 30 天 · 幸存 5"
+      },
+      "children": [
+        "h1",
+        "meta",
+        "sep1",
+        "h-ego",
+        "stack-ego",
+        "sep2",
+        "h-cons",
+        "stack-cons",
+        "sep3",
+        "h-query",
+        "text-query"
+      ]
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "arXiv 雷达 · 第 55 轮 · 5 条",
+        "level": "h2"
+      }
+    },
+    "meta": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b-skill",
+        "b-window",
+        "b-surv"
+      ]
+    },
+    "b-skill": {
+      "type": "Badge",
+      "props": {
+        "text": "arxiv-radar",
+        "variant": "secondary"
+      }
+    },
+    "b-window": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 30 天",
+        "variant": "outline"
+      }
+    },
+    "b-surv": {
+      "type": "Badge",
+      "props": {
+        "text": "幸存 5",
+        "variant": "default"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-ego": {
+      "type": "Heading",
+      "props": {
+        "text": "第一视角感知 / 具身数据（4 条，全部 11-19~11-20 首见）",
+        "level": "h3"
+      }
+    },
+    "stack-ego": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4"
+      ]
+    },
+    "item-1": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-1",
+        "tag-1"
+      ]
+    },
+    "sl-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "RoboCap-10k - 度量精确的第一视角机器人学习数据集",
+        "href": "https://arxiv.org/abs/2611.26916",
+        "source": "arXiv"
+      }
+    },
+    "tag-1": {
+      "type": "Badge",
+      "props": {
+        "text": "具身数据",
+        "variant": "secondary"
+      }
+    },
+    "item-2": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-2",
+        "tag-2"
+      ]
+    },
+    "sl-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoSurgHands - 开放式手术训练的第一视角 3D 手部姿态数据集与基准",
+        "href": "https://arxiv.org/abs/2611.27101",
+        "source": "arXiv"
+      }
+    },
+    "tag-2": {
+      "type": "Badge",
+      "props": {
+        "text": "具身数据",
+        "variant": "secondary"
+      }
+    },
+    "item-3": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-3",
+        "tag-3"
+      ]
+    },
+    "sl-3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "BeyondEgo - 用「第一视角 + 外视角」前瞻补足纯第一视角感知的人形动作学习",
+        "href": "https://arxiv.org/abs/2611.27047",
+        "source": "arXiv"
+      }
+    },
+    "tag-3": {
+      "type": "Badge",
+      "props": {
+        "text": "第一视角感知",
+        "variant": "secondary"
+      }
+    },
+    "item-4": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-4",
+        "tag-4"
+      ]
+    },
+    "sl-4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "TacHOI - 第一视角视频中的接触感知物体重建与跟踪",
+        "href": "https://arxiv.org/abs/2611.26764",
+        "source": "arXiv"
+      }
+    },
+    "tag-4": {
+      "type": "Badge",
+      "props": {
+        "text": "第一视角感知",
+        "variant": "secondary"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-cons": {
+      "type": "Heading",
+      "props": {
+        "text": "共识",
+        "level": "h3"
+      }
+    },
+    "stack-cons": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "item-5"
+      ]
+    },
+    "item-5": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl-5",
+        "tag-5"
+      ]
+    },
+    "sl-5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DAG - Dugong：拼接「未认证」DAG 共识",
+        "href": "https://arxiv.org/abs/2611.27473",
+        "source": "arXiv"
+      }
+    },
+    "tag-5": {
+      "type": "Badge",
+      "props": {
+        "text": "共识",
+        "variant": "secondary"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h-query": {
+      "type": "Heading",
+      "props": {
+        "text": "原始查询",
+        "level": "h4"
+      }
+    },
+    "text-query": {
+      "type": "Text",
+      "props": {
+        "text": "ti:\"egocentric\" AND cat:cs.RO ×4 · ti:\"consensus\" AND cat:cs.DC ×1",
+        "variant": "muted"
+      }
+    }
+  }
+}
