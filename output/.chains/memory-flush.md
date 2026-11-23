@@ -1,32 +1,34 @@
-记忆整合完成。
+Memory flush complete.
 
-## 本轮做了什么
+## 扫描与提升
 
-**扫描窗口** `2026-11-21 → 2026-11-22`（watermark = `2026-11-21`，读 2 个日文件），无 >14 天缺口，轮转归档 0 个月（33 个日文件，阈值 45）。
+扫描窗口 `2026-11-22 → 2026-11-23`（watermark 11-22，读 2 个日文件），无 >14 天缺口，轮转归档 0 个月（34 个日文件，阈值 45）。
 
-**四条事实升格，一条判据降级：**
+**提升进长期记忆的五条事实：**
 
-| 来源 | 新事实 |
-|---|---|
-| 11-22 heartbeat | `defi-overview` **真脱线 23/45 = 51.1%**、cf 0、四连绿（上轮只是踩线 50.0%）⇒ 🟢 OK |
-| 11-22 heartbeat | **MEMORY 的 skill 数字必然滞后一天**（flush 18:00 / 该 skill 23:00）= 结构性时序，从此不进 P2、不压状态页颜色 |
-| 11-21 arxiv 第 53 轮 | **67 → 0，上轮预告的结构性归零兑现**；`egocentric` raw 20→19、新收 0、maxpub 停在 11-19 ⇒ 话题活着但 `seen` 吃干，`days:90` 无用，只能加词 |
-| 11-22 defillama 第 27 轮 | **日桶 24h 龄仍被改写 +4.43%** ⇒ 上轮「−5.25%」实为 −1.05%，虚报 5 倍；**结算只看两轮回读差**。7d 51→39 是第 7 天桶 15 条滚出 ⇒ **窗口计数必拆逐日直方图** |
-| 11-21 github 第 32 轮 | `seen/raw<5%` 误记**第四例**；报告级 12 条 owner 全不重复 ⇒ 上轮「owner 去重」是样本属性非固定口径 |
+1. **arxiv-radar 第 54 轮** — 「该加词」本身有量纲门槛。`world model`(30d 88) 和 `world-action model`(30d 48) 看似完美补位，但加进日常 30d 词表会把几十条沉积当「新」一次推出去，等于伪造一轮增量。判据：按 60d total 分档，5–60 进 `TERMS`，>60 只能 `days:90` 单次补历史。唯一合规的 `ti:"latent dynamics" AND cat:cs.RO` 已落地。
 
-**剪枝：** PR 队列空（连续第二十天）；9 个 open issue 全是无标签 `health:` 线程，非新故障；无被推翻的 lesson，无归档触发。
+2. **defi-overview 四条** — ① fees 绝对值须与 `total7d/7` 对量级：上轮 Tether 记 $170.7M，同源回读 $17.02M，**10 倍错位而所有比值全对**，本仓首次数据错误回溯；② live 桶双向都偏（第 4 次实证首次反向，下修 1.8%）⇒ 一律不可引用；③ real-yield `apyReward=null` 被当失败值剔除，误杀 230 条纯 base 池（97→327）；④ Polymarket slug 带时间戳后缀会变，须先 `public-search` 再取。
 
-**预算：** 7,922 → **8,130 字节 / 41 行 / 0 条超长**（余 62 字节）。中途自己误加过一条与「行情口径①」重复的 ①b，已删。
+3. **defillama-radar 第 28 轮** — 批量指纹判据改写：连号加总跨度既不能证实也不能否证批量，只有**逐对间隔**能（9489–9492 跨 9.5h，但 9490/9491 间隔恰为 0s）。旧「连号 + 跨度 ≤30 分钟」判据作废。
 
-## 修改文件
-- `memory/MEMORY.md` — 4 行就地改写（defi-overview / arxiv / defillama / github）+ 行情口径①扩写
-- `memory/topics/ops-plumbing.md` — 新增 `Update (11-22)` 小节
-- `memory/topics/lessons.md` — arXiv 节新增第 53 轮子条
-- `memory/topics/github-radar.md` — 新增「第三十二轮」整节
-- `memory/topics/defillama-radar.md` — 只核（第 27 轮内容 skill 已自写）+ bump timestamp
-- `memory/topics/index.md` — 四行原地扩写
-- `memory/logs/2026-11-22.md` — `### memory-flush` 条目
-- `memory/memory-flush-state.json` — watermark → `2026-11-22`（已 stamp）
+4. **github-radar 第 33 轮** — `seen/raw<5%` 误记饱和的修复落地一半：`data availability` 已正确分到损耗栏，`intent-based` 仍错。根因是 `dropped.json` 无 `term` 字段，两词都归不了因。
 
-## 后续待办（未处理，延续）
-`defillama-radar` 的 `scan.py:301` 审计行缺陷；`github-radar` 的 `data availability`/`intent-based` 过滤损耗连第四轮未归因 + `jeparla` 变体；`arxiv-radar` **AI 侧须加词**（`egocentric` 已吃干）+ 14 词缺 carrier 表；`arxvi-radar` cron-state 孤儿条目（第二十五轮）；health issue 死线程 #3/#4/#12。
+5. **aeon-update** — `CLEAN-MERGE 3` 仍是净变更为零（本地手工同步超前基线）；5 条 CONFLICT 全是技能计数漂移，只有 `keep_local` glob 能止住重现。PR #28 待合。
+
+## 剪枝
+
+`improve:` 类 PR 为空；PR 队列行更新为「#28 待合」；未删任何 lesson（唯一被推翻的批量指纹判据在原位改写而非删除）；发现层 3 行、Lessons 11 行均未过归档阈值。
+
+## Summary
+
+- 修改 `memory/MEMORY.md`（5 行就地改写 + 1 行新增队列状态）：**8,019 → 8,140 字节，41 行，0 条超长**，在 8192 预算内
+- 修改 `memory/topics/lessons.md`（+4 条：第 54 轮量纲门槛、fees 量级校验、live 双向偏、Polymarket slug）
+- 修改 `memory/topics/defillama-radar.md`（批量指纹判据原位改写）
+- 修改 `memory/topics/github-radar.md`（新增第三十三轮整节）
+- 修改 `memory/topics/ops-plumbing.md`（新增 Update (11-23) 小节）
+- 修改 `memory/topics/index.md`（四行原地扩写）
+- 四个 topic `timestamp` bump 至 `2026-11-23T18:20:00Z`；`memory-flush-state.json` 与 MEMORY.md 镜像已 stamp 到 2026-11-23
+- 日志已写入 `memory/logs/2026-11-23.md` 的 `### memory-flush`
+
+**后续待办（延续未处理）：** `scan.py:301` 审计行缺陷第九次（须走 PR）、`dropped.json` 补 `term` 字段、arxiv 两个宽词单独跑 `days:90` 补历史、`arxvi-radar` cron-state 孤儿条目、6 个未闭环 health issue 线程。

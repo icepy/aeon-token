@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-22T18:20:00Z
+timestamp: 2026-11-23T18:20:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -557,6 +557,29 @@ Two related traps found the same run:
   the same upstream 87→92 skill-count edit against a fork that legitimately ships 96. Adding
   `"keep_local": ["docs/**", ".github/README.md"]` to the state file stops the list regrowing every
   run (`.gitignore` is worth keeping visible until upstream stops editing it).
+
+## Update (11-23): the same zero-delta sync, and the skill-count conflicts are now counted
+
+2026-11-23 sync `7b20c95..f94f39e` (13 upstream commits): plan `CLEAN-MERGE 3 / CONFLICT 5 / OPERATOR 6`,
+and again `git diff HEAD --stat` was empty outside the state file — the three CLEAN-MERGE targets
+(`.github/workflows/aeon.yml`, `.github/workflows/messages.yml`, `apps/dashboard/lib/skill-icons.data.ts`)
+were already byte-identical locally, verified by sha256 against upstream's contents API. Same mechanism
+as 11-16: local hand-syncing had run ahead of the baseline, so 3-way merge saw identical sides.
+
+Two things this round clarifies:
+
+- **The doc conflicts now track the catalogue count, not a fixed number.** All 5 conflicts are the
+  92→93 skill count in `.github/README.md`, `docs/aeon-setup.md`, `docs/assets/hero-animated.svg`,
+  `docs/examples/README.md`, `docs/skill-packs.md` — the delta is the newly added `icp-mcp` skill
+  (Crypto & Markets 22→23). **The count moves every time upstream adds a skill, so the `keep_local`
+  glob (`docs/**`, `.github/README.md`) is the only fix that stops it recurring**, not a one-off number edit.
+- **`OPERATOR` entries are not conflicts and never land.** `aeon.yml`, `catalog/*.json`, `eyebrowlock.json`
+  are held for the operator by design; their presence in the plan should not be read as pending work.
+
+PR #28 opened at `f94f39e`, `pending_conflicts` 6 (the 5 doc files plus the long-carried `.gitignore`).
+`AGENTS.md` was deleted-in-worktree before the run — pre-existing drift, not this skill's output.
+The clone is `--depth=1` (`.git/shallow`), so all history judgements route through `gh api compare`.
+[source: logs/2026-11-23#aeon-update]
 
 # Citations
 

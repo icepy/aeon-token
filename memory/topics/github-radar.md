@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-22T18:20:00Z
+timestamp: 2026-11-23T18:20:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,32 @@ timestamp: 2026-11-22T18:20:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第三十三轮（2026-11-22，手动 `days:7` 窗）—— 530/40/19；`seen/raw<5%` 误记的修复落地一半
+
+18 词 · 单窗 17 / 需拆窗 1 · 二分 0 次 · 搜索调用 20 · 核验 40/40 = 100%。漏斗：原始 **530** → 幸存 **40**
+→ 报告级 **19**。丢弃：`seen=242` / `excl=20` / `short_desc=86` / `carrier=104` / `neg=16` / `pages=21` /
+`fail=0`。四分类：查询失败 **0** · 真零 **3** · 全已见 **7** · 有新增 **8**。
+
+- **`seen/raw<5%` 误记饱和的修复已落地一半。** `data availability` raw=15 / seen=0 —— 上一轮它还是
+  64/3 = 4.7% 被记进饱和栏的第四例，本轮**被正确分到过滤损耗栏**，digest 还单独打了一行「不是饱和」。
+  但 **`intent-based` raw=17 / seen=1 仍落饱和栏且核验 0 条** ⇒ 规则没覆盖到它。
+- **归因缺口（本轮唯一判据级缺陷）：`dropped.json` 只按 `carrier` / `short_desc` 两个规则分桶存仓名，
+  没有 `term` 字段** —— 所以 `data availability` 的 15 条、`intent-based` 的 17 条都归不了因。按铁律
+  「digest 缺字段先补 digest、别补调用」，本轮不做额外调用补归因，记为脚本待办。
+- **真零 3 词**：`robotics data engine` / `verifiable inference` / `maximal extractable value`（total=0）。
+  **单窗为零不删 —— 须跨 7/30/60 三窗都是 0 才谈删词**（第 44/49 轮立的窗口判据）。
+- **owner 19/19 全不重复**，与第 32 轮同形 ⇒ 单 owner 叠仓仍属样本属性、非固定口径。
+- **词分布仍是 AI 侧机器人 / 世界模型**：`jepa` 6 条（占报告级 31.6%，连续第二轮第一大户）· `sim-to-real`+
+  `sim2real` 5 · `robot manipulation` 4 · `world model` 2 · `egocentric` 1 · `teleoperation` 1。加密侧 0 条
+  （`restaking` 饱和、`maximal extractable value` 真零）。报告级 ★0×15 / ★1×1 / ★3×1，最高仍是 ★3。
+- **carrier 误杀口径两行同率**：丢弃侧 35/35 = 100% vs 幸存侧 40/40 = 100% ⇒ **7d 窗下两侧恒等 = 测不到
+  误杀，不是没误杀**（与 9 轮长窗的 35–36% vs 94–100% 对照读；注：两行 35 ≠ 37 是核验跳过黑名单 owner）。
+- ⚠️ **无 `language` 字段 2 条**（疑似非代码仓）：`xinjingping/lateral-velocity-dataset` ·
+  `ebeling-rump/puck-golf`，均在报告级之外被扣下。
+- ℹ️ **probe 跳过（戳 5 天 < 7 天）→ `clusters.json` 未重写、仍是上次结果，本轮不可引用。** 到期日 11-24。
+
+[source: logs/2026-11-22#github-radar]
 
 ## 第三十二轮（2026-11-21，默认 30 天窗）—— 2013/32/12；`seen/raw<5%` 误记第四例，owner 叠仓回落为零
 
