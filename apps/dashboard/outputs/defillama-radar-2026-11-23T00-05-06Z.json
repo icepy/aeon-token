@@ -1,0 +1,338 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "defillama-radar · 第 28 轮 · 可报 1"
+      },
+      "children": [
+        "h1",
+        "badgeRound",
+        "sep1",
+        "h2proto",
+        "descProto",
+        "gridproto",
+        "sep2",
+        "h3chain",
+        "textChain",
+        "sep3",
+        "h3stats",
+        "gridstats",
+        "sep4",
+        "h3meta",
+        "gridmeta",
+        "sep5",
+        "h3readout",
+        "gridreadout",
+        "sep6",
+        "h3filters",
+        "textFilters",
+        "sep7",
+        "alertStatus",
+        "sep8",
+        "h4src",
+        "linkSrc"
+      ]
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "defillama-radar",
+        "level": "h2"
+      }
+    },
+    "badgeRound": {
+      "type": "Badge",
+      "props": {
+        "text": "第 28 轮 · 可报 1",
+        "variant": "secondary"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h2proto": {
+      "type": "Heading",
+      "props": {
+        "text": "OwlSwap",
+        "level": "h3"
+      }
+    },
+    "descProto": {
+      "type": "Text",
+      "props": {
+        "text": "DEX 聚合器 + 自建集中流动性 AMM（未改动的 Uniswap V3 分叉）",
+        "variant": "lead"
+      }
+    },
+    "gridproto": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "textChains",
+        "textTvl",
+        "textCat",
+        "textSymbol",
+        "textAddr"
+      ]
+    },
+    "textChains": {
+      "type": "Text",
+      "props": {
+        "text": "白名单内链：Binance · Robinhood Chain · Optimism（完整 chains 另含白名单外的 Polygon / Avalanche）",
+        "variant": "body"
+      }
+    },
+    "textTvl": {
+      "type": "Text",
+      "props": {
+        "text": "TVL $12.22，且全部落在 Binance，其余四条链 chainTvls 均为 0",
+        "variant": "body"
+      }
+    },
+    "textCat": {
+      "type": "Text",
+      "props": {
+        "text": "类目：Dexs",
+        "variant": "body"
+      }
+    },
+    "textSymbol": {
+      "type": "Text",
+      "props": {
+        "text": "symbol：OWL",
+        "variant": "body"
+      }
+    },
+    "textAddr": {
+      "type": "Text",
+      "props": {
+        "text": "地址：bsc:0xa911a4d51c1a5e36a2bb2e0d676ad0f6672d9165",
+        "variant": "caption"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h3stats": {
+      "type": "Heading",
+      "props": {
+        "text": "关键读数",
+        "level": "h4"
+      }
+    },
+    "gridstats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "statTvl",
+        "statAudits",
+        "statId"
+      ]
+    },
+    "statTvl": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$12.22",
+        "trend": "neutral"
+      }
+    },
+    "statAudits": {
+      "type": "Stat",
+      "props": {
+        "label": "audits",
+        "value": "0",
+        "trend": "neutral"
+      }
+    },
+    "statId": {
+      "type": "Stat",
+      "props": {
+        "label": "DefiLlama id",
+        "value": "9492",
+        "trend": "neutral"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h3meta": {
+      "type": "Heading",
+      "props": {
+        "text": "元数据",
+        "level": "h4"
+      }
+    },
+    "gridmeta": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "textListedAt",
+        "textUrl",
+        "textMisrep",
+        "textMemory"
+      ]
+    },
+    "textListedAt": {
+      "type": "Text",
+      "props": {
+        "text": "listedAt：2026-11-22T21:11:09Z",
+        "variant": "body"
+      }
+    },
+    "textUrl": {
+      "type": "Text",
+      "props": {
+        "text": "url：空",
+        "variant": "body"
+      }
+    },
+    "textMisrep": {
+      "type": "Text",
+      "props": {
+        "text": "misrepresentedTokens：false",
+        "variant": "body"
+      }
+    },
+    "textMemory": {
+      "type": "Text",
+      "props": {
+        "text": "不在 memory/defillama-names.txt 清单内",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h3readout": {
+      "type": "Heading",
+      "props": {
+        "text": "本轮读数",
+        "level": "h4"
+      }
+    },
+    "gridreadout": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "statTotal",
+        "statNew",
+        "statReportable",
+        "statFiltered"
+      ]
+    },
+    "statTotal": {
+      "type": "Stat",
+      "props": {
+        "label": "全量",
+        "value": "9092",
+        "trend": "neutral"
+      }
+    },
+    "statNew": {
+      "type": "Stat",
+      "props": {
+        "label": "新增 id",
+        "value": "4",
+        "trend": "up"
+      }
+    },
+    "statReportable": {
+      "type": "Stat",
+      "props": {
+        "label": "可报",
+        "value": "1",
+        "trend": "up"
+      }
+    },
+    "statFiltered": {
+      "type": "Stat",
+      "props": {
+        "label": "过滤标记",
+        "value": "3",
+        "trend": "neutral"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h3filters": {
+      "type": "Heading",
+      "props": {
+        "text": "过滤标记明细",
+        "level": "h4"
+      }
+    },
+    "textFilters": {
+      "type": "Text",
+      "props": {
+        "text": "Ibex Market - Canton 衍生品 $10.0K；Entry.fi Card 与 Another Card - 两条发卡方空链",
+        "variant": "body"
+      }
+    },
+    "sep6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "alertStatus": {
+      "type": "Alert",
+      "props": {
+        "title": "STATUS",
+        "message": "DEFILLAMA_RADAR_OK",
+        "type": "success"
+      }
+    },
+    "sep7": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h4src": {
+      "type": "Heading",
+      "props": {
+        "text": "来源",
+        "level": "h4"
+      }
+    },
+    "linkSrc": {
+      "type": "Link",
+      "props": {
+        "label": "https://api.llama.fi/protocols",
+        "href": "https://api.llama.fi/protocols"
+      }
+    }
+  }
+}

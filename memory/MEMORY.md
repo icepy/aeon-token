@@ -14,7 +14,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · 26 词 · 11-21 第 53 轮 67 → **0**，13 饱和 + 11 窗口内零命中，失败/过滤损耗全 0。**上轮预告的结构性归零已兑现：`egocentric` raw 20→19、新收 0、maxpub 停在 11-19（话题活着）⇒ AI 侧无词可出，`days:90` 只会重拉同一批 67 条，必须加词/换写法。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-21#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-22 第 27 轮 9088 / 新增 3 / 可报 **0**（唯一带 TVL 的 `InoVaults` Cronos $2.5K 被链白名单挡）。**日桶 24h 龄仍被改写成 +4.43% ⇒ 上轮「11-20 −5.25%」实为 −1.05%，虚报 5 倍；结算只看两轮回读差、不看桶龄。7d 51→39 是第 7 天桶 15 条滚出，非变慢。** → [topic](/topics/defillama-radar.md) [source: logs/2026-11-22#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-23 第 28 轮 9092 / 新增 4 / 可报 **1**：`OwlSwap` 5 链仅 `Binance` 有 $12.22 —— **`chains`=部署面，`chainTvls`=流动性面**。`scan.py:301` 审计行第九次暴露、**首次打反**。 → [topic](/topics/defillama-radar.md) [source: logs/2026-11-23#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-21 第 32 轮 2013→32→报 12，**owner 全不重复**。**`data availability` 64/3 = 4.7%、`intent-based` 54/4 = 7.4% 仍被记饱和 = `seen/raw<5%` 误读第四例，须归因 excl/carrier/neg** → [topic](/topics/github-radar.md) [source: logs/2026-11-21#github-radar]
 
 ## Lessons Learned

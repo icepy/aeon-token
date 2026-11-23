@@ -1,7 +1,7 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=9085 · parent=1 · category=0 · 链白名单=2 · 拉取失败=0
-全量 9088 · 新增 id 3（可报 0 / 过滤标记 3）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=9088 · parent=0 · category=0 · 链白名单=3 · 拉取失败=0
+全量 9092 · 新增 id 4（可报 1 / 过滤标记 3）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1909 · Base=933 · Solana=477 · Arbitrum=1057 · Ink=34 · Binance=1159 · BSC=0 · Optimism=394 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=326
-单侧读数: 加密侧 0 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-ℹ️ 本轮可报 0 = 结构性（无新增 / 全部被过滤 / 已通知过），不是故障。
+链命中: Ethereum=1909 · Base=933 · Solana=477 · Arbitrum=1057 · Ink=34 · Binance=1160 · BSC=0 · Optimism=395 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=327
+单侧读数: 加密侧 1 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+  OwlSwap · Binance/Robinhood Chain/Optimism · tvl=12.2228961277786 · Dexs · 1795381869

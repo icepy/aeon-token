@@ -1,1 +1,20 @@
-[]
+[
+ {
+  "id": "9492",
+  "name": "OwlSwap",
+  "slug": "owlswap",
+  "chains": [
+   "Binance",
+   "Robinhood Chain",
+   "Optimism"
+  ],
+  "tvl": 12.2228961277786,
+  "category": "Dexs",
+  "listedAt": 1795381869,
+  "url": "",
+  "description": "OwlSwap is a non-custodial DEX aggregator with its own concentrated-liquidity AMM, OwlSwap V3 (an unmodified U",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ }
+]
