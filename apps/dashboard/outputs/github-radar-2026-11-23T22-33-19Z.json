@@ -1,0 +1,460 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 14 · 近 7 天活跃 14"
+      },
+      "children": [
+        "header",
+        "sep",
+        "list"
+      ]
+    },
+    "header": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "badge-window",
+        "stat-reports",
+        "stat-active"
+      ]
+    },
+    "badge-window": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 7 天",
+        "variant": "secondary"
+      }
+    },
+    "stat-reports": {
+      "type": "Stat",
+      "props": {
+        "label": "报告级",
+        "value": "14",
+        "trend": "neutral"
+      }
+    },
+    "stat-active": {
+      "type": "Stat",
+      "props": {
+        "label": "近 7 天活跃",
+        "value": "14",
+        "trend": "neutral"
+      }
+    },
+    "sep": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4",
+        "item-5",
+        "item-6",
+        "item-7",
+        "item-8",
+        "item-9",
+        "item-10",
+        "item-11",
+        "item-12",
+        "item-13",
+        "item-14"
+      ]
+    },
+    "item-1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-1",
+        "desc-1"
+      ]
+    },
+    "story-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Dash-organisation/dash-sim2real",
+        "href": "https://github.com/Dash-organisation/dash-sim2real",
+        "source": "GitHub",
+        "score": "★0 · 30天=22 · 7天=22 · 词 sim2real"
+      }
+    },
+    "desc-1": {
+      "type": "Text",
+      "props": {
+        "text": "DASH-01 biped: robot stack, RL training, and sim-to-real deployment",
+        "variant": "muted"
+      }
+    },
+    "item-2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-2",
+        "desc-2"
+      ]
+    },
+    "story-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "jhyeong687/tactile-grasp-agent",
+        "href": "https://github.com/jhyeong687/tactile-grasp-agent",
+        "source": "GitHub",
+        "score": "★0 · 30天=21 · 7天=21 · 词 robot manipulation"
+      }
+    },
+    "desc-2": {
+      "type": "Text",
+      "props": {
+        "text": "Regrasp or Skip? Tactile Probing for Agentic Robot Manipulation · SO-ARM101, PaXini, MuJoCo pilot, a",
+        "variant": "muted"
+      }
+    },
+    "item-3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-3",
+        "desc-3"
+      ]
+    },
+    "story-3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "luccafrachelle/ijepa",
+        "href": "https://github.com/luccafrachelle/ijepa",
+        "source": "GitHub",
+        "score": "★0 · 30天=15 · 7天=15 · 词 jepa"
+      }
+    },
+    "desc-3": {
+      "type": "Text",
+      "props": {
+        "text": "I-JEPA: charla, blog interactivo y experimento con SIGReg/SUSReg (proyecto final, Udelar)",
+        "variant": "muted"
+      }
+    },
+    "item-4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-4",
+        "desc-4"
+      ]
+    },
+    "story-4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Airuxn/inspire-hand-teleop",
+        "href": "https://github.com/Airuxn/inspire-hand-teleop",
+        "source": "GitHub",
+        "score": "★0 · 30天=10 · 7天=10 · 词 teleoperation"
+      }
+    },
+    "desc-4": {
+      "type": "Text",
+      "props": {
+        "text": "Real-time teleoperation of the Inspire RH56 dexterous hand from a webcam: MediaPipe hand tracking, r",
+        "variant": "muted"
+      }
+    },
+    "item-5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-5",
+        "desc-5"
+      ]
+    },
+    "story-5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "maxGeisi/surprise-replanning",
+        "href": "https://github.com/maxGeisi/surprise-replanning",
+        "source": "GitHub",
+        "score": "★0 · 30天=9 · 7天=9 · 词 world model"
+      }
+    },
+    "desc-5": {
+      "type": "Text",
+      "props": {
+        "text": "Diffusion Policy on PushT with a world model that trggers replanning when surprised",
+        "variant": "muted"
+      }
+    },
+    "item-6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-6",
+        "desc-6"
+      ]
+    },
+    "story-6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "chaowang111/microduck-sim2real",
+        "href": "https://github.com/chaowang111/microduck-sim2real",
+        "source": "GitHub",
+        "score": "★0 · 30天=8 · 7天=8 · 词 sim2real"
+      }
+    },
+    "desc-6": {
+      "type": "Text",
+      "props": {
+        "text": "双足小鸭机器人的强化学习控制、Sim-to-Real 部署与语音大模型 Agent（个人项目，基于开源 Microduck 平台；PPO / mjlab / ONNX / LLM tool calli",
+        "variant": "muted"
+      }
+    },
+    "item-7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-7",
+        "desc-7"
+      ]
+    },
+    "story-7": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Dash-organisation/dash-reports",
+        "href": "https://github.com/Dash-organisation/dash-reports",
+        "source": "GitHub",
+        "score": "★0 · 30天=8 · 7天=8 · 词 sim-to-real"
+      }
+    },
+    "desc-7": {
+      "type": "Text",
+      "props": {
+        "text": "DASH-01 reports, RL galleries, videos and raw sim-to-real logs",
+        "variant": "muted"
+      }
+    },
+    "item-8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-8",
+        "desc-8"
+      ]
+    },
+    "story-8": {
+      "type": "StoryLink",
+      "props": {
+        "title": "liushuxiang142/lateral-velocity-dataset",
+        "href": "https://github.com/liushuxiang142/lateral-velocity-dataset",
+        "source": "GitHub",
+        "score": "★0 · 30天=8 · 7天=8 · 词 sim-to-real"
+      }
+    },
+    "desc-8": {
+      "type": "Text",
+      "props": {
+        "text": "Real-vehicle lateral-velocity dataset (3 trials, 100 Hz) for physics-guided cornering-stiffness lear",
+        "variant": "muted"
+      }
+    },
+    "item-9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-9",
+        "desc-9"
+      ]
+    },
+    "story-9": {
+      "type": "StoryLink",
+      "props": {
+        "title": "INTO-CPS-Association/robosapiens-CARLA2Real",
+        "href": "https://github.com/INTO-CPS-Association/robosapiens-CARLA2Real",
+        "source": "GitHub",
+        "score": "★0 · 30天=7 · 7天=7 · 词 sim-to-real"
+      }
+    },
+    "desc-9": {
+      "type": "Text",
+      "props": {
+        "text": "An INTO-CPS tool for enhancing the photorealism of CARLA-generated synthetic driving scenes, support",
+        "variant": "muted"
+      }
+    },
+    "item-10": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-10",
+        "desc-10"
+      ]
+    },
+    "story-10": {
+      "type": "StoryLink",
+      "props": {
+        "title": "collectiv-co/deep-world-model",
+        "href": "https://github.com/collectiv-co/deep-world-model",
+        "source": "GitHub",
+        "score": "★0 · 30天=7 · 7天=7 · 词 world model"
+      }
+    },
+    "desc-10": {
+      "type": "Text",
+      "props": {
+        "text": "The Spatial Brain for the physical world: a living, real-time 3D world model built from phones and a",
+        "variant": "muted"
+      }
+    },
+    "item-11": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-11",
+        "desc-11"
+      ]
+    },
+    "story-11": {
+      "type": "StoryLink",
+      "props": {
+        "title": "vloumgit/WELCOM",
+        "href": "https://github.com/vloumgit/WELCOM",
+        "source": "GitHub",
+        "score": "★0 · 30天=6 · 7天=6 · 词 robot dataset"
+      }
+    },
+    "desc-11": {
+      "type": "Text",
+      "props": {
+        "text": "Building the world's best data annotation for AI & robotics. Datasets that make models work.",
+        "variant": "muted"
+      }
+    },
+    "item-12": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-12",
+        "desc-12"
+      ]
+    },
+    "story-12": {
+      "type": "StoryLink",
+      "props": {
+        "title": "iliyas-tleuzhan/piper-feedback",
+        "href": "https://github.com/iliyas-tleuzhan/piper-feedback",
+        "source": "GitHub",
+        "score": "★0 · 30天=6 · 7天=6 · 词 teleoperation"
+      }
+    },
+    "desc-12": {
+      "type": "Text",
+      "props": {
+        "text": "Piper X bilateral teleoperation, continuous joint torque feedback, and gripper resistance over Socke",
+        "variant": "muted"
+      }
+    },
+    "item-13": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-13",
+        "desc-13"
+      ]
+    },
+    "story-13": {
+      "type": "StoryLink",
+      "props": {
+        "title": "atanas1054/SmallDrive",
+        "href": "https://github.com/atanas1054/SmallDrive",
+        "source": "GitHub",
+        "score": "★0 · 30天=5 · 7天=5 · 词 vision language action"
+      }
+    },
+    "desc-13": {
+      "type": "Text",
+      "props": {
+        "text": "SmallDrive: An Efficient Vision-Language-Action Model for Autonomous Driving via Flow Matching",
+        "variant": "muted"
+      }
+    },
+    "item-14": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "story-14",
+        "desc-14"
+      ]
+    },
+    "story-14": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ForeverBlue816/LoopQ",
+        "href": "https://github.com/ForeverBlue816/LoopQ",
+        "source": "GitHub",
+        "score": "★0 · 30天=5 · 7天=5 · 词 vision language action"
+      }
+    },
+    "desc-14": {
+      "type": "Text",
+      "props": {
+        "text": "Quantizing in the Loop: Drift-Aware Ultra-Low-Bit Vision-Language-Action Models",
+        "variant": "muted"
+      }
+    }
+  }
+}

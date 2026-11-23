@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-23T18:20:00Z
+timestamp: 2026-11-23T23:10:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,36 @@ timestamp: 2026-11-23T18:20:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第三十四轮（2026-11-23，手动 `days:7` 窗）—— 558/41/14；`pages_root` 首次成规模（6）；报告级 owner 14→13
+
+18 词 · 单窗 17 / 需拆窗 1 · 二分 0 次 · 搜索调用 20 · 核验 41/41 = 100%。漏斗：原始 **558** → 幸存 **41** →
+报告级 **14**。丢弃：`seen=248` / `excl=18` / `short_desc=88` / `carrier=119` / `neg=16` / `pages=22` /
+`pages_root=6` / `fail=0`。四分类：查询失败 **0** · 真零 **3** · 全已见 **5** · 有新增 **10**。
+
+- **判据级 ①：`pages_root=6` 是本 skill 记录以来的最高值**（第 31 轮 5 次之，其余轮 0–1）。根目录静态站规则
+  （`index.html` + `.nojekyll` + 无代码骨架）这轮真在挡量：页形态合计 22 + 6 = 28 / 139 丢弃。**「`SITE_SUFFIX`
+  只覆盖后缀、不覆盖根目录形态」这条从第 28 轮起的欠账，靠这条规则补上了实例，但只证实它有事可做、未证实
+  它没误杀** —— 被挡名单未进 digest。
+- **判据级 ②：`intent-based` 连续第三轮卡在 5% 线附近、新增 0。** 第 32 轮 54/4 = 7.4%、第 33 轮 17/1 = 5.9%、
+  本轮 18/1 = 5.6%。按 10-29 判据这不是饱和而是某条规则在吃它；**归因至今未做，因 `dropped.json` 仍无
+  `term` 字段**。三轮回看已够立「`intent-based` 的召回是真的、转化被封」。
+- **判据级 ③：`data availability` 连续第二轮落「有新增」栏（raw=18 / seen=0 / 新增 1）。** 上一轮那次修复
+  （把它从饱和栏挪出）对它是稳的，不是单轮波动。
+- **判据级 ④：报告级 14 条 / owner 13 个。** `Dash-organisation` 一人 2 仓（`dash-sim2real` 22/22 ·
+  `dash-reports` 8/8），同一 DASH-01 双足项目的代码仓与报告仓切片。**单 owner 叠仓第三次出现在报告级**（第 31
+  轮 `chengjianglong` 3/13、第 32 轮 0、第 33 轮 0）⇒ 属偶发样本属性，仍按「出现时才去重」读，不改成固定口径。
+- **判据级 ⑤：`30d == 7d` 14/14 全等**，与第 29 轮 9/9 同形 —— 候选仓龄全 < 30 天的样本条件再成立一次，不升为定律。
+- **carrier 对照两侧仍 100%**（丢弃 38/38 · 幸存 41/41）—— 7d 窗零判别力，第三次同向，不作放宽依据。
+- **⚠️ 无 `language` 6 条，2 条进报告级且 desc 是公司营销句式：** `vloumgit/WELCOM`（"Building the world's best
+  data annotation for AI & robotics"）· `collectiv-co/deep-world-model`（"The Spatial Brain for the physical
+  world ... built from phones"）。**这两条是「产品落地页 / 先占坑」候选，页面规则的下一批样本**；本轮不判。
+- 词分布单侧 AI / 机器人：`sim-to-real` 3 · `sim2real` 2 · `teleoperation` 2 · `world model` 2 · `vision
+  language action` 2 · `robot manipulation` 1 · `jepa` 1 · `robot dataset` 1；加密侧 0（`restaking` 1/1 饱和 ·
+  `maximal extractable value` 真零）。报告级 **★0 ×14**，最高仍 ★0，`min:0` 继续正确。
+- ℹ️ **probe 跳过（戳 6 天 < 7 天）→ `clusters.json` 未重写，是上次结果，本轮不可引用。到期 11-24。**
+
+[source: logs/2026-11-23#github-radar]
 
 ## 第三十三轮（2026-11-22，手动 `days:7` 窗）—— 530/40/19；`seen/raw<5%` 误记的修复落地一半
 
