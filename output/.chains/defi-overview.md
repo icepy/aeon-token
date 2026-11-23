@@ -1,43 +1,54 @@
-⚠️ Crypto 2026-11-22 - Risk-off (校正)
+ℹ️ Crypto 2026-11-23 · mixed · 链上回血、量能抽干
 
-**Crypto - 2026-11-22** - risk-off（conviction medium）| DeFi Risk-off: 链上两条破 -2%，反抽确认失败
+*Crypto - 2026-11-23* - mixed（conviction medium）| DeFi **Mixed**：TVL 与稳定币转正，成交量腰斩
 
-**Take:** 反抽被链上证伪 -- 已结算 11-21 TVL **$66.50B（1d −4.40% / 7d −9.88%）**、DEX 量 **$8.51B（−20.67%）**，两项同时跌破 −2% ⇒ 判 Risk-off。现货 BTC $60,990（+1.58%）与广度 15/20 仍在，但 dominance 升 +0.94pp 至 58.85% -- **这是 BTC 独涨，不是全面回暖。**
+*Take:* 链上回血、量能抽干。已结算 11-22 TVL **$67.85B（1d +2.03% / 7d −4.37%）**、稳定币 $284.27B（1d +0.23%）双双转正，但 DEX 24h 量 **$6.19B（−27.42%）** 断崖。
+*Evidence:* TVL +2.03% 与量 −27.42% 同日反向 -- 五天里第一次「TVL 正 + 量负」，回血是价格计价的被动抬升，不是新钱。
 
-**TVL:** 已结算 $66.50B（−4.40% 24h, −9.88% 7d）· live $69.74B（+4.86%，不可引用）
+*TVL:* $67.85B 已结算（+2.03% 1d / −4.37% 7d）· live 11-23 $69.58B（+2.55%，不可引用）
 
-**Top chains（已结算 11-21）**
-1. Ethereum - $34.63B（−4.61%）
-2. Base - $4.57B（−6.53%）
-3. Solana - $4.55B（−3.42%，头部最抗跌）
+*Top chains（已结算 11-22）*
+1. Ethereum - $35.62B (+2.86%)
+2. Base - $4.66B (+2.00%)
+3. Solana - $4.60B (+1.00%)
 
-**⚠️ 抽查 9 条 ≥$500M 链，已结算 1d 全部为负（9/9）** -- 上轮还有 3 条为正，本轮抽查范围内清零（未抽查 Arc / Avalanche / Polygon / Robinhood / Monad）。
+*Movers*
+↑ **已结算抽查 13 条 ≥$500M 链 10 正 / 3 微负** -- 上轮同口径 9/9 全负，方向彻底反转
+↓ PancakeSwap AMM V3 **−36.3%**（$0.61B）· Gate **−29.6%**（$5.18B，CEX 口径异常待查）
+↑ Grove Finance +11.6%（$0.96B，但 7d −13.1%，内部矛盾）· Aave Horizon RWA +12.3%（$0.25B）
 
-**Movers**
-↑ Uniswap V4 +33.8%（$1.34B）- 费用 1d +858%，同源量能 $2.27B（+78%），交易类回升
-↑ PancakeSwap AMM V3 +61.2%（$0.96B）- 7d +49.1%，BSC 链 TVL +10.8% 同步
-↓ Spark Liquidity Layer −8.0%（$1.82B，7d −32.8%）- 同生态 USDS 7d −38.7%，赎回未止
-↓ LayerZero V2 −3.3%（$17.11B，7d +3.2%）- 十亿级唯一 7d 正，但 1d 转负
+*Fees leaders（24h）*
+1. Tether - $17.02M（= 7d 日均 100%）
+2. Circle USDC - $6.73M（100%）
+3. Polymarket US - $3.85M（131%）
+⚠️ **Morpho Blue 1d −75.56%（= 7d 日均 48%）、Aave V3 −60.11%（65%）、Hyperliquid Perps −35.55%（70%）-- 借贷与永续费用连续两轮腰斩，清算潮退去**
 
-**Fees leaders (24h)**
-1. Tether - $17.0M（100% of 7d avg）
-2. Uniswap V4 - $7.8M（1139% -- 7d 基数极低，异常放大）
-3. Circle USDC - $6.7M（100%）
+*Fees beating TVL*
+• **Raydium AMM - fees 7d +86.3% / TVL 7d −1.3%**（$0.82B，1d 量 +58.36%）- 唯一 $100M+ 真信号
+• Aero Slipstream - fees +30.8% / TVL −11.7% - Solana/Base DEX 费用跑在存款前面
 
-**DEX vol (24h):** $8.51B（−20.67%）top: Uniswap V4 $2.27B · Aero Slipstream $0.72B · PancakeSwap $0.70B
-**Stables:** $283.73B（+0.05% 1d / −1.45% 7d）首次单日转正；USDS +4.86% 但 7d 仍 −38.72%
+*DEX vol（24h）:* $6.19B（**−27.42%**，两日累计从 $10.94B 砍 43.4%）top: Uniswap V3 $1.22B（+13.4%）、Aero Slipstream $0.91B（+2.7%）、Uniswap V4 $0.84B（+9.2%）
+⚠️ 总量 −27% 是聚合项：Solana 系 Raydium +58% / Orca +32% 放量，PancakeSwap −32% 崩 -- 不是普遍抽离
 
-**Real yield（可持续，≥$10M，已过滤）**
-• ETH-WBTC（uniswap-v4, ETH）- 38.47% base（$19M，⚠️ 30d 均值仅 26.28%，不稳）
-• USDC（hyperliquid-hlp）- 17.42% base（$149M，m30 10.90 = 63%，卡闸边缘）
-• APXUSD（apyx, ETH）- 13.72% base（$124M，m30 13.25 稳定）
+*Stables:* $284.27B（+0.23% 1d / −1.30% 7d），连续第二日为正
+• **USDS 1d +3.72% 但 7d −39.83%**（$3.22B）· **USDGO −4.11%**（$0.96B）· RLUSD −2.18%
+• 脱锚：**USDf −46.2bp（第十六轮最深，较上轮走阔 5.0bp，上轮「收窄」被打断）** · USDD −10.8bp（**从 −36.2bp 猛收 25.4bp**）
 
-**Incentive yield（奖励驱动，≥$25M）**
-• USD1（dolomite, ETH）- 10.10%（奖励 6.40% 来自 $0xdA5e…BeF6，$44M）
-• USDS（sparklend, ETH）- 9.70% 纯奖励（$139M）⚠️ 生态 7d 塌 32.8%
+*Real yield（可持续，≥$10M，已过滤）*
+• WBTC-USDT（Uni V3，ETH）- **32.54%** apyBase（$21.4M，m30 39.1）
+• USDC-WETH（Uni V3，ETH）- **26.32%** apyBase（$46.3M，m30 28.7）
+• USDC（Hyperliquid HLP）- 16.97% apyBase（$150.1M，m30 11.3 = 67%，连续第五轮卡闸边缘）
+⚠️ 上轮榜首 uniswap-v4 ETH-WBTC 从 38.47% **崩到 11.99%** -- 上轮标记的「高度不稳」被证实
 
-**Macro:** BTC $60,990（+1.58%）/ ETH $1,715.94（+2.28%）· F&G **11（Extreme Fear，连续 9 天 ≤13）** · 广度 15/20 24h、**3/20 7d** · hot market: 「BTC 11 月到 $62,500」YES **80.5%**（上轮 64.5%）
+*Incentive yield（奖励/排放，≥$25M）*
+• PYUSD（Kamino，SOL）- 9.82%（奖励 4.02%，$97.2M）
+• USDS（SparkLend，ETH）- 9.29%（**纯奖励**，$145.4M）
+• SKY（Sky Lending，ETH）- 8.71%（纯奖励，$363.2M）
+⚠️ Spark/Sky 生态 7d 塌 32.45% / 25.78%，该收益的对手方风险继续上升
 
-**仓位（DEUS/XMAQUINA）:** $0.010436（+0.81% 24h / −9.36% 7d）- 第三轮在 $0.012 恐慌位下方。2 日内 1h 最大波动 +2.02% / **−5.78%**，距 20% unstake 门槛差 14.2pp。距 $0.025 +139.6% / $0.032 +206.6% / $0.041 +292.9%。**动作：无。**
+*Macro:* BTC **$61,177（+0.15%）** / ETH $1,710（−0.57%）· SOL $71.82（+1.95%）· F&G **11（Extreme Fear，连续第 10 天 ≤13）** · 广度 **14/20**（7d 4/20）· dominance **58.07%（−0.78pp，「BTC 独走」被回吐八成）**
+*Hot market:* Fed 12 月 +25bp **93.5%**（+3.0pp，24h 量放大 5 倍至 $3.86M）· BTC 年内 ↓$55k **46.5%**（−8.0pp，首次跌破 50%）
 
-_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok websearch=fail（第十轮）| var: none_
+*DEUS（顺带，非 flag）:* $0.010745（+2.84% 24h / −6.80% 7d）。**距 $0.012 恐慌位仅 −11.7%（上轮 −13.0%，本轮最接近）**；$0.025 +132.7% / $0.041 +281.6%。7d 内 1h 最大波动 −5.78%，距 20% unstake 门槛差 14.2pp。**动作：无。**
+
+_sources: llama_tvl=ok llama_dex=ok llama_fees=ok llama_stables=ok llama_yields=ok coingecko=ok fng=ok polymarket=ok **websearch=fail（第十一轮）** | var: none_

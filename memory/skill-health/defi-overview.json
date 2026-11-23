@@ -1,10 +1,10 @@
 {
   "skill": "defi-overview",
-  "last_analyzed": "2026-11-22T23:09:58Z",
+  "last_analyzed": "2026-11-23T23:09:49Z",
   "quality_score": 4,
-  "assessment": "Substantive, well-structured one-pass DeFi read covering every required element (TVL/DEX regime call, movers, fees, stables, real vs incentive yields, breadth, F&G, prediction market, tracked position with no-action verdict); numbers are internally consistent and explicitly sourced per-API, with a clear insight that spot BTC strength is dominance-driven rather than broad recovery. Held back from 5 by the acknowledged websearch failure and a few high-variance APR figures that carry only spot attribution.",
+  "assessment": "Complete one-pass crypto read covering every required element (regime take, DeFi verdict, movers, yields, fees, breadth, F&G, prediction markets), with settled-vs-live data discipline, transparent anomaly/source-status notes, and a genuine insight (TVL up on price markup while DEX volume collapses = no new money); stops short of 5 only because most figures can't be independently verified and several internal contradictions are flagged rather than resolved.",
   "flags": [],
-  "avg_score": 3.58,
+  "avg_score": 3.6,
   "history": [
     {
       "date": "2026-10-23",
@@ -148,6 +148,12 @@
       "date": "2026-11-22",
       "score": 4,
       "ts": "2026-11-22T23:09:58Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-23",
+      "score": 4,
+      "ts": "2026-11-23T23:09:49Z",
       "harness": "claude"
     }
   ]

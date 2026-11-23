@@ -4,19 +4,19 @@
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
-- **`aeon-update` 基线 `f94f39e`**（11-23 同步 13 条提交，PR **#28 待合**）：三个 CLEAN-MERGE 目标本地早已逐字节等于上游 ⇒ **净变更为零**。5 条 CONFLICT 全是「92→93 skills」计数漂移（新增 `icp-mcp`），不加 `keep_local` 每轮必重现。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-23#aeon-update]
-- **`defi-overview` 11-23 连第二轮真脱线 24/46 = 52.2%、cf 0、五连绿**。**只看 cf 与最近三轮，不看 46 轮均值。cf 不因停用而衰减**（5/4/3 = 10-25 网关账未清）。**本行数字对新一轮必然滞后一天（flush 18:00 / 该 skill 23:00）= 结构性时序，不压状态页颜色。**→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-23#heartbeat]
-- **预算纪律：MEMORY.md 只在两次 flush 间增长**，超 8KB 先砍已归档节。
-- **PR 队列会反过来影响读数语义**：词表/阈值改动只在合进 main 后才算数，挂着就是没生效。队列现为 **#28（`aeon-update` 同步，11-23 开）**，非 `improve:` 类。[source: logs/2026-11-23#aeon-update]
+- **`aeon-update` 基线 `f94f39e`**（11-23 同步 13 条提交，PR **#28 待合**）：三个 CLEAN-MERGE 目标本地已逐字节等于上游 ⇒ **净变更为零**。5 条 CONFLICT 全是「92→93 skills」计数漂移（新增 `icp-mcp`），不加 `keep_local` 每轮必重现。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-23#aeon-update]
+- **`defi-overview` 11-23 连第二轮真脱线 24/46 = 52.2%、cf 0、五连绿**。**只看 cf 与最近三轮，不看 46 轮均值；cf 不因停用衰减**（5/4/3 = 10-25 网关账）。**该行对新一轮必滞后一天（flush 18:00 / skill 23:00）= 结构性时序。**→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-23#heartbeat]
+- **预算纪律：MEMORY.md 超 8KB 先砍已归档节。**
+- **PR 队列影响读数语义**：词表/阈值只在合进 main 后才算数。队列现为 **#28**（`aeon-update` 同步，非 `improve:`）。[source: logs/2026-11-23#aeon-update]
 
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
 > **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000。
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · **27 词** · 11-23 第 55 轮 66 → **5**，**5 条全来自旧词、`egocentric` 一条占 raw 1/3**（22 条）⇒ 前两轮「结构性归零」只是它被 `seen` 吃干的暂时态，方向没死。**判据：方向按产出物（数据 vs 方法）拆，不按词拆。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-23#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-23 第 28 轮 9092 / 新增 4 / 可报 **1**：`OwlSwap` 5 链仅 `Binance` 有 $12.22 —— **`chains`=部署面，`chainTvls`=流动性面**。**批量指纹看逐对间隔，不看连号跨度；日桶只引天数 ≥2。** `scan.py:301` 第九次、**首次打印与事实相反**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-23#defillama-radar]
-- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-23 第 34 轮 558→41→报 14，**`pages_root=6` 创纪录、owner 14→13（Dash-organisation 双仓）**。**`intent-based` 连续三轮卡 5% 线仍落饱和栏、归因未做** → [topic](/topics/github-radar.md) [source: logs/2026-11-23#github-radar]
+- `arxiv-radar` ✅ 07:30 · **27 词** · 11-23 第 55 轮 66 → **5**，5 条全来自旧词、`egocentric` 独占 raw 1/3（22 条）⇒ 前两轮「结构性归零」只是 `seen` 吃干的暂时态，方向没死。**判据：方向按产出物（数据 vs 方法）拆，不按词拆。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-23#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-23 第 28 轮 9092 / 新增 4 / 可报 **1**：`OwlSwap` 5 链仅 `Binance` 有 $12.22 —— **`chains`=部署面，`chainTvls`=流动性面**。**批量指纹看逐对间隔；日桶只引天数 ≥2。** `scan.py:301` 第九次、**首次打印与事实相反**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-23#defillama-radar]
+- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-23 第 34 轮 558→41→报 14，**`pages_root=6` 创纪录、owner 14→13**。**`intent-based` 连三轮卡 5% 线仍落饱和栏、归因未做** → [topic](/topics/github-radar.md) [source: logs/2026-11-23#github-radar]
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。判据速查：
 
@@ -24,13 +24,14 @@
 - **假零八：CDN 快照让 id 差集恒为 0**（10-28）—— 差集为空先断言 `cf-cache-status != HIT` 或加 `?_cb=` 复取。**反向也有坑：id 集合相同 ≠ 字段值最新**，`parentProtocol` 这类补录字段会在两份快照间翻转（11-03）。
 - **`eth_getLogs` 判别力测试：** 真 topic0 必回真日志、**故意错 1 字符必回 0**。不可区分 = 端点坏。公共 RPC 硬限 1000 块，长窗 999 分片。
 - **链上速查（DEUS 归档后仍通用）：** Solidly Swap 字序 `(a0In,a1In,a0Out,a1Out)`，按 UniV2 解会读反 → 用储备差对照符号。**`eth_getCode`=`0x` 才 EOA，`0xef0100…` 是 7702；地址左补零且全小写。** 买单真伪只认终点余额升高且留住。**门槛先核对分子分母同单位。**[lessons](/topics/lessons.md)
-- **行情口径 ①（结算纪律）：** 只用桶结算值，live 不参与 delta；**结算不看桶龄，只看「同一天两轮回读差」>0.5% 即未定稿（11-22 实测 24h 龄桶仍被改 +4.43%）**；7d/30d 脚本算；跨 series 按日期对齐。**桶编号须由 ts 换算 UTC 日期**。**「近 N 天 X 条」必拆逐日直方图 —— 窗口计数是二阶量，批量桶滚出会伪装成趋势。**[lessons](/topics/lessons.md#行情取数形状defillama--coingecko) [source: logs/2026-11-22#defillama-radar]
-- **行情口径 ②（字段与噪声）：** `change_7d` 实为 `total24h/total7DaysAgo−1`，真 7d 在 `change_7dover7d`；fees 无 `tvl` 须 join；F&G 回溯修订须拉 ≥3 日序列。**总 TVL 两套口径比值 ~2.0，混用造 −50% 假暴跌。** **fees 绝对值先与 `total7d/7` 对一遍：量级差 10 倍 = 小数点错位。** **`apyReward=null` 视为无奖励。** [source: logs/2026-11-22#defi-overview]
-- **某过滤器长期「0 丢弃」先查有多少输入真经过它，再查它是不是用歧义词假装挡住了** —— `circuit`/`network` 对超导/ML 同样成立 = 无判别力；「零假阴」≠ 规则安全。**漏斗退化成单通道时，0 输出的责任在词表召回**；零幸存来自饱和 ≠ 流量消失。**某桶占比升高 ≠ 杀伤力升高**。**任何「N=0」字段先确认分母没被过滤掉 —— 没进的输入不是零结果**（`cross_windows()` 不量降级词）。→ [lessons](/topics/lessons.md) [source: logs/2026-11-17#arxiv-radar]
+- **行情口径 ①（结算纪律）：** 只用桶结算值，live 不参与 delta；**判「未定稿」看同一天两轮回读差 >0.5%，不看桶龄**（11-22 实测 24h 龄桶仍被改 +4.43%）；7d/30d 脚本算；跨 series 按日期对齐；**桶编号须由 ts 换算 UTC 日期**。**「近 N 天 X 条」必拆逐日直方图。** [lessons](/topics/lessons.md#行情取数形状defillama--coingecko) [source: logs/2026-11-22#defillama-radar]
+- **行情口径 ②（字段与噪声）：** `change_7d` 实为 `total24h/total7DaysAgo−1`，真 7d 在 `change_7dover7d`；fees 无 `tvl` 须 join；F&G 回溯修订须拉 ≥3 日序列。**总 TVL 两套口径比值 ~2.0，混用造 −50% 假暴跌。** **fees 绝对值先与 `total7d/7` 对一遍：差 10 倍 = 小数点错位。** **`apyReward=null` 视为无奖励。** [logs/2026-11-22](/topics/lessons.md)
+- **行情口径 ③：DEX 量单指标无判别力，须与 TVL 方向配对。** 11-19→11-23 五天五种解读。**「TVL 正 + 量负」= 估值抬升非成交**（11-23 +2.03% 配 −27.42%）。**聚合量跌 ≠ 普遍抽离**：同轮 Raydium +58% 涨、PancakeSwap −32% 崩 ⇒ 先拆内部。**链上 delta 24h 可 9/9 负翻 10/13 正 ⇒ 需两桶同向。** → [market-context](/topics/market-context.md) [source: logs/2026-11-23#defi-overview]
+- **某过滤器长期「0 丢弃」先查有多少输入真经过它，再查它是不是用歧义词假装挡住了** —— `circuit`/`network` 对超导/ML 同样成立 = 无判别力；「零假阴」≠ 规则安全。**漏斗退化成单通道时，0 输出的责任在词表召回**；零幸存来自饱和 ≠ 流量消失。**任何「N=0」字段先确认分母没被过滤掉。** → [lessons](/topics/lessons.md) [source: logs/2026-11-17#arxiv-radar]
 - **「owner 转账 = 砸盘」是错的默认假设** —— 先看 `tx.to` 是不是自家合约。**网关错误会被误记成 skill 回归** —— 判据 `num_turns:1` + 0 tool calls。**失败签名不止一种**，断路器跳闸后重试通道也没了；**probe 偶然跑通 ≠ 修复** → [ops](/topics/ops-plumbing.md) [source: logs/2026-11-12#heartbeat]
-- **过程事故两例：** 脚本尾部崩溃 ≠ 本轮没产出（产物在崩溃点前写出，**先看 mtime 再决定重跑**）；**`git reset --hard` 会吃掉已写未提交的内容 —— 取消暂存只能用 `git restore --staged <file>`**（11-11 丢三个 memory 文件）。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-11#defi-overview]
-- **「0 新增」≠「废词」** —— 逐词单查 total_count 才分清「饱和」与「查询打不中」；长窗首跑推沉积、次跑归零 = `seen` 吃干；**`seen < raw 5%` 不许记饱和，须归因到具体规则**。[source: logs/2026-10-29#github-radar]
-- **查询失败会伪装成「零命中」** —— 有 `failed_t` 就先补扫。**整轮没跑成（网关 403）同理**，缺口轮次不计入「连续 N 轮」类序列判据。**词干化污染：`staking` 精度 11%（撞 `stakes`）**，单词必须换长短语。详见 [lessons](/topics/lessons.md#arXiv-检索arxiv-radar)。[source: logs/2026-11-17#heartbeat]
+- **过程事故两例：** 脚本尾部崩溃 ≠ 本轮没产出（产物在崩溃点前写出，**先看 mtime 再重跑**）；**`git reset --hard` 会吃掉已写未提交的内容 —— 取消暂存只用 `git restore --staged <file>`**（11-11 丢三个 memory 文件）。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-11#defi-overview]
+- **「0 新增」≠「废词」** —— 逐词单查 total_count 才分清「饱和」与「查询打不中」；长窗首跑推沉积、次跑归零 = `seen` 吃干；**`seen < raw 5%` 不许记饱和**。[source: logs/2026-10-29#github-radar]
+- **查询失败会伪装成「零命中」** —— 有 `failed_t` 先补扫。**整轮没跑成（网关 403）同理**，缺口轮次不计入「连续 N 轮」判据。**词干化污染：`staking` 精度 11%（撞 `stakes`）**，单词须换长短语。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-17#heartbeat]
 
 ## Reference
 - [github-radar](/topics/github-radar.md) · [defillama-radar](/topics/defillama-radar.md) · [lessons](/topics/lessons.md) · [world-action-models](/topics/world-action-models.md) · [market-context](/topics/market-context.md)
