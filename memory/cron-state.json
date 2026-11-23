@@ -78,9 +78,9 @@
   "arxiv-radar": {
     "last_dispatch": "2026-11-23T22:01:07Z",
     "last_status": "success",
-    "last_success": "2026-11-23T22:19:10Z",
-    "total_runs": 57,
-    "total_successes": 52,
+    "last_success": "2026-11-23T22:33:04Z",
+    "total_runs": 58,
+    "total_successes": 53,
     "total_failures": 5,
     "consecutive_failures": 0,
     "success_rate": 0.91,
