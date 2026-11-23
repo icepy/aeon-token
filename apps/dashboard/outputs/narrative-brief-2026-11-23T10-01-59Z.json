@@ -1,0 +1,357 @@
+{
+  "root": "root",
+  "state": {},
+  "elements": {
+    "root": {
+      "type": "Card",
+      "props": {
+        "title": "叙事简报 · 23/11/2026",
+        "description": "来源：Grok 自动化 crypto-narrative-brief-3day"
+      },
+      "children": [
+        "src_link",
+        "sep1",
+        "h_crypto",
+        "st_crypto",
+        "sep2",
+        "h_tech",
+        "st_tech",
+        "sep3",
+        "h_stock",
+        "st_stock",
+        "sep4",
+        "h_change",
+        "t_change",
+        "h_reflex",
+        "t_reflex",
+        "h_hold",
+        "t_hold"
+      ]
+    },
+    "src_link": {
+      "type": "Link",
+      "props": {
+        "label": "原文：https://github.com/icepy/aeon-token/blob/main/memory/topics/narratives.md",
+        "href": "https://github.com/icepy/aeon-token/blob/main/memory/topics/narratives.md"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h_crypto": {
+      "type": "Heading",
+      "props": {
+        "text": "【加密线】",
+        "level": "h2"
+      }
+    },
+    "st_crypto": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5"
+      ]
+    },
+    "c1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "c1_h",
+        "c1_acc",
+        "c1_u1",
+        "c1_u2",
+        "c1_men",
+        "c1_rev",
+        "c1_s1",
+        "c1_s2",
+        "c1_s3",
+        "c1_s4",
+        "c1_s5"
+      ]
+    },
+    "c1_h": {
+      "type": "Heading",
+      "props": {
+        "text": "1. BTC在6.1万附近极端恐惧，ETF持续流出，但周末反弹+美股期货大涨带来希望。",
+        "level": "h3"
+      }
+    },
+    "c1_acc": {
+      "type": "Text",
+      "props": {
+        "text": "账号：@WatcherGuru @KobeissiLetter @BimbaCrypto",
+        "variant": "caption"
+      }
+    },
+    "c1_u1": {
+      "type": "Link",
+      "props": {
+        "label": "https://x.com/WatcherGuru/status/2124646387824410665",
+        "href": "https://x.com/WatcherGuru/status/2124646387824410665"
+      }
+    },
+    "c1_u2": {
+      "type": "Link",
+      "props": {
+        "label": "https://x.com/BimbaCrypto/status/2124572929249956156",
+        "href": "https://x.com/BimbaCrypto/status/2124572929249956156"
+      }
+    },
+    "c1_men": {
+      "type": "Badge",
+      "props": {
+        "text": "提及量：饱和",
+        "variant": "secondary"
+      }
+    },
+    "c1_rev": {
+      "type": "Text",
+      "props": {
+        "text": "反向：极端恐惧+拥挤空头可能触发空头挤压，若ETF流出停止则快速修复。",
+        "variant": "body"
+      }
+    },
+    "c1_s1": {
+      "type": "Badge",
+      "props": {
+        "text": "热度 5",
+        "variant": "default"
+      }
+    },
+    "c1_s2": {
+      "type": "Badge",
+      "props": {
+        "text": "趋势 ↓",
+        "variant": "destructive"
+      }
+    },
+    "c1_s3": {
+      "type": "Badge",
+      "props": {
+        "text": "阶段 见顶",
+        "variant": "secondary"
+      }
+    },
+    "c1_s4": {
+      "type": "Badge",
+      "props": {
+        "text": "情绪 空",
+        "variant": "destructive"
+      }
+    },
+    "c1_s5": {
+      "type": "Badge",
+      "props": {
+        "text": "操作建议 观望",
+        "variant": "outline"
+      }
+    },
+    "c2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "c2_h",
+        "c2_acc",
+        "c2_u1",
+        "c2_u2",
+        "c2_men",
+        "c2_rev",
+        "c2_s1",
+        "c2_s2",
+        "c2_s3",
+        "c2_s4",
+        "c2_s5"
+      ]
+    },
+    "c2_h": {
+      "type": "Heading",
+      "props": {
+        "text": "2. Hyperliquid顶级交易者大幅做空BTC（6倍以上），资金费率转负，空头拥挤。",
+        "level": "h3"
+      }
+    },
+    "c2_acc": {
+      "type": "Text",
+      "props": {
+        "text": "账号：@BimbaCrypto @JackTradoor @HyperPulseHQ",
+        "variant": "caption"
+      }
+    },
+    "c2_u1": {
+      "type": "Link",
+      "props": {
+        "label": "https://x.com/BimbaCrypto/status/2124572929249956156",
+        "href": "https://x.com/BimbaCrypto/status/2124572929249956156"
+      }
+    },
+    "c2_u2": {
+      "type": "Link",
+      "props": {
+        "label": "https://x.com/HyperPulseHQ/status/2124534646205501618",
+        "href": "https://x.com/HyperPulseHQ/status/2124534646205501618"
+      }
+    },
+    "c2_men": {
+      "type": "Badge",
+      "props": {
+        "text": "提及量：增长",
+        "variant": "secondary"
+      }
+    },
+    "c2_rev": {
+      "type": "Text",
+      "props": {
+        "text": "反向：拥挤空头是挤压燃料，价格上涨时清算压力大。",
+        "variant": "body"
+      }
+    },
+    "c2_s1": {
+      "type": "Badge",
+      "props": {
+        "text": "热度 4",
+        "variant": "default"
+      }
+    },
+    "c2_s2": {
+      "type": "Badge",
+      "props": {
+        "text": "趋势 ↑",
+        "variant": "secondary"
+      }
+    },
+    "c2_s3": {
+      "type": "Badge",
+      "props": {
+        "text": "阶段 上升",
+        "variant": "secondary"
+      }
+    },
+    "c2_s4": {
+      "type": "Badge",
+      "props": {
+        "text": "情绪 混",
+        "variant": "outline"
+      }
+    },
+    "c2_s5": {
+      "type": "Badge",
+      "props": {
+        "text": "操作建议 跟随",
+        "variant": "outline"
+      }
+    },
+    "c3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "c3_h",
+        "c3_acc",
+        "c3_u1",
+        "c3_u2",
+        "c3_men",
+        "c3_rev",
+        "c3_s1",
+        "c3_s2",
+        "c3_s3",
+        "c3_s4",
+        "c3_s5"
+      ]
+    },
+    "c3_h": {
+      "type": "Heading",
+      "props": {
+        "text": "3. 特朗普中期选举败选后，政策利好被抹除叙事推动BTC向政策前价格（约60k）回归。",
+        "level": "h3"
+      }
+    },
+    "c3_acc": {
+      "type": "Text",
+      "props": {
+        "text": "账号：@hibtc37 @thaianhoang @bull_genius",
+        "variant": "caption"
+      }
+    },
+    "c3_u1": {
+      "type": "Link",
+      "props": {
+        "label": "https://x.com/hibtc37/status/2124669511517315140",
+        "href": "https://x.com/hibtc37/status/2124669511517315140"
+      }
+    },
+    "c3_u2": {
+      "type": "Link",
+      "props": {
+        "label": "https://x.com/thaianhoang/status/2124668217612493196",
+        "href": "https://x.com/thaianhoang/status/2124668217612493196"
+      }
+    },
+    "c3_men": {
+      "type": "Badge",
+      "props": {
+        "text": "提及量：增长",
+        "variant": "secondary"
+      }
+    },
+    "c3_rev": {
+      "type": "Text",
+      "props": {
+        "text": "反向：政治叙事可能被过度定价，技术超卖和期货反弹可能逆转。",
+        "variant": "body"
+      }
+    },
+    "c3_s1": {
+      "type": "Badge",
+      "props": {
+        "text": "热度 3",
+        "variant": "default"
+      }
+    },
+    "c3_s2": {
+      "type": "Badge",
+      "props": {
+        "text": "趋势 ↑",
+        "variant": "secondary"
+      }
+    },
+    "c3_s3": {
+      "type": "Badge",
+      "props": {
+        "text": "阶段 上升",
+        "variant": "secondary"
+      }
+    },
+    "c3_s4": {
+      "type": "Badge",
+      "props": {
+        "text": "情绪 空",
+        "variant": "destructive"
+      }
+    },
+    "c3_s5": {
+      "type": "Badge",
+      "props": {
+        "text": "操作建议 观望",
+        "variant": "outline"
+      }
+    }
+  }
+}
