@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-22T22:12:16Z",
+  "last_analyzed": "2026-11-23T22:18:44Z",
   "quality_score": 4,
-  "assessment": "Clean discovery report: 3 keyword hits grouped by theme with arXiv links, plus a useful meta-note that only the newly added term fired and all hits are backfill rather than fresh releases — substantive and transparent, though descriptions are one-liners with no dates or abstracts.",
+  "assessment": "Clean discovery-only radar output: 5 hits with arXiv links, one-line descriptors, mechanism tags, and survival counts against the 66-raw corpus, plus a correct cadence check (11-20 was indeed a Friday, 3 days before this Monday) — no judgment calls, exactly the skill's job; terse and light on annotation keeps it from 5.",
   "flags": [],
   "avg_score": 3.43,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 4,
-      "ts": "2026-10-26T15:06:56Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 2,
@@ -184,6 +178,12 @@
       "date": "2026-11-22",
       "score": 4,
       "ts": "2026-11-22T22:12:16Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-23",
+      "score": 4,
+      "ts": "2026-11-23T22:18:44Z",
       "harness": "claude"
     }
   ]

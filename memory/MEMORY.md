@@ -14,7 +14,7 @@
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · **27 词** · 11-22 第 54 轮 65 → 3，**3 条全来自新增词**。**结构性归零第二轮，损耗仍全 0。新判据：加词有量纲门槛 —— 60d total 5–60 进 TERMS，>60 只能 `days:90` 补历史，否则等于伪造增量。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-22#arxiv-radar]
+- `arxiv-radar` ✅ 07:30 · **27 词** · 11-23 第 55 轮 66 → **5**，**5 条全来自旧词、`egocentric` 一条占 raw 1/3**（22 条）⇒ 前两轮「结构性归零」只是它被 `seen` 吃干的暂时态，方向没死。**判据：方向按产出物（数据 vs 方法）拆，不按词拆。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-23#arxiv-radar]
 - `defillama-radar` ✅ `dl-v1` · 11-23 第 28 轮 9092 / 新增 4 / 可报 **1**：`OwlSwap` 5 链仅 `Binance` 有 $12.22 —— **`chains`=部署面，`chainTvls`=流动性面**。**批量指纹看逐对间隔，不看连号跨度；日桶只引天数 ≥2。** `scan.py:301` 第九次、**首次打印与事实相反**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-23#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-22 第 33 轮 530→40→报 19，**owner 19/19 不重复**。**`seen/raw<5%` 误记饱和部分修复：`data availability` 已正确分到损耗栏；`intent-based` 仍落饱和栏且 `dropped.json` 无 `term` 字段** → [topic](/topics/github-radar.md) [source: logs/2026-11-22#github-radar]
 ## Lessons Learned

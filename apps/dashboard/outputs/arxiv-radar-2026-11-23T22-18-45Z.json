@@ -1,0 +1,274 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "窗口 30 天 · 幸存 5 · 原始 66"
+      },
+      "children": [
+        "hdr",
+        "sep1",
+        "sec1h",
+        "sec1n",
+        "g1",
+        "sep2",
+        "sec2h",
+        "sec2n",
+        "g2",
+        "sep3",
+        "footer"
+      ]
+    },
+    "hdr": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "hdr_title",
+        "badge_window",
+        "badge_surv",
+        "badge_raw"
+      ]
+    },
+    "hdr_title": {
+      "type": "Heading",
+      "props": {
+        "text": "arxiv-radar",
+        "level": "h1"
+      }
+    },
+    "badge_window": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 30 天",
+        "variant": "outline"
+      }
+    },
+    "badge_surv": {
+      "type": "Badge",
+      "props": {
+        "text": "幸存 5",
+        "variant": "secondary"
+      }
+    },
+    "badge_raw": {
+      "type": "Badge",
+      "props": {
+        "text": "原始 66",
+        "variant": "secondary"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec1h": {
+      "type": "Heading",
+      "props": {
+        "text": "第一视角感知 / 具身数据",
+        "level": "h2"
+      }
+    },
+    "sec1n": {
+      "type": "Text",
+      "props": {
+        "text": "4 条，egocentric 一条词扛",
+        "variant": "caption"
+      }
+    },
+    "g1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "r1": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl1",
+        "b1"
+      ]
+    },
+    "sl1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoSurgHands - 第一视角手术训练的 3D 手部姿态数据集与基准",
+        "href": "https://arxiv.org/abs/2611.27101",
+        "source": "arXiv"
+      }
+    },
+    "b1": {
+      "type": "Badge",
+      "props": {
+        "text": "具身数据/第一视角感知",
+        "variant": "default"
+      }
+    },
+    "r2": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl2",
+        "b2"
+      ]
+    },
+    "sl2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "RoboCap-10k - 度量精确的第一视角机器人学习数据集",
+        "href": "https://arxiv.org/abs/2611.26916",
+        "source": "arXiv"
+      }
+    },
+    "b2": {
+      "type": "Badge",
+      "props": {
+        "text": "具身数据/第一视角感知",
+        "variant": "default"
+      }
+    },
+    "r3": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl3",
+        "b3"
+      ]
+    },
+    "sl3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "BeyondEgo - 超越第一视角：人形 ego-exo 预见驱动动作",
+        "href": "https://arxiv.org/abs/2611.27047",
+        "source": "arXiv"
+      }
+    },
+    "b3": {
+      "type": "Badge",
+      "props": {
+        "text": "第一视角感知",
+        "variant": "default"
+      }
+    },
+    "r4": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl4",
+        "b4"
+      ]
+    },
+    "sl4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "TacHOI - 第一视角视频的接触感知物体重建与跟踪",
+        "href": "https://arxiv.org/abs/2611.26764",
+        "source": "arXiv"
+      }
+    },
+    "b4": {
+      "type": "Badge",
+      "props": {
+        "text": "第一视角感知",
+        "variant": "default"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec2h": {
+      "type": "Heading",
+      "props": {
+        "text": "共识",
+        "level": "h2"
+      }
+    },
+    "sec2n": {
+      "type": "Text",
+      "props": {
+        "text": "1 条",
+        "variant": "caption"
+      }
+    },
+    "g2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "r5"
+      ]
+    },
+    "r5": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sl5",
+        "b5"
+      ]
+    },
+    "sl5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Dugong - 组合无认证 DAG 共识",
+        "href": "https://arxiv.org/abs/2611.27473",
+        "source": "arXiv"
+      }
+    },
+    "b5": {
+      "type": "Badge",
+      "props": {
+        "text": "共识",
+        "variant": "default"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "footer": {
+      "type": "Alert",
+      "props": {
+        "title": "节律正常",
+        "message": "窗口内最新收录 11-20（周五，距今 3 天，周一 + 周末不公告 = 正常节律）。零失败、零损耗。",
+        "type": "success"
+      }
+    }
+  }
+}

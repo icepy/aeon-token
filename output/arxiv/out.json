@@ -1,41 +1,67 @@
 [
  {
-  "id": "2611.11242",
-  "term": "ti:\"latent dynamics\" AND cat:cs.RO",
+  "id": "2611.27473",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
   "terms": [
-   "ti:\"latent dynamics\" AND cat:cs.RO"
+   "ti:\"consensus\" AND cat:cs.DC"
   ],
   "window": 30,
-  "name": "DeepSoMo",
-  "title": "DeepSoMo: Deformable Object Motion Estimation under Proprioceptive Partial Observability via Predictive Latent Dynamics",
-  "published": "2026-11-08",
-  "link": "https://arxiv.org/abs/2611.11242",
-  "carrier": "round"
+  "name": "DAG",
+  "title": "Dugong: Composing Uncertified DAG Consensus",
+  "published": "2026-11-20",
+  "link": "https://arxiv.org/abs/2611.27473",
+  "carrier": "protocol"
  },
  {
-  "id": "2611.07403",
-  "term": "ti:\"latent dynamics\" AND cat:cs.RO",
+  "id": "2611.27101",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
-   "ti:\"latent dynamics\" AND cat:cs.RO"
+   "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "",
-  "title": "Dynamic Watermarking and Action-Conditioned Latent Dynamics for Secure Vision-Based Controllers",
-  "published": "2026-11-05",
-  "link": "https://arxiv.org/abs/2611.07403",
-  "carrier": "network"
+  "name": "EgoSurgHands",
+  "title": "EgoSurgHands: An Egocentric 3D Hand Pose Dataset & Benchmark for Open Surgery Training",
+  "published": "2026-11-20",
+  "link": "https://arxiv.org/abs/2611.27101",
+  "carrier": "robot"
  },
  {
-  "id": "2611.03294",
-  "term": "ti:\"latent dynamics\" AND cat:cs.RO",
+  "id": "2611.27047",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
-   "ti:\"latent dynamics\" AND cat:cs.RO"
+   "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "ForceLDM",
-  "title": "ForceLDM: A Force-aware Latent Dynamics Model for Contact-Rich Manipulation",
-  "published": "2026-11-02",
-  "link": "https://arxiv.org/abs/2611.03294",
-  "carrier": "deployment"
+  "name": "BeyondEgo",
+  "title": "BeyondEgo: Learning to Act Beyond Egocentric Perception via Humanoid Ego-Exo Foresight",
+  "published": "2026-11-20",
+  "link": "https://arxiv.org/abs/2611.27047",
+  "carrier": "manipulation"
+ },
+ {
+  "id": "2611.26916",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "RoboCap-10k",
+  "title": "RoboCap-10k: A Metrically Accurate Egocentric Dataset for Robot Learning",
+  "published": "2026-11-20",
+  "link": "https://arxiv.org/abs/2611.26916",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.26764",
+  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"egocentric\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "TacHOI",
+  "title": "TacHOI: Contact-Aware Object Reconstruction and Tracking for Egocentric Videos",
+  "published": "2026-11-19",
+  "link": "https://arxiv.org/abs/2611.26764",
+  "carrier": "robot"
  }
 ]
