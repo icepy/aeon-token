@@ -1,17 +1,11 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-23T10:01:58Z",
-  "quality_score": 4,
-  "assessment": "Substantive, well-structured 3-section narrative brief with per-item tags, accounts, tweet permalinks (IDs cluster plausibly in the brief's 3-day window), heat/trend/stage/sentiment/action scoring, reflexivity analysis and portfolio mapping; change-log at the end does the new/upgraded/dead gating the skill exists for, though it never shows explicit sha256/tag dedup, a tweet URL repeats within the crypto section, @The_Zero_Zones is listed twice, and the trailing 1/2/3 numbering restarts after the US section.",
+  "last_analyzed": "2026-11-24T10:01:22Z",
+  "quality_score": 3,
+  "assessment": "Clean no-op dedupe check: fetched narratives.md (http=200, 24109 bytes), matched all 4 dated sections against stored sha256s, correctly reported UNCHANGED and skipped notification; verifiable and internally consistent, but substance is limited to a correct null result.",
   "flags": [],
   "avg_score": 3.47,
   "history": [
-    {
-      "date": "2026-10-27",
-      "score": 3,
-      "ts": "2026-10-27T08:01:29Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-28",
       "score": 3,
@@ -184,6 +178,12 @@
       "date": "2026-11-23",
       "score": 4,
       "ts": "2026-11-23T10:01:58Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-24",
+      "score": 3,
+      "ts": "2026-11-24T10:01:22Z",
       "harness": "claude"
     }
   ]
