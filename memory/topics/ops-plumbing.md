@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-23T18:20:00Z
+timestamp: 2026-11-24T18:10:00Z
 ---
 
 # Scheduler and notification plumbing state

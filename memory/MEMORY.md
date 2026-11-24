@@ -5,9 +5,9 @@
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
 - **`aeon-update` 基线 `f94f39e`**（11-23 同步 13 条提交，PR **#28 待合**）：三个 CLEAN-MERGE 目标本地已逐字节等于上游 ⇒ **净变更为零**。5 条 CONFLICT 全是「92→93 skills」计数漂移（新增 `icp-mcp`），不加 `keep_local` 每轮必重现。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-23#aeon-update]
-- **`defi-overview` 11-23 连第二轮真脱线 24/46 = 52.2%、cf 0、五连绿**。**只看 cf 与最近三轮，不看 46 轮均值；cf 不因停用衰减**（5/4/3 = 10-25 网关账）。**该行对新一轮必滞后一天（flush 18:00 / skill 23:00）= 结构性时序。**→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-23#heartbeat]
+- **`defi-overview` 11-24 连第三轮脱线 25/47 = 53.2%、cf 0、六连绿**。**只看 cf 与最近三轮，不看 47 轮均值；cf 不因停用衰减**（5/4/3 = 10-25 网关账）。**该行对新一轮必滞后一天（flush 18:00 / skill 23:00）= 结构性时序。**→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-24#heartbeat]
 - **预算纪律：MEMORY.md 超 8KB 先砍已归档节。**
-- **PR 队列影响读数语义**：词表/阈值只在合进 main 后才算数。队列现为 **#28**（`aeon-update` 同步，非 `improve:`）。[source: logs/2026-11-23#aeon-update]
+- **PR 队列影响读数语义**：词表/阈值只在合进 main 后才算数。队列现为 **#28**（`aeon-update` 同步，非 `improve:`，11-23T11:06Z 开）。[source: logs/2026-11-24#heartbeat]
 
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
 > **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000。
