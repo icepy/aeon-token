@@ -1,0 +1,477 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "第 56 轮 · 窗口 30 天 · 原始 72 → 幸存 8"
+      },
+      "children": [
+        "stats",
+        "sep-0",
+        "hdr-zk",
+        "p1",
+        "p2",
+        "sep-1",
+        "hdr-ego",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "sep-2",
+        "hdr-dex",
+        "p7",
+        "sep-3",
+        "hdr-tbd",
+        "p8"
+      ]
+    },
+    "stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-round",
+        "stat-window",
+        "stat-raw",
+        "stat-surv"
+      ]
+    },
+    "stat-round": {
+      "type": "Stat",
+      "props": {
+        "label": "轮次",
+        "value": "56"
+      }
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口",
+        "value": "30 天"
+      }
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "72"
+      }
+    },
+    "stat-surv": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "8"
+      }
+    },
+    "sep-0": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hdr-zk": {
+      "type": "Heading",
+      "props": {
+        "text": "零知识 / 可验证计算",
+        "level": "h3"
+      }
+    },
+    "p1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p1-link",
+        "p1-row"
+      ]
+    },
+    "p1-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Revealing Semantic Gaps in Zero-Knowledge Virtual Machines via Obligation-Targeted Semantic Fuzzing",
+        "href": "https://arxiv.org/abs/2611.29260",
+        "source": "arXiv"
+      }
+    },
+    "p1-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p1-desc",
+        "p1-tag"
+      ]
+    },
+    "p1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "用「义务导向语义模糊」找 zkVM 的语义缺口",
+        "variant": "caption"
+      }
+    },
+    "p1-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "零知识",
+        "variant": "secondary"
+      }
+    },
+    "p2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p2-link",
+        "p2-row"
+      ]
+    },
+    "p2-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ziv Meets Sumcheck: Zero-Knowledge Proofs of Floating-Point LLM Inference",
+        "href": "https://arxiv.org/abs/2611.29188",
+        "source": "arXiv"
+      }
+    },
+    "p2-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p2-desc",
+        "p2-tag"
+      ]
+    },
+    "p2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "浮点 LLM 推理的 ZK 证明（Sumcheck 路线）",
+        "variant": "caption"
+      }
+    },
+    "p2-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "可验证计算/零知识",
+        "variant": "secondary"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hdr-ego": {
+      "type": "Heading",
+      "props": {
+        "text": "第一视角感知 / 具身数据 / VLA",
+        "level": "h3"
+      }
+    },
+    "p3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p3-link",
+        "p3-row"
+      ]
+    },
+    "p3-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoStudy: How Does Scaling Egocentric Data Affect VLA and WAM Pretraining?",
+        "href": "https://arxiv.org/abs/2611.30490",
+        "source": "arXiv"
+      }
+    },
+    "p3-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p3-desc",
+        "p3-tag"
+      ]
+    },
+    "p3-desc": {
+      "type": "Text",
+      "props": {
+        "text": "第一视角数据规模对 VLA 与 WAM 预训练的影响",
+        "variant": "caption"
+      }
+    },
+    "p3-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "具身数据/世界模型",
+        "variant": "secondary"
+      }
+    },
+    "p4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p4-link",
+        "p4-row"
+      ]
+    },
+    "p4-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HIVE-Bench: Evaluating Patch-Level Visual Representations for Egocentric Robot Manipulation",
+        "href": "https://arxiv.org/abs/2611.30813",
+        "source": "arXiv"
+      }
+    },
+    "p4-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p4-desc",
+        "p4-tag"
+      ]
+    },
+    "p4-desc": {
+      "type": "Text",
+      "props": {
+        "text": "patch 级视觉表征的第一视角操作评测",
+        "variant": "caption"
+      }
+    },
+    "p4-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "第一视角感知",
+        "variant": "secondary"
+      }
+    },
+    "p5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p5-link",
+        "p5-row"
+      ]
+    },
+    "p5-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoDepth-Bench: Benchmarking Metric Depth for Egocentric Manipulation",
+        "href": "https://arxiv.org/abs/2611.30734",
+        "source": "arXiv"
+      }
+    },
+    "p5-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p5-desc",
+        "p5-tag"
+      ]
+    },
+    "p5-desc": {
+      "type": "Text",
+      "props": {
+        "text": "第一视角操作的度量深度基准",
+        "variant": "caption"
+      }
+    },
+    "p5-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "第一视角感知",
+        "variant": "secondary"
+      }
+    },
+    "p6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p6-link",
+        "p6-row"
+      ]
+    },
+    "p6-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Resource-Aware VLA-MPC Co-Location for Efficient Embodied AI",
+        "href": "https://arxiv.org/abs/2611.30177",
+        "source": "arXiv"
+      }
+    },
+    "p6-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p6-desc",
+        "p6-tag"
+      ]
+    },
+    "p6-desc": {
+      "type": "Text",
+      "props": {
+        "text": "VLA 与 MPC 同机部署的资源分配",
+        "variant": "caption"
+      }
+    },
+    "p6-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "VLA",
+        "variant": "secondary"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hdr-dex": {
+      "type": "Heading",
+      "props": {
+        "text": "灵巧操作",
+        "level": "h3"
+      }
+    },
+    "p7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p7-link",
+        "p7-row"
+      ]
+    },
+    "p7-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "DexDuet: Learning Contact-Preserving Bimanual Dexterity from Human Demonstrations",
+        "href": "https://arxiv.org/abs/2611.30495",
+        "source": "arXiv"
+      }
+    },
+    "p7-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p7-desc",
+        "p7-tag"
+      ]
+    },
+    "p7-desc": {
+      "type": "Text",
+      "props": {
+        "text": "从人类演示学保接触的双臂灵巧",
+        "variant": "caption"
+      }
+    },
+    "p7-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "灵巧操作/具身数据",
+        "variant": "secondary"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "hdr-tbd": {
+      "type": "Heading",
+      "props": {
+        "text": "待定方向",
+        "level": "h3"
+      }
+    },
+    "p8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "p8-link",
+        "p8-row"
+      ]
+    },
+    "p8-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EnvTrap: Revealing the Environment-Only Attack Surface in Embodied AI via Consequence-Blind Action Execution",
+        "href": "https://arxiv.org/abs/2611.30004",
+        "source": "arXiv"
+      }
+    },
+    "p8-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "p8-desc",
+        "p8-tag"
+      ]
+    },
+    "p8-desc": {
+      "type": "Text",
+      "props": {
+        "text": "具身 AI 的纯环境攻击面（后果盲动作执行）",
+        "variant": "caption"
+      }
+    },
+    "p8-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "?",
+        "variant": "outline"
+      }
+    }
+  }
+}
