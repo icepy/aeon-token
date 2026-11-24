@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-23T18:20:00Z
+timestamp: 2026-11-24T00:40:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,94 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-23 第 28 轮）
+## 本轮漏斗口径（11-24 第 29 轮）
+
+全量 **9096**（上轮 9092，+4）· 新增 id **4**（可报 **0** / 过滤 4）· `seen` 命中 9092 · `parent` **1** · `category` **3** · 链白名单 **0** · 无 id 0 · 拉取失败 0 · 重报 0 · `STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️。**报告级 0 → 未发通知、未覆写 `report.md`（按铁律）。**
+
+### 新增 4 条全明细：三条同一标签，四条全空链
+
+| id | 名称 | 类目 | 链 | TVL | `listedAt` | `parentProtocol` | 撞的桶 |
+|---|---|---|---|---|---|---|---|
+| 9493 | `ATLASX Perps` | Interface | `[]` | `None` | 11-22T22:26:40Z | `None` | category（+空链双帽） |
+| 9494 | `XOXNO Aggregator` | DEX Aggregator | `[]` | `None` | 11-23T16:48:31Z | `parent#xoxno` | **parent 唯一** |
+| 9495 | `EasyPerp` | Interface | `[]` | `None` | 11-23T16:51:18Z | `None` | category（+空链双帽） |
+| 9496 | `LiLLyTrade` | Interface | `[]` | `None` | 11-23T17:19:11Z | `None` | category（+空链双帽） |
+
+**`链白名单` 桶读数 0，但空链条目 4/4。** 这又是一条「桶名比桶语义窄」（与 11-08 第 13 轮同源）：`scan.py` 的 `if not hit` 同时吞掉「空链」与「链不在白名单」，而本轮 4 条都在更早的 `parent`/`category` 桶就被 `continue` 掉了，所以空链桶一条都没读到。**读 `链白名单=0` 不能读成「今天没有空链条目」。**
+
+### `Hyperliquid Builder` 标签独占 3/4 新增，且该流在加速
+
+`ATLASX Perps` / `EasyPerp` / `LiLLyTrade` 三条 `tags=['Hyperliquid Builder']`、`category='Interface'`、`chains=[]`、`tvl=None`、`module='dummy.js'`，描述分别自述为「非托管永续交易界面」「Hyperliquid 交易终端（含 HIP-3 metals/energy）」，`url` 为 `atlx.ai` / `trade.easyperp.app` / `lillytrade.xyz`。
+
+标签读数刷新（同一份 payload 实测）：
+
+| 指标 | 11-17 轮 | **本轮 11-24** |
+|---|---|---|
+| 全量条数 | 227 | **234** |
+| 近 7d | 4 | **7** |
+| 近 30d | 19 | **22** |
+| 近 90d | 124 | **131** |
+| 全部 `category='Interface'` | 是 | **是** |
+| 空链 | 226 | **233** |
+| `tvl` 非空 | 1（`LiquidBots` $68.8K） | **1（同一条）** |
+
+**30d 占同期登记 22/270 ≈ 8.1%（上轮 19/273 = 6.5%）—— 这条单标签流在加速，但按现行铁律它一条都进不了报告**（`Interface` 撞 category、`chains=[]` 撞空链，必挡其一）。这里是[上节](#hyperliquid-builder-标签30-天-19-条占同期登记-65是当前最密的一条单标签流)判据的**第二次验证：加速 ≠ 可报，加速的是一条录入模板流。**
+
+**同时补一条反面证据**：`Interface` 这一群并非全是模板产物 —— 另有 `Ventuals` / `LiquidBots` / `Jupiter Prediction` 等 6 条有真实 TVL。所以「Interface 一律过滤损失面为零」这条只对 30d 这个窗口成立，全量尺度上拦住的是 382/388 空链、只放到 6 条。
+
+### `9494 XOXNO Aggregator`：三处互斥，且互斥方向与 `address` 陷阱同族
+
+| 字段 | 值 |
+|---|---|
+| `category` | `DEX Aggregator` |
+| `chains` | `[]` |
+| `description` | "XOXNO Aggregator is a DEX aggregator on **Stellar**" |
+| `address` | `elrond:XOXNO-c1293a` |
+| `parentProtocol` | `parent#xoxno` · `tvl` 缺失 · `chainTvls={}` · `module='dummy.js'` |
+| `url` | `https://xoxno.com` · `twitter=XoxnoNetwork` · `audits='0'` |
+
+**同父另两条对链的口径互不一致**：`XOXNO Lending`(8109) 是 `chains=['Elrond','Stellar']`（$677K）、`XOXNO Liquid Staking`(6168) 是 `['Elrond']`（$525K）、`XOXNO NFT Marketplace`(3753) 是 `[]` 且 `listedAt=None`。**同一个母协议四个子条目给出四种链口径 ⇒ `chains` 的缺失是录入缺口，不是部署事实**，与 [11-03 记的 `address` 前缀不可替代 `chains`](#address-前缀不能替代-chains2026-11-03) 同族：本例恰好是反方向（`address` 说 Elrond、`description` 说 Stellar、`chains` 说无）。
+
+**但本条无论怎么修都不可报**：`Elrond` 与 `Stellar` 都不在 `CHAINS`（`Stellar` 全量 47 条、42 条有 TVL，是一条真实链、只是没进白名单）。所以「补 `chains` 不补报」这条本轮第二次具象化 —— 它不是链口径问题，是白名单覆盖面问题。**若日后要收 `Stellar`，须按 SKILL.md 删 `seen` 重做基线，本条会随之重灌成 `baseline`、仍然不进报告。**
+
+### CF 双取通过，非假零（再取一例）
+
+常规取 `HIT`（etag `W/"6b04ce5a-93da78"`、`last-modified Mon, 23 Nov 2026 23:38:02 GMT`、`age 214`、9096 条）；`?_cb=20261124` + `Cache-Control: no-cache` 取源站 **`MISS`**，**etag 与 `last-modified` 与 HIT 份逐字符相同、9096 个 id 两向差集均空、`tvl` 逐条差异 0 条、`parentProtocol` 布尔翻转 0 条**。**本轮 0 可报不是缓存假零。**
+
+### 结构读数
+
+- **`chains=[]` = 1671/9096 = 18.37%**（上轮 1667/9092 = 18.33%）。**净增 +4，恰等于本轮新增的 4 条空链条目** —— 第 28 轮首次对上的「净增 = 新增空链条数」判据**连续第二轮正向命中**（此前第 25–27 轮连续三次对不上）。两连中不足以定论，但已从「一例反例」变成「两例正例」。
+- 空链 ⟺ `module='dummy.js'` **第十二轮两向完全相等（1671/1671，两向差集均空）**；空链中 `tvl` 非空 **0 条**、带 `parent` **666**（上轮 663）。
+- `listedAt` 缺失 **1678**（持平）· `tvl=None` **2524**（上轮 2517，+7）· 同秒 ≥3 条簇 **31 组（+0）**。
+- **未来日期检查：有 `listedAt` 的条目中 `listedAt > now` 的 0 条** —— 连续第三轮成立。且**最新一条 `listedAt` 是 11-23T17:19:11Z，11-24 当日尚无任何登记**（日历日桶 day0=0）。
+- 非数字 id 仍只有 `<5471>` · `max_id=9496` · 数字 id 9095 条 · ≥9000 缺口仍 4 个：`9135` / `9257` / `9382`（连十四轮）/ `9391`（连十三轮）。9493–9496 连号无缺口。
+- **两个方向的差集**：`only_raw=[]` · **`only_seen=['4818','5496']`** —— `4818` 连续第二十轮下架、`5496` 第五轮（两条 `seen` 记录均为 `first=2026-10-28 / baseline`）。`only_seen` 非空而 `only_raw` 空 ⇒ 是 DefiLlama 侧下架，不是 seen 读坏。
+- 逐日直方图（滚动秒窗，0=最近 24h）= `[3,5,3,6,5,4,11,5,5,15]` → 7d（0..6）= **37**、30d = **270**（上轮 38 / 273），**两窗口继续精确配平**（7d：`38 + 4 − 5`；30d：`273 + 4 − 7`）。逐格不成平移，配平式仍比逐格对位可靠。
+- 全量 TVL `$438.43B`（上轮 $443.80B，**−1.21%**），`/protocols` 平均单协议 $48.2M。
+- 孪生链：`BSC=0` / `OP Mainnet=0`（整组非 0，无 ⚠️），`Binance=1160` / `Optimism=395`（**与上轮逐格相同**）。其余：`Ethereum=1909` · `Arbitrum=1057` · `Base=933` · `Solana=477` · `Robinhood Chain=327` · `Hyperliquid L1=217` · `Ink=34`（除 Ink 外全部与上轮逐格相同 ⇒ 本周链命中面完全静止，符合「新增全是空链」的事实）。
+
+### 全量 TVL −1.21%，同时昨日桶被大幅下修（口径纪律再取一例）
+
+`/protocols` 求和 `$443.80B → $438.43B`（**−$5.37B / −1.21%**）。对照 `/v2/historicalChainTvl`：
+
+| 日期 | 上轮读数 | 本轮读数 | 修订 |
+|---|---|---|---|
+| 2026-11-18 | $71.32B | $71.32B | 0.00% |
+| 2026-11-19 | $70.30B | $70.30B | 0.00% |
+| 2026-11-20 | $69.56B | $69.56B | 0.00% |
+| 2026-11-21 | $66.50B | $66.50B | 0.00% |
+| **2026-11-22** | **$69.31B（未定稿）** | **$67.85B** | **−$1.46B / −2.11%** |
+| **2026-11-23** | — | **$69.46B** | 最新点，未定稿 |
+
+**11-22 桶的修订 −2.11% 远超 0.5% 的「未定稿」判据线 ⇒ 上轮把 $69.31B 标成「不得当趋势引用」的处置是正确的。这是「前一日桶会被大幅改写」的第一个 >2% 实例，此前实测最大是 11-22 记的 +4.43%（24h 龄桶）。** 结论不变但效力加强：**任何「昨日 TVL」读数在当下都不可引用，须等次轮复读。**
+
+同时 **11-20 / 11-21 两桶分文未动 ⇒ 「越老的桶越早锁死、越新的桶越可能被大改」这条次序本轮第二次被印证**，且这次的修订幅度（2.11%）比上一轮（11-21 从上轮未出现到定稿 $66.50B）更能说明问题：**未定稿不是「轻微浮动」的同义词。**
+
+### 审计行 `本次通知` 缺陷：本轮未暴露
+
+`scan.py:301` 的 `sent` 只看 `DRY`/`BASELINE`、不看 `len(out)`。本轮可报 0，打印 `本次通知 跳过（零可报）` **恰好正确** —— 该缺陷在第九次暴露（上轮，可报 1 却打印「零可报」）之后，第一次落在正确的情形里。**补丁需求不变：`sent` 应为 `跳过（dry-run）` / `跳过（基线轮）` / `跳过（零可报）` / `待发（report.md）` 四态。本轮仍未改 `scan.py`（判据级记录优先，改脚本须走 PR）。**
+
+## 上一轮漏斗口径（11-23 第 28 轮）
 
 全量 **9092**（上轮 9088，+4）· 新增 id **4**（可报 **1** / 过滤 3）· `seen` 命中 9088 · `parent` **0** · `category` **0** · 链白名单 **3** · 无 id 0 · 拉取失败 0 · 重报 0 · `STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️（孪生 `BSC`/`OP Mainnet` 仍 0，`Binance`/`Optimism` 分别 1160/395）。**报告级 1 → 已发通知、`9492` 标 `notified=2026-11-23`。**
 

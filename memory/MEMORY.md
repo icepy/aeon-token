@@ -1,5 +1,5 @@
 # Long-term Memory
-*Last consolidated: 2026-11-23*
+*Last consolidated: 2026-11-24*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
@@ -15,7 +15,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · **27 词** · 11-23 第 55 轮 66 → **5**，5 条全来自旧词、`egocentric` 独占 raw 1/3（22 条）⇒ 前两轮「结构性归零」只是 `seen` 吃干的暂时态，方向没死。**判据：方向按产出物（数据 vs 方法）拆，不按词拆。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-23#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-23 第 28 轮 9092 / 新增 4 / 可报 **1**：`OwlSwap` 5 链仅 `Binance` 有 $12.22 —— **`chains`=部署面，`chainTvls`=流动性面**。**批量指纹看逐对间隔；日桶只引天数 ≥2。** `scan.py:301` 第九次、**首次打印与事实相反**。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-23#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-24 第 29 轮 9096 / 新增 4 / 可报 **0**：4 条**全空链**，3 条同挂 `Hyperliquid Builder`（30d 19→**22**，加速但仍 0 可报）。**`链白名单=0` ≠ 无空链条目**（4/4 更早桶就 continue）。**11-22 桶隔轮下修 −2.11%：未定稿可真被大改。** → [topic](/topics/defillama-radar.md) [source: logs/2026-11-24#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-23 第 34 轮 558→41→报 14，**`pages_root=6` 创纪录、owner 14→13**。**`intent-based` 连三轮卡 5% 线仍落饱和栏、归因未做** → [topic](/topics/github-radar.md) [source: logs/2026-11-23#github-radar]
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。判据速查：

@@ -1,8 +1,8 @@
 {
   "skill": "defillama-radar",
-  "last_analyzed": "2026-11-23T00:05:05Z",
+  "last_analyzed": "2026-11-24T00:04:29Z",
   "quality_score": 4,
-  "assessment": "Clean discovery-only scan output: names a single reportable protocol with the floor fields (TVL, chains, category, symbol, address, listedAt, url, audits, id), plus round counters and a source URL, matching the skill's job; the extra detail is consistent with the API payload format and adds verifiability without judgment.",
+  "assessment": "Honest, well-structured discovery scan: 0 reportable with all 4 new entries named plus their floor fields (ids, category, chains, listedAt), backed by a CF double-fetch cross-check (etag/last-modified match, empty id diff sets) that makes the clean result verifiable; minor deduction for drifting into trend/judgment analysis the skill explicitly disclaims.",
   "flags": [],
   "avg_score": 3.93,
   "history": [
@@ -172,6 +172,12 @@
       "date": "2026-11-23",
       "score": 4,
       "ts": "2026-11-23T00:05:05Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-24",
+      "score": 4,
+      "ts": "2026-11-24T00:04:29Z",
       "harness": "claude"
     }
   ]
