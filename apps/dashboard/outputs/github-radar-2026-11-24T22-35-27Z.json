@@ -1,0 +1,422 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 7 天 · 报告级 6 · 近 7 天活跃 6"
+      },
+      "children": [
+        "repo1",
+        "sep1",
+        "repo2",
+        "sep2",
+        "repo3",
+        "sep3",
+        "repo4",
+        "sep4",
+        "repo5",
+        "sep5",
+        "repo6"
+      ]
+    },
+    "repo1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo1-story",
+        "repo1-desc",
+        "repo1-badges"
+      ]
+    },
+    "repo1-story": {
+      "type": "StoryLink",
+      "props": {
+        "title": "egolearn/egolearn",
+        "href": "https://github.com/egolearn/egolearn",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo1-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Learning from egocentric video streams: streaming SSL, continual learning, replay, memory, and video",
+        "variant": "body"
+      }
+    },
+    "repo1-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo1-stat30",
+        "repo1-stat7",
+        "repo1-tag"
+      ]
+    },
+    "repo1-stat30": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=≥100",
+        "variant": "secondary"
+      }
+    },
+    "repo1-stat7": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=50",
+        "variant": "secondary"
+      }
+    },
+    "repo1-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "词: egocentric",
+        "variant": "outline"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo2-story",
+        "repo2-desc",
+        "repo2-badges"
+      ]
+    },
+    "repo2-story": {
+      "type": "StoryLink",
+      "props": {
+        "title": "SMJD11/mlx-vla",
+        "href": "https://github.com/SMJD11/mlx-vla",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo2-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Vision-Language-Action (VLA) & Multimodal Models on Apple Silicon with MLX (Alpamayo 2 Edge, Cosmos ",
+        "variant": "body"
+      }
+    },
+    "repo2-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo2-stat30",
+        "repo2-stat7",
+        "repo2-tag"
+      ]
+    },
+    "repo2-stat30": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=≥100",
+        "variant": "secondary"
+      }
+    },
+    "repo2-stat7": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=29",
+        "variant": "secondary"
+      }
+    },
+    "repo2-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "词: vision language action",
+        "variant": "outline"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo3-story",
+        "repo3-desc",
+        "repo3-badges"
+      ]
+    },
+    "repo3-story": {
+      "type": "StoryLink",
+      "props": {
+        "title": "chenyizhi123/Zeta0",
+        "href": "https://github.com/chenyizhi123/Zeta0",
+        "source": "GitHub",
+        "score": "★57"
+      }
+    },
+    "repo3-desc": {
+      "type": "Text",
+      "props": {
+        "text": "ζ₀ (Zeta0): World Action Models with Joint Scene & Body Foresight - Unitree G1 + SONIC + BrainCo cap",
+        "variant": "body"
+      }
+    },
+    "repo3-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo3-stat30",
+        "repo3-stat7",
+        "repo3-tag"
+      ]
+    },
+    "repo3-stat30": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=17",
+        "variant": "secondary"
+      }
+    },
+    "repo3-stat7": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=17",
+        "variant": "secondary"
+      }
+    },
+    "repo3-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "词: world action model",
+        "variant": "outline"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo4-story",
+        "repo4-desc",
+        "repo4-badges"
+      ]
+    },
+    "repo4-story": {
+      "type": "StoryLink",
+      "props": {
+        "title": "wiktor77887-bit/reacher-sim2real-rl",
+        "href": "https://github.com/wiktor77887-bit/reacher-sim2real-rl",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo4-desc": {
+      "type": "Text",
+      "props": {
+        "text": "PPO policy for the MuJoCo Reacher arm (1.5 cm mean error, 80% within 2 cm) + mini sim-to-real study:",
+        "variant": "body"
+      }
+    },
+    "repo4-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo4-stat30",
+        "repo4-stat7",
+        "repo4-tag"
+      ]
+    },
+    "repo4-stat30": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=13",
+        "variant": "secondary"
+      }
+    },
+    "repo4-stat7": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=13",
+        "variant": "secondary"
+      }
+    },
+    "repo4-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "词: sim2real",
+        "variant": "outline"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo5-story",
+        "repo5-desc",
+        "repo5-badges"
+      ]
+    },
+    "repo5-story": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EmpirioLabs-AI/verifiable-inference",
+        "href": "https://github.com/EmpirioLabs-AI/verifiable-inference",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo5-desc": {
+      "type": "Text",
+      "props": {
+        "text": "Check which model answered and that EmpirioLabs served it: model fingerprints and signed receipts, c",
+        "variant": "body"
+      }
+    },
+    "repo5-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo5-stat30",
+        "repo5-stat7",
+        "repo5-tag"
+      ]
+    },
+    "repo5-stat30": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=9",
+        "variant": "secondary"
+      }
+    },
+    "repo5-stat7": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=9",
+        "variant": "secondary"
+      }
+    },
+    "repo5-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "词: verifiable inference",
+        "variant": "outline"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "repo6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "repo6-story",
+        "repo6-desc",
+        "repo6-badges"
+      ]
+    },
+    "repo6-story": {
+      "type": "StoryLink",
+      "props": {
+        "title": "joycex07/robot-simulation",
+        "href": "https://github.com/joycex07/robot-simulation",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "repo6-desc": {
+      "type": "Text",
+      "props": {
+        "text": "MuJoCo-based robotic manipulation simulation and trajectory replay",
+        "variant": "body"
+      }
+    },
+    "repo6-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "repo6-stat30",
+        "repo6-stat7",
+        "repo6-tag"
+      ]
+    },
+    "repo6-stat30": {
+      "type": "Badge",
+      "props": {
+        "text": "30天=5",
+        "variant": "secondary"
+      }
+    },
+    "repo6-stat7": {
+      "type": "Badge",
+      "props": {
+        "text": "7天=5",
+        "variant": "secondary"
+      }
+    },
+    "repo6-tag": {
+      "type": "Badge",
+      "props": {
+        "text": "词: robot manipulation",
+        "variant": "outline"
+      }
+    }
+  }
+}
