@@ -1,10 +1,10 @@
 {
   "skill": "defi-overview",
-  "last_analyzed": "2026-11-23T23:09:49Z",
+  "last_analyzed": "2026-11-25T23:10:01Z",
   "quality_score": 4,
-  "assessment": "Complete one-pass crypto read covering every required element (regime take, DeFi verdict, movers, yields, fees, breadth, F&G, prediction markets), with settled-vs-live data discipline, transparent anomaly/source-status notes, and a genuine insight (TVL up on price markup while DEX volume collapses = no new money); stops short of 5 only because most figures can't be independently verified and several internal contradictions are flagged rather than resolved.",
+  "assessment": "Complete, internally consistent one-pass read covering TVL, chains, movers, fees, DEX volume, stables, yields, breadth, F&G, prediction markets, and position health, with round-over-round deltas and self-flagged caveats (suspected fee-metric recalculation, websearch fallback); all numbers trace to the named APIs but are not independently checkable from the output.",
   "flags": [],
-  "avg_score": 3.6,
+  "avg_score": 3.62,
   "history": [
     {
       "date": "2026-10-23",
@@ -154,6 +154,12 @@
       "date": "2026-11-23",
       "score": 4,
       "ts": "2026-11-23T23:09:49Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-25",
+      "score": 4,
+      "ts": "2026-11-25T23:10:01Z",
       "harness": "claude"
     }
   ]
