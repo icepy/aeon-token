@@ -4,19 +4,19 @@
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
-- **`aeon-update` 基线 `f94f39e`**（11-23 同步 13 条提交，PR **#28 待合**）：三个 CLEAN-MERGE 目标本地已逐字节等于上游 ⇒ **净变更为零**。5 条 CONFLICT 全是「92→93 skills」计数漂移（新增 `icp-mcp`），不加 `keep_local` 每轮必重现。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-23#aeon-update]
-- **`defi-overview` 11-24 连第三轮脱线 25/47 = 53.2%、cf 0、六连绿**。**只看 cf 与最近三轮，不看 47 轮均值；cf 不因停用衰减**（5/4/3 = 10-25 网关账）。**该行对新一轮必滞后一天（flush 18:00 / skill 23:00）= 结构性时序。**→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-24#heartbeat]
+- **`aeon-update` 基线 `f94f39e`**（11-23 同步 13 条提交，PR **#28 已于 11-25T04:13Z 合并**，开 41h）：三个 CLEAN-MERGE 目标本地已逐字节等于上游 ⇒ **净变更为零**。5 条 CONFLICT 全是「92→93 skills」计数漂移（新增 `icp-mcp`），不加 `keep_local` 每轮必重现。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-25#heartbeat]
+- **`defi-overview` 11-25 连第三轮脱线 26/48 = 54.2%、cf 0、七连绿**。**只看 cf 与最近三轮；cf 不因停用衰减**（5/4/3 = 10-25 网关账）。**该行对新一轮必滞后一天（flush 18:00 / skill 23:00）= 结构性时序。**→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-25#heartbeat]
 - **预算纪律：MEMORY.md 超 8KB 先砍已归档节。**
-- **PR 队列影响读数语义**：词表/阈值只在合进 main 后才算数。队列现为 **#28**（`aeon-update` 同步，非 `improve:`，11-23T11:06Z 开）。[source: logs/2026-11-24#heartbeat]
+- **PR 队列影响读数语义**：词表/阈值只在合进 main 后才算数。**队列已空**（#28 已合）；stalled-PR 类 P1 会自愈，下轮须重查 `gh pr view`。[source: logs/2026-11-25#heartbeat]
 
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
 > **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000。
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · **27 词** · 11-23 第 55 轮 66 → **5**，5 条全来自旧词、`egocentric` 独占 raw 1/3（22 条）⇒ 前两轮「结构性归零」只是 `seen` 吃干的暂时态，方向没死。**判据：方向按产出物（数据 vs 方法）拆，不按词拆。** → [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-23#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-25 第 30 轮 9106 / 新增 10 / 可报 **2**（`NOUNY` Robinhood $20 · `Bust` Solana $1.6K，均自建适配器）：builder 模板流吃 7/8 条。**教训：`grep` 日志零命中 ≠ 首次发生** —— 判「首次」须查 `seen` 的 `first`。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-25#defillama-radar]
-- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-23 第 34 轮 558→41→报 14，**`pages_root=6` 创纪录、owner 14→13**。**`intent-based` 连三轮卡 5% 线仍落饱和栏、归因未做** → [topic](/topics/github-radar.md) [source: logs/2026-11-23#github-radar]
+- `arxiv-radar` ✅ 07:30 · **27 词** · 11-25 第 56 轮 72 → **8**：**8 条无一来自第 55 轮出货词 = 换词点亮非延续**。`egocentric` raw 24/3 仍占 1/3、产 3 条 ⇒ **AI 侧召回宽度仍 = 1 词**；`zero-knowledge` 7/2 首出货 2 条 ⇒ **低频探针不是死词**。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-25#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-25 第 30 轮 9106 / 新增 10 / 可报 **2**（`NOUNY` $20 · `Bust` $1.6K，均自建适配器）。**`grep` 日志零命中 ≠ 首次发生 —— 判「首次」须查 `seen` 的 `first`。** → [topic](/topics/defillama-radar.md) [source: logs/2026-11-25#defillama-radar]
+- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-25 第 35 轮 565→24→报 **6**：加密侧首个报告级反例（`verifiable-inference`，分母仅 1）；**`jepa` raw=96 首落真饱和**。`intent-based` 连四轮卡 5% 线、归因仍欠 `dropped.json` 的 `term`。→ [topic](/topics/github-radar.md) [source: logs/2026-11-25#github-radar]
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。判据速查：
 

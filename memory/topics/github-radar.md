@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-23T23:10:00Z
+timestamp: 2026-11-25T18:20:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,22 @@ timestamp: 2026-11-23T23:10:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第三十五轮（2026-11-25，手动 `days:7` 窗）—— 565/24/6；加密侧首个报告级反例；`jepa` 转真饱和
+
+18 词 · 单窗 17 / 需拆窗 1 · 二分 1 次 · 搜索调用 **50** · 核验 24/24 = 100%（全量）。漏斗：原始 **565** → 幸存 **24** → 报告级 **6**。丢弃：`seen=266` / `excl=19` / `short_desc=87` / `carrier=122` / `neg=17` / `pages=26` / `pages_root=4` / `archived=0` / `scaffold=0` / `farm=0` / `fail=0`。四分类：查询失败 **0** · 真零 **2** · 全已见 **7** · 有新增 **9**。
+
+- **判据级 ①：加密侧交出第一条报告级 —— 但分母只有 1。** `verifiable inference` raw=1 / seen=0 / 新增 1 → `EmpirioLabs-AI/verifiable-inference`（★0 · 30d=9 · 7d=9，desc = 模型指纹 + 签名回执，验证哪家模型答的）。**这是多轮「加密侧 0」后的首个反例，但另三词本轮仍全空**（`data availability` 18/1 · `intent-based` 17/1 · `restaking` 1/1）⇒ **记形态，不改「加密侧空转」的账**。
+- **判据级 ②：`jepa` 首次以 raw=96 落饱和栏、新收 0。** 前几轮它是头号新增户（第 32 轮 6 条、第 26 轮 15 条）；本轮 96 返回 / 47 已见 / 0 新增 = **真饱和（49% 吸收率，远在 5% 线之上）**，不是过滤损耗。按 10-29 判据**不删、不降级**，只是窗口内没有新仓。
+- **判据级 ③：`intent-based` 连第四轮卡 5% 线且新增 0**（7.4% → 5.9% → 5.6% → 本轮 17/1 = 5.9%）。按判据落「饱和」栏但实为某条规则在吃它；**归因仍做不了，因 `dropped.json` 至今无 `term` 字段（连第四轮欠账）**。`data availability` 同形（18/1 = 5.6%，第二轮）。
+- **判据级 ④：`pages_root=4`，记录第二高**（第 34 轮 6 · 第 31 轮 5 · 本轮 4）。页形态合计 26 + 4 = 30 / 541 丢弃；规则仍在挡量，误杀面未进 digest。
+- **`30d == 7d` 4/6 相等**，两条不等是 `egolearn`（≥100 / 50）与 `mlx-vla`（≥100 / 29），均撞 100 提交 `per_page` 上限 ⇒ 读数不可比。仍按「候选仓龄全 <30 天」的样本条件读，不当窗口定律。
+- **★ 分布：报告级 ★0 ×5 + ★57 ×1**（`chenyizhi123/Zeta0`，`world action model`，30d=17/7d=17）。**★57 是本通道 7d 窗自第 25 轮（★8）以来最高**；`min:0` 地板继续不动。
+- **carrier 误杀对照两侧均 100%**（丢弃侧 43/43 · 幸存侧 23/23）—— 7d 窗下零判别力，第四次同向，不作放宽依据。
+- **异常：** 无 `language` 3（`Hugo-AGI/nanoAstra` · `zzemmer/physical-ai-practice` · `ltpvdmphysicalai-hub/fafo-egocentric-clips`，0 条进报告级）· 空仓 409 1（`BoosterRobotics/booster_teleop`）· 限速 0 · 未认证 0 · capped 0。
+- **probe（60 天独立窗，戳满 7 天触发）：** 种子 64 → 候选 token 85 → 反查 28 · 热仓核验 195。**✅ 真簇 1 `teleop`**：total=587 / owners=97 / `cohesive=1` / `thematic=1` —— **同一簇第三次观测**（10-29 98/568 → 11-10 97/589 → 11-24 97/587）：**owner 持平、repo 微降 ⇒ 存量 owner 不增仓、无新 owner 涌入，不是趋势加速**。⚠️ 近似 2（`loopq` 主题词 playwright · `franka` 主题词 panda=硬件名）不入候选；撞名嫌疑 9（`so101` 517/90 · `ur5e` 171/93 等）。**候选词 0 个 ⇒ `gh-probe-terms.txt` 无追加。**
+
+[source: logs/2026-11-25#github-radar]
 
 ## 第三十四轮（2026-11-23，手动 `days:7` 窗）—— 558/41/14；`pages_root` 首次成规模（6）；报告级 owner 14→13
 

@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-24T18:10:00Z
+timestamp: 2026-11-25T18:20:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -580,6 +580,19 @@ PR #28 opened at `f94f39e`, `pending_conflicts` 6 (the 5 doc files plus the long
 `AGENTS.md` was deleted-in-worktree before the run — pre-existing drift, not this skill's output.
 The clone is `--depth=1` (`.git/shallow`), so all history judgements route through `gh api compare`.
 [source: logs/2026-11-23#aeon-update]
+
+## Update (11-25): PR #28 merged 04:13Z — the stalled-PR flag cleared itself
+
+`aeon-update` 11-23's sync PR (#28, opened 11-23T11:06Z) was **merged 2026-11-25T04:13:55Z**, 41 hours after
+opening. `heartbeat` had flagged it at 37.4h/37.7h as **P1 stalled** and sent the first warn notification of
+the week (11-25T00:31Z) — the finding was correct at the time and cleared 3.5h later with no action by the
+skill. **Reading rule: a stalled-PR P1 is self-clearing once the operator merges; do not carry it into the
+next round as a still-open item without re-querying `gh pr view`.** Also note the queue has been non-empty two
+days running — 「PR 队列空」 is the exception, not the default.
+
+`defi-overview` reached **26/48 = 54.2%, cf 0, seven consecutive green (11-18→11-24)** — third consecutive
+round climbing away from the `<0.5` chronic line. Judged no-fault under the 11-21 rule (read only cf + last
+three rounds, never the 48-round mean). [source: logs/2026-11-25#heartbeat]
 
 # Citations
 
