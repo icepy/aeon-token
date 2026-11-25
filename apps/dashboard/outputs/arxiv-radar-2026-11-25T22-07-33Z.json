@@ -1,0 +1,450 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "arxiv-radar",
+        "description": "第 57 轮 · 窗口 30 天 · 原始 80 · 幸存 8"
+      },
+      "children": [
+        "main"
+      ]
+    },
+    "main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "stats",
+        "sep-top",
+        "sec1",
+        "sep1",
+        "sec2",
+        "sep2",
+        "sec3",
+        "sep3",
+        "sec4",
+        "sep4",
+        "sec5",
+        "sep5",
+        "sec6"
+      ]
+    },
+    "stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-round",
+        "stat-window",
+        "stat-raw",
+        "stat-survived"
+      ]
+    },
+    "stat-round": {
+      "type": "Stat",
+      "props": {
+        "label": "轮次",
+        "value": "57"
+      }
+    },
+    "stat-window": {
+      "type": "Stat",
+      "props": {
+        "label": "窗口（天）",
+        "value": "30"
+      }
+    },
+    "stat-raw": {
+      "type": "Stat",
+      "props": {
+        "label": "原始",
+        "value": "80"
+      }
+    },
+    "stat-survived": {
+      "type": "Stat",
+      "props": {
+        "label": "幸存",
+        "value": "8",
+        "trend": "neutral"
+      }
+    },
+    "sep-top": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "sec1-head",
+        "item-egoloaf",
+        "item-ego2real",
+        "item-activebridge"
+      ]
+    },
+    "sec1-head": {
+      "type": "Heading",
+      "props": {
+        "text": "具身数据 / 灵巧操作",
+        "level": "h3"
+      }
+    },
+    "item-egoloaf": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link-egoloaf",
+        "desc-egoloaf"
+      ]
+    },
+    "link-egoloaf": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EgoLoAF",
+        "href": "https://arxiv.org/abs/2611.32260",
+        "source": "arXiv"
+      }
+    },
+    "desc-egoloaf": {
+      "type": "Text",
+      "props": {
+        "text": "用第一视角人类演示训人形 loco-manipulation，不依赖穿戴动捕，手-物交互线索显式建模",
+        "variant": "caption"
+      }
+    },
+    "item-ego2real": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link-ego2real",
+        "desc-ego2real"
+      ]
+    },
+    "link-ego2real": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Ego2Real",
+        "href": "https://arxiv.org/abs/2611.32101",
+        "source": "arXiv"
+      }
+    },
+    "desc-ego2real": {
+      "type": "Text",
+      "props": {
+        "text": "从第一视角视触觉演示学双手灵巧操作",
+        "variant": "caption"
+      }
+    },
+    "item-activebridge": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link-activebridge",
+        "desc-activebridge"
+      ]
+    },
+    "link-activebridge": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ActiveBridge",
+        "href": "https://arxiv.org/abs/2611.32098",
+        "source": "arXiv"
+      }
+    },
+    "desc-activebridge": {
+      "type": "Text",
+      "props": {
+        "text": "从第一视角视频提取人类「主动取信息」先验，经 world-action modeling 迁移到机器人（头部动作主动调视角）",
+        "variant": "caption"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "sec2-head",
+        "item-mirror"
+      ]
+    },
+    "sec2-head": {
+      "type": "Heading",
+      "props": {
+        "text": "第一视角感知 / 抓取与操作",
+        "level": "h3"
+      }
+    },
+    "item-mirror": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link-mirror",
+        "desc-mirror"
+      ]
+    },
+    "link-mirror": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Embodied AI Fails the Mirror Test",
+        "href": "https://arxiv.org/abs/2611.33010",
+        "source": "arXiv"
+      }
+    },
+    "desc-mirror": {
+      "type": "Text",
+      "props": {
+        "text": "镜面反射让现有操作策略失效，RoboDojo-Mirror 基准（RoboDojo 上保持任务与检查点不变）",
+        "variant": "caption"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "sec3-head",
+        "sec3-badge",
+        "item-embodisafety"
+      ]
+    },
+    "sec3-head": {
+      "type": "Heading",
+      "props": {
+        "text": "具身安全",
+        "level": "h3"
+      }
+    },
+    "sec3-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "受控表无此格，标 ?",
+        "variant": "outline"
+      }
+    },
+    "item-embodisafety": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link-embodisafety",
+        "desc-embodisafety"
+      ]
+    },
+    "link-embodisafety": {
+      "type": "StoryLink",
+      "props": {
+        "title": "EmbodiSafety",
+        "href": "https://arxiv.org/abs/2611.33054",
+        "source": "arXiv"
+      }
+    },
+    "desc-embodisafety": {
+      "type": "Text",
+      "props": {
+        "text": "1,092 snapshot / 540 trajectory / 844 场景，量具身模型对物理风险的理解与响应，而非任务成功率",
+        "variant": "caption"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "sec4-head",
+        "item-restaking"
+      ]
+    },
+    "sec4-head": {
+      "type": "Heading",
+      "props": {
+        "text": "再质押",
+        "level": "h3"
+      }
+    },
+    "item-restaking": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link-restaking",
+        "desc-restaking"
+      ]
+    },
+    "link-restaking": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Collateral Architecture and Correlated Slashing in Liquid Restaking",
+        "href": "https://arxiv.org/abs/2611.31700",
+        "source": "arXiv"
+      }
+    },
+    "desc-restaking": {
+      "type": "Text",
+      "props": {
+        "text": "抵押品分配方式（unique stake ↔ 复用）如何决定相关罚没风险，统一模型",
+        "variant": "caption"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "sec5-head",
+        "item-zk"
+      ]
+    },
+    "sec5-head": {
+      "type": "Heading",
+      "props": {
+        "text": "零知识",
+        "level": "h3"
+      }
+    },
+    "item-zk": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link-zk",
+        "desc-zk"
+      ]
+    },
+    "link-zk": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Improving Quantum Oblivious Transfer using Zero-Knowledge Proofs",
+        "href": "https://arxiv.org/abs/2611.32239",
+        "source": "arXiv"
+      }
+    },
+    "desc-zk": {
+      "type": "Text",
+      "props": {
+        "text": "用 ZKP 改造量子不经意传输协议，压量子通信开销",
+        "variant": "caption"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sec6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "sec6-head",
+        "sec6-badge",
+        "item-socialgames"
+      ]
+    },
+    "sec6-head": {
+      "type": "Heading",
+      "props": {
+        "text": "可验证奖励，非证明系统",
+        "level": "h3"
+      }
+    },
+    "sec6-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "?",
+        "variant": "outline"
+      }
+    },
+    "item-socialgames": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "link-socialgames",
+        "desc-socialgames"
+      ]
+    },
+    "link-socialgames": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Exploring Multi-Player Social Games as Verifiable Training Grounds for LLMs",
+        "href": "https://arxiv.org/abs/2611.31821",
+        "source": "arXiv"
+      }
+    },
+    "desc-socialgames": {
+      "type": "Text",
+      "props": {
+        "text": "多人社交博弈的规则给出客观结果，替代 LLM judge 当可验证奖励",
+        "variant": "caption"
+      }
+    }
+  }
+}

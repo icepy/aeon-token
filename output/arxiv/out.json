@@ -1,106 +1,107 @@
 [
  {
-  "id": "2611.29260",
+  "id": "2611.31821",
+  "term": "verifiable training",
+  "terms": [
+   "verifiable training"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Exploring Multi-Player Social Games as Verifiable Training Grounds for Large Language Models",
+  "published": "2026-11-24",
+  "link": "https://arxiv.org/abs/2611.31821",
+  "carrier": "round"
+ },
+ {
+  "id": "2611.32239",
   "term": "zero-knowledge",
   "terms": [
    "zero-knowledge"
   ],
   "window": 30,
   "name": "",
-  "title": "Revealing Semantic Gaps in Zero-Knowledge Virtual Machines via Obligation-Targeted Semantic Fuzzing",
-  "published": "2026-11-22",
-  "link": "https://arxiv.org/abs/2611.29260",
-  "carrier": "production"
+  "title": "Improving Quantum Oblivious Transfer using Zero-Knowledge Proofs",
+  "published": "2026-11-24",
+  "link": "https://arxiv.org/abs/2611.32239",
+  "carrier": "protocol"
  },
  {
-  "id": "2611.29188",
-  "term": "zero-knowledge",
+  "id": "2611.31700",
+  "term": "restaking",
   "terms": [
-   "zero-knowledge"
+   "restaking"
   ],
   "window": 30,
-  "name": "LLM",
-  "title": "Ziv Meets Sumcheck: Zero-Knowledge Proofs of Floating-Point LLM Inference",
-  "published": "2026-11-22",
-  "link": "https://arxiv.org/abs/2611.29188",
-  "carrier": "deployed"
+  "name": "",
+  "title": "Collateral Architecture and Correlated Slashing in Liquid Restaking",
+  "published": "2026-11-23",
+  "link": "https://arxiv.org/abs/2611.31700",
+  "carrier": "protocol"
  },
  {
-  "id": "2611.30177",
+  "id": "2611.33054",
   "term": "embodied AI",
   "terms": [
    "embodied AI"
   ],
   "window": 30,
-  "name": "VLA-MPC",
-  "title": "Resource-Aware VLA-MPC Co-Location for Efficient Embodied AI",
-  "published": "2026-11-23",
-  "link": "https://arxiv.org/abs/2611.30177",
+  "name": "EmbodiSafety",
+  "title": "EmbodiSafety: Benchmarking Risk Understanding and Response in Embodied AI",
+  "published": "2026-11-24",
+  "link": "https://arxiv.org/abs/2611.33054",
   "carrier": "embodied"
  },
  {
-  "id": "2611.30004",
+  "id": "2611.33010",
   "term": "embodied AI",
   "terms": [
    "embodied AI"
   ],
   "window": 30,
-  "name": "EnvTrap",
-  "title": "EnvTrap: Revealing the Environment-Only Attack Surface in Embodied AI via Consequence-Blind Action Execution",
-  "published": "2026-11-23",
-  "link": "https://arxiv.org/abs/2611.30004",
-  "carrier": "simulation"
+  "name": "",
+  "title": "Embodied AI Fails the Mirror Test: How a Simple Mirror Breaks Robot Policies",
+  "published": "2026-11-24",
+  "link": "https://arxiv.org/abs/2611.33010",
+  "carrier": "robotic"
  },
  {
-  "id": "2611.30813",
+  "id": "2611.32260",
   "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
+   "ti:\"egocentric\" AND cat:cs.RO",
+   "ti:\"hand-object\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "",
-  "title": "HIVE-Bench: Evaluating Patch-Level Visual Representations for Egocentric Robot Manipulation",
-  "published": "2026-11-23",
-  "link": "https://arxiv.org/abs/2611.30813",
+  "name": "EgoLoAF",
+  "title": "EgoLoAF: Learning Humanoid Loco-Manipulation from Egocentric Demonstrations with Hand-Object Affordances",
+  "published": "2026-11-24",
+  "link": "https://arxiv.org/abs/2611.32260",
   "carrier": "robot"
  },
  {
-  "id": "2611.30734",
+  "id": "2611.32101",
   "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
    "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "",
-  "title": "EgoDepth-Bench: Benchmarking Metric Depth for Egocentric Manipulation",
-  "published": "2026-11-23",
-  "link": "https://arxiv.org/abs/2611.30734",
-  "carrier": "manipulation"
+  "name": "Ego2Real",
+  "title": "Ego2Real: Learning Bimanual Dexterous Manipulation from Egocentric Visuo-Tactile Demonstrations",
+  "published": "2026-11-24",
+  "link": "https://arxiv.org/abs/2611.32101",
+  "carrier": "robotic"
  },
  {
-  "id": "2611.30490",
+  "id": "2611.32098",
   "term": "ti:\"egocentric\" AND cat:cs.RO",
   "terms": [
    "ti:\"egocentric\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "EgoStudy",
-  "title": "EgoStudy: How Does Scaling Egocentric Data Affect VLA and WAM Pretraining?",
-  "published": "2026-11-23",
-  "link": "https://arxiv.org/abs/2611.30490",
-  "carrier": "robot"
- },
- {
-  "id": "2611.30495",
-  "term": "ti:\"human demonstration\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"human demonstration\" AND cat:cs.RO"
-  ],
-  "window": 30,
-  "name": "DexDuet",
-  "title": "DexDuet: Learning Contact-Preserving Bimanual Dexterity from Human Demonstrations",
-  "published": "2026-11-23",
-  "link": "https://arxiv.org/abs/2611.30495",
+  "name": "ActiveBridge",
+  "title": "ActiveBridge: Scaling Active Prior for Robots through Egocentric Perception-Interaction Modeling",
+  "published": "2026-11-24",
+  "link": "https://arxiv.org/abs/2611.32098",
   "carrier": "robotic"
  }
 ]

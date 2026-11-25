@@ -1,17 +1,21 @@
-**arxiv-radar** · 第 56 轮 · 窗口 30 天 · 原始 72 → 幸存 8
+**arxiv-radar** · 第 57 轮 · 窗口 30 天 · 原始 80 · 幸存 8
 
-**零知识 / 可验证计算**
-- `Revealing Semantic Gaps in Zero-Knowledge Virtual Machines via Obligation-Targeted Semantic Fuzzing` — 用「义务导向语义模糊」找 zkVM 的语义缺口 · [零知识] · https://arxiv.org/abs/2611.29260
-- `Ziv Meets Sumcheck: Zero-Knowledge Proofs of Floating-Point LLM Inference` — 浮点 LLM 推理的 ZK 证明（Sumcheck 路线）· [可验证计算/零知识] · https://arxiv.org/abs/2611.29188
+**具身数据 / 灵巧操作**
+- `EgoLoAF` — 用第一视角人类演示训人形 loco-manipulation，不依赖穿戴动捕，手-物交互线索显式建模 · https://arxiv.org/abs/2611.32260
+- `Ego2Real` — 从第一视角视触觉演示学双手灵巧操作 · https://arxiv.org/abs/2611.32101
+- `ActiveBridge` — 从第一视角视频提取人类「主动取信息」先验，经 world-action modeling 迁移到机器人（头部动作主动调视角） · https://arxiv.org/abs/2611.32098
 
-**第一视角感知 / 具身数据 / VLA**
-- `EgoStudy: How Does Scaling Egocentric Data Affect VLA and WAM Pretraining?` — 第一视角数据规模对 VLA 与 WAM 预训练的影响 · [具身数据/世界模型] · https://arxiv.org/abs/2611.30490
-- `HIVE-Bench: Evaluating Patch-Level Visual Representations for Egocentric Robot Manipulation` — patch 级视觉表征的第一视角操作评测 · [第一视角感知] · https://arxiv.org/abs/2611.30813
-- `EgoDepth-Bench: Benchmarking Metric Depth for Egocentric Manipulation` — 第一视角操作的度量深度基准 · [第一视角感知] · https://arxiv.org/abs/2611.30734
-- `Resource-Aware VLA-MPC Co-Location for Efficient Embodied AI` — VLA 与 MPC 同机部署的资源分配 · [VLA] · https://arxiv.org/abs/2611.30177
+**第一视角感知 / 抓取与操作**
+- `Embodied AI Fails the Mirror Test` — 镜面反射让现有操作策略失效，RoboDojo-Mirror 基准（RoboDojo 上保持任务与检查点不变） · https://arxiv.org/abs/2611.33010
 
-**灵巧操作**
-- `DexDuet: Learning Contact-Preserving Bimanual Dexterity from Human Demonstrations` — 从人类演示学保接触的双臂灵巧 · [灵巧操作/具身数据] · https://arxiv.org/abs/2611.30495
+**具身安全（受控表无此格，标 `?`）**
+- `EmbodiSafety` — 1,092 snapshot / 540 trajectory / 844 场景，量具身模型对物理风险的理解与响应，而非任务成功率 · https://arxiv.org/abs/2611.33054
 
-**待定方向**
-- `EnvTrap: Revealing the Environment-Only Attack Surface in Embodied AI via Consequence-Blind Action Execution` — 具身 AI 的纯环境攻击面（后果盲动作执行）· [?] · https://arxiv.org/abs/2611.30004
+**再质押**
+- `Collateral Architecture and Correlated Slashing in Liquid Restaking` — 抵押品分配方式（unique stake ↔ 复用）如何决定相关罚没风险，统一模型 · https://arxiv.org/abs/2611.31700
+
+**零知识**
+- `Improving Quantum Oblivious Transfer using Zero-Knowledge Proofs` — 用 ZKP 改造量子不经意传输协议，压量子通信开销 · https://arxiv.org/abs/2611.32239
+
+**`?`（可验证奖励，非证明系统）**
+- `Exploring Multi-Player Social Games as Verifiable Training Grounds for LLMs` — 多人社交博弈的规则给出客观结果，替代 LLM judge 当可验证奖励 · https://arxiv.org/abs/2611.31821
