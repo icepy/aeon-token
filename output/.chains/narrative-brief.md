@@ -1,3 +1,4 @@
+```
 narratives http=200 bytes=24109 source=remote reason=ok
 节: 4
 新: 0
@@ -8,15 +9,17 @@ narratives http=200 bytes=24109 source=remote reason=ok
 已推过: 12/11/2026 sha256: 5f2856f95752976fd4486347a8a2d86a1b3de70c226fceb336a4495361f55261
 结果: UNCHANGED
 notify: 跳过（已推过）
-
-**下一步** — 没有。不改 `check.py`。
-
-**你要处理的** — 这轮不用你处理。
+```
 
 ## Summary
 
-- 执行 `skills/narrative-brief`：一次 `python3 skills/narrative-brief/check.py ""`，无额外抓取。
-- 远程 `memory/topics/narratives.md` 取回正常（http=200，24109 字节），4 个日期节全部命中 `memory/narrative-brief-seen.json` 的 sha256（最新一节 23/11/2026，距今 1 天，未超 5 天静默警戒）。
-- 结果 `UNCHANGED`：无新节，未发通知、未写 `report.md`、未改 seen、未覆盖 `narratives.md`。
-- 文件创建/修改：无（日志一行由脚本自写）。
-- 后续动作：无。
+- 远端 `narratives.md` 抓取正常（http=200，24109 bytes，`reason=ok`），共 4 个日期节。
+- 4 节 sha256 全部命中 `memory/narrative-brief-seen.json` → **结果 UNCHANGED**，未发通知、未写 seen、未覆盖 `report.md`。
+- 最新节仍是 2026-11-23；今天是 11-25，Grok 自动化尚未写入新的一节。
+- 未创建或修改任何文件（`check.py` 未改动，无需 `--self-test`）。
+- 日志由脚本自行写入，未重复追加 `### narrative-brief`。
+
+- **下一步** — 没有。不要改 `check.py`。
+- **你要处理的** — 这轮不用你处理。
+
+补充一点（不算要求）：`seen` 里最新的推送时间是 11-23 那节，距今天 2 天。skill 文档里写明「距上次推送超过 5 天打 ⚠️」的逻辑尚未实现，所以如果 Grok 那边静默停摆，本 skill 会和「今天没新内容」看起来一样。若到 11-28 之后仍是这 4 节，需要你去确认 Grok 自动化 `crypto-narrative-brief-3day` 是否还在跑。
