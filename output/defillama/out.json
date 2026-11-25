@@ -1,1 +1,34 @@
-[]
+[
+ {
+  "id": "9502",
+  "name": "Bust",
+  "slug": "bust",
+  "chains": [
+   "Solana"
+  ],
+  "tvl": 1618.2163760796116,
+  "category": "Derivatives",
+  "listedAt": 1795541240,
+  "url": "",
+  "description": "Bust is a Solana perpetuals protocol with up to 1000x leverage. Traders trade against a USDC vault and can ear",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9497",
+  "name": "NOUNY",
+  "slug": "nouny",
+  "chains": [
+   "Robinhood Chain"
+  ],
+  "tvl": 19.998,
+  "category": "AI Agents",
+  "listedAt": 1795460157,
+  "url": "",
+  "description": "No-code trading agents for crypto and tokenized stocks, run from a non-custodial vault only your wallet can wi",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ }
+]

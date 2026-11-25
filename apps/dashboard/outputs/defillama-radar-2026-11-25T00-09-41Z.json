@@ -1,0 +1,406 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "defillama-radar · 第 30 轮 · 可报 2"
+      },
+      "children": [
+        "headerRow",
+        "sep1",
+        "nounyBlock",
+        "sep2",
+        "bustBlock",
+        "sep3",
+        "tvlAlert",
+        "sep4",
+        "sourceBlock",
+        "sep5",
+        "filteredBlock"
+      ]
+    },
+    "headerRow": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "h_skill",
+        "badge_round",
+        "badge_report"
+      ]
+    },
+    "h_skill": {
+      "type": "Heading",
+      "props": {
+        "text": "defillama-radar",
+        "level": "h2"
+      }
+    },
+    "badge_round": {
+      "type": "Badge",
+      "props": {
+        "text": "第 30 轮",
+        "variant": "secondary"
+      }
+    },
+    "badge_report": {
+      "type": "Badge",
+      "props": {
+        "text": "可报 2",
+        "variant": "default"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "nounyBlock": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "nounyHead",
+        "nouny_desc",
+        "nouny_meta"
+      ]
+    },
+    "nounyHead": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "nh_name",
+        "nb_chain",
+        "nb_cat",
+        "st_nouny"
+      ]
+    },
+    "nh_name": {
+      "type": "Heading",
+      "props": {
+        "text": "NOUNY",
+        "level": "h3"
+      }
+    },
+    "nb_chain": {
+      "type": "Badge",
+      "props": {
+        "text": "Robinhood Chain",
+        "variant": "secondary"
+      }
+    },
+    "nb_cat": {
+      "type": "Badge",
+      "props": {
+        "text": "AI Agents",
+        "variant": "outline"
+      }
+    },
+    "st_nouny": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$20.0"
+      }
+    },
+    "nouny_desc": {
+      "type": "Text",
+      "props": {
+        "text": "无代码交易 agent，面向加密资产与代币化股票；资金在只有本人钱包能提的托管金库里，另涉链上 USDG 发薪与 Robinhood Chain 上挂钩的 Uniswap v4 池。",
+        "variant": "body"
+      }
+    },
+    "nouny_meta": {
+      "type": "Text",
+      "props": {
+        "text": "id 9497 · robinhood:0xCaeED5281bd1eEB26d5f8bd550Bf5C3727bA6514 · symbol NOUNY · oracles Chainlink · audits 0 · listedAt 2026-11-23T18:55:57Z",
+        "variant": "caption"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "bustBlock": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "bustHead",
+        "bust_desc",
+        "bust_meta"
+      ]
+    },
+    "bustHead": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "bh_name",
+        "bb_chain",
+        "bb_cat",
+        "st_bust"
+      ]
+    },
+    "bh_name": {
+      "type": "Heading",
+      "props": {
+        "text": "Bust",
+        "level": "h3"
+      }
+    },
+    "bb_chain": {
+      "type": "Badge",
+      "props": {
+        "text": "Solana",
+        "variant": "secondary"
+      }
+    },
+    "bb_cat": {
+      "type": "Badge",
+      "props": {
+        "text": "Derivatives",
+        "variant": "outline"
+      }
+    },
+    "st_bust": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$1,618.22"
+      }
+    },
+    "bust_desc": {
+      "type": "Text",
+      "props": {
+        "text": "Solana 永续合约协议，最高 1000x 杠杆；对手方是 USDC 金库，净亏损方得 xBUST（代币化亏损返还）。",
+        "variant": "body"
+      }
+    },
+    "bust_meta": {
+      "type": "Text",
+      "props": {
+        "text": "id 9502 · solana:EoV9JQYi57tqjyQbWLdXVarYpEu82FsP8SDnkbFmpump · symbol BUST · oracles Pyth · audits 0 · listedAt 2026-11-24T17:27:20Z",
+        "variant": "caption"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "tvlAlert": {
+      "type": "Alert",
+      "props": {
+        "title": "TVL 量级提示",
+        "message": "两条 TVL 均 < $2K。铁律不设地板故照报，量级判断留第三层。",
+        "type": "warning"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "sourceBlock": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "src_head",
+        "src_stats",
+        "src_link",
+        "src_breakdown",
+        "src_ok"
+      ]
+    },
+    "src_head": {
+      "type": "Heading",
+      "props": {
+        "text": "源数据",
+        "level": "h3"
+      }
+    },
+    "src_stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "sm"
+      },
+      "children": [
+        "st_total",
+        "st_new",
+        "st_report",
+        "st_filtered"
+      ]
+    },
+    "st_total": {
+      "type": "Stat",
+      "props": {
+        "label": "全量",
+        "value": "9106",
+        "delta": "+10",
+        "trend": "up"
+      }
+    },
+    "st_new": {
+      "type": "Stat",
+      "props": {
+        "label": "新增",
+        "value": "10"
+      }
+    },
+    "st_report": {
+      "type": "Stat",
+      "props": {
+        "label": "可报",
+        "value": "2"
+      }
+    },
+    "st_filtered": {
+      "type": "Stat",
+      "props": {
+        "label": "过滤",
+        "value": "8"
+      }
+    },
+    "src_link": {
+      "type": "Link",
+      "props": {
+        "label": "api.llama.fi/protocols",
+        "href": "https://api.llama.fi/protocols"
+      }
+    },
+    "src_breakdown": {
+      "type": "Text",
+      "props": {
+        "text": "新增 10 = 可报 2 + 过滤 8 · parent 4 / category 3 / 链白名单 1 · 差集双向干净 · CF 双取 HIT↔MISS 逐条相同（非假零）",
+        "variant": "body"
+      }
+    },
+    "src_ok": {
+      "type": "Badge",
+      "props": {
+        "text": "DEFILLAMA_RADAR_OK",
+        "variant": "success"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "filteredBlock": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "filter_head",
+        "filter_text1",
+        "filter_names",
+        "filter_text2"
+      ]
+    },
+    "filter_head": {
+      "type": "Heading",
+      "props": {
+        "text": "过滤 8 条",
+        "level": "h3"
+      }
+    },
+    "filter_text1": {
+      "type": "Text",
+      "props": {
+        "text": "6 条仍是 Hyperliquid Builder 的 Interface+空链模板：",
+        "variant": "body"
+      }
+    },
+    "filter_names": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "fn_coinbase",
+        "fn_pocket1",
+        "fn_pocket2",
+        "fn_pico1",
+        "fn_pico2",
+        "fn_perpslap"
+      ]
+    },
+    "fn_coinbase": {
+      "type": "Badge",
+      "props": {
+        "text": "Coinbase Wallet Perps",
+        "variant": "outline"
+      }
+    },
+    "fn_pocket1": {
+      "type": "Badge",
+      "props": {
+        "text": "Pocket Universe ×1",
+        "variant": "outline"
+      }
+    },
+    "fn_pocket2": {
+      "type": "Badge",
+      "props": {
+        "text": "Pocket Universe ×2",
+        "variant": "outline"
+      }
+    },
+    "fn_pico1": {
+      "type": "Badge",
+      "props": {
+        "text": "PicoSwap ×1",
+        "variant": "outline"
+      }
+    },
+    "fn_pico2": {
+      "type": "Badge",
+      "props": {
+        "text": "PicoSwap ×2",
+        "variant": "outline"
+      }
+    },
+    "fn_perpslap": {
+      "type": "Badge",
+      "props": {
+        "text": "PerpSlap",
+        "variant": "outline"
+      }
+    },
+    "filter_text2": {
+      "type": "Text",
+      "props": {
+        "text": "eRival 是 Polymarket Builder 同款模板首见；Aurove 被 Mezo（非白名单链）挡。",
+        "variant": "body"
+      }
+    }
+  }
+}

@@ -1,13 +1,15 @@
-**defillama-radar** · 第 28 轮 · 可报 **1**
+**defillama-radar** · 第 30 轮 · 可报 **2**
 
-**OwlSwap** — DEX 聚合器 + 自建集中流动性 AMM（未改动的 Uniswap V3 分叉）
+**NOUNY** · `Robinhood Chain` · TVL **$20.0** · AI Agents
+无代码交易 agent，面向加密资产与代币化股票；资金在只有本人钱包能提的托管金库里，另涉链上 USDG 发薪与 Robinhood Chain 上挂钩的 Uniswap v4 池。
+`id 9497` · `robinhood:0xCaeED5281bd1eEB26d5f8bd550Bf5C3727bA6514` · `symbol NOUNY` · oracles `Chainlink` · audits `0` · `listedAt 2026-11-23T18:55:57Z`
 
-- 白名单内链：`Binance` · `Robinhood Chain` · `Optimism`（完整 `chains` 另含白名单外的 `Polygon` / `Avalanche`）
-- TVL **$12.22**，且**全部落在 `Binance`**，其余四条链 `chainTvls` 均为 0
-- 类目 `Dexs` · symbol `OWL` · 地址 `bsc:0xa911a4d51c1a5e36a2bb2e0d676ad0f6672d9165`
-- `listedAt` **2026-11-22T21:11:09Z** · `url` 空 · `audits` 0 · `misrepresentedTokens` false
-- DefiLlama `id` **9492** · 不在 `memory/defillama-names.txt` 清单内
+**Bust** · `Solana` · TVL **$1,618.22** · Derivatives
+Solana 永续合约协议，最高 1000x 杠杆；对手方是 USDC 金库，净亏损方得 `xBUST`（代币化亏损返还）。
+`id 9502` · `solana:EoV9JQYi57tqjyQbWLdXVarYpEu82FsP8SDnkbFmpump` · `symbol BUST` · oracles `Pyth` · audits `0` · `listedAt 2026-11-24T17:27:20Z`
 
-**本轮读数**：全量 **9092** · 新增 id **4** · 可报 **1** · 过滤标记 **3**（`Ibex Market` Canton 衍生品 $10.0K、`Entry.fi Card` 与 `Another Card` 两条发卡方空链）· `STATUS: DEFILLAMA_RADAR_OK`
+> 两条 TVL 均 < $2K。铁律不设地板故照报，量级判断留第三层。
 
-来源：`https://api.llama.fi/protocols`
+**源** `api.llama.fi/protocols` · 全量 **9106**（+10）· 新增 10 = 可报 2 + 过滤 8 · `parent` 4 / `category` 3 / 链白名单 1 · 差集双向干净 · CF 双取 HIT↔MISS 逐条相同（非假零）· `DEFILLAMA_RADAR_OK`
+
+过滤 8 条里 6 条仍是 `Hyperliquid Builder` 的 `Interface`+空链模板（`Coinbase Wallet Perps` / `Pocket Universe` ×2 / `PicoSwap` ×2 / `PerpSlap`）；`eRival` 属 `Polymarket Builder` 同款模板（该标签自 baseline 轮即在库，本轮是第五次进入新增、五次全被挡）；`Aurove` 被 `Mezo`（非白名单链）挡。
