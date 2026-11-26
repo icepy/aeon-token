@@ -1,32 +1,53 @@
 [
  {
-  "id": "9502",
-  "name": "Bust",
-  "slug": "bust",
+  "id": "9514",
+  "name": "Theorem",
+  "slug": "theorem",
   "chains": [
-   "Solana"
+   "Ethereum"
   ],
-  "tvl": 1618.2163760796116,
-  "category": "Derivatives",
-  "listedAt": 1795541240,
+  "tvl": 46172.59660520744,
+  "category": "Dexs",
+  "listedAt": 1795631001,
   "url": "",
-  "description": "Bust is a Solana perpetuals protocol with up to 1000x leverage. Traders trade against a USDC vault and can ear",
+  "description": "Theorem is a decentralized exchange for tokenized real-world assets, providing NAV-aware liquidity pools, mark",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false
  },
  {
-  "id": "9497",
-  "name": "NOUNY",
-  "slug": "nouny",
+  "id": "9510",
+  "name": "Tapir",
+  "slug": "tapir",
   "chains": [
-   "Robinhood Chain"
+   "Base"
   ],
-  "tvl": 19.998,
-  "category": "AI Agents",
-  "listedAt": 1795460157,
+  "tvl": 45506.59803312587,
+  "category": "Derivatives",
+  "listedAt": 1795566842,
   "url": "",
-  "description": "No-code trading agents for crypto and tokenized stocks, run from a non-custodial vault only your wallet can wi",
+  "description": "Tapir is a depeg-protection marketplace for yield-bearing tokens. It splits a yield-bearing token into two tra",
+  "misrepresentedTokens": false,
+  "wrongLiquidity": null,
+  "in_names": false
+ },
+ {
+  "id": "9512",
+  "name": "QHooks",
+  "slug": "qhooks",
+  "chains": [
+   "Robinhood Chain",
+   "Solana",
+   "Base",
+   "Arbitrum",
+   "Binance",
+   "Ethereum"
+  ],
+  "tvl": 18138.326454088783,
+  "category": "Launchpad",
+  "listedAt": 1795600774,
+  "url": "",
+  "description": "An ecosystem for launching and trading tokens, built for people and AI agents alike: Uniswap v4 hook launches,",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false

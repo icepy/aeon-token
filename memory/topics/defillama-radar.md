@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-25T00:10:00Z
+timestamp: 2026-11-26T00:30:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,91 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-25 第 30 轮）
+## 本轮漏斗口径（11-26 第 31 轮）
+
+全量 **9115**（上轮 9106，**+9**）· 新增 id **9**（可报 **3** / 过滤 6）· `seen` 命中 9106 · `parent` **2** · `category` **0** · 链白名单 **4** · 无 id 0 · 重报 0 · 拉取失败 0 · `STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️。**报告级 3 → 已发通知、`9510`/`9512`/`9514` 标 `notified=2026-11-26`。** seen 写入 9117 条。
+
+### 可报 3 条：首次全部「自建适配器 + 真实 TVL」
+
+| id | 名称 | 链 | TVL | 类目 | `listedAt` | 适配器 |
+|---|---|---|---|---|---|---|
+| 9514 | `Theorem` | `Ethereum` | **$46,172.60** | Dexs | 11-25T18:23:21Z | `theorem/index.js` |
+| 9510 | `Tapir` | `Base` | **$45,506.60** | Derivatives | 11-25T00:34:02Z | `tapir/index.js` |
+| 9512 | `QHooks` | `Robinhood Chain` 为主（声明 8 链） | **$18,138.33** | Launchpad | 11-25T09:59:34Z | `qhooks/index.js` |
+
+- `Theorem`：代币化 RWA 的 DEX，NAV 感知池 + 做市商报价 + 合规交易（`theorem_markets`）。`chainTvls` 全落 Ethereum。名字在 DefiLlama 无同名/同 slug 冲突。
+- `Tapir`：把生息凭证拆成 `Depeg Protected`（脱锚有保护）+ `Yield Boosted`（先吃损失换更高收益）两份可交易债权，两份都保留 100% 底层收益。**audits 2**（Quantstamp + Hashlock），本轮唯一带审计链接的可报条目。
+- `QHooks`：Uniswap v4 hook 发行 + 交易终端 + agent 工具，面向人和 AI agent。**`gecko_id=qhooks`，近 7d 新增 41 条里唯一带 CoinGecko 映射的一条**；`robinhood:0x20429af7ca3b0ce4d99edbaa0693f26c5df05195`。
+
+三兄弟的共同点：模块都是真适配器（非 `dummy.js`）、`tvl` 均非空、均在本轮新增里 TVL 前四（第四是被挡的 `Curve Stellar`）。可报合计 **$109,817.52**。
+
+### `chains` 长度 = 声明广度，不是量的分布（`QHooks` 首次 8 链）
+
+`9512 QHooks` 的 `chains` 达到 8 条（`Robinhood Chain`/`Solana`/`Base`/`Arbitrum`/`Binance`/`Ethereum`/`Monad`/`Elysium Kinetiq`），是本 skill 记录过的历史最高。但 `chainTvls` 是：
+
+| 链 | TVL | 占总量 |
+|---|---|---|
+| `Robinhood Chain` | $18,107.21 | **99.83%** |
+| `Solana` | $29.61 | 0.16% |
+| `Elysium Kinetiq` | $1.51 | 0.01% |
+| `Base`/`Arbitrum`/`Binance`/`Ethereum`/`Monad` | **$0** | 0 |
+
+**判据：`chains` 是部署声明，`chainTvls` 才是量的分布；声明 8 条 ≠ 8 条都有量，也 ≠ 多链分摊。** 这是同一条判据的第三个方向 —— 11-08 `PeddleSwap V2/V3` 是「声明 2 条白名单链、量全在非白名单链」，11-25 `NOUNY` 是「声明 1 条、量真落在该链上」，本轮是「声明 8 条、量集中 1 条」。**报「多链新协议」前必须逐链读 `chainTvls`。**
+
+### 「可报集 TVL ≠ 新增体量」第六次，差额首次达到可报和的 13.7 倍
+
+被 `parent` 挡掉的 `9513 Curve Stellar` 单条 **$1,498,810.19**，是可报 3 条合计（$109,818）的 **13.7 倍**，也是本轮新增 TVL 最大的一条：`curve-stellar/index.js`、`chainTvls={'Stellar': 1498810.19}`、`url=stellar.curve.finance`、`parent=parent#curve-finance`。「Curve 铺一条新链」正是 `parentProtocol` 要挡的版本铺开形态，**过滤正确**（同时 `Stellar` 不在 `CHAINS`，全量 48 条，双帽）。
+
+### `PicoSwap` 第三次铺开：分次而非同秒，且三条全 `dummy.js`
+
+`9515 PicoSwap Aggregator`（`parent#picoswap`、`chains=[]`、`tvl=None`、`dummy.js`、`app.picoswap.xyz`）与 11-25 的 `9503 Perps` / `9504 Spot` 同一母协议，**三条全部 `dummy.js` + `tvl=None`** ⇒ 该母协议属「先占位、后接适配器」形态。
+
+**但本次三条相隔约 27.6h（99328s），不是同秒批量。** 与 11-08 `Jupiter` 四条（间隔 0s、同秒 ≥3）形态不同：**「同一 parent ⇒ 一条都不必细看」仍成立；但「同秒 ≥3」不成立，不能拿它归因。** 判据拆开用：`parent` 决定要不要看，`同秒` 只决定是不是批量录入指纹。
+
+### `category` 桶 0 且为真 0 · 链白名单 4 拆成 3+1
+
+9 条新增类目：`Payments`/`DEX Aggregator`×2/`RWA`/`Derivatives`/`Gamified Mining`/`Launchpad`/`Dexs`×2 —— **无一条属 `EXCL_CATEGORY`**。与 11-25「显示 3、实际因桶序读过 7 条」不同，本轮干净真 0。
+
+`链白名单=4` 拆开同 11-08 口径：
+
+| id | 名称 | `chains` | 性质 |
+|---|---|---|---|
+| 9509 | `Pylona` | `Sonic` | 非白名单（全量 186 条） |
+| 9507 | `Xyper Market` | `UNIT0` | 非白名单（全量仅 **5** 条，超小众，TVL 0） |
+| 9511 | `Eloscape` | `Elysium Kinetiq` | 非白名单（全量 25；主 TVL $3.66K，**staking $71,854 不进主 TVL**） |
+| 9508 | `HelmSwap` | `[]` | **空链**（+ `dummy.js`） |
+
+**`链白名单=4` 里只有 3 条真属「非白名单链」** —— `if not hit` 单条件双语义的老问题再现。
+
+### `chains=[]` 净增 +2，与新增内空链条数逐条对上
+
+9 条新增里真空链只有 **2 条**（`9508`/`9515`，均 `dummy.js` + `tvl=None`），其余 7 条都有链 ⇒ `chains=[]` **1678 → 1680，净增 +2**。
+
+**这是该判据首个可直接验算的干净样本，但也说明它不是「净增 = 新增总数」**：本轮新增 9 而空链只 +2。11-25 连续三轮对上，是因为那几轮新增恰好多是空链（10 条里 7 条）。**报这条必须同时给出「新增总数」与「新增内空链条数」，否则会被读成比例关系。**
+
+### 滚动窗与 Builder 标签：上轮的「7d 到两位数」被证明是窗口滑动
+
+| 指标 | 11-24 | 11-25 | **11-26** |
+|---|---|---|---|
+| `Hyperliquid Builder` 全量 | 234 | 240 | **240（+0）** |
+| 7d | 7 | **13** | **11** |
+| 30d | 22 | 28 | **28（+0）** |
+| 90d | 131 | 137 | **137（+0）** |
+
+**7d 13 → 11，30d 一格未动** ⇒ 上轮记的「+86% 是四轮来最大单周增速」应下调为**单日录入簇**：那两条已滑出 7d 窗。**判据强化：`Hyperliquid Builder` 的任何 7d 变动都须先查 30d 是否同步动；30d 不动 = 窗口滑动，不是新流。** 240/240 仍全 `Interface`、空链 239、`tvl` 非空 1。
+
+`Polymarket Builder` 同步回落：全量 25（+0）· 7d 1 · 30d **5**（上轮 6）· 90d 8 · 25/25 `Interface` + 空链。本轮无新增。
+
+滚动秒窗直方图 **`[9,9,4,5,3,6,5,4,11,5,5,15]`** → 7d **41**、30d **265**、90d **984**（上轮 36 / 277 / —）。**本轮 9 条新增全部落在 `d0`，是 30 轮里首次「新增全员 d0」**（最老 `9507 Xyper Market` 龄 23.9h）。`d11=15` 仍是 `2026-10-26` 单日 21 条批量、`d13=13` 是 `2026-10-28` 的 24 条 —— 与历史同源，不是新流。
+
+### 结构读数
+
+- `chains=[]` **1680/9115 = 18.43%**（上轮 1678/9106 = 18.43%，**占比逐位不变**）· `listedAt` 缺失 **1678** · **两者交集 980（58.4%）** —— `空链数 = listedAt 缺失数` 连续两轮数值相等，但交集不变 ⇒ **巧合不是等式，判据不变**。
+- `tvl=None` **2536**（上轮 2531，+5）· 同秒 ≥3 簇 **31（+0）** · 未来 `listedAt` **0**（连续第五轮）· 非数字 id 仍只有 `<5471>` · `max_id=9515` · 数字 id 9114 · ≥9000 缺口仍 4 个（`9135`/`9257`/`9382`/`9391`）。
+- 两个方向差集：`only_raw=[]` · **`only_seen=['4818','5496']`**（`4818` 第二十二轮、`5496` 第七轮下架残留，均 `first=2026-10-28 / baseline`）。
+- **CF 双取通过**：常规 `HIT`（etag `W/"6b07716c-942b1d"`、`last-modified 2026-11-25T23:38:20Z`、`age 23`），`?_cb=20261126a` + `no-cache` 取源站 `MISS`，**etag 与 last-modified 逐字符相同、9115 个 id 两向差集均空、逐条字段差异 0 条** ⇒ 本轮 9 条新增不是缓存假零。
+
+## 上一轮漏斗口径（11-25 第 30 轮）
 
 全量 **9106**（上轮 9096，**+10**）· 新增 id **10**（可报 **2** / 过滤 8）· `seen` 命中 9096 · `parent` **4** · `category` **3** · 链白名单 **1** · 无 id 0 · 拉取失败 0 · 重报 0 · `STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️。**报告级 2 → 已发通知、`9497`/`9502` 标 `notified=2026-11-25`。** seen 写入 9108 条。
 

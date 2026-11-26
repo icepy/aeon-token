@@ -1,17 +1,11 @@
 {
   "skill": "defillama-radar",
-  "last_analyzed": "2026-11-25T00:09:40Z",
+  "last_analyzed": "2026-11-26T00:04:58Z",
   "quality_score": 4,
-  "assessment": "Delivers the discovery job cleanly: two newly listed protocols with names and floor fields (id, chain, address, symbol, oracles, TVL, listedAt), plus source counts and filter accounting that make the result checkable; only minor deduction for routine scope rather than insight.",
+  "assessment": "Delivered its discovery job well: 3 new protocols with names, TVL, chain, category, adapter, slug/id, and source, plus blocked entries with reasons and a rigorous CF double-fetch/etag cache check; specific and plausibly sourced, though slightly exceeds the 'names + floor fields only, no judgment' scope with commentary and light editorializing.",
   "flags": [],
   "avg_score": 3.93,
   "history": [
-    {
-      "date": "2026-10-28",
-      "score": 4,
-      "ts": "2026-10-28T06:22:46Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-28",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-25",
       "score": 4,
       "ts": "2026-11-25T00:09:40Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-26",
+      "score": 4,
+      "ts": "2026-11-26T00:04:58Z",
       "harness": "claude"
     }
   ]

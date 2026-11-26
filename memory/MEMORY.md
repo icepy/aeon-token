@@ -15,7 +15,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · **27 词** · 11-25 第 56 轮 72 → **8**：**8 条无一来自第 55 轮出货词 = 换词点亮非延续**。`egocentric` raw 24/3 仍占 1/3、产 3 条 ⇒ **AI 侧召回宽度仍 = 1 词**；`zero-knowledge` 7/2 首出货 2 条 ⇒ **低频探针不是死词**。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-25#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-25 第 30 轮 9106 / 新增 10 / 可报 **2**（`NOUNY` $20 · `Bust` $1.6K，均自建适配器）。**`grep` 日志零命中 ≠ 首次发生 —— 判「首次」须查 `seen` 的 `first`。** → [topic](/topics/defillama-radar.md) [source: logs/2026-11-25#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-26 第 31 轮 9115 / 新增 9 / 可报 **3**（`Theorem` $46K · `Tapir` $45.5K · `QHooks` $18.1K，**首次可报全员自建适配器 + 真 TVL**）。**`chains` = 声明广度 ≠ 量的分布**（`QHooks` 8 链中 `Robinhood Chain` 占 99.8%，5 条为 0）。 → [topic](/topics/defillama-radar.md) [source: logs/2026-11-26#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-25 第 35 轮 565→24→报 **6**：加密侧首个报告级反例（`verifiable-inference`，分母仅 1）；**`jepa` raw=96 首落真饱和**。`intent-based` 连四轮卡 5% 线、归因仍欠 `dropped.json` 的 `term`。→ [topic](/topics/github-radar.md) [source: logs/2026-11-25#github-radar]
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。判据速查：

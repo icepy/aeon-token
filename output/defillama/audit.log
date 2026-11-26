@@ -1,8 +1,9 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=9096 · parent=4 · category=3 · 链白名单=1 · 拉取失败=0
-全量 9106 · 新增 id 10（可报 2 / 过滤标记 8）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=9106 · parent=2 · category=0 · 链白名单=4 · 拉取失败=0
+全量 9115 · 新增 id 9（可报 3 / 过滤标记 6）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1910 · Base=933 · Solana=478 · Arbitrum=1057 · Ink=34 · Binance=1161 · BSC=0 · Optimism=395 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=328
-单侧读数: 加密侧 2 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  Bust · Solana · tvl=1618.2163760796116 · Derivatives · 1795541240
-  NOUNY · Robinhood Chain · tvl=19.998 · AI Agents · 1795460157
+链命中: Ethereum=1913 · Base=935 · Solana=479 · Arbitrum=1058 · Ink=34 · Binance=1162 · BSC=0 · Optimism=395 · OP Mainnet=0 · Hyperliquid L1=217 · Robinhood Chain=330
+单侧读数: 加密侧 3 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+  Theorem · Ethereum · tvl=46172.59660520744 · Dexs · 1795631001
+  Tapir · Base · tvl=45506.59803312587 · Derivatives · 1795566842
+  QHooks · Robinhood Chain/Solana/Base/Arbitrum/Binance/Ethereum · tvl=18138.326454088783 · Launchpad · 1795600774

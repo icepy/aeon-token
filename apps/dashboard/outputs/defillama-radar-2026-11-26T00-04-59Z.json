@@ -1,0 +1,508 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "defillama-radar · 第 31 轮",
+        "description": "全量 9115 · 新增 9 · 可报 3"
+      },
+      "children": [
+        "stats",
+        "alertIntro",
+        "sep1",
+        "p1",
+        "sep2",
+        "p2",
+        "sep3",
+        "p3",
+        "sep4",
+        "blocked",
+        "sep5",
+        "readings"
+      ]
+    },
+    "stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "s1": {
+      "type": "Stat",
+      "props": {
+        "label": "全量",
+        "value": "9115"
+      }
+    },
+    "s2": {
+      "type": "Stat",
+      "props": {
+        "label": "新增",
+        "value": "9"
+      }
+    },
+    "s3": {
+      "type": "Stat",
+      "props": {
+        "label": "可报",
+        "value": "3"
+      }
+    },
+    "alertIntro": {
+      "type": "Alert",
+      "props": {
+        "type": "info",
+        "message": "三条都是自建适配器（非 dummy.js 空壳），且都带真实 TVL -- 这是 30 轮里第一次可报集全部满足「有适配器 + 有量」。"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "p1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "p1h",
+        "p1stat",
+        "p1badges",
+        "p1desc",
+        "p1chain",
+        "p1adapter",
+        "p1slug",
+        "p1src",
+        "p1note"
+      ]
+    },
+    "p1h": {
+      "type": "Heading",
+      "props": {
+        "text": "1. Theorem · Ethereum · Dexs",
+        "level": "h2"
+      }
+    },
+    "p1stat": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$46,173"
+      }
+    },
+    "p1badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b1a",
+        "b1b",
+        "b1c"
+      ]
+    },
+    "b1a": {
+      "type": "Badge",
+      "props": {
+        "text": "Ethereum 单链",
+        "variant": "default"
+      }
+    },
+    "b1b": {
+      "type": "Badge",
+      "props": {
+        "text": "audits 0",
+        "variant": "secondary"
+      }
+    },
+    "b1c": {
+      "type": "Badge",
+      "props": {
+        "text": "约 5.7h · 本轮最新可报",
+        "variant": "outline"
+      }
+    },
+    "p1desc": {
+      "type": "Text",
+      "props": {
+        "text": "一句话：代币化 RWA 的 DEX，做 NAV 感知的流动性池 + 做市商报价 + 合规交易（theorem_markets）。",
+        "variant": "body"
+      }
+    },
+    "p1chain": {
+      "type": "Text",
+      "props": {
+        "text": "链：Ethereum 单链，chainTvls 全部落在 Ethereum，无跨链摊薄。",
+        "variant": "body"
+      }
+    },
+    "p1adapter": {
+      "type": "Text",
+      "props": {
+        "text": "适配器 theorem/index.js · audits 0 · listedAt 2026-11-25T18:23:21Z（约 5.7h，本轮最新可报）",
+        "variant": "body"
+      }
+    },
+    "p1slug": {
+      "type": "Text",
+      "props": {
+        "text": "slug theorem · id 9514",
+        "variant": "muted"
+      }
+    },
+    "p1src": {
+      "type": "Link",
+      "props": {
+        "label": "原始来源：https://api.llama.fi/protocols",
+        "href": "https://api.llama.fi/protocols"
+      }
+    },
+    "p1note": {
+      "type": "Text",
+      "props": {
+        "text": "备注：Theorem 这个名字在 DefiLlama 里只此一条（无同名/同 slug 冲突）。",
+        "variant": "caption"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "p2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "p2h",
+        "p2stat",
+        "p2badges",
+        "p2desc",
+        "p2chain",
+        "p2adapter",
+        "p2src"
+      ]
+    },
+    "p2h": {
+      "type": "Heading",
+      "props": {
+        "text": "2. Tapir · Base · Derivatives",
+        "level": "h2"
+      }
+    },
+    "p2stat": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$45,507"
+      }
+    },
+    "p2badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b2a",
+        "b2b",
+        "b2c"
+      ]
+    },
+    "b2a": {
+      "type": "Badge",
+      "props": {
+        "text": "Base 单链",
+        "variant": "default"
+      }
+    },
+    "b2b": {
+      "type": "Badge",
+      "props": {
+        "text": "audits 2",
+        "variant": "secondary"
+      }
+    },
+    "b2c": {
+      "type": "Badge",
+      "props": {
+        "text": "约 23.5h",
+        "variant": "outline"
+      }
+    },
+    "p2desc": {
+      "type": "Text",
+      "props": {
+        "text": "一句话：生息资产的「脱锚保险」市场，把一个生息凭证拆成两份可交易债权 -- Depeg Protected（脱锚有保护）与 Yield Boosted（先吃损失换更高收益），两份都保留 100% 底层收益。",
+        "variant": "body"
+      }
+    },
+    "p2chain": {
+      "type": "Text",
+      "props": {
+        "text": "链：Base 单链 · 适配器 tapir/index.js · audits 2（Quantstamp + Hashlock，本轮唯一有审计链接的可报条目）",
+        "variant": "body"
+      }
+    },
+    "p2adapter": {
+      "type": "Text",
+      "props": {
+        "text": "listedAt 2026-11-25T00:34:02Z（约 23.5h）· slug tapir · id 9510 · twitter Tapir_Protocol",
+        "variant": "muted"
+      }
+    },
+    "p2src": {
+      "type": "Link",
+      "props": {
+        "label": "原始来源：https://api.llama.fi/protocols",
+        "href": "https://api.llama.fi/protocols"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "p3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "p3h",
+        "p3stat",
+        "p3badges",
+        "p3desc",
+        "p3chain",
+        "p3adapter",
+        "p3addr",
+        "p3src"
+      ]
+    },
+    "p3h": {
+      "type": "Heading",
+      "props": {
+        "text": "3. QHooks · Robinhood Chain 为主 · Launchpad",
+        "level": "h2"
+      }
+    },
+    "p3stat": {
+      "type": "Stat",
+      "props": {
+        "label": "TVL",
+        "value": "$18,138"
+      }
+    },
+    "p3badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "b3a",
+        "b3b",
+        "b3c",
+        "b3d"
+      ]
+    },
+    "b3a": {
+      "type": "Badge",
+      "props": {
+        "text": "声明 8 链",
+        "variant": "default"
+      }
+    },
+    "b3b": {
+      "type": "Badge",
+      "props": {
+        "text": "Robinhood Chain 99.8%",
+        "variant": "secondary"
+      }
+    },
+    "b3c": {
+      "type": "Badge",
+      "props": {
+        "text": "audits 0",
+        "variant": "secondary"
+      }
+    },
+    "b3d": {
+      "type": "Badge",
+      "props": {
+        "text": "约 14.0h",
+        "variant": "outline"
+      }
+    },
+    "p3desc": {
+      "type": "Text",
+      "props": {
+        "text": "一句话：面向人和 AI agent 的代币发行/交易生态 -- Uniswap v4 hook 发行、交易终端、agent 工具。",
+        "variant": "body"
+      }
+    },
+    "p3chain": {
+      "type": "Text",
+      "props": {
+        "text": "链：声明 8 条（Robinhood Chain / Solana / Base / Arbitrum / Binance / Ethereum / Monad / Elysium Kinetiq），但量几乎全在 Robinhood Chain（$18,107，99.8%），Solana 仅 $29.6、Elysium Kinetiq $1.5，其余 5 条 = 0。",
+        "variant": "body"
+      }
+    },
+    "p3adapter": {
+      "type": "Text",
+      "props": {
+        "text": "适配器 qhooks/index.js · audits 0 · listedAt 2026-11-25T09:59:34Z（约 14.0h）· id 9512",
+        "variant": "body"
+      }
+    },
+    "p3addr": {
+      "type": "Text",
+      "props": {
+        "text": "地址：robinhood:0x20429af7ca3b0ce4d99edbaa0693f26c5df05195 · gecko_id: qhooks（近 7d 新增 41 条里唯一带 CoinGecko 映射的一条）· twitter qHooks_",
+        "variant": "muted"
+      }
+    },
+    "p3src": {
+      "type": "Link",
+      "props": {
+        "label": "原始来源：https://api.llama.fi/protocols",
+        "href": "https://api.llama.fi/protocols"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "blocked": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "bh",
+        "bnote",
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "bh": {
+      "type": "Heading",
+      "props": {
+        "text": "被挡的 6 条（不进报告，只留痕）",
+        "level": "h3"
+      }
+    },
+    "bnote": {
+      "type": "Text",
+      "props": {
+        "text": "以下 6 条本轮被规则挡下，不进入可报集。",
+        "variant": "muted"
+      }
+    },
+    "b1": {
+      "type": "Text",
+      "props": {
+        "text": "9513 Curve Stellar（Dexs · TVL $1.50M，本轮新增里最大）→ parent#curve-finance",
+        "variant": "body"
+      }
+    },
+    "b2": {
+      "type": "Text",
+      "props": {
+        "text": "9515 PicoSwap Aggregator → parent#picoswap（与 11-25 的 Perps/Spot 同一母协议第三次铺开）+ 空链 + dummy.js",
+        "variant": "body"
+      }
+    },
+    "b3": {
+      "type": "Text",
+      "props": {
+        "text": "9511 Eloscape（Elysium Kinetiq，非白名单链；staking $71.9K 但主 TVL 仅 $3.66K）",
+        "variant": "body"
+      }
+    },
+    "b4": {
+      "type": "Text",
+      "props": {
+        "text": "9509 Pylona（Sonic，非白名单）· 9507 Xyper Market（UNIT0，非白名单，TVL 0）· 9508 HelmSwap（空链 + dummy.js）",
+        "variant": "body"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "readings": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "rh",
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "rh": {
+      "type": "Heading",
+      "props": {
+        "text": "本轮读数",
+        "level": "h3"
+      }
+    },
+    "r1": {
+      "type": "Text",
+      "props": {
+        "text": "丢弃：parent 2 · category 0 · 链白名单 4 · seen 9106 · 无 id 0 · 拉取失败 0",
+        "variant": "body"
+      }
+    },
+    "r2": {
+      "type": "Text",
+      "props": {
+        "text": "STATUS: DEFILLAMA_RADAR_OK · 基线轮 False · 无 degraded、无 ⚠️",
+        "variant": "body"
+      }
+    },
+    "r3": {
+      "type": "Text",
+      "props": {
+        "text": "seen 写入 9117 条 · 双向差集 only_raw=[] / only_seen=['4818','5496']（均为历史下架残留）",
+        "variant": "body"
+      }
+    },
+    "r4": {
+      "type": "Text",
+      "props": {
+        "text": "CF 双取通过：常规取 HIT（etag W/\"6b07716c-942b1d\"，last-modified 2026-11-25T23:38:20Z），?_cb=20261126a + no-cache 取源站 MISS，etag 与 last-modified 逐字符相同、9115 个 id 两向差集均空、逐条字段差异 0 条 ⇒ 本轮 9 条新增不是缓存假零。",
+        "variant": "body"
+      }
+    }
+  }
+}
