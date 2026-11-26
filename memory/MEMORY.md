@@ -14,7 +14,7 @@
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · **27 词** · 11-25 第 57 轮 80 → **8**：`egocentric`×3 同词同数 = **延续非换词**（第 56 轮判据不可外推），raw 27/3 占 1/3 ⇒ **召回宽度仍 = 1 词**；`verifiable training` 指 RL reward = 同词不同义；`restaking` 沉寂词首开火。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-25#arxiv-radar]
+- `arxiv-radar` ✅ 07:30 · **27 词** · 11-26 第 58 轮 84 → **7**：`egocentric` raw 24 新收 **0**（首次吃干），7 条改由 `robot data`/`hand-object`/`latent dynamics` 带出 ⇒ 「召回宽度=1 词」风险兑现；`verifiable inference` 低频开火；`?` 占 0。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-26#arxiv-radar]
 - `defillama-radar` ✅ `dl-v1` · 11-26 第 31 轮 9115 / 新增 9 / 可报 **3**（`Theorem` $46.2K · `Tapir` $45.5K · `QHooks` $18.1K，**首次全员自建适配器 + 真 TVL**）。**`chains` = 声明广度 ≠ 量分布**（`QHooks` 8 链中 `Robinhood Chain` 占 99.8%）。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-26#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-25 第 36 轮（默认 30d 窗）2091 → 43 → 报 **16**：**新高是流量副产品（原始 +50% / 报告级 +14%，转化率 1.01%→0.77%）**；`carrier` 误杀对照首拉开 **48% vs 88%**；`jepa` 7d 饱和、30d 有新增 = 窗口效应。→ [topic](/topics/github-radar.md) [source: logs/2026-11-25#github-radar]
 ## Lessons Learned

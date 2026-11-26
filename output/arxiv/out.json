@@ -1,107 +1,94 @@
 [
  {
-  "id": "2611.31821",
-  "term": "verifiable training",
+  "id": "2611.33741",
+  "term": "verifiable inference",
   "terms": [
-   "verifiable training"
+   "verifiable inference"
   ],
   "window": 30,
-  "name": "",
-  "title": "Exploring Multi-Player Social Games as Verifiable Training Grounds for Large Language Models",
-  "published": "2026-11-24",
-  "link": "https://arxiv.org/abs/2611.31821",
-  "carrier": "round"
+  "name": "LLM",
+  "title": "FlashProve-Next: Verifiable Inference for Production LLM APIs",
+  "published": "2026-11-25",
+  "link": "https://arxiv.org/abs/2611.33741",
+  "carrier": "production"
  },
  {
-  "id": "2611.32239",
-  "term": "zero-knowledge",
+  "id": "2611.34534",
+  "term": "ti:\"consensus\" AND cat:cs.DC",
   "terms": [
-   "zero-knowledge"
+   "ti:\"consensus\" AND cat:cs.DC"
   ],
   "window": 30,
   "name": "",
-  "title": "Improving Quantum Oblivious Transfer using Zero-Knowledge Proofs",
-  "published": "2026-11-24",
-  "link": "https://arxiv.org/abs/2611.32239",
+  "title": "DéjàVu: Plurality Consensus by First Repetition",
+  "published": "2026-11-25",
+  "link": "https://arxiv.org/abs/2611.34534",
   "carrier": "protocol"
  },
  {
-  "id": "2611.31700",
-  "term": "restaking",
+  "id": "2611.34671",
+  "term": "robot data",
   "terms": [
-   "restaking"
+   "robot data"
   ],
   "window": 30,
-  "name": "",
-  "title": "Collateral Architecture and Correlated Slashing in Liquid Restaking",
-  "published": "2026-11-23",
-  "link": "https://arxiv.org/abs/2611.31700",
-  "carrier": "protocol"
- },
- {
-  "id": "2611.33054",
-  "term": "embodied AI",
-  "terms": [
-   "embodied AI"
-  ],
-  "window": 30,
-  "name": "EmbodiSafety",
-  "title": "EmbodiSafety: Benchmarking Risk Understanding and Response in Embodied AI",
-  "published": "2026-11-24",
-  "link": "https://arxiv.org/abs/2611.33054",
-  "carrier": "embodied"
- },
- {
-  "id": "2611.33010",
-  "term": "embodied AI",
-  "terms": [
-   "embodied AI"
-  ],
-  "window": 30,
-  "name": "",
-  "title": "Embodied AI Fails the Mirror Test: How a Simple Mirror Breaks Robot Policies",
-  "published": "2026-11-24",
-  "link": "https://arxiv.org/abs/2611.33010",
-  "carrier": "robotic"
- },
- {
-  "id": "2611.32260",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
-  "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO",
-   "ti:\"hand-object\" AND cat:cs.RO"
-  ],
-  "window": 30,
-  "name": "EgoLoAF",
-  "title": "EgoLoAF: Learning Humanoid Loco-Manipulation from Egocentric Demonstrations with Hand-Object Affordances",
-  "published": "2026-11-24",
-  "link": "https://arxiv.org/abs/2611.32260",
+  "name": "DemoFoundry",
+  "title": "DemoFoundry: Toward Scalable Photorealistic Robot Data with Coding Agents and Generative Rendering",
+  "published": "2026-11-25",
+  "link": "https://arxiv.org/abs/2611.34671",
   "carrier": "robot"
  },
  {
-  "id": "2611.32101",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "id": "2611.33579",
+  "term": "robot data",
   "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
+   "robot data",
+   "ti:\"human demonstration\" AND cat:cs.RO"
   ],
   "window": 30,
-  "name": "Ego2Real",
-  "title": "Ego2Real: Learning Bimanual Dexterous Manipulation from Egocentric Visuo-Tactile Demonstrations",
-  "published": "2026-11-24",
-  "link": "https://arxiv.org/abs/2611.32101",
+  "name": "DexEngine",
+  "title": "DexEngine: Scaling Human Demonstrations into Physically Executable Whole-Robot Data",
+  "published": "2026-11-25",
+  "link": "https://arxiv.org/abs/2611.33579",
   "carrier": "robotic"
  },
  {
-  "id": "2611.32098",
-  "term": "ti:\"egocentric\" AND cat:cs.RO",
+  "id": "2611.33765",
+  "term": "embodied AI",
   "terms": [
-   "ti:\"egocentric\" AND cat:cs.RO"
+   "embodied AI"
   ],
   "window": 30,
-  "name": "ActiveBridge",
-  "title": "ActiveBridge: Scaling Active Prior for Robots through Egocentric Perception-Interaction Modeling",
-  "published": "2026-11-24",
-  "link": "https://arxiv.org/abs/2611.32098",
-  "carrier": "robotic"
+  "name": "EMMA",
+  "title": "EMMA: Efficient and Effective Cooperative Multi-Modal Analytics over Embodied AI Data",
+  "published": "2026-11-25",
+  "link": "https://arxiv.org/abs/2611.33765",
+  "carrier": "robot"
+ },
+ {
+  "id": "2611.34936",
+  "term": "ti:\"hand-object\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"hand-object\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "DexLink",
+  "title": "DexLink: Synthesizing Dexterous Behaviors from Chained Hand-object Poses",
+  "published": "2026-11-25",
+  "link": "https://arxiv.org/abs/2611.34936",
+  "carrier": "manipulation"
+ },
+ {
+  "id": "2611.34302",
+  "term": "ti:\"latent dynamics\" AND cat:cs.RO",
+  "terms": [
+   "ti:\"latent dynamics\" AND cat:cs.RO"
+  ],
+  "window": 30,
+  "name": "",
+  "title": "Co-World Model for Human-Video-to-Robot Transfer via Co-Constructed Shared Latent Dynamics",
+  "published": "2026-11-25",
+  "link": "https://arxiv.org/abs/2611.34302",
+  "carrier": "round"
  }
 ]
