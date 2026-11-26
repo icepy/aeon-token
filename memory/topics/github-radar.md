@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-25T18:20:00Z
+timestamp: 2026-11-26T18:20:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,23 @@ timestamp: 2026-11-25T18:20:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第三十六轮（2026-11-25 22:35Z，默认 30 天窗）—— 2091/43/16；报告级新高是流量副产品；carrier 首次拉开判别力
+
+`var=''`（cron 不注入 `var`）→ 默认 30 天窗 · `gh-v3` · 18 词 × 二分至一页（单窗 12 / 需拆窗 6 · 二分 2 次 · 搜索调用 **43**）· `min:0` · 核验门槛 5 · 耗时 搜索 121s / 核验 5s / 总 161s。漏斗：原始 **2091** → 幸存 **43** → 报告级 **16**（近 7 天活跃 15）· 核验 43/43 = 100%（全量）· 黑名单 3 owner。丢弃：`seen=1006` / `excl=123` / `archived=0` / `short_desc=361` / `carrier=428` / `neg=54` / `pages=74` / `pages_root=2` / `scaffold=0` / `farm=0` / `fail=0`。四分类（分开写）：查询失败 **0** · 真零 **1**（`robotics data engine`，total=0）· 全已见(饱和) **6** · 有新增 **11**。
+
+- **判据级 ①：报告级 16 是新高，但分母同时膨胀 3.7 倍 —— 转化率在降。** 第 34 轮同为 30 天窗时报告级 14 / 原始 1392；本轮 16 / 2091 ⇒ **报告级 +14%、原始 +50% ⇒ 转化率 1.01% → 0.77%**。**报告级新高是流量变大的副产品，不是信号变密。** 且 30 天窗转化率（0.77%）与 7 天窗（第 35 轮 565→24→6 = 1.06%）同量级 ⇒ **窗口只改绝对量、不改信噪比**，印证「窗口是流量旋钮不是语义轴」。
+- **判据级 ②：`verifiable inference` 连三轮出货，是加密侧唯一点亮的词 —— 但仍是验证层不是 DeFi。** 第 34 轮 raw=1/新增 1 → 第 35 轮 1/1 → 本轮 **8/3/5**（raw 8 / 饱和 3 / 新增 5），两条报告级来自它（`zoan37/llm-verification` ★3 · 30d≥100 · 7d=26；`s-JoL/FlashProve-Next` 8/6），两条都在做「验证 API 背后是哪个模型」/ ZK 推理证明。**DeFi 四词本轮仍全空或近空：`data availability` 67/0/4 · `restaking` 7/0/7 · `maximal extractable value` 2/0/1 · `intent-based` 49/1/3。**
+- **判据级 ③：`carrier` 误杀对照首次出现判别力（48% vs 88%）—— 只在长窗可读，前四轮 7d 窗两侧恒 100%。** 丢弃侧仓名自带词表词的 147 个里近 7 天存活 **70/147 = 48%**，幸存者对照 **38/43 = 88%**，**拉开 40pp** ⇒ `carrier` 规则在 30 天窗里确在丢掉一批真在写的仓。**但 `dropped.json` 仍无 `term` 字段，归因做不了（连第五轮欠账），且 48% 只说明「有活仓被丢」，不说明该放多宽 —— 不放宽。**
+- **判据级 ④：`jepa` 从饱和反弹，反证「同窗口连跑读饱和」的边界。** 第 35 轮（7d）raw=96 / 新增 0 = 真饱和；本轮（30d）**351/4/164**，新收 4，含 `hongyiD/lingbot-vla-v2-jepa`（33/14）。**7 天窗饱和、30 天窗有新增 ⇒ 饱和是窗口效应不是词死了。**
+- **词分布：** 全部 AI/机器人侧，除 `verifiable inference` 2 条。`world model` 3 · `robot manipulation` 3 · `teleoperation` 3 · `sim2real`/`sim-to-real` 3 · `jepa` 1 · `egocentric` 2 · `world action model` 0 · `vision language action` 0。加密侧仍 0（DeFi 语义）。
+- **★ 分布：报告级 ★0×11 · ★1×3 · ★3×1 · ★8×1**（`iPPLab/robodojo-mirror`，学术 lab 基准）。**★ 上界 8，是 30 天窗以来的常态** —— 这一支只有 commits 有判别力，star 继续不参与排序。
+- **`pages=74 + pages_root=2 = 76 / 2091 = 3.6%`，创记录**（第 34 轮 32/1392 = 2.3%）。`reward-grana.github.io` 单仓 522MB、`value-sim2real.github.io` 264MB ⇒ **体量不是判据，后缀才是。**
+- **异常：** 无 `language` 7（其中 **2 条进了报告级**：`andyjiang1116/OpenEmbodied` 是「structured research atlas」= 清单仓非代码仓；`IRMVLab/MemHand` 学术项目页）· 空/短 desc 靠 topics 放行 3 · 新后缀 `-web/_web` 命中 1（`AndyZH090/RoboTutor-Web`）· 限速 0 · 未认证 0 · capped 0 · 爆完即停 5。
+- **可疑命中（记形态，不改规则）：** `Redaelm47/clash-royale-reinforcement-learning` 以 `sim-to-real` 入表 —— 皇室战争 bot，desc 里 "sim-to-real" 指「模拟器训练→真人对局」，不是机器人 sim2real，**首个跨域同名误判样本**。`sjh030619-boop/furuta-pendulum-rl`（★0 · 5/5）学生级单摆项目，篇幅小但机制词真。
+- **probe 跳过**（距上次 1 天 < 7 天，下次到期 12-01）；`clusters.json` 未重写，仍是第 35 轮结果，不可引用。
+
+[source: logs/2026-11-25#github-radar（第 36 轮）]
 
 ## 第三十五轮（2026-11-25，手动 `days:7` 窗）—— 565/24/6；加密侧首个报告级反例；`jepa` 转真饱和
 
