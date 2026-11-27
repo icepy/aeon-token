@@ -1,0 +1,199 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "🚨 心跳：defi-overview 连挂 2 次",
+        "description": "STATUS_PAGE=DEGRADED"
+      },
+      "children": [
+        "badge-status",
+        "alert-failed",
+        "text-signature",
+        "separator-1",
+        "heading-others",
+        "table-normal",
+        "separator-2",
+        "heading-checks",
+        "stack-checks",
+        "separator-3",
+        "heading-coverage",
+        "stat-coverage",
+        "progress-coverage",
+        "separator-4",
+        "text-status",
+        "text-source"
+      ]
+    },
+    "badge-status": {
+      "type": "Badge",
+      "props": {
+        "text": "🔴 failed · defi-overview",
+        "variant": "destructive"
+      }
+    },
+    "alert-failed": {
+      "type": "Alert",
+      "props": {
+        "title": "defi-overview 连续 2 次失败",
+        "message": "11-26 23:31 timeout → 23:54 `403 All target providers failed`，连续失败 cf=2，最后成功停在 11-25 23:10。",
+        "type": "error"
+      }
+    },
+    "text-signature": {
+      "type": "Text",
+      "props": {
+        "text": "两种不同签名，不是同一抖动。00:15 的第三次重试仍在跑。403 与 10 月那次三技能全线挂掉的签名相同，值得盯。",
+        "variant": "body"
+      }
+    },
+    "separator-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-others": {
+      "type": "Heading",
+      "props": {
+        "text": "其余全部正常",
+        "level": "h3"
+      }
+    },
+    "table-normal": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Skill",
+          "时间",
+          "状态"
+        ],
+        "rows": [
+          [
+            "defillama-radar",
+            "00:05",
+            "✅ 第 32 轮"
+          ],
+          [
+            "github-radar",
+            "22:37",
+            "✅"
+          ],
+          [
+            "arxiv-radar",
+            "22:06",
+            "✅"
+          ],
+          [
+            "memory-flush",
+            "18:05",
+            "✅"
+          ],
+          [
+            "narrative-brief",
+            "10:09",
+            "✅"
+          ]
+        ]
+      }
+    },
+    "separator-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-checks": {
+      "type": "Heading",
+      "props": {
+        "text": "检查项",
+        "level": "h3"
+      }
+    },
+    "stack-checks": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "text-pr",
+        "text-issues",
+        "text-p2p3"
+      ]
+    },
+    "text-pr": {
+      "type": "Text",
+      "props": {
+        "text": "PR 队列空（`gh pr list` = `[]`）",
+        "variant": "body"
+      }
+    },
+    "text-issues": {
+      "type": "Text",
+      "props": {
+        "text": "9 条 GitHub issue 全是无标签 health 线程，无 urgent/critical",
+        "variant": "body"
+      }
+    },
+    "text-p2p3": {
+      "type": "Text",
+      "props": {
+        "text": "P2 memory 无 flag · P3 无缺失 skill",
+        "variant": "body"
+      }
+    },
+    "separator-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading-coverage": {
+      "type": "Heading",
+      "props": {
+        "text": "defi-overview 覆盖率",
+        "level": "h3"
+      }
+    },
+    "stat-coverage": {
+      "type": "Stat",
+      "props": {
+        "label": "defi-overview（27/51）",
+        "value": "53%",
+        "delta": "仍在 50% 慢性线之上",
+        "trend": "neutral"
+      }
+    },
+    "progress-coverage": {
+      "type": "Progress",
+      "props": {
+        "value": 53,
+        "max": 100,
+        "label": "defi-overview 27/51 = 53%"
+      }
+    },
+    "separator-4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "text-status": {
+      "type": "Text",
+      "props": {
+        "text": "STATUS_PAGE=DEGRADED",
+        "variant": "body"
+      }
+    },
+    "text-source": {
+      "type": "Text",
+      "props": {
+        "text": "来源：`memory/cron-state.json` + run 45908315764 / 45912835088 日志",
+        "variant": "muted"
+      }
+    }
+  }
+}
