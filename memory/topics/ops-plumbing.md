@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-25T18:20:00Z
+timestamp: 2026-11-27T18:30:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -580,6 +580,24 @@ PR #28 opened at `f94f39e`, `pending_conflicts` 6 (the 5 doc files plus the long
 `AGENTS.md` was deleted-in-worktree before the run — pre-existing drift, not this skill's output.
 The clone is `--depth=1` (`.git/shallow`), so all history judgements route through `gh api compare`.
 [source: logs/2026-11-23#aeon-update]
+
+## Update (11-27): two consecutive `defi-overview` failures under **two different** signatures
+
+11-26 23:00Z 那轮 23:31 报 `hivemindos: timeout`；23:45 的重试 23:54 报 `403 All target providers failed`
+（`num_turns: 11`、`duration_ms: 485852`、`api_error_status: 403`、`terminal_reason: api_error`、
+`permission_denials: []`）。**`num_turns: 11` + 有 tool calls + 无权限拒绝 ⇒ 不是 skill 自身回归**，是网关层；
+`consecutive_failures` 2、`last_success` 停在 11-25T23:10Z。00:15 dispatch 的第三轮 `in_progress`。
+
+**判据（本轮新样本）：同一 skill 连续失败可以出自不同签名 —— `timeout` 属网络层、`403` 属鉴权/路由层，
+因此不能用「签名相同」当「根因相同」的前提，也不能反过来用签名不同就断定根因不同。** 真正可用的对照是
+**跨 skill**：`hivemindos 403` 同时打挂 `price-alert` / `onchain-monitor` / `token-movers`（10-25）才是
+「共享依赖」的正样本。这与 11-15 记的「code 自己会 flap（`402`→`402`→`max_output_tokens`→`403`）」同源：
+**单看一个 code 永远不能指认原因，只能看去没去网关（`duration_api_ms:0` + `num_turns:1` = 没出门）。**
+
+`STATUS_PAGE` 因此升到 `DEGRADED`（`defi-overview` 行 ❌，注明 retry in flight），已发 `--severity critical`
+通知。同轮 `27/51 = 53%`，cf≥3 与 `success_rate<0.5` 两条 🔴 判据均未触发 —— **状态页颜色由「本轮有 P0 flag」
+决定，与成功率是否脱线无关，两者分开记。** 另：P1 队列 `[]` 连续第二轮空，9 条 GitHub open issue 全无标签。
+[source: logs/2026-11-27#heartbeat]
 
 ## Update (11-25): PR #28 merged 04:13Z — the stalled-PR flag cleared itself
 

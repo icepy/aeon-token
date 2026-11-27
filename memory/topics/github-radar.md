@@ -1,9 +1,9 @@
 ---
 title: github-radar — 实现缺陷与判据
-description: github-radar 三十三轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率九轮同向（35–36% vs 94–100%）但仅在长窗可读（7d 恒 100%）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」—— teleoperation 第 32/33 轮连两轮居首但质量最差**、**raw=1/seen=0 连三轮 = 靶子稳定，不等于词表无效**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**7 天窗下 `30天=`≡`7天=`（12/12）→ 两栏退化为「仓龄」，测「爆完即停」须看首末提交日间隔 —— 但第 26 轮（11-14）打破了它：25 条里 6 条不等，证明它一直是「候选仓龄全 <30 天」的样本属性，不是窗口定律**、**第 27 轮（11-15）9 条里 8 条成立 → 继续当样本条件读；`★2 + 无 language + 根目录无代码骨架` = 「先占坑」仓，页形态判定应并入规则**）
+description: github-radar 三十七轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率十轮同向（35–48% vs 88–100%）但仅在长窗可读（7d 恒 100%），且 `carrier` 是「词-仓对」计数不是唯一仓数 —— 同一仓可一处被丢一处放行**、**报告级新高可能只是分母膨胀（第 36 轮）也可能不是（第 37 轮 raw +0.9% 而转化率回升）⇒ 单轮不可外推**、**宽词守门、窄词出货：`world action model` 报告级/raw 4.9% vs `world model` 0.41% = 12 倍**、**加密侧在写代码这级比写论文衰减更快（成熟度阶梯倒挂）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**`30天=`≡`7天=` 是样本属性不是窗口定律（第 26 轮打破）**)
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-26T18:20:00Z
+timestamp: 2026-11-27T18:25:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,20 @@ timestamp: 2026-11-26T18:20:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第三十七轮（2026-11-26 22:xxZ，默认 30 天窗）—— 2110/37/17；报告级回升不是流量副产品；`world action model` 高效窄词 12 倍
+
+`var=''` → 默认 30 天窗，与第 36 轮同口径 · 18 词 × 二分至一页（单窗 12 / 需拆窗 6 · 二分 1 次 · 搜索调用 41）· 耗时 搜索 105s / 核验 6s / 总 126s。漏斗：原始 **2110** → 幸存 **37** → 报告级 **17** · 核验 37/37 = 100%（幸存 ≤ 上限，无抽样）· 黑名单 3 owner。丢弃：`seen=1015` / `excl=127` / `archived=0` / `short_desc=360` / `carrier=437` / `neg=57` / `pages=72` / `pages_root=5` / `scaffold=0` / `farm=0` / `fail=0`。四分类：查询失败 **0** · 真零 **1**（`robotics data engine` total=0，仅 30d 单窗 ⇒ 不许删）· 全已见 **8** · 有新增 **9**。
+
+- **判据级 ①：第 36 轮「报告级新高靠分母膨胀」的读数在长窗下不成立 —— 本轮是分子侧置换。** 原始 2091 → 2110（**+0.9%**），幸存 43 → **37（−14%）**，报告级 16 → **17（+1）**，**转化率 0.77% → 0.81% 回升**。分母几乎不动而报告级仍升 ⇒ 不是流量带动；上一轮「raw +50% / 报告 +14% ⇒ 新高是副产品」只描述第 36 轮那一次，不可外推成趋势。
+- **判据级 ②：`world action model` 是本轮唯一高效窄词，`world model` 是纯噪声源。** `world action model` raw 61 → 新收 7 → 幸存 6 → **报告级 3**（`SunnyRaymond/LAQ` 11 · `CathyyW/Steerquant` 5 · `trailer437/LWAM` 5），占幸存 50%；`world model` raw **727** 只新收 8 → 幸存 6 → 报告级 3。按「报告级/raw」算 **4.9% vs 0.41% = 12 倍** ⇒ **宽词守门、窄词出货**连续第二轮成立。
+- **判据级 ③：加密侧在 GitHub 通道比 arxiv 更枯 —— 成熟度阶梯在加密侧倒挂。** 加密四词 `data availability`(66/0) · `restaking`(6/0) · `intent-based`(49/0) · `maximal extractable value`(2/0) **全员饱和零新收**；报告级 17 条里加密侧只有 `proof of useful work` 1 条（8/1）。同日 arxiv-radar 加密侧 2/7 ⇒ **同一批词在「写代码」这一级衰减比「写论文」更快**。
+- **判据级 ④：carrier 误杀对照差拉到 51pp，但 `carrier=437` 是「词-仓对」计数不是唯一仓数。** 丢弃侧 67/146 = **46%**，幸存侧 35/36 = **97%**（上轮 48% vs 88% = 40pp）⇒ 长窗判别力进一步确认，**仍不放宽**。新口径缺陷：carrier **逐词**判定，同一仓可在 `world model` 下被丢、又在 `jepa` 下放行 —— 实证 `sidhunt/tesla-world-model-tri-shield` 同时在 `dropped.json` 的 carrier 名单与 `out.json`。**误杀率分母含逐词重复，不可与幸存数直接做比例。**
+- **异常：** 30 天零提交 1（`robodeltas/dreamzero-yam`）· 爆完即停 1（`marpogiii-code/cosmos`，30d=13 而 7d=0）· 无 language 6（含 `trailer437/LWAM` · `YilinJ10/RevolveVLN`）· 新后缀 `-web/_web` 首次命中 1（`AndyZH090/RoboTutor-Web`）—— 无条件丢，待观察是否过杀真代码仓。
+- **跨域同名风险（记形态不改规则）：** `sidhunt/tesla-world-model-tri-shield`（Tesla 自动驾驶 + Airbus Hamiltonian）以 `jepa` 入报告级，与上轮 `clash-royale-reinforcement-learning` 同类：**词在域内、所指对象跨域**。
+- **probe 跳过**（戳 2 天 < 7 天，下次约 12-01）；`clusters.json` 未重写（仍是第 35 轮结果，本轮不可引用），0 候选词。**digest 缺字段：** 未打覆盖率百分比（只有「单窗 12 / 需拆窗 6」与搜索调用数）⇒ 按铁律「补 digest 不补调用」记欠账。
+
+[source: logs/2026-11-26#github-radar（第 37 轮）]
 
 ## 第三十六轮（2026-11-25 22:35Z，默认 30 天窗）—— 2091/43/16；报告级新高是流量副产品；carrier 首次拉开判别力
 
