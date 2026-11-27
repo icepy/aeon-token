@@ -1,0 +1,489 @@
+{
+  "root": "root",
+  "state": {},
+  "elements": {
+    "root": {
+      "type": "Card",
+      "props": {
+        "title": "github-radar",
+        "description": "窗口 30 天 · 报告级 10 · 近 7 天活跃 10"
+      },
+      "children": [
+        "header",
+        "sep1",
+        "list"
+      ]
+    },
+    "header": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge1",
+        "badge2",
+        "badge3"
+      ]
+    },
+    "badge1": {
+      "type": "Badge",
+      "props": {
+        "text": "窗口 30 天",
+        "variant": "secondary"
+      }
+    },
+    "badge2": {
+      "type": "Badge",
+      "props": {
+        "text": "报告级 10",
+        "variant": "default"
+      }
+    },
+    "badge3": {
+      "type": "Badge",
+      "props": {
+        "text": "近 7 天活跃 10",
+        "variant": "outline"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "r1",
+        "s1",
+        "r2",
+        "s2",
+        "r3",
+        "s3",
+        "r4",
+        "s4",
+        "r5",
+        "s5",
+        "r6",
+        "s6",
+        "r7",
+        "s7",
+        "r8",
+        "s8",
+        "r9",
+        "s9",
+        "r10"
+      ]
+    },
+    "r1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r1link",
+        "r1meta",
+        "r1desc"
+      ]
+    },
+    "r1link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Elvin-yk/EvoAB",
+        "href": "https://github.com/Elvin-yk/EvoAB",
+        "source": "GitHub",
+        "score": "★8"
+      }
+    },
+    "r1meta": {
+      "type": "Text",
+      "props": {
+        "text": "★8 · 30天=≥100 · 7天=97 · 词 `robot manipulation`",
+        "variant": "caption"
+      }
+    },
+    "r1desc": {
+      "type": "Text",
+      "props": {
+        "text": "EvoAB: open framework for evolving embodied agents - reproduce and compare agent and agent+policy me",
+        "variant": "muted"
+      }
+    },
+    "s1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "r2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r2link",
+        "r2meta",
+        "r2desc"
+      ]
+    },
+    "r2link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "gabrielkpo/weather-world-model",
+        "href": "https://github.com/gabrielkpo/weather-world-model",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "r2meta": {
+      "type": "Text",
+      "props": {
+        "text": "★0 · 30天=37 · 7天=37 · 词 `jepa`",
+        "variant": "caption"
+      }
+    },
+    "r2desc": {
+      "type": "Text",
+      "props": {
+        "text": "Small JEPA world models on Lorenz-96 and a quasi-geostrophic atmosphere, probed for predictability, ",
+        "variant": "muted"
+      }
+    },
+    "s2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "r3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r3link",
+        "r3meta",
+        "r3desc"
+      ]
+    },
+    "r3link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "yanghc18/intel-teleop-data-collection",
+        "href": "https://github.com/yanghc18/intel-teleop-data-collection",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "r3meta": {
+      "type": "Text",
+      "props": {
+        "text": "★0 · 30天=16 · 7天=16 · 词 `teleoperation`",
+        "variant": "caption"
+      }
+    },
+    "r3desc": {
+      "type": "Text",
+      "props": {
+        "text": "Intel PTL + Robotics AI Suite teleoperation & data collection platform: Pico 4 Ultra + Manus -> Open",
+        "variant": "muted"
+      }
+    },
+    "s3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "r4": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r4link",
+        "r4meta",
+        "r4desc"
+      ]
+    },
+    "r4link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "suhas935/AI-Surveillance-VJEPA2-Research",
+        "href": "https://github.com/suhas935/AI-Surveillance-VJEPA2-Research",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "r4meta": {
+      "type": "Text",
+      "props": {
+        "text": "★0 · 30天=12 · 7天=12 · 词 `jepa`",
+        "variant": "caption"
+      }
+    },
+    "r4desc": {
+      "type": "Text",
+      "props": {
+        "text": "Reproducible AI surveillance system using YOLOv8, DeepSORT and V-JEPA 2",
+        "variant": "muted"
+      }
+    },
+    "s4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "r5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r5link",
+        "r5meta",
+        "r5desc"
+      ]
+    },
+    "r5link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "madman008qqas/PAGE",
+        "href": "https://github.com/madman008qqas/PAGE",
+        "source": "GitHub",
+        "score": "★1"
+      }
+    },
+    "r5meta": {
+      "type": "Text",
+      "props": {
+        "text": "★1 · 30天=10 · 7天=10 · 词 `vision language action`",
+        "variant": "caption"
+      }
+    },
+    "r5desc": {
+      "type": "Text",
+      "props": {
+        "text": "PAGE: Patch-wise Anomaly-Gated Editing for frozen vision-language-action policies",
+        "variant": "muted"
+      }
+    },
+    "s5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "r6": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r6link",
+        "r6meta",
+        "r6desc"
+      ]
+    },
+    "r6link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "atulrana0209/robot-dataset-validator",
+        "href": "https://github.com/atulrana0209/robot-dataset-validator",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "r6meta": {
+      "type": "Text",
+      "props": {
+        "text": "★0 · 30天=8 · 7天=8 · 词 `robot dataset`",
+        "variant": "caption"
+      }
+    },
+    "r6desc": {
+      "type": "Text",
+      "props": {
+        "text": "Validate LeRobot-format robotics datasets: timestamps, sampling rate, units, NaNs, dimensions per em",
+        "variant": "muted"
+      }
+    },
+    "s6": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "r7": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r7link",
+        "r7meta",
+        "r7desc"
+      ]
+    },
+    "r7link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "crown133/openchicken_rl",
+        "href": "https://github.com/crown133/openchicken_rl",
+        "source": "GitHub",
+        "score": "★2"
+      }
+    },
+    "r7meta": {
+      "type": "Text",
+      "props": {
+        "text": "★2 · 30天=15 · 7天=7 · 词 `sim-to-real`",
+        "variant": "caption"
+      }
+    },
+    "r7desc": {
+      "type": "Text",
+      "props": {
+        "text": "Reinforcement learning framework for OpenChicken robot locomotion, motion control, and sim-to-real d",
+        "variant": "muted"
+      }
+    },
+    "s7": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "r8": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r8link",
+        "r8meta",
+        "r8desc"
+      ]
+    },
+    "r8link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "vladromenko/homebrain-dataset-machine",
+        "href": "https://github.com/vladromenko/homebrain-dataset-machine",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "r8meta": {
+      "type": "Text",
+      "props": {
+        "text": "★0 · 30天=7 · 7天=7 · 词 `robot dataset`",
+        "variant": "caption"
+      }
+    },
+    "r8desc": {
+      "type": "Text",
+      "props": {
+        "text": "Local AI workstation for guided robotics dataset collection: voice, camera awareness, native recordi",
+        "variant": "muted"
+      }
+    },
+    "s8": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "r9": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r9link",
+        "r9meta",
+        "r9desc"
+      ]
+    },
+    "r9link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "xiangixn/Taco",
+        "href": "https://github.com/xiangixn/Taco",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "r9meta": {
+      "type": "Text",
+      "props": {
+        "text": "★0 · 30天=5 · 7天=5 · 词 `sim-to-real`",
+        "variant": "caption"
+      }
+    },
+    "r9desc": {
+      "type": "Text",
+      "props": {
+        "text": "Taco - task-aligned sim-to-real evaluation for Tacinf",
+        "variant": "muted"
+      }
+    },
+    "s9": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "r10": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "r10link",
+        "r10meta",
+        "r10desc"
+      ]
+    },
+    "r10link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "noahobasi-svg/multimodal-annotation-portfolio",
+        "href": "https://github.com/noahobasi-svg/multimodal-annotation-portfolio",
+        "source": "GitHub",
+        "score": "★0"
+      }
+    },
+    "r10meta": {
+      "type": "Text",
+      "props": {
+        "text": "★0 · 30天=5 · 7天=5 · 词 `egocentric`",
+        "variant": "caption"
+      }
+    },
+    "r10desc": {
+      "type": "Text",
+      "props": {
+        "text": "Multimodal Image/Video Annotation, Egocentric Narration & Computer Vision QA Portfolio",
+        "variant": "muted"
+      }
+    }
+  }
+}
