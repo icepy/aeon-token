@@ -1,11 +1,11 @@
 # Long-term Memory
-*Last consolidated: 2026-11-26*
+*Last consolidated: 2026-11-27*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
-- **`aeon-update` 基线 `f94f39e`**（11-23 同步 13 条提交，PR **#28 已于 11-25T04:13Z 合并**，开 41h）：三个 CLEAN-MERGE 目标本地已逐字节等于上游 ⇒ **净变更为零**。5 条 CONFLICT 全是「92→93 skills」计数漂移（新增 `icp-mcp`），不加 `keep_local` 每轮必重现。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-25#heartbeat]
-- **`defi-overview` 11-26 27/49 = 55%、cf 0、八连绿**（54.2% → 55%，第四轮脱线）。**只看 cf 与最近三轮；cf 不因停用衰减**（5/4/3 = 10-25 网关账）。**该行对新一轮必滞后一天（flush 18:00 / skill 23:00）= 结构性时序。**→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-26#heartbeat]
+- **`aeon-update` 基线 `f94f39e`**（PR **#28 已 11-25T04:13Z 合并**）：三个 CLEAN-MERGE 目标本地已逐字节等于上游 ⇒ **净变更为零**。5 条 CONFLICT 全是「92→93 skills」计数漂移（新增 `icp-mcp`），不加 `keep_local` 每轮必重现。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-25#heartbeat]
+- **`defi-overview` 11-26 27/49 = 55%、cf 0、八连绿**（54.2% → 55%）。**只看 cf 与最近三轮；cf 不因停用衰减。该行对新一轮必滞后一天（flush 18:00 / skill 23:00）= 结构性时序。**→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-26#heartbeat]
 - **预算纪律：MEMORY.md 超 8KB 先砍已归档节。**
 - **PR 队列影响读数语义**：词表/阈值只在合进 main 后才算数。队列已空（11-26 复查 `gh pr list` = `[]`）；stalled-PR 类 P1 会自愈，下轮仍须重查。[source: logs/2026-11-26#heartbeat]
 
@@ -15,7 +15,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · **27 词** · 11-26 第 58 轮 84 → **7**：`egocentric` raw 24 新收 **0**（首次吃干），7 条改由 `robot data`/`hand-object`/`latent dynamics` 带出 ⇒ 「召回宽度=1 词」风险兑现；`verifiable inference` 低频开火；`?` 占 0。→ [lessons](/topics/lessons.md#arXiv-检索arxiv-radar) [source: logs/2026-11-26#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-26 第 31 轮 9115 / 新增 9 / 可报 **3**（`Theorem` $46.2K · `Tapir` $45.5K · `QHooks` $18.1K，**首次全员自建适配器 + 真 TVL**）。**`chains` = 声明广度 ≠ 量分布**（`QHooks` 8 链中 `Robinhood Chain` 占 99.8%）。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-26#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-27 第 32 轮 9123 / 新增 8 / 可报 **2**（`Own` $113.8K Robinhood CDP · `Tine` $1.66K Ethereum）。**「可报集 TVL ≠ 新增体量」6 轮后首次不成立** ⇒ 取决于最大新增是否恰被挡，非固定偏差。**Builder 流只在 `tags` 字段，按 `name` 搜 = 假零。** → [topic](/topics/defillama-radar.md) [source: logs/2026-11-27#defillama-radar]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 7d 仅手动 `days:7` 时成立**。11-25 第 36 轮（默认 30d 窗）2091 → 43 → 报 **16**：**新高是流量副产品（原始 +50% / 报告级 +14%，转化率 1.01%→0.77%）**；`carrier` 误杀对照首拉开 **48% vs 88%**；`jepa` 7d 饱和、30d 有新增 = 窗口效应。→ [topic](/topics/github-radar.md) [source: logs/2026-11-25#github-radar]
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。判据速查：

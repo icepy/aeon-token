@@ -1,53 +1,32 @@
 [
  {
-  "id": "9514",
-  "name": "Theorem",
-  "slug": "theorem",
+  "id": "9521",
+  "name": "Own",
+  "slug": "own",
   "chains": [
-   "Ethereum"
+   "Robinhood Chain"
   ],
-  "tvl": 46172.59660520744,
-  "category": "Dexs",
-  "listedAt": 1795631001,
+  "tvl": 113825.59569860733,
+  "category": "CDP",
+  "listedAt": 1795711537,
   "url": "",
-  "description": "Theorem is a decentralized exchange for tokenized real-world assets, providing NAV-aware liquidity pools, mark",
+  "description": "Own lets anyone mint eUSD, a stablecoin backed by tokenized stocks, ETH and stock/eUSD LP positions on Robinho",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false
  },
  {
-  "id": "9510",
-  "name": "Tapir",
-  "slug": "tapir",
+  "id": "9518",
+  "name": "Tine",
+  "slug": "tine",
   "chains": [
-   "Base"
-  ],
-  "tvl": 45506.59803312587,
-  "category": "Derivatives",
-  "listedAt": 1795566842,
-  "url": "",
-  "description": "Tapir is a depeg-protection marketplace for yield-bearing tokens. It splits a yield-bearing token into two tra",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9512",
-  "name": "QHooks",
-  "slug": "qhooks",
-  "chains": [
-   "Robinhood Chain",
-   "Solana",
-   "Base",
-   "Arbitrum",
-   "Binance",
    "Ethereum"
   ],
-  "tvl": 18138.326454088783,
-  "category": "Launchpad",
-  "listedAt": 1795600774,
+  "tvl": 1662.9237930417867,
+  "category": "Yield",
+  "listedAt": 1795666300,
   "url": "",
-  "description": "An ecosystem for launching and trading tokens, built for people and AI agents alike: Uniswap v4 hook launches,",
+  "description": "Tine is an Ethereum savings protocol for wstETH. Depositors earn TINE and can choose a term to share in the po",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false

@@ -6,7 +6,7 @@ tags:
   - discovery
   - defillama
 resource: https://api.llama.fi/protocols
-timestamp: 2026-11-26T00:30:00Z
+timestamp: 2026-11-27T00:35:00Z
 ---
 
 # DefiLlama Radar
@@ -228,7 +228,66 @@ DefiLlama 的 `listedAt` 覆盖不全且**缺失不随机** —— 缺的是头�
 
 **这是「同秒批量」的第三种形态：不是交易所回填，是单一母协议一次性铺开子条目。** 四条相互间隔 0s，而 `PeddleSwap V2/V3` 相隔 4s、`Rocketswap`↔`BNQ` 相隔 306s —— 只有 Jupiter 那组是真批量。判新度时：**同秒 ≥3 条 + 同一 parent ⇒ 一条都不必细看**，遮挡正确。
 
-## 本轮漏斗口径（11-26 第 31 轮）
+## 本轮漏斗口径（11-27 第 32 轮）
+
+全量 **9123**（上轮 9115，**+8**）· 新增 id **8**（可报 **2** / 过滤 6）· `seen` 命中 9115 · `parent` **2** · `category` **0** · 链白名单 **4** · 重报 0 · 拉取失败 0 · `STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️。**报告级 2 → 已发、`9518`/`9521` 标 `notified=2026-11-27`。** seen 写入 9125 条。
+
+### 可报 2 条
+
+| id | 名称 | 链 | TVL | 类目 | `listedAt` | 适配器 |
+|---|---|---|---|---|---|---|
+| 9521 | `Own` | `Robinhood Chain` | **$113,825.60** | CDP | 11-26T16:45:37Z | `own-money/index.js` |
+| 9518 | `Tine` | `Ethereum` | **$1,662.92** | Yield | 11-26T04:11:40Z | `tine/index.js`（`tvlCodePath` = `registries/sumTokens.js`） |
+
+- `Own`：在 Robinhood Chain 上铸造 eUSD，抵押品为代币化股票 + WETH 的 CDP、EUSDLiquidityManager 金库 LP 的非 eUSD 侧、eUSD PSM 与 legacy eSPY 1:1 准备金（`methodology` 原文逐项列出）。`audits=2` · `gecko_id=own-money`（symbol `MONEY`）· `0x0a8b4763c71ac39101b3b8a97e62da0b81549a4f`（`robinhood:` 前缀）· **staking 另有 $1,139.41 不进主 TVL**（`sMONEY` 金库，同 `Eloscape` 11-26 口径）。
+- `Tine`：wstETH 储蓄协议，存款人得 TINE、可选锁定期分池内质押收益。`audits=null`、无 `gecko_id`、`mcap=null`。
+- 合计 **$115,488.52**。
+
+### 「可报集 TVL ≠ 新增体量」第六次之后首次不成立 —— 判据不是单调偏差
+
+被挡 6 条 TVL 合计仅 **$18,751**，最大一条 `9519 Guanaco` **$18,042.22** 只略高于可报的 `Tine`。**本轮新增里体量最大的一条（`Own` $113.8K）就在可报集内，所以差值方向翻了。**
+
+**判据：这个「差额」不是 skill 的固定偏差，而是「本轮最大新增是否恰好落在被挡桶」的函数。** 前六次成立是因为当时最大的新增恰被 `parent`/链白名单 吞掉（11-26 是 `Curve Stellar` $1.50M，13.7 倍）。**报这条时不能写成「可报集永远低估体量」，只能写「本轮的体量分布」。**
+
+### `parent` 桶读数 2、真边际 0（第 N 次复现）
+
+| id | 名称 | parent | 去掉 parent 后 |
+|---|---|---|---|
+| 9516 | `VoltSwap Aggregator` | `parent#volt-finance` | 仍被空链挡（`chains=[]` + `dummy.js`） |
+| 9523 | `YeNo Perps` | `parent#yeno` | 仍被空链挡（`chains=[]` + `dummy.js`） |
+
+两条均为 `tvl=None`。**`链白名单=4` 拆开：只有 `9519 Guanaco`→`Bitcoincash`（全量 14 条）、`9520 POPULAR`→`Sui`（全量 137 条）两条真属「非白名单链」，另两条 `9517 Blast Fun` / `9522 PRIVO` 是空链** —— `if not hit` 单条件双语义第 N 次。
+
+`9522 PRIVO` 值得单记一笔：`chains=[]` 但 `address=robinhood:0xD5eE…`、`description` 又说 "trading layer on Robinhood Chain"，是三处互斥的又一例（与 11-24 `XOXNO` 同族）—— **空链是录入缺口，不是「没部署」的结论。**
+
+### 空链净增 +4 逐条对上，且「空链 ⟺ `dummy.js`」再次成立
+
+`chains=[]` 1680 → **1684（+4）**，本轮新增 8 条里空链恰 **4** 条（`9516`/`9517`/`9522`/`9523`），**四条全是 `dummy.js` + `tvl=None`**。`tvl=None` 同步 2536 → **2540（+4）**。
+
+**报此判据必须同时给新增总数（8），否则会被读成比例关系**（同 11-26 的教训）。
+
+### 新增 8 条跨 22.78h，不是批量指纹 —— 且出现过逆序近邻
+
+`listedAt` 从 `11-26T00:36:04Z`（`9516`）到 `11-26T23:23:03Z`（`9523`），跨度 **82019s ≈ 22.78h**。唯一「近邻」是 `9522 PRIVO`（16:42:03Z）与 `9521 Own`（16:45:37Z）相隔 **214s 且顺序反了**（id 大的时间更早）。
+
+**判据强化：连号 ≠ 批量（11-21 已立），本轮补「差集内部也可能出现 id 序与 `listedAt` 序相反」，所以批量指纹只能按 `listedAt` 逐对算间隔，不能按 id 序扫。**
+
+### Builder 标签：`tags` 字段是唯一入口，按 `name` 搜得到的是假零
+
+`Hyperliquid Builder` 全量 **240（+0）** · 7d **10**（上轮 11）· 30d **28（+0）** · 90d 137 · 240/240 `Interface` · 空链 239 · `tvl` 非空仅 `LiquidBots`（本轮 **$92,368**，上轮记 $68.8K —— 是该标签唯一的活量）。`Polymarket Builder` 25 / 7d 1 / 30d 5 / 90d 8 全未动。
+
+**7d 11 → 10 而 30d 一格未动 ⇒ 窗口滑动，判据第二次验证。** 另有一个操作陷阱：**按 `name` 含 "Builder" 搜全量只得 4 条（`Empire Builder` 等），与 240 条完全不相交 —— 该标签只存在于 `tags` 数组里（全量 2761 条有 `tags` 字段）。任何「按名字搜该流」的取数都是假零。**
+
+### 结构读数
+
+- `listedAt` 缺失 1678 → **1679**（唯一新增缺口 `9517`）· 空链∩`listedAt` 缺失 **981（+1）** —— 仍非等式（58.3%）。
+- 同秒 ≥3 簇 **31（+0）** · 未来 `listedAt` **0（连续第六轮）** · 非数字 id 仍只有 `<5471>` · `max_id=9523` · 数字 id 9122 · ≥9000 缺口仍 4 个（`9135`/`9257`/`9382`/`9391`）。
+- 滚动秒窗直方图 **`[7,9,9,4,5,3,6,5,4,11,5,5]`** → 7d **43**、30d **265**、90d **986**（上轮 41 / 265 / 984）。**7d +2 而 30d 不动** = 同期有两条滑入 7d、两条滑出 30d，两窗各自配平。
+- **链命中数不是新增数的函数（第三次记）**：`Hyperliquid L1` 217 → **218** 而本轮无该链新增；`Robinhood Chain` 330 → **333** 而新增里只有 `Own` 一条真挂该链 ⇒ 均为老条目补 `chains`。
+- 两个方向差集：`only_raw=[]` · **`only_seen=['4818','5496']`**。
+- **CF 双取通过**：常规 `HIT`（etag `W/"6b08c2e9-945c90"`、`last-modified Thu, 26 Nov 2026 23:38:17 GMT`、age 58），`?_cb=20261127a` + `no-cache` 源站 `MISS`，**etag 与 last-modified 逐字符相同、9123 个 id 两向差集均空、逐条字段差异 0 条** ⇒ 本轮 8 条新增不是缓存假零。
+
+## 上一轮漏斗口径（11-26 第 31 轮）
 
 全量 **9115**（上轮 9106，**+9**）· 新增 id **9**（可报 **3** / 过滤 6）· `seen` 命中 9106 · `parent` **2** · `category` **0** · 链白名单 **4** · 无 id 0 · 重报 0 · 拉取失败 0 · `STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️。**报告级 3 → 已发通知、`9510`/`9512`/`9514` 标 `notified=2026-11-26`。** seen 写入 9117 条。
 

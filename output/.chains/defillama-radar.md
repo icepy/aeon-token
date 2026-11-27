@@ -1,35 +1,36 @@
-**defillama-radar** · 第 31 轮 · 全量 9115 · 新增 9 · 可报 **3**
+**defillama-radar** · 第 32 轮 · 可报 2 / 新增 8
 
-三条都是自建适配器（非 `dummy.js` 空壳），且都带真实 TVL -- 这是 30 轮里第一次可报集全部满足「有适配器 + 有量」。
+全量 **9123**（上轮 9115，+8）· 新增 id **8**（可报 **2** / 过滤 6）· 重报 0 · 拉取失败 0 · `STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️。CF 双取已过（HIT/MISS 两份 id 集全同、字段差 0）。
 
-## 1. `Theorem` · Ethereum · Dexs · TVL $46,173
-- **一句话**：代币化 RWA 的 DEX，做 NAV 感知的流动性池 + 做市商报价 + 合规交易（`theorem_markets`）。
-- 链：`Ethereum` 单链，`chainTvls` 全部落在 Ethereum，无跨链摊薄。
-- 适配器 `theorem/index.js` · audits 0 · `listedAt 2026-11-25T18:23:21Z`（约 5.7h，本轮最新可报）
-- 原始来源：`https://api.llama.fi/protocols` · slug `theorem` · id `9514`
-- 备注：`Theorem` 这个名字在 DefiLlama 里只此一条（无同名/同 slug 冲突）。
+## 可报 2 条
 
-## 2. `Tapir` · Base · Derivatives · TVL $45,507
-- **一句话**：生息资产的「脱锚保险」市场，把一个生息凭证拆成两份可交易债权 -- `Depeg Protected`（脱锚有保护）与 `Yield Boosted`（先吃损失换更高收益），两份都保留 100% 底层收益。
-- 链：`Base` 单链 · 适配器 `tapir/index.js` · **audits 2**（Quantstamp + Hashlock，本轮唯一有审计链接的可报条目）
-- `listedAt 2026-11-25T00:34:02Z`（约 23.5h）· slug `tapir` · id `9510`
-- 原始来源：`https://api.llama.fi/protocols` · twitter `Tapir_Protocol`
+- **`Own`**（Robinhood Chain · **CDP** · TVL **$113,825.60**）- 任何人都能在 Robinhood Chain 上铸造 eUSD：抵押品是代币化股票、ETH，以及 stock/eUSD 的 LP 仓位。`own-money/index.js` 自建适配器 · `audits=2` · `gecko_id=own-money`（symbol `MONEY`）· **`mcap` $91,811.92 低于 TVL** · `robinhood:0x0a8b4763c71ac39101b3b8a97e62da0b81549a4f`。staking 另有 $1,139.41（sMONEY 金库，不计入主 TVL）。
+- **`Tine`**（Ethereum · **Yield** · TVL **$1,662.92**）- wstETH 储蓄协议：存款人拿 TINE，可选锁定期分享池内质押收益。`module=tine/index.js`，但 `tvlCodePath` 指向通用 `registries/sumTokens.js`（**与 11-26 那三条全自建不同**）· `audits=null` · 无 `gecko_id` · `0x2809cB5f9Fb1BB934dBF5f6f5e6F568bB48Cd8aa`。
 
-## 3. `QHooks` · Robinhood Chain 为主 · Launchpad · TVL $18,138
-- **一句话**：面向人和 AI agent 的代币发行/交易生态 -- Uniswap v4 hook 发行、交易终端、agent 工具。
-- 链：声明 8 条（`Robinhood Chain`/`Solana`/`Base`/`Arbitrum`/`Binance`/`Ethereum`/`Monad`/`Elysium Kinetiq`），**但量几乎全在 Robinhood Chain（$18,107，99.8%）**，Solana 仅 $29.6、Elysium Kinetiq $1.5，其余 5 条 = 0。
-- 适配器 `qhooks/index.js` · audits 0 · `listedAt 2026-11-25T09:59:34Z`（约 14.0h）· id `9512`
-- 地址：`robinhood:0x20429af7ca3b0ce4d99edbaa0693f26c5df05195` · **`gecko_id: qhooks`**（近 7d 新增 41 条里唯一带 CoinGecko 映射的一条）
-- 原始来源：`https://api.llama.fi/protocols` · twitter `qHooks_`
+合计 **$115,488.52**。本轮新增里 TVL 最大的一条就在可报集内 -- 连续 6 轮的「可报集 TVL ≠ 新增体量」本轮**不成立**（被挡 6 条 TVL 合计仅 $18,751）。
 
-## 被挡的 6 条（不进报告，只留痕）
-- `9513 Curve Stellar`（Dexs · **TVL $1.50M，本轮新增里最大**）→ `parent#curve-finance`
-- `9515 PicoSwap Aggregator` → `parent#picoswap`（与 11-25 的 Perps/Spot 同一母协议第三次铺开）+ 空链 + `dummy.js`
-- `9511 Eloscape`（`Elysium Kinetiq`，非白名单链；staking $71.9K 但主 TVL 仅 $3.66K）
-- `9509 Pylona`（`Sonic`，非白名单）· `9507 Xyper Market`（`UNIT0`，非白名单，TVL 0）· `9508 HelmSwap`（空链 + `dummy.js`）
+## 过滤 6 条（无一值得追）
 
-## 本轮读数
-- 丢弃：`parent` 2 · `category` 0 · 链白名单 4 · seen 9106 · 无 id 0 · 拉取失败 0
-- `STATUS: DEFILLAMA_RADAR_OK` · 基线轮 False · 无 degraded、无 ⚠️
-- seen 写入 9117 条 · 双向差集 `only_raw=[]` / `only_seen=['4818','5496']`（均为历史下架残留）
-- CF 双取通过：常规取 `HIT`（etag `W/"6b07716c-942b1d"`，`last-modified 2026-11-25T23:38:20Z`），`?_cb=20261126a` + `no-cache` 取源站 `MISS`，**etag 与 last-modified 逐字符相同、9115 个 id 两向差集均空、逐条字段差异 0 条** ⇒ 本轮 9 条新增不是缓存假零。
+| id | 名称 | 链 | TVL | 被哪个桶挡 |
+|---|---|---|---|---|
+| 9516 | `VoltSwap Aggregator` | `[]` | - | `parent` + 空链（双帽） |
+| 9523 | `YeNo Perps` | `[]` | - | `parent` + 空链（双帽） |
+| 9517 | `Blast Fun` | `[]` | - | 空链（`listedAt=null`） |
+| 9522 | `PRIVO` | `[]` | - | 空链（`address` 是 robinhood 前缀） |
+| 9519 | `Guanaco` | `Bitcoincash` | $18,042.22 | 链不在白名单（全量 14 条） |
+| 9520 | `POPULAR` | `Sui` | $709.12 | 链不在白名单（全量 137 条） |
+
+**`parent` 桶读数 2、真边际 0**：这两条去掉 parent 后仍被空链挡 -- 与 11-19、11-21 同形。**`链白名单=4` 里只有 2 条真是「链不在白名单」**，另 2 条是空链（`if not hit` 单条件双语义，老问题再现）。
+
+## 结构读数
+
+- `chains=[]` 1680 → **1684（+4）** = 本轮新增内空链条数 **4/8**，逐条对上（`9516`/`9517`/`9522`/`9523` 全 `dummy.js` + `tvl=None`）。**报此判据须同时给新增总数 8。**
+- `tvl=None` 2536 → **2540（+4）**，与上一条同源。`listedAt` 缺失 1678 → **1679（+1，仅 `9517`）**；两者交集 980 → 981（**仍不是等式**）。
+- 同秒 ≥3 簇 **31（+0）** · 未来 `listedAt` **0（连续第六轮）** · 非数字 id 仍只有 `<5471>` · `max_id=9523` · 数字 id 9122 · ≥9000 缺口仍 4 个（`9135`/`9257`/`9382`/`9391`）。
+- 新增 8 条的 `listedAt` 跨 **22.78h**（`11-26T00:36Z`→`23:23Z`），**不是批量指纹**：相邻间隔最大 34256s，只有 `9521 Own`↔`9522 PRIVO` 相隔 214s 且为逆序。
+- 滚动秒窗直方图 `[7,9,9,4,5,3,6,5,4,11,5,5]` → 7d **43**、30d **265**、90d **986**（上轮 41 / 265 / 984）。**30d 一格未动而 7d +2 = 有两条滑出 30d 窗。**
+- `Hyperliquid Builder` 全量 **240（+0）** · 7d **10**（上轮 11）· 30d **28（+0）** · 90d 137 -- **30d 不动 ⇒ 仍是窗口滑动，不是新流**。`Polymarket Builder` 25 / 7d 1 / 30d 5 / 90d 8 全未动。
+- 两个方向差集：`only_raw=[]` · `only_seen=['4818','5496']`（下架残留，非损坏）。
+- **链命中数不是新增数的函数**：`Hyperliquid L1` 217 → **218** 本轮无该链新增；`Robinhood Chain` 330 → **333** 而新增里只有 `Own` 一条真挂该链 ⇒ 都是老条目补 `chains`。
+
+原始数据源：`https://api.llama.fi/protocols`（本轮 1 次请求；CF 双取校验副本 `?_cb=20261127a` + `no-cache`）。
