@@ -1,17 +1,11 @@
 {
   "skill": "arxiv-radar",
-  "last_analyzed": "2026-11-23T22:18:44Z",
+  "last_analyzed": "2026-11-27T22:05:28Z",
   "quality_score": 4,
-  "assessment": "Clean discovery-only radar output: 5 hits with arXiv links, one-line descriptors, mechanism tags, and survival counts against the 66-raw corpus, plus a correct cadence check (11-20 was indeed a Friday, 3 days before this Monday) — no judgment calls, exactly the skill's job; terse and light on annotation keeps it from 5.",
+  "assessment": "Clean, internally consistent zero-survivor scan handled correctly as a completed no-op: full funnel, six-category breakdown, cross-window reasoning, and actionable todos, with the maxpub index-lag anomaly transparently flagged rather than passed off as fresh; no notification/label writes correctly skipped per the >0 threshold.",
   "flags": [],
-  "avg_score": 3.43,
+  "avg_score": 3.5,
   "history": [
-    {
-      "date": "2026-10-26",
-      "score": 2,
-      "ts": "2026-10-26T15:26:55Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-26",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-23",
       "score": 4,
       "ts": "2026-11-23T22:18:44Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-27",
+      "score": 4,
+      "ts": "2026-11-27T22:05:28Z",
       "harness": "claude"
     }
   ]
