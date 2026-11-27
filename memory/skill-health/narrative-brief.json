@@ -1,19 +1,11 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-26T10:02:01Z",
-  "quality_score": 2,
-  "assessment": "Well-structured, format-faithful narrative brief with a change/dedupe-style summary, but it asserts an almost certainly fabricated fact (Nvidia board 'restoring' Jensen Huang as CEO — he was never removed) alongside many precise figures and tweet links that cannot be verified; the per-section sha256 dedupe step is not evidenced.",
-  "flags": [
-    "unverifiable_claim"
-  ],
+  "last_analyzed": "2026-11-27T10:01:34Z",
+  "quality_score": 3,
+  "assessment": "Correct, verifiable no-op: fetch succeeded, one section's sha256 already seen, notify correctly skipped with clear UNCHANGED result and no invented specifics.",
+  "flags": [],
   "avg_score": 3.43,
   "history": [
-    {
-      "date": "2026-10-29",
-      "score": 3,
-      "ts": "2026-10-29T02:46:43Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-29",
       "score": 4,
@@ -186,6 +178,12 @@
       "date": "2026-11-26",
       "score": 2,
       "ts": "2026-11-26T10:02:01Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-27",
+      "score": 3,
+      "ts": "2026-11-27T10:01:34Z",
       "harness": "claude"
     }
   ]
