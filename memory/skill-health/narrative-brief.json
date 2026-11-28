@@ -1,17 +1,11 @@
 {
   "skill": "narrative-brief",
-  "last_analyzed": "2026-11-27T10:01:34Z",
-  "quality_score": 3,
-  "assessment": "Correct, verifiable no-op: fetch succeeded, one section's sha256 already seen, notify correctly skipped with clear UNCHANGED result and no invented specifics.",
+  "last_analyzed": "2026-11-28T10:01:16Z",
+  "quality_score": 4,
+  "assessment": "Correctly ran the dedup check: fetched narratives.md (http 200), found 1 section, 0 new, 1 already pushed with matching sha256, correctly skipped notification and reported UNCHANGED — a legitimate no-op, complete and verifiable.",
   "flags": [],
   "avg_score": 3.43,
   "history": [
-    {
-      "date": "2026-10-29",
-      "score": 4,
-      "ts": "2026-10-29T10:01:37Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-30",
       "score": 3,
@@ -184,6 +178,12 @@
       "date": "2026-11-27",
       "score": 3,
       "ts": "2026-11-27T10:01:34Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-28",
+      "score": 4,
+      "ts": "2026-11-28T10:01:16Z",
       "harness": "claude"
     }
   ]
