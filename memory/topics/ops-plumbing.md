@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-28T00:35:00Z
+timestamp: 2026-11-28T03:15:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -636,6 +636,25 @@ Five denials with one cause means a fixable prompt/example defect, not an enviro
 causes means an environment or allowlist problem.** Never report "N permission denials" without the grouping.
 
 [source: logs/2026-11-28#heartbeat]
+
+## Update (11-28, manual): upstream merge `f99eabb8` → `883a1ae4`, baseline moves off `f94f39e`
+
+Manual (non-skill) merge of `upstream/main` `f99eabb8` (18 commits: rebrand, droid as the tenth harness,
+glass dashboard rewrite) into local `main`; merge commit `883a1ae4`, pushed. Four conflicts resolved by
+operator instruction: ① `.github/README.md` took upstream's `readme-hero.jpg` but kept the **local real
+skill count `97`** instead of upstream's `93` (anchor included); ② `AGENTS.md` kept and regenerated via
+`node scripts/gen-agents-md.js` — taking the upstream blob would drop the local DEUS strategy and red the
+`ci-agents-md` check; ③ `catalog/skills.json` regenerated with `bin/generate-skills-json` (97, all four
+fork-only skills present); ④ `docs/assets/hero-animated.svg` deleted with upstream. Follow-on fix:
+`.github/scripts/sync-doc-mirrors.mjs` `FILES` dropped the deleted hero SVG, else `register-skill` runs one
+dead entry every round. Verified: `validate-readme-catalog` OK (6 packs / 97) · `gen-agents-md --check` OK ·
+`generate-skill-icons --check` OK · nine credential/adapter/skill-mode tests PASS.
+
+**Reading rule that survives this merge: a fork's own numbers are the truth in a rebrand/count conflict —
+upstream's `93` is a count of upstream's skills and means nothing locally; regenerate derived files
+(`AGENTS.md`, `catalog/skills.json`) instead of accepting the upstream blob, and check the doc-mirror list
+for any asset the merge deleted.** Leftover, unrelated to this merge: `test_chain_runner.sh` 4 FAILs are
+macOS bash 3.2 `declare -A`/`grep -P` incompatibilities (`chain-runner.yml` untouched). [source: logs/2026-11-28#merge-upstream]
 
 # Citations
 

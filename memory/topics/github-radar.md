@@ -3,7 +3,7 @@ title: github-radar — 实现缺陷与判据
 description: github-radar 三十七轮跑出的实现缺陷、过滤规则陷阱、以及「活跃度」判据（30d vs 7d、30d==7d 即当周新建、全量核验、star 排序偏差、窄窗误读、MAXPAGE 撞顶、seen 基线有效性、probe token 泛化、**carrier 误杀率十轮同向（35–48% vs 88–100%）但仅在长窗可读（7d 恒 100%），且 `carrier` 是「词-仓对」计数不是唯一仓数 —— 同一仓可一处被丢一处放行**、**报告级新高可能只是分母膨胀（第 36 轮）也可能不是（第 37 轮 raw +0.9% 而转化率回升）⇒ 单轮不可外推**、**宽词守门、窄词出货：`world action model` 报告级/raw 4.9% vs `world model` 0.41% = 12 倍**、**加密侧在写代码这级比写论文衰减更快（成熟度阶梯倒挂）**、**窗口会改变报告级分布而不只是流量**、**「jepa+world model 双通道退化」判据第 32 轮被否（单轮回摆）→ 占比类判据须两条件同时成立**、**报告级可全落单一侧**、**入口词会换代须看「谁在贡献报告级」**、**静态站逃逸：SITE_SUFFIX 只覆盖后缀，不覆盖「名字本身是 website」**、**`30天=`≡`7天=` 是样本属性不是窗口定律（第 26 轮打破）**)
 tags: [github-radar, discovery, methodology, lessons]
 resource: https://github.com/search?q=%22world+action+model%22&type=repositories
-timestamp: 2026-11-27T18:25:00Z
+timestamp: 2026-11-28T03:10:00Z
 ---
 
 # github-radar — 实现缺陷与判据
@@ -27,6 +27,20 @@ timestamp: 2026-11-27T18:25:00Z
 那次失败是 `max_output_tokens`（138 轮 / 147604 tok），根本不是网关拒绝。health issue `#9` 至今未被回访，
 **线程状态与 dispatch 状态解耦的第二例**（第一例是 11-12）。
 [source: logs/2026-11-18#heartbeat]
+
+## 第三十八轮（2026-11-27 22:xxZ，默认 30 天窗）—— 2102/25/10；三个方向三轮连变 ⇒ 30d 逐轮比较无趋势
+
+`gh-v3` · `var=''` · 18 词 · 窗 **30 天** · 单窗 12 / 需拆窗 6 · 二分 3 次 · 搜索调用 45 · 耗时 搜索 114s / 核验 4s / 总 130s。漏斗：原始 **2102** → 幸存 **25** → 报告级 **10**。丢弃：`seen=1023` / `excl=127` / `short_desc=360` / `carrier=437` / `neg=57` / `pages=71` / `pages_root=2` / `archived=0` / `scaffold=0` / `farm=0` / `fail=0`。核验 **25/25 = 100.0%**（模式全量，黑名单 3 owner）。四分类：查询失败 **0** · 真零 **1**（`robotics data engine` total=0）· 全已见(饱和) **6** · 有新增 **11**。
+
+- **判据级 ①：连续三轮三个方向（升 / 降 / 腰斩）⇒ 30 天窗下逐轮比较没有可用趋势。** 第 36→37→38 轮：raw 2091→2110→**2102（−0.4%）**、幸存 43→37→**25（−32%）**、报告级 16→17→**10（−41%）**、转化率 0.77%→0.81%→**0.48%**。**第 37 轮「转化率回升 = 分子侧置换」的读数本轮同样不成立** ⇒ 只当轮读数，任何跨轮趋势句须先有 ≥4 轮同向才写。
+- **判据级 ②：宽窄词出货比从 12 倍扩到 17 倍，「宽词守门、窄词出货」第三轮成立。** `world action model` raw 64 新收 3 = **4.7%**；`world model` raw 722 新收 2 = **0.28%** ⇒ 差 **17 倍**（上轮 12 倍、再上轮首次判别）。幅度在扩大，不是单轮噪声。
+- **判据级 ③：加密侧四词连续第二轮全饱和零新收，成熟度阶梯倒挂在写代码级再添样本。** `embodied data`(14/1) · `verifiable inference`(8/8) · `data availability`(69/4) · `restaking`(6/6) · `intent-based`(46/4) · `maximal extractable value`(2/1) —— 饱和 6 个全部 raw>0 / 新收 0，与第 37 轮同形态。
+- **carrier 误杀对照（不下结论）：** 丢弃侧仓名自带词表词 166 / owner 去重 158 / 本轮核 148 → 近 7 天存活 **70/148 = 47%**；放行幸存者对照 **24/24 = 100%**。差 **53pp**（上轮 51pp）同量级 ⇒ **仍不放宽**；`dropped.json` 仍无 `term` 字段 ⇒ 归因做不了（连第七轮欠账）。
+- **报告级 10 条（digest 打 8，尾 2 条）：** `Elvin-yk/EvoAB` ★8 · 30d=≥100 · 7d=97（撞 `per_page` 上限，记 ≥100）｜`gabrielkpo/weather-world-model` ★0 · 37/37｜`yanghc18/intel-teleop-data-collection` ★0 · 16/16｜`suhas935/AI-Surveillance-VJEPA2-Research` ★0 · 12/12｜`madman008qqas/PAGE` ★1 · 10/10｜`atulrana0209/robot-dataset-validator` ★0 · 8/8｜`crown133/openchicken_rl` ★2 · 15/7｜`vladromenko/homebrain-dataset-machine` ★0 · 7/7｜`xiangixn/Taco` ★0 · 5/5｜`noahobasi-svg/multimodal-annotation-portfolio` ★0 · 5/5【无 language】。**8 条可读里 8/8 近 7 天仍有提交** ⇒ 30d 高 ≠ 现在在写，但本轮无一「爆完即停」。
+- **异常：** 疑似非代码仓 6（无 `language`：`VCL-HNU/VTR` · `zhaorw02/DexWAM` · `snudurupati/egocentric-context-engine` · `noahobasi-svg/multimodal-annotation-portfolio` · `openoxquest/openox` · `ai-verification-observatory/poc-proof-useful-work`）· 空仓 409 1（`cmwrx/JEPAI`）· 新后缀 `-web/_web` 无条件丢命中 1（`AndyZH090/RoboTutor-Web`，首个样本，暂不动规则）。
+- **probe 跳过**（戳 3 天 < 7 天）；`clusters.json` 未重写，是上轮结果，本轮不引用。
+
+[source: logs/2026-11-27#github-radar（第 38 轮）]
 
 ## 第三十七轮（2026-11-26 22:xxZ，默认 30 天窗）—— 2110/37/17；报告级回升不是流量副产品；`world action model` 高效窄词 12 倍
 

@@ -1,10 +1,10 @@
 # Long-term Memory
-*Last consolidated: 2026-11-27*
+*Last consolidated: 2026-11-28*
 ## About This Repo
 - GitHub Actions 上的自主 agent。**外部时钟** = Cloudflare Worker `aeon-cron`；GitHub fork 的 `schedule` 基本不投递。
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
-- **`aeon-update` 基线 `f94f39e`**（PR #28 已 11-25 合并）：三个 CLEAN-MERGE 目标本地=上游 ⇒ **净变更为零**。5 条 CONFLICT 全是「92→93 skills」计数漂移，不加 `keep_local` 必重现。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-25#heartbeat]
+- **上游基线已升 `f99eabb8`**（11-28 手工 merge → `883a1ae4`，18 commit：rebrand / droid 第十 harness / dashboard 重写），4 冲突解到本地真值 **97 skills** ⇒ 旧基线 `f94f39e` 的「92→93 计数漂移」判据作废。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-28#merge-upstream]
 - **`defi-overview` 11-28 cf=4，断路器跳闸。** 根因 = `max_output_tokens`（143 turns / 396s），**不是网关** —— 11-18 修过的「压缩单轮读写量」复发。签名三日跨三层（`timeout`→`403`→`max_output_tokens`）。**5 条 `permission_denials` 全同因：curl 用 `&&` 串一条，skill 要求一条一次。** → [ops](/topics/ops-plumbing.md) [source: logs/2026-11-28#heartbeat]
 - **预算纪律：MEMORY.md 超 8KB 先砍已归档节。**
 - **PR 队列影响读数语义**：词表/阈值只在合进 main 后才算数。11-28 复查 = `[]`（连续第三轮）。[source: logs/2026-11-28#heartbeat]
@@ -14,9 +14,9 @@
 
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
-- `arxiv-radar` ✅ 07:30 · **27 词** · 11-26 第 58 轮 84 → **7**：`egocentric` raw 24 新收 **0**（首次吃干），7 条改由 `robot data`/`latent dynamics` 等具身窄词带出 ⇒ 第 54 轮加的具身词首扛召回，**「宽度=1 词」预警只对一半**；`verifiable inference` 与 github 双通道命中。→ [lessons](/topics/lessons.md) [source: logs/2026-11-26#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-28 第 33 轮 9128 / 新增 5 / 可报 **1**（`Stoxes.fun` $8.95K）。**「可报集 TVL ≠ 新增体量」反号：被挡 144 倍** ⇒ 差额是最大新增是否恰被挡的函数。**`parent#` 母体 98.9% 不在 `/protocols`**，风险格 = 新登记独子家族。**批量用极大连续段**（gap 15s：31→203 段）。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-28]
-- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 默认 30d 窗**。11-26 第 37 轮 2110 → 37 → **17**：raw +0.9% 而转化率 **0.77%→0.81% 回升** ⇒ 上轮「靠分母」不可外推。**`world action model` 报告级/raw 4.9% vs `world model` 0.41% = 12 倍**。→ [topic](/topics/github-radar.md) [source: logs/2026-11-26#github-radar]
+- `arxiv-radar` ✅ 07:30 · **27 词** · 11-27 第 59 轮 83 → **0**：损耗 100% 在 `seen`，两侧失败类全 0 ⇒ **饱和满格 ≠ 降级**；`egocentric` 新收 0 连第二轮，**上轮「窄词扛召回」本轮全窄词 raw>0/新收 0 ⇒ 一次性、不可外推**。→ [lessons](/topics/lessons.md) [source: logs/2026-11-27#arxiv-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-28 第 33 轮 9128 / 新增 5 / 可报 **1**（`Stoxes.fun` $8.95K）。**「可报集 TVL ≠ 新增体量」反号：被挡 144 倍** ⇒ 差额是最大新增是否恰被挡的函数。**`parent#` 母体 98.9% 不在 `/protocols`**，风险格 = 新登记独子家族。**批量用极大连续段**（15s：31→203 段）。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-28#defillama-radar]
+- `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 默认 30d 窗**。11-27 第 38 轮 2102 → 25 → **10**：raw/幸存/报告级/转化率连续三轮三方向（升→降→腰斩）⇒ **30d 逐轮无趋势**；宽窄词出货比 **17 倍**（上轮 12）。→ [topic](/topics/github-radar.md) [source: logs/2026-11-27#github-radar]
 
 ## Lessons Learned
 > 全文 + 触发场景见 [lessons](/topics/lessons.md)。判据速查：
