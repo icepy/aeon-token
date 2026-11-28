@@ -1,36 +1,29 @@
-**defillama-radar** · 第 32 轮 · 可报 2 / 新增 8
+**defillama-radar** · 2026-11-28 · 全量 9128 · 新增 5 · 可报 **1** · 过滤 4
 
-全量 **9123**（上轮 9115，+8）· 新增 id **8**（可报 **2** / 过滤 6）· 重报 0 · 拉取失败 0 · `STATUS: DEFILLAMA_RADAR_OK`，无 degraded、无 ⚠️。CF 双取已过（HIT/MISS 两份 id 集全同、字段差 0）。
+## 可报 1 条
 
-## 可报 2 条
+**`Stoxes.fun`** · `Binance`（BSC）· Launchpad · TVL **$8,952.50**
 
-- **`Own`**（Robinhood Chain · **CDP** · TVL **$113,825.60**）- 任何人都能在 Robinhood Chain 上铸造 eUSD：抵押品是代币化股票、ETH，以及 stock/eUSD 的 LP 仓位。`own-money/index.js` 自建适配器 · `audits=2` · `gecko_id=own-money`（symbol `MONEY`）· **`mcap` $91,811.92 低于 TVL** · `robinhood:0x0a8b4763c71ac39101b3b8a97e62da0b81549a4f`。staking 另有 $1,139.41（sMONEY 金库，不计入主 TVL）。
-- **`Tine`**（Ethereum · **Yield** · TVL **$1,662.92**）- wstETH 储蓄协议：存款人拿 TINE，可选锁定期分享池内质押收益。`module=tine/index.js`，但 `tvlCodePath` 指向通用 `registries/sumTokens.js`（**与 11-26 那三条全自建不同**）· `audits=null` · 无 `gecko_id` · `0x2809cB5f9Fb1BB934dBF5f6f5e6F568bB48Cd8aa`。
+- 一句话：BNB Chain 上的**代币化股票 / RWA 发射台** -- 代币以 BNB 或 Binance 代币化股票（`BNCB` / `NVDAB` / `SPCXB` / `ANTB` 等 bStocks）计价走联合曲线，毕业后进 PancakeSwap。
+- 合约 `bsc:0x95c7bd108fd67ae14705577ead2361c3abfb9999` · `symbol=STX` · `module=stoxes-fun/index.js` · `listedAt=2026-11-27T09:58:07Z` · `audits=null` · 无 `gecko_id` · `mcap=null`
+- 取数口径（DefiLlama 原文要点）：只算 Stoxes.fun Portals 持有的计价代币（BNB + `BNCB`/`NVDAB`/`SPCXB`），**排除**已毕业进 PancakeSwap 的流动性和已发代币库存 → 该 TVL 是「曲线里还没毕业的钱」，不是平台总规模。
+- 原始读数：`change_1h=+94.1%` · `change_1d=null`（新条目无日桶）· `chainTvls` 仅 `Binance`
+- 数据源：`https://api.llama.fi/protocols` · id `9528`
 
-合计 **$115,488.52**。本轮新增里 TVL 最大的一条就在可报集内 -- 连续 6 轮的「可报集 TVL ≠ 新增体量」本轮**不成立**（被挡 6 条 TVL 合计仅 $18,751）。
+## 被挡 4 条（只报名字与挡它的桶，判断留给第三层）
 
-## 过滤 6 条（无一值得追）
+| 名称 | 类目 | TVL | 被哪一桶挡 |
+|---|---|---|---|
+| `Pear Vaults` | Yield | **$1,288,789.94** | 只被 `parentProtocol`（`parent#pear-protocol`） |
+| `RAVN DEX Aggregator` | DEX Aggregator | `null` | `parentProtocol`（`parent#ravn` + 空链） |
+| `RAVN Bridge Aggregator` | Bridge Aggregator | `null` | `parentProtocol`（`parent#ravn` + 空链） |
+| `Carbium` | DEX Aggregator | `null` | 空 `chains`（Solana 聚合器，`dummy.js`） |
 
-| id | 名称 | 链 | TVL | 被哪个桶挡 |
-|---|---|---|---|---|
-| 9516 | `VoltSwap Aggregator` | `[]` | - | `parent` + 空链（双帽） |
-| 9523 | `YeNo Perps` | `[]` | - | `parent` + 空链（双帽） |
-| 9517 | `Blast Fun` | `[]` | - | 空链（`listedAt=null`） |
-| 9522 | `PRIVO` | `[]` | - | 空链（`address` 是 robinhood 前缀） |
-| 9519 | `Guanaco` | `Bitcoincash` | $18,042.22 | 链不在白名单（全量 14 条） |
-| 9520 | `POPULAR` | `Sui` | $709.12 | 链不在白名单（全量 137 条） |
+## 读数（事实，非判断）
 
-**`parent` 桶读数 2、真边际 0**：这两条去掉 parent 后仍被空链挡 -- 与 11-19、11-21 同形。**`链白名单=4` 里只有 2 条真是「链不在白名单」**，另 2 条是空链（`if not hit` 单条件双语义，老问题再现）。
+- **本轮最大新增落在被挡桶里，差额 144 倍**：可报 $8,952.50 vs 被挡 `Pear Vaults` $1,288,789.94。上一轮（11-27）方向相反（最大新增 `Own` 在可报集内）-- 这条差额是「最大新增是否恰被挡」的函数，不是固定偏差。
+- **`parent` 桶 3 条里，`Pear Vaults` 是唯一有真量的**，且 `parent#pear-protocol` 的母协议本体**不在** `/protocols`（另两条同族 `Pear Perps` / `Pear Interface` 均 `tvl=null` + 空链，基线轮入库）。即这条在数据上与一个独立协议不可区分，只被一个事后补录的字段挡下。
+- **新增 5 条 `listedAt` 跨 7.61h**（11-27T02:21:40Z → 09:58:07Z）。`9524`/`9525`/`9526` 三条落在 **11 秒内**（02:21:40 / 47 / 52），但前两条同 parent、第三条不同 parent ⇒ 是「同批录入」，不是「同族铺开」。
+- `chains=[]` 1687 / `tvl=null` 2543，空链 ⟺ `dummy.js` ⟺ `tvl=null` 等式本轮仍成立（1687/1687）。
 
-## 结构读数
-
-- `chains=[]` 1680 → **1684（+4）** = 本轮新增内空链条数 **4/8**，逐条对上（`9516`/`9517`/`9522`/`9523` 全 `dummy.js` + `tvl=None`）。**报此判据须同时给新增总数 8。**
-- `tvl=None` 2536 → **2540（+4）**，与上一条同源。`listedAt` 缺失 1678 → **1679（+1，仅 `9517`）**；两者交集 980 → 981（**仍不是等式**）。
-- 同秒 ≥3 簇 **31（+0）** · 未来 `listedAt` **0（连续第六轮）** · 非数字 id 仍只有 `<5471>` · `max_id=9523` · 数字 id 9122 · ≥9000 缺口仍 4 个（`9135`/`9257`/`9382`/`9391`）。
-- 新增 8 条的 `listedAt` 跨 **22.78h**（`11-26T00:36Z`→`23:23Z`），**不是批量指纹**：相邻间隔最大 34256s，只有 `9521 Own`↔`9522 PRIVO` 相隔 214s 且为逆序。
-- 滚动秒窗直方图 `[7,9,9,4,5,3,6,5,4,11,5,5]` → 7d **43**、30d **265**、90d **986**（上轮 41 / 265 / 984）。**30d 一格未动而 7d +2 = 有两条滑出 30d 窗。**
-- `Hyperliquid Builder` 全量 **240（+0）** · 7d **10**（上轮 11）· 30d **28（+0）** · 90d 137 -- **30d 不动 ⇒ 仍是窗口滑动，不是新流**。`Polymarket Builder` 25 / 7d 1 / 30d 5 / 90d 8 全未动。
-- 两个方向差集：`only_raw=[]` · `only_seen=['4818','5496']`（下架残留，非损坏）。
-- **链命中数不是新增数的函数**：`Hyperliquid L1` 217 → **218** 本轮无该链新增；`Robinhood Chain` 330 → **333** 而新增里只有 `Own` 一条真挂该链 ⇒ 都是老条目补 `chains`。
-
-原始数据源：`https://api.llama.fi/protocols`（本轮 1 次请求；CF 双取校验副本 `?_cb=20261127a` + `no-cache`）。
+原始来源：DefiLlama `/protocols`（本轮常规取 `HIT` 与 `?_cb=` 源站 `MISS` 双取，etag `W/"6b0a14ba-9476be"`、`last-modified Fri, 27 Nov 2026 23:39:38 GMT` 逐字符相同，9128 个 id 两向差集均空、逐条字段差异 0 条）。

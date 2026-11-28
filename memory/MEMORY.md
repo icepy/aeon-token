@@ -15,7 +15,7 @@
 ## 发现层（主线）
 三条**平行**探针测同一成熟度阶梯：论文（~4 月）→ 代码（~1–2 月）→ 代币（未建）。**同一个词依次点亮，次序才是信号。**
 - `arxiv-radar` ✅ 07:30 · **27 词** · 11-26 第 58 轮 84 → **7**：`egocentric` raw 24 新收 **0**（首次吃干），7 条改由 `robot data`/`latent dynamics` 等具身窄词带出 ⇒ 第 54 轮加的具身词首扛召回，**「宽度=1 词」预警只对一半**；`verifiable inference` 与 github 双通道命中。→ [lessons](/topics/lessons.md) [source: logs/2026-11-26#arxiv-radar]
-- `defillama-radar` ✅ `dl-v1` · 11-27 第 32 轮 9123 / 新增 8 / 可报 **2**（`Own` $113.8K · `Tine` $1.66K）。**「可报集 TVL ≠ 新增体量」6 轮后首次不成立** ⇒ 取决于最大新增是否恰被挡。**Builder 流只在 `tags` 字段，按 `name` 搜 = 假零**；连号≠批量，须逐对看 `listedAt`（允许逆序）。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-27#defillama-radar]
+- `defillama-radar` ✅ `dl-v1` · 11-28 第 33 轮 9128 / 新增 5 / 可报 **1**（`Stoxes.fun` $8.95K）。**「可报集 TVL ≠ 新增体量」反号：被挡 144 倍** ⇒ 差额是最大新增是否恰被挡的函数。**`parent#` 母体 98.9% 不在 `/protocols`**，风险格 = 新登记独子家族。**批量用极大连续段**（gap 15s：31→203 段）。→ [topic](/topics/defillama-radar.md) [source: logs/2026-11-28]
 - `github-radar` 22:30 · 18 词 · **cron 不注入 `var` → 默认 30d 窗**。11-26 第 37 轮 2110 → 37 → **17**：raw +0.9% 而转化率 **0.77%→0.81% 回升** ⇒ 上轮「靠分母」不可外推。**`world action model` 报告级/raw 4.9% vs `world model` 0.41% = 12 倍**。→ [topic](/topics/github-radar.md) [source: logs/2026-11-26#github-radar]
 
 ## Lessons Learned

@@ -1,32 +1,16 @@
 [
  {
-  "id": "9521",
-  "name": "Own",
-  "slug": "own",
+  "id": "9528",
+  "name": "Stoxes.fun",
+  "slug": "stoxes.fun",
   "chains": [
-   "Robinhood Chain"
+   "Binance"
   ],
-  "tvl": 113825.59569860733,
-  "category": "CDP",
-  "listedAt": 1795711537,
+  "tvl": 8952.502671156479,
+  "category": "Launchpad",
+  "listedAt": 1795773487,
   "url": "",
-  "description": "Own lets anyone mint eUSD, a stablecoin backed by tokenized stocks, ETH and stock/eUSD LP positions on Robinho",
-  "misrepresentedTokens": false,
-  "wrongLiquidity": null,
-  "in_names": false
- },
- {
-  "id": "9518",
-  "name": "Tine",
-  "slug": "tine",
-  "chains": [
-   "Ethereum"
-  ],
-  "tvl": 1662.9237930417867,
-  "category": "Yield",
-  "listedAt": 1795666300,
-  "url": "",
-  "description": "Tine is an Ethereum savings protocol for wstETH. Depositors earn TINE and can choose a term to share in the po",
+  "description": "Stoxes.fun is a BNB Chain launchpad for tokenized-stock and RWA projects. Tokens launch on a bonding curve quo",
   "misrepresentedTokens": false,
   "wrongLiquidity": null,
   "in_names": false

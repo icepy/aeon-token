@@ -1,8 +1,7 @@
 defillama-radar dl-v1 · var=''
-丢弃 无id=0 · seen=9115 · parent=2 · category=0 · 链白名单=4 · 拉取失败=0
-全量 9123 · 新增 id 8（可报 2 / 过滤标记 6）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
+丢弃 无id=0 · seen=9123 · parent=3 · category=0 · 链白名单=1 · 拉取失败=0
+全量 9128 · 新增 id 5（可报 1 / 过滤标记 4）· 重报（上轮未通知）0 · 本次通知 跳过（零可报）
 基线轮=False
-链命中: Ethereum=1914 · Base=935 · Solana=479 · Arbitrum=1058 · Ink=34 · Binance=1162 · BSC=0 · Optimism=395 · OP Mainnet=0 · Hyperliquid L1=218 · Robinhood Chain=333
-单侧读数: 加密侧 2 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
-  Own · Robinhood Chain · tvl=113825.59569860733 · CDP · 1795711537
-  Tine · Ethereum · tvl=1662.9237930417867 · Yield · 1795666300
+链命中: Ethereum=1914 · Base=935 · Solana=479 · Arbitrum=1058 · Ink=34 · Binance=1163 · BSC=0 · Optimism=395 · OP Mainnet=0 · Hyperliquid L1=219 · Robinhood Chain=333
+单侧读数: 加密侧 1 / AI 侧 0（本源只有加密，别把高命中读成词表变准）
+  Stoxes.fun · Binance · tvl=8952.502671156479 · Launchpad · 1795773487

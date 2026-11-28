@@ -1,17 +1,11 @@
 {
   "skill": "defillama-radar",
-  "last_analyzed": "2026-11-26T00:04:58Z",
+  "last_analyzed": "2026-11-28T00:06:33Z",
   "quality_score": 4,
-  "assessment": "Delivered its discovery job well: 3 new protocols with names, TVL, chain, category, adapter, slug/id, and source, plus blocked entries with reasons and a rigorous CF double-fetch/etag cache check; specific and plausibly sourced, though slightly exceeds the 'names + floor fields only, no judgment' scope with commentary and light editorializing.",
+  "assessment": "Delivers the discovery job cleanly: one reportable new BSC protocol with name, chain, category, and TVL floor field, plus four filtered entries labeled by blocking bucket and provenance from the DefiLlama /protocols endpoint; well-structured and internally consistent, though it over-delivers beyond the skill's 'names and floor fields only' scope with extra commentary and process claims (etag byte-identical dual fetch) that can't be independently checked.",
   "flags": [],
   "avg_score": 3.93,
   "history": [
-    {
-      "date": "2026-10-28",
-      "score": 4,
-      "ts": "2026-10-28T06:35:02Z",
-      "harness": "claude"
-    },
     {
       "date": "2026-10-29",
       "score": 4,
@@ -184,6 +178,12 @@
       "date": "2026-11-26",
       "score": 4,
       "ts": "2026-11-26T00:04:58Z",
+      "harness": "claude"
+    },
+    {
+      "date": "2026-11-28",
+      "score": 4,
+      "ts": "2026-11-28T00:06:33Z",
       "harness": "claude"
     }
   ]
