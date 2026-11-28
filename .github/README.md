@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../docs/assets/hero-animated.svg" alt="AEON - the most autonomous agent framework. 97 skills across 9 harnesses (Claude Code, Grok, Codex, Pi, Vibe, Kimi, fx, Cursor, Hermes), running unattended on GitHub Actions: it ships features to your repos, privately discloses real vulnerabilities, deploys live apps, runs deep research, and writes new skills for itself. Keywords: autonomous AI agent, agent framework, GitHub Actions automation, self-improving agent, multi-agent orchestration, LLM skills, cron agent." width="100%" />
+  <img src="../docs/assets/readme-hero.jpg" alt="Aeon logo, an orange star inside a white ouroboros, over a sea of clouds. Aeon - Multiply yourself ⭐" width="100%" />
 </p>
 
 <p align="center">
@@ -9,12 +9,11 @@
   <a href="https://www.aeon.fun"><img src="../docs/assets/btn-site.svg" alt="aeon.fun" height="34" align="absmiddle"></a>&nbsp;&nbsp;
   <a href="https://www.aeon.fun/docs"><img src="../docs/assets/btn-docs.svg" alt="Aeon docs" height="34" align="absmiddle"></a>&nbsp;&nbsp;
   <a href="https://x.com/aeonframework"><img src="../docs/assets/btn-x.svg" alt="@aeonframework on X" height="34" align="absmiddle"></a>&nbsp;&nbsp;
-  <a href="https://bankr.bot/discover/0xbf8e8f0e8866a7052f948c16508644347c57aba3"><img src="../docs/assets/btn-bankr.svg" alt="$aeon on Bankr" height="34" align="absmiddle"></a>
+  <a href="https://bankr.bot/discover/0xbf8e8f0e8866a7052f948c16508644347c57aba3"><img src="../docs/assets/btn-bankr.svg" alt="$AEON on Bankr" height="34" align="absmiddle"></a>
 </p>
 
 <p align="center">
-  Give it a direction and it ships the work: features, vulnerability disclosures, live apps, deep research - and new skills for itself.<br/><br/>
-  <strong>No approval loops. No babysitting. Configure once, forget forever.</strong>
+  <strong>Multiply yourself ⭐<br/>Give every idea its own swarm, 24/7.<br/>Outwork any company.</strong>
 </p>
 
 > **▶ Start in your browser:** **[www.aeon.fun/connect](https://www.aeon.fun/connect)** - sign in with GitHub, connect a model, pick skills. No clone, no terminal.
@@ -62,7 +61,7 @@ git clone https://github.com/aeonfun/aeon && cd aeon
 ./aeon init
 ```
 
-`./aeon init` does the rest and tells you what it did at each step: signs you in to GitHub, creates **your own repo** from the template (public by default - Actions minutes are free; `--private` if you prefer), points this folder and `gh` at it, turns on GitHub Actions, stores your GitHub token for runs, connects a model (any of nine [harnesses](../docs/harnesses.md): a Claude subscription, an API key, or one OpenRouter key) and, if you want, links Telegram. It is safe to re-run: every step checks first and skips what is already done. Then `./aeon` opens the same dashboard locally at [localhost:5555](http://localhost:5555) to **pick skills** and **Run**. `bin/onboard` re-checks the whole setup any time (read-only).
+`./aeon init` does the rest and tells you what it did at each step: signs you in to GitHub, creates **your own repo** from the template (public by default - Actions minutes are free; `--private` if you prefer), points this folder and `gh` at it, turns on GitHub Actions, stores your GitHub token for runs, connects a model (any of ten [harnesses](../docs/harnesses.md): a Claude subscription, an API key, or one OpenRouter key) and, if you want, links Telegram. It is safe to re-run: every step checks first and skips what is already done. Then `./aeon` opens the same dashboard locally at [localhost:5555](http://localhost:5555) to **pick skills** and **Run**. `bin/onboard` re-checks the whole setup any time (read-only).
 
 </details>
 
@@ -129,17 +128,17 @@ The prompt *is* the skill. You schedule it, hand it a `var`, chain it into other
 
 fetch-tweets, shiplog, and mention-radar read X through [TwitterAPI.io](https://twitterapi.io/?ref=wa6is4im) when `TWITTER_API_KEY` is set. Disclosure: I receive TwitterAPI.io credits for this post through their Community Rewards program. Referral: https://twitterapi.io/?ref=wa6is4im
 
-## Support nine harnesses: Claude, Grok, Codex, Pi, Vibe, Kimi, fx, Cursor, Hermes
+## Support ten harnesses: Claude, Grok, Codex, Pi, Vibe, Kimi, fx, Cursor, Hermes, Droid
 
 <p align="center">
-  <img src="../docs/assets/harnesses-aeon.jpg" alt="Nine engines, one socket - a SKILL.md flows through run-harness into any of nine agent CLIs: Claude, Grok, Codex, Pi, Vibe, Kimi, fx, Cursor, Hermes. Every harness honors the same contract: result, usage, session." width="100%" />
+  <img src="../docs/assets/harnesses-aeon.jpg" alt="Ten engines, one socket - a SKILL.md flows through run-harness into any of ten agent CLIs: Claude, Grok, Codex, Pi, Vibe, Kimi, fx, Cursor, Hermes, Droid. Every harness honors the same contract: result, usage, session." width="100%" />
 </p>
 
-The same `SKILL.md` runs on any of nine agent CLIs - **Claude**, **Grok**, **Codex**, **Pi**, **Vibe**, **Kimi**, **fx**, **Cursor**, **Hermes** - behind one `run-harness` contract (same result, usage, and session shape). Swap the harness; nothing else changes. How the contract works: [`docs/harnesses.md`](../docs/harnesses.md). GLM Coding Plan is a Claude AI Gateway hop (`GLM_API_KEY`), not a harness.
+The same `SKILL.md` runs on any of ten agent CLIs - **Claude**, **Grok**, **Codex**, **Pi**, **Vibe**, **Kimi**, **fx**, **Cursor**, **Hermes**, **Droid** - behind one `run-harness` contract (same result, usage, and session shape). Swap the harness; nothing else changes. How the contract works: [`docs/harnesses.md`](../docs/harnesses.md). GLM Coding Plan is a Claude AI Gateway hop (`GLM_API_KEY`), not a harness.
 
-## Why "the most autonomous"
+## Why it runs on its own
 
-Most agent tools keep you in the loop - approve this call, review this diff. Aeon is built for the work you want done while you're away, and it's the only framework that does all four unattended: runs on a schedule, remembers across runs, reacts to conditions, and repairs its own broken skills. The most autonomous agent is the one that never asks.
+Most agent tools keep you in the loop - approve this call, review this diff. Aeon is built for the work you want done while you're away, and it's the only framework that does all four unattended: runs on a schedule, remembers across runs, reacts to conditions, and repairs its own broken skills.
 
 Full comparison vs Claude Code, Hermes, and OpenClaw: [`SHOWCASE.md`](../docs/SHOWCASE.md).
 
@@ -148,7 +147,7 @@ Full comparison vs Claude Code, Hermes, and OpenClaw: [`SHOWCASE.md`](../docs/SH
 ## Proof of work
 
 <p align="center">
-  <img src="../docs/assets/proof-aeon.jpg" alt="Proof of work, live at aeon.fun: 4.7M GitHub stars secured across 100+ open-source repos, 70+ products and agents built on Aeon, and 9 community skill packs." width="100%" />
+  <img src="../docs/assets/proof-aeon.jpg" alt="Proof of work, live at aeon.fun: 4.7M GitHub stars secured across 100+ open-source repos, 70+ products and agents built on Aeon, and 20 community skill packs." width="100%" />
 </p>
 
 Live at **[aeon.fun](https://www.aeon.fun)**: **4.7M GitHub stars secured** - real vulnerabilities found, patched, and responsibly disclosed across 100+ open-source repos (**Alibaba**, **Tencent**, **Vercel**, and more), many rated High or Critical. **70+ products built on top of Aeon.**
@@ -239,7 +238,7 @@ The deep reference lives in [`docs/`](../docs) - jump in:
 
 <p align="center">
   <a href="../docs/CONFIGURATION.md"><img src="../docs/assets/doc-config.svg" alt="Configuration - chaining, triggers, scheduler, capability modes, gateways, Fleet Watcher" height="30" align="absmiddle"></a>&nbsp;
-  <a href="../docs/harnesses.md"><img src="../docs/assets/doc-harnesses.svg" alt="Harnesses - run skills on any of nine agent CLIs behind one contract" height="30" align="absmiddle"></a>&nbsp;
+  <a href="../docs/harnesses.md"><img src="../docs/assets/doc-harnesses.svg" alt="Harnesses - run skills on any of ten agent CLIs behind one contract" height="30" align="absmiddle"></a>&nbsp;
   <a href="../docs/skill-packs.md"><img src="../docs/assets/doc-packs.svg" alt="Skill Packs - how packs work and how to build your own" height="30" align="absmiddle"></a>&nbsp;
   <a href="../docs/CORE.md"><img src="../docs/assets/doc-core.svg" alt="Core - the self-healing health and repair loop" height="30" align="absmiddle"></a>
 </p>
@@ -264,7 +263,7 @@ The deep reference lives in [`docs/`](../docs) - jump in:
       <a href="https://www.aeon.fun/docs" title="Read the Aeon docs"><img src="../docs/assets/comm-docs-aeon.jpg" alt="Read the Aeon documentation - guides and reference." width="100%"/></a>
     </td>
     <td align="center" valign="middle" width="33%">
-      <a href="https://bankr.bot/discover/0xbf8e8f0e8866a7052f948c16508644347c57aba3" title="$aeon on Bankr"><img src="../docs/assets/comm-bankr-aeon.jpg" alt="$aeon token on Bankr." width="100%"/></a>
+      <a href="https://bankr.bot/discover/0xbf8e8f0e8866a7052f948c16508644347c57aba3" title="$AEON on Bankr"><img src="../docs/assets/comm-bankr-aeon.jpg" alt="$AEON token on Bankr." width="100%"/></a>
     </td>
   </tr>
 </table>

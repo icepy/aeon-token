@@ -20,7 +20,6 @@ const FILES = [
   'docs/skill-packs.md',
   'docs/aeon-setup.md',
   'docs/examples/README.md',
-  'docs/assets/hero-animated.svg',
 ]
 
 let changed = 0

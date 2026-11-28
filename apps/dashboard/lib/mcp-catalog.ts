@@ -44,7 +44,7 @@ export const MCP_CATALOG: McpCatalogEntry[] = [
     slug: 'base',
     name: 'Base',
     url: 'https://mcp.base.org',
-    logo: 'https://pbs.twimg.com/profile_images/2060695832840556549/R0s33fMN_400x400.jpg',
+    logo: 'https://avatars.githubusercontent.com/u/16627100?s=200&v=4',
     description: 'Base Account access - wallet, portfolio, swaps, signing, x402 payments, and batched contract calls.',
     // Base is its own OAuth authorization server: no Protected Resource Metadata,
     // but full AS metadata (+ DCR) at https://mcp.base.org/.well-known/oauth-authorization-server.
@@ -108,7 +108,7 @@ export const MCP_CATALOG: McpCatalogEntry[] = [
     url: 'https://wallet-mcp.fd.xyz',
     logo: 'https://fd.xyz/apple-icon.png',
     description:
-      'Non-custodial MCP wallet for AI agents: hold and send across EVM, Solana, Bitcoin and Sui, swap tokens, earn DeFi yield, and make x402 payments — all within server-enforced spending caps, with keys that never leave a secure enclave (the agent never holds them).',
+      'Non-custodial MCP wallet for AI agents: hold and send across EVM, Solana, Bitcoin and Sui, swap tokens, earn DeFi yield, and make x402 payments, all within server-enforced spending caps, with keys that never leave a secure enclave (the agent never holds them).',
     // Standard OAuth. PRM (RFC 9728) at wallet-mcp.fd.xyz/.well-known/oauth-protected-resource
     // names AS https://oauth.fd.xyz (RFC 8414: authorization_code + refresh_token grants,
     // PKCE S256, DCR registration_endpoint, public client via auth "none"). offline_access
@@ -208,6 +208,20 @@ export const MCP_CATALOG: McpCatalogEntry[] = [
     deniedTools: ['canister_update_call'],
     oauthSession:
       'Internet Computer sessions have no refresh token: this one lasts as long as you chose at sign-in (up to 30 days). Reconnect here when it expires.',
+  },
+  {
+    slug: 'ironflow',
+    name: 'Ironflow',
+    url: 'https://mcp.ironflow.sh/data',
+    logo: 'https://ironflow.sh/apple-touch-icon.png',
+    description:
+      'Ironflow - Hyperliquid market data from its own nodes: trades, funding, liquidations, open interest, a live liquidation map, wallet PnL and trader rankings, plus read-only SQL over every fill. Native perps, HIP-3, HIP-4 and spot. 42 read-only tools, no API key needed. Tool calls and their arguments are logged and kept for 90 days.',
+    // Public streamable HTTP, no auth (probed live 2026-11-25: initialize returns
+    // serverInfo "ironflow" with no session id, tools/list returns 42 tools, all
+    // readOnlyHint). /data is the read-only toolset of https://mcp.ironflow.sh/mcp,
+    // so the alert-writing tools are not exposed and no deniedTools entry is
+    // needed. Keyless limits: 30 requests a minute, 100 credits a day, 24 hours of
+    // history; an operator who wants more adds a free key as an Authorization header.
   },
 ]
 
