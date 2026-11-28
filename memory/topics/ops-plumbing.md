@@ -6,7 +6,7 @@ tags:
   - runbook
   - scheduler
   - notify
-timestamp: 2026-11-27T18:30:00Z
+timestamp: 2026-11-28T00:35:00Z
 ---
 
 # Scheduler and notification plumbing state
@@ -611,6 +611,31 @@ days running — 「PR 队列空」 is the exception, not the default.
 `defi-overview` reached **26/48 = 54.2%, cf 0, seven consecutive green (11-18→11-24)** — third consecutive
 round climbing away from the `<0.5` chronic line. Judged no-fault under the 11-21 rule (read only cf + last
 three rounds, never the 48-round mean). [source: logs/2026-11-25#heartbeat]
+
+## Update (11-28): `defi-overview` cf=4 — and the refusal count was the real clue
+
+`defi-overview` 11-27 23:00 (run `46080020308`) died on `api_error: max_output_tokens`, not on the gateway:
+`num_turns:143` · `output_tokens:100297` vs `maxOutputTokens:128000` · `duration_ms:396036` · `costUSD:3.2049` ·
+`terminal_reason:"api_error"` · `subtype:"success"`. This is the **same disease fixed on 11-18** by compressing
+per-turn read/write volume, and it came back. `consecutive_failures` climbed 2 → 4 across two days with **three
+different signatures** — `timeout` (11-26 23:00) → `403 All target providers failed` (23:45) → `max_output_tokens`
+(11-27 23:00). So the 11-27 rule ("one skill can fail consecutively with different signatures") needs its
+converse stated: **when the signature changes, the root cause really did change** — network, auth-routing and
+output-budget are three separate faults and only the last has a skill-side fix. `success_rate` 27/53 = 51%,
+still above the `<0.5` chronic line; because cf ≥ 3 the circuit breaker is open, which closes the 23:30/00:15
+retry channel that used to self-heal — **cf ≥ 3 is therefore the moment a per-skill failure becomes durable.**
+
+**The transferable read — `permission_denials` is evidence, not noise.** All 5 denials in that run share one
+cause: six `curl` fetches joined with `&&` into a single Bash call (plus a `for u in ...; do ...; done` loop, a
+`curl ; echo` pair, and three other `&&` chains). `skills/defi-overview/SKILL.md:138` already says "run each
+command below as its own Bash call", and that file contains **zero** `&&` — so **the skill text was right and the
+agent's execution was wrong.** Compound commands are silently refused in this harness: each refusal costs a tool
+turn and a retry, which pushes `num_turns` up — same direction as the ceiling hit. **Reading rule: when
+`permission_denials` is non-empty, classify every entry by `tool_input.command` instead of merely counting it.
+Five denials with one cause means a fixable prompt/example defect, not an environmental one; five with five
+causes means an environment or allowlist problem.** Never report "N permission denials" without the grouping.
+
+[source: logs/2026-11-28#heartbeat]
 
 # Citations
 

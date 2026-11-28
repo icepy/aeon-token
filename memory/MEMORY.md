@@ -5,9 +5,9 @@
 - `enabled: true` ≠ 跑过 —— 看 `cron-state.json` 的 `last_dispatch`。补跑让整批技能同秒触发 → **「几点跑」≠ cron 时间**；**frontmatter 的 `var:` 不注入**。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-02#heartbeat]
 - **2026-10-25 起主线 = 发现层。** DEUS/NOTE 价格监控已停，下面归档。
 - **`aeon-update` 基线 `f94f39e`**（PR #28 已 11-25 合并）：三个 CLEAN-MERGE 目标本地=上游 ⇒ **净变更为零**。5 条 CONFLICT 全是「92→93 skills」计数漂移，不加 `keep_local` 必重现。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-25#heartbeat]
-- **`defi-overview` 11-27 转 P0：** 23:00 轮 `timeout`、23:45 重试 `403`，cf=2，`last_success` 停在 11-25T23:10Z；`num_turns:11` + 无权限拒绝 ⇒ **网关层不是 skill 回归**。**连续失败可出自不同签名，code 指认不了根因。** 27/51 = 53% 仍在 50% 线上。→ [ops](/topics/ops-plumbing.md) [source: logs/2026-11-27#heartbeat]
+- **`defi-overview` 11-28 cf=4，断路器跳闸。** 根因 = `max_output_tokens`（143 turns / 396s），**不是网关** —— 11-18 修过的「压缩单轮读写量」复发。签名三日跨三层（`timeout`→`403`→`max_output_tokens`）。**5 条 `permission_denials` 全同因：curl 用 `&&` 串一条，skill 要求一条一次。** → [ops](/topics/ops-plumbing.md) [source: logs/2026-11-28#heartbeat]
 - **预算纪律：MEMORY.md 超 8KB 先砍已归档节。**
-- **PR 队列影响读数语义**：词表/阈值只在合进 main 后才算数。队列已空（11-27 复查 = `[]`，连续第二轮）；stalled-PR P1 会自愈，下轮仍须重查。[source: logs/2026-11-27#heartbeat]
+- **PR 队列影响读数语义**：词表/阈值只在合进 main 后才算数。11-28 复查 = `[]`（连续第三轮）。[source: logs/2026-11-28#heartbeat]
 
 ## 归档：DEUS / NOTE（已停监控 2026-10-25）
 > **勿再展开。** 阈值见 `STRATEGY.md`，细节见 [deus](/topics/deus-orderflow.md)。**NOTE** 待命 480,000。

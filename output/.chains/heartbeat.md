@@ -1,12 +1,17 @@
-🚨 心跳：defi-overview 连挂 2 次
+🚨 heartbeat: defi-overview 连败 4 轮
 
-🔴 failed: `defi-overview` 连续 2 次失败（11-26 23:31 timeout → 23:54 `403 All target providers failed`，连续失败 cf=2，最后成功停在 11-25 23:10）。**两种不同签名，不是同一抖动。** 00:15 的第三次重试仍在跑。403 与 10 月那次三技能全线挂掉的签名相同，值得盯。
+## 🔴 `defi-overview` 连续失败 4 轮，断路器已跳闸
 
-其余全部正常：`defillama-radar` 00:05 ✅（第 32 轮）· `github-radar` 22:37 ✅ · `arxiv-radar` 22:06 ✅ · `memory-flush` 18:05 ✅ · `narrative-brief` 10:09 ✅。
+**新事实（不是 11-27 那条的重复）：**
 
-- PR 队列空（`gh pr list` = `[]`）
-- 9 条 GitHub issue 全是无标签 health 线程，无 urgent/critical
-- P2 memory 无 flag · P3 无缺失 skill
-- `defi-overview` 27/51 = 53%，仍在 50% 慢性线之上
+- 11-27 23:00 那轮（run `46080020308`）根因**不是网关**，是 **`api_error: max_output_tokens`**：143 turns、396s、$3.20，撞 128,000 单响应上限。这正是 11-18 靠「压缩单轮读写量」修好过的那条病，**复发了**。
+- **5 次 Bash 被拒，同一个可避免的原因**：skill 明确要求「每条 curl 各自一次 Bash 调用」，但 agent 把 6 条 curl 用 `&&` 串进一条命令（另 4 条同类）。本 harness 静默拒绝复合命令 -- 每次拒绝都吃掉一次重试，正好助推撞顶。
+- `consecutive_failures` **2 → 4**，`last_success` 停在 11-25 23:10Z。**cf≥3 ⇒ 断路器打开，过去靠 23:30/00:15 重试自愈的路已关闭。**
 
-STATUS_PAGE=DEGRADED（来源：`memory/cron-state.json` + run 45908315764 / 45912835088 日志）
+**签名序列（三种病，不可合并归因）：** 11-26 23:00 `timeout` → 23:45 `403` → 11-27 00:15 失败 → 11-27 23:00 `max_output_tokens`。
+
+**成功率 27/53 = 51%**，仍在 50% chronic 线上；再败一轮 = 50.0%，两轮才破线。
+
+**要动手的话（需你拍板，我没擅自改）：** ① 修 skill 文档：把 fetch 段写成「一次一条」且显式禁止 `&&`；② `aeon.yml:29` 的 `0 23` 挪出 23:00-23:31Z 高发窗。
+
+**其余全绿：** `defillama-radar` 00:06（第 33 轮）· `github-radar` 22:34 · `arxiv-radar` 22:05 · `memory-flush` 18:06 · `narrative-brief` 11-27 10:01。PR 队列空（连续第三次）。

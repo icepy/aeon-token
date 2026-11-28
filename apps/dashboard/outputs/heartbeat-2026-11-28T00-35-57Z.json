@@ -1,0 +1,306 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "🚨 heartbeat: defi-overview 连败 4 轮",
+        "description": "断路器已跳闸 · last_success 11-25 23:10Z"
+      },
+      "children": [
+        "alert1",
+        "h1",
+        "sep1",
+        "h_facts",
+        "facts_stack",
+        "sep2",
+        "stats_row",
+        "progress_rate",
+        "text_rate_note",
+        "sep3",
+        "h_sig",
+        "sig_stack",
+        "sep4",
+        "h_action",
+        "action_stack",
+        "sep5",
+        "h_green",
+        "green_stack",
+        "text_pr"
+      ]
+    },
+    "alert1": {
+      "type": "Alert",
+      "props": {
+        "title": "defi-overview 连续失败 4 轮，断路器已跳闸",
+        "message": "consecutive_failures 2 → 4；cf≥3 ⇒ 断路器打开，过去靠 23:30/00:15 重试自愈的路已关闭。",
+        "type": "error"
+      }
+    },
+    "h1": {
+      "type": "Heading",
+      "props": {
+        "text": "🔴 defi-overview 连续失败 4 轮，断路器已跳闸",
+        "level": "h1"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h_facts": {
+      "type": "Heading",
+      "props": {
+        "text": "新事实（不是 11-27 那条的重复）",
+        "level": "h2"
+      }
+    },
+    "facts_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "fact1",
+        "fact2",
+        "fact3"
+      ]
+    },
+    "fact1": {
+      "type": "Text",
+      "props": {
+        "text": "11-27 23:00 那轮（run 46080020308）根因不是网关，是 api_error: max_output_tokens：143 turns、396s、$3.20，撞 128,000 单响应上限。这正是 11-18 靠「压缩单轮读写量」修好过的那条病，复发了。",
+        "variant": "body"
+      }
+    },
+    "fact2": {
+      "type": "Text",
+      "props": {
+        "text": "5 次 Bash 被拒，同一个可避免的原因：skill 明确要求「每条 curl 各自一次 Bash 调用」，但 agent 把 6 条 curl 用 && 串进一条命令（另 4 条同类）。本 harness 静默拒绝复合命令 -- 每次拒绝都吃掉一次重试，正好助推撞顶。",
+        "variant": "body"
+      }
+    },
+    "fact3": {
+      "type": "Text",
+      "props": {
+        "text": "consecutive_failures 2 → 4，last_success 停在 11-25 23:10Z。cf≥3 ⇒ 断路器打开，过去靠 23:30/00:15 重试自愈的路已关闭。",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stats_row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "lg"
+      },
+      "children": [
+        "stat_cf",
+        "stat_rate"
+      ]
+    },
+    "stat_cf": {
+      "type": "Stat",
+      "props": {
+        "label": "consecutive_failures",
+        "value": "4",
+        "delta": "+2（2 → 4）",
+        "trend": "up"
+      }
+    },
+    "stat_rate": {
+      "type": "Stat",
+      "props": {
+        "label": "成功率",
+        "value": "51%",
+        "delta": "27/53",
+        "trend": "neutral"
+      }
+    },
+    "progress_rate": {
+      "type": "Progress",
+      "props": {
+        "value": 51,
+        "max": 100,
+        "label": "成功率 27/53 = 51%"
+      }
+    },
+    "text_rate_note": {
+      "type": "Text",
+      "props": {
+        "text": "成功率 27/53 = 51%，仍在 50% chronic 线上；再败一轮 = 50.0%，两轮才破线。",
+        "variant": "muted"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h_sig": {
+      "type": "Heading",
+      "props": {
+        "text": "签名序列（三种病，不可合并归因）",
+        "level": "h2"
+      }
+    },
+    "sig_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "sig1",
+        "sig2",
+        "sig3",
+        "sig4"
+      ]
+    },
+    "sig1": {
+      "type": "Badge",
+      "props": {
+        "text": "11-26 23:00 · timeout",
+        "variant": "destructive"
+      }
+    },
+    "sig2": {
+      "type": "Badge",
+      "props": {
+        "text": "23:45 · 403",
+        "variant": "destructive"
+      }
+    },
+    "sig3": {
+      "type": "Badge",
+      "props": {
+        "text": "11-27 00:15 · 失败",
+        "variant": "destructive"
+      }
+    },
+    "sig4": {
+      "type": "Badge",
+      "props": {
+        "text": "11-27 23:00 · max_output_tokens",
+        "variant": "destructive"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h_action": {
+      "type": "Heading",
+      "props": {
+        "text": "要动手的话（需你拍板，我没擅自改）",
+        "level": "h2"
+      }
+    },
+    "action_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "action1",
+        "action2"
+      ]
+    },
+    "action1": {
+      "type": "Text",
+      "props": {
+        "text": "① 修 skill 文档：把 fetch 段写成「一次一条」且显式禁止 &&；",
+        "variant": "body"
+      }
+    },
+    "action2": {
+      "type": "Text",
+      "props": {
+        "text": "② aeon.yml:29 的 0 23 挪出 23:00-23:31Z 高发窗。",
+        "variant": "body"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "h_green": {
+      "type": "Heading",
+      "props": {
+        "text": "其余全绿",
+        "level": "h2"
+      }
+    },
+    "green_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "green1",
+        "green2",
+        "green3",
+        "green4",
+        "green5"
+      ]
+    },
+    "green1": {
+      "type": "Badge",
+      "props": {
+        "text": "defillama-radar 00:06（第 33 轮）",
+        "variant": "secondary"
+      }
+    },
+    "green2": {
+      "type": "Badge",
+      "props": {
+        "text": "github-radar 22:34",
+        "variant": "secondary"
+      }
+    },
+    "green3": {
+      "type": "Badge",
+      "props": {
+        "text": "arxiv-radar 22:05",
+        "variant": "secondary"
+      }
+    },
+    "green4": {
+      "type": "Badge",
+      "props": {
+        "text": "memory-flush 18:06",
+        "variant": "secondary"
+      }
+    },
+    "green5": {
+      "type": "Badge",
+      "props": {
+        "text": "narrative-brief 11-27 10:01",
+        "variant": "secondary"
+      }
+    },
+    "text_pr": {
+      "type": "Text",
+      "props": {
+        "text": "PR 队列空（连续第三次）。",
+        "variant": "muted"
+      }
+    }
+  }
+}
