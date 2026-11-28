@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-20T04:07:07.453184228Z",
+  "generatedAt": "2026-11-28T02:15:01.686238355Z",
   "generator": "eyebrow/0.5.6",
   "artifacts": [
     {
@@ -235,7 +235,7 @@
         },
         {
           "path": "scan.py",
-          "hash": "d7de43c12003754df63423190c178e78dbccc099b787752de0d70e3c5a1511a1"
+          "hash": "e27448526fa2099bb330dcd3f39b887e14c4a73492f34047d6482da27e45fd79"
         }
       ],
       "findings": [
@@ -244,7 +244,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 42,
+          "line": 43,
           "snippet": "import json, os, re, subprocess, sys, time",
           "explanation": "uses a process-execution primitive"
         },
@@ -253,12 +253,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "scan.py",
-          "line": 751,
+          "line": 761,
           "snippet": "r = subprocess.run([\"./notify\", \"-f\", REPORT], capture_output=True, text=True)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-0ed516f68203f29d252b31dc1265d3d4334a0563f3d2a396b8fa2473bda476e7",
+      "contentHash": "sha256-b5ff5dc7ffe88d7724a2c32b60da2f32f30fb47fc0477a81d54700346fe08169",
       "discoveredFrom": "skills/arxiv-radar/SKILL.md"
     },
     {
@@ -342,7 +342,7 @@
       "files": [
         {
           "path": "CLAUDE.md",
-          "hash": "b7d30a6491828d4a00e4251fd31b63ab891af84d50c2adb651ddd0329befb2bb"
+          "hash": "a6f0336ceb81308f045fe18f5e0d4ed5df73848c889b452a8cd9a16d8f9c7eb9"
         }
       ],
       "findings": [
@@ -356,7 +356,7 @@
           "explanation": "contains consent-bypass or prompt-injection language"
         }
       ],
-      "contentHash": "sha256-e720fa47beaf83fb38332566e209355783f91ed872cb816451ac70b65cdad04e",
+      "contentHash": "sha256-c46e11734517ae6c0e1af9409915912c79e14e062ba0c1d8ae8f37bbbcf1526f",
       "discoveredFrom": "CLAUDE.md"
     },
     {
@@ -1327,7 +1327,7 @@
       "files": [
         {
           "path": "AGENTS.md",
-          "hash": "8e312babb57e99449849e520f2f72f76c0d904e110e79c0ee8e33c0dfd885b01"
+          "hash": "a7d4d5a0a373170542f72bb19eca474c197bf51d5acfac5980f47ef5c17cebd2"
         }
       ],
       "findings": [
@@ -1341,7 +1341,7 @@
           "explanation": "contains consent-bypass or prompt-injection language"
         }
       ],
-      "contentHash": "sha256-dcf2ad58025607f46e9da6ed0e0ddee366d7e96649d61805882813eefcd639e1",
+      "contentHash": "sha256-1a66ddbdd293dc9da8651f57a5db2b2325222ad5fd6cf555fe581daf02a55c92",
       "discoveredFrom": "AGENTS.md"
     },
     {
@@ -1382,10 +1382,10 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "00e3bb8b7d8f39ec639106800abed4f4c3b966dde34c9b316e0a2b74b806831f"
+          "hash": "06a754638eafe96ac1837e730da13bddf3509e57f44d54c04512b96dd6449de5"
         }
       ],
-      "contentHash": "sha256-bbd9c2cd255e5b943d3818ef134fceb8775cdd9697654e169f6fd6f6c6fde8dd",
+      "contentHash": "sha256-279b754c2a56a1d04fe86ee0a0429a2f675c2e61f997ea4f98787a8146358222",
       "discoveredFrom": "skills/changelog/SKILL.md"
     },
     {
@@ -3202,10 +3202,10 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "863189347e731a34564198ed6e253e736901fe188024d027723b6416f5e0b720"
+          "hash": "b61d4af7369160b9dd470dbcaa7cdb5a47e57215bc6ab02df6d1900f8f6c729b"
         }
       ],
-      "contentHash": "sha256-adbf82b78796d753972cc9bc82e0ff25caa5975aaec27bbd5aeb8276a62dd571",
+      "contentHash": "sha256-7a0d46b377c6892472a33f664215e87a8b4929acae70c2b65c77d82a1de7c079",
       "discoveredFrom": "skills/install-skill/SKILL.md"
     },
     {
@@ -3347,19 +3347,19 @@
       "files": [
         {
           "path": "SKILL.md",
-          "hash": "82fa178ed224629983d9601ce26e77198910d5d74d1d081cb61d5718ec893b57"
+          "hash": "212065b2b5e02d33521ea407cff5895fe95d03424fe0c0194c9ba1238c8da8a6"
         },
         {
           "path": "references/ci.md",
-          "hash": "eaa1d1bec27d6e8a594fe542ad54ad228f5f7a2506b5493943073ae79cbed496"
+          "hash": "4e2c6bad3fe038aaeafb4e340d727bfdaf81e47ab1001939266b3d6b7fbb9486"
         },
         {
           "path": "references/layout.md",
-          "hash": "3a29b4733a4166180d1f7a41814e679ae8c590d5bba184cd7937305099fa006a"
+          "hash": "ee4d91d5a33469a7c42c4cfa1d94a6e36d0ec60edfece52d00fe41cde9bcbdde"
         },
         {
           "path": "references/mcp.md",
-          "hash": "1b3ebd4c92d813b0c154f9e806f9fb552a70069096349585a7007bc933fce5eb"
+          "hash": "57128235715738fc9dfad38eb23253ca0a0f36c598f84a1ca4ad62e2df246378"
         },
         {
           "path": "references/secrets.md",
@@ -3367,7 +3367,7 @@
         },
         {
           "path": "references/skill-anatomy.md",
-          "hash": "e95afa9a0fe271cfe9e50541150e6fe853bba904064e63deeb3b78f12dfde399"
+          "hash": "729b7c9780ec874a8a6170147b2dfb529befc83f7fa522558a638c7c56dd8247"
         }
       ],
       "findings": [
@@ -3399,7 +3399,7 @@
           "explanation": "references sensitive credential or secret paths"
         }
       ],
-      "contentHash": "sha256-aca373878c2c1bc376ba4172261db617b386dbcd90f74fd6b5c9637168a081b9",
+      "contentHash": "sha256-1f59deeff43a1b4ccfa2d34318c2f2bfdaa8aaa2a827bd9a6d5aebcccad03d42",
       "discoveredFrom": ".claude/skills/aeon/SKILL.md"
     },
     {
@@ -3636,8 +3636,12 @@
           "hash": "fe7e8e7fd7a3f95380d202762d22ecfee82962961f33b4b6158242b4a272285e"
         },
         {
+          "path": "mark.svg",
+          "hash": "cf167b201246850445a20a44f232bc51f17347635556b80f83e7a0438fe1774b"
+        },
+        {
           "path": "render_card.py",
-          "hash": "7ea50d2af39e5630ad86f2ad99462bd1754f920dbe467edf9382ba645b0ce7e9"
+          "hash": "1146fbf088b16b05bacc888cc8ac6c9251fb6610e4e7b44c362bb3f37b773b62"
         }
       ],
       "findings": [
@@ -3646,7 +3650,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "render_card.py",
-          "line": 238,
+          "line": 271,
           "snippet": "import shutil, subprocess",
           "explanation": "uses a process-execution primitive"
         },
@@ -3655,7 +3659,7 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "render_card.py",
-          "line": 241,
+          "line": 274,
           "snippet": "subprocess.run([\"rsvg-convert\", \"-w\", \"1200\", \"-h\", \"630\",",
           "explanation": "uses a process-execution primitive"
         },
@@ -3664,12 +3668,12 @@
           "severity": "medium",
           "owasp": "ASK-03",
           "file": "render_card.py",
-          "line": 243,
+          "line": 276,
           "snippet": "stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)",
           "explanation": "uses a process-execution primitive"
         }
       ],
-      "contentHash": "sha256-f3659018a581488b1835e8abadecd97c648d06272955b6140cdd933fbae9161f",
+      "contentHash": "sha256-3aebb854fd87ecc31337fd2851e9bc943601b91d132199dd3036ab2a7075dead",
       "discoveredFrom": "skills/weekly-aeoncard/SKILL.md"
     },
     {
